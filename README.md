@@ -153,9 +153,8 @@ predictions = model.predict(new_data)
 
 ## 📖 Documentation
 
-_TODO: Describe where to find the documentation for the framework, including tutorials and API reference._
-
-For detailed documentation, including tutorials and API reference, please visit our [official documentation](https://scikit-longitudinal.github.io/docs).
+Use `make docs` to build the documentation locally or for detailed documentation, including tutorials and API reference,
+please visit our [official documentation](https://simonprovost.github.io/scikit-longitudinal/).
 
 ## 🤝 Contributing
 
@@ -194,7 +193,11 @@ In summary, the main differences between Time-Series and Longitudinal Data lie i
 
 ## 📝 How to Cite?
 
-If you use Scikit-Longitudinal in your research, please cite our paper:
+If you use Scikit-Longitudinal in your research, please cite our paper and our repoitiory:
+
+For the repository, utilise the button top right corner of the repository "How to cite?",
+
+For the paper, use the following BibTeX entry:
 
 _TODO: Add citation information for the Scikit-Longitudinal papers._
 
