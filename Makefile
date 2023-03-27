@@ -2,7 +2,7 @@
 
 tests:
 	@echo "Running Poetry Pytests..."
-	poetry run pytest --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/src
+	poetry run pytest --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/scikit_longitudinal
 	@echo "Done."
 
 clean_cache:
@@ -25,7 +25,7 @@ flake8:
 
 pylint:
 	@echo "Running pylint..."
-	poetry run pylint --rcfile=pylintrc src/
+	poetry run pylint --rcfile=pylintrc scikit_longitudinal/
 	@echo "Done."
 
 precommit:
@@ -41,6 +41,11 @@ autopep8:
 docs:
 	@echo "Generating Sphinx documentation..."
 	cd docs && poetry run make html
+	@echo "Done."
+
+clean_docs:
+	@echo "Cleaning Sphinx documentation..."
+	rm -rm docs/_build
 	@echo "Done."
 
 lint: flake8 pylint
