@@ -1,0 +1,13 @@
+[MASTER]
+load-plugins = pylint.extensions.docparams
+ignore-patterns=(.)*_test\.py,test_(.)*\.py
+
+[MESSAGES CONTROL]
+disable = C0103, C0114, C0115, C0116
+
+[DESIGN]
+max-args = 6
+
+[FORMAT]
+# Maximum allowed line length
+max-line-length=120
