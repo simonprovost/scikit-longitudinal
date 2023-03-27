@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below 🙏
+authors:
+  - family-names: "Provost"
+    given-names: "Simon"
+    orcid: "0000-0001-8402-5464"
+title: "Scikit-Longitudinal"
+version: "v0.0.1"
+date-released: "2023-03-27"
+repository-code: "https://github.com/simonprovost/scikit-longitudinal"
+license: "The project's under MIT license"
