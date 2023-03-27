@@ -5,7 +5,7 @@ description = "Scikit-longitudinal, an open-source Python lib for longitudinal d
 authors = ["Simon Provost <sgp28@kent.ac.uk>"]
 readme = "README.md"
 packages = [
-    { include = "src", from = "." }
+    { include = "scikit_longitudinal" },
 ]
 
 [tool.poetry.dependencies]
