@@ -114,7 +114,6 @@
             <li><a href="#pull-request-process">Pull Request Process</a></li>
          </ul>
       </li>
-      <li><a href="#examples">📚 Examples</a></li>
       <li><a href="#faq">❓ FAQ</a></li>
       <li><a href="#citation">📝 How to Cite?</a></li>
       <li><a href="#related">🔗 Related</a></li>
@@ -135,8 +134,6 @@ _TODO: Describe how to install the package, including any dependencies._
 _TODO: Describe key features._
 
 ## 🚀 Getting Started
-
-_TODO: Provide a simple example of using the framework, including importing the package, loading data, and training a model._
 
 ````python
 import scikit_longitudinal as skl
@@ -177,12 +174,6 @@ To submit a pull request, please follow these steps:
 * Submit a pull request: Click the "New Pull Request" button in your forked repository and select your newly created branch as the source. Then, target the main branch of the original repository as the destination. Provide a detailed description of the changes you've made, and submit the pull request.
 
 * Once your pull request is submitted, maintainers will review your changes and provide feedback. Be prepared to make any necessary adjustments, and collaborate with the maintainers to get your contribution merged.
-
-## 📚 Examples
-
-_TODO: Provide links to example notebooks or scripts that demonstrate how to use the framework._
-
-Please visit our [examples folder](https://github.com/Scikit-longitudinal/tree/main/examples) for sample notebooks and scripts demonstrating how to use Scikit-Longitudinal.
 
 ## ❓ FAQ
 
