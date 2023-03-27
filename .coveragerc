@@ -1,7 +1,7 @@
 [run]
 branch = True
-source = src/
-omit = src/**/tests/*
+source = scikit_longitudinal/
+omit = scikit_longitudinal/**/tests/*
 data_file = .coverage
 
 [report]

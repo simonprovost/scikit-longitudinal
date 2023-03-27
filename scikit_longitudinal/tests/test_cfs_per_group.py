@@ -7,7 +7,7 @@ from scikit_longitudinal.preprocessing.feature_selection.cfs_per_group.cfs_per_g
 
 @pytest.fixture(scope="module")
 def load_madelon_data_non_longitudinal():
-    mat = loadmat("src/tests/dummy_data/madelon.mat")
+    mat = loadmat("scikit_longitudinal/tests/dummy_data/madelon.mat")
     X = mat["X"].astype(float)
     y = mat["Y"][:, 0]
     X = X[:, :10]
@@ -16,7 +16,7 @@ def load_madelon_data_non_longitudinal():
 
 @pytest.fixture(scope="module")
 def load_madelon_data_longitudinal():
-    mat = loadmat("src/tests/dummy_data/madelon.mat")
+    mat = loadmat("scikit_longitudinal/tests/dummy_data/madelon.mat")
     X = mat["X"].astype(float)
     y = mat["Y"][:, 0]
     X = X[:, :50]
