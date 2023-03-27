@@ -1,0 +1,93 @@
+# .gitignore
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.bak
+*.swp
+*.pyc
+*~
+*.egg-info/
+*.eggs/
+*.cache
+*.spec
+*.db
+
+# Virtual environment
+venv/
+.env
+.pyenv
+*.venv
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+*.tm_properties
+*.tmproject
+*.komodoproject
+*.kateproject
+*.sublime*
+*.project
+*.pydevproject
+*.settings
+*.ini
+*config
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Distribution / packaging
+dist/
+build/
+*.egg
+*.whl
+.Python
+develop-eggs/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.tar.gz
+*.tar.bz2
+*.zip
+*.rar
+
+# Test coverage
+.coverage
+.coverage.*
+.htmlcov/
+.coverage.rc
+
+# Linters and formatters
+.flake8
+.isort.cfg
+.pylint.rc
+.pre-commit-config.yaml
+.black.toml
+
+# Miscellaneous
+.DS_Store
+._*
+Thumbs.db
+node_modules/
+
+.coverage
+
+# JetBrains IDE files
+*.iml
+*.ipr
+*.iws
+.idea/
+
