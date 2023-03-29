@@ -6,10 +6,10 @@ import ray
 from overrides import override
 
 from scikit_longitudinal.preprocessing.feature_selection.cfs_per_group.utils import symmetrical_uncertainty
-from scikit_longitudinal.templates import CustomBaseEstimator
+from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 
 
-class CorrelationBasedFeatureSelectionPerGroup(CustomBaseEstimator):
+class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
     """Correlation-based Feature Selection (CFS) per group.
 
     This class performs feature selection using the correlation-based feature selection (CFS) algorithm on given data.
@@ -113,8 +113,8 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomBaseEstimator):
     See also
     ----------
 
-    * CustomBaseEstimator: Base class for all estimators in scikit-learn that we customed so that the original
-      scikit-learn "check_x_y" is performed all the time.
+    * CustomTransformerMixinEstimator: Base class for all Transformer Mixin estimators in scikit-learn that we
+    customed so that the original scikit-learn "check_x_y" is performed all the time.
 
 
     Methods
