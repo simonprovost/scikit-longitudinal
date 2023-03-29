@@ -1,3 +1,4 @@
-from .custom_base_estimator import CustomBaseEstimator
+from .custom_transformer_mixin_estimator import CustomTransformerMixinEstimator
+from .custom_classifier_mixin_estimator import CustomClassifierMixinEstimator
 
-__all__ = ["CustomBaseEstimator"]
+__all__ = ["CustomTransformerMixinEstimator", "CustomClassifierMixinEstimator"]
