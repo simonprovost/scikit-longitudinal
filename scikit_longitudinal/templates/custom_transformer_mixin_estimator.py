@@ -1,3 +1,5 @@
+# pylint: disable=R0801
+
 from functools import wraps
 from typing import Any, Callable
 

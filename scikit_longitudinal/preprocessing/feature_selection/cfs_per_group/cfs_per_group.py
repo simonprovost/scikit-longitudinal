@@ -131,14 +131,14 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
     def __init__(
-            self,
-            search_method: str = "forwardBestFirstSearch",
-            consecutive_non_improving_subsets_limit: int = 5,
-            group_features: Optional[List[Tuple[int, ...]]] = None,
-            parallel: bool = False,
-            cfs_longitudinal_outer_search_method: str = None,
-            cfs_longitudinal_inner_search_method: str = "exhaustiveSearch",
-            num_cpus: int = -1,
+        self,
+        search_method: str = "forwardBestFirstSearch",
+        consecutive_non_improving_subsets_limit: int = 5,
+        group_features: Optional[List[Tuple[int, ...]]] = None,
+        parallel: bool = False,
+        cfs_longitudinal_outer_search_method: str = None,
+        cfs_longitudinal_inner_search_method: str = "exhaustiveSearch",
+        num_cpus: int = -1,
     ):
         assert search_method in {
             "forwardBestFirstSearch",

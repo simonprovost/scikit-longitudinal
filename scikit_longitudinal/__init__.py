@@ -1,3 +1,1 @@
-from . import preprocessing
-from . import templates
-from . import estimators
+from . import estimators, preprocessing, templates  # noqa
