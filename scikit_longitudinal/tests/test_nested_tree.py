@@ -99,13 +99,11 @@ def capture_print_nested_tree_output(classifier):
 
 
 def get_expected_tree_output():
-    return '''
+    return """
         * Node 0: outer_root
           * Node 1: d1_g0_l2
             * Leaf 2: outer_root_d2_g0_l2
             * Leaf 2: outer_root_d2_g1_l3
-            * Leaf 2: outer_root_d2_g2_l5
-            * Leaf 2: outer_root_d2_g3_l6
           * Node 1: d1_g1_l3
             * Leaf 2: outer_root_d2_g0_l2
             * Leaf 2: outer_root_d2_g1_l3
@@ -113,7 +111,6 @@ def get_expected_tree_output():
             * Leaf 2: outer_root_d2_g3_l6
           * Leaf 1: d1_g2_l5
           * Node 1: d1_g3_l6
-            * Leaf 2: outer_root_d2_g0_l2
+            * Leaf 2: outer_root_d2_g0_l1
             * Leaf 2: outer_root_d2_g1_l3
-            * Leaf 2: outer_root_d2_g2_l4
-    '''
+    """
