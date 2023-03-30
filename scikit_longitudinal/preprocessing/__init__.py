@@ -1,1 +1,1 @@
-from . import feature_selection
+from . import feature_selection  # noqa

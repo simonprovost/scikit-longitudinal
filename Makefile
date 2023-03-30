@@ -10,17 +10,17 @@ clean_cache:
 
 isort:
 	@echo "Running isort..."
-	poetry run isort src
+	poetry run isort scikit_longitudinal
 	@echo "Done."
 
 black:
 	@echo "Running black..."
-	poetry run black --line-length 120 src
+	poetry run black --line-length 120 scikit_longitudinal
 	@echo "Done."
 
 flake8:
 	@echo "Running flake8..."
-	poetry run flake8 src
+	poetry run flake8 scikit_longitudinal
 	@echo "Done."
 
 pylint:
@@ -35,7 +35,7 @@ precommit:
 
 autopep8:
 	@echo "Running autopep8..."
-	poetry run autopep8 --in-place --aggressive --aggressive --recursive src
+	poetry run autopep8 --in-place --aggressive --aggressive --recursive scikit_longitudinal
 	@echo "Done."
 
 docs:

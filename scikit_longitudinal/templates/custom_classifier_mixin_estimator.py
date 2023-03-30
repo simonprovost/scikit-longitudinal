@@ -1,10 +1,12 @@
+# pylint: disable=R0801
+
 from functools import wraps
-from typing import Callable, Any
+from typing import Any, Callable
 
 import numpy as np
 from overrides import EnforceOverrides, final
 from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.utils.validation import check_X_y, check_array
+from sklearn.utils.validation import check_array, check_X_y
 
 
 class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOverrides):

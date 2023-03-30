@@ -2,7 +2,9 @@ import numpy as np
 import pytest
 from scipy.io import loadmat
 
-from scikit_longitudinal.preprocessing.feature_selection.cfs_per_group.cfs_per_group import CorrelationBasedFeatureSelectionPerGroup
+from scikit_longitudinal.preprocessing.feature_selection.cfs_per_group.cfs_per_group import (
+    CorrelationBasedFeatureSelectionPerGroup,
+)
 
 
 @pytest.fixture(scope="module")

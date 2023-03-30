@@ -1,1 +1,1 @@
-from . import cfs_per_group
+from . import cfs_per_group  # noqa
