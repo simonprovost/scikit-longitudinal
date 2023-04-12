@@ -71,10 +71,8 @@ share/python-wheels/
 .coverage.rc
 
 # Linters and formatters
-.flake8
 .isort.cfg
 .pylint.rc
-.pre-commit-config.yaml
 .black.toml
 
 # Miscellaneous
@@ -90,4 +88,3 @@ node_modules/
 *.ipr
 *.iws
 .idea/
-

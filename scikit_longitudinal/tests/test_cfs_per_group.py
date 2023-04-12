@@ -1,3 +1,5 @@
+# pylint: disable=W0621,
+
 import numpy as np
 import pytest
 from scipy.io import loadmat

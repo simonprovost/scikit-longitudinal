@@ -1,7 +1,9 @@
 [run]
 branch = True
 source = scikit_longitudinal/
-omit = scikit_longitudinal/**/tests/*
+omit =
+    scikit_longitudinal/**/tests/*
+    scikit-learn/*
 data_file = .coverage
 
 [report]

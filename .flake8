@@ -1,0 +1,13 @@
+[flake8]
+max-line-length = 120
+ignore = E203, W503
+exclude =
+    .git,
+    __pycache__,
+    venv,
+    migrations,
+    .venv,
+    scikit-learn/*
+max-complexity = 18
+select = B,C,E,F,W,T4,B9
+docstring-convention = google

@@ -1,6 +1,6 @@
 [MASTER]
 load-plugins = pylint.extensions.docparams
-ignore-patterns=(.)*_test\.py,test_(.)*\.py
+ignore-patterns=(.)*_test\.py,test_(.)*\.py,./scikit-learn/*
 
 [MESSAGES CONTROL]
 disable = C0103, C0114, C0115, C0116
