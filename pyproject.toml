@@ -9,14 +9,15 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-scikit-learn = "^1.2.1"
+python = ">=3.10,<3.12"
 pandas = "^1.5.3"
 matplotlib = "^3.7.0"
 jupyter = "^1.0.0"
 overrides = "^7.3.1"
 ray = "^2.3.1"
 statsmodels = "^0.13.5"
+numpy = "^1.21.2"
+scikit-learn-tree = { path = "./scikit-learn" }
 
 [tool.poetry.group.dev.dependencies]
 pytest-cov = "^4.0.0"

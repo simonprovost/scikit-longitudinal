@@ -2,45 +2,42 @@
 
 tests:
 	@echo "Running Poetry Pytests..."
-	poetry run pytest --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/scikit_longitudinal
+	poetry run pytest --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/scikit_longitudinal -s
 	@echo "Done."
 
-clean_cache:
-	rm -rf __pycache__ htmlcov .pytest_cache .mypy_cache
+clean:
+	rm -rf htmlcov .pytest_cache .mypy_cache
+	find . -type d -name "__pycache__" -exec rm -r {} +
+
 
 isort:
 	@echo "Running isort..."
-	poetry run isort scikit_longitudinal
+	poetry run isort --skip=scikit-learn scikit_longitudinal
 	@echo "Done."
 
 black:
 	@echo "Running black..."
-	poetry run black --line-length 120 scikit_longitudinal
+	poetry run black --line-length 120 --exclude=./scikit-learn/* scikit_longitudinal
 	@echo "Done."
 
 flake8:
 	@echo "Running flake8..."
-	poetry run flake8 scikit_longitudinal
+	poetry run flake8 --exclude=./scikit-learn/* scikit_longitudinal
 	@echo "Done."
 
 pylint:
 	@echo "Running pylint..."
-	poetry run pylint --rcfile=pylintrc scikit_longitudinal/
+	poetry run pylint --rcfile=pylintrc --ignore-patterns=./scikit-learn/* scikit_longitudinal/
 	@echo "Done."
 
 precommit:
 	@echo "Running pre-commit hooks..."
-	poetry run pre-commit run --all-files
+	poetry run pre-commit run --all-files --exclude=./scikit-learn/*
 	@echo "Done."
 
 autopep8:
 	@echo "Running autopep8..."
-	poetry run autopep8 --in-place --aggressive --aggressive --recursive scikit_longitudinal
-	@echo "Done."
-
-docs:
-	@echo "Generating Sphinx documentation..."
-	cd docs && poetry run make html
+	poetry run autopep8 --in-place --aggressive --aggressive --recursive --exclude=./scikit-learn/* scikit_longitudinal
 	@echo "Done."
 
 clean_docs:
