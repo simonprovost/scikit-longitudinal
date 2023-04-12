@@ -102,15 +102,16 @@
       📚 Table of Contents
    </summary>
    <ol>
-      <li><a href="#about-the-project">😊 About The Project</a></li>
-      <li><a href="#installation">🛠️ Installation</a></li>
-      <li><a href="#key-features">🌟 Key Features</a></li>
-      <li><a href="#how-to-use">🚀 Getting Started</a></li>
-      <li><a href="#documentation">📖 Documentation</a></li>
+      <li><a href="#about-the-project">💡 About The Project</a></li>
+      <li><a href="#key-features">⭐️ Key Features</a></li>
+      <li><a href="#installation">🛠️ Installation (ON-HOLD)</a></li>
+      <li><a href="#how-to-use">🚀 Getting Started (ON-HOLD)</a></li>
+      <li><a href="#documentation">📖 Documentation (ON-HOLD)</a></li>
       <li>
-         <a href="#contributing">🤝 Contributing</a>
+         <a href="#contributing">🤝 Contributing (developers)</a>
          <ul>
-            <li><a href="#code-convention">Code convention</a></li>
+            <li><a href="#setup">Setup</a></li>
+            <li><a href="#code-convention">Coding Conventions</a></li>
             <li><a href="#pull-request-process">Pull Request Process</a></li>
          </ul>
       </li>
@@ -122,18 +123,27 @@
    </ol>
 </details>
 
+
 ## 💡 About The Project
 
 Scikit-longitudinal is a machine learning library specifically designed for longitudinal data analysis. It provides a collection of tools and models to process, analyze, and make predictions on longitudinal data, with a simple and user-friendly interface compatible with the Scikit-learn ecosystem.
 
-## 🛠️ Installation
+## ⭐️Key Features
+
+### 📈 Classifier estimators
+
+* Nested Tree Classifier (main code is available [here](scikit_longitudinal/estimators/tree/nested_tree.py))
+* Lexicographical Random Forest (main code is available [here](scikit_longitudinal/estimators/tree/lexico_rf.py))
+
+### 📉 Feature Selection estimators
+
+* Correlation-based Feature Selection Per Group (CFS-PerGroup) (main code is available [here](scikit_longitudinal/preprocessing/feature_selection/cfs_per_group/cfs_per_group.py))
+
+## 🛠️ Installation (ON-HOLD until the first public release).
 
 _TODO: Describe how to install the package, including any dependencies._
 
-## 🌟 Key Features
-_TODO: Describe key features._
-
-## 🚀 Getting Started
+## 🚀 Getting Started (ON-HOLD until the first public release).
 
 ````python
 import scikit_longitudinal as skl
@@ -142,7 +152,7 @@ import scikit_longitudinal as skl
 data = ...
 
 # Initialize the Scikit-longitudinal model
-model = skl.<your_desired_estiamator>()
+model = skl.<your_desired_estimator>()
 
 # Train the model
 model.fit(data)
@@ -151,12 +161,43 @@ model.fit(data)
 predictions = model.predict(new_data)
 ````
 
-## 📖 Documentation
+## 📖 Documentation (ON-HOLD until the first public release).
 
 Use `make docs` to build the documentation locally or for detailed documentation, including tutorials and API reference,
 please visit our [official documentation](https://simonprovost.github.io/scikit-longitudinal/).
 
-## 🤝 Contributing
+## 🤝 Contributing (developers)
+
+
+### Setup
+
+> ⚠️ **DISCLAIMER**: This project is still under development, and the setup is not yet fully automated. Furthermore, it has been tested only on macOS for now. It should work on Linux distributions, but we are not sure about Windows.
+
+To set up the development environment, please follow these steps:
+
+<details>
+  <summary>📌 Prerequisites</summary>
+
+  * Ensure that [Poetry](https://python-poetry.org/docs/#installation) and [Pipenv](https://pipenv.pypa.io/en/latest/install/#installing-pipenv) are installed.
+  * Ensure that [Make](https://www.gnu.org/software/make/) and [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/) are installed.
+  * Ensure that [LibOmp](https://www.openmp.org/resources/openmp-compilers-tools/) is installed ([Recommended for macOS](https://formulae.brew.sh/formula/libomp)).
+  * Export necessary environment variables in your shell configuration file (e.g., `.bashrc`, `.zshrc`, or `config.fish` if you are using the fish shell). Open an issue if you need help at this stage.
+  * [macOS] Ensure that [Xcode](https://developer.apple.com/xcode/) is installed.
+  * [macOS] Ensure that [Homebrew](https://brew.sh/) is installed.
+  * [macOS] Ensure that `SDKROOT` is exported. It is usually available at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`.
+
+</details>
+
+1. Clone the repository: `git clone git@github.com:simonprovost/scikit-longitudinal.git`
+2. Create a `.env` file in the root directory of the project and add the following environment variables available in the `.env.example` file.
+3. Use the Makefile target rule `install_dev` to install the development dependencies:
+    ```
+    make install_dev
+    ```
+    > 📝 This command will install the development dependencies, create a Poetry virtual environment, install the package in editable mode, and run the tests. If this fails, please open an issue.
+
+🎉 Voilà! You are ready to contribute!
+
 
 ### Coding Conventions
 We follow the [Karma Git Commit Convention](http://karma-runner.github.io/6.4/dev/git-commit-msg.html) and a modified version of the Google Python Style Guide with fewer restrictions. Please familiarize yourself with these conventions before contributing.
