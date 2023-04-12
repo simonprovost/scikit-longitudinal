@@ -1,4 +1,4 @@
-.PHONY: test clean_cache isort black flake8 pylint autopep8 precommit lint format docs
+.PHONY: test clean_cache isort black flake8 pylint autopep8 precommit lint format
 
 tests:
 	@echo "Running Poetry Pytests..."
@@ -85,4 +85,4 @@ lint: flake8 pylint
 
 format: isort autopep8 black
 
-all: format lint precommit tests docs
+all: format lint precommit tests
