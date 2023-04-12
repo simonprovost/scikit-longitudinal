@@ -1,5 +1,5 @@
-import pytest
 import numpy as np
+import pytest
 from sklearn.datasets import load_iris, make_classification
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
@@ -8,19 +8,24 @@ from scikit_longitudinal.estimators.tree import LexicoRF
 from scikit_longitudinal.estimators.tree.lexico_rf import LexicoDecisionTree
 
 
-def create_synthetic_data(n_samples=100, n_longitudinal_groups=2, n_features_per_group=2, n_non_longitudinal=2,
-                          random_state=None):
+def create_synthetic_data(
+    n_samples=100, n_longitudinal_groups=2, n_features_per_group=2, n_non_longitudinal=2, random_state=None
+):
     np.random.seed(random_state)
-    X, y = make_classification(n_samples=n_samples,
-                               n_features=n_longitudinal_groups * n_features_per_group + n_non_longitudinal,
-                               random_state=random_state)
+    X, y = make_classification(
+        n_samples=n_samples,
+        n_features=n_longitudinal_groups * n_features_per_group + n_non_longitudinal,
+        random_state=random_state,
+    )
 
-    features_group = [list(range(i * n_features_per_group, (i + 1) * n_features_per_group)) for i in
-                      range(n_longitudinal_groups)]
+    features_group = [
+        list(range(i * n_features_per_group, (i + 1) * n_features_per_group)) for i in range(n_longitudinal_groups)
+    ]
 
     for i in range(n_longitudinal_groups - 1):
-        X[:, features_group[i + 1]] = X[:, features_group[i]] + np.random.normal(0, 0.1,
-                                                                                 size=(n_samples, n_features_per_group))
+        X[:, features_group[i + 1]] = X[:, features_group[i]] + np.random.normal(
+            0, 0.1, size=(n_samples, n_features_per_group)
+        )
 
     return X, y, features_group
 
@@ -36,8 +41,9 @@ class TestLexico:
 
     @pytest.fixture(scope="class")
     def synthetic_data(self):
-        X, y, features_group = create_synthetic_data(n_samples=150, n_longitudinal_groups=2, n_features_per_group=2,
-                                                     n_non_longitudinal=2, random_state=42)
+        X, y, features_group = create_synthetic_data(
+            n_samples=150, n_longitudinal_groups=2, n_features_per_group=2, n_non_longitudinal=2, random_state=42
+        )
         return X, y, features_group
 
     @pytest.fixture(scope="class")
@@ -100,7 +106,9 @@ class TestLexico:
             (0.25, 100, 321),
         ],
     )
-    def test_lexico_RF_synthetic(self, train_test_data_synthetic, synthetic_data, threshold_gain, n_estimators, random_state):
+    def test_lexico_RF_synthetic(
+        self, train_test_data_synthetic, synthetic_data, threshold_gain, n_estimators, random_state
+    ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         clf = LexicoRF(
@@ -123,7 +131,9 @@ class TestLexico:
             (0.05, 421),
         ],
     )
-    def test_lexico_decision_tree_synthetic(self, train_test_data_synthetic, synthetic_data, threshold_gain, random_state):
+    def test_lexico_decision_tree_synthetic(
+        self, train_test_data_synthetic, synthetic_data, threshold_gain, random_state
+    ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         clf = LexicoDecisionTree(
@@ -133,4 +143,3 @@ class TestLexico:
         y_pred = clf.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
         assert 0 <= accuracy <= 1
-

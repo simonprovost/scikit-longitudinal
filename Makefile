@@ -9,7 +9,6 @@ clean:
 	rm -rf htmlcov .pytest_cache .mypy_cache
 	find . -type d -name "__pycache__" -exec rm -r {} +
 
-
 isort:
 	@echo "Running isort..."
 	poetry run isort --skip=scikit-learn scikit_longitudinal
@@ -32,7 +31,7 @@ pylint:
 
 precommit:
 	@echo "Running pre-commit hooks..."
-	poetry run pre-commit run --all-files --exclude=./scikit-learn/*
+	git ls-files -- 'scikit_longitudinal/*.py' | xargs poetry run pre-commit run --files
 	@echo "Done."
 
 autopep8:

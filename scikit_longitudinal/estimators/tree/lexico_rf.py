@@ -162,7 +162,8 @@ class LexicoRF(RandomForestClassifier):
     min_samples_leaf : int, optional (default=1)
         The minimum number of samples required to be at a leaf node.
     min_weight_fraction_leaf : float, optional (default=0.0)
-        The minimum weighted fraction of the sum total of weights (of all the input samples) required to be at a leaf node.
+        The minimum weighted fraction of the sum total of weights (of all the input samples)
+        required to be at a leaf node.
     max_features : int, optional (default=None)
         The number of features to consider when looking for the best split.
     max_leaf_nodes : int, optional (default=None)

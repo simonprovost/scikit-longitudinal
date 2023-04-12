@@ -209,8 +209,8 @@ To submit a pull request, please follow these steps:
 
 * Fork the repository: Click the "Fork" button at the top right corner of the repository page to create a copy of the project in your GitHub account.
 * Create a new branch: In your forked repository, create a new branch named after the feature or fix you are working on (e.g., feature/new-feature-name or fix/bug-fix-name).
-* Make your changes: Implement the desired feature or fix in your new branch, and make sure to adhere to the project's coding conventions. 
-* Commit your changes: Use clear and concise commit messages, following the Karma Git Commit Convention. Make sure to include any necessary tests, documentation updates, or code style adjustments. 
+* Make your changes: Implement the desired feature or fix in your new branch, and make sure to adhere to the project's coding conventions.
+* Commit your changes: Use clear and concise commit messages, following the Karma Git Commit Convention. Make sure to include any necessary tests, documentation updates, or code style adjustments.
 * Submit a pull request: Click the "New Pull Request" button in your forked repository and select your newly created branch as the source. Then, target the main branch of the original repository as the destination. Provide a detailed description of the changes you've made, and submit the pull request.
 
 * Once your pull request is submitted, maintainers will review your changes and provide feedback. Be prepared to make any necessary adjustments, and collaborate with the maintainers to get your contribution merged.

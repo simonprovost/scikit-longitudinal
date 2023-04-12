@@ -1,3 +1,4 @@
+# pylint: disable=W0621,W0613,W0212
 import io
 import sys
 
