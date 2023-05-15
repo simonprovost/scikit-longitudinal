@@ -30,18 +30,3 @@ repos:
     hooks:
       - id: autoflake
         args: [--remove-all-unused-imports, --recursive, --remove-unused-variables, --in-place, --exclude, "./scikit-learn/*"]
-
-  - repo: https://github.com/PyCQA/pylint
-    rev: v3.0.0a6
-    hooks:
-      - id: pylint
-        name: pylint
-        entry: pylint
-        language: system
-        types: [ python ]
-        args:
-          [
-            "-rn",
-            "--rcfile=pylintrc",
-            "--ignore-patterns=.*_test.py,test_.*.py,^scikit-learn/,^scikit-learn/.*$,^scikit_longitudinal/tests/.*$",
-          ]

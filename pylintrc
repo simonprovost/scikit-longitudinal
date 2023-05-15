@@ -5,7 +5,7 @@ ignore-paths=^scikit-learn/.*$,
              ^scikit_longitudinal/tests/.*$
 
 [MESSAGES CONTROL]
-disable = C0103, C0114, C0115, C0116
+disable = C0103, C0114, C0115, C0116, R0902, R0913, R0903, R0914
 
 [DESIGN]
 max-args = 6
