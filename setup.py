@@ -1,6 +1,6 @@
-from setuptools import find_packages, setup
+from setuptools import find_packages, setup  # pragma: no cover
 
-setup(
+setup(  # pragma: no cover
     name="Scikit-longitudinal",
     version="0.0.1",
     packages=find_packages(),

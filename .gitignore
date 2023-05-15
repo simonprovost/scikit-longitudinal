@@ -1,5 +1,7 @@
 # .gitignore
 
+# Data
+data/
 # Python artifacts
 __pycache__/
 *.pyc
