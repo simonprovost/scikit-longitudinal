@@ -1,0 +1,12 @@
+@RELATION features
+
+@ATTRIBUTE feature1_w1 REAL
+@ATTRIBUTE feature1_w2 REAL
+@ATTRIBUTE feature2_w1 REAL
+@ATTRIBUTE feature2_w2 REAL
+@ATTRIBUTE target_w1 {A,B,C}
+@ATTRIBUTE target_w2 {A,B,C}
+
+@DATA
+1.0,2.0,3.0,4.0,'A','B'
+2.0,3.0,4.0,5.0,'B','C'
