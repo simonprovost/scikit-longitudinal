@@ -49,6 +49,10 @@ docformatter:
 	poetry run docformatter --in-place --recursive --wrap-summaries 120 --wrap-descriptions 120 --blank --make-summary-multi-line --exclude=./scikit-learn/ scikit_longitudinal
 	@echo "Done."
 
+setup_git_hooks:
+	cp scripts/pre-push .git/hooks/pre-push
+	chmod +x .git/hooks/pre-push
+
 compile_scikit_tree:
 	source .env && \
 	rm -rf poetry.lock ; \
