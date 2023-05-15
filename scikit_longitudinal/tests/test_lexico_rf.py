@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
 from scikit_longitudinal.estimators.tree import LexicoRF
-from scikit_longitudinal.estimators.tree.lexico_rf import LexicoDecisionTree
+from scikit_longitudinal.estimators.tree.lexico_rf.lexico_rf import LexicoDecisionTree
 
 
 def create_synthetic_data(
