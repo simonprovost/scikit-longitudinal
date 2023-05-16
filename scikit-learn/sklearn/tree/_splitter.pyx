@@ -14,20 +14,17 @@
 
 # License: BSD 3 clause
 
-from ._criterion cimport Criterion
-
+from cython cimport final
 from libc.stdlib cimport qsort
 from libc.string cimport memcpy
-from cython cimport final
+
+from ._criterion cimport Criterion
 
 import numpy as np
-
 from scipy.sparse import csc_matrix
 
-from ._utils cimport log
-from ._utils cimport rand_int
-from ._utils cimport rand_uniform
-from ._utils cimport RAND_R_MAX
+from ._utils cimport RAND_R_MAX, log, rand_int, rand_uniform
+
 
 cdef double INFINITY = np.inf
 
@@ -47,12 +44,12 @@ cdef inline void _init_split(SplitRecord* self, SIZE_t start_pos) noexcept nogil
     self.improvement = -INFINITY
 
 cdef class BaseSplitter:
-    """This is an abstract interface for splitters. 
+    """This is an abstract interface for splitters.
 
     For example, a tree model could be either supervisedly, or unsupervisedly computing splits on samples of
     covariates, labels, or both. Although scikit-learn currently only contains
     supervised tree methods, this class enables 3rd party packages to leverage
-    scikit-learn's Cython code for splitting. 
+    scikit-learn's Cython code for splitting.
 
     A splitter is usually used in conjunction with a criterion class, which explicitly handles
     computing the criteria, which we split on. The setting of that criterion class is handled
@@ -106,7 +103,7 @@ cdef class BaseSplitter:
 
     cdef int pointer_size(self) noexcept nogil:
         """Size of the pointer for split records.
-        
+
         Overriding this function allows one to use different subclasses of
         `SplitRecord`.
         """
@@ -288,7 +285,7 @@ cdef class Splitter(BaseSplitter):
         SplitRecord current_split,
     ) noexcept nogil:
         """Check stopping conditions pre-split.
-        
+
         This is typically a metric that is cheaply computed given the
         current proposed split, which is stored as a the `current_split`
         argument.
@@ -298,14 +295,14 @@ cdef class Splitter(BaseSplitter):
         if (((current_split.pos - self.start) < min_samples_leaf) or
                 ((self.end - current_split.pos) < min_samples_leaf)):
             return 1
-        
+
         return 0
 
     cdef bint check_postsplit_conditions(
         self
     ) noexcept nogil:
         """Check stopping conditions after evaluating the split.
-        
+
         This takes some metric that is stored in the Criterion
         object and checks against internal stop metrics.
         """
@@ -315,7 +312,7 @@ cdef class Splitter(BaseSplitter):
         if ((self.criterion.weighted_n_left < min_weight_leaf) or
                 (self.criterion.weighted_n_right < min_weight_leaf)):
             return 1
-        
+
         return 0
 
 # Introduce a fused-class to make it possible to share the split implementation
@@ -326,7 +323,7 @@ cdef class Splitter(BaseSplitter):
 ctypedef fused Partitioner:
     DensePartitioner
     SparsePartitioner
-    
+
 cdef inline int node_split_best(
     Splitter splitter,
     Partitioner partitioner,
@@ -507,6 +504,15 @@ cdef inline int node_split_best(
     n_constant_features[0] = n_total_constants
     return 0
 
+
+cdef inline void update_split_record(SplitRecord *dest, SplitRecord *src) nogil:
+    dest[0].feature = src[0].feature
+    dest[0].pos = src[0].pos
+    dest[0].threshold = src[0].threshold
+    dest[0].impurity_left = src[0].impurity_left
+    dest[0].impurity_right = src[0].impurity_right
+    dest[0].improvement = src[0].improvement
+
 cdef inline int node_lexicoRF_split(
     Splitter splitter,
     Partitioner partitioner,
@@ -603,13 +609,6 @@ cdef inline int node_lexicoRF_split(
     cdef SIZE_t current_time_index = 0
     cdef SIZE_t current_time_index_1 = 0
     cdef double best_information_gain = -INFINITY
-
-    # with gil:
-    #     print("=====================START NODE==========================")
-    #
-    #     print(f'current best time index: {best_time_index}')
-    #     print(f'current best split: {best_split}')
-    #     print(f'current best information gain: {best_information_gain}')
 
     _init_split(&best_split, end)
 
@@ -712,74 +711,55 @@ cdef inline int node_lexicoRF_split(
                 weighted_entropy_right = right_child_weight * current_split.impurity_right
                 information_gain = parent_entropy - (weighted_entropy_left + weighted_entropy_right)
 
-                # print("========== Information Gain Calculation ==========")
-                # print(f'Feature "name" current Split: {current_split.feature}')
-                # current_time_index_1 = find_time_index(features_group, current_split.feature)
-                # print(f"Feature name current Split Current time index: {current_time_index_1}")
-                # print(f"Parent entropy: {parent_entropy}")
-                # print(f"Left child weight: {left_child_weight}")
-                # print(f"Right child weight: {right_child_weight}")
-                # print(f"Weighted entropy left: {weighted_entropy_left}")
-                # print(f"Weighted entropy right: {weighted_entropy_right}")
-                # print(f"Information gain: {information_gain}")
-                # print("===============================================")
-
                 current_feature = current_split.feature
                 best_feature = best_split.feature
 
+                current_feature_in_group = any(current_feature in group for group in features_group)
+                best_feature_in_group = any(best_feature in group for group in features_group)
+
                 # Check if both the current feature and the best feature so far are longitudinal features
-                if current_feature in features_group and best_feature in features_group:
+                if current_feature_in_group and best_feature_in_group:
                     # Check if the current information gain is significantly better than the best one found so far.
                     # If best_information_gain is -INFINITY, it means no valid split has been found yet, so we update the best split.
                     if information_gain - threshold_gain > best_information_gain or best_information_gain == -INFINITY:
                         best_information_gain = information_gain
-                        best_split = current_split
+                        sorted_feature_value_left = partitioner.feature_values[current_split.pos - 1]
+                        sorted_feature_value_right = partitioner.feature_values[current_split.pos]
+                        current_split.threshold = (sorted_feature_value_left + sorted_feature_value_right) / 2.0
+                        update_split_record(&best_split, &current_split)
                         best_time_index = find_time_index(features_group, current_feature)
-
-                        # print("========== Best Split Update (Significantly Better) ==========")
-                        # print(f"Best information gain: {best_information_gain}")
-                        # print(f"Best split: {best_split}")
-                        # print(f"Best time index: {best_time_index}")
-                        # print("==========================================================")
 
                     # Check if the current information gain is within the threshold_gain range of the best one found so far.
                     # If so, we apply the LexicoRF approach to decide whether to update the best split.
                     elif best_information_gain - threshold_gain <= information_gain <= best_information_gain + threshold_gain:
-                        # print("========== Competition Running ==========")
                         # Find the current feature's time index in the features_group list
                         current_time_index = find_time_index(features_group, current_feature)
-
-                        # print(f"Current time index: {current_time_index}")
 
                         # If the current feature has the same time index
                         if current_time_index == best_time_index:
                             # If the information gain is better, update the best split
                             if information_gain > best_information_gain:
                                 best_information_gain = information_gain
-                                best_split = current_split
-
-                                # print("========== Best Split Update (Better Information Gain, Same Time Index) ==========")
-                                # print(f"Best information gain: {best_information_gain}")
-                                # print(f"Best split: {best_split}")
-                                # print("============================================================")
+                                sorted_feature_value_left = partitioner.feature_values[current_split.pos - 1]
+                                sorted_feature_value_right = partitioner.feature_values[current_split.pos]
+                                current_split.threshold = (sorted_feature_value_left + sorted_feature_value_right) / 2.0
+                                update_split_record(&best_split, &current_split)
 
                         # If the current feature has a higher time index, update the best split
                         elif current_time_index > best_time_index:
                             best_time_index = current_time_index
-                            best_split = current_split
+                            sorted_feature_value_left = partitioner.feature_values[current_split.pos - 1]
+                            sorted_feature_value_right = partitioner.feature_values[current_split.pos]
+                            current_split.threshold = (sorted_feature_value_left + sorted_feature_value_right) / 2.0
+                            update_split_record(&best_split, &current_split)
                             best_information_gain = information_gain
-
-                            # print("========== Best Split Update (Higher Time Index) ==========")
-                            # print(f"Best time index: {best_time_index}")
-                            # print(f"Best split: {best_split}")
-                            # print(f"Best information gain: {best_information_gain}")
-                            # print("=========================================================")
                 else:
-                    # The code for the standard approach when at least one of the features is not longitudinal
                     if information_gain > best_information_gain or best_information_gain == -INFINITY:
                         best_information_gain = information_gain
-                        best_split = current_split
-
+                        sorted_feature_value_left = partitioner.feature_values[current_split.pos - 1]
+                        sorted_feature_value_right = partitioner.feature_values[current_split.pos]
+                        current_split.threshold = (sorted_feature_value_left + sorted_feature_value_right) / 2.0
+                        update_split_record(&best_split, &current_split)
 
     # Reorganize into samples[start:best_split.pos] + samples[best_split.pos:end]
     if best_split.pos < end:
@@ -812,8 +792,6 @@ cdef inline int node_lexicoRF_split(
     # Return values
     split[0] = best_split
     n_constant_features[0] = n_total_constants
-    # with gil:
-    #     print("=====================END NODE==========================")
     return 0
 
 

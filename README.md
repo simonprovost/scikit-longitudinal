@@ -1,3 +1,4 @@
+
 <!--suppress HtmlDeprecatedAttribute -->
 <div align="center">
    <p align="center">
@@ -35,7 +36,7 @@
                            <img alt="pytest" src="https://img.shields.io/badge/pytest-passing-green?style=for-the-badge&logo=pytest">
                            </a><br />
                            <a href="https://codecov.io/gh/Scikit-Longitudinal/Scikit-Longitudinal">
-                           <img alt="Codecov" src="https://img.shields.io/badge/coverage-92%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
+                           <img alt="Codecov" src="https://img.shields.io/badge/coverage-95%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
                            </a>
                         </td>
                      </tr>
@@ -132,12 +133,12 @@ Scikit-longitudinal is a machine learning library specifically designed for long
 
 ### 📈 Classifier estimators
 
-* Nested Tree Classifier (main code is available [here](scikit_longitudinal/estimators/tree/nested_tree.py))
-* Lexicographical Random Forest (main code is available [here](scikit_longitudinal/estimators/tree/lexico_rf.py))
+* Nested Tree Classifier (main code is available [here](scikit_longitudinal/estimators/tree/nested_tree/nested_tree.py))
+* Lexicographical Random Forest (main code is available [here](scikit_longitudinal/estimators/tree/lexico_rf/lexico_rf.py))
 
 ### 📉 Feature Selection estimators
 
-* Correlation-based Feature Selection Per Group (CFS-PerGroup) (main code is available [here](scikit_longitudinal/preprocessing/feature_selection/cfs_per_group/cfs_per_group.py))
+* Correlation-based Feature Selection Per Group (CFS-PerGroup version 1 and 2) (main code is available [here](scikit_longitudinal/preprocessing/feature_selection/cfs_per_group/cfs_per_group.py))
 
 ## 🛠️ Installation (ON-HOLD until the first public release).
 
@@ -200,8 +201,16 @@ To set up the development environment, please follow these steps:
 
 
 ### Coding Conventions
-We follow the [Karma Git Commit Convention](http://karma-runner.github.io/6.4/dev/git-commit-msg.html) and a modified version of the Google Python Style Guide with fewer restrictions. Please familiarize yourself with these conventions before contributing.
+We follow the [Karma Git Commit Convention](http://karma-runner.github.io/6.4/dev/git-commit-msg.html) for commit
+messages and a modified version of the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+with fewer restrictions for naming conventions and coding style. Please familiarize yourself with these conventions
+before contributing.
 
+#### File and Class Function Naming Conventions
+
+- **File names:** Snake_case naming convention is used for file names. Snake_case uses lowercase words separated by underscores (e.g., `file_name.py`).
+- **Class names**: The PascalCase (or UpperCamelCase) convention is employed (e.g., `ClassName`).
+- **Function and method names:** The snake_case naming convention is also used for function and method names. These names should be lowercase with words separated by underscores (e.g., `function_name()` or `method_name()`).
 
 ### Pull Request Process
 

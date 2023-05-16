@@ -24,17 +24,9 @@ repos:
       - id: flake8
         args: [--exclude, "./scikit-learn/*"]
 
-  - repo: https://github.com/PyCQA/pylint
-    rev: v3.0.0a6
+
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.1.1
     hooks:
-      - id: pylint
-        name: pylint
-        entry: pylint
-        language: system
-        types: [python]
-        args:
-          [
-            "-rn", # Only display messages
-            "--rcfile=pylintrc", # Link to your config file
-            "--ignore-patterns=./scikit-learn/*", # Ignore scikit-learn
-          ]
+      - id: autoflake
+        args: [--remove-all-unused-imports, --recursive, --remove-unused-variables, --in-place, --exclude, "./scikit-learn/*"]

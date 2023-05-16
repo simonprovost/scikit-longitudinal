@@ -8,12 +8,12 @@ from sklearn.tree import DecisionTreeClassifier
 
 # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
 class LexicoDecisionTree(DecisionTreeClassifier):
-    """LexicoDecisionTree
+    """LexicoDecisionTree.
 
     This implementation provides the LexicoDecisionTree, an adaptation of the sklearn decision tree algorithm for
     longitudinal data classification. The lexicographic approach considers both information gain ratios and time
-    points (wave ids) when selecting split features in a decision-tree node, optimizing the primary objective of
-    maximizing the gain ratio and the secondary objective of maximizing the time-index (wave id) of the features.
+    points (wave ids) when selecting split features in a decision-tree node, optimising the primary objective of
+    maximising the gain ratio and the secondary objective of maximising the time-index (wave id) of the features.
     The algorithm aims to improve predictive performance by favoring more recent information in longitudinal
     datasets. Further information will be available in the Cython adaptation of the algorithm, available at
     /scikit-longitudinal/scikit-learn/sklearn/tree/_splitter.pyx function ``node_lexicoRF_split''.
@@ -28,10 +28,9 @@ class LexicoDecisionTree(DecisionTreeClassifier):
 
     [[0,1],[2,3]], where 0 and 1 are the indices of the first longitudinal attribute, and 2 and 3 are the indices
     of the second longitudinal attribute. So 0, is smoke wave 1, 1 is smoke wave 2, 2 is cholesterol wave 1, and 3
-    is cholesterol wave 2.
+    is cholesterol wave 2. Hence, the algorithm can deal with the feature recentness.
 
-        Parameters:
-        -----------
+    Args:
         threshold_gain : float
             The threshold value for comparing gain ratios of features during the decision tree construction.
         features_group : List[List[int]]
@@ -62,8 +61,7 @@ class LexicoDecisionTree(DecisionTreeClassifier):
         ccp_alpha : float, optional (default=0.0)
             Complexity parameter used for Minimal Cost-Complexity Pruning.
 
-        Attributes:
-        -----------
+    Attributes:
         classes_ : ndarray of shape (n_classes,)
             The classes labels (single output problem).
         n_classes_ : int
@@ -79,8 +77,7 @@ class LexicoDecisionTree(DecisionTreeClassifier):
         tree_ : Tree object
             The underlying Tree object.
 
-        Examples:
-        ---------
+    Examples:
         >>> from sklearn.datasets import load_iris
         >>> from sklearn.model_selection import train_test_split
         >>> from sklearn.metrics import accuracy_score
@@ -93,13 +90,11 @@ class LexicoDecisionTree(DecisionTreeClassifier):
         >>> accuracy_score(y_test, y_pred)
         0.9666666666666667 (dummy example with dummy non-longitudinal data)
 
-        Notes:
-        ------
+    Notes:
         For more information, please refer to the following paper:
 
         Ribeiro, C. and Freitas, A., 2020, December. A new random forest method for longitudinal data
         classification using a lexicographic bi-objective approach. In 2020 IEEE Symposium Series on
-
 
     """
 
@@ -147,76 +142,74 @@ class LexicoRF(RandomForestClassifier):
     approach to select the best split at each node. Refer to the LexicoDecisionTree documentation for
     more information.
 
-    Parameters:
-    -----------
-    n_estimators : int, optional (default=100)
-        The number of trees in the forest.
-    threshold_gain : float, optional (default=0.10)
-        The minimum gain required to split a node.
-    features_group : list of lists of int, optional (default=None)
-        The features groups to be used in the split.
-    max_depth : int, optional (default=None)
-        The maximum depth of the tree.
-    min_samples_split : int, optional (default=2)
-        The minimum number of samples required to split an internal node.
-    min_samples_leaf : int, optional (default=1)
-        The minimum number of samples required to be at a leaf node.
-    min_weight_fraction_leaf : float, optional (default=0.0)
-        The minimum weighted fraction of the sum total of weights (of all the input samples)
-        required to be at a leaf node.
-    max_features : int, optional (default=None)
-        The number of features to consider when looking for the best split.
-    max_leaf_nodes : int, optional (default=None)
-        Grow a tree with max_leaf_nodes in best-first fashion. Best nodes are defined as relative reduction in impurity.
-    min_impurity_decrease : float, optional (default=0.0)
-        A node will be split if this split induces a decrease of the impurity greater than or equal to this value.
-    class_weight : str, optional (default=None)
-        Weights associated with classes in the form "balanced".
-    ccp_alpha : float, optional (default=0.0)
-        Complexity parameter used for Minimal Cost-Complexity Pruning.
-    random_state : int, optional (default=None)
-        The seed used by the random number generator.
-    **kwargs : dict
-        The keyword arguments for the RandomForestClassifier.
+    Args:
+        n_estimators : int, optional (default=100)
+            The number of trees in the forest.
+        threshold_gain : float
+            The threshold value for comparing gain ratios of features during the decision tree construction.
+        features_group : List[List[int]]
+            A list of lists, where each inner list contains the indices of features that
+            correspond to a specific longitudinal attribute.
+        criterion : str, optional (default="entropy")
+            The function to measure the quality of a split. Do not change this value.
+        splitter : str, optional (default="lexicoRF")
+            The strategy used to choose the split at each node. Do not change this value.
+        max_depth : int, optional (default=None)
+            The maximum depth of the tree.
+        min_samples_split : int, optional (default=2)
+            The minimum number of samples required to split an internal node.
+        min_samples_leaf : int, optional (default=1)
+            The minimum number of samples required to be at a leaf node.
+        min_weight_fraction_leaf : float, optional (default=0.)
+            The minimum weighted fraction of the sum total of weights required to be at a leaf node.
+        max_features : int, optional (default=None)
+            The number of features to consider when looking for the best split.
+        random_state : int, optional (default=None)
+            The seed used by the random number generator.
+        max_leaf_nodes : int, optional (default=None)
+            The maximum number of leaf nodes in the tree.
+        min_impurity_decrease : float, optional (default=0.)
+            The minimum impurity decrease required for a node to be split.
+        class_weight : str, optional (default=None)
+            Weights associated with classes in the form of {class_label: weight}.
+        ccp_alpha : float, optional (default=0.0)
+            Complexity parameter used for Minimal Cost-Complexity Pruning.
+        **kwargs : dict The keyword arguments for the RandomForestClassifier.
 
     Attributes:
-    -----------
-    classes_ : ndarray of shape (n_classes,)
-        The classes labels (single output problem).
-    n_classes_ : int
-        The number of classes (single output problem).
-    n_features_ : int
-        The number of features when fit is performed.
-    n_outputs_ : int
-        The number of outputs when fit is performed.
-    feature_importances_ : ndarray of shape (n_features,)
-        The impurity-based feature importances.
-    max_features_ : int
-        The inferred value of max_features.
-    estimators_ : list of LexicoDecisionTree
-        The collection of fitted sub-estimators.
+        classes_ : ndarray of shape (n_classes,)
+            The classes labels (single output problem).
+        n_classes_ : int
+            The number of classes (single output problem).
+        n_features_ : int
+            The number of features when fit is performed.
+        n_outputs_ : int
+            The number of outputs when fit is performed.
+        feature_importances_ : ndarray of shape (n_features,)
+            The impurity-based feature importances.
+        max_features_ : int
+            The inferred value of max_features.
+        estimators_ : list of LexicoDecisionTree
+            The collection of fitted sub-estimators.
 
     Examples:
-    ---------
-    >>> from sklearn.datasets import load_iris
-    >>> from sklearn.model_selection import train_test_split
-    >>> from sklearn.metrics import accuracy_score
-    >>> from scikit_longitudinal.estimators.tree import LexicoRF
-    >>> X, y = load_iris(return_X_y=True)
-    >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    >>> clf = LexicoRF(threshold_gain=0.1, features_group=[[0,1],[2,3]])
-    >>> clf.fit(X_train, y_train)
-    >>> y_pred = clf.predict(X_test)
-    >>> accuracy_score(y_test, y_pred)
-    0.9666666666666667 (dummy example with dummy non-longitudinal data)
+        >>> from sklearn.datasets import load_iris
+        >>> from sklearn.model_selection import train_test_split
+        >>> from sklearn.metrics import accuracy_score
+        >>> from scikit_longitudinal.estimators.tree import LexicoRF
+        >>> X, y = load_iris(return_X_y=True)
+        >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        >>> clf = LexicoRF(threshold_gain=0.1, features_group=[[0,1],[2,3]])
+        >>> clf.fit(X_train, y_train)
+        >>> y_pred = clf.predict(X_test)
+        >>> accuracy_score(y_test, y_pred)
+        0.9666666666666667 (dummy example with dummy non-longitudinal data)
 
     Notes:
-    ------
-    For more information, please refer to the following paper:
+        For more information, please refer to the following paper:
 
-    Ribeiro, C. and Freitas, A., 2020, December. A new random forest method for longitudinal data
-    classification using a lexicographic bi-objective approach. In 2020 IEEE Symposium Series on
-
+        Ribeiro, C. and Freitas, A., 2020, December. A new random forest method for longitudinal data
+        classification using a lexicographic bi-objective approach. In 2020 IEEE Symposium Series on
 
     """
 
@@ -268,7 +261,6 @@ class LexicoRF(RandomForestClassifier):
         )
 
     def _validate_estimator(self):
-        """Check the estimator and set the estimator_ attribute."""
         self.estimator_ = LexicoDecisionTree(
             threshold_gain=self.threshold_gain,
             features_group=self.features_group,

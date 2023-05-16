@@ -1,0 +1,3 @@
+age_w1,income_w1,income_w2,income_w3,age_w2,age_w3,target_w1,target_w2, gender
+20,50000,52000,54000,21,22, A, B, 1
+30,60000,62000,64000,31,32, A, B, 0

@@ -10,17 +10,23 @@ from sklearn.utils.validation import check_array, check_X_y
 
 
 class CustomTransformerMixinEstimator(BaseEstimator, TransformerMixin, EnforceOverrides):
-    """
+    """CustomTransformerMixinEstimator is a custom base class for scikit longitudinal estimators.
+
     A custom base class for scikit-learn estimators that automatically checks input data
     using the check_X_y and check_array functions from sklearn.utils.validation.
 
     Subclasses should implement the _fit and _transform methods.
 
     Methods:
-        cannot be overriden - fit(X, y=None): Calls the _fit method, automatically checking X and y before calling.
-        cannot be overriden - transform(X): Calls the _transform method, automatically checking X before calling.
-        needs to be overriden - _fit(X, y=None): To be implemented by subclasses, contains the actual fitting logic.
-        needs to be overriden -  _transform(X): To be implemented by subclasses, contains the actual transforming logic.
+        cannot be overriden - fit(X, y=None):
+            Calls the _fit method, automatically checking X and y before calling.
+        cannot be overriden - transform(X):
+            Calls the _transform method, automatically checking X before calling.
+        needs to be overriden - _fit(X, y=None):
+            To be implemented by subclasses, contains the actual fitting logic.
+        needs to be overriden -  _transform(X):
+            To be implemented by subclasses, contains the actual transforming logic.
+
     """
 
     @staticmethod
