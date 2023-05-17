@@ -4,18 +4,18 @@
 {
     "distutils": {
         "depends": [
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/arrayobject.h",
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/arrayscalars.h",
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ndarrayobject.h",
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ndarraytypes.h",
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ufuncobject.h"
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/arrayobject.h",
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/arrayscalars.h",
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ndarrayobject.h",
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ndarraytypes.h",
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ufuncobject.h"
         ],
         "extra_compile_args": [
             "-g0",
             "-O2"
         ],
         "include_dirs": [
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include"
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include"
         ],
         "libraries": [
             "m"
@@ -779,7 +779,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "numpy/ufuncobject.h"
 
     /* NumPy API declarations from "numpy/__init__.pxd" */
-    
+
 #include <math.h>
 #include <stdlib.h>
 #include "pythread.h"
@@ -1127,17 +1127,17 @@ typedef struct {
 } __Pyx_BufFmt_Context;
 
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":690
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":690
  * # in Cython to enable them only on the right systems.
- * 
+ *
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
  */
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":691
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":691
+ *
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int32      int32_t
@@ -1145,7 +1145,7 @@ typedef npy_int8 __pyx_t_5numpy_int8_t;
  */
 typedef npy_int16 __pyx_t_5numpy_int16_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":692
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":692
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t             # <<<<<<<<<<<<<<
@@ -1154,7 +1154,7 @@ typedef npy_int16 __pyx_t_5numpy_int16_t;
  */
 typedef npy_int32 __pyx_t_5numpy_int32_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":693
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":693
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
  * ctypedef npy_int64      int64_t             # <<<<<<<<<<<<<<
@@ -1163,17 +1163,17 @@ typedef npy_int32 __pyx_t_5numpy_int32_t;
  */
 typedef npy_int64 __pyx_t_5numpy_int64_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":697
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":697
  * #ctypedef npy_int128     int128_t
- * 
+ *
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
  */
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":698
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":698
+ *
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint32     uint32_t
@@ -1181,7 +1181,7 @@ typedef npy_uint8 __pyx_t_5numpy_uint8_t;
  */
 typedef npy_uint16 __pyx_t_5numpy_uint16_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":699
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":699
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t             # <<<<<<<<<<<<<<
@@ -1190,7 +1190,7 @@ typedef npy_uint16 __pyx_t_5numpy_uint16_t;
  */
 typedef npy_uint32 __pyx_t_5numpy_uint32_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":700
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":700
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
  * ctypedef npy_uint64     uint64_t             # <<<<<<<<<<<<<<
@@ -1199,17 +1199,17 @@ typedef npy_uint32 __pyx_t_5numpy_uint32_t;
  */
 typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":704
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":704
  * #ctypedef npy_uint128    uint128_t
- * 
+ *
  * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
  * ctypedef npy_float64    float64_t
  * #ctypedef npy_float80    float80_t
  */
 typedef npy_float32 __pyx_t_5numpy_float32_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":705
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":705
+ *
  * ctypedef npy_float32    float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
  * #ctypedef npy_float80    float80_t
@@ -1217,7 +1217,7 @@ typedef npy_float32 __pyx_t_5numpy_float32_t;
  */
 typedef npy_float64 __pyx_t_5numpy_float64_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":714
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":714
  * # The int types are mapped a bit surprising --
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t             # <<<<<<<<<<<<<<
@@ -1226,92 +1226,92 @@ typedef npy_float64 __pyx_t_5numpy_float64_t;
  */
 typedef npy_long __pyx_t_5numpy_int_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":715
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":715
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t             # <<<<<<<<<<<<<<
  * ctypedef npy_longlong   longlong_t
- * 
+ *
  */
 typedef npy_longlong __pyx_t_5numpy_long_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":716
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":716
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t
  * ctypedef npy_longlong   longlong_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_ulong      uint_t
  */
 typedef npy_longlong __pyx_t_5numpy_longlong_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":718
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":718
  * ctypedef npy_longlong   longlong_t
- * 
+ *
  * ctypedef npy_ulong      uint_t             # <<<<<<<<<<<<<<
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t
  */
 typedef npy_ulong __pyx_t_5numpy_uint_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":719
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":719
+ *
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t             # <<<<<<<<<<<<<<
  * ctypedef npy_ulonglong  ulonglong_t
- * 
+ *
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":720
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":720
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_intp       intp_t
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":722
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":722
  * ctypedef npy_ulonglong  ulonglong_t
- * 
+ *
  * ctypedef npy_intp       intp_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uintp      uintp_t
- * 
+ *
  */
 typedef npy_intp __pyx_t_5numpy_intp_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":723
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":723
+ *
  * ctypedef npy_intp       intp_t
  * ctypedef npy_uintp      uintp_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_double     float_t
  */
 typedef npy_uintp __pyx_t_5numpy_uintp_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":725
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":725
  * ctypedef npy_uintp      uintp_t
- * 
+ *
  * ctypedef npy_double     float_t             # <<<<<<<<<<<<<<
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t
  */
 typedef npy_double __pyx_t_5numpy_float_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":726
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":726
+ *
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t             # <<<<<<<<<<<<<<
  * ctypedef npy_longdouble longdouble_t
- * 
+ *
  */
 typedef npy_double __pyx_t_5numpy_double_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":727
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":727
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_cfloat      cfloat_t
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
@@ -1403,38 +1403,38 @@ struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
 struct __pyx_memoryviewslice_obj;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":729
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":729
  * ctypedef npy_longdouble longdouble_t
- * 
+ *
  * ctypedef npy_cfloat      cfloat_t             # <<<<<<<<<<<<<<
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t
  */
 typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":730
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":730
+ *
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t             # <<<<<<<<<<<<<<
  * ctypedef npy_clongdouble clongdouble_t
- * 
+ *
  */
 typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":731
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":731
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_cdouble     complex_t
  */
 typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":733
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":733
  * ctypedef npy_clongdouble clongdouble_t
- * 
+ *
  * ctypedef npy_cdouble     complex_t             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
@@ -1458,7 +1458,7 @@ enum __pyx_t_7sklearn_9neighbors_8_kd_tree_KernelType {
 };
 
 /* "sklearn/neighbors/_binary_tree.pxi":186
- * 
+ *
  * # Some compound datatypes used below:
  * cdef struct NodeHeapData_t:             # <<<<<<<<<<<<<<
  *     float64_t val
@@ -1472,7 +1472,7 @@ struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t {
 
 /* "sklearn/neighbors/_binary_tree.pxi":195
  * NodeHeapData = np.asarray(<NodeHeapData_t[:1]>(&nhd_tmp)).dtype
- * 
+ *
  * cdef struct NodeData_t:             # <<<<<<<<<<<<<<
  *     intp_t idx_start
  *     intp_t idx_end
@@ -1523,11 +1523,11 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 {
 
 
 /* "sklearn/neighbors/_binary_tree.pxi":501
- * 
- * 
+ *
+ *
  * cdef class NeighborsHeap:             # <<<<<<<<<<<<<<
  *     """A max-heap structure to keep track of distances/indices of neighbors
- * 
+ *
  */
 struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_NeighborsHeap {
   PyObject_HEAD
@@ -1538,11 +1538,11 @@ struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_NeighborsHeap {
 
 
 /* "sklearn/neighbors/_binary_tree.pxi":634
- * 
- * 
+ *
+ *
  * cdef class NodeHeap:             # <<<<<<<<<<<<<<
  *     """NodeHeap
- * 
+ *
  */
 struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_NodeHeap {
   PyObject_HEAD
@@ -1556,7 +1556,7 @@ struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_NodeHeap {
  * ######################################################################
  * # Binary Tree class
  * cdef class BinaryTree:             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef readonly const float64_t[:, ::1] data
  */
 struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_BinaryTree {
@@ -1581,7 +1581,7 @@ struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_BinaryTree {
 
 
 /* "sklearn/neighbors/_kd_tree.pyx":16
- * 
+ *
  * # Inherit KDTree from BinaryTree
  * cdef class KDTree(BinaryTree):             # <<<<<<<<<<<<<<
  *     __doc__ = CLASS_DOC.format(**DOC_DICT)
@@ -1593,10 +1593,10 @@ struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_KDTree {
 
 
 /* "View.MemoryView":106
- * 
+ *
  * @cname("__pyx_array")
  * cdef class array:             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef:
  */
 struct __pyx_array_obj {
@@ -1618,7 +1618,7 @@ struct __pyx_array_obj {
 
 
 /* "View.MemoryView":280
- * 
+ *
  * @cname('__pyx_MemviewEnum')
  * cdef class Enum(object):             # <<<<<<<<<<<<<<
  *     cdef object name
@@ -1631,10 +1631,10 @@ struct __pyx_MemviewEnum_obj {
 
 
 /* "View.MemoryView":331
- * 
+ *
  * @cname('__pyx_memoryview')
  * cdef class memoryview(object):             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef object obj
  */
 struct __pyx_memoryview_obj {
@@ -1654,11 +1654,11 @@ struct __pyx_memoryview_obj {
 
 
 /* "View.MemoryView":967
- * 
+ *
  * @cname('__pyx_memoryviewslice')
  * cdef class _memoryviewslice(memoryview):             # <<<<<<<<<<<<<<
  *     "Internal class for passing memoryview slices to Python"
- * 
+ *
  */
 struct __pyx_memoryviewslice_obj {
   struct __pyx_memoryview_obj __pyx_base;
@@ -1717,11 +1717,11 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric3
 
 
 /* "sklearn/neighbors/_binary_tree.pxi":501
- * 
- * 
+ *
+ *
  * cdef class NeighborsHeap:             # <<<<<<<<<<<<<<
  *     """A max-heap structure to keep track of distances/indices of neighbors
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NeighborsHeap {
@@ -1734,11 +1734,11 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
 
 /* "sklearn/neighbors/_binary_tree.pxi":634
- * 
- * 
+ *
+ *
  * cdef class NodeHeap:             # <<<<<<<<<<<<<<
  *     """NodeHeap
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap {
@@ -1755,7 +1755,7 @@ static struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *__pyx_vta
  * ######################################################################
  * # Binary Tree class
  * cdef class BinaryTree:             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef readonly const float64_t[:, ::1] data
  */
 
@@ -1779,7 +1779,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
 
 /* "sklearn/neighbors/_kd_tree.pyx":16
- * 
+ *
  * # Inherit KDTree from BinaryTree
  * cdef class KDTree(BinaryTree):             # <<<<<<<<<<<<<<
  *     __doc__ = CLASS_DOC.format(**DOC_DICT)
@@ -1793,10 +1793,10 @@ static struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_KDTree *__pyx_vtabp
 
 
 /* "View.MemoryView":106
- * 
+ *
  * @cname("__pyx_array")
  * cdef class array:             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef:
  */
 
@@ -1807,10 +1807,10 @@ static struct __pyx_vtabstruct_array *__pyx_vtabptr_array;
 
 
 /* "View.MemoryView":331
- * 
+ *
  * @cname('__pyx_memoryview')
  * cdef class memoryview(object):             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef object obj
  */
 
@@ -1827,11 +1827,11 @@ static struct __pyx_vtabstruct_memoryview *__pyx_vtabptr_memoryview;
 
 
 /* "View.MemoryView":967
- * 
+ *
  * @cname('__pyx_memoryviewslice')
  * cdef class _memoryviewslice(memoryview):             # <<<<<<<<<<<<<<
  *     "Internal class for passing memoryview slices to Python"
- * 
+ *
  */
 
 struct __pyx_vtabstruct__memoryviewslice {
@@ -3689,7 +3689,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         return NEG_INF
  *     else:
  *         return a + log(exp(x1 - a) + exp(x2 - a))             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef float64_t logsubexp(float64_t x1, float64_t x2):
  */
   /*else*/ {
@@ -3713,7 +3713,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
 /* "sklearn/neighbors/_binary_tree.pxi":329
  *         return a + log(exp(x1 - a) + exp(x2 - a))
- * 
+ *
  * cdef float64_t logsubexp(float64_t x1, float64_t x2):             # <<<<<<<<<<<<<<
  *     """logsubexp(x1, x2) -> log(exp(x1) - exp(x2))"""
  *     if x1 <= x2:
@@ -3758,8 +3758,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         return NEG_INF
  *     else:
  *         return x1 + log(1 - exp(x2 - x1))             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __pyx_r = (__pyx_v_x1 + log((1.0 - exp((__pyx_v_x2 - __pyx_v_x1)))));
@@ -3768,7 +3768,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
   /* "sklearn/neighbors/_binary_tree.pxi":329
  *         return a + log(exp(x1 - a) + exp(x2 - a))
- * 
+ *
  * cdef float64_t logsubexp(float64_t x1, float64_t x2):             # <<<<<<<<<<<<<<
  *     """logsubexp(x1, x2) -> log(exp(x1) - exp(x2))"""
  *     if x1 <= x2:
@@ -3781,8 +3781,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":356
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_gaussian_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the gaussian kernel for bandwidth h (unnormalized)"""
  *     return -0.5 * (dist * dist) / (h * h)
@@ -3797,15 +3797,15 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  * cdef inline float64_t log_gaussian_kernel(float64_t dist, float64_t h):
  *     """log of the gaussian kernel for bandwidth h (unnormalized)"""
  *     return -0.5 * (dist * dist) / (h * h)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((-0.5 * (__pyx_v_dist * __pyx_v_dist)) / (__pyx_v_h * __pyx_v_h));
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":356
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_gaussian_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the gaussian kernel for bandwidth h (unnormalized)"""
  *     return -0.5 * (dist * dist) / (h * h)
@@ -3818,8 +3818,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":361
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_tophat_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the tophat kernel for bandwidth h (unnormalized)"""
  *     if dist < h:
@@ -3864,8 +3864,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         return 0.0
  *     else:
  *         return NEG_INF             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __pyx_r = __pyx_v_7sklearn_9neighbors_8_kd_tree_NEG_INF;
@@ -3873,8 +3873,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":361
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_tophat_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the tophat kernel for bandwidth h (unnormalized)"""
  *     if dist < h:
@@ -3887,8 +3887,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":369
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_epanechnikov_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the epanechnikov kernel for bandwidth h (unnormalized)"""
  *     if dist < h:
@@ -3933,8 +3933,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         return log(1.0 - (dist * dist) / (h * h))
  *     else:
  *         return NEG_INF             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __pyx_r = __pyx_v_7sklearn_9neighbors_8_kd_tree_NEG_INF;
@@ -3942,8 +3942,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":369
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_epanechnikov_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the epanechnikov kernel for bandwidth h (unnormalized)"""
  *     if dist < h:
@@ -3956,8 +3956,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":377
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_exponential_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the exponential kernel for bandwidth h (unnormalized)"""
  *     return -dist / h
@@ -3972,15 +3972,15 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  * cdef inline float64_t log_exponential_kernel(float64_t dist, float64_t h):
  *     """log of the exponential kernel for bandwidth h (unnormalized)"""
  *     return -dist / h             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((-__pyx_v_dist) / __pyx_v_h);
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":377
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_exponential_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the exponential kernel for bandwidth h (unnormalized)"""
  *     return -dist / h
@@ -3993,8 +3993,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":382
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_linear_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the linear kernel for bandwidth h (unnormalized)"""
  *     if dist < h:
@@ -4039,8 +4039,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         return log(1 - dist / h)
  *     else:
  *         return NEG_INF             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __pyx_r = __pyx_v_7sklearn_9neighbors_8_kd_tree_NEG_INF;
@@ -4048,8 +4048,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":382
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_linear_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the linear kernel for bandwidth h (unnormalized)"""
  *     if dist < h:
@@ -4062,8 +4062,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":390
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_cosine_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the cosine kernel for bandwidth h (unnormalized)"""
  *     if dist < h:
@@ -4108,8 +4108,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         return log(cos(0.5 * PI * dist / h))
  *     else:
  *         return NEG_INF             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __pyx_r = __pyx_v_7sklearn_9neighbors_8_kd_tree_NEG_INF;
@@ -4117,8 +4117,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":390
- * 
- * 
+ *
+ *
  * cdef inline float64_t log_cosine_kernel(float64_t dist, float64_t h):             # <<<<<<<<<<<<<<
  *     """log of the cosine kernel for bandwidth h (unnormalized)"""
  *     if dist < h:
@@ -4131,8 +4131,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":398
- * 
- * 
+ *
+ *
  * cdef inline float64_t compute_log_kernel(float64_t dist, float64_t h,             # <<<<<<<<<<<<<<
  *                                        KernelType kernel):
  *     """Given a KernelType enumeration, compute the appropriate log-kernel"""
@@ -4257,8 +4257,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         return log_linear_kernel(dist, h)
  *     elif kernel == COSINE_KERNEL:
  *         return log_cosine_kernel(dist, h)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_r = __pyx_f_7sklearn_9neighbors_8_kd_tree_log_cosine_kernel(__pyx_v_dist, __pyx_v_h);
     goto __pyx_L0;
@@ -4268,15 +4268,15 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         return log_linear_kernel(dist, h)
  *     elif kernel == COSINE_KERNEL:             # <<<<<<<<<<<<<<
  *         return log_cosine_kernel(dist, h)
- * 
+ *
  */
     break;
     default: break;
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":398
- * 
- * 
+ *
+ *
  * cdef inline float64_t compute_log_kernel(float64_t dist, float64_t h,             # <<<<<<<<<<<<<<
  *                                        KernelType kernel):
  *     """Given a KernelType enumeration, compute the appropriate log-kernel"""
@@ -4306,8 +4306,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  * cdef float64_t logVn(intp_t n):
  *     """V_n = pi^(n/2) / gamma(n/2 - 1)"""
  *     return 0.5 * n * LOG_PI - lgamma(0.5 * n + 1)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((0.5 * __pyx_v_n) * __pyx_v_7sklearn_9neighbors_8_kd_tree_LOG_PI) - lgamma(((0.5 * __pyx_v_n) + 1.0)));
   goto __pyx_L0;
@@ -4327,8 +4327,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":423
- * 
- * 
+ *
+ *
  * cdef float64_t logSn(intp_t n):             # <<<<<<<<<<<<<<
  *     """V_(n+1) = int_0^1 S_n r^n dr"""
  *     return LOG_2PI + logVn(n - 1)
@@ -4343,15 +4343,15 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  * cdef float64_t logSn(intp_t n):
  *     """V_(n+1) = int_0^1 S_n r^n dr"""
  *     return LOG_2PI + logVn(n - 1)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (__pyx_v_7sklearn_9neighbors_8_kd_tree_LOG_2PI + __pyx_f_7sklearn_9neighbors_8_kd_tree_logVn((__pyx_v_n - 1)));
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":423
- * 
- * 
+ *
+ *
  * cdef float64_t logSn(intp_t n):             # <<<<<<<<<<<<<<
  *     """V_(n+1) = int_0^1 S_n r^n dr"""
  *     return LOG_2PI + logVn(n - 1)
@@ -4364,8 +4364,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":428
- * 
- * 
+ *
+ *
  * cdef float64_t _log_kernel_norm(float64_t h, intp_t d,             # <<<<<<<<<<<<<<
  *                               KernelType kernel) except -1:
  *     """Given a KernelType enumeration, compute the kernel normalization.
@@ -4573,7 +4573,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *     else:
  *         raise ValueError("Kernel code not recognized")             # <<<<<<<<<<<<<<
  *     return -factor - d * log(h)
- * 
+ *
  */
     __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
@@ -4587,15 +4587,15 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *     else:
  *         raise ValueError("Kernel code not recognized")
  *     return -factor - d * log(h)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((-__pyx_v_factor) - (__pyx_v_d * log(__pyx_v_h)));
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":428
- * 
- * 
+ *
+ *
  * cdef float64_t _log_kernel_norm(float64_t h, intp_t d,             # <<<<<<<<<<<<<<
  *                               KernelType kernel) except -1:
  *     """Given a KernelType enumeration, compute the kernel normalization.
@@ -4612,11 +4612,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":459
- * 
- * 
+ *
+ *
  * def kernel_norm(h, d, kernel, return_log=False):             # <<<<<<<<<<<<<<
  *     """Given a string specification of a kernel, compute the normalization.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -4941,7 +4941,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_kernel_norm(CYTHON_UNUSE
  *         result = _log_kernel_norm(h, d, COSINE_KERNEL)
  *     else:
  *         raise ValueError('kernel not recognized')             # <<<<<<<<<<<<<<
- * 
+ *
  *     if return_log:
  */
   /*else*/ {
@@ -4955,7 +4955,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_kernel_norm(CYTHON_UNUSE
 
   /* "sklearn/neighbors/_binary_tree.pxi":495
  *         raise ValueError('kernel not recognized')
- * 
+ *
  *     if return_log:             # <<<<<<<<<<<<<<
  *         return result
  *     else:
@@ -4964,7 +4964,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_kernel_norm(CYTHON_UNUSE
   if (__pyx_t_1) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":496
- * 
+ *
  *     if return_log:
  *         return result             # <<<<<<<<<<<<<<
  *     else:
@@ -4977,7 +4977,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_kernel_norm(CYTHON_UNUSE
 
     /* "sklearn/neighbors/_binary_tree.pxi":495
  *         raise ValueError('kernel not recognized')
- * 
+ *
  *     if return_log:             # <<<<<<<<<<<<<<
  *         return result
  *     else:
@@ -4988,8 +4988,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_kernel_norm(CYTHON_UNUSE
  *         return result
  *     else:
  *         return np.exp(result)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
@@ -5019,11 +5019,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_kernel_norm(CYTHON_UNUSE
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":459
- * 
- * 
+ *
+ *
  * def kernel_norm(h, d, kernel, return_log=False):             # <<<<<<<<<<<<<<
  *     """Given a string specification of a kernel, compute the normalization.
- * 
+ *
  */
 
   /* function exit code */
@@ -5042,7 +5042,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_kernel_norm(CYTHON_UNUSE
 
 /* "sklearn/neighbors/_binary_tree.pxi":519
  *     cdef intp_t[:, ::1] indices
- * 
+ *
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         # One-element arrays are used as placeholders to prevent
  *         # any problem due to potential access to those attributes
@@ -5083,7 +5083,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap___cinit__(stru
  *         # (e.g. assigning to NULL or a to value in another segment).
  *         self.distances = np.zeros((1, 1), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *         self.indices = np.zeros((1, 1), dtype=np.intp, order='C')
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 523, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5115,7 +5115,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap___cinit__(stru
  *         # (e.g. assigning to NULL or a to value in another segment).
  *         self.distances = np.zeros((1, 1), dtype=np.float64, order='C')
  *         self.indices = np.zeros((1, 1), dtype=np.intp, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self, n_pts, n_nbrs):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 524, __pyx_L1_error)
@@ -5146,7 +5146,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap___cinit__(stru
 
   /* "sklearn/neighbors/_binary_tree.pxi":519
  *     cdef intp_t[:, ::1] indices
- * 
+ *
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         # One-element arrays are used as placeholders to prevent
  *         # any problem due to potential access to those attributes
@@ -5171,7 +5171,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap___cinit__(stru
 
 /* "sklearn/neighbors/_binary_tree.pxi":526
  *         self.indices = np.zeros((1, 1), dtype=np.intp, order='C')
- * 
+ *
  *     def __init__(self, n_pts, n_nbrs):             # <<<<<<<<<<<<<<
  *         self.distances = np.full(
  *             (n_pts, n_nbrs), np.inf, dtype=np.float64, order='C'
@@ -5257,7 +5257,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_2__init__(stru
   __Pyx_RefNannySetupContext("__init__", 0);
 
   /* "sklearn/neighbors/_binary_tree.pxi":527
- * 
+ *
  *     def __init__(self, n_pts, n_nbrs):
  *         self.distances = np.full(             # <<<<<<<<<<<<<<
  *             (n_pts, n_nbrs), np.inf, dtype=np.float64, order='C'
@@ -5291,7 +5291,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_2__init__(stru
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":527
- * 
+ *
  *     def __init__(self, n_pts, n_nbrs):
  *         self.distances = np.full(             # <<<<<<<<<<<<<<
  *             (n_pts, n_nbrs), np.inf, dtype=np.float64, order='C'
@@ -5325,7 +5325,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_2__init__(stru
   if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_order, __pyx_n_u_C) < 0) __PYX_ERR(0, 528, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":527
- * 
+ *
  *     def __init__(self, n_pts, n_nbrs):
  *         self.distances = np.full(             # <<<<<<<<<<<<<<
  *             (n_pts, n_nbrs), np.inf, dtype=np.float64, order='C'
@@ -5347,7 +5347,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_2__init__(stru
  *             (n_pts, n_nbrs), np.inf, dtype=np.float64, order='C'
  *         )
  *         self.indices = np.zeros((n_pts, n_nbrs), dtype=np.intp, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *     def get_arrays(self, sort=True):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 530, __pyx_L1_error)
@@ -5392,7 +5392,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_2__init__(stru
 
   /* "sklearn/neighbors/_binary_tree.pxi":526
  *         self.indices = np.zeros((1, 1), dtype=np.intp, order='C')
- * 
+ *
  *     def __init__(self, n_pts, n_nbrs):             # <<<<<<<<<<<<<<
  *         self.distances = np.full(
  *             (n_pts, n_nbrs), np.inf, dtype=np.float64, order='C'
@@ -5418,10 +5418,10 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_2__init__(stru
 
 /* "sklearn/neighbors/_binary_tree.pxi":532
  *         self.indices = np.zeros((n_pts, n_nbrs), dtype=np.intp, order='C')
- * 
+ *
  *     def get_arrays(self, sort=True):             # <<<<<<<<<<<<<<
  *         """Get the arrays of distances and indices within the heap.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -5512,7 +5512,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_4get_arr
  *         if sort:
  *             self._sort()             # <<<<<<<<<<<<<<
  *         return self.distances.base, self.indices.base
- * 
+ *
  */
     __pyx_t_2 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NeighborsHeap *)__pyx_v_self->__pyx_vtab)->_sort(__pyx_v_self); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 539, __pyx_L1_error)
 
@@ -5529,7 +5529,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_4get_arr
  *         if sort:
  *             self._sort()
  *         return self.distances.base, self.indices.base             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t largest(self, intp_t row) except -1 nogil:
  */
   __Pyx_XDECREF(__pyx_r);
@@ -5557,10 +5557,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_4get_arr
 
   /* "sklearn/neighbors/_binary_tree.pxi":532
  *         self.indices = np.zeros((n_pts, n_nbrs), dtype=np.intp, order='C')
- * 
+ *
  *     def get_arrays(self, sort=True):             # <<<<<<<<<<<<<<
  *         """Get the arrays of distances and indices within the heap.
- * 
+ *
  */
 
   /* function exit code */
@@ -5578,7 +5578,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_4get_arr
 
 /* "sklearn/neighbors/_binary_tree.pxi":542
  *         return self.distances.base, self.indices.base
- * 
+ *
  *     cdef inline float64_t largest(self, intp_t row) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Return the largest distance in the given row"""
  *         return self.distances[row, 0]
@@ -5593,7 +5593,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *     cdef inline float64_t largest(self, intp_t row) except -1 nogil:
  *         """Return the largest distance in the given row"""
  *         return self.distances[row, 0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     def push(self, intp_t row, float64_t val, intp_t i_val):
  */
   __pyx_t_1 = __pyx_v_row;
@@ -5603,7 +5603,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
   /* "sklearn/neighbors/_binary_tree.pxi":542
  *         return self.distances.base, self.indices.base
- * 
+ *
  *     cdef inline float64_t largest(self, intp_t row) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Return the largest distance in the given row"""
  *         return self.distances[row, 0]
@@ -5616,10 +5616,10 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
 /* "sklearn/neighbors/_binary_tree.pxi":546
  *         return self.distances[row, 0]
- * 
+ *
  *     def push(self, intp_t row, float64_t val, intp_t i_val):             # <<<<<<<<<<<<<<
  *         return self._push(row, val, i_val)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -5708,10 +5708,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_6push(st
   __Pyx_RefNannySetupContext("push", 0);
 
   /* "sklearn/neighbors/_binary_tree.pxi":547
- * 
+ *
  *     def push(self, intp_t row, float64_t val, intp_t i_val):
  *         return self._push(row, val, i_val)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int _push(self, intp_t row, float64_t val,
  */
   __Pyx_XDECREF(__pyx_r);
@@ -5724,10 +5724,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_6push(st
 
   /* "sklearn/neighbors/_binary_tree.pxi":546
  *         return self.distances[row, 0]
- * 
+ *
  *     def push(self, intp_t row, float64_t val, intp_t i_val):             # <<<<<<<<<<<<<<
  *         return self._push(row, val, i_val)
- * 
+ *
  */
 
   /* function exit code */
@@ -5743,7 +5743,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_6push(st
 
 /* "sklearn/neighbors/_binary_tree.pxi":549
  *         return self._push(row, val, i_val)
- * 
+ *
  *     cdef int _push(self, intp_t row, float64_t val,             # <<<<<<<<<<<<<<
  *                    intp_t i_val) except -1 nogil:
  *         """push (val, i_val) into the given row"""
@@ -5788,7 +5788,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap__push(struct __
 
   /* "sklearn/neighbors/_binary_tree.pxi":549
  *         return self._push(row, val, i_val)
- * 
+ *
  *     cdef int _push(self, intp_t row, float64_t val,             # <<<<<<<<<<<<<<
  *                    intp_t i_val) except -1 nogil:
  *         """push (val, i_val) into the given row"""
@@ -5801,7 +5801,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap__push(struct __
 
 /* "sklearn/neighbors/_binary_tree.pxi":560
  *         )
- * 
+ *
  *     cdef int _sort(self) except -1:             # <<<<<<<<<<<<<<
  *         """simultaneously sort the distances and indices"""
  *         cdef intp_t row
@@ -5866,7 +5866,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap__sort(struct __
  *                 size=self.distances.shape[1],
  *             )
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = 0;
@@ -5874,7 +5874,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap__sort(struct __
 
   /* "sklearn/neighbors/_binary_tree.pxi":560
  *         )
- * 
+ *
  *     cdef int _sort(self) except -1:             # <<<<<<<<<<<<<<
  *         """simultaneously sort the distances and indices"""
  *         cdef intp_t row
@@ -6029,25 +6029,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
 
   /* "sklearn/neighbors/_binary_tree.pxi":608
  *     cdef intp_t i, j, j_max
- * 
+ *
  *     j_max = 0             # <<<<<<<<<<<<<<
  *     max_spread = 0
- * 
+ *
  */
   __pyx_v_j_max = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":609
- * 
+ *
  *     j_max = 0
  *     max_spread = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     for j in range(n_features):
  */
   __pyx_v_max_spread = 0.0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":611
  *     max_spread = 0
- * 
+ *
  *     for j in range(n_features):             # <<<<<<<<<<<<<<
  *         max_val = data[node_indices[0] * n_features + j]
  *         min_val = max_val
@@ -6058,7 +6058,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
     __pyx_v_j = __pyx_t_3;
 
     /* "sklearn/neighbors/_binary_tree.pxi":612
- * 
+ *
  *     for j in range(n_features):
  *         max_val = data[node_indices[0] * n_features + j]             # <<<<<<<<<<<<<<
  *         min_val = max_val
@@ -6148,7 +6148,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *             max_spread = spread
  *             j_max = j             # <<<<<<<<<<<<<<
  *     return j_max
- * 
+ *
  */
       __pyx_v_j_max = __pyx_v_j;
 
@@ -6166,8 +6166,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *             max_spread = spread
  *             j_max = j
  *     return j_max             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_j_max;
   goto __pyx_L0;
@@ -6213,7 +6213,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_9neighbors_8_kd_tree_swap_nodes(struc
  *     cdef NodeHeapData_t tmp = arr[i1]
  *     arr[i1] = arr[i2]             # <<<<<<<<<<<<<<
  *     arr[i2] = tmp
- * 
+ *
  */
   (__pyx_v_arr[__pyx_v_i1]) = (__pyx_v_arr[__pyx_v_i2]);
 
@@ -6221,8 +6221,8 @@ static CYTHON_INLINE void __pyx_f_7sklearn_9neighbors_8_kd_tree_swap_nodes(struc
  *     cdef NodeHeapData_t tmp = arr[i1]
  *     arr[i1] = arr[i2]
  *     arr[i2] = tmp             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   (__pyx_v_arr[__pyx_v_i2]) = __pyx_v_tmp;
 
@@ -6240,7 +6240,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_9neighbors_8_kd_tree_swap_nodes(struc
 
 /* "sklearn/neighbors/_binary_tree.pxi":650
  *     cdef intp_t n
- * 
+ *
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         # A one-elements array is used as a placeholder to prevent
  *         # any problem due to potential access to this attribute
@@ -6278,7 +6278,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_8NodeHeap___cinit__(struct __p
  *         # any problem due to potential access to this attribute
  *         # (e.g. assigning to NULL or a to value in another segment).
  *         self.data = np.zeros(1, dtype=NodeHeapData, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self, size_guess=100):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 654, __pyx_L1_error)
@@ -6306,7 +6306,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_8NodeHeap___cinit__(struct __p
 
   /* "sklearn/neighbors/_binary_tree.pxi":650
  *     cdef intp_t n
- * 
+ *
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         # A one-elements array is used as a placeholder to prevent
  *         # any problem due to potential access to this attribute
@@ -6329,7 +6329,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_8NodeHeap___cinit__(struct __p
 
 /* "sklearn/neighbors/_binary_tree.pxi":656
  *         self.data = np.zeros(1, dtype=NodeHeapData, order='C')
- * 
+ *
  *     def __init__(self, size_guess=100):             # <<<<<<<<<<<<<<
  *         size_guess = max(size_guess, 1)  # need space for at least one item
  *         self.data = np.zeros(size_guess, dtype=NodeHeapData, order='C')
@@ -6412,7 +6412,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_8NodeHeap_2__init__(struct __p
   __Pyx_INCREF(__pyx_v_size_guess);
 
   /* "sklearn/neighbors/_binary_tree.pxi":657
- * 
+ *
  *     def __init__(self, size_guess=100):
  *         size_guess = max(size_guess, 1)  # need space for at least one item             # <<<<<<<<<<<<<<
  *         self.data = np.zeros(size_guess, dtype=NodeHeapData, order='C')
@@ -6484,7 +6484,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_8NodeHeap_2__init__(struct __p
  *         self.data = np.zeros(size_guess, dtype=NodeHeapData, order='C')
  *         self.n = size_guess             # <<<<<<<<<<<<<<
  *         self.clear()
- * 
+ *
  */
   __pyx_t_8 = __Pyx_PyIndex_AsSsize_t(__pyx_v_size_guess); if (unlikely((__pyx_t_8 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 659, __pyx_L1_error)
   __pyx_v_self->n = __pyx_t_8;
@@ -6493,14 +6493,14 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_8NodeHeap_2__init__(struct __p
  *         self.data = np.zeros(size_guess, dtype=NodeHeapData, order='C')
  *         self.n = size_guess
  *         self.clear()             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int resize(self, intp_t new_size) except -1:
  */
   ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_self->__pyx_vtab)->clear(__pyx_v_self);
 
   /* "sklearn/neighbors/_binary_tree.pxi":656
  *         self.data = np.zeros(1, dtype=NodeHeapData, order='C')
- * 
+ *
  *     def __init__(self, size_guess=100):             # <<<<<<<<<<<<<<
  *         size_guess = max(size_guess, 1)  # need space for at least one item
  *         self.data = np.zeros(size_guess, dtype=NodeHeapData, order='C')
@@ -6525,7 +6525,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_8NodeHeap_2__init__(struct __p
 
 /* "sklearn/neighbors/_binary_tree.pxi":662
  *         self.clear()
- * 
+ *
  *     cdef int resize(self, intp_t new_size) except -1:             # <<<<<<<<<<<<<<
  *         """Resize the heap to be either larger or smaller"""
  *         cdef:
@@ -6605,7 +6605,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
  *                 new_size,
  *                 dtype=NodeHeapData,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 671, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -6634,7 +6634,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
 
   /* "sklearn/neighbors/_binary_tree.pxi":674
  *             )
- * 
+ *
  *         if size > 0 and new_size > 0:             # <<<<<<<<<<<<<<
  *             data_ptr = &self.data[0]
  *             new_data_ptr = &new_data[0]
@@ -6651,7 +6651,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
   if (__pyx_t_6) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":675
- * 
+ *
  *         if size > 0 and new_size > 0:
  *             data_ptr = &self.data[0]             # <<<<<<<<<<<<<<
  *             new_data_ptr = &new_data[0]
@@ -6675,7 +6675,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
  *             new_data_ptr = &new_data[0]
  *             for i in range(min(size, new_size)):             # <<<<<<<<<<<<<<
  *                 new_data_ptr[i] = data_ptr[i]
- * 
+ *
  */
     __pyx_t_9 = __pyx_v_new_size;
     __pyx_t_10 = __pyx_v_size;
@@ -6693,7 +6693,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
  *             new_data_ptr = &new_data[0]
  *             for i in range(min(size, new_size)):
  *                 new_data_ptr[i] = data_ptr[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *         if new_size < size:
  */
       (__pyx_v_new_data_ptr[__pyx_v_i]) = (__pyx_v_data_ptr[__pyx_v_i]);
@@ -6701,7 +6701,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
 
     /* "sklearn/neighbors/_binary_tree.pxi":674
  *             )
- * 
+ *
  *         if size > 0 and new_size > 0:             # <<<<<<<<<<<<<<
  *             data_ptr = &self.data[0]
  *             new_data_ptr = &new_data[0]
@@ -6710,48 +6710,48 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
 
   /* "sklearn/neighbors/_binary_tree.pxi":680
  *                 new_data_ptr[i] = data_ptr[i]
- * 
+ *
  *         if new_size < size:             # <<<<<<<<<<<<<<
  *             self.n = new_size
- * 
+ *
  */
   __pyx_t_6 = ((__pyx_v_new_size < __pyx_v_size) != 0);
   if (__pyx_t_6) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":681
- * 
+ *
  *         if new_size < size:
  *             self.n = new_size             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.data = new_data
  */
     __pyx_v_self->n = __pyx_v_new_size;
 
     /* "sklearn/neighbors/_binary_tree.pxi":680
  *                 new_data_ptr[i] = data_ptr[i]
- * 
+ *
  *         if new_size < size:             # <<<<<<<<<<<<<<
  *             self.n = new_size
- * 
+ *
  */
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":683
  *             self.n = new_size
- * 
+ *
  *         self.data = new_data             # <<<<<<<<<<<<<<
  *         return 0
- * 
+ *
  */
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->data, 0);
   __PYX_INC_MEMVIEW(&__pyx_v_new_data, 0);
   __pyx_v_self->data = __pyx_v_new_data;
 
   /* "sklearn/neighbors/_binary_tree.pxi":684
- * 
+ *
  *         self.data = new_data
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int push(self, NodeHeapData_t data) except -1:
  */
   __pyx_r = 0;
@@ -6759,7 +6759,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
 
   /* "sklearn/neighbors/_binary_tree.pxi":662
  *         self.clear()
- * 
+ *
  *     cdef int resize(self, intp_t new_size) except -1:             # <<<<<<<<<<<<<<
  *         """Resize the heap to be either larger or smaller"""
  *         cdef:
@@ -6782,7 +6782,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_resize(struct __pyx_o
 
 /* "sklearn/neighbors/_binary_tree.pxi":686
  *         return 0
- * 
+ *
  *     cdef int push(self, NodeHeapData_t data) except -1:             # <<<<<<<<<<<<<<
  *         """Push a new item onto the heap"""
  *         cdef intp_t i, i_parent
@@ -6816,7 +6816,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
  *         self.n += 1
  *         if self.n > self.data.shape[0]:             # <<<<<<<<<<<<<<
  *             self.resize(2 * self.n)
- * 
+ *
  */
   __pyx_t_1 = ((__pyx_v_self->n > (__pyx_v_self->data.shape[0])) != 0);
   if (__pyx_t_1) {
@@ -6825,7 +6825,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
  *         self.n += 1
  *         if self.n > self.data.shape[0]:
  *             self.resize(2 * self.n)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # put the new element at the end,
  */
     __pyx_t_2 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_self->__pyx_vtab)->resize(__pyx_v_self, (2 * __pyx_v_self->n)); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 692, __pyx_L1_error)
@@ -6835,7 +6835,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
  *         self.n += 1
  *         if self.n > self.data.shape[0]:             # <<<<<<<<<<<<<<
  *             self.resize(2 * self.n)
- * 
+ *
  */
   }
 
@@ -6854,7 +6854,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
  *         data_arr = &self.data[0]
  *         i = self.n - 1             # <<<<<<<<<<<<<<
  *         data_arr[i] = data
- * 
+ *
  */
   __pyx_v_i = (__pyx_v_self->n - 1);
 
@@ -6862,14 +6862,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
  *         data_arr = &self.data[0]
  *         i = self.n - 1
  *         data_arr[i] = data             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i > 0:
  */
   (__pyx_v_data_arr[__pyx_v_i]) = __pyx_v_data;
 
   /* "sklearn/neighbors/_binary_tree.pxi":700
  *         data_arr[i] = data
- * 
+ *
  *         while i > 0:             # <<<<<<<<<<<<<<
  *             i_parent = (i - 1) // 2
  *             if data_arr[i_parent].val <= data_arr[i].val:
@@ -6879,7 +6879,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
     if (!__pyx_t_1) break;
 
     /* "sklearn/neighbors/_binary_tree.pxi":701
- * 
+ *
  *         while i > 0:
  *             i_parent = (i - 1) // 2             # <<<<<<<<<<<<<<
  *             if data_arr[i_parent].val <= data_arr[i].val:
@@ -6930,7 +6930,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
  *                 swap_nodes(data_arr, i, i_parent)
  *                 i = i_parent             # <<<<<<<<<<<<<<
  *         return 0
- * 
+ *
  */
       __pyx_v_i = __pyx_v_i_parent;
     }
@@ -6941,7 +6941,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
  *                 swap_nodes(data_arr, i, i_parent)
  *                 i = i_parent
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef NodeHeapData_t peek(self):
  */
   __pyx_r = 0;
@@ -6949,7 +6949,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
 
   /* "sklearn/neighbors/_binary_tree.pxi":686
  *         return 0
- * 
+ *
  *     cdef int push(self, NodeHeapData_t data) except -1:             # <<<<<<<<<<<<<<
  *         """Push a new item onto the heap"""
  *         cdef intp_t i, i_parent
@@ -6966,7 +6966,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_push(struct __pyx_obj
 
 /* "sklearn/neighbors/_binary_tree.pxi":709
  *         return 0
- * 
+ *
  *     cdef NodeHeapData_t peek(self):             # <<<<<<<<<<<<<<
  *         """Peek at the root of the heap, without removing it"""
  *         return self.data[0]
@@ -6982,7 +6982,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *     cdef NodeHeapData_t peek(self):
  *         """Peek at the root of the heap, without removing it"""
  *         return self.data[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef NodeHeapData_t pop(self):
  */
   __pyx_t_1 = 0;
@@ -6991,7 +6991,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
 
   /* "sklearn/neighbors/_binary_tree.pxi":709
  *         return 0
- * 
+ *
  *     cdef NodeHeapData_t peek(self):             # <<<<<<<<<<<<<<
  *         """Peek at the root of the heap, without removing it"""
  *         return self.data[0]
@@ -7005,7 +7005,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
 
 /* "sklearn/neighbors/_binary_tree.pxi":713
  *         return self.data[0]
- * 
+ *
  *     cdef NodeHeapData_t pop(self):             # <<<<<<<<<<<<<<
  *         """Remove the root of the heap, and update the remaining nodes"""
  *         if self.n == 0:
@@ -7034,7 +7034,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *         """Remove the root of the heap, and update the remaining nodes"""
  *         if self.n == 0:             # <<<<<<<<<<<<<<
  *             raise ValueError('cannot pop on empty heap')
- * 
+ *
  */
   __pyx_t_1 = ((__pyx_v_self->n == 0) != 0);
   if (unlikely(__pyx_t_1)) {
@@ -7043,7 +7043,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *         """Remove the root of the heap, and update the remaining nodes"""
  *         if self.n == 0:
  *             raise ValueError('cannot pop on empty heap')             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef intp_t i, i_child1, i_child2, i_swap
  */
     __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 716, __pyx_L1_error)
@@ -7057,16 +7057,16 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *         """Remove the root of the heap, and update the remaining nodes"""
  *         if self.n == 0:             # <<<<<<<<<<<<<<
  *             raise ValueError('cannot pop on empty heap')
- * 
+ *
  */
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":719
- * 
+ *
  *         cdef intp_t i, i_child1, i_child2, i_swap
  *         cdef NodeHeapData_t* data_arr = &self.data[0]             # <<<<<<<<<<<<<<
  *         cdef NodeHeapData_t popped_element = data_arr[0]
- * 
+ *
  */
   __pyx_t_3 = 0;
   __pyx_v_data_arr = (&(*((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t *) ( /* dim=0 */ (__pyx_v_self->data.data + __pyx_t_3 * __pyx_v_self->data.strides[0]) ))));
@@ -7075,7 +7075,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *         cdef intp_t i, i_child1, i_child2, i_swap
  *         cdef NodeHeapData_t* data_arr = &self.data[0]
  *         cdef NodeHeapData_t popped_element = data_arr[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         # pop off the first element, move the last element to the front,
  */
   __pyx_v_popped_element = (__pyx_v_data_arr[0]);
@@ -7085,7 +7085,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *         # and then perform swaps until the heap is back in order
  *         data_arr[0] = data_arr[self.n - 1]             # <<<<<<<<<<<<<<
  *         self.n -= 1
- * 
+ *
  */
   (__pyx_v_data_arr[0]) = (__pyx_v_data_arr[(__pyx_v_self->n - 1)]);
 
@@ -7093,23 +7093,23 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *         # and then perform swaps until the heap is back in order
  *         data_arr[0] = data_arr[self.n - 1]
  *         self.n -= 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         i = 0
  */
   __pyx_v_self->n = (__pyx_v_self->n - 1);
 
   /* "sklearn/neighbors/_binary_tree.pxi":727
  *         self.n -= 1
- * 
+ *
  *         i = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while (i < self.n):
  */
   __pyx_v_i = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":729
  *         i = 0
- * 
+ *
  *         while (i < self.n):             # <<<<<<<<<<<<<<
  *             i_child1 = 2 * i + 1
  *             i_child2 = 2 * i + 2
@@ -7119,7 +7119,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
     if (!__pyx_t_1) break;
 
     /* "sklearn/neighbors/_binary_tree.pxi":730
- * 
+ *
  *         while (i < self.n):
  *             i_child1 = 2 * i + 1             # <<<<<<<<<<<<<<
  *             i_child2 = 2 * i + 2
@@ -7132,7 +7132,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *             i_child1 = 2 * i + 1
  *             i_child2 = 2 * i + 2             # <<<<<<<<<<<<<<
  *             i_swap = 0
- * 
+ *
  */
     __pyx_v_i_child2 = ((2 * __pyx_v_i) + 2);
 
@@ -7140,14 +7140,14 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *             i_child1 = 2 * i + 1
  *             i_child2 = 2 * i + 2
  *             i_swap = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if i_child2 < self.n:
  */
     __pyx_v_i_swap = 0;
 
     /* "sklearn/neighbors/_binary_tree.pxi":734
  *             i_swap = 0
- * 
+ *
  *             if i_child2 < self.n:             # <<<<<<<<<<<<<<
  *                 if data_arr[i_child1].val <= data_arr[i_child2].val:
  *                     i_swap = i_child1
@@ -7156,7 +7156,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
     if (__pyx_t_1) {
 
       /* "sklearn/neighbors/_binary_tree.pxi":735
- * 
+ *
  *             if i_child2 < self.n:
  *                 if data_arr[i_child1].val <= data_arr[i_child2].val:             # <<<<<<<<<<<<<<
  *                     i_swap = i_child1
@@ -7175,7 +7175,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
         __pyx_v_i_swap = __pyx_v_i_child1;
 
         /* "sklearn/neighbors/_binary_tree.pxi":735
- * 
+ *
  *             if i_child2 < self.n:
  *                 if data_arr[i_child1].val <= data_arr[i_child2].val:             # <<<<<<<<<<<<<<
  *                     i_swap = i_child1
@@ -7198,7 +7198,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
 
       /* "sklearn/neighbors/_binary_tree.pxi":734
  *             i_swap = 0
- * 
+ *
  *             if i_child2 < self.n:             # <<<<<<<<<<<<<<
  *                 if data_arr[i_child1].val <= data_arr[i_child2].val:
  *                     i_swap = i_child1
@@ -7239,7 +7239,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *                 i_swap = i_child1
  *             else:
  *                 break             # <<<<<<<<<<<<<<
- * 
+ *
  *             if (i_swap > 0) and (data_arr[i_swap].val <= data_arr[i].val):
  */
     /*else*/ {
@@ -7249,7 +7249,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
 
     /* "sklearn/neighbors/_binary_tree.pxi":744
  *                 break
- * 
+ *
  *             if (i_swap > 0) and (data_arr[i_swap].val <= data_arr[i].val):             # <<<<<<<<<<<<<<
  *                 swap_nodes(data_arr, i, i_swap)
  *                 i = i_swap
@@ -7266,7 +7266,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
     if (__pyx_t_1) {
 
       /* "sklearn/neighbors/_binary_tree.pxi":745
- * 
+ *
  *             if (i_swap > 0) and (data_arr[i_swap].val <= data_arr[i].val):
  *                 swap_nodes(data_arr, i, i_swap)             # <<<<<<<<<<<<<<
  *                 i = i_swap
@@ -7285,7 +7285,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
 
       /* "sklearn/neighbors/_binary_tree.pxi":744
  *                 break
- * 
+ *
  *             if (i_swap > 0) and (data_arr[i_swap].val <= data_arr[i].val):             # <<<<<<<<<<<<<<
  *                 swap_nodes(data_arr, i, i_swap)
  *                 i = i_swap
@@ -7297,7 +7297,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
  *                 i = i_swap
  *             else:
  *                 break             # <<<<<<<<<<<<<<
- * 
+ *
  *         return popped_element
  */
     /*else*/ {
@@ -7309,9 +7309,9 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
 
   /* "sklearn/neighbors/_binary_tree.pxi":750
  *                 break
- * 
+ *
  *         return popped_element             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef void clear(self):
  */
   __pyx_r = __pyx_v_popped_element;
@@ -7319,7 +7319,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
 
   /* "sklearn/neighbors/_binary_tree.pxi":713
  *         return self.data[0]
- * 
+ *
  *     cdef NodeHeapData_t pop(self):             # <<<<<<<<<<<<<<
  *         """Remove the root of the heap, and update the remaining nodes"""
  *         if self.n == 0:
@@ -7337,7 +7337,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_f_7skle
 
 /* "sklearn/neighbors/_binary_tree.pxi":752
  *         return popped_element
- * 
+ *
  *     cdef void clear(self):             # <<<<<<<<<<<<<<
  *         """Clear the heap"""
  *         self.n = 0
@@ -7351,14 +7351,14 @@ static void __pyx_f_7sklearn_9neighbors_8_kd_tree_8NodeHeap_clear(struct __pyx_o
  *     cdef void clear(self):
  *         """Clear the heap"""
  *         self.n = 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_v_self->n = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":752
  *         return popped_element
- * 
+ *
  *     cdef void clear(self):             # <<<<<<<<<<<<<<
  *         """Clear the heap"""
  *         self.n = 0
@@ -7486,7 +7486,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8NodeHeap_6__setstate_cy
  * #  this is a helper function for pickling
  * def newObj(obj):             # <<<<<<<<<<<<<<
  *     return obj.__new__(obj)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -7518,8 +7518,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_2newObj(CYTHON_UNUSED Py
  * #  this is a helper function for pickling
  * def newObj(obj):
  *     return obj.__new__(obj)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_obj, __pyx_n_s_new); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 761, __pyx_L1_error)
@@ -7548,7 +7548,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_2newObj(CYTHON_UNUSED Py
  * #  this is a helper function for pickling
  * def newObj(obj):             # <<<<<<<<<<<<<<
  *     return obj.__new__(obj)
- * 
+ *
  */
 
   /* function exit code */
@@ -7709,7 +7709,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
  *         self.idx_array = np.empty(1, dtype=np.intp, order='C')
  *         self.node_data = np.empty(1, dtype=NodeData, order='C')             # <<<<<<<<<<<<<<
  *         self.node_bounds = np.empty((1, 1, 1), dtype=np.float64)
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 806, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -7738,7 +7738,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
  *         self.idx_array = np.empty(1, dtype=np.intp, order='C')
  *         self.node_data = np.empty(1, dtype=NodeData, order='C')
  *         self.node_bounds = np.empty((1, 1, 1), dtype=np.float64)             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.leaf_size = 0
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 807, __pyx_L1_error)
@@ -7768,7 +7768,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
 
   /* "sklearn/neighbors/_binary_tree.pxi":809
  *         self.node_bounds = np.empty((1, 1, 1), dtype=np.float64)
- * 
+ *
  *         self.leaf_size = 0             # <<<<<<<<<<<<<<
  *         self.n_levels = 0
  *         self.n_nodes = 0
@@ -7776,11 +7776,11 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
   __pyx_v_self->leaf_size = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":810
- * 
+ *
  *         self.leaf_size = 0
  *         self.n_levels = 0             # <<<<<<<<<<<<<<
  *         self.n_nodes = 0
- * 
+ *
  */
   __pyx_v_self->n_levels = 0;
 
@@ -7788,23 +7788,23 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
  *         self.leaf_size = 0
  *         self.n_levels = 0
  *         self.n_nodes = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.euclidean = False
  */
   __pyx_v_self->n_nodes = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":813
  *         self.n_nodes = 0
- * 
+ *
  *         self.euclidean = False             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.n_trims = 0
  */
   __pyx_v_self->euclidean = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":815
  *         self.euclidean = False
- * 
+ *
  *         self.n_trims = 0             # <<<<<<<<<<<<<<
  *         self.n_leaves = 0
  *         self.n_splits = 0
@@ -7812,7 +7812,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
   __pyx_v_self->n_trims = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":816
- * 
+ *
  *         self.n_trims = 0
  *         self.n_leaves = 0             # <<<<<<<<<<<<<<
  *         self.n_splits = 0
@@ -7825,7 +7825,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
  *         self.n_leaves = 0
  *         self.n_splits = 0             # <<<<<<<<<<<<<<
  *         self.n_calls = 0
- * 
+ *
  */
   __pyx_v_self->n_splits = 0;
 
@@ -7833,7 +7833,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
  *         self.n_leaves = 0
  *         self.n_splits = 0
  *         self.n_calls = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self, data,
  */
   __pyx_v_self->n_calls = 0;
@@ -7868,7 +7868,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree___cinit__(struct 
 
 /* "sklearn/neighbors/_binary_tree.pxi":820
  *         self.n_calls = 0
- * 
+ *
  *     def __init__(self, data,             # <<<<<<<<<<<<<<
  *                  leaf_size=40, metric='minkowski', sample_weight=None, **kwargs):
  *         # validate data
@@ -7897,7 +7897,7 @@ static int __pyx_pw_7sklearn_9neighbors_8_kd_tree_10BinaryTree_3__init__(PyObjec
     values[2] = ((PyObject *)__pyx_n_u_minkowski);
 
     /* "sklearn/neighbors/_binary_tree.pxi":821
- * 
+ *
  *     def __init__(self, data,
  *                  leaf_size=40, metric='minkowski', sample_weight=None, **kwargs):             # <<<<<<<<<<<<<<
  *         # validate data
@@ -7977,7 +7977,7 @@ static int __pyx_pw_7sklearn_9neighbors_8_kd_tree_10BinaryTree_3__init__(PyObjec
 
   /* "sklearn/neighbors/_binary_tree.pxi":820
  *         self.n_calls = 0
- * 
+ *
  *     def __init__(self, data,             # <<<<<<<<<<<<<<
  *                  leaf_size=40, metric='minkowski', sample_weight=None, **kwargs):
  *         # validate data
@@ -8055,7 +8055,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *         self.data = check_array(data, dtype=np.float64, order='C')
  *         if self.data.size == 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("X is an empty array")
- * 
+ *
  */
   __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_self->data, 2, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t__const__, (int (*)(char *, PyObject *)) NULL, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 824, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -8073,7 +8073,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *         self.data = check_array(data, dtype=np.float64, order='C')
  *         if self.data.size == 0:
  *             raise ValueError("X is an empty array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         n_samples = self.data.shape[0]
  */
     __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 825, __pyx_L1_error)
@@ -8087,16 +8087,16 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *         self.data = check_array(data, dtype=np.float64, order='C')
  *         if self.data.size == 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("X is an empty array")
- * 
+ *
  */
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":827
  *             raise ValueError("X is an empty array")
- * 
+ *
  *         n_samples = self.data.shape[0]             # <<<<<<<<<<<<<<
  *         n_features = self.data.shape[1]
- * 
+ *
  */
   __pyx_t_5 = PyInt_FromSsize_t((__pyx_v_self->data.shape[0])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 827, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -8104,17 +8104,17 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
   __pyx_t_5 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":828
- * 
+ *
  *         n_samples = self.data.shape[0]
  *         n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *         if leaf_size < 1:
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
 
   /* "sklearn/neighbors/_binary_tree.pxi":830
  *         n_features = self.data.shape[1]
- * 
+ *
  *         if leaf_size < 1:             # <<<<<<<<<<<<<<
  *             raise ValueError("leaf_size must be greater than or equal to 1")
  *         self.leaf_size = leaf_size
@@ -8125,11 +8125,11 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
   if (unlikely(__pyx_t_7)) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":831
- * 
+ *
  *         if leaf_size < 1:
  *             raise ValueError("leaf_size must be greater than or equal to 1")             # <<<<<<<<<<<<<<
  *         self.leaf_size = leaf_size
- * 
+ *
  */
     __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 831, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -8139,7 +8139,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
 
     /* "sklearn/neighbors/_binary_tree.pxi":830
  *         n_features = self.data.shape[1]
- * 
+ *
  *         if leaf_size < 1:             # <<<<<<<<<<<<<<
  *             raise ValueError("leaf_size must be greater than or equal to 1")
  *         self.leaf_size = leaf_size
@@ -8150,7 +8150,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *         if leaf_size < 1:
  *             raise ValueError("leaf_size must be greater than or equal to 1")
  *         self.leaf_size = leaf_size             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.dist_metric = DistanceMetric.get_metric(metric, **kwargs)
  */
   __pyx_t_8 = __Pyx_PyIndex_AsSsize_t(__pyx_v_leaf_size); if (unlikely((__pyx_t_8 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 832, __pyx_L1_error)
@@ -8158,7 +8158,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
 
   /* "sklearn/neighbors/_binary_tree.pxi":834
  *         self.leaf_size = leaf_size
- * 
+ *
  *         self.dist_metric = DistanceMetric.get_metric(metric, **kwargs)             # <<<<<<<<<<<<<<
  *         self.euclidean = (self.dist_metric.__class__.__name__
  *                           == 'EuclideanDistance')
@@ -8185,11 +8185,11 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
   __pyx_t_1 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":835
- * 
+ *
  *         self.dist_metric = DistanceMetric.get_metric(metric, **kwargs)
  *         self.euclidean = (self.dist_metric.__class__.__name__             # <<<<<<<<<<<<<<
  *                           == 'EuclideanDistance')
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self->dist_metric), __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 835, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -8203,24 +8203,24 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *         self.dist_metric = DistanceMetric.get_metric(metric, **kwargs)
  *         self.euclidean = (self.dist_metric.__class__.__name__
  *                           == 'EuclideanDistance')             # <<<<<<<<<<<<<<
- * 
+ *
  *         metric = self.dist_metric.__class__.__name__
  */
   __pyx_t_9 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 836, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":835
- * 
+ *
  *         self.dist_metric = DistanceMetric.get_metric(metric, **kwargs)
  *         self.euclidean = (self.dist_metric.__class__.__name__             # <<<<<<<<<<<<<<
  *                           == 'EuclideanDistance')
- * 
+ *
  */
   __pyx_v_self->euclidean = __pyx_t_9;
 
   /* "sklearn/neighbors/_binary_tree.pxi":838
  *                           == 'EuclideanDistance')
- * 
+ *
  *         metric = self.dist_metric.__class__.__name__             # <<<<<<<<<<<<<<
  *         if metric not in VALID_METRICS:
  *             raise ValueError('metric {metric} is not valid for '
@@ -8234,7 +8234,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
   __pyx_t_2 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":839
- * 
+ *
  *         metric = self.dist_metric.__class__.__name__
  *         if metric not in VALID_METRICS:             # <<<<<<<<<<<<<<
  *             raise ValueError('metric {metric} is not valid for '
@@ -8267,7 +8267,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *                              '{BinaryTree}'.format(metric=metric,
  *                                                    **DOC_DICT))             # <<<<<<<<<<<<<<
  *         self.dist_metric._validate_data(self.data)
- * 
+ *
  */
     __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_DOC_DICT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 842, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -8305,7 +8305,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
     __PYX_ERR(0, 840, __pyx_L1_error)
 
     /* "sklearn/neighbors/_binary_tree.pxi":839
- * 
+ *
  *         metric = self.dist_metric.__class__.__name__
  *         if metric not in VALID_METRICS:             # <<<<<<<<<<<<<<
  *             raise ValueError('metric {metric} is not valid for '
@@ -8317,7 +8317,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *                              '{BinaryTree}'.format(metric=metric,
  *                                                    **DOC_DICT))
  *         self.dist_metric._validate_data(self.data)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # determine number of levels in the tree, and from this
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self->dist_metric), __pyx_n_s_validate_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 843, __pyx_L1_error)
@@ -8347,7 +8347,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *         self.n_levels = int(
  *             np.log2(fmax(1, (n_samples - 1) / self.leaf_size)) + 1)             # <<<<<<<<<<<<<<
  *         self.n_nodes = <int> (2 ** self.n_levels) - 1
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -8404,17 +8404,17 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *         self.n_levels = int(
  *             np.log2(fmax(1, (n_samples - 1) / self.leaf_size)) + 1)
  *         self.n_nodes = <int> (2 ** self.n_levels) - 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         # allocate arrays for storage
  */
   __pyx_v_self->n_nodes = (((int)__Pyx_pow___pyx_t_7sklearn_5utils_9_typedefs_intp_t(2, __pyx_v_self->n_levels)) - 1);
 
   /* "sklearn/neighbors/_binary_tree.pxi":853
- * 
+ *
  *         # allocate arrays for storage
  *         self.idx_array = np.arange(n_samples, dtype=np.intp)             # <<<<<<<<<<<<<<
  *         self.node_data = np.zeros(self.n_nodes, dtype=NodeData)
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 853, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -8451,7 +8451,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *         # allocate arrays for storage
  *         self.idx_array = np.arange(n_samples, dtype=np.intp)
  *         self.node_data = np.zeros(self.n_nodes, dtype=NodeData)             # <<<<<<<<<<<<<<
- * 
+ *
  *         self._update_sample_weight(n_samples, sample_weight)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 854, __pyx_L1_error)
@@ -8486,9 +8486,9 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
 
   /* "sklearn/neighbors/_binary_tree.pxi":856
  *         self.node_data = np.zeros(self.n_nodes, dtype=NodeData)
- * 
+ *
  *         self._update_sample_weight(n_samples, sample_weight)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # Allocate tree-specific data
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_update_sample_weight); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 856, __pyx_L1_error)
@@ -8541,7 +8541,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":859
- * 
+ *
  *         # Allocate tree-specific data
  *         allocate_data(self, self.n_nodes, n_features)             # <<<<<<<<<<<<<<
  *         self._recursive_build(
@@ -8569,7 +8569,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
  *             idx_start=0,
  *             idx_end=n_samples             # <<<<<<<<<<<<<<
  *         )
- * 
+ *
  */
   __pyx_t_8 = __Pyx_PyIndex_AsSsize_t(__pyx_v_n_samples); if (unlikely((__pyx_t_8 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 864, __pyx_L1_error)
 
@@ -8587,7 +8587,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
 
   /* "sklearn/neighbors/_binary_tree.pxi":820
  *         self.n_calls = 0
- * 
+ *
  *     def __init__(self, data,             # <<<<<<<<<<<<<<
  *                  leaf_size=40, metric='minkowski', sample_weight=None, **kwargs):
  *         # validate data
@@ -8617,7 +8617,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_2__init__(struct 
 
 /* "sklearn/neighbors/_binary_tree.pxi":867
  *         )
- * 
+ *
  *     def _update_sample_weight(self, n_samples, sample_weight):             # <<<<<<<<<<<<<<
  *         if sample_weight is not None:
  *             self.sample_weight = np.asarray(
@@ -8705,7 +8705,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_4_update_sa
   __Pyx_RefNannySetupContext("_update_sample_weight", 0);
 
   /* "sklearn/neighbors/_binary_tree.pxi":868
- * 
+ *
  *     def _update_sample_weight(self, n_samples, sample_weight):
  *         if sample_weight is not None:             # <<<<<<<<<<<<<<
  *             self.sample_weight = np.asarray(
@@ -8805,7 +8805,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_4_update_sa
     __pyx_v_self->sum_weight = __pyx_t_9;
 
     /* "sklearn/neighbors/_binary_tree.pxi":868
- * 
+ *
  *     def _update_sample_weight(self, n_samples, sample_weight):
  *         if sample_weight is not None:             # <<<<<<<<<<<<<<
  *             self.sample_weight = np.asarray(
@@ -8819,7 +8819,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_4_update_sa
  *         else:
  *             self.sample_weight = None             # <<<<<<<<<<<<<<
  *             self.sum_weight = <float64_t> n_samples
- * 
+ *
  */
   /*else*/ {
     __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t__const__(Py_None, 0); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 873, __pyx_L1_error)
@@ -8832,8 +8832,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_4_update_sa
  *         else:
  *             self.sample_weight = None
  *             self.sum_weight = <float64_t> n_samples             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_n_samples); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 874, __pyx_L1_error)
     __pyx_v_self->sum_weight = ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)__pyx_t_9);
@@ -8842,7 +8842,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_4_update_sa
 
   /* "sklearn/neighbors/_binary_tree.pxi":867
  *         )
- * 
+ *
  *     def _update_sample_weight(self, n_samples, sample_weight):             # <<<<<<<<<<<<<<
  *         if sample_weight is not None:
  *             self.sample_weight = np.asarray(
@@ -8867,8 +8867,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_4_update_sa
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":877
- * 
- * 
+ *
+ *
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
  *         """
  *         reduce method used for pickling
@@ -8905,7 +8905,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_6__reduce__
  *         reduce method used for pickling
  *         """
  *         return (newObj, (type(self),), self.__getstate__())             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __getstate__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -8949,8 +8949,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_6__reduce__
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":877
- * 
- * 
+ *
+ *
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
  *         """
  *         reduce method used for pickling
@@ -8973,7 +8973,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_6__reduce__
 
 /* "sklearn/neighbors/_binary_tree.pxi":883
  *         return (newObj, (type(self),), self.__getstate__())
- * 
+ *
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
  *         """
  *         get state for pickling
@@ -9261,7 +9261,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_8__getstate
 
   /* "sklearn/neighbors/_binary_tree.pxi":883
  *         return (newObj, (type(self),), self.__getstate__())
- * 
+ *
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
  *         """
  *         get state for pickling
@@ -9292,7 +9292,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_8__getstate
 
 /* "sklearn/neighbors/_binary_tree.pxi":908
  *                 sample_weight)
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         """
  *         set state for pickling
@@ -9493,7 +9493,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
  *         self.n_calls = state[10]
  *         self.dist_metric = state[11]             # <<<<<<<<<<<<<<
  *         sample_weight = state[12]
- * 
+ *
  */
   __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_state, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 923, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -9508,7 +9508,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
  *         self.n_calls = state[10]
  *         self.dist_metric = state[11]
  *         sample_weight = state[12]             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.euclidean = (self.dist_metric.__class__.__name__
  */
   __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_state, 12, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 924, __pyx_L1_error)
@@ -9518,7 +9518,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
 
   /* "sklearn/neighbors/_binary_tree.pxi":926
  *         sample_weight = state[12]
- * 
+ *
  *         self.euclidean = (self.dist_metric.__class__.__name__             # <<<<<<<<<<<<<<
  *                           == 'EuclideanDistance')
  *         n_samples = self.data.shape[0]
@@ -9532,7 +9532,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":927
- * 
+ *
  *         self.euclidean = (self.dist_metric.__class__.__name__
  *                           == 'EuclideanDistance')             # <<<<<<<<<<<<<<
  *         n_samples = self.data.shape[0]
@@ -9543,7 +9543,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
 
   /* "sklearn/neighbors/_binary_tree.pxi":926
  *         sample_weight = state[12]
- * 
+ *
  *         self.euclidean = (self.dist_metric.__class__.__name__             # <<<<<<<<<<<<<<
  *                           == 'EuclideanDistance')
  *         n_samples = self.data.shape[0]
@@ -9555,7 +9555,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
  *                           == 'EuclideanDistance')
  *         n_samples = self.data.shape[0]             # <<<<<<<<<<<<<<
  *         self._update_sample_weight(n_samples, sample_weight)
- * 
+ *
  */
   __pyx_v_n_samples = (__pyx_v_self->data.shape[0]);
 
@@ -9563,7 +9563,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
  *                           == 'EuclideanDistance')
  *         n_samples = self.data.shape[0]
  *         self._update_sample_weight(n_samples, sample_weight)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def get_tree_stats(self):
  */
   __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_update_sample_weight); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 929, __pyx_L1_error)
@@ -9621,7 +9621,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
 
   /* "sklearn/neighbors/_binary_tree.pxi":908
  *                 sample_weight)
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         """
  *         set state for pickling
@@ -9651,7 +9651,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10__setstat
 
 /* "sklearn/neighbors/_binary_tree.pxi":931
  *         self._update_sample_weight(n_samples, sample_weight)
- * 
+ *
  *     def get_tree_stats(self):             # <<<<<<<<<<<<<<
  *         """
  *         get_tree_stats()
@@ -9687,7 +9687,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_12get_tree_
  *             (number of trims, number of leaves, number of splits)
  *         """
  *         return (self.n_trims, self.n_leaves, self.n_splits)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def reset_n_calls(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9714,7 +9714,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_12get_tree_
 
   /* "sklearn/neighbors/_binary_tree.pxi":931
  *         self._update_sample_weight(n_samples, sample_weight)
- * 
+ *
  *     def get_tree_stats(self):             # <<<<<<<<<<<<<<
  *         """
  *         get_tree_stats()
@@ -9736,7 +9736,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_12get_tree_
 
 /* "sklearn/neighbors/_binary_tree.pxi":944
  *         return (self.n_trims, self.n_leaves, self.n_splits)
- * 
+ *
  *     def reset_n_calls(self):             # <<<<<<<<<<<<<<
  *         """
  *         reset_n_calls()
@@ -9765,14 +9765,14 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_14reset_n_c
  *         Reset number of calls to 0.
  *         """
  *         self.n_calls = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     def get_n_calls(self):
  */
   __pyx_v_self->n_calls = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":944
  *         return (self.n_trims, self.n_leaves, self.n_splits)
- * 
+ *
  *     def reset_n_calls(self):             # <<<<<<<<<<<<<<
  *         """
  *         reset_n_calls()
@@ -9787,7 +9787,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_14reset_n_c
 
 /* "sklearn/neighbors/_binary_tree.pxi":952
  *         self.n_calls = 0
- * 
+ *
  *     def get_n_calls(self):             # <<<<<<<<<<<<<<
  *         """
  *         get_n_calls()
@@ -9820,7 +9820,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_16get_n_cal
  *             number of distance computation calls
  *         """
  *         return self.n_calls             # <<<<<<<<<<<<<<
- * 
+ *
  *     def get_arrays(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9832,7 +9832,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_16get_n_cal
 
   /* "sklearn/neighbors/_binary_tree.pxi":952
  *         self.n_calls = 0
- * 
+ *
  *     def get_n_calls(self):             # <<<<<<<<<<<<<<
  *         """
  *         get_n_calls()
@@ -9851,7 +9851,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_16get_n_cal
 
 /* "sklearn/neighbors/_binary_tree.pxi":965
  *         return self.n_calls
- * 
+ *
  *     def get_arrays(self):             # <<<<<<<<<<<<<<
  *         """
  *         get_arrays()
@@ -9937,7 +9937,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_18get_array
  *             self.node_data.base,
  *             self.node_bounds.base,             # <<<<<<<<<<<<<<
  *         )
- * 
+ *
  */
   __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_self->node_bounds, 3, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t__const__, (int (*)(char *, PyObject *)) NULL, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 980, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -9972,7 +9972,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_18get_array
 
   /* "sklearn/neighbors/_binary_tree.pxi":965
  *         return self.n_calls
- * 
+ *
  *     def get_arrays(self):             # <<<<<<<<<<<<<<
  *         """
  *         get_arrays()
@@ -9994,11 +9994,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_18get_array
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":984
- * 
+ *
  *     @classmethod
  *     def valid_metrics(cls):             # <<<<<<<<<<<<<<
  *         """Get list of valid distance metrics.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -10028,7 +10028,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_20valid_met
  *             List of valid distance metrics.
  *         """
  *         return cls._valid_metrics             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(self, float64_t* x1, float64_t* x2,
  */
   __Pyx_XDECREF(__pyx_r);
@@ -10039,11 +10039,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_20valid_met
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":984
- * 
+ *
  *     @classmethod
  *     def valid_metrics(cls):             # <<<<<<<<<<<<<<
  *         """Get list of valid distance metrics.
- * 
+ *
  */
 
   /* function exit code */
@@ -10059,7 +10059,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_20valid_met
 
 /* "sklearn/neighbors/_binary_tree.pxi":996
  *         return cls._valid_metrics
- * 
+ *
  *     cdef inline float64_t dist(self, float64_t* x1, float64_t* x2,             # <<<<<<<<<<<<<<
  *                              intp_t size) except -1 nogil:
  *         """Compute the distance between arrays x1 and x2"""
@@ -10116,7 +10116,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *             return euclidean_dist(x1, x2, size)
  *         else:
  *             return self.dist_metric.dist(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(self, float64_t* x1, float64_t* x2,
  */
   /*else*/ {
@@ -10127,7 +10127,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
   /* "sklearn/neighbors/_binary_tree.pxi":996
  *         return cls._valid_metrics
- * 
+ *
  *     cdef inline float64_t dist(self, float64_t* x1, float64_t* x2,             # <<<<<<<<<<<<<<
  *                              intp_t size) except -1 nogil:
  *         """Compute the distance between arrays x1 and x2"""
@@ -10151,7 +10151,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
 /* "sklearn/neighbors/_binary_tree.pxi":1005
  *             return self.dist_metric.dist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t rdist(self, float64_t* x1, float64_t* x2,             # <<<<<<<<<<<<<<
  *                               intp_t size) except -1 nogil:
  *         """Compute the reduced distance between arrays x1 and x2.
@@ -10208,7 +10208,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *             return euclidean_rdist(x1, x2, size)
  *         else:
  *             return self.dist_metric.rdist(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int _recursive_build(self, NodeData_t[::1] node_data, intp_t i_node, intp_t idx_start,
  */
   /*else*/ {
@@ -10219,7 +10219,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
   /* "sklearn/neighbors/_binary_tree.pxi":1005
  *             return self.dist_metric.dist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t rdist(self, float64_t* x1, float64_t* x2,             # <<<<<<<<<<<<<<
  *                               intp_t size) except -1 nogil:
  *         """Compute the reduced distance between arrays x1 and x2.
@@ -10243,7 +10243,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
 /* "sklearn/neighbors/_binary_tree.pxi":1020
  *             return self.dist_metric.rdist(x1, x2, size)
- * 
+ *
  *     cdef int _recursive_build(self, NodeData_t[::1] node_data, intp_t i_node, intp_t idx_start,             # <<<<<<<<<<<<<<
  *                               intp_t idx_end) except -1:
  *         """Recursively build the tree.
@@ -10304,7 +10304,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
  *         cdef intp_t n_mid = n_points / 2
  *         cdef intp_t* idx_array = &self.idx_array[idx_start]             # <<<<<<<<<<<<<<
  *         cdef float64_t* data = &self.data[0, 0]
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_idx_start;
   __pyx_v_idx_array = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_intp_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_intp_t const  *) __pyx_v_self->idx_array.data) + __pyx_t_1)) ))));
@@ -10313,7 +10313,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
  *         cdef intp_t n_mid = n_points / 2
  *         cdef intp_t* idx_array = &self.idx_array[idx_start]
  *         cdef float64_t* data = &self.data[0, 0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         # initialize node data
  */
   __pyx_t_2 = 0;
@@ -10321,17 +10321,17 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
   __pyx_v_data = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ (__pyx_v_self->data.data + __pyx_t_2 * __pyx_v_self->data.strides[0]) )) + __pyx_t_3)) ))));
 
   /* "sklearn/neighbors/_binary_tree.pxi":1040
- * 
+ *
  *         # initialize node data
  *         init_node(self, node_data, i_node, idx_start, idx_end)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if 2 * i_node + 1 >= self.n_nodes:
  */
   __pyx_t_4 = __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(__pyx_v_self, __pyx_v_node_data, __pyx_v_i_node, __pyx_v_idx_start, __pyx_v_idx_end); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 1040, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":1042
  *         init_node(self, node_data, i_node, idx_start, idx_end)
- * 
+ *
  *         if 2 * i_node + 1 >= self.n_nodes:             # <<<<<<<<<<<<<<
  *             node_data[i_node].is_leaf = True
  *             if idx_end - idx_start > 2 * self.leaf_size:
@@ -10340,7 +10340,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
   if (__pyx_t_5) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1043
- * 
+ *
  *         if 2 * i_node + 1 >= self.n_nodes:
  *             node_data[i_node].is_leaf = True             # <<<<<<<<<<<<<<
  *             if idx_end - idx_start > 2 * self.leaf_size:
@@ -10376,7 +10376,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
  *                 import warnings
  *                 warnings.warn("Internal: memory layout is flawed: "             # <<<<<<<<<<<<<<
  *                               "not enough nodes allocated")
- * 
+ *
  */
       __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_warnings, __pyx_n_s_warn); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1049, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
@@ -10408,7 +10408,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
 
     /* "sklearn/neighbors/_binary_tree.pxi":1042
  *         init_node(self, node_data, i_node, idx_start, idx_end)
- * 
+ *
  *         if 2 * i_node + 1 >= self.n_nodes:             # <<<<<<<<<<<<<<
  *             node_data[i_node].is_leaf = True
  *             if idx_end - idx_start > 2 * self.leaf_size:
@@ -10418,7 +10418,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
 
   /* "sklearn/neighbors/_binary_tree.pxi":1052
  *                               "not enough nodes allocated")
- * 
+ *
  *         elif idx_end - idx_start < 2:             # <<<<<<<<<<<<<<
  *             # again, this shouldn't happen if our memory allocation
  *             # is correct.  Raise a warning.
@@ -10468,7 +10468,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
  *             warnings.warn("Internal: memory layout is flawed: "
  *                           "too many nodes allocated")
  *             node_data[i_node].is_leaf = True             # <<<<<<<<<<<<<<
- * 
+ *
  *         else:
  */
     __pyx_t_1 = __pyx_v_i_node;
@@ -10476,7 +10476,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
 
     /* "sklearn/neighbors/_binary_tree.pxi":1052
  *                               "not enough nodes allocated")
- * 
+ *
  *         elif idx_end - idx_start < 2:             # <<<<<<<<<<<<<<
  *             # again, this shouldn't happen if our memory allocation
  *             # is correct.  Raise a warning.
@@ -10528,7 +10528,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
  *                                   idx_start, idx_start + n_mid)
  *             self._recursive_build(node_data, 2 * i_node + 2,             # <<<<<<<<<<<<<<
  *                                   idx_start + n_mid, idx_end)
- * 
+ *
  */
     __pyx_t_4 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_self->__pyx_vtab)->_recursive_build(__pyx_v_self, __pyx_v_node_data, ((2 * __pyx_v_i_node) + 2), (__pyx_v_idx_start + __pyx_v_n_mid), __pyx_v_idx_end); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 1069, __pyx_L1_error)
   }
@@ -10536,7 +10536,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
 
   /* "sklearn/neighbors/_binary_tree.pxi":1020
  *             return self.dist_metric.rdist(x1, x2, size)
- * 
+ *
  *     cdef int _recursive_build(self, NodeData_t[::1] node_data, intp_t i_node, intp_t idx_start,             # <<<<<<<<<<<<<<
  *                               intp_t idx_end) except -1:
  *         """Recursively build the tree.
@@ -10559,7 +10559,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__recursive_build(s
 
 /* "sklearn/neighbors/_binary_tree.pxi":1072
  *                                   idx_start + n_mid, idx_end)
- * 
+ *
  *     def query(self, X, k=1, return_distance=True,             # <<<<<<<<<<<<<<
  *               dualtree=False, breadth_first=False,
  *               sort_results=True):
@@ -10588,7 +10588,7 @@ static PyObject *__pyx_pw_7sklearn_9neighbors_8_kd_tree_10BinaryTree_23query(PyO
     values[2] = ((PyObject *)Py_True);
 
     /* "sklearn/neighbors/_binary_tree.pxi":1073
- * 
+ *
  *     def query(self, X, k=1, return_distance=True,
  *               dualtree=False, breadth_first=False,             # <<<<<<<<<<<<<<
  *               sort_results=True):
@@ -10699,7 +10699,7 @@ static PyObject *__pyx_pw_7sklearn_9neighbors_8_kd_tree_10BinaryTree_23query(PyO
 
   /* "sklearn/neighbors/_binary_tree.pxi":1072
  *                                   idx_start + n_mid, idx_end)
- * 
+ *
  *     def query(self, X, k=1, return_distance=True,             # <<<<<<<<<<<<<<
  *               dualtree=False, breadth_first=False,
  *               sort_results=True):
@@ -10751,7 +10751,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *         """
  *         # XXX: we should allow X to be a pre-built tree.
  *         X = check_array(X, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_check_array); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1117, __pyx_L1_error)
@@ -10781,7 +10781,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
 
   /* "sklearn/neighbors/_binary_tree.pxi":1119
  *         X = check_array(X, dtype=np.float64, order='C')
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("query data dimension must "
  *                              "match training data dimension")
@@ -10807,11 +10807,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   if (unlikely(__pyx_t_6)) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1120
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:
  *             raise ValueError("query data dimension must "             # <<<<<<<<<<<<<<
  *                              "match training data dimension")
- * 
+ *
  */
     __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -10821,7 +10821,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
 
     /* "sklearn/neighbors/_binary_tree.pxi":1119
  *         X = check_array(X, dtype=np.float64, order='C')
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("query data dimension must "
  *                              "match training data dimension")
@@ -10830,7 +10830,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
 
   /* "sklearn/neighbors/_binary_tree.pxi":1123
  *                              "match training data dimension")
- * 
+ *
  *         if self.data.shape[0] < k:             # <<<<<<<<<<<<<<
  *             raise ValueError("k must be less than or equal "
  *                              "to the number of training points")
@@ -10844,11 +10844,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   if (unlikely(__pyx_t_6)) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1124
- * 
+ *
  *         if self.data.shape[0] < k:
  *             raise ValueError("k must be less than or equal "             # <<<<<<<<<<<<<<
  *                              "to the number of training points")
- * 
+ *
  */
     __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
@@ -10858,7 +10858,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
 
     /* "sklearn/neighbors/_binary_tree.pxi":1123
  *                              "match training data dimension")
- * 
+ *
  *         if self.data.shape[0] < k:             # <<<<<<<<<<<<<<
  *             raise ValueError("k must be less than or equal "
  *                              "to the number of training points")
@@ -10866,7 +10866,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":1128
- * 
+ *
  *         # flatten X, and save original shape information
  *         np_Xarr = X.reshape((-1, self.data.shape[1]))             # <<<<<<<<<<<<<<
  *         cdef const float64_t[:, ::1] Xarr = np_Xarr
@@ -10916,10 +10916,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   __pyx_t_7.data = NULL;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1135
- * 
+ *
  *         # initialize heap for neighbors
  *         cdef NeighborsHeap heap = NeighborsHeap(Xarr.shape[0], k)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # node heap for breadth-first queries
  */
   __pyx_t_2 = PyInt_FromSsize_t((__pyx_v_Xarr.shape[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1135, __pyx_L1_error)
@@ -10943,7 +10943,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *         cdef NodeHeap nodeheap
  *         if breadth_first:             # <<<<<<<<<<<<<<
  *             nodeheap = NodeHeap(self.data.shape[0] // self.leaf_size)
- * 
+ *
  */
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_breadth_first); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1139, __pyx_L1_error)
   if (__pyx_t_6) {
@@ -10952,7 +10952,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *         cdef NodeHeap nodeheap
  *         if breadth_first:
  *             nodeheap = NodeHeap(self.data.shape[0] // self.leaf_size)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # bounds is needed for the dual tree algorithm
  */
     __pyx_t_2 = PyInt_FromSsize_t(((__pyx_v_self->data.shape[0]) / __pyx_v_self->leaf_size)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
@@ -10968,13 +10968,13 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *         cdef NodeHeap nodeheap
  *         if breadth_first:             # <<<<<<<<<<<<<<
  *             nodeheap = NodeHeap(self.data.shape[0] // self.leaf_size)
- * 
+ *
  */
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":1145
  *         cdef float64_t[::1] bounds
- * 
+ *
  *         self.n_trims = 0             # <<<<<<<<<<<<<<
  *         self.n_leaves = 0
  *         self.n_splits = 0
@@ -10982,11 +10982,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   __pyx_v_self->n_trims = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1146
- * 
+ *
  *         self.n_trims = 0
  *         self.n_leaves = 0             # <<<<<<<<<<<<<<
  *         self.n_splits = 0
- * 
+ *
  */
   __pyx_v_self->n_leaves = 0;
 
@@ -10994,14 +10994,14 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *         self.n_trims = 0
  *         self.n_leaves = 0
  *         self.n_splits = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if dualtree:
  */
   __pyx_v_self->n_splits = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1149
  *         self.n_splits = 0
- * 
+ *
  *         if dualtree:             # <<<<<<<<<<<<<<
  *             other = self.__class__(np_Xarr, metric=self.dist_metric,
  *                                    leaf_size=self.leaf_size)
@@ -11010,7 +11010,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   if (__pyx_t_6) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1150
- * 
+ *
  *         if dualtree:
  *             other = self.__class__(np_Xarr, metric=self.dist_metric,             # <<<<<<<<<<<<<<
  *                                    leaf_size=self.leaf_size)
@@ -11040,7 +11040,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1150
- * 
+ *
  *         if dualtree:
  *             other = self.__class__(np_Xarr, metric=self.dist_metric,             # <<<<<<<<<<<<<<
  *                                    leaf_size=self.leaf_size)
@@ -11182,7 +11182,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *                 bounds = np.full(other.node_data.shape[0], np.inf)
  *                 self._query_dual_depthfirst(0, other, 0, bounds,             # <<<<<<<<<<<<<<
  *                                             heap, reduced_dist_LB)
- * 
+ *
  */
       if (!(likely(((__pyx_v_other) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_other, __pyx_ptype_7sklearn_9neighbors_8_kd_tree_BinaryTree))))) __PYX_ERR(0, 1157, __pyx_L1_error)
 
@@ -11190,7 +11190,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *                 bounds = np.full(other.node_data.shape[0], np.inf)
  *                 self._query_dual_depthfirst(0, other, 0, bounds,
  *                                             heap, reduced_dist_LB)             # <<<<<<<<<<<<<<
- * 
+ *
  *         else:
  */
       __pyx_t_8 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_self->__pyx_vtab)->_query_dual_depthfirst(__pyx_v_self, 0, ((struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_other), 0, __pyx_v_bounds, __pyx_v_heap, __pyx_v_reduced_dist_LB); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 1157, __pyx_L1_error)
@@ -11199,7 +11199,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
 
     /* "sklearn/neighbors/_binary_tree.pxi":1149
  *         self.n_splits = 0
- * 
+ *
  *         if dualtree:             # <<<<<<<<<<<<<<
  *             other = self.__class__(np_Xarr, metric=self.dist_metric,
  *                                    leaf_size=self.leaf_size)
@@ -11208,7 +11208,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":1161
- * 
+ *
  *         else:
  *             pt = &Xarr[0, 0]             # <<<<<<<<<<<<<<
  *             if breadth_first:
@@ -11322,7 +11322,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *                         self._query_single_depthfirst(0, pt, i, heap,
  *                                                       reduced_dist_LB)
  *                         pt += Xarr.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *         distances, indices = heap.get_arrays(sort=sort_results)
  */
               __pyx_v_pt = (__pyx_v_pt + (__pyx_v_Xarr.shape[1]));
@@ -11361,10 +11361,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
 
   /* "sklearn/neighbors/_binary_tree.pxi":1174
  *                         pt += Xarr.shape[1]
- * 
+ *
  *         distances, indices = heap.get_arrays(sort=sort_results)             # <<<<<<<<<<<<<<
  *         distances = self.dist_metric.rdist_to_dist(distances)
- * 
+ *
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_heap), __pyx_n_s_get_arrays); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1174, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -11385,11 +11385,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
-      __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
-      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
+      __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
+      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1);
     } else {
-      __pyx_t_2 = PyList_GET_ITEM(sequence, 0); 
-      __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
+      __pyx_t_2 = PyList_GET_ITEM(sequence, 0);
+      __pyx_t_3 = PyList_GET_ITEM(sequence, 1);
     }
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_t_3);
@@ -11427,10 +11427,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   __pyx_t_3 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1175
- * 
+ *
  *         distances, indices = heap.get_arrays(sort=sort_results)
  *         distances = self.dist_metric.rdist_to_dist(distances)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # deflatten results
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self->dist_metric), __pyx_n_s_rdist_to_dist); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1175, __pyx_L1_error)
@@ -11454,7 +11454,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
   __pyx_t_10 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1178
- * 
+ *
  *         # deflatten results
  *         if return_distance:             # <<<<<<<<<<<<<<
  *             return (distances.reshape(X.shape[:X.ndim - 1] + (k,)),
@@ -11576,7 +11576,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
     goto __pyx_L0;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1178
- * 
+ *
  *         # deflatten results
  *         if return_distance:             # <<<<<<<<<<<<<<
  *             return (distances.reshape(X.shape[:X.ndim - 1] + (k,)),
@@ -11588,7 +11588,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
  *                     indices.reshape(X.shape[:X.ndim - 1] + (k,)))
  *         else:
  *             return indices.reshape(X.shape[:X.ndim - 1] + (k,))             # <<<<<<<<<<<<<<
- * 
+ *
  *     def query_radius(self, X, r, int return_distance=False,
  */
   /*else*/ {
@@ -11638,7 +11638,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
 
   /* "sklearn/neighbors/_binary_tree.pxi":1072
  *                                   idx_start + n_mid, idx_end)
- * 
+ *
  *     def query(self, X, k=1, return_distance=True,             # <<<<<<<<<<<<<<
  *               dualtree=False, breadth_first=False,
  *               sort_results=True):
@@ -11673,7 +11673,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_22query(str
 
 /* "sklearn/neighbors/_binary_tree.pxi":1184
  *             return indices.reshape(X.shape[:X.ndim - 1] + (k,))
- * 
+ *
  *     def query_radius(self, X, r, int return_distance=False,             # <<<<<<<<<<<<<<
  *                      int count_only=False, int sort_results=False):
  *         """
@@ -11773,7 +11773,7 @@ static PyObject *__pyx_pw_7sklearn_9neighbors_8_kd_tree_10BinaryTree_25query_rad
     } else {
 
       /* "sklearn/neighbors/_binary_tree.pxi":1185
- * 
+ *
  *     def query_radius(self, X, r, int return_distance=False,
  *                      int count_only=False, int sort_results=False):             # <<<<<<<<<<<<<<
  *         """
@@ -11799,7 +11799,7 @@ static PyObject *__pyx_pw_7sklearn_9neighbors_8_kd_tree_10BinaryTree_25query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1184
  *             return indices.reshape(X.shape[:X.ndim - 1] + (k,))
- * 
+ *
  *     def query_radius(self, X, r, int return_distance=False,             # <<<<<<<<<<<<<<
  *                      int count_only=False, int sort_results=False):
  *         """
@@ -11888,7 +11888,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         if count_only and return_distance:
  *             raise ValueError("count_only and return_distance "             # <<<<<<<<<<<<<<
  *                              "cannot both be true")
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1238, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -11907,7 +11907,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1241
  *                              "cannot both be true")
- * 
+ *
  *         if sort_results and not return_distance:             # <<<<<<<<<<<<<<
  *             raise ValueError("return_distance must be True "
  *                              "if sort_results is True")
@@ -11924,11 +11924,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   if (unlikely(__pyx_t_1)) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1242
- * 
+ *
  *         if sort_results and not return_distance:
  *             raise ValueError("return_distance must be True "             # <<<<<<<<<<<<<<
  *                              "if sort_results is True")
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1242, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -11938,7 +11938,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
     /* "sklearn/neighbors/_binary_tree.pxi":1241
  *                              "cannot both be true")
- * 
+ *
  *         if sort_results and not return_distance:             # <<<<<<<<<<<<<<
  *             raise ValueError("return_distance must be True "
  *                              "if sort_results is True")
@@ -11947,7 +11947,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1245
  *                              "if sort_results is True")
- * 
+ *
  *         cdef intp_t i, count_i = 0             # <<<<<<<<<<<<<<
  *         cdef intp_t n_features = self.data.shape[1]
  *         cdef float64_t[::1] dist_arr_i
@@ -11955,7 +11955,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   __pyx_v_count_i = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1246
- * 
+ *
  *         cdef intp_t i, count_i = 0
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
  *         cdef float64_t[::1] dist_arr_i
@@ -11968,7 +11968,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         cdef float64_t* pt
  *         cdef intp_t** indices = NULL             # <<<<<<<<<<<<<<
  *         cdef float64_t** distances = NULL
- * 
+ *
  */
   __pyx_v_indices = NULL;
 
@@ -11976,16 +11976,16 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         cdef float64_t* pt
  *         cdef intp_t** indices = NULL
  *         cdef float64_t** distances = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         # validate X and prepare for query
  */
   __pyx_v_distances = NULL;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1254
- * 
+ *
  *         # validate X and prepare for query
  *         X = check_array(X, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_check_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1254, __pyx_L1_error)
@@ -12015,7 +12015,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1256
  *         X = check_array(X, dtype=np.float64, order='C')
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("query data dimension must "
  *                              "match training data dimension")
@@ -12041,11 +12041,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   if (unlikely(__pyx_t_1)) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1257
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:
  *             raise ValueError("query data dimension must "             # <<<<<<<<<<<<<<
  *                              "match training data dimension")
- * 
+ *
  */
     __pyx_t_7 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
@@ -12055,7 +12055,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
     /* "sklearn/neighbors/_binary_tree.pxi":1256
  *         X = check_array(X, dtype=np.float64, order='C')
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("query data dimension must "
  *                              "match training data dimension")
@@ -12064,9 +12064,9 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1260
  *                              "match training data dimension")
- * 
+ *
  *         cdef const float64_t[:, ::1] Xarr = X.reshape((-1, self.data.shape[1]))             # <<<<<<<<<<<<<<
- * 
+ *
  *         # prepare r for query
  */
   __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1260, __pyx_L1_error)
@@ -12104,7 +12104,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   __pyx_t_8.data = NULL;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1263
- * 
+ *
  *         # prepare r for query
  *         r = np.asarray(r, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *         r = np.atleast_1d(r)
@@ -12248,7 +12248,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         else:
  *             if r.shape != X.shape[:X.ndim - 1]:             # <<<<<<<<<<<<<<
  *                 raise ValueError("r must be broadcastable to X.shape")
- * 
+ *
  */
   /*else*/ {
     __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_r, __pyx_n_s_shape); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1268, __pyx_L1_error)
@@ -12275,7 +12275,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         else:
  *             if r.shape != X.shape[:X.ndim - 1]:
  *                 raise ValueError("r must be broadcastable to X.shape")             # <<<<<<<<<<<<<<
- * 
+ *
  *         rarr_np = r.reshape(-1)  # store explicitly to keep in scope
  */
       __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1269, __pyx_L1_error)
@@ -12289,7 +12289,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         else:
  *             if r.shape != X.shape[:X.ndim - 1]:             # <<<<<<<<<<<<<<
  *                 raise ValueError("r must be broadcastable to X.shape")
- * 
+ *
  */
     }
   }
@@ -12297,10 +12297,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1271
  *                 raise ValueError("r must be broadcastable to X.shape")
- * 
+ *
  *         rarr_np = r.reshape(-1)  # store explicitly to keep in scope             # <<<<<<<<<<<<<<
  *         cdef float64_t[::1] rarr = rarr_np
- * 
+ *
  */
   __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_r, __pyx_n_s_reshape); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -12323,10 +12323,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   __pyx_t_6 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1272
- * 
+ *
  *         rarr_np = r.reshape(-1)  # store explicitly to keep in scope
  *         cdef float64_t[::1] rarr = rarr_np             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not count_only:
  */
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t(__pyx_v_rarr_np, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 1272, __pyx_L1_error)
@@ -12336,7 +12336,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1274
  *         cdef float64_t[::1] rarr = rarr_np
- * 
+ *
  *         if not count_only:             # <<<<<<<<<<<<<<
  *             indices = <intp_t**>calloc(Xarr.shape[0], sizeof(intp_t*))
  *             if indices == NULL:
@@ -12345,7 +12345,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   if (__pyx_t_1) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1275
- * 
+ *
  *         if not count_only:
  *             indices = <intp_t**>calloc(Xarr.shape[0], sizeof(intp_t*))             # <<<<<<<<<<<<<<
  *             if indices == NULL:
@@ -12415,7 +12415,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                 if distances == NULL:
  *                     free(indices)             # <<<<<<<<<<<<<<
  *                     raise MemoryError()
- * 
+ *
  */
         free(__pyx_v_indices);
 
@@ -12423,7 +12423,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                 if distances == NULL:
  *                     free(indices)
  *                     raise MemoryError()             # <<<<<<<<<<<<<<
- * 
+ *
  *         np_idx_arr = np.zeros(self.data.shape[0], dtype=np.intp)
  */
         PyErr_NoMemory(); __PYX_ERR(0, 1282, __pyx_L1_error)
@@ -12448,7 +12448,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
     /* "sklearn/neighbors/_binary_tree.pxi":1274
  *         cdef float64_t[::1] rarr = rarr_np
- * 
+ *
  *         if not count_only:             # <<<<<<<<<<<<<<
  *             indices = <intp_t**>calloc(Xarr.shape[0], sizeof(intp_t*))
  *             if indices == NULL:
@@ -12457,10 +12457,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1284
  *                     raise MemoryError()
- * 
+ *
  *         np_idx_arr = np.zeros(self.data.shape[0], dtype=np.intp)             # <<<<<<<<<<<<<<
  *         idx_arr_i = np_idx_arr
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -12492,10 +12492,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   __pyx_t_3 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1285
- * 
+ *
  *         np_idx_arr = np.zeros(self.data.shape[0], dtype=np.intp)
  *         idx_arr_i = np_idx_arr             # <<<<<<<<<<<<<<
- * 
+ *
  *         np_dist_arr = np.zeros(self.data.shape[0], dtype=np.float64)
  */
   __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_intp_t(__pyx_v_np_idx_arr, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(0, 1285, __pyx_L1_error)
@@ -12505,10 +12505,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1287
  *         idx_arr_i = np_idx_arr
- * 
+ *
  *         np_dist_arr = np.zeros(self.data.shape[0], dtype=np.float64)             # <<<<<<<<<<<<<<
  *         dist_arr_i = np_dist_arr
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -12540,10 +12540,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   __pyx_t_4 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1288
- * 
+ *
  *         np_dist_arr = np.zeros(self.data.shape[0], dtype=np.float64)
  *         dist_arr_i = np_dist_arr             # <<<<<<<<<<<<<<
- * 
+ *
  *         counts_arr = np.zeros(Xarr.shape[0], dtype=np.intp)
  */
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t(__pyx_v_np_dist_arr, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 1288, __pyx_L1_error)
@@ -12553,10 +12553,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1290
  *         dist_arr_i = np_dist_arr
- * 
+ *
  *         counts_arr = np.zeros(Xarr.shape[0], dtype=np.intp)             # <<<<<<<<<<<<<<
  *         counts = counts_arr
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -12588,10 +12588,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   __pyx_t_7 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1291
- * 
+ *
  *         counts_arr = np.zeros(Xarr.shape[0], dtype=np.intp)
  *         counts = counts_arr             # <<<<<<<<<<<<<<
- * 
+ *
  *         pt = &Xarr[0, 0]
  */
   __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_intp_t(__pyx_v_counts_arr, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(0, 1291, __pyx_L1_error)
@@ -12601,7 +12601,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1293
  *         counts = counts_arr
- * 
+ *
  *         pt = &Xarr[0, 0]             # <<<<<<<<<<<<<<
  *         memory_error = False
  *         with nogil:
@@ -12611,7 +12611,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
   __pyx_v_pt = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ (__pyx_v_Xarr.data + __pyx_t_11 * __pyx_v_Xarr.strides[0]) )) + __pyx_t_12)) ))));
 
   /* "sklearn/neighbors/_binary_tree.pxi":1294
- * 
+ *
  *         pt = &Xarr[0, 0]
  *         memory_error = False             # <<<<<<<<<<<<<<
  *         with nogil:
@@ -12687,42 +12687,42 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                                                       0, count_only,
  *                                                       return_distance)
  *                 pt += n_features             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if count_only:
  */
           __pyx_v_pt = (__pyx_v_pt + __pyx_v_n_features);
 
           /* "sklearn/neighbors/_binary_tree.pxi":1304
  *                 pt += n_features
- * 
+ *
  *                 if count_only:             # <<<<<<<<<<<<<<
  *                     continue
- * 
+ *
  */
           __pyx_t_1 = (__pyx_v_count_only != 0);
           if (__pyx_t_1) {
 
             /* "sklearn/neighbors/_binary_tree.pxi":1305
- * 
+ *
  *                 if count_only:
  *                     continue             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if sort_results:
  */
             goto __pyx_L19_continue;
 
             /* "sklearn/neighbors/_binary_tree.pxi":1304
  *                 pt += n_features
- * 
+ *
  *                 if count_only:             # <<<<<<<<<<<<<<
  *                     continue
- * 
+ *
  */
           }
 
           /* "sklearn/neighbors/_binary_tree.pxi":1307
  *                     continue
- * 
+ *
  *                 if sort_results:             # <<<<<<<<<<<<<<
  *                     _simultaneous_sort(&dist_arr_i[0], &idx_arr_i[0],
  *                                        counts[i])
@@ -12731,11 +12731,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
           if (__pyx_t_1) {
 
             /* "sklearn/neighbors/_binary_tree.pxi":1308
- * 
+ *
  *                 if sort_results:
  *                     _simultaneous_sort(&dist_arr_i[0], &idx_arr_i[0],             # <<<<<<<<<<<<<<
  *                                        counts[i])
- * 
+ *
  */
             __pyx_t_11 = 0;
             __pyx_t_12 = 0;
@@ -12744,23 +12744,23 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                 if sort_results:
  *                     _simultaneous_sort(&dist_arr_i[0], &idx_arr_i[0],
  *                                        counts[i])             # <<<<<<<<<<<<<<
- * 
+ *
  *                 # equivalent to: indices[i] = np_idx_arr[:counts[i]].copy()
  */
             __pyx_t_16 = __pyx_v_i;
 
             /* "sklearn/neighbors/_binary_tree.pxi":1308
- * 
+ *
  *                 if sort_results:
  *                     _simultaneous_sort(&dist_arr_i[0], &idx_arr_i[0],             # <<<<<<<<<<<<<<
  *                                        counts[i])
- * 
+ *
  */
             (void)(__pyx_fuse_1__pyx_f_7sklearn_5utils_8_sorting_simultaneous_sort((&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_dist_arr_i.data) + __pyx_t_11)) )))), (&(*((__pyx_t_7sklearn_5utils_9_typedefs_intp_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_intp_t *) __pyx_v_idx_arr_i.data) + __pyx_t_12)) )))), (*((__pyx_t_7sklearn_5utils_9_typedefs_intp_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_intp_t *) __pyx_v_counts.data) + __pyx_t_16)) )))));
 
             /* "sklearn/neighbors/_binary_tree.pxi":1307
  *                     continue
- * 
+ *
  *                 if sort_results:             # <<<<<<<<<<<<<<
  *                     _simultaneous_sort(&dist_arr_i[0], &idx_arr_i[0],
  *                                        counts[i])
@@ -12768,7 +12768,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
           }
 
           /* "sklearn/neighbors/_binary_tree.pxi":1312
- * 
+ *
  *                 # equivalent to: indices[i] = np_idx_arr[:counts[i]].copy()
  *                 indices[i] = <intp_t*>malloc(counts[i] * sizeof(intp_t))             # <<<<<<<<<<<<<<
  *                 if indices[i] == NULL:
@@ -12801,7 +12801,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                     memory_error = True
  *                     break             # <<<<<<<<<<<<<<
  *                 memcpy(indices[i], &idx_arr_i[0], counts[i] * sizeof(intp_t))
- * 
+ *
  */
             goto __pyx_L20_break;
 
@@ -12818,7 +12818,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                     memory_error = True
  *                     break
  *                 memcpy(indices[i], &idx_arr_i[0], counts[i] * sizeof(intp_t))             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if return_distance:
  */
           __pyx_t_12 = 0;
@@ -12827,7 +12827,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
           /* "sklearn/neighbors/_binary_tree.pxi":1318
  *                 memcpy(indices[i], &idx_arr_i[0], counts[i] * sizeof(intp_t))
- * 
+ *
  *                 if return_distance:             # <<<<<<<<<<<<<<
  *                     # equivalent to: distances[i] = np_dist_arr[:counts[i]].copy()
  *                     distances[i] = <float64_t*>malloc(counts[i] * sizeof(float64_t))
@@ -12869,7 +12869,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                         memory_error = True
  *                         break             # <<<<<<<<<<<<<<
  *                     memcpy(distances[i], &dist_arr_i[0], counts[i] * sizeof(float64_t))
- * 
+ *
  */
               goto __pyx_L20_break;
 
@@ -12886,7 +12886,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                         memory_error = True
  *                         break
  *                     memcpy(distances[i], &dist_arr_i[0], counts[i] * sizeof(float64_t))             # <<<<<<<<<<<<<<
- * 
+ *
  *         try:
  */
             __pyx_t_12 = 0;
@@ -12895,7 +12895,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
             /* "sklearn/neighbors/_binary_tree.pxi":1318
  *                 memcpy(indices[i], &idx_arr_i[0], counts[i] * sizeof(intp_t))
- * 
+ *
  *                 if return_distance:             # <<<<<<<<<<<<<<
  *                     # equivalent to: distances[i] = np_dist_arr[:counts[i]].copy()
  *                     distances[i] = <float64_t*>malloc(counts[i] * sizeof(float64_t))
@@ -12927,7 +12927,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1326
  *                     memcpy(distances[i], &dist_arr_i[0], counts[i] * sizeof(float64_t))
- * 
+ *
  *         try:             # <<<<<<<<<<<<<<
  *             if memory_error:
  *                 raise MemoryError()
@@ -12943,11 +12943,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
       /*try:*/ {
 
         /* "sklearn/neighbors/_binary_tree.pxi":1327
- * 
+ *
  *         try:
  *             if memory_error:             # <<<<<<<<<<<<<<
  *                 raise MemoryError()
- * 
+ *
  */
         __pyx_t_1 = (__pyx_v_memory_error != 0);
         if (unlikely(__pyx_t_1)) {
@@ -12956,23 +12956,23 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         try:
  *             if memory_error:
  *                 raise MemoryError()             # <<<<<<<<<<<<<<
- * 
+ *
  *             if count_only:
  */
           PyErr_NoMemory(); __PYX_ERR(0, 1328, __pyx_L29_error)
 
           /* "sklearn/neighbors/_binary_tree.pxi":1327
- * 
+ *
  *         try:
  *             if memory_error:             # <<<<<<<<<<<<<<
  *                 raise MemoryError()
- * 
+ *
  */
         }
 
         /* "sklearn/neighbors/_binary_tree.pxi":1330
  *                 raise MemoryError()
- * 
+ *
  *             if count_only:             # <<<<<<<<<<<<<<
  *                 # deflatten results
  *                 return counts_arr.reshape(X.shape[:X.ndim - 1])
@@ -13023,7 +13023,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
           /* "sklearn/neighbors/_binary_tree.pxi":1330
  *                 raise MemoryError()
- * 
+ *
  *             if count_only:             # <<<<<<<<<<<<<<
  *                 # deflatten results
  *                 return counts_arr.reshape(X.shape[:X.ndim - 1])
@@ -13142,7 +13142,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                     PyArray_ENABLEFLAGS(indices_npy[i], cnp.NPY_ARRAY_OWNDATA)
  *                     # make sure the data is not freed twice
  *                     indices[i] = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *                     # make a new numpy array that wraps the existing data
  */
             (__pyx_v_indices[__pyx_v_i]) = NULL;
@@ -13177,14 +13177,14 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                     PyArray_ENABLEFLAGS(distances_npy[i], cnp.NPY_ARRAY_OWNDATA)
  *                     # make sure the data is not freed twice
  *                     distances[i] = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *                 # deflatten results
  */
             (__pyx_v_distances[__pyx_v_i]) = NULL;
           }
 
           /* "sklearn/neighbors/_binary_tree.pxi":1354
- * 
+ *
  *                 # deflatten results
  *                 return (indices_npy.reshape(X.shape[:X.ndim - 1]),             # <<<<<<<<<<<<<<
  *                         distances_npy.reshape(X.shape[:X.ndim - 1]))
@@ -13259,7 +13259,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
           /* "sklearn/neighbors/_binary_tree.pxi":1354
- * 
+ *
  *                 # deflatten results
  *                 return (indices_npy.reshape(X.shape[:X.ndim - 1]),             # <<<<<<<<<<<<<<
  *                         distances_npy.reshape(X.shape[:X.ndim - 1]))
@@ -13359,14 +13359,14 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *                     PyArray_ENABLEFLAGS(indices_npy[i], cnp.NPY_ARRAY_OWNDATA)
  *                     # make sure the data is not freed twice
  *                     indices[i] = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *                 # deflatten results
  */
             (__pyx_v_indices[__pyx_v_i]) = NULL;
           }
 
           /* "sklearn/neighbors/_binary_tree.pxi":1368
- * 
+ *
  *                 # deflatten results
  *                 return indices_npy.reshape(X.shape[:X.ndim - 1])             # <<<<<<<<<<<<<<
  *         except:
@@ -13409,7 +13409,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
         /* "sklearn/neighbors/_binary_tree.pxi":1326
  *                     memcpy(distances[i], &dist_arr_i[0], counts[i] * sizeof(float64_t))
- * 
+ *
  *         try:             # <<<<<<<<<<<<<<
  *             if memory_error:
  *                 raise MemoryError()
@@ -13501,14 +13501,14 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
         __Pyx_GIVEREF(__pyx_t_7);
         __Pyx_XGIVEREF(__pyx_t_6);
         __Pyx_ErrRestoreWithState(__pyx_t_3, __pyx_t_7, __pyx_t_6);
-        __pyx_t_3 = 0; __pyx_t_7 = 0; __pyx_t_6 = 0; 
+        __pyx_t_3 = 0; __pyx_t_7 = 0; __pyx_t_6 = 0;
         __PYX_ERR(0, 1375, __pyx_L31_except_error)
       }
       __pyx_L31_except_error:;
 
       /* "sklearn/neighbors/_binary_tree.pxi":1326
  *                     memcpy(distances[i], &dist_arr_i[0], counts[i] * sizeof(float64_t))
- * 
+ *
  *         try:             # <<<<<<<<<<<<<<
  *             if memory_error:
  *                 raise MemoryError()
@@ -13532,7 +13532,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         finally:
  *             free(indices)             # <<<<<<<<<<<<<<
  *             free(distances)
- * 
+ *
  */
   /*finally:*/ {
     __pyx_L27_error:;
@@ -13565,8 +13565,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         finally:
  *             free(indices)
  *             free(distances)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
         free(__pyx_v_distances);
       }
@@ -13593,7 +13593,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         finally:
  *             free(indices)             # <<<<<<<<<<<<<<
  *             free(distances)
- * 
+ *
  */
       free(__pyx_v_indices);
 
@@ -13601,8 +13601,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
  *         finally:
  *             free(indices)
  *             free(distances)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       free(__pyx_v_distances);
       __pyx_r = __pyx_t_27;
@@ -13613,7 +13613,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 
   /* "sklearn/neighbors/_binary_tree.pxi":1184
  *             return indices.reshape(X.shape[:X.ndim - 1] + (k,))
- * 
+ *
  *     def query_radius(self, X, r, int return_distance=False,             # <<<<<<<<<<<<<<
  *                      int count_only=False, int sort_results=False):
  *         """
@@ -13652,8 +13652,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_24query_rad
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":1381
- * 
- * 
+ *
+ *
  *     def kernel_density(self, X, h, kernel='gaussian',             # <<<<<<<<<<<<<<
  *                        atol=0, rtol=1E-8,
  *                        breadth_first=True, return_log=False):
@@ -13795,8 +13795,8 @@ static PyObject *__pyx_pw_7sklearn_9neighbors_8_kd_tree_10BinaryTree_27kernel_de
   __pyx_r = __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_density(((struct __pyx_obj_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_self), __pyx_v_X, __pyx_v_h, __pyx_v_kernel, __pyx_v_atol, __pyx_v_rtol, __pyx_v_breadth_first, __pyx_v_return_log);
 
   /* "sklearn/neighbors/_binary_tree.pxi":1381
- * 
- * 
+ *
+ *
  *     def kernel_density(self, X, h, kernel='gaussian',             # <<<<<<<<<<<<<<
  *                        atol=0, rtol=1E-8,
  *                        breadth_first=True, return_log=False):
@@ -13891,7 +13891,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
  *         cdef float64_t log_rtol = log(rtol)
  *         cdef float64_t log_min_bound, log_max_bound, log_bound_spread
  *         cdef float64_t dist_LB = 0, dist_UB = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef intp_t n_samples = self.data.shape[0]
  */
   __pyx_v_dist_LB = 0.0;
@@ -13899,7 +13899,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
   /* "sklearn/neighbors/_binary_tree.pxi":1436
  *         cdef float64_t dist_LB = 0, dist_UB = 0
- * 
+ *
  *         cdef intp_t n_samples = self.data.shape[0]             # <<<<<<<<<<<<<<
  *         cdef intp_t n_features = self.data.shape[1]
  *         cdef intp_t i
@@ -13907,7 +13907,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
   __pyx_v_n_samples = (__pyx_v_self->data.shape[0]);
 
   /* "sklearn/neighbors/_binary_tree.pxi":1437
- * 
+ *
  *         cdef intp_t n_samples = self.data.shape[0]
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
  *         cdef intp_t i
@@ -13916,7 +13916,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
 
   /* "sklearn/neighbors/_binary_tree.pxi":1442
- * 
+ *
  *         # validate kernel
  *         if kernel == 'gaussian':             # <<<<<<<<<<<<<<
  *             kernel_c = GAUSSIAN_KERNEL
@@ -13935,7 +13935,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
     __pyx_v_kernel_c = __pyx_e_7sklearn_9neighbors_8_kd_tree_GAUSSIAN_KERNEL;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1442
- * 
+ *
  *         # validate kernel
  *         if kernel == 'gaussian':             # <<<<<<<<<<<<<<
  *             kernel_c = GAUSSIAN_KERNEL
@@ -14093,7 +14093,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
  *             kernel_c = COSINE_KERNEL
  *         else:
  *             raise ValueError("kernel = '%s' not recognized" % kernel)             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef float64_t log_knorm = _log_kernel_norm(h_c, n_features, kernel_c)
  */
   /*else*/ {
@@ -14110,19 +14110,19 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
   /* "sklearn/neighbors/_binary_tree.pxi":1457
  *             raise ValueError("kernel = '%s' not recognized" % kernel)
- * 
+ *
  *         cdef float64_t log_knorm = _log_kernel_norm(h_c, n_features, kernel_c)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # validate X and prepare for query
  */
   __pyx_t_1 = __pyx_f_7sklearn_9neighbors_8_kd_tree__log_kernel_norm(__pyx_v_h_c, __pyx_v_n_features, __pyx_v_kernel_c); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1457, __pyx_L1_error)
   __pyx_v_log_knorm = __pyx_t_1;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1460
- * 
+ *
  *         # validate X and prepare for query
  *         X = check_array(X, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *         if X.shape[X.ndim - 1] != n_features:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_check_array); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1460, __pyx_L1_error)
@@ -14152,7 +14152,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
   /* "sklearn/neighbors/_binary_tree.pxi":1462
  *         X = check_array(X, dtype=np.float64, order='C')
- * 
+ *
  *         if X.shape[X.ndim - 1] != n_features:             # <<<<<<<<<<<<<<
  *             raise ValueError("query data dimension must "
  *                              "match training data dimension")
@@ -14178,7 +14178,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
   if (unlikely(__pyx_t_3)) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1463
- * 
+ *
  *         if X.shape[X.ndim - 1] != n_features:
  *             raise ValueError("query data dimension must "             # <<<<<<<<<<<<<<
  *                              "match training data dimension")
@@ -14192,7 +14192,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
     /* "sklearn/neighbors/_binary_tree.pxi":1462
  *         X = check_array(X, dtype=np.float64, order='C')
- * 
+ *
  *         if X.shape[X.ndim - 1] != n_features:             # <<<<<<<<<<<<<<
  *             raise ValueError("query data dimension must "
  *                              "match training data dimension")
@@ -14204,7 +14204,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
  *                              "match training data dimension")
  *         Xarr_np = X.reshape((-1, n_features))             # <<<<<<<<<<<<<<
  *         cdef float64_t[:, ::1] Xarr = Xarr_np
- * 
+ *
  */
   __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1465, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -14241,7 +14241,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
  *                              "match training data dimension")
  *         Xarr_np = X.reshape((-1, n_features))
  *         cdef float64_t[:, ::1] Xarr = Xarr_np             # <<<<<<<<<<<<<<
- * 
+ *
  *         log_density_arr = np.zeros(Xarr.shape[0], dtype=np.float64)
  */
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t(__pyx_v_Xarr_np, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 1466, __pyx_L1_error)
@@ -14251,10 +14251,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
   /* "sklearn/neighbors/_binary_tree.pxi":1468
  *         cdef float64_t[:, ::1] Xarr = Xarr_np
- * 
+ *
  *         log_density_arr = np.zeros(Xarr.shape[0], dtype=np.float64)             # <<<<<<<<<<<<<<
  *         cdef float64_t[::1] log_density = log_density_arr
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1468, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
@@ -14286,10 +14286,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
   __pyx_t_7 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1469
- * 
+ *
  *         log_density_arr = np.zeros(Xarr.shape[0], dtype=np.float64)
  *         cdef float64_t[::1] log_density = log_density_arr             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef float64_t* pt = &Xarr[0, 0]
  */
   __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t(__pyx_v_log_density_arr, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(0, 1469, __pyx_L1_error)
@@ -14299,9 +14299,9 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
   /* "sklearn/neighbors/_binary_tree.pxi":1471
  *         cdef float64_t[::1] log_density = log_density_arr
- * 
+ *
  *         cdef float64_t* pt = &Xarr[0, 0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef NodeHeap nodeheap
  */
   __pyx_t_11 = 0;
@@ -14309,7 +14309,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
   __pyx_v_pt = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ (__pyx_v_Xarr.data + __pyx_t_11 * __pyx_v_Xarr.strides[0]) )) + __pyx_t_12)) ))));
 
   /* "sklearn/neighbors/_binary_tree.pxi":1474
- * 
+ *
  *         cdef NodeHeap nodeheap
  *         if breadth_first:             # <<<<<<<<<<<<<<
  *             nodeheap = NodeHeap(self.data.shape[0] // self.leaf_size)
@@ -14334,7 +14334,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
     __pyx_t_8 = 0;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1474
- * 
+ *
  *         cdef NodeHeap nodeheap
  *         if breadth_first:             # <<<<<<<<<<<<<<
  *             nodeheap = NodeHeap(self.data.shape[0] // self.leaf_size)
@@ -14624,7 +14624,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
  *                 log_density[i] = logaddexp(log_min_bound,
  *                                            log_bound_spread - log(2))
  *                 pt += n_features             # <<<<<<<<<<<<<<
- * 
+ *
  *         # normalize the results
  */
       __pyx_v_pt = (__pyx_v_pt + __pyx_v_n_features);
@@ -14633,11 +14633,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
   __pyx_L6:;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1516
- * 
+ *
  *         # normalize the results
  *         for i in range(log_density.shape[0]):             # <<<<<<<<<<<<<<
  *             log_density[i] += log_knorm
- * 
+ *
  */
   __pyx_t_15 = (__pyx_v_log_density.shape[0]);
   __pyx_t_16 = __pyx_t_15;
@@ -14648,7 +14648,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
  *         # normalize the results
  *         for i in range(log_density.shape[0]):
  *             log_density[i] += log_knorm             # <<<<<<<<<<<<<<
- * 
+ *
  *         log_density_arr = log_density_arr.reshape(X.shape[:X.ndim - 1])
  */
     __pyx_t_18 = __pyx_v_i;
@@ -14657,9 +14657,9 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
   /* "sklearn/neighbors/_binary_tree.pxi":1519
  *             log_density[i] += log_knorm
- * 
+ *
  *         log_density_arr = log_density_arr.reshape(X.shape[:X.ndim - 1])             # <<<<<<<<<<<<<<
- * 
+ *
  *         if return_log:
  */
   __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_v_log_density_arr, __pyx_n_s_reshape); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 1519, __pyx_L1_error)
@@ -14696,7 +14696,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
   /* "sklearn/neighbors/_binary_tree.pxi":1521
  *         log_density_arr = log_density_arr.reshape(X.shape[:X.ndim - 1])
- * 
+ *
  *         if return_log:             # <<<<<<<<<<<<<<
  *             return log_density_arr
  *         else:
@@ -14705,7 +14705,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
   if (__pyx_t_3) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1522
- * 
+ *
  *         if return_log:
  *             return log_density_arr             # <<<<<<<<<<<<<<
  *         else:
@@ -14718,7 +14718,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
     /* "sklearn/neighbors/_binary_tree.pxi":1521
  *         log_density_arr = log_density_arr.reshape(X.shape[:X.ndim - 1])
- * 
+ *
  *         if return_log:             # <<<<<<<<<<<<<<
  *             return log_density_arr
  *         else:
@@ -14729,7 +14729,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
  *             return log_density_arr
  *         else:
  *             return np.exp(log_density_arr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def two_point_correlation(self, X, r, dualtree=False):
  */
   /*else*/ {
@@ -14760,8 +14760,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":1381
- * 
- * 
+ *
+ *
  *     def kernel_density(self, X, h, kernel='gaussian',             # <<<<<<<<<<<<<<
  *                        atol=0, rtol=1E-8,
  *                        breadth_first=True, return_log=False):
@@ -14797,7 +14797,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_26kernel_de
 
 /* "sklearn/neighbors/_binary_tree.pxi":1526
  *             return np.exp(log_density_arr)
- * 
+ *
  *     def two_point_correlation(self, X, r, dualtree=False):             # <<<<<<<<<<<<<<
  *         """
  *         two_point_correlation(X, r, dualtree=False)
@@ -14924,15 +14924,15 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
  *         """
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
  *         cdef intp_t i
- * 
+ *
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
 
   /* "sklearn/neighbors/_binary_tree.pxi":1554
- * 
+ *
  *         # validate X and prepare for query
  *         X = check_array(X, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_check_array); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1554, __pyx_L1_error)
@@ -14962,7 +14962,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
   /* "sklearn/neighbors/_binary_tree.pxi":1556
  *         X = check_array(X, dtype=np.float64, order='C')
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("query data dimension must "
  *                              "match training data dimension")
@@ -14988,11 +14988,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
   if (unlikely(__pyx_t_6)) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1557
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:
  *             raise ValueError("query data dimension must "             # <<<<<<<<<<<<<<
  *                              "match training data dimension")
- * 
+ *
  */
     __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1557, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -15002,7 +15002,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
     /* "sklearn/neighbors/_binary_tree.pxi":1556
  *         X = check_array(X, dtype=np.float64, order='C')
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("query data dimension must "
  *                              "match training data dimension")
@@ -15011,10 +15011,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
   /* "sklearn/neighbors/_binary_tree.pxi":1560
  *                              "match training data dimension")
- * 
+ *
  *         np_Xarr = X.reshape((-1, self.data.shape[1]))             # <<<<<<<<<<<<<<
  *         cdef float64_t[:, ::1] Xarr = np_Xarr
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_reshape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1560, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -15048,10 +15048,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
   __pyx_t_5 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1561
- * 
+ *
  *         np_Xarr = X.reshape((-1, self.data.shape[1]))
  *         cdef float64_t[:, ::1] Xarr = np_Xarr             # <<<<<<<<<<<<<<
- * 
+ *
  *         # prepare r for query
  */
   __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t(__pyx_v_np_Xarr, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 1561, __pyx_L1_error)
@@ -15060,7 +15060,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
   __pyx_t_7.data = NULL;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1564
- * 
+ *
  *         # prepare r for query
  *         r = np.asarray(r, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *         r = np.atleast_1d(r)
@@ -15197,7 +15197,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
  *         i_rsort = np.argsort(r)
  *         rarr_np = r[i_rsort]  # needed to keep memory in scope             # <<<<<<<<<<<<<<
  *         cdef float64_t[::1] rarr = rarr_np
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_v_r, __pyx_v_i_rsort); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1569, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -15208,7 +15208,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
  *         i_rsort = np.argsort(r)
  *         rarr_np = r[i_rsort]  # needed to keep memory in scope
  *         cdef float64_t[::1] rarr = rarr_np             # <<<<<<<<<<<<<<
- * 
+ *
  *         # create array to hold counts
  */
   __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_float64_t(__pyx_v_rarr_np, PyBUF_WRITABLE); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 1570, __pyx_L1_error)
@@ -15217,11 +15217,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
   __pyx_t_8.data = NULL;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1573
- * 
+ *
  *         # create array to hold counts
  *         count = np.zeros(r.shape[0], dtype=np.intp)             # <<<<<<<<<<<<<<
  *         cdef intp_t[::1] carr = count
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1573, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -15259,7 +15259,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
  *         # create array to hold counts
  *         count = np.zeros(r.shape[0], dtype=np.intp)
  *         cdef intp_t[::1] carr = count             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef float64_t* pt = &Xarr[0, 0]
  */
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dc_nn___pyx_t_7sklearn_5utils_9_typedefs_intp_t(__pyx_v_count, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(0, 1574, __pyx_L1_error)
@@ -15269,9 +15269,9 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
   /* "sklearn/neighbors/_binary_tree.pxi":1576
  *         cdef intp_t[::1] carr = count
- * 
+ *
  *         cdef float64_t* pt = &Xarr[0, 0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         if dualtree:
  */
   __pyx_t_10 = 0;
@@ -15280,7 +15280,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
   /* "sklearn/neighbors/_binary_tree.pxi":1578
  *         cdef float64_t* pt = &Xarr[0, 0]
- * 
+ *
  *         if dualtree:             # <<<<<<<<<<<<<<
  *             other = self.__class__(Xarr, metric=self.dist_metric,
  *                                    leaf_size=self.leaf_size)
@@ -15289,7 +15289,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
   if (__pyx_t_6) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":1579
- * 
+ *
  *         if dualtree:
  *             other = self.__class__(Xarr, metric=self.dist_metric,             # <<<<<<<<<<<<<<
  *                                    leaf_size=self.leaf_size)
@@ -15321,7 +15321,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1579
- * 
+ *
  *         if dualtree:
  *             other = self.__class__(Xarr, metric=self.dist_metric,             # <<<<<<<<<<<<<<
  *                                    leaf_size=self.leaf_size)
@@ -15357,7 +15357,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
     /* "sklearn/neighbors/_binary_tree.pxi":1578
  *         cdef float64_t* pt = &Xarr[0, 0]
- * 
+ *
  *         if dualtree:             # <<<<<<<<<<<<<<
  *             other = self.__class__(Xarr, metric=self.dist_metric,
  *                                    leaf_size=self.leaf_size)
@@ -15393,7 +15393,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
  *                 self._two_point_single(0, pt, &rarr[0], &carr[0],
  *                                        0, rarr.shape[0])             # <<<<<<<<<<<<<<
  *                 pt += n_features
- * 
+ *
  */
       __pyx_t_12 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_self->__pyx_vtab)->_two_point_single(__pyx_v_self, 0, __pyx_v_pt, (&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_rarr.data) + __pyx_t_10)) )))), (&(*((__pyx_t_7sklearn_5utils_9_typedefs_intp_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_intp_t *) __pyx_v_carr.data) + __pyx_t_11)) )))), 0, (__pyx_v_rarr.shape[0])); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 1585, __pyx_L1_error)
 
@@ -15401,7 +15401,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
  *                 self._two_point_single(0, pt, &rarr[0], &carr[0],
  *                                        0, rarr.shape[0])
  *                 pt += n_features             # <<<<<<<<<<<<<<
- * 
+ *
  *         return count
  */
       __pyx_v_pt = (__pyx_v_pt + __pyx_v_n_features);
@@ -15411,9 +15411,9 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
   /* "sklearn/neighbors/_binary_tree.pxi":1589
  *                 pt += n_features
- * 
+ *
  *         return count             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int _query_single_depthfirst(self, intp_t i_node,
  */
   __Pyx_XDECREF(__pyx_r);
@@ -15423,7 +15423,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
   /* "sklearn/neighbors/_binary_tree.pxi":1526
  *             return np.exp(log_density_arr)
- * 
+ *
  *     def two_point_correlation(self, X, r, dualtree=False):             # <<<<<<<<<<<<<<
  *         """
  *         two_point_correlation(X, r, dualtree=False)
@@ -15459,7 +15459,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_28two_point
 
 /* "sklearn/neighbors/_binary_tree.pxi":1591
  *         return count
- * 
+ *
  *     cdef int _query_single_depthfirst(self, intp_t i_node,             # <<<<<<<<<<<<<<
  *                                       float64_t* pt, intp_t i_pt,
  *                                       NeighborsHeap heap,
@@ -15493,7 +15493,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
  *                                       float64_t reduced_dist_LB) except -1 nogil:
  *         """Recursive Single-tree k-neighbors query, depth-first approach"""
  *         cdef NodeData_t node_info = self.node_data[i_node]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef float64_t dist_pt, reduced_dist_LB_1, reduced_dist_LB_2
  */
   __pyx_t_1 = __pyx_v_i_node;
@@ -15501,9 +15501,9 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
 
   /* "sklearn/neighbors/_binary_tree.pxi":1601
  *         cdef intp_t i, i1, i2
- * 
+ *
  *         cdef float64_t* data = &self.data[0, 0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
   __pyx_t_2 = 0;
@@ -15515,7 +15515,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
  *         #         trim it from the query
  *         if reduced_dist_LB > heap.largest(i_pt):             # <<<<<<<<<<<<<<
  *             self.n_trims += 1
- * 
+ *
  */
   __pyx_t_4 = __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_largest(__pyx_v_heap, __pyx_v_i_pt); if (unlikely(__pyx_t_4 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1606, __pyx_L1_error)
   __pyx_t_5 = ((__pyx_v_reduced_dist_LB > __pyx_t_4) != 0);
@@ -15525,7 +15525,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
  *         #         trim it from the query
  *         if reduced_dist_LB > heap.largest(i_pt):
  *             self.n_trims += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
     __pyx_v_self->n_trims = (__pyx_v_self->n_trims + 1);
@@ -15535,7 +15535,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
  *         #         trim it from the query
  *         if reduced_dist_LB > heap.largest(i_pt):             # <<<<<<<<<<<<<<
  *             self.n_trims += 1
- * 
+ *
  */
     goto __pyx_L3;
   }
@@ -15596,7 +15596,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
  *                                      &self.data[self.idx_array[i], 0],
  *                                      self.data.shape[1])
  *                 heap._push(i_pt, dist_pt, self.idx_array[i])             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
       __pyx_t_8 = __pyx_v_i;
@@ -15646,7 +15646,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
  *             i2 = i1 + 1
  *             reduced_dist_LB_1 = min_rdist(self, i1, pt)             # <<<<<<<<<<<<<<
  *             reduced_dist_LB_2 = min_rdist(self, i2, pt)
- * 
+ *
  */
     __pyx_t_4 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_rdist(__pyx_v_self, __pyx_v_i1, __pyx_v_pt); if (unlikely(__pyx_t_4 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1626, __pyx_L1_error)
     __pyx_v_reduced_dist_LB_1 = __pyx_t_4;
@@ -15655,14 +15655,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
  *             i2 = i1 + 1
  *             reduced_dist_LB_1 = min_rdist(self, i1, pt)
  *             reduced_dist_LB_2 = min_rdist(self, i2, pt)             # <<<<<<<<<<<<<<
- * 
+ *
  *             # recursively query subnodes
  */
     __pyx_t_4 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_rdist(__pyx_v_self, __pyx_v_i2, __pyx_v_pt); if (unlikely(__pyx_t_4 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1627, __pyx_L1_error)
     __pyx_v_reduced_dist_LB_2 = __pyx_t_4;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1630
- * 
+ *
  *             # recursively query subnodes
  *             if reduced_dist_LB_1 <= reduced_dist_LB_2:             # <<<<<<<<<<<<<<
  *                 self._query_single_depthfirst(i1, pt, i_pt, heap,
@@ -15690,7 +15690,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
       __pyx_t_10 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_self->__pyx_vtab)->_query_single_depthfirst(__pyx_v_self, __pyx_v_i2, __pyx_v_pt, __pyx_v_i_pt, __pyx_v_heap, __pyx_v_reduced_dist_LB_2); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 1633, __pyx_L1_error)
 
       /* "sklearn/neighbors/_binary_tree.pxi":1630
- * 
+ *
  *             # recursively query subnodes
  *             if reduced_dist_LB_1 <= reduced_dist_LB_2:             # <<<<<<<<<<<<<<
  *                 self._query_single_depthfirst(i1, pt, i_pt, heap,
@@ -15734,7 +15734,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
  *                 self._query_single_depthfirst(i1, pt, i_pt, heap,
  *                                               reduced_dist_LB_1)
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int _query_single_breadthfirst(self, float64_t* pt,
  */
   __pyx_r = 0;
@@ -15742,7 +15742,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
 
   /* "sklearn/neighbors/_binary_tree.pxi":1591
  *         return count
- * 
+ *
  *     cdef int _query_single_depthfirst(self, intp_t i_node,             # <<<<<<<<<<<<<<
  *                                       float64_t* pt, intp_t i_pt,
  *                                       NeighborsHeap heap,
@@ -15766,7 +15766,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_dept
 
 /* "sklearn/neighbors/_binary_tree.pxi":1642
  *         return 0
- * 
+ *
  *     cdef int _query_single_breadthfirst(self, float64_t* pt,             # <<<<<<<<<<<<<<
  *                                         intp_t i_pt,
  *                                         NeighborsHeap heap,
@@ -15803,7 +15803,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *         cdef float64_t dist_pt, reduced_dist_LB
  *         cdef NodeData_t* node_data = &self.node_data[0]             # <<<<<<<<<<<<<<
  *         cdef float64_t* data = &self.data[0, 0]
- * 
+ *
  */
   __pyx_t_1 = 0;
   __pyx_v_node_data = (&(*((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t const  *) ( /* dim=0 */ ((char *) (((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t const  *) __pyx_v_self->node_data.data) + __pyx_t_1)) ))));
@@ -15812,7 +15812,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *         cdef float64_t dist_pt, reduced_dist_LB
  *         cdef NodeData_t* node_data = &self.node_data[0]
  *         cdef float64_t* data = &self.data[0, 0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         # Set up the node heap and push the head node onto it
  */
   __pyx_t_1 = 0;
@@ -15834,7 +15834,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *         nodeheap_item.val = min_rdist(self, 0, pt)
  *         nodeheap_item.i1 = 0             # <<<<<<<<<<<<<<
  *         nodeheap.push(nodeheap_item)
- * 
+ *
  */
   __pyx_v_nodeheap_item.i1 = 0;
 
@@ -15842,14 +15842,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *         nodeheap_item.val = min_rdist(self, 0, pt)
  *         nodeheap_item.i1 = 0
  *         nodeheap.push(nodeheap_item)             # <<<<<<<<<<<<<<
- * 
+ *
  *         while nodeheap.n > 0:
  */
   __pyx_t_4 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->push(__pyx_v_nodeheap, __pyx_v_nodeheap_item); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 1656, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":1658
  *         nodeheap.push(nodeheap_item)
- * 
+ *
  *         while nodeheap.n > 0:             # <<<<<<<<<<<<<<
  *             nodeheap_item = nodeheap.pop()
  *             reduced_dist_LB = nodeheap_item.val
@@ -15859,7 +15859,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
     if (!__pyx_t_5) break;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1659
- * 
+ *
  *         while nodeheap.n > 0:
  *             nodeheap_item = nodeheap.pop()             # <<<<<<<<<<<<<<
  *             reduced_dist_LB = nodeheap_item.val
@@ -15882,7 +15882,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *             reduced_dist_LB = nodeheap_item.val
  *             i_node = nodeheap_item.i1             # <<<<<<<<<<<<<<
  *             node_info = node_data[i_node]
- * 
+ *
  */
     __pyx_t_6 = __pyx_v_nodeheap_item.i1;
     __pyx_v_i_node = __pyx_t_6;
@@ -15891,7 +15891,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *             reduced_dist_LB = nodeheap_item.val
  *             i_node = nodeheap_item.i1
  *             node_info = node_data[i_node]             # <<<<<<<<<<<<<<
- * 
+ *
  *             #------------------------------------------------------------
  */
     __pyx_v_node_info = (__pyx_v_node_data[__pyx_v_i_node]);
@@ -15901,7 +15901,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *             #         trim it from the query
  *             if reduced_dist_LB > heap.largest(i_pt):             # <<<<<<<<<<<<<<
  *                 self.n_trims += 1
- * 
+ *
  */
     __pyx_t_3 = __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_largest(__pyx_v_heap, __pyx_v_i_pt); if (unlikely(__pyx_t_3 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1667, __pyx_L1_error)
     __pyx_t_5 = ((__pyx_v_reduced_dist_LB > __pyx_t_3) != 0);
@@ -15911,7 +15911,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *             #         trim it from the query
  *             if reduced_dist_LB > heap.largest(i_pt):
  *                 self.n_trims += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             #------------------------------------------------------------
  */
       __pyx_v_self->n_trims = (__pyx_v_self->n_trims + 1);
@@ -15921,7 +15921,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *             #         trim it from the query
  *             if reduced_dist_LB > heap.largest(i_pt):             # <<<<<<<<<<<<<<
  *                 self.n_trims += 1
- * 
+ *
  */
       goto __pyx_L5;
     }
@@ -15990,7 +15990,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *                                          &self.data[self.idx_array[i], 0],
  *                                          self.data.shape[1])
  *                     heap._push(i_pt, dist_pt, self.idx_array[i])             # <<<<<<<<<<<<<<
- * 
+ *
  *             #------------------------------------------------------------
  */
         __pyx_t_9 = __pyx_v_i;
@@ -16053,7 +16053,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *                     nodeheap_item.val = min_rdist(self, i, pt)
  *                     nodeheap.push(nodeheap_item)             # <<<<<<<<<<<<<<
  *         return 0
- * 
+ *
  */
         __pyx_t_4 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->push(__pyx_v_nodeheap, __pyx_v_nodeheap_item); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 1688, __pyx_L1_error)
       }
@@ -16065,7 +16065,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
  *                     nodeheap_item.val = min_rdist(self, i, pt)
  *                     nodeheap.push(nodeheap_item)
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int _query_dual_depthfirst(self, intp_t i_node1,
  */
   __pyx_r = 0;
@@ -16073,7 +16073,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
 
   /* "sklearn/neighbors/_binary_tree.pxi":1642
  *         return 0
- * 
+ *
  *     cdef int _query_single_breadthfirst(self, float64_t* pt,             # <<<<<<<<<<<<<<
  *                                         intp_t i_pt,
  *                                         NeighborsHeap heap,
@@ -16090,7 +16090,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_single_brea
 
 /* "sklearn/neighbors/_binary_tree.pxi":1691
  *         return 0
- * 
+ *
  *     cdef int _query_dual_depthfirst(self, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                     BinaryTree other, intp_t i_node2,
  *                                     float64_t[::1] bounds,
@@ -16135,7 +16135,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *         # current neighbors in node i of the other tree.
  *         cdef NodeData_t node_info1 = self.node_data[i_node1]             # <<<<<<<<<<<<<<
  *         cdef NodeData_t node_info2 = other.node_data[i_node2]
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_i_node1;
   __pyx_v_node_info1 = (*((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t const  *) ( /* dim=0 */ ((char *) (((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t const  *) __pyx_v_self->node_data.data) + __pyx_t_1)) )));
@@ -16144,7 +16144,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *         # current neighbors in node i of the other tree.
  *         cdef NodeData_t node_info1 = self.node_data[i_node1]
  *         cdef NodeData_t node_info2 = other.node_data[i_node2]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef float64_t* data1 = &self.data[0, 0]
  */
   __pyx_t_1 = __pyx_v_i_node2;
@@ -16152,7 +16152,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
 
   /* "sklearn/neighbors/_binary_tree.pxi":1703
  *         cdef NodeData_t node_info2 = other.node_data[i_node2]
- * 
+ *
  *         cdef float64_t* data1 = &self.data[0, 0]             # <<<<<<<<<<<<<<
  *         cdef float64_t* data2 = &other.data[0, 0]
  *         cdef intp_t n_features = self.data.shape[1]
@@ -16162,11 +16162,11 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
   __pyx_v_data1 = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ (__pyx_v_self->data.data + __pyx_t_2 * __pyx_v_self->data.strides[0]) )) + __pyx_t_3)) ))));
 
   /* "sklearn/neighbors/_binary_tree.pxi":1704
- * 
+ *
  *         cdef float64_t* data1 = &self.data[0, 0]
  *         cdef float64_t* data2 = &other.data[0, 0]             # <<<<<<<<<<<<<<
  *         cdef intp_t n_features = self.data.shape[1]
- * 
+ *
  */
   __pyx_t_3 = 0;
   __pyx_t_2 = 0;
@@ -16176,7 +16176,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *         cdef float64_t* data1 = &self.data[0, 0]
  *         cdef float64_t* data2 = &other.data[0, 0]
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef float64_t bound_max, dist_pt, reduced_dist_LB1, reduced_dist_LB2
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
@@ -16186,7 +16186,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *         #         trim both from the query
  *         if reduced_dist_LB > bounds[i_node2]:             # <<<<<<<<<<<<<<
  *             pass
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_i_node2;
   __pyx_t_4 = ((__pyx_v_reduced_dist_LB > (*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_bounds.data) + __pyx_t_1)) )))) != 0);
@@ -16199,7 +16199,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *         #         do a brute-force search comparing all pairs
  *         elif node_info1.is_leaf and node_info2.is_leaf:             # <<<<<<<<<<<<<<
  *             bounds[i_node2] = 0
- * 
+ *
  */
   __pyx_t_5 = (__pyx_v_node_info1.is_leaf != 0);
   if (__pyx_t_5) {
@@ -16216,7 +16216,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *         #         do a brute-force search comparing all pairs
  *         elif node_info1.is_leaf and node_info2.is_leaf:
  *             bounds[i_node2] = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             for i2 in range(node_info2.idx_start, node_info2.idx_end):
  */
     __pyx_t_1 = __pyx_v_i_node2;
@@ -16224,10 +16224,10 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
 
     /* "sklearn/neighbors/_binary_tree.pxi":1722
  *             bounds[i_node2] = 0
- * 
+ *
  *             for i2 in range(node_info2.idx_start, node_info2.idx_end):             # <<<<<<<<<<<<<<
  *                 i_pt = other.idx_array[i2]
- * 
+ *
  */
     __pyx_t_1 = __pyx_v_node_info2.idx_end;
     __pyx_t_6 = __pyx_t_1;
@@ -16235,10 +16235,10 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
       __pyx_v_i2 = __pyx_t_7;
 
       /* "sklearn/neighbors/_binary_tree.pxi":1723
- * 
+ *
  *             for i2 in range(node_info2.idx_start, node_info2.idx_end):
  *                 i_pt = other.idx_array[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if heap.largest(i_pt) <= reduced_dist_LB:
  */
       __pyx_t_8 = __pyx_v_i2;
@@ -16246,36 +16246,36 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
 
       /* "sklearn/neighbors/_binary_tree.pxi":1725
  *                 i_pt = other.idx_array[i2]
- * 
+ *
  *                 if heap.largest(i_pt) <= reduced_dist_LB:             # <<<<<<<<<<<<<<
  *                     continue
- * 
+ *
  */
       __pyx_t_9 = __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_largest(__pyx_v_heap, __pyx_v_i_pt); if (unlikely(__pyx_t_9 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1725, __pyx_L1_error)
       __pyx_t_4 = ((__pyx_t_9 <= __pyx_v_reduced_dist_LB) != 0);
       if (__pyx_t_4) {
 
         /* "sklearn/neighbors/_binary_tree.pxi":1726
- * 
+ *
  *                 if heap.largest(i_pt) <= reduced_dist_LB:
  *                     continue             # <<<<<<<<<<<<<<
- * 
+ *
  *                 for i1 in range(node_info1.idx_start, node_info1.idx_end):
  */
         goto __pyx_L6_continue;
 
         /* "sklearn/neighbors/_binary_tree.pxi":1725
  *                 i_pt = other.idx_array[i2]
- * 
+ *
  *                 if heap.largest(i_pt) <= reduced_dist_LB:             # <<<<<<<<<<<<<<
  *                     continue
- * 
+ *
  */
       }
 
       /* "sklearn/neighbors/_binary_tree.pxi":1728
  *                     continue
- * 
+ *
  *                 for i1 in range(node_info1.idx_start, node_info1.idx_end):             # <<<<<<<<<<<<<<
  *                     dist_pt = self.rdist(
  *                         data1 + n_features * self.idx_array[i1],
@@ -16295,7 +16295,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
         __pyx_t_12 = __pyx_v_i1;
 
         /* "sklearn/neighbors/_binary_tree.pxi":1729
- * 
+ *
  *                 for i1 in range(node_info1.idx_start, node_info1.idx_end):
  *                     dist_pt = self.rdist(             # <<<<<<<<<<<<<<
  *                         data1 + n_features * self.idx_array[i1],
@@ -16308,7 +16308,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *                         data2 + n_features * i_pt,
  *                         n_features)
  *                     heap._push(i_pt, dist_pt, self.idx_array[i1])             # <<<<<<<<<<<<<<
- * 
+ *
  *                 # keep track of node bound
  */
         __pyx_t_12 = __pyx_v_i1;
@@ -16316,11 +16316,11 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
       }
 
       /* "sklearn/neighbors/_binary_tree.pxi":1736
- * 
+ *
  *                 # keep track of node bound
  *                 bounds[i_node2] = fmax(bounds[i_node2],             # <<<<<<<<<<<<<<
  *                                        heap.largest(i_pt))
- * 
+ *
  */
       __pyx_t_8 = __pyx_v_i_node2;
 
@@ -16328,17 +16328,17 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *                 # keep track of node bound
  *                 bounds[i_node2] = fmax(bounds[i_node2],
  *                                        heap.largest(i_pt))             # <<<<<<<<<<<<<<
- * 
+ *
  *             # update bounds up the tree
  */
       __pyx_t_9 = __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_largest(__pyx_v_heap, __pyx_v_i_pt); if (unlikely(__pyx_t_9 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1737, __pyx_L1_error)
 
       /* "sklearn/neighbors/_binary_tree.pxi":1736
- * 
+ *
  *                 # keep track of node bound
  *                 bounds[i_node2] = fmax(bounds[i_node2],             # <<<<<<<<<<<<<<
  *                                        heap.largest(i_pt))
- * 
+ *
  */
       __pyx_t_10 = __pyx_v_i_node2;
       *((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_bounds.data) + __pyx_t_10)) )) = fmax((*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_bounds.data) + __pyx_t_8)) ))), __pyx_t_9);
@@ -16346,7 +16346,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
     }
 
     /* "sklearn/neighbors/_binary_tree.pxi":1740
- * 
+ *
  *             # update bounds up the tree
  *             while i_node2 > 0:             # <<<<<<<<<<<<<<
  *                 i_parent = (i_node2 - 1) // 2
@@ -16436,7 +16436,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *                     i_node2 = i_parent
  *                 else:
  *                     break             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
       /*else*/ {
@@ -16451,7 +16451,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *         #         do a brute-force search comparing all pairs
  *         elif node_info1.is_leaf and node_info2.is_leaf:             # <<<<<<<<<<<<<<
  *             bounds[i_node2] = 0
- * 
+ *
  */
     goto __pyx_L3;
   }
@@ -16511,14 +16511,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *                                               other, 2 * i_node2 + 1)
  *             reduced_dist_LB2 = min_rdist_dual(self, i_node1,             # <<<<<<<<<<<<<<
  *                                               other, 2 * i_node2 + 2)
- * 
+ *
  */
     __pyx_t_9 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_rdist_dual(__pyx_v_self, __pyx_v_i_node1, __pyx_v_other, ((2 * __pyx_v_i_node2) + 2)); if (unlikely(__pyx_t_9 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1757, __pyx_L1_error)
     __pyx_v_reduced_dist_LB2 = __pyx_t_9;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1760
  *                                               other, 2 * i_node2 + 2)
- * 
+ *
  *             if reduced_dist_LB1 < reduced_dist_LB2:             # <<<<<<<<<<<<<<
  *                 self._query_dual_depthfirst(i_node1, other, 2 * i_node2 + 1,
  *                                             bounds, heap, reduced_dist_LB1)
@@ -16527,7 +16527,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
     if (__pyx_t_4) {
 
       /* "sklearn/neighbors/_binary_tree.pxi":1761
- * 
+ *
  *             if reduced_dist_LB1 < reduced_dist_LB2:
  *                 self._query_dual_depthfirst(i_node1, other, 2 * i_node2 + 1,             # <<<<<<<<<<<<<<
  *                                             bounds, heap, reduced_dist_LB1)
@@ -16546,7 +16546,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
 
       /* "sklearn/neighbors/_binary_tree.pxi":1760
  *                                               other, 2 * i_node2 + 2)
- * 
+ *
  *             if reduced_dist_LB1 < reduced_dist_LB2:             # <<<<<<<<<<<<<<
  *                 self._query_dual_depthfirst(i_node1, other, 2 * i_node2 + 1,
  *                                             bounds, heap, reduced_dist_LB1)
@@ -16577,7 +16577,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *                                             bounds, heap, reduced_dist_LB2)
  *                 self._query_dual_depthfirst(i_node1, other, 2 * i_node2 + 1,             # <<<<<<<<<<<<<<
  *                                             bounds, heap, reduced_dist_LB1)
- * 
+ *
  */
       __pyx_t_13 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_self->__pyx_vtab)->_query_dual_depthfirst(__pyx_v_self, __pyx_v_i_node1, __pyx_v_other, ((2 * __pyx_v_i_node2) + 1), __pyx_v_bounds, __pyx_v_heap, __pyx_v_reduced_dist_LB1); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 1768, __pyx_L1_error)
     }
@@ -16617,14 +16617,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *                                               other, i_node2)
  *             reduced_dist_LB2 = min_rdist_dual(self, 2 * i_node1 + 2,             # <<<<<<<<<<<<<<
  *                                               other, i_node2)
- * 
+ *
  */
     __pyx_t_9 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_rdist_dual(__pyx_v_self, ((2 * __pyx_v_i_node1) + 2), __pyx_v_other, __pyx_v_i_node2); if (unlikely(__pyx_t_9 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1777, __pyx_L1_error)
     __pyx_v_reduced_dist_LB2 = __pyx_t_9;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1780
  *                                               other, i_node2)
- * 
+ *
  *             if reduced_dist_LB1 < reduced_dist_LB2:             # <<<<<<<<<<<<<<
  *                 self._query_dual_depthfirst(2 * i_node1 + 1, other, i_node2,
  *                                             bounds, heap, reduced_dist_LB1)
@@ -16633,7 +16633,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
     if (__pyx_t_4) {
 
       /* "sklearn/neighbors/_binary_tree.pxi":1781
- * 
+ *
  *             if reduced_dist_LB1 < reduced_dist_LB2:
  *                 self._query_dual_depthfirst(2 * i_node1 + 1, other, i_node2,             # <<<<<<<<<<<<<<
  *                                             bounds, heap, reduced_dist_LB1)
@@ -16652,7 +16652,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
 
       /* "sklearn/neighbors/_binary_tree.pxi":1780
  *                                               other, i_node2)
- * 
+ *
  *             if reduced_dist_LB1 < reduced_dist_LB2:             # <<<<<<<<<<<<<<
  *                 self._query_dual_depthfirst(2 * i_node1 + 1, other, i_node2,
  *                                             bounds, heap, reduced_dist_LB1)
@@ -16695,7 +16695,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
  *                 self._query_dual_depthfirst(2 * i_node1 + 1, other, i_node2,
  *                                             bounds, heap, reduced_dist_LB1)
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int _query_dual_breadthfirst(self, BinaryTree other,
  */
   __pyx_r = 0;
@@ -16703,7 +16703,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
 
   /* "sklearn/neighbors/_binary_tree.pxi":1691
  *         return 0
- * 
+ *
  *     cdef int _query_dual_depthfirst(self, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                     BinaryTree other, intp_t i_node2,
  *                                     float64_t[::1] bounds,
@@ -16720,7 +16720,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_depthf
 
 /* "sklearn/neighbors/_binary_tree.pxi":1792
  *         return 0
- * 
+ *
  *     cdef int _query_dual_breadthfirst(self, BinaryTree other,             # <<<<<<<<<<<<<<
  *                                       NeighborsHeap heap,
  *                                       NodeHeap nodeheap) except -1:
@@ -16880,7 +16880,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *         cdef float64_t* data1 = &self.data[0, 0]
  *         cdef float64_t* data2 = &other.data[0, 0]             # <<<<<<<<<<<<<<
  *         cdef intp_t n_features = self.data.shape[1]
- * 
+ *
  */
   __pyx_t_10 = 0;
   __pyx_t_9 = 0;
@@ -16890,7 +16890,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *         cdef float64_t* data1 = &self.data[0, 0]
  *         cdef float64_t* data2 = &other.data[0, 0]
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *         # Set up the node heap and push the head nodes onto it
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
@@ -16919,7 +16919,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *         nodeheap_item.i1 = 0
  *         nodeheap_item.i2 = 0             # <<<<<<<<<<<<<<
  *         nodeheap.push(nodeheap_item)
- * 
+ *
  */
   __pyx_v_nodeheap_item.i2 = 0;
 
@@ -16927,14 +16927,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *         nodeheap_item.i1 = 0
  *         nodeheap_item.i2 = 0
  *         nodeheap.push(nodeheap_item)             # <<<<<<<<<<<<<<
- * 
+ *
  *         while nodeheap.n > 0:
  */
   __pyx_t_6 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->push(__pyx_v_nodeheap, __pyx_v_nodeheap_item); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 1811, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":1813
  *         nodeheap.push(nodeheap_item)
- * 
+ *
  *         while nodeheap.n > 0:             # <<<<<<<<<<<<<<
  *             nodeheap_item = nodeheap.pop()
  *             reduced_dist_LB = nodeheap_item.val
@@ -16944,7 +16944,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
     if (!__pyx_t_12) break;
 
     /* "sklearn/neighbors/_binary_tree.pxi":1814
- * 
+ *
  *         while nodeheap.n > 0:
  *             nodeheap_item = nodeheap.pop()             # <<<<<<<<<<<<<<
  *             reduced_dist_LB = nodeheap_item.val
@@ -16967,7 +16967,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *             reduced_dist_LB = nodeheap_item.val
  *             i_node1 = nodeheap_item.i1             # <<<<<<<<<<<<<<
  *             i_node2 = nodeheap_item.i2
- * 
+ *
  */
     __pyx_t_13 = __pyx_v_nodeheap_item.i1;
     __pyx_v_i_node1 = __pyx_t_13;
@@ -16976,7 +16976,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *             reduced_dist_LB = nodeheap_item.val
  *             i_node1 = nodeheap_item.i1
  *             i_node2 = nodeheap_item.i2             # <<<<<<<<<<<<<<
- * 
+ *
  *             node_info1 = node_data1[i_node1]
  */
     __pyx_t_13 = __pyx_v_nodeheap_item.i2;
@@ -16984,18 +16984,18 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
 
     /* "sklearn/neighbors/_binary_tree.pxi":1819
  *             i_node2 = nodeheap_item.i2
- * 
+ *
  *             node_info1 = node_data1[i_node1]             # <<<<<<<<<<<<<<
  *             node_info2 = node_data2[i_node2]
- * 
+ *
  */
     __pyx_v_node_info1 = (__pyx_v_node_data1[__pyx_v_i_node1]);
 
     /* "sklearn/neighbors/_binary_tree.pxi":1820
- * 
+ *
  *             node_info1 = node_data1[i_node1]
  *             node_info2 = node_data2[i_node2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             #------------------------------------------------------------
  */
     __pyx_v_node_info2 = (__pyx_v_node_data2[__pyx_v_i_node2]);
@@ -17005,7 +17005,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *             #         trim both from the query
  *             if reduced_dist_LB > bounds[i_node2]:             # <<<<<<<<<<<<<<
  *                 pass
- * 
+ *
  */
     __pyx_t_13 = __pyx_v_i_node2;
     __pyx_t_12 = ((__pyx_v_reduced_dist_LB > (*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_bounds.data) + __pyx_t_13)) )))) != 0);
@@ -17018,7 +17018,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *             #         do a brute-force search comparing all pairs
  *             elif node_info1.is_leaf and node_info2.is_leaf:             # <<<<<<<<<<<<<<
  *                 bounds[i_node2] = -1
- * 
+ *
  */
     __pyx_t_14 = (__pyx_v_node_info1.is_leaf != 0);
     if (__pyx_t_14) {
@@ -17035,7 +17035,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *             #         do a brute-force search comparing all pairs
  *             elif node_info1.is_leaf and node_info2.is_leaf:
  *                 bounds[i_node2] = -1             # <<<<<<<<<<<<<<
- * 
+ *
  *                 for i2 in range(node_info2.idx_start, node_info2.idx_end):
  */
       __pyx_t_13 = __pyx_v_i_node2;
@@ -17043,10 +17043,10 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
 
       /* "sklearn/neighbors/_binary_tree.pxi":1834
  *                 bounds[i_node2] = -1
- * 
+ *
  *                 for i2 in range(node_info2.idx_start, node_info2.idx_end):             # <<<<<<<<<<<<<<
  *                     i_pt = other.idx_array[i2]
- * 
+ *
  */
       __pyx_t_13 = __pyx_v_node_info2.idx_end;
       __pyx_t_15 = __pyx_t_13;
@@ -17054,10 +17054,10 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
         __pyx_v_i2 = __pyx_t_16;
 
         /* "sklearn/neighbors/_binary_tree.pxi":1835
- * 
+ *
  *                 for i2 in range(node_info2.idx_start, node_info2.idx_end):
  *                     i_pt = other.idx_array[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *                     if heap.largest(i_pt) <= reduced_dist_LB:
  */
         __pyx_t_17 = __pyx_v_i2;
@@ -17065,36 +17065,36 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
 
         /* "sklearn/neighbors/_binary_tree.pxi":1837
  *                     i_pt = other.idx_array[i2]
- * 
+ *
  *                     if heap.largest(i_pt) <= reduced_dist_LB:             # <<<<<<<<<<<<<<
  *                         continue
- * 
+ *
  */
         __pyx_t_11 = __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_largest(__pyx_v_heap, __pyx_v_i_pt); if (unlikely(__pyx_t_11 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1837, __pyx_L1_error)
         __pyx_t_12 = ((__pyx_t_11 <= __pyx_v_reduced_dist_LB) != 0);
         if (__pyx_t_12) {
 
           /* "sklearn/neighbors/_binary_tree.pxi":1838
- * 
+ *
  *                     if heap.largest(i_pt) <= reduced_dist_LB:
  *                         continue             # <<<<<<<<<<<<<<
- * 
+ *
  *                     for i1 in range(node_info1.idx_start, node_info1.idx_end):
  */
           goto __pyx_L8_continue;
 
           /* "sklearn/neighbors/_binary_tree.pxi":1837
  *                     i_pt = other.idx_array[i2]
- * 
+ *
  *                     if heap.largest(i_pt) <= reduced_dist_LB:             # <<<<<<<<<<<<<<
  *                         continue
- * 
+ *
  */
         }
 
         /* "sklearn/neighbors/_binary_tree.pxi":1840
  *                         continue
- * 
+ *
  *                     for i1 in range(node_info1.idx_start, node_info1.idx_end):             # <<<<<<<<<<<<<<
  *                         dist_pt = self.rdist(
  *                             data1 + n_features * self.idx_array[i1],
@@ -17114,7 +17114,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
           __pyx_t_20 = __pyx_v_i1;
 
           /* "sklearn/neighbors/_binary_tree.pxi":1841
- * 
+ *
  *                     for i1 in range(node_info1.idx_start, node_info1.idx_end):
  *                         dist_pt = self.rdist(             # <<<<<<<<<<<<<<
  *                             data1 + n_features * self.idx_array[i1],
@@ -17127,7 +17127,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *                             data2 + n_features * i_pt,
  *                             n_features)
  *                         heap._push(i_pt, dist_pt, self.idx_array[i1])             # <<<<<<<<<<<<<<
- * 
+ *
  *                     # keep track of node bound
  */
           __pyx_t_20 = __pyx_v_i1;
@@ -17135,11 +17135,11 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
         }
 
         /* "sklearn/neighbors/_binary_tree.pxi":1848
- * 
+ *
  *                     # keep track of node bound
  *                     bounds[i_node2] = fmax(bounds[i_node2],             # <<<<<<<<<<<<<<
  *                                            heap.largest(i_pt))
- * 
+ *
  */
         __pyx_t_17 = __pyx_v_i_node2;
 
@@ -17147,17 +17147,17 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *                     # keep track of node bound
  *                     bounds[i_node2] = fmax(bounds[i_node2],
  *                                            heap.largest(i_pt))             # <<<<<<<<<<<<<<
- * 
+ *
  *             #------------------------------------------------------------
  */
         __pyx_t_11 = __pyx_f_7sklearn_9neighbors_8_kd_tree_13NeighborsHeap_largest(__pyx_v_heap, __pyx_v_i_pt); if (unlikely(__pyx_t_11 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1849, __pyx_L1_error)
 
         /* "sklearn/neighbors/_binary_tree.pxi":1848
- * 
+ *
  *                     # keep track of node bound
  *                     bounds[i_node2] = fmax(bounds[i_node2],             # <<<<<<<<<<<<<<
  *                                            heap.largest(i_pt))
- * 
+ *
  */
         __pyx_t_18 = __pyx_v_i_node2;
         *((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_bounds.data) + __pyx_t_18)) )) = fmax((*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_bounds.data) + __pyx_t_17)) ))), __pyx_t_11);
@@ -17169,7 +17169,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *             #         do a brute-force search comparing all pairs
  *             elif node_info1.is_leaf and node_info2.is_leaf:             # <<<<<<<<<<<<<<
  *                 bounds[i_node2] = -1
- * 
+ *
  */
       goto __pyx_L5;
     }
@@ -17266,7 +17266,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *                     nodeheap_item.val = min_rdist_dual(self, i_node1,
  *                                                        other, i2)
  *                     nodeheap.push(nodeheap_item)             # <<<<<<<<<<<<<<
- * 
+ *
  *             #------------------------------------------------------------
  */
         __pyx_t_6 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->push(__pyx_v_nodeheap, __pyx_v_nodeheap_item); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 1862, __pyx_L1_error)
@@ -17328,7 +17328,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *                                                        other, i_node2)
  *                     nodeheap.push(nodeheap_item)             # <<<<<<<<<<<<<<
  *         return 0
- * 
+ *
  */
         __pyx_t_6 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->push(__pyx_v_nodeheap, __pyx_v_nodeheap_item); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 1873, __pyx_L1_error)
       }
@@ -17340,7 +17340,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
  *                                                        other, i_node2)
  *                     nodeheap.push(nodeheap_item)
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef intp_t _query_radius_single(self,
  */
   __pyx_r = 0;
@@ -17348,7 +17348,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
 
   /* "sklearn/neighbors/_binary_tree.pxi":1792
  *         return 0
- * 
+ *
  *     cdef int _query_dual_breadthfirst(self, BinaryTree other,             # <<<<<<<<<<<<<<
  *                                       NeighborsHeap heap,
  *                                       NodeHeap nodeheap) except -1:
@@ -17373,7 +17373,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__query_dual_breadt
 
 /* "sklearn/neighbors/_binary_tree.pxi":1876
  *         return 0
- * 
+ *
  *     cdef intp_t _query_radius_single(self,             # <<<<<<<<<<<<<<
  *                                       intp_t i_node,
  *                                       float64_t* pt, float64_t r,
@@ -17429,7 +17429,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *         cdef intp_t* idx_array = &self.idx_array[0]
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
  *         cdef NodeData_t node_info = self.node_data[i_node]
- * 
+ *
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
 
@@ -17437,7 +17437,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *         cdef intp_t* idx_array = &self.idx_array[0]
  *         cdef intp_t n_features = self.data.shape[1]
  *         cdef NodeData_t node_info = self.node_data[i_node]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef intp_t i
  */
   __pyx_t_3 = __pyx_v_i_node;
@@ -17445,19 +17445,19 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
 
   /* "sklearn/neighbors/_binary_tree.pxi":1893
  *         cdef float64_t reduced_r
- * 
+ *
  *         cdef float64_t dist_pt, dist_LB = 0, dist_UB = 0             # <<<<<<<<<<<<<<
  *         min_max_dist(self, i_node, pt, &dist_LB, &dist_UB)
- * 
+ *
  */
   __pyx_v_dist_LB = 0.0;
   __pyx_v_dist_UB = 0.0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1894
- * 
+ *
  *         cdef float64_t dist_pt, dist_LB = 0, dist_UB = 0
  *         min_max_dist(self, i_node, pt, &dist_LB, &dist_UB)             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
   __pyx_t_4 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(__pyx_v_self, __pyx_v_i_node, __pyx_v_pt, (&__pyx_v_dist_LB), (&__pyx_v_dist_UB)); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 1894, __pyx_L1_error)
@@ -17467,7 +17467,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *         #         prune this branch.
  *         if dist_LB > r:             # <<<<<<<<<<<<<<
  *             pass
- * 
+ *
  */
   __pyx_t_5 = ((__pyx_v_dist_LB > __pyx_v_r) != 0);
   if (__pyx_t_5) {
@@ -17605,7 +17605,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *                                                           * idx_array[i]),
  *                                                      n_features)
  *                     count += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
         __pyx_v_count = (__pyx_v_count + 1);
@@ -17628,7 +17628,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *         #         determine if they fall within radius
  *         elif node_info.is_leaf:             # <<<<<<<<<<<<<<
  *             reduced_r = self.dist_metric._dist_to_rdist(r)
- * 
+ *
  */
   __pyx_t_5 = (__pyx_v_node_info.is_leaf != 0);
   if (__pyx_t_5) {
@@ -17637,7 +17637,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *         #         determine if they fall within radius
  *         elif node_info.is_leaf:
  *             reduced_r = self.dist_metric._dist_to_rdist(r)             # <<<<<<<<<<<<<<
- * 
+ *
  *             for i in range(node_info.idx_start, node_info.idx_end):
  */
     __pyx_t_9 = ((struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self->dist_metric->__pyx_vtab)->_dist_to_rdist(__pyx_v_self->dist_metric, __pyx_v_r); if (unlikely(__pyx_t_9 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1923, __pyx_L1_error)
@@ -17645,7 +17645,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
 
     /* "sklearn/neighbors/_binary_tree.pxi":1925
  *             reduced_r = self.dist_metric._dist_to_rdist(r)
- * 
+ *
  *             for i in range(node_info.idx_start, node_info.idx_end):             # <<<<<<<<<<<<<<
  *                 dist_pt = self.rdist(pt, (data + n_features * idx_array[i]),
  *                                      n_features)
@@ -17656,7 +17656,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
       __pyx_v_i = __pyx_t_7;
 
       /* "sklearn/neighbors/_binary_tree.pxi":1926
- * 
+ *
  *             for i in range(node_info.idx_start, node_info.idx_end):
  *                 dist_pt = self.rdist(pt, (data + n_features * idx_array[i]),             # <<<<<<<<<<<<<<
  *                                      n_features)
@@ -17749,7 +17749,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *                             distances[count] =\
  *                                 self.dist_metric._rdist_to_dist(dist_pt)             # <<<<<<<<<<<<<<
  *                     count += 1
- * 
+ *
  */
             __pyx_t_9 = ((struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self->dist_metric->__pyx_vtab)->_rdist_to_dist(__pyx_v_self->dist_metric, __pyx_v_dist_pt); if (unlikely(__pyx_t_9 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 1937, __pyx_L1_error)
 
@@ -17777,7 +17777,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *                             distances[count] =\
  *                                 self.dist_metric._rdist_to_dist(dist_pt)
  *                     count += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
         __pyx_v_count = (__pyx_v_count + 1);
@@ -17797,7 +17797,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
  *         #         determine if they fall within radius
  *         elif node_info.is_leaf:             # <<<<<<<<<<<<<<
  *             reduced_r = self.dist_metric._dist_to_rdist(r)
- * 
+ *
  */
     goto __pyx_L3;
   }
@@ -17833,9 +17833,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
 
   /* "sklearn/neighbors/_binary_tree.pxi":1950
  *                                               count_only, return_distance)
- * 
+ *
  *         return count             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t _kde_single_breadthfirst(self, float64_t* pt,
  */
   __pyx_r = __pyx_v_count;
@@ -17843,7 +17843,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
 
   /* "sklearn/neighbors/_binary_tree.pxi":1876
  *         return 0
- * 
+ *
  *     cdef intp_t _query_radius_single(self,             # <<<<<<<<<<<<<<
  *                                       intp_t i_node,
  *                                       float64_t* pt, float64_t r,
@@ -17859,7 +17859,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_intp_t __pyx_f_7sklearn_9neighbors_8_k
 
 /* "sklearn/neighbors/_binary_tree.pxi":1952
  *         return count
- * 
+ *
  *     cdef float64_t _kde_single_breadthfirst(self, float64_t* pt,             # <<<<<<<<<<<<<<
  *                                           KernelType kernel, float64_t h,
  *                                           float64_t log_knorm,
@@ -17912,7 +17912,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
   /* "sklearn/neighbors/_binary_tree.pxi":1972
  *         cdef float64_t global_log_max_bound
- * 
+ *
  *         cdef float64_t* data = &self.data[0, 0]             # <<<<<<<<<<<<<<
  *         cdef bint with_sample_weight = self.sample_weight is not None
  *         cdef float64_t* sample_weight
@@ -17922,7 +17922,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
   __pyx_v_data = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ (__pyx_v_self->data.data + __pyx_t_1 * __pyx_v_self->data.strides[0]) )) + __pyx_t_2)) ))));
 
   /* "sklearn/neighbors/_binary_tree.pxi":1973
- * 
+ *
  *         cdef float64_t* data = &self.data[0, 0]
  *         cdef bint with_sample_weight = self.sample_weight is not None             # <<<<<<<<<<<<<<
  *         cdef float64_t* sample_weight
@@ -18014,7 +18014,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         else:
  *             N = <float64_t> self.data.shape[0]             # <<<<<<<<<<<<<<
  *         cdef intp_t n_features = self.data.shape[1]
- * 
+ *
  */
   /*else*/ {
     __pyx_v_N = ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)(__pyx_v_self->data.shape[0]));
@@ -18025,7 +18025,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         else:
  *             N = <float64_t> self.data.shape[0]
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef NodeData_t node_info
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
@@ -18035,7 +18035,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         cdef float64_t dist_pt, log_density
  *         cdef float64_t dist_LB_1 = 0, dist_LB_2 = 0             # <<<<<<<<<<<<<<
  *         cdef float64_t dist_UB_1 = 0, dist_UB_2 = 0
- * 
+ *
  */
   __pyx_v_dist_LB_1 = 0.0;
   __pyx_v_dist_LB_2 = 0.0;
@@ -18044,7 +18044,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         cdef float64_t dist_pt, log_density
  *         cdef float64_t dist_LB_1 = 0, dist_LB_2 = 0
  *         cdef float64_t dist_UB_1 = 0, dist_UB_2 = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef float64_t dist_UB, dist_LB
  */
   __pyx_v_dist_UB_1 = 0.0;
@@ -18065,7 +18065,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         nodeheap_item.val = min_dist(self, 0, pt)
  *         nodeheap_item.i1 = 0             # <<<<<<<<<<<<<<
  *         nodeheap.push(nodeheap_item)
- * 
+ *
  */
   __pyx_v_nodeheap_item.i1 = 0;
 
@@ -18073,14 +18073,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         nodeheap_item.val = min_dist(self, 0, pt)
  *         nodeheap_item.i1 = 0
  *         nodeheap.push(nodeheap_item)             # <<<<<<<<<<<<<<
- * 
+ *
  *         global_log_min_bound = log(N) + compute_log_kernel(max_dist(self,
  */
   __pyx_t_5 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->push(__pyx_v_nodeheap, __pyx_v_nodeheap_item); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 1998, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":2000
  *         nodeheap.push(nodeheap_item)
- * 
+ *
  *         global_log_min_bound = log(N) + compute_log_kernel(max_dist(self,             # <<<<<<<<<<<<<<
  *                                                                     0, pt),
  *                                                            h, kernel)
@@ -18110,31 +18110,31 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                                                            h, kernel)
  *         global_log_bound_spread = logsubexp(global_log_max_bound,             # <<<<<<<<<<<<<<
  *                                             global_log_min_bound)
- * 
+ *
  */
   __pyx_v_global_log_bound_spread = __pyx_f_7sklearn_9neighbors_8_kd_tree_logsubexp(__pyx_v_global_log_max_bound, __pyx_v_global_log_min_bound);
 
   /* "sklearn/neighbors/_binary_tree.pxi":2008
  *                                             global_log_min_bound)
- * 
+ *
  *         node_log_min_bounds[0] = global_log_min_bound             # <<<<<<<<<<<<<<
  *         node_log_bound_spreads[0] = global_log_bound_spread
- * 
+ *
  */
   (__pyx_v_node_log_min_bounds[0]) = __pyx_v_global_log_min_bound;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2009
- * 
+ *
  *         node_log_min_bounds[0] = global_log_min_bound
  *         node_log_bound_spreads[0] = global_log_bound_spread             # <<<<<<<<<<<<<<
- * 
+ *
  *         while nodeheap.n > 0:
  */
   (__pyx_v_node_log_bound_spreads[0]) = __pyx_v_global_log_bound_spread;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2011
  *         node_log_bound_spreads[0] = global_log_bound_spread
- * 
+ *
  *         while nodeheap.n > 0:             # <<<<<<<<<<<<<<
  *             nodeheap_item = nodeheap.pop()
  *             i_node = nodeheap_item.i1
@@ -18144,11 +18144,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
     if (!__pyx_t_3) break;
 
     /* "sklearn/neighbors/_binary_tree.pxi":2012
- * 
+ *
  *         while nodeheap.n > 0:
  *             nodeheap_item = nodeheap.pop()             # <<<<<<<<<<<<<<
  *             i_node = nodeheap_item.i1
- * 
+ *
  */
     __pyx_v_nodeheap_item = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->pop(__pyx_v_nodeheap);
 
@@ -18156,7 +18156,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         while nodeheap.n > 0:
  *             nodeheap_item = nodeheap.pop()
  *             i_node = nodeheap_item.i1             # <<<<<<<<<<<<<<
- * 
+ *
  *             node_info = node_data[i_node]
  */
     __pyx_t_6 = __pyx_v_nodeheap_item.i1;
@@ -18164,7 +18164,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
     /* "sklearn/neighbors/_binary_tree.pxi":2015
  *             i_node = nodeheap_item.i1
- * 
+ *
  *             node_info = node_data[i_node]             # <<<<<<<<<<<<<<
  *             if with_sample_weight:
  *                 N1 = _total_node_weight(node_data, sample_weight,
@@ -18172,7 +18172,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
     __pyx_v_node_info = (__pyx_v_node_data[__pyx_v_i_node]);
 
     /* "sklearn/neighbors/_binary_tree.pxi":2016
- * 
+ *
  *             node_info = node_data[i_node]
  *             if with_sample_weight:             # <<<<<<<<<<<<<<
  *                 N1 = _total_node_weight(node_data, sample_weight,
@@ -18191,7 +18191,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
       __pyx_v_N1 = __pyx_f_7sklearn_9neighbors_8_kd_tree__total_node_weight(__pyx_v_node_data, __pyx_v_sample_weight, __pyx_v_idx_array, __pyx_v_i_node);
 
       /* "sklearn/neighbors/_binary_tree.pxi":2016
- * 
+ *
  *             node_info = node_data[i_node]
  *             if with_sample_weight:             # <<<<<<<<<<<<<<
  *                 N1 = _total_node_weight(node_data, sample_weight,
@@ -18204,7 +18204,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                                         idx_array, i_node)
  *             else:
  *                 N1 = node_info.idx_end - node_info.idx_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             #------------------------------------------------------------
  */
     /*else*/ {
@@ -18254,7 +18254,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                   <= logaddexp(log_atol,
  *                                log_rtol + log_knorm + global_log_min_bound)):
  *                 break             # <<<<<<<<<<<<<<
- * 
+ *
  *             #------------------------------------------------------------
  */
       goto __pyx_L6_break;
@@ -18398,7 +18398,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                         log_weight = 0.
  *                     global_log_min_bound = logaddexp(global_log_min_bound,             # <<<<<<<<<<<<<<
  *                                                      log_density + log_weight)
- * 
+ *
  */
         __pyx_v_global_log_min_bound = __pyx_f_7sklearn_9neighbors_8_kd_tree_logaddexp(__pyx_v_global_log_min_bound, (__pyx_v_log_density + __pyx_v_log_weight));
       }
@@ -18418,7 +18418,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *             else:
  *                 i1 = 2 * i_node + 1             # <<<<<<<<<<<<<<
  *                 i2 = 2 * i_node + 2
- * 
+ *
  */
     /*else*/ {
       __pyx_v_i1 = ((2 * __pyx_v_i_node) + 1);
@@ -18427,14 +18427,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *             else:
  *                 i1 = 2 * i_node + 1
  *                 i2 = 2 * i_node + 2             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if with_sample_weight:
  */
       __pyx_v_i2 = ((2 * __pyx_v_i_node) + 2);
 
       /* "sklearn/neighbors/_binary_tree.pxi":2062
  *                 i2 = 2 * i_node + 2
- * 
+ *
  *                 if with_sample_weight:             # <<<<<<<<<<<<<<
  *                     N1 = _total_node_weight(node_data, sample_weight,
  *                                             idx_array, i1)
@@ -18443,7 +18443,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
       if (__pyx_t_3) {
 
         /* "sklearn/neighbors/_binary_tree.pxi":2063
- * 
+ *
  *                 if with_sample_weight:
  *                     N1 = _total_node_weight(node_data, sample_weight,             # <<<<<<<<<<<<<<
  *                                             idx_array, i1)
@@ -18462,7 +18462,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
         /* "sklearn/neighbors/_binary_tree.pxi":2062
  *                 i2 = 2 * i_node + 2
- * 
+ *
  *                 if with_sample_weight:             # <<<<<<<<<<<<<<
  *                     N1 = _total_node_weight(node_data, sample_weight,
  *                                             idx_array, i1)
@@ -18475,7 +18475,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                 else:
  *                     N1 = node_data[i1].idx_end - node_data[i1].idx_start             # <<<<<<<<<<<<<<
  *                     N2 = node_data[i2].idx_end - node_data[i2].idx_start
- * 
+ *
  */
       /*else*/ {
         __pyx_v_N1 = ((__pyx_v_node_data[__pyx_v_i1]).idx_end - (__pyx_v_node_data[__pyx_v_i1]).idx_start);
@@ -18484,7 +18484,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                 else:
  *                     N1 = node_data[i1].idx_end - node_data[i1].idx_start
  *                     N2 = node_data[i2].idx_end - node_data[i2].idx_start             # <<<<<<<<<<<<<<
- * 
+ *
  *                 min_max_dist(self, i1, pt, &dist_LB_1, &dist_UB_1)
  */
         __pyx_v_N2 = ((__pyx_v_node_data[__pyx_v_i2]).idx_end - (__pyx_v_node_data[__pyx_v_i2]).idx_start);
@@ -18493,25 +18493,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
       /* "sklearn/neighbors/_binary_tree.pxi":2071
  *                     N2 = node_data[i2].idx_end - node_data[i2].idx_start
- * 
+ *
  *                 min_max_dist(self, i1, pt, &dist_LB_1, &dist_UB_1)             # <<<<<<<<<<<<<<
  *                 min_max_dist(self, i2, pt, &dist_LB_2, &dist_UB_2)
- * 
+ *
  */
       __pyx_t_5 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(__pyx_v_self, __pyx_v_i1, __pyx_v_pt, (&__pyx_v_dist_LB_1), (&__pyx_v_dist_UB_1)); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 2071, __pyx_L1_error)
 
       /* "sklearn/neighbors/_binary_tree.pxi":2072
- * 
+ *
  *                 min_max_dist(self, i1, pt, &dist_LB_1, &dist_UB_1)
  *                 min_max_dist(self, i2, pt, &dist_LB_2, &dist_UB_2)             # <<<<<<<<<<<<<<
- * 
+ *
  *                 node_log_min_bounds[i1] = (log(N1) +
  */
       __pyx_t_5 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(__pyx_v_self, __pyx_v_i2, __pyx_v_pt, (&__pyx_v_dist_LB_2), (&__pyx_v_dist_UB_2)); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 2072, __pyx_L1_error)
 
       /* "sklearn/neighbors/_binary_tree.pxi":2074
  *                 min_max_dist(self, i2, pt, &dist_LB_2, &dist_UB_2)
- * 
+ *
  *                 node_log_min_bounds[i1] = (log(N1) +             # <<<<<<<<<<<<<<
  *                                            compute_log_kernel(dist_UB_1,
  *                                                               h, kernel))
@@ -18529,7 +18529,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
       /* "sklearn/neighbors/_binary_tree.pxi":2081
  *                                                                  h, kernel))
- * 
+ *
  *                 node_log_min_bounds[i2] = (log(N2) +             # <<<<<<<<<<<<<<
  *                                            compute_log_kernel(dist_UB_2,
  *                                                               h, kernel))
@@ -18547,7 +18547,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
       /* "sklearn/neighbors/_binary_tree.pxi":2088
  *                                                                  h, kernel))
- * 
+ *
  *                 global_log_min_bound = logsubexp(global_log_min_bound,             # <<<<<<<<<<<<<<
  *                                                  node_log_min_bounds[i_node])
  *                 global_log_min_bound = logaddexp(global_log_min_bound,
@@ -18568,12 +18568,12 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                                                  node_log_min_bounds[i1])
  *                 global_log_min_bound = logaddexp(global_log_min_bound,             # <<<<<<<<<<<<<<
  *                                                  node_log_min_bounds[i2])
- * 
+ *
  */
       __pyx_v_global_log_min_bound = __pyx_f_7sklearn_9neighbors_8_kd_tree_logaddexp(__pyx_v_global_log_min_bound, (__pyx_v_node_log_min_bounds[__pyx_v_i2]));
 
       /* "sklearn/neighbors/_binary_tree.pxi":2096
- * 
+ *
  *                 global_log_bound_spread =\
  *                     logsubexp(global_log_bound_spread,             # <<<<<<<<<<<<<<
  *                               node_log_bound_spreads[i_node])
@@ -18595,12 +18595,12 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                                                     node_log_bound_spreads[i1])
  *                 global_log_bound_spread = logaddexp(global_log_bound_spread,             # <<<<<<<<<<<<<<
  *                                                     node_log_bound_spreads[i2])
- * 
+ *
  */
       __pyx_v_global_log_bound_spread = __pyx_f_7sklearn_9neighbors_8_kd_tree_logaddexp(__pyx_v_global_log_bound_spread, (__pyx_v_node_log_bound_spreads[__pyx_v_i2]));
 
       /* "sklearn/neighbors/_binary_tree.pxi":2104
- * 
+ *
  *                 # TODO: rank by the spread rather than the distance?
  *                 nodeheap_item.val = dist_LB_1             # <<<<<<<<<<<<<<
  *                 nodeheap_item.i1 = i1
@@ -18613,7 +18613,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                 nodeheap_item.val = dist_LB_1
  *                 nodeheap_item.i1 = i1             # <<<<<<<<<<<<<<
  *                 nodeheap.push(nodeheap_item)
- * 
+ *
  */
       __pyx_v_nodeheap_item.i1 = __pyx_v_i1;
 
@@ -18621,14 +18621,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                 nodeheap_item.val = dist_LB_1
  *                 nodeheap_item.i1 = i1
  *                 nodeheap.push(nodeheap_item)             # <<<<<<<<<<<<<<
- * 
+ *
  *                 nodeheap_item.val = dist_LB_2
  */
       __pyx_t_5 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->push(__pyx_v_nodeheap, __pyx_v_nodeheap_item); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 2106, __pyx_L1_error)
 
       /* "sklearn/neighbors/_binary_tree.pxi":2108
  *                 nodeheap.push(nodeheap_item)
- * 
+ *
  *                 nodeheap_item.val = dist_LB_2             # <<<<<<<<<<<<<<
  *                 nodeheap_item.i1 = i2
  *                 nodeheap.push(nodeheap_item)
@@ -18636,11 +18636,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
       __pyx_v_nodeheap_item.val = __pyx_v_dist_LB_2;
 
       /* "sklearn/neighbors/_binary_tree.pxi":2109
- * 
+ *
  *                 nodeheap_item.val = dist_LB_2
  *                 nodeheap_item.i1 = i2             # <<<<<<<<<<<<<<
  *                 nodeheap.push(nodeheap_item)
- * 
+ *
  */
       __pyx_v_nodeheap_item.i1 = __pyx_v_i2;
 
@@ -18648,7 +18648,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                 nodeheap_item.val = dist_LB_2
  *                 nodeheap_item.i1 = i2
  *                 nodeheap.push(nodeheap_item)             # <<<<<<<<<<<<<<
- * 
+ *
  *         nodeheap.clear()
  */
       __pyx_t_5 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->push(__pyx_v_nodeheap, __pyx_v_nodeheap_item); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 2110, __pyx_L1_error)
@@ -18659,7 +18659,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
   /* "sklearn/neighbors/_binary_tree.pxi":2112
  *                 nodeheap.push(nodeheap_item)
- * 
+ *
  *         nodeheap.clear()             # <<<<<<<<<<<<<<
  *         return logaddexp(global_log_min_bound,
  *                          global_log_bound_spread - log(2))
@@ -18667,18 +18667,18 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
   ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_nodeheap->__pyx_vtab)->clear(__pyx_v_nodeheap);
 
   /* "sklearn/neighbors/_binary_tree.pxi":2113
- * 
+ *
  *         nodeheap.clear()
  *         return logaddexp(global_log_min_bound,             # <<<<<<<<<<<<<<
  *                          global_log_bound_spread - log(2))
- * 
+ *
  */
   __pyx_r = __pyx_f_7sklearn_9neighbors_8_kd_tree_logaddexp(__pyx_v_global_log_min_bound, (__pyx_v_global_log_bound_spread - log(2.0)));
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":1952
  *         return count
- * 
+ *
  *     cdef float64_t _kde_single_breadthfirst(self, float64_t* pt,             # <<<<<<<<<<<<<<
  *                                           KernelType kernel, float64_t h,
  *                                           float64_t log_knorm,
@@ -18699,7 +18699,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
 /* "sklearn/neighbors/_binary_tree.pxi":2116
  *                          global_log_bound_spread - log(2))
- * 
+ *
  *     cdef int _kde_single_depthfirst(             # <<<<<<<<<<<<<<
  *                    self, intp_t i_node, float64_t* pt,
  *                    KernelType kernel, float64_t h,
@@ -18748,7 +18748,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
   /* "sklearn/neighbors/_binary_tree.pxi":2134
  *         cdef float64_t N1, N2
- * 
+ *
  *         cdef float64_t* data = &self.data[0, 0]             # <<<<<<<<<<<<<<
  *         cdef NodeData_t* node_data = &self.node_data[0]
  *         cdef bint with_sample_weight = self.sample_weight is not None
@@ -18758,7 +18758,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
   __pyx_v_data = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ (__pyx_v_self->data.data + __pyx_t_1 * __pyx_v_self->data.strides[0]) )) + __pyx_t_2)) ))));
 
   /* "sklearn/neighbors/_binary_tree.pxi":2135
- * 
+ *
  *         cdef float64_t* data = &self.data[0, 0]
  *         cdef NodeData_t* node_data = &self.node_data[0]             # <<<<<<<<<<<<<<
  *         cdef bint with_sample_weight = self.sample_weight is not None
@@ -18810,7 +18810,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *             sample_weight = &self.sample_weight[0]
  *         cdef intp_t* idx_array = &self.idx_array[0]             # <<<<<<<<<<<<<<
  *         cdef intp_t n_features = self.data.shape[1]
- * 
+ *
  */
   __pyx_t_2 = 0;
   __pyx_v_idx_array = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_intp_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_intp_t const  *) __pyx_v_self->idx_array.data) + __pyx_t_2)) ))));
@@ -18819,17 +18819,17 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *             sample_weight = &self.sample_weight[0]
  *         cdef intp_t* idx_array = &self.idx_array[0]
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef NodeData_t node_info = self.node_data[i_node]
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
 
   /* "sklearn/neighbors/_binary_tree.pxi":2144
  *         cdef intp_t n_features = self.data.shape[1]
- * 
+ *
  *         cdef NodeData_t node_info = self.node_data[i_node]             # <<<<<<<<<<<<<<
  *         cdef float64_t dist_pt, log_dens_contribution
- * 
+ *
  */
   __pyx_t_4 = __pyx_v_i_node;
   __pyx_v_node_info = (*((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t const  *) ( /* dim=0 */ ((char *) (((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t const  *) __pyx_v_self->node_data.data) + __pyx_t_4)) )));
@@ -18838,7 +18838,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *         cdef float64_t child1_log_min_bound, child2_log_min_bound
  *         cdef float64_t child1_log_bound_spread, child2_log_bound_spread
  *         cdef float64_t dist_UB = 0, dist_LB = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if with_sample_weight:
  */
   __pyx_v_dist_UB = 0.0;
@@ -18846,7 +18846,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
   /* "sklearn/neighbors/_binary_tree.pxi":2151
  *         cdef float64_t dist_UB = 0, dist_LB = 0
- * 
+ *
  *         if with_sample_weight:             # <<<<<<<<<<<<<<
  *             N1  = _total_node_weight(node_data, sample_weight,
  *                                      idx_array, i_node)
@@ -18855,7 +18855,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
   if (__pyx_t_3) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":2152
- * 
+ *
  *         if with_sample_weight:
  *             N1  = _total_node_weight(node_data, sample_weight,             # <<<<<<<<<<<<<<
  *                                      idx_array, i_node)
@@ -18875,7 +18875,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
     /* "sklearn/neighbors/_binary_tree.pxi":2151
  *         cdef float64_t dist_UB = 0, dist_LB = 0
- * 
+ *
  *         if with_sample_weight:             # <<<<<<<<<<<<<<
  *             N1  = _total_node_weight(node_data, sample_weight,
  *                                      idx_array, i_node)
@@ -18888,7 +18888,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *         else:
  *             N1 = <float64_t>(node_info.idx_end - node_info.idx_start)             # <<<<<<<<<<<<<<
  *             N2 = <float64_t>self.data.shape[0]
- * 
+ *
  */
   /*else*/ {
     __pyx_v_N1 = ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)(__pyx_v_node_info.idx_end - __pyx_v_node_info.idx_start));
@@ -18897,7 +18897,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *         else:
  *             N1 = <float64_t>(node_info.idx_end - node_info.idx_start)
  *             N2 = <float64_t>self.data.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
     __pyx_v_N2 = ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)(__pyx_v_self->data.shape[0]));
@@ -19094,7 +19094,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *         else:
  *             i1 = 2 * i_node + 1             # <<<<<<<<<<<<<<
  *             i2 = 2 * i_node + 2
- * 
+ *
  */
   /*else*/ {
     __pyx_v_i1 = ((2 * __pyx_v_i_node) + 1);
@@ -19103,14 +19103,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *         else:
  *             i1 = 2 * i_node + 1
  *             i2 = 2 * i_node + 2             # <<<<<<<<<<<<<<
- * 
+ *
  *             if with_sample_weight:
  */
     __pyx_v_i2 = ((2 * __pyx_v_i_node) + 2);
 
     /* "sklearn/neighbors/_binary_tree.pxi":2198
  *             i2 = 2 * i_node + 2
- * 
+ *
  *             if with_sample_weight:             # <<<<<<<<<<<<<<
  *                 N1 = _total_node_weight(node_data, sample_weight,
  *                                         idx_array, i1)
@@ -19119,7 +19119,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
     if (__pyx_t_3) {
 
       /* "sklearn/neighbors/_binary_tree.pxi":2199
- * 
+ *
  *             if with_sample_weight:
  *                 N1 = _total_node_weight(node_data, sample_weight,             # <<<<<<<<<<<<<<
  *                                         idx_array, i1)
@@ -19138,7 +19138,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
       /* "sklearn/neighbors/_binary_tree.pxi":2198
  *             i2 = 2 * i_node + 2
- * 
+ *
  *             if with_sample_weight:             # <<<<<<<<<<<<<<
  *                 N1 = _total_node_weight(node_data, sample_weight,
  *                                         idx_array, i1)
@@ -19151,7 +19151,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *             else:
  *                 N1 = <float64_t>(self.node_data[i1].idx_end - self.node_data[i1].idx_start)             # <<<<<<<<<<<<<<
  *                 N2 = <float64_t>(self.node_data[i2].idx_end - self.node_data[i2].idx_start)
- * 
+ *
  */
     /*else*/ {
       __pyx_t_4 = __pyx_v_i1;
@@ -19162,7 +19162,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *             else:
  *                 N1 = <float64_t>(self.node_data[i1].idx_end - self.node_data[i1].idx_start)
  *                 N2 = <float64_t>(self.node_data[i2].idx_end - self.node_data[i2].idx_start)             # <<<<<<<<<<<<<<
- * 
+ *
  *             min_max_dist(self, i1, pt, &dist_LB, &dist_UB)
  */
       __pyx_t_6 = __pyx_v_i2;
@@ -19173,7 +19173,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
     /* "sklearn/neighbors/_binary_tree.pxi":2207
  *                 N2 = <float64_t>(self.node_data[i2].idx_end - self.node_data[i2].idx_start)
- * 
+ *
  *             min_max_dist(self, i1, pt, &dist_LB, &dist_UB)             # <<<<<<<<<<<<<<
  *             child1_log_min_bound = log(N1) + compute_log_kernel(dist_UB, h,
  *                                                                 kernel)
@@ -19181,7 +19181,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
     __pyx_t_12 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(__pyx_v_self, __pyx_v_i1, __pyx_v_pt, (&__pyx_v_dist_LB), (&__pyx_v_dist_UB)); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 2207, __pyx_L1_error)
 
     /* "sklearn/neighbors/_binary_tree.pxi":2208
- * 
+ *
  *             min_max_dist(self, i1, pt, &dist_LB, &dist_UB)
  *             child1_log_min_bound = log(N1) + compute_log_kernel(dist_UB, h,             # <<<<<<<<<<<<<<
  *                                                                 kernel)
@@ -19200,7 +19200,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
     /* "sklearn/neighbors/_binary_tree.pxi":2215
  *                                                 child1_log_min_bound)
- * 
+ *
  *             min_max_dist(self, i2, pt, &dist_LB, &dist_UB)             # <<<<<<<<<<<<<<
  *             child2_log_min_bound = log(N2) + compute_log_kernel(dist_UB, h,
  *                                                                 kernel)
@@ -19208,7 +19208,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
     __pyx_t_12 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(__pyx_v_self, __pyx_v_i2, __pyx_v_pt, (&__pyx_v_dist_LB), (&__pyx_v_dist_UB)); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 2215, __pyx_L1_error)
 
     /* "sklearn/neighbors/_binary_tree.pxi":2216
- * 
+ *
  *             min_max_dist(self, i2, pt, &dist_LB, &dist_UB)
  *             child2_log_min_bound = log(N2) + compute_log_kernel(dist_UB, h,             # <<<<<<<<<<<<<<
  *                                                                 kernel)
@@ -19227,7 +19227,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
     /* "sklearn/neighbors/_binary_tree.pxi":2223
  *                                                 child2_log_min_bound)
- * 
+ *
  *             global_log_min_bound[0] = logsubexp(global_log_min_bound[0],             # <<<<<<<<<<<<<<
  *                                                 local_log_min_bound)
  *             global_log_min_bound[0] = logaddexp(global_log_min_bound[0],
@@ -19248,13 +19248,13 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *                                                 child1_log_min_bound)
  *             global_log_min_bound[0] = logaddexp(global_log_min_bound[0],             # <<<<<<<<<<<<<<
  *                                                 child2_log_min_bound)
- * 
+ *
  */
     (__pyx_v_global_log_min_bound[0]) = __pyx_f_7sklearn_9neighbors_8_kd_tree_logaddexp((__pyx_v_global_log_min_bound[0]), __pyx_v_child2_log_min_bound);
 
     /* "sklearn/neighbors/_binary_tree.pxi":2230
  *                                                 child2_log_min_bound)
- * 
+ *
  *             global_log_bound_spread[0] = logsubexp(global_log_bound_spread[0],             # <<<<<<<<<<<<<<
  *                                                    local_log_bound_spread)
  *             global_log_bound_spread[0] = logaddexp(global_log_bound_spread[0],
@@ -19275,13 +19275,13 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *                                                    child1_log_bound_spread)
  *             global_log_bound_spread[0] = logaddexp(global_log_bound_spread[0],             # <<<<<<<<<<<<<<
  *                                                    child2_log_bound_spread)
- * 
+ *
  */
     (__pyx_v_global_log_bound_spread[0]) = __pyx_f_7sklearn_9neighbors_8_kd_tree_logaddexp((__pyx_v_global_log_bound_spread[0]), __pyx_v_child2_log_bound_spread);
 
     /* "sklearn/neighbors/_binary_tree.pxi":2237
  *                                                    child2_log_bound_spread)
- * 
+ *
  *             self._kde_single_depthfirst(i1, pt, kernel, h, log_knorm,             # <<<<<<<<<<<<<<
  *                                         log_atol, log_rtol,
  *                                         child1_log_min_bound,
@@ -19303,7 +19303,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
  *                                         global_log_min_bound,
  *                                         global_log_bound_spread)
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int _two_point_single(self, intp_t i_node, float64_t* pt, float64_t* r,
  */
   __pyx_r = 0;
@@ -19311,7 +19311,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
   /* "sklearn/neighbors/_binary_tree.pxi":2116
  *                          global_log_bound_spread - log(2))
- * 
+ *
  *     cdef int _kde_single_depthfirst(             # <<<<<<<<<<<<<<
  *                    self, intp_t i_node, float64_t* pt,
  *                    KernelType kernel, float64_t h,
@@ -19332,7 +19332,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__kde_single_depthf
 
 /* "sklearn/neighbors/_binary_tree.pxi":2251
  *         return 0
- * 
+ *
  *     cdef int _two_point_single(self, intp_t i_node, float64_t* pt, float64_t* r,             # <<<<<<<<<<<<<<
  *                                intp_t* count, intp_t i_min,
  *                                intp_t i_max) except -1:
@@ -19392,7 +19392,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
  *         cdef intp_t* idx_array = &self.idx_array[0]
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
  *         cdef NodeData_t node_info = self.node_data[i_node]
- * 
+ *
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
 
@@ -19400,7 +19400,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
  *         cdef intp_t* idx_array = &self.idx_array[0]
  *         cdef intp_t n_features = self.data.shape[1]
  *         cdef NodeData_t node_info = self.node_data[i_node]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef intp_t i, j, Npts
  */
   __pyx_t_3 = __pyx_v_i_node;
@@ -19408,19 +19408,19 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
 
   /* "sklearn/neighbors/_binary_tree.pxi":2263
  *         cdef float64_t reduced_r
- * 
+ *
  *         cdef float64_t dist_pt, dist_LB = 0, dist_UB = 0             # <<<<<<<<<<<<<<
  *         min_max_dist(self, i_node, pt, &dist_LB, &dist_UB)
- * 
+ *
  */
   __pyx_v_dist_LB = 0.0;
   __pyx_v_dist_UB = 0.0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2264
- * 
+ *
  *         cdef float64_t dist_pt, dist_LB = 0, dist_UB = 0
  *         min_max_dist(self, i_node, pt, &dist_LB, &dist_UB)             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
   __pyx_t_4 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(__pyx_v_self, __pyx_v_i_node, __pyx_v_pt, (&__pyx_v_dist_LB), (&__pyx_v_dist_UB)); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 2264, __pyx_L1_error)
@@ -19469,7 +19469,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
  *                 i_min += 1
  *             else:
  *                 break             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i_max > i_min:
  */
     /*else*/ {
@@ -19481,7 +19481,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
 
   /* "sklearn/neighbors/_binary_tree.pxi":2274
  *                 break
- * 
+ *
  *         while i_max > i_min:             # <<<<<<<<<<<<<<
  *             Npts = (node_info.idx_end - node_info.idx_start)
  *             if dist_UB <= r[i_max - 1]:
@@ -19491,7 +19491,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
     if (!__pyx_t_5) break;
 
     /* "sklearn/neighbors/_binary_tree.pxi":2275
- * 
+ *
  *         while i_max > i_min:
  *             Npts = (node_info.idx_end - node_info.idx_start)             # <<<<<<<<<<<<<<
  *             if dist_UB <= r[i_max - 1]:
@@ -19542,7 +19542,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
  *                 i_max -= 1
  *             else:
  *                 break             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i_min < i_max:
  */
     /*else*/ {
@@ -19554,7 +19554,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
 
   /* "sklearn/neighbors/_binary_tree.pxi":2282
  *                 break
- * 
+ *
  *         if i_min < i_max:             # <<<<<<<<<<<<<<
  *             # If node is a leaf, go through all points
  *             if node_info.is_leaf:
@@ -19627,7 +19627,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
  *                     while (j >= i_min) and (dist_pt <= r[j]):
  *                         count[j] += 1             # <<<<<<<<<<<<<<
  *                         j -= 1
- * 
+ *
  */
           __pyx_t_10 = __pyx_v_j;
           (__pyx_v_count[__pyx_t_10]) = ((__pyx_v_count[__pyx_t_10]) + 1);
@@ -19636,7 +19636,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
  *                     while (j >= i_min) and (dist_pt <= r[j]):
  *                         count[j] += 1
  *                         j -= 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             else:
  */
           __pyx_v_j = (__pyx_v_j - 1);
@@ -19654,7 +19654,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
     }
 
     /* "sklearn/neighbors/_binary_tree.pxi":2294
- * 
+ *
  *             else:
  *                 self._two_point_single(2 * i_node + 1, pt, r,             # <<<<<<<<<<<<<<
  *                                        count, i_min, i_max)
@@ -19684,7 +19684,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
 
     /* "sklearn/neighbors/_binary_tree.pxi":2282
  *                 break
- * 
+ *
  *         if i_min < i_max:             # <<<<<<<<<<<<<<
  *             # If node is a leaf, go through all points
  *             if node_info.is_leaf:
@@ -19695,7 +19695,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
  *                 self._two_point_single(2 * i_node + 2, pt, r,
  *                                        count, i_min, i_max)
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int _two_point_dual(self, intp_t i_node1,
  */
   __pyx_r = 0;
@@ -19703,7 +19703,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
 
   /* "sklearn/neighbors/_binary_tree.pxi":2251
  *         return 0
- * 
+ *
  *     cdef int _two_point_single(self, intp_t i_node, float64_t* pt, float64_t* r,             # <<<<<<<<<<<<<<
  *                                intp_t* count, intp_t i_min,
  *                                intp_t i_max) except -1:
@@ -19720,7 +19720,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_single(
 
 /* "sklearn/neighbors/_binary_tree.pxi":2300
  *         return 0
- * 
+ *
  *     cdef int _two_point_dual(self, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                              BinaryTree other, intp_t i_node2,
  *                              float64_t* r, intp_t* count,
@@ -19808,7 +19808,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *         cdef intp_t* idx_array2 = &other.idx_array[0]
  *         cdef NodeData_t node_info1 = self.node_data[i_node1]             # <<<<<<<<<<<<<<
  *         cdef NodeData_t node_info2 = other.node_data[i_node2]
- * 
+ *
  */
   __pyx_t_3 = __pyx_v_i_node1;
   __pyx_v_node_info1 = (*((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t const  *) ( /* dim=0 */ ((char *) (((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t const  *) __pyx_v_self->node_data.data) + __pyx_t_3)) )));
@@ -19817,7 +19817,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *         cdef intp_t* idx_array2 = &other.idx_array[0]
  *         cdef NodeData_t node_info1 = self.node_data[i_node1]
  *         cdef NodeData_t node_info2 = other.node_data[i_node2]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef intp_t n_features = self.data.shape[1]
  */
   __pyx_t_3 = __pyx_v_i_node2;
@@ -19825,16 +19825,16 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
 
   /* "sklearn/neighbors/_binary_tree.pxi":2312
  *         cdef NodeData_t node_info2 = other.node_data[i_node2]
- * 
+ *
  *         cdef intp_t n_features = self.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef intp_t i1, i2, j, Npts
  */
   __pyx_v_n_features = (__pyx_v_self->data.shape[1]);
 
   /* "sklearn/neighbors/_binary_tree.pxi":2317
  *         cdef float64_t reduced_r
- * 
+ *
  *         cdef float64_t dist_pt, dist_LB = 0, dist_UB = 0             # <<<<<<<<<<<<<<
  *         dist_LB = min_dist_dual(self, i_node1, other, i_node2)
  *         dist_UB = max_dist_dual(self, i_node1, other, i_node2)
@@ -19843,11 +19843,11 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
   __pyx_v_dist_UB = 0.0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2318
- * 
+ *
  *         cdef float64_t dist_pt, dist_LB = 0, dist_UB = 0
  *         dist_LB = min_dist_dual(self, i_node1, other, i_node2)             # <<<<<<<<<<<<<<
  *         dist_UB = max_dist_dual(self, i_node1, other, i_node2)
- * 
+ *
  */
   __pyx_t_4 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_dist_dual(__pyx_v_self, __pyx_v_i_node1, __pyx_v_other, __pyx_v_i_node2); if (unlikely(__pyx_t_4 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 2318, __pyx_L1_error)
   __pyx_v_dist_LB = __pyx_t_4;
@@ -19856,7 +19856,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *         cdef float64_t dist_pt, dist_LB = 0, dist_UB = 0
  *         dist_LB = min_dist_dual(self, i_node1, other, i_node2)
  *         dist_UB = max_dist_dual(self, i_node1, other, i_node2)             # <<<<<<<<<<<<<<
- * 
+ *
  *         #------------------------------------------------------------
  */
   __pyx_t_4 = __pyx_f_7sklearn_9neighbors_8_kd_tree_max_dist_dual(__pyx_v_self, __pyx_v_i_node1, __pyx_v_other, __pyx_v_i_node2); if (unlikely(__pyx_t_4 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(0, 2319, __pyx_L1_error)
@@ -19906,7 +19906,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *                 i_min += 1
  *             else:
  *                 break             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i_max > i_min:
  */
     /*else*/ {
@@ -19918,7 +19918,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
 
   /* "sklearn/neighbors/_binary_tree.pxi":2329
  *                 break
- * 
+ *
  *         while i_max > i_min:             # <<<<<<<<<<<<<<
  *             Npts = ((node_info1.idx_end - node_info1.idx_start)
  *                     * (node_info2.idx_end - node_info2.idx_start))
@@ -19979,7 +19979,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *                 i_max -= 1
  *             else:
  *                 break             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i_min < i_max:
  */
     /*else*/ {
@@ -19991,7 +19991,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
 
   /* "sklearn/neighbors/_binary_tree.pxi":2338
  *                 break
- * 
+ *
  *         if i_min < i_max:             # <<<<<<<<<<<<<<
  *             if node_info1.is_leaf and node_info2.is_leaf:
  *                 # If both nodes are leaves, go through all points
@@ -20000,7 +20000,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
   if (__pyx_t_5) {
 
     /* "sklearn/neighbors/_binary_tree.pxi":2339
- * 
+ *
  *         if i_min < i_max:
  *             if node_info1.is_leaf and node_info2.is_leaf:             # <<<<<<<<<<<<<<
  *                 # If both nodes are leaves, go through all points
@@ -20084,7 +20084,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *                         while (j >= i_min) and (dist_pt <= r[j]):
  *                             count[j] += 1             # <<<<<<<<<<<<<<
  *                             j -= 1
- * 
+ *
  */
             __pyx_t_12 = __pyx_v_j;
             (__pyx_v_count[__pyx_t_12]) = ((__pyx_v_count[__pyx_t_12]) + 1);
@@ -20093,7 +20093,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *                         while (j >= i_min) and (dist_pt <= r[j]):
  *                             count[j] += 1
  *                             j -= 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             elif node_info1.is_leaf:
  */
             __pyx_v_j = (__pyx_v_j - 1);
@@ -20102,7 +20102,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
       }
 
       /* "sklearn/neighbors/_binary_tree.pxi":2339
- * 
+ *
  *         if i_min < i_max:
  *             if node_info1.is_leaf and node_info2.is_leaf:             # <<<<<<<<<<<<<<
  *                 # If both nodes are leaves, go through all points
@@ -20113,7 +20113,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
 
     /* "sklearn/neighbors/_binary_tree.pxi":2353
  *                             j -= 1
- * 
+ *
  *             elif node_info1.is_leaf:             # <<<<<<<<<<<<<<
  *                 # If only one is a leaf, split the other
  *                 for i2 in range(2 * i_node2 + 1, 2 * i_node2 + 3):
@@ -20138,14 +20138,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *                 for i2 in range(2 * i_node2 + 1, 2 * i_node2 + 3):
  *                     self._two_point_dual(i_node1, other, i2,             # <<<<<<<<<<<<<<
  *                                          r, count, i_min, i_max)
- * 
+ *
  */
         __pyx_t_13 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_self->__pyx_vtab)->_two_point_dual(__pyx_v_self, __pyx_v_i_node1, __pyx_v_other, __pyx_v_i2, __pyx_v_r, __pyx_v_count, __pyx_v_i_min, __pyx_v_i_max); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 2356, __pyx_L1_error)
       }
 
       /* "sklearn/neighbors/_binary_tree.pxi":2353
  *                             j -= 1
- * 
+ *
  *             elif node_info1.is_leaf:             # <<<<<<<<<<<<<<
  *                 # If only one is a leaf, split the other
  *                 for i2 in range(2 * i_node2 + 1, 2 * i_node2 + 3):
@@ -20155,7 +20155,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
 
     /* "sklearn/neighbors/_binary_tree.pxi":2359
  *                                          r, count, i_min, i_max)
- * 
+ *
  *             elif node_info2.is_leaf:             # <<<<<<<<<<<<<<
  *                 for i1 in range(2 * i_node1 + 1, 2 * i_node1 + 3):
  *                     self._two_point_dual(i1, other, i_node2,
@@ -20164,7 +20164,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
     if (__pyx_t_5) {
 
       /* "sklearn/neighbors/_binary_tree.pxi":2360
- * 
+ *
  *             elif node_info2.is_leaf:
  *                 for i1 in range(2 * i_node1 + 1, 2 * i_node1 + 3):             # <<<<<<<<<<<<<<
  *                     self._two_point_dual(i1, other, i_node2,
@@ -20180,14 +20180,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *                 for i1 in range(2 * i_node1 + 1, 2 * i_node1 + 3):
  *                     self._two_point_dual(i1, other, i_node2,             # <<<<<<<<<<<<<<
  *                                          r, count, i_min, i_max)
- * 
+ *
  */
         __pyx_t_13 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_BinaryTree *)__pyx_v_self->__pyx_vtab)->_two_point_dual(__pyx_v_self, __pyx_v_i1, __pyx_v_other, __pyx_v_i_node2, __pyx_v_r, __pyx_v_count, __pyx_v_i_min, __pyx_v_i_max); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 2361, __pyx_L1_error)
       }
 
       /* "sklearn/neighbors/_binary_tree.pxi":2359
  *                                          r, count, i_min, i_max)
- * 
+ *
  *             elif node_info2.is_leaf:             # <<<<<<<<<<<<<<
  *                 for i1 in range(2 * i_node1 + 1, 2 * i_node1 + 3):
  *                     self._two_point_dual(i1, other, i_node2,
@@ -20235,7 +20235,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
 
     /* "sklearn/neighbors/_binary_tree.pxi":2338
  *                 break
- * 
+ *
  *         if i_min < i_max:             # <<<<<<<<<<<<<<
  *             if node_info1.is_leaf and node_info2.is_leaf:
  *                 # If both nodes are leaves, go through all points
@@ -20246,15 +20246,15 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
  *                         self._two_point_dual(i1, other, i2,
  *                                              r, count, i_min, i_max)
  *         return 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2300
  *         return 0
- * 
+ *
  *     cdef int _two_point_dual(self, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                              BinaryTree other, intp_t i_node2,
  *                              float64_t* r, intp_t* count,
@@ -20271,7 +20271,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_10BinaryTree__two_point_dual(st
 
 /* "sklearn/neighbors/_binary_tree.pxi":774
  * cdef class BinaryTree:
- * 
+ *
  *     cdef readonly const float64_t[:, ::1] data             # <<<<<<<<<<<<<<
  *     cdef readonly const float64_t[::1] sample_weight
  *     cdef public float64_t sum_weight
@@ -20317,11 +20317,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_4data___get
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":775
- * 
+ *
  *     cdef readonly const float64_t[:, ::1] data
  *     cdef readonly const float64_t[::1] sample_weight             # <<<<<<<<<<<<<<
  *     cdef public float64_t sum_weight
- * 
+ *
  */
 
 /* Python wrapper */
@@ -20367,7 +20367,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_13sample_we
  *     cdef readonly const float64_t[:, ::1] data
  *     cdef readonly const float64_t[::1] sample_weight
  *     cdef public float64_t sum_weight             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef public const intp_t[::1] idx_array
  */
 
@@ -20447,7 +20447,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_10sum_weight_2__s
 
 /* "sklearn/neighbors/_binary_tree.pxi":778
  *     cdef public float64_t sum_weight
- * 
+ *
  *     cdef public const intp_t[::1] idx_array             # <<<<<<<<<<<<<<
  *     cdef public const NodeData_t[::1] node_data
  *     cdef public const float64_t[:, :, ::1] node_bounds
@@ -20532,11 +20532,11 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_9idx_array_2__set
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":779
- * 
+ *
  *     cdef public const intp_t[::1] idx_array
  *     cdef public const NodeData_t[::1] node_data             # <<<<<<<<<<<<<<
  *     cdef public const float64_t[:, :, ::1] node_bounds
- * 
+ *
  */
 
 /* Python wrapper */
@@ -20621,7 +20621,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_9node_data_2__set
  *     cdef public const intp_t[::1] idx_array
  *     cdef public const NodeData_t[::1] node_data
  *     cdef public const float64_t[:, :, ::1] node_bounds             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef intp_t leaf_size
  */
 
@@ -20705,7 +20705,7 @@ static int __pyx_pf_7sklearn_9neighbors_8_kd_tree_10BinaryTree_11node_bounds_2__
 
 /* "sklearn/neighbors/_binary_tree.pxi":2376
  * # Python functions for benchmarking and testing C implementations
- * 
+ *
  * def load_heap(float64_t[:, ::1] X, intp_t k):             # <<<<<<<<<<<<<<
  *     """test fully loading the heap"""
  *     assert k <= X.shape[1]
@@ -20870,7 +20870,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_4load_heap(CYTHON_UNUSED
  *         for j in range(X.shape[1]):
  *             heap._push(i, X[i, j], j)             # <<<<<<<<<<<<<<
  *     return heap.get_arrays()
- * 
+ *
  */
       __pyx_t_10 = __pyx_v_i;
       __pyx_t_11 = __pyx_v_j;
@@ -20882,8 +20882,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_4load_heap(CYTHON_UNUSED
  *         for j in range(X.shape[1]):
  *             heap._push(i, X[i, j], j)
  *     return heap.get_arrays()             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_heap), __pyx_n_s_get_arrays); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 2384, __pyx_L1_error)
@@ -20909,7 +20909,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_4load_heap(CYTHON_UNUSED
 
   /* "sklearn/neighbors/_binary_tree.pxi":2376
  * # Python functions for benchmarking and testing C implementations
- * 
+ *
  * def load_heap(float64_t[:, ::1] X, intp_t k):             # <<<<<<<<<<<<<<
  *     """test fully loading the heap"""
  *     assert k <= X.shape[1]
@@ -20931,11 +20931,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_4load_heap(CYTHON_UNUSED
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":2387
- * 
- * 
+ *
+ *
  * def simultaneous_sort(float64_t[:, ::1] distances, intp_t[:, ::1] indices):             # <<<<<<<<<<<<<<
  *     """In-place simultaneous sort the given row of the arrays
- * 
+ *
  */
 
 /* Python wrapper */
@@ -21079,7 +21079,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_6simultaneous_sort(CYTHO
  *         _simultaneous_sort(&distances[row, 0],
  *                            &indices[row, 0],             # <<<<<<<<<<<<<<
  *                            distances.shape[1])
- * 
+ *
  */
     __pyx_t_6 = __pyx_v_row;
     __pyx_t_7 = 0;
@@ -21095,11 +21095,11 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_6simultaneous_sort(CYTHO
   }
 
   /* "sklearn/neighbors/_binary_tree.pxi":2387
- * 
- * 
+ *
+ *
  * def simultaneous_sort(float64_t[:, ::1] distances, intp_t[:, ::1] indices):             # <<<<<<<<<<<<<<
  *     """In-place simultaneous sort the given row of the arrays
- * 
+ *
  */
 
   /* function exit code */
@@ -21117,8 +21117,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_6simultaneous_sort(CYTHO
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":2402
- * 
- * 
+ *
+ *
  * def nodeheap_sort(float64_t[::1] vals):             # <<<<<<<<<<<<<<
  *     """In-place reverse sort of vals using NodeHeap"""
  *     cdef intp_t[::1] indices = np.zeros(vals.shape[0], dtype=np.intp)
@@ -21184,7 +21184,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
  *     """In-place reverse sort of vals using NodeHeap"""
  *     cdef intp_t[::1] indices = np.zeros(vals.shape[0], dtype=np.intp)             # <<<<<<<<<<<<<<
  *     cdef float64_t[::1] vals_sorted = np.zeros_like(vals)
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2404, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -21222,7 +21222,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
  *     """In-place reverse sort of vals using NodeHeap"""
  *     cdef intp_t[::1] indices = np.zeros(vals.shape[0], dtype=np.intp)
  *     cdef float64_t[::1] vals_sorted = np.zeros_like(vals)             # <<<<<<<<<<<<<<
- * 
+ *
  *     # use initial size 0 to check corner case
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2405, __pyx_L1_error)
@@ -21255,7 +21255,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
   __pyx_t_7.data = NULL;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2408
- * 
+ *
  *     # use initial size 0 to check corner case
  *     cdef NodeHeap heap = NodeHeap(0)             # <<<<<<<<<<<<<<
  *     cdef NodeHeapData_t data
@@ -21302,7 +21302,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
  *         data.i1 = i
  *         data.i2 = i + 1             # <<<<<<<<<<<<<<
  *         heap.push(data)
- * 
+ *
  */
     __pyx_v_data.i2 = (__pyx_v_i + 1);
 
@@ -21310,7 +21310,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
  *         data.i1 = i
  *         data.i2 = i + 1
  *         heap.push(data)             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(vals.shape[0]):
  */
     __pyx_t_12 = ((struct __pyx_vtabstruct_7sklearn_9neighbors_8_kd_tree_NodeHeap *)__pyx_v_heap->__pyx_vtab)->push(__pyx_v_heap, __pyx_v_data); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 2415, __pyx_L1_error)
@@ -21318,7 +21318,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
 
   /* "sklearn/neighbors/_binary_tree.pxi":2417
  *         heap.push(data)
- * 
+ *
  *     for i in range(vals.shape[0]):             # <<<<<<<<<<<<<<
  *         data = heap.pop()
  *         vals_sorted[i] = data.val
@@ -21329,7 +21329,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
     __pyx_v_i = __pyx_t_10;
 
     /* "sklearn/neighbors/_binary_tree.pxi":2418
- * 
+ *
  *     for i in range(vals.shape[0]):
  *         data = heap.pop()             # <<<<<<<<<<<<<<
  *         vals_sorted[i] = data.val
@@ -21342,7 +21342,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
  *         data = heap.pop()
  *         vals_sorted[i] = data.val             # <<<<<<<<<<<<<<
  *         indices[i] = data.i1
- * 
+ *
  */
     __pyx_t_13 = __pyx_v_data.val;
     __pyx_t_11 = __pyx_v_i;
@@ -21352,7 +21352,7 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
  *         data = heap.pop()
  *         vals_sorted[i] = data.val
  *         indices[i] = data.i1             # <<<<<<<<<<<<<<
- * 
+ *
  *     return np.asarray(vals_sorted), np.asarray(indices)
  */
     __pyx_t_11 = __pyx_v_data.i1;
@@ -21362,10 +21362,10 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
 
   /* "sklearn/neighbors/_binary_tree.pxi":2422
  *         indices[i] = data.i1
- * 
+ *
  *     return np.asarray(vals_sorted), np.asarray(indices)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 2422, __pyx_L1_error)
@@ -21427,8 +21427,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2402
- * 
- * 
+ *
+ *
  * def nodeheap_sort(float64_t[::1] vals):             # <<<<<<<<<<<<<<
  *     """In-place reverse sort of vals using NodeHeap"""
  *     cdef intp_t[::1] indices = np.zeros(vals.shape[0], dtype=np.intp)
@@ -21456,8 +21456,8 @@ static PyObject *__pyx_pf_7sklearn_9neighbors_8_kd_tree_8nodeheap_sort(CYTHON_UN
 }
 
 /* "sklearn/neighbors/_binary_tree.pxi":2425
- * 
- * 
+ *
+ *
  * cdef inline float64_t _total_node_weight(NodeData_t* node_data,             # <<<<<<<<<<<<<<
  *                                        float64_t* sample_weight,
  *                                        intp_t* idx_array,
@@ -21512,8 +21512,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2425
- * 
- * 
+ *
+ *
  * cdef inline float64_t _total_node_weight(NodeData_t* node_data,             # <<<<<<<<<<<<<<
  *                                        float64_t* sample_weight,
  *                                        intp_t* idx_array,
@@ -21526,8 +21526,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":32
- * 
- * 
+ *
+ *
  * cdef int allocate_data(BinaryTree tree, intp_t n_nodes,             # <<<<<<<<<<<<<<
  *                        intp_t n_features) except -1:
  *     """Allocate arrays needed for the KD Tree"""
@@ -21552,7 +21552,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_allocate_data(struct __pyx_obj_
  *     """Allocate arrays needed for the KD Tree"""
  *     tree.node_bounds = np.zeros((2, n_nodes, n_features), dtype=np.float64)             # <<<<<<<<<<<<<<
  *     return 0
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -21604,15 +21604,15 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_allocate_data(struct __pyx_obj_
  *     """Allocate arrays needed for the KD Tree"""
  *     tree.node_bounds = np.zeros((2, n_nodes, n_features), dtype=np.float64)
  *     return 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":32
- * 
- * 
+ *
+ *
  * cdef int allocate_data(BinaryTree tree, intp_t n_nodes,             # <<<<<<<<<<<<<<
  *                        intp_t n_features) except -1:
  *     """Allocate arrays needed for the KD Tree"""
@@ -21634,8 +21634,8 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_allocate_data(struct __pyx_obj_
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":39
- * 
- * 
+ *
+ *
  * cdef int init_node(BinaryTree tree, NodeData_t[::1] node_data, intp_t i_node,             # <<<<<<<<<<<<<<
  *                    intp_t idx_start, intp_t idx_end) except -1:
  *     """Initialize the node for the dataset stored in tree.data"""
@@ -21677,14 +21677,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *     cdef intp_t n_features = tree.data.shape[1]
  *     cdef intp_t i, j
  *     cdef float64_t rad = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t* lower_bounds = &tree.node_bounds[0, i_node, 0]
  */
   __pyx_v_rad = 0.0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":46
  *     cdef float64_t rad = 0
- * 
+ *
  *     cdef float64_t* lower_bounds = &tree.node_bounds[0, i_node, 0]             # <<<<<<<<<<<<<<
  *     cdef float64_t* upper_bounds = &tree.node_bounds[1, i_node, 0]
  *     cdef float64_t* data = &tree.data[0, 0]
@@ -21695,7 +21695,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
   __pyx_v_lower_bounds = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=2 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_tree->node_bounds.data + __pyx_t_1 * __pyx_v_tree->node_bounds.strides[0]) ) + __pyx_t_2 * __pyx_v_tree->node_bounds.strides[1]) )) + __pyx_t_3)) ))));
 
   /* "sklearn/neighbors/_kd_tree.pyx":47
- * 
+ *
  *     cdef float64_t* lower_bounds = &tree.node_bounds[0, i_node, 0]
  *     cdef float64_t* upper_bounds = &tree.node_bounds[1, i_node, 0]             # <<<<<<<<<<<<<<
  *     cdef float64_t* data = &tree.data[0, 0]
@@ -21711,7 +21711,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *     cdef float64_t* upper_bounds = &tree.node_bounds[1, i_node, 0]
  *     cdef float64_t* data = &tree.data[0, 0]             # <<<<<<<<<<<<<<
  *     cdef intp_t* idx_array = &tree.idx_array[0]
- * 
+ *
  */
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
@@ -21721,14 +21721,14 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *     cdef float64_t* upper_bounds = &tree.node_bounds[1, i_node, 0]
  *     cdef float64_t* data = &tree.data[0, 0]
  *     cdef intp_t* idx_array = &tree.idx_array[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t* data_row
  */
   __pyx_t_3 = 0;
   __pyx_v_idx_array = (&(*((__pyx_t_7sklearn_5utils_9_typedefs_intp_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_intp_t const  *) __pyx_v_tree->idx_array.data) + __pyx_t_3)) ))));
 
   /* "sklearn/neighbors/_kd_tree.pyx":54
- * 
+ *
  *     # determine Node bounds
  *     for j in range(n_features):             # <<<<<<<<<<<<<<
  *         lower_bounds[j] = INF
@@ -21744,7 +21744,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *     for j in range(n_features):
  *         lower_bounds[j] = INF             # <<<<<<<<<<<<<<
  *         upper_bounds[j] = -INF
- * 
+ *
  */
     (__pyx_v_lower_bounds[__pyx_v_j]) = __pyx_v_7sklearn_9neighbors_8_kd_tree_INF;
 
@@ -21752,7 +21752,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *     for j in range(n_features):
  *         lower_bounds[j] = INF
  *         upper_bounds[j] = -INF             # <<<<<<<<<<<<<<
- * 
+ *
  *     # Compute the actual data range.  At build time, this is slightly
  */
     (__pyx_v_upper_bounds[__pyx_v_j]) = (-__pyx_v_7sklearn_9neighbors_8_kd_tree_INF);
@@ -21796,7 +21796,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *         for j in range(n_features):
  *             lower_bounds[j] = fmin(lower_bounds[j], data_row[j])             # <<<<<<<<<<<<<<
  *             upper_bounds[j] = fmax(upper_bounds[j], data_row[j])
- * 
+ *
  */
       (__pyx_v_lower_bounds[__pyx_v_j]) = fmin((__pyx_v_lower_bounds[__pyx_v_j]), (__pyx_v_data_row[__pyx_v_j]));
 
@@ -21804,7 +21804,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *         for j in range(n_features):
  *             lower_bounds[j] = fmin(lower_bounds[j], data_row[j])
  *             upper_bounds[j] = fmax(upper_bounds[j], data_row[j])             # <<<<<<<<<<<<<<
- * 
+ *
  *     for j in range(n_features):
  */
       (__pyx_v_upper_bounds[__pyx_v_j]) = fmax((__pyx_v_upper_bounds[__pyx_v_j]), (__pyx_v_data_row[__pyx_v_j]));
@@ -21813,7 +21813,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
 
   /* "sklearn/neighbors/_kd_tree.pyx":67
  *             upper_bounds[j] = fmax(upper_bounds[j], data_row[j])
- * 
+ *
  *     for j in range(n_features):             # <<<<<<<<<<<<<<
  *         if tree.dist_metric.p == INF:
  *             rad = fmax(rad, 0.5 * (upper_bounds[j] - lower_bounds[j]))
@@ -21824,7 +21824,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
     __pyx_v_j = __pyx_t_5;
 
     /* "sklearn/neighbors/_kd_tree.pyx":68
- * 
+ *
  *     for j in range(n_features):
  *         if tree.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *             rad = fmax(rad, 0.5 * (upper_bounds[j] - lower_bounds[j]))
@@ -21843,7 +21843,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
       __pyx_v_rad = fmax(__pyx_v_rad, (0.5 * ((__pyx_v_upper_bounds[__pyx_v_j]) - (__pyx_v_lower_bounds[__pyx_v_j]))));
 
       /* "sklearn/neighbors/_kd_tree.pyx":68
- * 
+ *
  *     for j in range(n_features):
  *         if tree.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *             rad = fmax(rad, 0.5 * (upper_bounds[j] - lower_bounds[j]))
@@ -21857,7 +21857,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *         else:
  *             rad += pow(0.5 * abs(upper_bounds[j] - lower_bounds[j]),             # <<<<<<<<<<<<<<
  *                        tree.dist_metric.p)
- * 
+ *
  */
     /*else*/ {
 
@@ -21865,7 +21865,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *         else:
  *             rad += pow(0.5 * abs(upper_bounds[j] - lower_bounds[j]),
  *                        tree.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     node_data[i_node].idx_start = idx_start
  */
       __pyx_v_rad = (__pyx_v_rad + pow((0.5 * fabs(((__pyx_v_upper_bounds[__pyx_v_j]) - (__pyx_v_lower_bounds[__pyx_v_j])))), __pyx_v_tree->dist_metric->p));
@@ -21875,19 +21875,19 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
 
   /* "sklearn/neighbors/_kd_tree.pyx":74
  *                        tree.dist_metric.p)
- * 
+ *
  *     node_data[i_node].idx_start = idx_start             # <<<<<<<<<<<<<<
  *     node_data[i_node].idx_end = idx_end
- * 
+ *
  */
   __pyx_t_2 = __pyx_v_i_node;
   (*((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t *) ( /* dim=0 */ ((char *) (((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t *) __pyx_v_node_data.data) + __pyx_t_2)) ))).idx_start = __pyx_v_idx_start;
 
   /* "sklearn/neighbors/_kd_tree.pyx":75
- * 
+ *
  *     node_data[i_node].idx_start = idx_start
  *     node_data[i_node].idx_end = idx_end             # <<<<<<<<<<<<<<
- * 
+ *
  *     # The radius will hold the size of the circumscribed hypersphere measured
  */
   __pyx_t_2 = __pyx_v_i_node;
@@ -21898,7 +21898,7 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *     # size of each node when deciding which nodes to split.
  *     node_data[i_node].radius = pow(rad, 1. / tree.dist_metric.p)             # <<<<<<<<<<<<<<
  *     return 0
- * 
+ *
  */
   __pyx_t_2 = __pyx_v_i_node;
   (*((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t *) ( /* dim=0 */ ((char *) (((struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t *) __pyx_v_node_data.data) + __pyx_t_2)) ))).radius = pow(__pyx_v_rad, (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)1.) / __pyx_v_tree->dist_metric->p));
@@ -21907,15 +21907,15 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
  *     # size of each node when deciding which nodes to split.
  *     node_data[i_node].radius = pow(rad, 1. / tree.dist_metric.p)
  *     return 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":39
- * 
- * 
+ *
+ *
  * cdef int init_node(BinaryTree tree, NodeData_t[::1] node_data, intp_t i_node,             # <<<<<<<<<<<<<<
  *                    intp_t idx_start, intp_t idx_end) except -1:
  *     """Initialize the node for the dataset stored in tree.data"""
@@ -21928,8 +21928,8 @@ static int __pyx_f_7sklearn_9neighbors_8_kd_tree_init_node(struct __pyx_obj_7skl
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":84
- * 
- * 
+ *
+ *
  * cdef float64_t min_rdist(BinaryTree tree, intp_t i_node,             # <<<<<<<<<<<<<<
  *                        float64_t* pt) except -1 nogil:
  *     """Compute the minimum reduced-distance between a point and a node"""
@@ -21965,13 +21965,13 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *     cdef intp_t n_features = tree.data.shape[1]
  *     cdef float64_t d, d_lo, d_hi, rdist=0.0             # <<<<<<<<<<<<<<
  *     cdef intp_t j
- * 
+ *
  */
   __pyx_v_rdist = 0.0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":91
  *     cdef intp_t j
- * 
+ *
  *     if tree.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             d_lo = tree.node_bounds[0, i_node, j] - pt[j]
@@ -21980,7 +21980,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
   if (__pyx_t_1) {
 
     /* "sklearn/neighbors/_kd_tree.pyx":92
- * 
+ *
  *     if tree.dist_metric.p == INF:
  *         for j in range(n_features):             # <<<<<<<<<<<<<<
  *             d_lo = tree.node_bounds[0, i_node, j] - pt[j]
@@ -22036,7 +22036,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
     /* "sklearn/neighbors/_kd_tree.pyx":91
  *     cdef intp_t j
- * 
+ *
  *     if tree.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             d_lo = tree.node_bounds[0, i_node, j] - pt[j]
@@ -22086,7 +22086,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *             d_hi = pt[j] - tree.node_bounds[1, i_node, j]
  *             d = (d_lo + fabs(d_lo)) + (d_hi + fabs(d_hi))             # <<<<<<<<<<<<<<
  *             rdist += pow(0.5 * d, tree.dist_metric.p)
- * 
+ *
  */
       __pyx_v_d = ((__pyx_v_d_lo + fabs(__pyx_v_d_lo)) + (__pyx_v_d_hi + fabs(__pyx_v_d_hi)));
 
@@ -22094,7 +22094,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *             d_hi = pt[j] - tree.node_bounds[1, i_node, j]
  *             d = (d_lo + fabs(d_lo)) + (d_hi + fabs(d_hi))
  *             rdist += pow(0.5 * d, tree.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return rdist
  */
       __pyx_v_rdist = (__pyx_v_rdist + pow((0.5 * __pyx_v_d), __pyx_v_tree->dist_metric->p));
@@ -22104,17 +22104,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
   /* "sklearn/neighbors/_kd_tree.pyx":105
  *             rdist += pow(0.5 * d, tree.dist_metric.p)
- * 
+ *
  *     return rdist             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_rdist;
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":84
- * 
- * 
+ *
+ *
  * cdef float64_t min_rdist(BinaryTree tree, intp_t i_node,             # <<<<<<<<<<<<<<
  *                        float64_t* pt) except -1 nogil:
  *     """Compute the minimum reduced-distance between a point and a node"""
@@ -22126,8 +22126,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":108
- * 
- * 
+ *
+ *
  * cdef float64_t min_dist(BinaryTree tree, intp_t i_node, float64_t* pt) except -1:             # <<<<<<<<<<<<<<
  *     """Compute the minimum distance between a point and a node"""
  *     if tree.dist_metric.p == INF:
@@ -22177,8 +22177,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         return min_rdist(tree, i_node, pt)
  *     else:
  *         return pow(min_rdist(tree, i_node, pt), 1. / tree.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __pyx_t_2 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_rdist(__pyx_v_tree, __pyx_v_i_node, __pyx_v_pt); if (unlikely(__pyx_t_2 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(2, 113, __pyx_L1_error)
@@ -22187,8 +22187,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
   }
 
   /* "sklearn/neighbors/_kd_tree.pyx":108
- * 
- * 
+ *
+ *
  * cdef float64_t min_dist(BinaryTree tree, intp_t i_node, float64_t* pt) except -1:             # <<<<<<<<<<<<<<
  *     """Compute the minimum distance between a point and a node"""
  *     if tree.dist_metric.p == INF:
@@ -22204,8 +22204,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":116
- * 
- * 
+ *
+ *
  * cdef float64_t max_rdist(BinaryTree tree,             # <<<<<<<<<<<<<<
  *                        intp_t i_node, float64_t* pt) except -1:
  *     """Compute the maximum reduced-distance between a point and a node"""
@@ -22232,23 +22232,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *                        intp_t i_node, float64_t* pt) except -1:
  *     """Compute the maximum reduced-distance between a point and a node"""
  *     cdef intp_t n_features = tree.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t d_lo, d_hi, rdist=0.0
  */
   __pyx_v_n_features = (__pyx_v_tree->data.shape[1]);
 
   /* "sklearn/neighbors/_kd_tree.pyx":121
  *     cdef intp_t n_features = tree.data.shape[1]
- * 
+ *
  *     cdef float64_t d_lo, d_hi, rdist=0.0             # <<<<<<<<<<<<<<
  *     cdef intp_t j
- * 
+ *
  */
   __pyx_v_rdist = 0.0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":124
  *     cdef intp_t j
- * 
+ *
  *     if tree.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             rdist = fmax(rdist, fabs(pt[j] - tree.node_bounds[0, i_node, j]))
@@ -22257,7 +22257,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
   if (__pyx_t_1) {
 
     /* "sklearn/neighbors/_kd_tree.pyx":125
- * 
+ *
  *     if tree.dist_metric.p == INF:
  *         for j in range(n_features):             # <<<<<<<<<<<<<<
  *             rdist = fmax(rdist, fabs(pt[j] - tree.node_bounds[0, i_node, j]))
@@ -22295,7 +22295,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
     /* "sklearn/neighbors/_kd_tree.pyx":124
  *     cdef intp_t j
- * 
+ *
  *     if tree.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             rdist = fmax(rdist, fabs(pt[j] - tree.node_bounds[0, i_node, j]))
@@ -22333,7 +22333,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *             d_lo = fabs(pt[j] - tree.node_bounds[0, i_node, j])
  *             d_hi = fabs(pt[j] - tree.node_bounds[1, i_node, j])             # <<<<<<<<<<<<<<
  *             rdist += pow(fmax(d_lo, d_hi), tree.dist_metric.p)
- * 
+ *
  */
       __pyx_t_5 = 1;
       __pyx_t_7 = __pyx_v_i_node;
@@ -22344,7 +22344,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *             d_lo = fabs(pt[j] - tree.node_bounds[0, i_node, j])
  *             d_hi = fabs(pt[j] - tree.node_bounds[1, i_node, j])
  *             rdist += pow(fmax(d_lo, d_hi), tree.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return rdist
  */
       __pyx_v_rdist = (__pyx_v_rdist + pow(fmax(__pyx_v_d_lo, __pyx_v_d_hi), __pyx_v_tree->dist_metric->p));
@@ -22354,17 +22354,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 
   /* "sklearn/neighbors/_kd_tree.pyx":134
  *             rdist += pow(fmax(d_lo, d_hi), tree.dist_metric.p)
- * 
+ *
  *     return rdist             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_rdist;
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":116
- * 
- * 
+ *
+ *
  * cdef float64_t max_rdist(BinaryTree tree,             # <<<<<<<<<<<<<<
  *                        intp_t i_node, float64_t* pt) except -1:
  *     """Compute the maximum reduced-distance between a point and a node"""
@@ -22377,8 +22377,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":137
- * 
- * 
+ *
+ *
  * cdef float64_t max_dist(BinaryTree tree, intp_t i_node, float64_t* pt) except -1:             # <<<<<<<<<<<<<<
  *     """Compute the maximum distance between a point and a node"""
  *     if tree.dist_metric.p == INF:
@@ -22428,8 +22428,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
  *         return max_rdist(tree, i_node, pt)
  *     else:
  *         return pow(max_rdist(tree, i_node, pt), 1. / tree.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __pyx_t_2 = __pyx_f_7sklearn_9neighbors_8_kd_tree_max_rdist(__pyx_v_tree, __pyx_v_i_node, __pyx_v_pt); if (unlikely(__pyx_t_2 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(2, 142, __pyx_L1_error)
@@ -22438,8 +22438,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
   }
 
   /* "sklearn/neighbors/_kd_tree.pyx":137
- * 
- * 
+ *
+ *
  * cdef float64_t max_dist(BinaryTree tree, intp_t i_node, float64_t* pt) except -1:             # <<<<<<<<<<<<<<
  *     """Compute the maximum distance between a point and a node"""
  *     if tree.dist_metric.p == INF:
@@ -22455,8 +22455,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_9neighbors_
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":145
- * 
- * 
+ *
+ *
  * cdef inline int min_max_dist(BinaryTree tree, intp_t i_node, float64_t* pt,             # <<<<<<<<<<<<<<
  *                              float64_t* min_dist, float64_t* max_dist) except -1 nogil:
  *     """Compute the minimum and maximum distance between a point and a node"""
@@ -22482,32 +22482,32 @@ static CYTHON_INLINE int __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(stru
  *                              float64_t* min_dist, float64_t* max_dist) except -1 nogil:
  *     """Compute the minimum and maximum distance between a point and a node"""
  *     cdef intp_t n_features = tree.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t d, d_lo, d_hi
  */
   __pyx_v_n_features = (__pyx_v_tree->data.shape[1]);
 
   /* "sklearn/neighbors/_kd_tree.pyx":153
  *     cdef intp_t j
- * 
+ *
  *     min_dist[0] = 0.0             # <<<<<<<<<<<<<<
  *     max_dist[0] = 0.0
- * 
+ *
  */
   (__pyx_v_min_dist[0]) = 0.0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":154
- * 
+ *
  *     min_dist[0] = 0.0
  *     max_dist[0] = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *     if tree.dist_metric.p == INF:
  */
   (__pyx_v_max_dist[0]) = 0.0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":156
  *     max_dist[0] = 0.0
- * 
+ *
  *     if tree.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             d_lo = tree.node_bounds[0, i_node, j] - pt[j]
@@ -22516,7 +22516,7 @@ static CYTHON_INLINE int __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(stru
   if (__pyx_t_1) {
 
     /* "sklearn/neighbors/_kd_tree.pyx":157
- * 
+ *
  *     if tree.dist_metric.p == INF:
  *         for j in range(n_features):             # <<<<<<<<<<<<<<
  *             d_lo = tree.node_bounds[0, i_node, j] - pt[j]
@@ -22590,7 +22590,7 @@ static CYTHON_INLINE int __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(stru
 
     /* "sklearn/neighbors/_kd_tree.pyx":156
  *     max_dist[0] = 0.0
- * 
+ *
  *     if tree.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             d_lo = tree.node_bounds[0, i_node, j] - pt[j]
@@ -22659,7 +22659,7 @@ static CYTHON_INLINE int __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(stru
  *             min_dist[0] += pow(0.5 * d, tree.dist_metric.p)
  *             max_dist[0] += pow(fmax(fabs(d_lo), fabs(d_hi)),             # <<<<<<<<<<<<<<
  *                                tree.dist_metric.p)
- * 
+ *
  */
       __pyx_t_8 = 0;
 
@@ -22667,7 +22667,7 @@ static CYTHON_INLINE int __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(stru
  *             min_dist[0] += pow(0.5 * d, tree.dist_metric.p)
  *             max_dist[0] += pow(fmax(fabs(d_lo), fabs(d_hi)),
  *                                tree.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *         min_dist[0] = pow(min_dist[0], 1. / tree.dist_metric.p)
  */
       (__pyx_v_max_dist[__pyx_t_8]) = ((__pyx_v_max_dist[__pyx_t_8]) + pow(fmax(fabs(__pyx_v_d_lo), fabs(__pyx_v_d_hi)), __pyx_v_tree->dist_metric->p));
@@ -22675,18 +22675,18 @@ static CYTHON_INLINE int __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(stru
 
     /* "sklearn/neighbors/_kd_tree.pyx":174
  *                                tree.dist_metric.p)
- * 
+ *
  *         min_dist[0] = pow(min_dist[0], 1. / tree.dist_metric.p)             # <<<<<<<<<<<<<<
  *         max_dist[0] = pow(max_dist[0], 1. / tree.dist_metric.p)
- * 
+ *
  */
     (__pyx_v_min_dist[0]) = pow((__pyx_v_min_dist[0]), (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)1.) / __pyx_v_tree->dist_metric->p));
 
     /* "sklearn/neighbors/_kd_tree.pyx":175
- * 
+ *
  *         min_dist[0] = pow(min_dist[0], 1. / tree.dist_metric.p)
  *         max_dist[0] = pow(max_dist[0], 1. / tree.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return 0
  */
     (__pyx_v_max_dist[0]) = pow((__pyx_v_max_dist[0]), (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)1.) / __pyx_v_tree->dist_metric->p));
@@ -22695,17 +22695,17 @@ static CYTHON_INLINE int __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(stru
 
   /* "sklearn/neighbors/_kd_tree.pyx":177
  *         max_dist[0] = pow(max_dist[0], 1. / tree.dist_metric.p)
- * 
+ *
  *     return 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":145
- * 
- * 
+ *
+ *
  * cdef inline int min_max_dist(BinaryTree tree, intp_t i_node, float64_t* pt,             # <<<<<<<<<<<<<<
  *                              float64_t* min_dist, float64_t* max_dist) except -1 nogil:
  *     """Compute the minimum and maximum distance between a point and a node"""
@@ -22717,8 +22717,8 @@ static CYTHON_INLINE int __pyx_f_7sklearn_9neighbors_8_kd_tree_min_max_dist(stru
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":180
- * 
- * 
+ *
+ *
  * cdef inline float64_t min_rdist_dual(BinaryTree tree1, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                    BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the minimum reduced distance between two nodes"""
@@ -22749,23 +22749,23 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *                                    BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the minimum reduced distance between two nodes"""
  *     cdef intp_t n_features = tree1.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t d, d1, d2, rdist=0.0
  */
   __pyx_v_n_features = (__pyx_v_tree1->data.shape[1]);
 
   /* "sklearn/neighbors/_kd_tree.pyx":185
  *     cdef intp_t n_features = tree1.data.shape[1]
- * 
+ *
  *     cdef float64_t d, d1, d2, rdist=0.0             # <<<<<<<<<<<<<<
  *     cdef intp_t j
- * 
+ *
  */
   __pyx_v_rdist = 0.0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":188
  *     cdef intp_t j
- * 
+ *
  *     if tree1.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             d1 = (tree1.node_bounds[0, i_node1, j]
@@ -22774,7 +22774,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   if (__pyx_t_1) {
 
     /* "sklearn/neighbors/_kd_tree.pyx":189
- * 
+ *
  *     if tree1.dist_metric.p == INF:
  *         for j in range(n_features):             # <<<<<<<<<<<<<<
  *             d1 = (tree1.node_bounds[0, i_node1, j]
@@ -22824,7 +22824,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *             d2 = (tree2.node_bounds[0, i_node2, j]
  *                   - tree1.node_bounds[1, i_node1, j])             # <<<<<<<<<<<<<<
  *             d = (d1 + fabs(d1)) + (d2 + fabs(d2))
- * 
+ *
  */
       __pyx_t_5 = 1;
       __pyx_t_7 = __pyx_v_i_node1;
@@ -22835,14 +22835,14 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *             d2 = (tree2.node_bounds[0, i_node2, j]
  *                   - tree1.node_bounds[1, i_node1, j])
  *             d = (d1 + fabs(d1)) + (d2 + fabs(d2))             # <<<<<<<<<<<<<<
- * 
+ *
  *             rdist = fmax(rdist, 0.5 * d)
  */
       __pyx_v_d = ((__pyx_v_d1 + fabs(__pyx_v_d1)) + (__pyx_v_d2 + fabs(__pyx_v_d2)));
 
       /* "sklearn/neighbors/_kd_tree.pyx":196
  *             d = (d1 + fabs(d1)) + (d2 + fabs(d2))
- * 
+ *
  *             rdist = fmax(rdist, 0.5 * d)             # <<<<<<<<<<<<<<
  *     else:
  *         # here we'll use the fact that x + abs(x) = 2 * max(x, 0)
@@ -22852,7 +22852,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
     /* "sklearn/neighbors/_kd_tree.pyx":188
  *     cdef intp_t j
- * 
+ *
  *     if tree1.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             d1 = (tree1.node_bounds[0, i_node1, j]
@@ -22912,7 +22912,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *             d2 = (tree2.node_bounds[0, i_node2, j]
  *                   - tree1.node_bounds[1, i_node1, j])             # <<<<<<<<<<<<<<
  *             d = (d1 + fabs(d1)) + (d2 + fabs(d2))
- * 
+ *
  */
       __pyx_t_5 = 1;
       __pyx_t_7 = __pyx_v_i_node1;
@@ -22923,16 +22923,16 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *             d2 = (tree2.node_bounds[0, i_node2, j]
  *                   - tree1.node_bounds[1, i_node1, j])
  *             d = (d1 + fabs(d1)) + (d2 + fabs(d2))             # <<<<<<<<<<<<<<
- * 
+ *
  *             rdist += pow(0.5 * d, tree1.dist_metric.p)
  */
       __pyx_v_d = ((__pyx_v_d1 + fabs(__pyx_v_d1)) + (__pyx_v_d2 + fabs(__pyx_v_d2)));
 
       /* "sklearn/neighbors/_kd_tree.pyx":206
  *             d = (d1 + fabs(d1)) + (d2 + fabs(d2))
- * 
+ *
  *             rdist += pow(0.5 * d, tree1.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return rdist
  */
       __pyx_v_rdist = (__pyx_v_rdist + pow((0.5 * __pyx_v_d), __pyx_v_tree1->dist_metric->p));
@@ -22942,17 +22942,17 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
   /* "sklearn/neighbors/_kd_tree.pyx":208
  *             rdist += pow(0.5 * d, tree1.dist_metric.p)
- * 
+ *
  *     return rdist             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_rdist;
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":180
- * 
- * 
+ *
+ *
  * cdef inline float64_t min_rdist_dual(BinaryTree tree1, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                    BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the minimum reduced distance between two nodes"""
@@ -22965,8 +22965,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":211
- * 
- * 
+ *
+ *
  * cdef inline float64_t min_dist_dual(BinaryTree tree1, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                   BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the minimum distance between two nodes"""
@@ -22987,7 +22987,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *     """Compute the minimum distance between two nodes"""
  *     return tree1.dist_metric._rdist_to_dist(min_rdist_dual(tree1, i_node1,             # <<<<<<<<<<<<<<
  *                                                            tree2, i_node2))
- * 
+ *
  */
   __pyx_t_1 = __pyx_f_7sklearn_9neighbors_8_kd_tree_min_rdist_dual(__pyx_v_tree1, __pyx_v_i_node1, __pyx_v_tree2, __pyx_v_i_node2); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(2, 214, __pyx_L1_error)
   __pyx_t_2 = ((struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_tree1->dist_metric->__pyx_vtab)->_rdist_to_dist(__pyx_v_tree1->dist_metric, __pyx_t_1); if (unlikely(__pyx_t_2 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(2, 214, __pyx_L1_error)
@@ -22995,8 +22995,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":211
- * 
- * 
+ *
+ *
  * cdef inline float64_t min_dist_dual(BinaryTree tree1, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                   BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the minimum distance between two nodes"""
@@ -23012,8 +23012,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":218
- * 
- * 
+ *
+ *
  * cdef inline float64_t max_rdist_dual(BinaryTree tree1, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                    BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the maximum reduced distance between two nodes"""
@@ -23043,23 +23043,23 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *                                    BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the maximum reduced distance between two nodes"""
  *     cdef intp_t n_features = tree1.data.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t d1, d2, rdist=0.0
  */
   __pyx_v_n_features = (__pyx_v_tree1->data.shape[1]);
 
   /* "sklearn/neighbors/_kd_tree.pyx":223
  *     cdef intp_t n_features = tree1.data.shape[1]
- * 
+ *
  *     cdef float64_t d1, d2, rdist=0.0             # <<<<<<<<<<<<<<
  *     cdef intp_t j
- * 
+ *
  */
   __pyx_v_rdist = 0.0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":226
  *     cdef intp_t j
- * 
+ *
  *     if tree1.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             rdist = fmax(rdist, fabs(tree1.node_bounds[0, i_node1, j]
@@ -23068,7 +23068,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   if (__pyx_t_1) {
 
     /* "sklearn/neighbors/_kd_tree.pyx":227
- * 
+ *
  *     if tree1.dist_metric.p == INF:
  *         for j in range(n_features):             # <<<<<<<<<<<<<<
  *             rdist = fmax(rdist, fabs(tree1.node_bounds[0, i_node1, j]
@@ -23144,7 +23144,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
     /* "sklearn/neighbors/_kd_tree.pyx":226
  *     cdef intp_t j
- * 
+ *
  *     if tree1.dist_metric.p == INF:             # <<<<<<<<<<<<<<
  *         for j in range(n_features):
  *             rdist = fmax(rdist, fabs(tree1.node_bounds[0, i_node1, j]
@@ -23212,7 +23212,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *             d2 = fabs(tree1.node_bounds[1, i_node1, j]
  *                       - tree2.node_bounds[0, i_node2, j])             # <<<<<<<<<<<<<<
  *             rdist += pow(fmax(d1, d2), tree1.dist_metric.p)
- * 
+ *
  */
       __pyx_t_5 = 0;
       __pyx_t_7 = __pyx_v_i_node2;
@@ -23231,7 +23231,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *             d2 = fabs(tree1.node_bounds[1, i_node1, j]
  *                       - tree2.node_bounds[0, i_node2, j])
  *             rdist += pow(fmax(d1, d2), tree1.dist_metric.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return rdist
  */
       __pyx_v_rdist = (__pyx_v_rdist + pow(fmax(__pyx_v_d1, __pyx_v_d2), __pyx_v_tree1->dist_metric->p));
@@ -23241,17 +23241,17 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
   /* "sklearn/neighbors/_kd_tree.pyx":240
  *             rdist += pow(fmax(d1, d2), tree1.dist_metric.p)
- * 
+ *
  *     return rdist             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_rdist;
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":218
- * 
- * 
+ *
+ *
  * cdef inline float64_t max_rdist_dual(BinaryTree tree1, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                    BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the maximum reduced distance between two nodes"""
@@ -23264,8 +23264,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/neighbors/_kd_tree.pyx":243
- * 
- * 
+ *
+ *
  * cdef inline float64_t max_dist_dual(BinaryTree tree1, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                   BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the maximum distance between two nodes"""
@@ -23293,8 +23293,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   goto __pyx_L0;
 
   /* "sklearn/neighbors/_kd_tree.pyx":243
- * 
- * 
+ *
+ *
  * cdef inline float64_t max_dist_dual(BinaryTree tree1, intp_t i_node1,             # <<<<<<<<<<<<<<
  *                                   BinaryTree tree2, intp_t i_node2) except -1:
  *     """Compute the maximum distance between two nodes"""
@@ -23309,12 +23309,12 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":735
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":735
  * ctypedef npy_cdouble     complex_t
- * 
+ *
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__pyx_v_a) {
@@ -23326,11 +23326,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew1", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":736
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":736
+ *
  * cdef inline object PyArray_MultiIterNew1(a):
  *     return PyArray_MultiIterNew(1, <void*>a)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew2(a, b):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -23340,12 +23340,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":735
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":735
  * ctypedef npy_cdouble     complex_t
- * 
+ *
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
- * 
+ *
  */
 
   /* function exit code */
@@ -23359,12 +23359,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":738
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":738
  *     return PyArray_MultiIterNew(1, <void*>a)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__pyx_v_a, PyObject *__pyx_v_b) {
@@ -23376,11 +23376,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew2", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":739
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":739
+ *
  * cdef inline object PyArray_MultiIterNew2(a, b):
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -23390,12 +23390,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":738
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":738
  *     return PyArray_MultiIterNew(1, <void*>a)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- * 
+ *
  */
 
   /* function exit code */
@@ -23409,12 +23409,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":741
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":741
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c) {
@@ -23426,11 +23426,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew3", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":742
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":742
+ *
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -23440,12 +23440,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":741
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":741
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- * 
+ *
  */
 
   /* function exit code */
@@ -23459,12 +23459,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":744
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":744
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d) {
@@ -23476,11 +23476,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew4", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":745
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":745
+ *
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -23490,12 +23490,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":744
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":744
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- * 
+ *
  */
 
   /* function exit code */
@@ -23509,12 +23509,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":747
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":747
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d, PyObject *__pyx_v_e) {
@@ -23526,11 +23526,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew5", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":748
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":748
+ *
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -23540,12 +23540,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":747
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":747
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- * 
+ *
  */
 
   /* function exit code */
@@ -23559,9 +23559,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":750
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":750
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- * 
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape
@@ -23573,8 +23573,8 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("PyDataType_SHAPE", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":751
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":751
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
  *         return <tuple>d.subarray.shape
@@ -23583,7 +23583,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   __pyx_t_1 = (PyDataType_HASSUBARRAY(__pyx_v_d) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":752
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":752
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape             # <<<<<<<<<<<<<<
@@ -23595,8 +23595,8 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     __pyx_r = ((PyObject*)__pyx_v_d->subarray->shape);
     goto __pyx_L0;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":751
- * 
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":751
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
  *         return <tuple>d.subarray.shape
@@ -23604,12 +23604,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
  */
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":754
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":754
  *         return <tuple>d.subarray.shape
  *     else:
  *         return ()             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
@@ -23618,9 +23618,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     goto __pyx_L0;
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":750
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":750
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- * 
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape
@@ -23633,9 +23633,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":929
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":929
  *     int _import_umath() except -1
- * 
+ *
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
@@ -23645,27 +23645,27 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_array_base", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":930
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":930
+ *
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!             # <<<<<<<<<<<<<<
  *     PyArray_SetBaseObject(arr, base)
- * 
+ *
  */
   Py_INCREF(__pyx_v_base);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":931
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":931
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object get_array_base(ndarray arr):
  */
   (void)(PyArray_SetBaseObject(__pyx_v_arr, __pyx_v_base));
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":929
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":929
  *     int _import_umath() except -1
- * 
+ *
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
@@ -23675,9 +23675,9 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyFinishContext();
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":933
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":933
  *     PyArray_SetBaseObject(arr, base)
- * 
+ *
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
@@ -23690,8 +23690,8 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("get_array_base", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":934
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":934
+ *
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)             # <<<<<<<<<<<<<<
  *     if base is NULL:
@@ -23699,7 +23699,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  */
   __pyx_v_base = PyArray_BASE(__pyx_v_arr);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":935
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":935
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -23709,18 +23709,18 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_t_1 = ((__pyx_v_base == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":936
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":936
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
  *         return None             # <<<<<<<<<<<<<<
  *     return <object>base
- * 
+ *
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":935
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":935
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -23729,11 +23729,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  */
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":937
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":937
  *     if base is NULL:
  *         return None
  *     return <object>base             # <<<<<<<<<<<<<<
- * 
+ *
  * # Versions of the import_* functions which are more suitable for
  */
   __Pyx_XDECREF(__pyx_r);
@@ -23741,9 +23741,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_r = ((PyObject *)__pyx_v_base);
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":933
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":933
  *     PyArray_SetBaseObject(arr, base)
- * 
+ *
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
@@ -23756,7 +23756,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":941
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":941
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -23780,7 +23780,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_array", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -23796,7 +23796,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":943
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":943
  * cdef inline int import_array() except -1:
  *     try:
  *         __pyx_import_array()             # <<<<<<<<<<<<<<
@@ -23805,7 +23805,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  */
       __pyx_t_4 = _import_array(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(3, 943, __pyx_L3_error)
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -23819,12 +23819,12 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":944
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":944
  *     try:
  *         __pyx_import_array()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.multiarray failed to import")
- * 
+ *
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -23834,11 +23834,11 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":945
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":945
  *         __pyx_import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline int import_umath() except -1:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(3, 945, __pyx_L5_except_error)
@@ -23850,7 +23850,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -23865,7 +23865,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":941
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":941
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -23888,9 +23888,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":947
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":947
  *         raise ImportError("numpy.core.multiarray failed to import")
- * 
+ *
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -23912,8 +23912,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_umath", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
+ *
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -23928,7 +23928,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":949
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":949
  * cdef inline int import_umath() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
@@ -23937,8 +23937,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  */
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(3, 949, __pyx_L3_error)
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
- * 
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
+ *
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -23951,12 +23951,12 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":950
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":950
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.umath failed to import")
- * 
+ *
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -23966,11 +23966,11 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":951
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":951
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline int import_ufunc() except -1:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(3, 951, __pyx_L5_except_error)
@@ -23982,8 +23982,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
- * 
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
+ *
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -23997,9 +23997,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":947
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":947
  *         raise ImportError("numpy.core.multiarray failed to import")
- * 
+ *
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -24020,9 +24020,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":953
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":953
  *         raise ImportError("numpy.core.umath failed to import")
- * 
+ *
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -24044,8 +24044,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_ufunc", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
+ *
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -24060,7 +24060,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":955
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":955
  * cdef inline int import_ufunc() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
@@ -24069,8 +24069,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  */
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(3, 955, __pyx_L3_error)
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
- * 
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
+ *
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -24083,12 +24083,12 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":956
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":956
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.umath failed to import")
- * 
+ *
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -24098,11 +24098,11 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":957
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":957
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef extern from *:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(3, 957, __pyx_L5_except_error)
@@ -24114,8 +24114,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
- * 
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
+ *
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -24129,9 +24129,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":953
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":953
  *         raise ImportError("numpy.core.umath failed to import")
- * 
+ *
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -24152,9 +24152,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":967
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":967
+ *
+ *
  * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
@@ -24165,19 +24165,19 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("is_timedelta64_object", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":979
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":979
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyTimedeltaArrType_Type)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyTimedeltaArrType_Type));
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":967
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":967
+ *
+ *
  * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
@@ -24189,9 +24189,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":982
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":982
+ *
+ *
  * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
@@ -24202,19 +24202,19 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("is_datetime64_object", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":994
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":994
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyDatetimeArrType_Type)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyDatetimeArrType_Type));
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":982
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":982
+ *
+ *
  * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
@@ -24226,9 +24226,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":997
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":997
+ *
+ *
  * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
@@ -24237,19 +24237,19 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
 static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *__pyx_v_obj) {
   npy_datetime __pyx_r;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1004
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1004
  *     also needed.  That can be found using `get_datetime64_unit`.
  *     """
  *     return (<PyDatetimeScalarObject*>obj).obval             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((PyDatetimeScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":997
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":997
+ *
+ *
  * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
@@ -24260,9 +24260,9 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1007
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1007
+ *
+ *
  * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
@@ -24271,19 +24271,19 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
 static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject *__pyx_v_obj) {
   npy_timedelta __pyx_r;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1011
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1011
  *     returns the int64 value underlying scalar numpy timedelta64 object
  *     """
  *     return (<PyTimedeltaScalarObject*>obj).obval             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((PyTimedeltaScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1007
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1007
+ *
+ *
  * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
@@ -24294,9 +24294,9 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1014
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1014
+ *
+ *
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -24305,7 +24305,7 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
 static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObject *__pyx_v_obj) {
   NPY_DATETIMEUNIT __pyx_r;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1018
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1018
  *     returns the unit part of the dtype for a numpy datetime64 object.
  *     """
  *     return <NPY_DATETIMEUNIT>(<PyDatetimeScalarObject*>obj).obmeta.base             # <<<<<<<<<<<<<<
@@ -24313,9 +24313,9 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
   __pyx_r = ((NPY_DATETIMEUNIT)((PyDatetimeScalarObject *)__pyx_v_obj)->obmeta.base);
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1014
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1014
+ *
+ *
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -24378,7 +24378,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t> (x1[j] - x2[j])
  *         d += tmp * tmp             # <<<<<<<<<<<<<<
  *     return sqrt(d)
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * __pyx_v_tmp));
   }
@@ -24387,8 +24387,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t> (x1[j] - x2[j])
  *         d += tmp * tmp
  *     return sqrt(d)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = sqrt(__pyx_v_d);
   goto __pyx_L0;
@@ -24407,8 +24407,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "metrics/_dist_metrics.pxd":27
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist(             # <<<<<<<<<<<<<<
  *     const float64_t* x1,
  *     const float64_t* x2,
@@ -24458,7 +24458,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t>(x1[j] - x2[j])
  *         d += tmp * tmp             # <<<<<<<<<<<<<<
  *     return d
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * __pyx_v_tmp));
   }
@@ -24467,15 +24467,15 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t>(x1[j] - x2[j])
  *         d += tmp * tmp
  *     return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "metrics/_dist_metrics.pxd":27
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist(             # <<<<<<<<<<<<<<
  *     const float64_t* x1,
  *     const float64_t* x2,
@@ -24487,32 +24487,32 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "metrics/_dist_metrics.pxd":40
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_dist_to_rdist(const float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return dist * dist
- * 
+ *
  */
 
 static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_dist_to_rdist(__pyx_t_7sklearn_5utils_9_typedefs_float64_t const __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "metrics/_dist_metrics.pxd":41
- * 
+ *
  * cdef inline float64_t euclidean_dist_to_rdist(const float64_t dist) except -1 nogil:
  *     return dist * dist             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
   goto __pyx_L0;
 
   /* "metrics/_dist_metrics.pxd":40
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_dist_to_rdist(const float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -24521,32 +24521,32 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "metrics/_dist_metrics.pxd":44
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist_to_dist(const float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return sqrt(dist)
- * 
+ *
  */
 
 static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_rdist_to_dist(__pyx_t_7sklearn_5utils_9_typedefs_float64_t const __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "metrics/_dist_metrics.pxd":45
- * 
+ *
  * cdef inline float64_t euclidean_rdist_to_dist(const float64_t dist) except -1 nogil:
  *     return sqrt(dist)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = sqrt(__pyx_v_dist);
   goto __pyx_L0;
 
   /* "metrics/_dist_metrics.pxd":44
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist_to_dist(const float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return sqrt(dist)
- * 
+ *
  */
 
   /* function exit code */
@@ -24606,7 +24606,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t> (x1[j] - x2[j])
  *         d += tmp * tmp             # <<<<<<<<<<<<<<
  *     return sqrt(d)
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * __pyx_v_tmp));
   }
@@ -24615,8 +24615,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t> (x1[j] - x2[j])
  *         d += tmp * tmp
  *     return sqrt(d)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = sqrt(__pyx_v_d);
   goto __pyx_L0;
@@ -24635,8 +24635,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "metrics/_dist_metrics.pxd":158
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist32(             # <<<<<<<<<<<<<<
  *     const float32_t* x1,
  *     const float32_t* x2,
@@ -24686,7 +24686,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t>(x1[j] - x2[j])
  *         d += tmp * tmp             # <<<<<<<<<<<<<<
  *     return d
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * __pyx_v_tmp));
   }
@@ -24695,15 +24695,15 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t>(x1[j] - x2[j])
  *         d += tmp * tmp
  *     return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "metrics/_dist_metrics.pxd":158
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist32(             # <<<<<<<<<<<<<<
  *     const float32_t* x1,
  *     const float32_t* x2,
@@ -24715,32 +24715,32 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "metrics/_dist_metrics.pxd":171
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_dist_to_rdist32(const float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return dist * dist
- * 
+ *
  */
 
 static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_dist_to_rdist32(__pyx_t_7sklearn_5utils_9_typedefs_float32_t const __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "metrics/_dist_metrics.pxd":172
- * 
+ *
  * cdef inline float64_t euclidean_dist_to_rdist32(const float32_t dist) except -1 nogil:
  *     return dist * dist             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
   goto __pyx_L0;
 
   /* "metrics/_dist_metrics.pxd":171
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_dist_to_rdist32(const float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -24749,32 +24749,32 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "metrics/_dist_metrics.pxd":175
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist_to_dist32(const float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return sqrt(dist)
- * 
+ *
  */
 
 static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_rdist_to_dist32(__pyx_t_7sklearn_5utils_9_typedefs_float32_t const __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "metrics/_dist_metrics.pxd":176
- * 
+ *
  * cdef inline float64_t euclidean_rdist_to_dist32(const float32_t dist) except -1 nogil:
  *     return sqrt(dist)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = sqrt(__pyx_v_dist);
   goto __pyx_L0;
 
   /* "metrics/_dist_metrics.pxd":175
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist_to_dist32(const float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return sqrt(dist)
- * 
+ *
  */
 
   /* function exit code */
@@ -24783,7 +24783,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "FromPyStructUtility":11
- * 
+ *
  * @cname("__pyx_convert__from_py_struct____pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t")
  * cdef struct_type __pyx_convert__from_py_struct____pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t(obj) except *:             # <<<<<<<<<<<<<<
  *     cdef struct_type result
@@ -24816,7 +24816,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_convert
  *     cdef struct_type result
  *     if not PyMapping_Check(obj):             # <<<<<<<<<<<<<<
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  */
   __pyx_t_1 = ((!(PyMapping_Check(__pyx_v_obj) != 0)) != 0);
   if (__pyx_t_1) {
@@ -24825,7 +24825,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_convert
  *     cdef struct_type result
  *     if not PyMapping_Check(obj):
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)             # <<<<<<<<<<<<<<
- * 
+ *
  *     try:
  */
     __pyx_t_2 = PyErr_Format(__pyx_builtin_TypeError, ((char const *)"Expected %.16s, got %.200s"), ((char *)"a mapping"), Py_TYPE(__pyx_v_obj)->tp_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 14, __pyx_L1_error)
@@ -24837,13 +24837,13 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_convert
  *     cdef struct_type result
  *     if not PyMapping_Check(obj):             # <<<<<<<<<<<<<<
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  */
   }
 
   /* "FromPyStructUtility":16
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  *     try:             # <<<<<<<<<<<<<<
  *         value = obj['val']
  *     except KeyError:
@@ -24858,7 +24858,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_convert
     /*try:*/ {
 
       /* "FromPyStructUtility":17
- * 
+ *
  *     try:
  *         value = obj['val']             # <<<<<<<<<<<<<<
  *     except KeyError:
@@ -24871,7 +24871,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_convert
 
       /* "FromPyStructUtility":16
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  *     try:             # <<<<<<<<<<<<<<
  *         value = obj['val']
  *     except KeyError:
@@ -24917,7 +24917,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_convert
 
     /* "FromPyStructUtility":16
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  *     try:             # <<<<<<<<<<<<<<
  *         value = obj['val']
  *     except KeyError:
@@ -25139,7 +25139,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_convert
  *         raise ValueError("No value specified for struct attribute 'i2'")
  *     result.i2 = value             # <<<<<<<<<<<<<<
  *     return result
- * 
+ *
  */
   __pyx_t_11 = __Pyx_PyIndex_AsSsize_t(__pyx_v_value); if (unlikely((__pyx_t_11 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 30, __pyx_L1_error)
   __pyx_v_result.i2 = __pyx_t_11;
@@ -25148,14 +25148,14 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t __pyx_convert
  *         raise ValueError("No value specified for struct attribute 'i2'")
  *     result.i2 = value
  *     return result             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
   /* "FromPyStructUtility":11
- * 
+ *
  * @cname("__pyx_convert__from_py_struct____pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t")
  * cdef struct_type __pyx_convert__from_py_struct____pyx_t_7sklearn_9neighbors_8_kd_tree_NodeHeapData_t(obj) except *:             # <<<<<<<<<<<<<<
  *     cdef struct_type result
@@ -25202,7 +25202,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
  *     cdef struct_type result
  *     if not PyMapping_Check(obj):             # <<<<<<<<<<<<<<
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  */
   __pyx_t_1 = ((!(PyMapping_Check(__pyx_v_obj) != 0)) != 0);
   if (__pyx_t_1) {
@@ -25211,7 +25211,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
  *     cdef struct_type result
  *     if not PyMapping_Check(obj):
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)             # <<<<<<<<<<<<<<
- * 
+ *
  *     try:
  */
     __pyx_t_2 = PyErr_Format(__pyx_builtin_TypeError, ((char const *)"Expected %.16s, got %.200s"), ((char *)"a mapping"), Py_TYPE(__pyx_v_obj)->tp_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 14, __pyx_L1_error)
@@ -25223,13 +25223,13 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
  *     cdef struct_type result
  *     if not PyMapping_Check(obj):             # <<<<<<<<<<<<<<
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  */
   }
 
   /* "FromPyStructUtility":16
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  *     try:             # <<<<<<<<<<<<<<
  *         value = obj['idx_start']
  *     except KeyError:
@@ -25244,7 +25244,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
     /*try:*/ {
 
       /* "FromPyStructUtility":17
- * 
+ *
  *     try:
  *         value = obj['idx_start']             # <<<<<<<<<<<<<<
  *     except KeyError:
@@ -25257,7 +25257,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
 
       /* "FromPyStructUtility":16
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  *     try:             # <<<<<<<<<<<<<<
  *         value = obj['idx_start']
  *     except KeyError:
@@ -25303,7 +25303,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
 
     /* "FromPyStructUtility":16
  *         PyErr_Format(TypeError, b"Expected %.16s, got %.200s", b"a mapping", Py_TYPE(obj).tp_name)
- * 
+ *
  *     try:             # <<<<<<<<<<<<<<
  *         value = obj['idx_start']
  *     except KeyError:
@@ -25627,7 +25627,7 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
  *         raise ValueError("No value specified for struct attribute 'radius'")
  *     result.radius = value             # <<<<<<<<<<<<<<
  *     return result
- * 
+ *
  */
   __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 35, __pyx_L1_error)
   __pyx_v_result.radius = __pyx_t_11;
@@ -25636,14 +25636,14 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
  *         raise ValueError("No value specified for struct attribute 'radius'")
  *     result.radius = value
  *     return result             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
   /* "FromPyStructUtility":11
- * 
+ *
  * @cname("__pyx_convert__from_py_struct____pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t")
  * cdef struct_type __pyx_convert__from_py_struct____pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t(obj) except *:             # <<<<<<<<<<<<<<
  *     cdef struct_type result
@@ -25666,10 +25666,10 @@ static struct __pyx_t_7sklearn_9neighbors_8_kd_tree_NodeData_t __pyx_convert__fr
 
 /* "View.MemoryView":123
  *         cdef bint dtype_is_object
- * 
+ *
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- * 
+ *
  */
 
 /* Python wrapper */
@@ -25762,10 +25762,10 @@ static int __pyx_array___cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, P
     } else {
 
       /* "View.MemoryView":124
- * 
+ *
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,
  *                   mode="c", bint allocate_buffer=True):             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef int idx
  */
       __pyx_v_allocate_buffer = ((int)1);
@@ -25787,10 +25787,10 @@ static int __pyx_array___cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, P
 
   /* "View.MemoryView":123
  *         cdef bint dtype_is_object
- * 
+ *
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- * 
+ *
  */
 
   /* function exit code */
@@ -25829,10 +25829,10 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
   /* "View.MemoryView":130
  *         cdef PyObject **p
- * 
+ *
  *         self.ndim = <int> len(shape)             # <<<<<<<<<<<<<<
  *         self.itemsize = itemsize
- * 
+ *
  */
   if (unlikely(__pyx_v_shape == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
@@ -25842,29 +25842,29 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_v_self->ndim = ((int)__pyx_t_1);
 
   /* "View.MemoryView":131
- * 
+ *
  *         self.ndim = <int> len(shape)
  *         self.itemsize = itemsize             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not self.ndim:
  */
   __pyx_v_self->itemsize = __pyx_v_itemsize;
 
   /* "View.MemoryView":133
  *         self.itemsize = itemsize
- * 
+ *
  *         if not self.ndim:             # <<<<<<<<<<<<<<
  *             raise ValueError("Empty shape tuple for cython.array")
- * 
+ *
  */
   __pyx_t_2 = ((!(__pyx_v_self->ndim != 0)) != 0);
   if (unlikely(__pyx_t_2)) {
 
     /* "View.MemoryView":134
- * 
+ *
  *         if not self.ndim:
  *             raise ValueError("Empty shape tuple for cython.array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if itemsize <= 0:
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 134, __pyx_L1_error)
@@ -25875,28 +25875,28 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":133
  *         self.itemsize = itemsize
- * 
+ *
  *         if not self.ndim:             # <<<<<<<<<<<<<<
  *             raise ValueError("Empty shape tuple for cython.array")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":136
  *             raise ValueError("Empty shape tuple for cython.array")
- * 
+ *
  *         if itemsize <= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("itemsize <= 0 for cython.array")
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_itemsize <= 0) != 0);
   if (unlikely(__pyx_t_2)) {
 
     /* "View.MemoryView":137
- * 
+ *
  *         if itemsize <= 0:
  *             raise ValueError("itemsize <= 0 for cython.array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not isinstance(format, bytes):
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 137, __pyx_L1_error)
@@ -25907,26 +25907,26 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":136
  *             raise ValueError("Empty shape tuple for cython.array")
- * 
+ *
  *         if itemsize <= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("itemsize <= 0 for cython.array")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":139
  *             raise ValueError("itemsize <= 0 for cython.array")
- * 
+ *
  *         if not isinstance(format, bytes):             # <<<<<<<<<<<<<<
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  */
-  __pyx_t_2 = PyBytes_Check(__pyx_v_format); 
+  __pyx_t_2 = PyBytes_Check(__pyx_v_format);
   __pyx_t_4 = ((!(__pyx_t_2 != 0)) != 0);
   if (__pyx_t_4) {
 
     /* "View.MemoryView":140
- * 
+ *
  *         if not isinstance(format, bytes):
  *             format = format.encode('ASCII')             # <<<<<<<<<<<<<<
  *         self._format = format  # keep a reference to the byte string
@@ -25954,7 +25954,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":139
  *             raise ValueError("itemsize <= 0 for cython.array")
- * 
+ *
  *         if not isinstance(format, bytes):             # <<<<<<<<<<<<<<
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
@@ -25966,7 +25966,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string             # <<<<<<<<<<<<<<
  *         self.format = self._format
- * 
+ *
  */
   if (!(likely(PyBytes_CheckExact(__pyx_v_format))||((__pyx_v_format) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_v_format)->tp_name), 0))) __PYX_ERR(1, 141, __pyx_L1_error)
   __pyx_t_3 = __pyx_v_format;
@@ -25981,8 +25981,8 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  *         self.format = self._format             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   if (unlikely(__pyx_v_self->_format == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
@@ -25992,39 +25992,39 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_v_self->format = __pyx_t_7;
 
   /* "View.MemoryView":145
- * 
- * 
+ *
+ *
  *         self._shape = <Py_ssize_t *> PyObject_Malloc(sizeof(Py_ssize_t)*self.ndim*2)             # <<<<<<<<<<<<<<
  *         self._strides = self._shape + self.ndim
- * 
+ *
  */
   __pyx_v_self->_shape = ((Py_ssize_t *)PyObject_Malloc((((sizeof(Py_ssize_t)) * __pyx_v_self->ndim) * 2)));
 
   /* "View.MemoryView":146
- * 
+ *
  *         self._shape = <Py_ssize_t *> PyObject_Malloc(sizeof(Py_ssize_t)*self.ndim*2)
  *         self._strides = self._shape + self.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not self._shape:
  */
   __pyx_v_self->_strides = (__pyx_v_self->_shape + __pyx_v_self->ndim);
 
   /* "View.MemoryView":148
  *         self._strides = self._shape + self.ndim
- * 
+ *
  *         if not self._shape:             # <<<<<<<<<<<<<<
  *             raise MemoryError("unable to allocate shape and strides.")
- * 
+ *
  */
   __pyx_t_4 = ((!(__pyx_v_self->_shape != 0)) != 0);
   if (unlikely(__pyx_t_4)) {
 
     /* "View.MemoryView":149
- * 
+ *
  *         if not self._shape:
  *             raise MemoryError("unable to allocate shape and strides.")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 149, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -26034,16 +26034,16 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":148
  *         self._strides = self._shape + self.ndim
- * 
+ *
  *         if not self._shape:             # <<<<<<<<<<<<<<
  *             raise MemoryError("unable to allocate shape and strides.")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":152
- * 
- * 
+ *
+ *
  *         for idx, dim in enumerate(shape):             # <<<<<<<<<<<<<<
  *             if dim <= 0:
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
@@ -26065,7 +26065,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     __pyx_t_8 = (__pyx_t_8 + 1);
 
     /* "View.MemoryView":153
- * 
+ *
  *         for idx, dim in enumerate(shape):
  *             if dim <= 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
@@ -26079,7 +26079,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             if dim <= 0:
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))             # <<<<<<<<<<<<<<
  *             self._shape[idx] = dim
- * 
+ *
  */
       __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_idx); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 154, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
@@ -26104,7 +26104,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
       __PYX_ERR(1, 154, __pyx_L1_error)
 
       /* "View.MemoryView":153
- * 
+ *
  *         for idx, dim in enumerate(shape):
  *             if dim <= 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
@@ -26116,14 +26116,14 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             if dim <= 0:
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
  *             self._shape[idx] = dim             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef char order
  */
     (__pyx_v_self->_shape[__pyx_v_idx]) = __pyx_v_dim;
 
     /* "View.MemoryView":152
- * 
- * 
+ *
+ *
  *         for idx, dim in enumerate(shape):             # <<<<<<<<<<<<<<
  *             if dim <= 0:
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
@@ -26132,7 +26132,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "View.MemoryView":158
- * 
+ *
  *         cdef char order
  *         if mode == 'fortran':             # <<<<<<<<<<<<<<
  *             order = b'F'
@@ -26164,7 +26164,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     __pyx_v_self->mode = __pyx_n_u_fortran;
 
     /* "View.MemoryView":158
- * 
+ *
  *         cdef char order
  *         if mode == 'fortran':             # <<<<<<<<<<<<<<
  *             order = b'F'
@@ -26219,7 +26219,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             self.mode = u'c'
  *         else:
  *             raise ValueError("Invalid mode, expected 'c' or 'fortran', got %s" % mode)             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.len = fill_contig_strides_array(self._shape, self._strides,
  */
   /*else*/ {
@@ -26236,16 +26236,16 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
   /* "View.MemoryView":167
  *             raise ValueError("Invalid mode, expected 'c' or 'fortran', got %s" % mode)
- * 
+ *
  *         self.len = fill_contig_strides_array(self._shape, self._strides,             # <<<<<<<<<<<<<<
  *                                              itemsize, self.ndim, order)
- * 
+ *
  */
   __pyx_v_self->len = __pyx_fill_contig_strides_array(__pyx_v_self->_shape, __pyx_v_self->_strides, __pyx_v_itemsize, __pyx_v_self->ndim, __pyx_v_order);
 
   /* "View.MemoryView":170
  *                                              itemsize, self.ndim, order)
- * 
+ *
  *         self.free_data = allocate_buffer             # <<<<<<<<<<<<<<
  *         self.dtype_is_object = format == b'O'
  *         if allocate_buffer:
@@ -26253,11 +26253,11 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_v_self->free_data = __pyx_v_allocate_buffer;
 
   /* "View.MemoryView":171
- * 
+ *
  *         self.free_data = allocate_buffer
  *         self.dtype_is_object = format == b'O'             # <<<<<<<<<<<<<<
  *         if allocate_buffer:
- * 
+ *
  */
   __pyx_t_10 = PyObject_RichCompare(__pyx_v_format, __pyx_n_b_O, Py_EQ); __Pyx_XGOTREF(__pyx_t_10); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 171, __pyx_L1_error)
   __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 171, __pyx_L1_error)
@@ -26268,15 +26268,15 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *         self.free_data = allocate_buffer
  *         self.dtype_is_object = format == b'O'
  *         if allocate_buffer:             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_4 = (__pyx_v_allocate_buffer != 0);
   if (__pyx_t_4) {
 
     /* "View.MemoryView":175
- * 
- * 
+ *
+ *
  *             self.data = <char *>malloc(self.len)             # <<<<<<<<<<<<<<
  *             if not self.data:
  *                 raise MemoryError("unable to allocate array data.")
@@ -26284,11 +26284,11 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     __pyx_v_self->data = ((char *)malloc(__pyx_v_self->len));
 
     /* "View.MemoryView":176
- * 
+ *
  *             self.data = <char *>malloc(self.len)
  *             if not self.data:             # <<<<<<<<<<<<<<
  *                 raise MemoryError("unable to allocate array data.")
- * 
+ *
  */
     __pyx_t_4 = ((!(__pyx_v_self->data != 0)) != 0);
     if (unlikely(__pyx_t_4)) {
@@ -26297,7 +26297,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             self.data = <char *>malloc(self.len)
  *             if not self.data:
  *                 raise MemoryError("unable to allocate array data.")             # <<<<<<<<<<<<<<
- * 
+ *
  *             if self.dtype_is_object:
  */
       __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 177, __pyx_L1_error)
@@ -26307,17 +26307,17 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
       __PYX_ERR(1, 177, __pyx_L1_error)
 
       /* "View.MemoryView":176
- * 
+ *
  *             self.data = <char *>malloc(self.len)
  *             if not self.data:             # <<<<<<<<<<<<<<
  *                 raise MemoryError("unable to allocate array data.")
- * 
+ *
  */
     }
 
     /* "View.MemoryView":179
  *                 raise MemoryError("unable to allocate array data.")
- * 
+ *
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 p = <PyObject **> self.data
  *                 for i in range(self.len / itemsize):
@@ -26326,7 +26326,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     if (__pyx_t_4) {
 
       /* "View.MemoryView":180
- * 
+ *
  *             if self.dtype_is_object:
  *                 p = <PyObject **> self.data             # <<<<<<<<<<<<<<
  *                 for i in range(self.len / itemsize):
@@ -26359,7 +26359,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *                 for i in range(self.len / itemsize):
  *                     p[i] = Py_None             # <<<<<<<<<<<<<<
  *                     Py_INCREF(Py_None)
- * 
+ *
  */
         (__pyx_v_p[__pyx_v_i]) = Py_None;
 
@@ -26367,7 +26367,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *                 for i in range(self.len / itemsize):
  *                     p[i] = Py_None
  *                     Py_INCREF(Py_None)             # <<<<<<<<<<<<<<
- * 
+ *
  *     @cname('getbuffer')
  */
         Py_INCREF(Py_None);
@@ -26375,7 +26375,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
       /* "View.MemoryView":179
  *                 raise MemoryError("unable to allocate array data.")
- * 
+ *
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 p = <PyObject **> self.data
  *                 for i in range(self.len / itemsize):
@@ -26386,17 +26386,17 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *         self.free_data = allocate_buffer
  *         self.dtype_is_object = format == b'O'
  *         if allocate_buffer:             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   }
 
   /* "View.MemoryView":123
  *         cdef bint dtype_is_object
- * 
+ *
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- * 
+ *
  */
 
   /* function exit code */
@@ -26416,7 +26416,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 }
 
 /* "View.MemoryView":186
- * 
+ *
  *     @cname('getbuffer')
  *     def __getbuffer__(self, Py_buffer *info, int flags):             # <<<<<<<<<<<<<<
  *         cdef int bufmode = -1
@@ -26623,7 +26623,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *         info.suboffsets = NULL
  *         info.itemsize = self.itemsize             # <<<<<<<<<<<<<<
  *         info.readonly = 0
- * 
+ *
  */
   __pyx_t_5 = __pyx_v_self->itemsize;
   __pyx_v_info->itemsize = __pyx_t_5;
@@ -26632,14 +26632,14 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *         info.suboffsets = NULL
  *         info.itemsize = self.itemsize
  *         info.readonly = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  */
   __pyx_v_info->readonly = 0;
 
   /* "View.MemoryView":203
  *         info.readonly = 0
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.format
  *         else:
@@ -26648,7 +26648,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
   if (__pyx_t_1) {
 
     /* "View.MemoryView":204
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  *             info.format = self.format             # <<<<<<<<<<<<<<
  *         else:
@@ -26659,7 +26659,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
     /* "View.MemoryView":203
  *         info.readonly = 0
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.format
  *         else:
@@ -26671,7 +26671,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *             info.format = self.format
  *         else:
  *             info.format = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         info.obj = self
  */
   /*else*/ {
@@ -26681,9 +26681,9 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
   /* "View.MemoryView":208
  *             info.format = NULL
- * 
+ *
  *         info.obj = self             # <<<<<<<<<<<<<<
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_array_getbuffer, "getbuffer(obj, view, flags)")
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_self));
@@ -26693,7 +26693,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
   __pyx_v_info->obj = ((PyObject *)__pyx_v_self);
 
   /* "View.MemoryView":186
- * 
+ *
  *     @cname('getbuffer')
  *     def __getbuffer__(self, Py_buffer *info, int flags):             # <<<<<<<<<<<<<<
  *         cdef int bufmode = -1
@@ -26724,7 +26724,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
 /* "View.MemoryView":212
  *     __pyx_getbuffer = capsule(<void *> &__pyx_array_getbuffer, "getbuffer(obj, view, flags)")
- * 
+ *
  *     def __dealloc__(array self):             # <<<<<<<<<<<<<<
  *         if self.callback_free_data != NULL:
  *             self.callback_free_data(self.data)
@@ -26747,7 +26747,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "View.MemoryView":213
- * 
+ *
  *     def __dealloc__(array self):
  *         if self.callback_free_data != NULL:             # <<<<<<<<<<<<<<
  *             self.callback_free_data(self.data)
@@ -26766,7 +26766,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
     __pyx_v_self->callback_free_data(__pyx_v_self->data);
 
     /* "View.MemoryView":213
- * 
+ *
  *     def __dealloc__(array self):
  *         if self.callback_free_data != NULL:             # <<<<<<<<<<<<<<
  *             self.callback_free_data(self.data)
@@ -26818,7 +26818,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
  *                                           self._strides, self.ndim, False)
  *             free(self.data)             # <<<<<<<<<<<<<<
  *         PyObject_Free(self._shape)
- * 
+ *
  */
     free(__pyx_v_self->data);
 
@@ -26836,14 +26836,14 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
  *                                           self._strides, self.ndim, False)
  *             free(self.data)
  *         PyObject_Free(self._shape)             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   PyObject_Free(__pyx_v_self->_shape);
 
   /* "View.MemoryView":212
  *     __pyx_getbuffer = capsule(<void *> &__pyx_array_getbuffer, "getbuffer(obj, view, flags)")
- * 
+ *
  *     def __dealloc__(array self):             # <<<<<<<<<<<<<<
  *         if self.callback_free_data != NULL:
  *             self.callback_free_data(self.data)
@@ -26854,11 +26854,11 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
 }
 
 /* "View.MemoryView":223
- * 
+ *
  *     @property
  *     def memview(self):             # <<<<<<<<<<<<<<
  *         return self.get_memview()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -26887,7 +26887,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
  *     @property
  *     def memview(self):
  *         return self.get_memview()             # <<<<<<<<<<<<<<
- * 
+ *
  *     @cname('get_memview')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -26898,11 +26898,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
   goto __pyx_L0;
 
   /* "View.MemoryView":223
- * 
+ *
  *     @property
  *     def memview(self):             # <<<<<<<<<<<<<<
  *         return self.get_memview()
- * 
+ *
  */
 
   /* function exit code */
@@ -26917,7 +26917,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
 }
 
 /* "View.MemoryView":227
- * 
+ *
  *     @cname('get_memview')
  *     cdef get_memview(self):             # <<<<<<<<<<<<<<
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
@@ -26941,7 +26941,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
  *     cdef get_memview(self):
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE             # <<<<<<<<<<<<<<
  *         return  memoryview(self, flags, self.dtype_is_object)
- * 
+ *
  */
   __pyx_v_flags = ((PyBUF_ANY_CONTIGUOUS | PyBUF_FORMAT) | PyBUF_WRITABLE);
 
@@ -26949,7 +26949,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
  *     cdef get_memview(self):
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
  *         return  memoryview(self, flags, self.dtype_is_object)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -26976,7 +26976,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
   goto __pyx_L0;
 
   /* "View.MemoryView":227
- * 
+ *
  *     @cname('get_memview')
  *     cdef get_memview(self):             # <<<<<<<<<<<<<<
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
@@ -26998,10 +26998,10 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
 
 /* "View.MemoryView":231
  *         return  memoryview(self, flags, self.dtype_is_object)
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         return self._shape[0]
- * 
+ *
  */
 
 /* Python wrapper */
@@ -27023,10 +27023,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
   __Pyx_RefNannySetupContext("__len__", 0);
 
   /* "View.MemoryView":232
- * 
+ *
  *     def __len__(self):
  *         return self._shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __getattr__(self, attr):
  */
   __pyx_r = (__pyx_v_self->_shape[0]);
@@ -27034,10 +27034,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
 
   /* "View.MemoryView":231
  *         return  memoryview(self, flags, self.dtype_is_object)
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         return self._shape[0]
- * 
+ *
  */
 
   /* function exit code */
@@ -27048,10 +27048,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
 
 /* "View.MemoryView":234
  *         return self._shape[0]
- * 
+ *
  *     def __getattr__(self, attr):             # <<<<<<<<<<<<<<
  *         return getattr(self.memview, attr)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -27078,10 +27078,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
   __Pyx_RefNannySetupContext("__getattr__", 0);
 
   /* "View.MemoryView":235
- * 
+ *
  *     def __getattr__(self, attr):
  *         return getattr(self.memview, attr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __getitem__(self, item):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -27096,10 +27096,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
 
   /* "View.MemoryView":234
  *         return self._shape[0]
- * 
+ *
  *     def __getattr__(self, attr):             # <<<<<<<<<<<<<<
  *         return getattr(self.memview, attr)
- * 
+ *
  */
 
   /* function exit code */
@@ -27116,10 +27116,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
 
 /* "View.MemoryView":237
  *         return getattr(self.memview, attr)
- * 
+ *
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         return self.memview[item]
- * 
+ *
  */
 
 /* Python wrapper */
@@ -27146,10 +27146,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
   /* "View.MemoryView":238
- * 
+ *
  *     def __getitem__(self, item):
  *         return self.memview[item]             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setitem__(self, item, value):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -27164,10 +27164,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
 
   /* "View.MemoryView":237
  *         return getattr(self.memview, attr)
- * 
+ *
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         return self.memview[item]
- * 
+ *
  */
 
   /* function exit code */
@@ -27184,10 +27184,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
 
 /* "View.MemoryView":240
  *         return self.memview[item]
- * 
+ *
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
  *         self.memview[item] = value
- * 
+ *
  */
 
 /* Python wrapper */
@@ -27213,11 +27213,11 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_12__setitem__(struc
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
   /* "View.MemoryView":241
- * 
+ *
  *     def __setitem__(self, item, value):
  *         self.memview[item] = value             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_memview); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -27226,10 +27226,10 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_12__setitem__(struc
 
   /* "View.MemoryView":240
  *         return self.memview[item]
- * 
+ *
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
  *         self.memview[item] = value
- * 
+ *
  */
 
   /* function exit code */
@@ -27358,7 +27358,7 @@ static PyObject *__pyx_pf___pyx_array_2__setstate_cython__(CYTHON_UNUSED struct 
 }
 
 /* "View.MemoryView":245
- * 
+ *
  * @cname("__pyx_array_new")
  * cdef array array_cwrapper(tuple shape, Py_ssize_t itemsize, char *format,             # <<<<<<<<<<<<<<
  *                           char *mode, char *buf):
@@ -27381,7 +27381,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
   /* "View.MemoryView":249
  *     cdef array result
- * 
+ *
  *     if buf == NULL:             # <<<<<<<<<<<<<<
  *         result = array(shape, itemsize, format, mode.decode('ASCII'))
  *     else:
@@ -27390,7 +27390,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
   if (__pyx_t_1) {
 
     /* "View.MemoryView":250
- * 
+ *
  *     if buf == NULL:
  *         result = array(shape, itemsize, format, mode.decode('ASCII'))             # <<<<<<<<<<<<<<
  *     else:
@@ -27424,7 +27424,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
     /* "View.MemoryView":249
  *     cdef array result
- * 
+ *
  *     if buf == NULL:             # <<<<<<<<<<<<<<
  *         result = array(shape, itemsize, format, mode.decode('ASCII'))
  *     else:
@@ -27466,7 +27466,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
  *         result = array(shape, itemsize, format, mode.decode('ASCII'),
  *                        allocate_buffer=False)             # <<<<<<<<<<<<<<
  *         result.data = buf
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -27490,7 +27490,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
  *         result = array(shape, itemsize, format, mode.decode('ASCII'),
  *                        allocate_buffer=False)
  *         result.data = buf             # <<<<<<<<<<<<<<
- * 
+ *
  *     return result
  */
     __pyx_v_result->data = __pyx_v_buf;
@@ -27499,10 +27499,10 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
   /* "View.MemoryView":256
  *         result.data = buf
- * 
+ *
  *     return result             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __Pyx_INCREF(((PyObject *)__pyx_v_result));
@@ -27510,7 +27510,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
   goto __pyx_L0;
 
   /* "View.MemoryView":245
- * 
+ *
  * @cname("__pyx_array_new")
  * cdef array array_cwrapper(tuple shape, Py_ssize_t itemsize, char *format,             # <<<<<<<<<<<<<<
  *                           char *mode, char *buf):
@@ -27630,7 +27630,7 @@ static int __pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum___init__(struc
  *         self.name = name
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return self.name
- * 
+ *
  */
 
 /* Python wrapper */
@@ -27655,7 +27655,7 @@ static PyObject *__pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum_2__repr_
  *         self.name = name
  *     def __repr__(self):
  *         return self.name             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")
  */
   __Pyx_XDECREF(__pyx_r);
@@ -27668,7 +27668,7 @@ static PyObject *__pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum_2__repr_
  *         self.name = name
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return self.name
- * 
+ *
  */
 
   /* function exit code */
@@ -27972,7 +27972,7 @@ static PyObject *__pyx_pf___pyx_MemviewEnum_2__setstate_cython__(struct __pyx_Me
 }
 
 /* "View.MemoryView":299
- * 
+ *
  * @cname('__pyx_align_pointer')
  * cdef void *align_pointer(void *memory, size_t alignment) nogil:             # <<<<<<<<<<<<<<
  *     "Align pointer memory on a given boundary"
@@ -27990,59 +27990,59 @@ static void *__pyx_align_pointer(void *__pyx_v_memory, size_t __pyx_v_alignment)
  *     "Align pointer memory on a given boundary"
  *     cdef Py_intptr_t aligned_p = <Py_intptr_t> memory             # <<<<<<<<<<<<<<
  *     cdef size_t offset
- * 
+ *
  */
   __pyx_v_aligned_p = ((Py_intptr_t)__pyx_v_memory);
 
   /* "View.MemoryView":305
- * 
+ *
  *     with cython.cdivision(True):
  *         offset = aligned_p % alignment             # <<<<<<<<<<<<<<
- * 
+ *
  *     if offset > 0:
  */
   __pyx_v_offset = (__pyx_v_aligned_p % __pyx_v_alignment);
 
   /* "View.MemoryView":307
  *         offset = aligned_p % alignment
- * 
+ *
  *     if offset > 0:             # <<<<<<<<<<<<<<
  *         aligned_p += alignment - offset
- * 
+ *
  */
   __pyx_t_1 = ((__pyx_v_offset > 0) != 0);
   if (__pyx_t_1) {
 
     /* "View.MemoryView":308
- * 
+ *
  *     if offset > 0:
  *         aligned_p += alignment - offset             # <<<<<<<<<<<<<<
- * 
+ *
  *     return <void *> aligned_p
  */
     __pyx_v_aligned_p = (__pyx_v_aligned_p + (__pyx_v_alignment - __pyx_v_offset));
 
     /* "View.MemoryView":307
  *         offset = aligned_p % alignment
- * 
+ *
  *     if offset > 0:             # <<<<<<<<<<<<<<
  *         aligned_p += alignment - offset
- * 
+ *
  */
   }
 
   /* "View.MemoryView":310
  *         aligned_p += alignment - offset
- * 
+ *
  *     return <void *> aligned_p             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((void *)__pyx_v_aligned_p);
   goto __pyx_L0;
 
   /* "View.MemoryView":299
- * 
+ *
  * @cname('__pyx_align_pointer')
  * cdef void *align_pointer(void *memory, size_t alignment) nogil:             # <<<<<<<<<<<<<<
  *     "Align pointer memory on a given boundary"
@@ -28056,7 +28056,7 @@ static void *__pyx_align_pointer(void *__pyx_v_memory, size_t __pyx_v_alignment)
 
 /* "View.MemoryView":346
  *     cdef __Pyx_TypeInfo *typeinfo
- * 
+ *
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):             # <<<<<<<<<<<<<<
  *         self.obj = obj
  *         self.flags = flags
@@ -28157,7 +28157,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
   /* "View.MemoryView":347
- * 
+ *
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):
  *         self.obj = obj             # <<<<<<<<<<<<<<
  *         self.flags = flags
@@ -28222,7 +28222,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             if <PyObject *> self.view.obj == NULL:
  *                 (<__pyx_buffer *> &self.view).obj = Py_None             # <<<<<<<<<<<<<<
  *                 Py_INCREF(Py_None)
- * 
+ *
  */
       ((Py_buffer *)(&__pyx_v_self->view))->obj = Py_None;
 
@@ -28230,7 +28230,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             if <PyObject *> self.view.obj == NULL:
  *                 (<__pyx_buffer *> &self.view).obj = Py_None
  *                 Py_INCREF(Py_None)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():
  */
       Py_INCREF(Py_None);
@@ -28255,7 +28255,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":355
  *                 Py_INCREF(Py_None)
- * 
+ *
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():             # <<<<<<<<<<<<<<
  *             global __pyx_memoryview_thread_locks_used
  *             if __pyx_memoryview_thread_locks_used < THREAD_LOCKS_PREALLOCATED:
@@ -28324,7 +28324,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:             # <<<<<<<<<<<<<<
  *                     raise MemoryError
- * 
+ *
  */
       __pyx_t_1 = ((__pyx_v_self->lock == NULL) != 0);
       if (unlikely(__pyx_t_1)) {
@@ -28333,7 +28333,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:
  *                     raise MemoryError             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  */
         PyErr_NoMemory(); __PYX_ERR(1, 363, __pyx_L1_error)
@@ -28343,7 +28343,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:             # <<<<<<<<<<<<<<
  *                     raise MemoryError
- * 
+ *
  */
       }
 
@@ -28358,7 +28358,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
     /* "View.MemoryView":355
  *                 Py_INCREF(Py_None)
- * 
+ *
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():             # <<<<<<<<<<<<<<
  *             global __pyx_memoryview_thread_locks_used
  *             if __pyx_memoryview_thread_locks_used < THREAD_LOCKS_PREALLOCATED:
@@ -28367,7 +28367,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":365
  *                     raise MemoryError
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
@@ -28376,7 +28376,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
   if (__pyx_t_1) {
 
     /* "View.MemoryView":366
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')             # <<<<<<<<<<<<<<
  *         else:
@@ -28395,7 +28395,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
     /* "View.MemoryView":365
  *                     raise MemoryError
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
@@ -28407,7 +28407,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
  *             self.dtype_is_object = dtype_is_object             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.acquisition_count_aligned_p = <__pyx_atomic_int *> align_pointer(
  */
   /*else*/ {
@@ -28417,7 +28417,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":370
  *             self.dtype_is_object = dtype_is_object
- * 
+ *
  *         self.acquisition_count_aligned_p = <__pyx_atomic_int *> align_pointer(             # <<<<<<<<<<<<<<
  *                   <void *> &self.acquisition_count[0], sizeof(__pyx_atomic_int))
  *         self.typeinfo = NULL
@@ -28428,14 +28428,14 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *         self.acquisition_count_aligned_p = <__pyx_atomic_int *> align_pointer(
  *                   <void *> &self.acquisition_count[0], sizeof(__pyx_atomic_int))
  *         self.typeinfo = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __dealloc__(memoryview self):
  */
   __pyx_v_self->typeinfo = NULL;
 
   /* "View.MemoryView":346
  *     cdef __Pyx_TypeInfo *typeinfo
- * 
+ *
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):             # <<<<<<<<<<<<<<
  *         self.obj = obj
  *         self.flags = flags
@@ -28454,7 +28454,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
 /* "View.MemoryView":374
  *         self.typeinfo = NULL
- * 
+ *
  *     def __dealloc__(memoryview self):             # <<<<<<<<<<<<<<
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -28484,7 +28484,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "View.MemoryView":375
- * 
+ *
  *     def __dealloc__(memoryview self):
  *         if self.obj is not None:             # <<<<<<<<<<<<<<
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -28499,12 +28499,12 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)             # <<<<<<<<<<<<<<
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:
- * 
+ *
  */
     __Pyx_ReleaseBuffer((&__pyx_v_self->view));
 
     /* "View.MemoryView":375
- * 
+ *
  *     def __dealloc__(memoryview self):
  *         if self.obj is not None:             # <<<<<<<<<<<<<<
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -28517,7 +28517,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:             # <<<<<<<<<<<<<<
- * 
+ *
  *             (<__pyx_buffer *> &self.view).obj = NULL
  */
   __pyx_t_2 = ((((Py_buffer *)(&__pyx_v_self->view))->obj == Py_None) != 0);
@@ -28525,18 +28525,18 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
     /* "View.MemoryView":379
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:
- * 
+ *
  *             (<__pyx_buffer *> &self.view).obj = NULL             # <<<<<<<<<<<<<<
  *             Py_DECREF(Py_None)
- * 
+ *
  */
     ((Py_buffer *)(&__pyx_v_self->view))->obj = NULL;
 
     /* "View.MemoryView":380
- * 
+ *
  *             (<__pyx_buffer *> &self.view).obj = NULL
  *             Py_DECREF(Py_None)             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef int i
  */
     Py_DECREF(Py_None);
@@ -28545,7 +28545,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:             # <<<<<<<<<<<<<<
- * 
+ *
  *             (<__pyx_buffer *> &self.view).obj = NULL
  */
   }
@@ -28655,7 +28655,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *                     break
  *             else:
  *                 PyThread_free_lock(self.lock)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:
  */
       PyThread_free_lock(__pyx_v_self->lock);
@@ -28673,7 +28673,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
   /* "View.MemoryView":374
  *         self.typeinfo = NULL
- * 
+ *
  *     def __dealloc__(memoryview self):             # <<<<<<<<<<<<<<
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -28685,7 +28685,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
 /* "View.MemoryView":395
  *                 PyThread_free_lock(self.lock)
- * 
+ *
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:             # <<<<<<<<<<<<<<
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf
@@ -28713,17 +28713,17 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf             # <<<<<<<<<<<<<<
- * 
+ *
  *         for dim, idx in enumerate(index):
  */
   __pyx_v_itemp = ((char *)__pyx_v_self->view.buf);
 
   /* "View.MemoryView":399
  *         cdef char *itemp = <char *> self.view.buf
- * 
+ *
  *         for dim, idx in enumerate(index):             # <<<<<<<<<<<<<<
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- * 
+ *
  */
   __pyx_t_1 = 0;
   if (likely(PyList_CheckExact(__pyx_v_index)) || PyTuple_CheckExact(__pyx_v_index)) {
@@ -28771,10 +28771,10 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
     __pyx_t_1 = (__pyx_t_1 + 1);
 
     /* "View.MemoryView":400
- * 
+ *
  *         for dim, idx in enumerate(index):
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         return itemp
  */
     __pyx_t_6 = __Pyx_PyIndex_AsSsize_t(__pyx_v_idx); if (unlikely((__pyx_t_6 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 400, __pyx_L1_error)
@@ -28783,27 +28783,27 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
 
     /* "View.MemoryView":399
  *         cdef char *itemp = <char *> self.view.buf
- * 
+ *
  *         for dim, idx in enumerate(index):             # <<<<<<<<<<<<<<
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- * 
+ *
  */
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "View.MemoryView":402
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- * 
+ *
  *         return itemp             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_itemp;
   goto __pyx_L0;
 
   /* "View.MemoryView":395
  *                 PyThread_free_lock(self.lock)
- * 
+ *
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:             # <<<<<<<<<<<<<<
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf
@@ -28822,8 +28822,8 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
 }
 
 /* "View.MemoryView":405
- * 
- * 
+ *
+ *
  *     def __getitem__(memoryview self, object index):             # <<<<<<<<<<<<<<
  *         if index is Ellipsis:
  *             return self
@@ -28860,11 +28860,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
   /* "View.MemoryView":406
- * 
+ *
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:             # <<<<<<<<<<<<<<
  *             return self
- * 
+ *
  */
   __pyx_t_1 = (__pyx_v_index == __pyx_builtin_Ellipsis);
   __pyx_t_2 = (__pyx_t_1 != 0);
@@ -28874,7 +28874,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:
  *             return self             # <<<<<<<<<<<<<<
- * 
+ *
  *         have_slices, indices = _unellipsify(index, self.view.ndim)
  */
     __Pyx_XDECREF(__pyx_r);
@@ -28883,19 +28883,19 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
     goto __pyx_L0;
 
     /* "View.MemoryView":406
- * 
+ *
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:             # <<<<<<<<<<<<<<
  *             return self
- * 
+ *
  */
   }
 
   /* "View.MemoryView":409
  *             return self
- * 
+ *
  *         have_slices, indices = _unellipsify(index, self.view.ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef char *itemp
  */
   __pyx_t_3 = _unellipsify(__pyx_v_index, __pyx_v_self->view.ndim); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 409, __pyx_L1_error)
@@ -28909,8 +28909,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
       __PYX_ERR(1, 409, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
-    __pyx_t_5 = PyTuple_GET_ITEM(sequence, 1); 
+    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0);
+    __pyx_t_5 = PyTuple_GET_ITEM(sequence, 1);
     __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_5);
     #else
@@ -28929,7 +28929,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   __pyx_t_5 = 0;
 
   /* "View.MemoryView":412
- * 
+ *
  *         cdef char *itemp
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             return memview_slice(self, indices)
@@ -28953,7 +28953,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
     goto __pyx_L0;
 
     /* "View.MemoryView":412
- * 
+ *
  *         cdef char *itemp
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             return memview_slice(self, indices)
@@ -28966,7 +28966,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *         else:
  *             itemp = self.get_item_pointer(indices)             # <<<<<<<<<<<<<<
  *             return self.convert_item_to_object(itemp)
- * 
+ *
  */
   /*else*/ {
     __pyx_t_6 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->get_item_pointer(__pyx_v_self, __pyx_v_indices); if (unlikely(__pyx_t_6 == ((char *)NULL))) __PYX_ERR(1, 415, __pyx_L1_error)
@@ -28976,7 +28976,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *         else:
  *             itemp = self.get_item_pointer(indices)
  *             return self.convert_item_to_object(itemp)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):
  */
     __Pyx_XDECREF(__pyx_r);
@@ -28988,8 +28988,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   }
 
   /* "View.MemoryView":405
- * 
- * 
+ *
+ *
  *     def __getitem__(memoryview self, object index):             # <<<<<<<<<<<<<<
  *         if index is Ellipsis:
  *             return self
@@ -29012,7 +29012,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
 
 /* "View.MemoryView":418
  *             return self.convert_item_to_object(itemp)
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):             # <<<<<<<<<<<<<<
  *         if self.view.readonly:
  *             raise TypeError("Cannot assign to read-only memoryview")
@@ -29047,11 +29047,11 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
   __Pyx_INCREF(__pyx_v_index);
 
   /* "View.MemoryView":419
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise TypeError("Cannot assign to read-only memoryview")
- * 
+ *
  */
   __pyx_t_1 = (__pyx_v_self->view.readonly != 0);
   if (unlikely(__pyx_t_1)) {
@@ -29060,7 +29060,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:
  *             raise TypeError("Cannot assign to read-only memoryview")             # <<<<<<<<<<<<<<
- * 
+ *
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
     __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 420, __pyx_L1_error)
@@ -29070,19 +29070,19 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
     __PYX_ERR(1, 420, __pyx_L1_error)
 
     /* "View.MemoryView":419
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise TypeError("Cannot assign to read-only memoryview")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":422
  *             raise TypeError("Cannot assign to read-only memoryview")
- * 
+ *
  *         have_slices, index = _unellipsify(index, self.view.ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if have_slices:
  */
   __pyx_t_2 = _unellipsify(__pyx_v_index, __pyx_v_self->view.ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 422, __pyx_L1_error)
@@ -29096,8 +29096,8 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
       __PYX_ERR(1, 422, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
-    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1); 
+    __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0);
+    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1);
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_4);
     #else
@@ -29117,7 +29117,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
   /* "View.MemoryView":424
  *         have_slices, index = _unellipsify(index, self.view.ndim)
- * 
+ *
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             obj = self.is_slice(value)
  *             if obj:
@@ -29126,7 +29126,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
   if (__pyx_t_1) {
 
     /* "View.MemoryView":425
- * 
+ *
  *         if have_slices:
  *             obj = self.is_slice(value)             # <<<<<<<<<<<<<<
  *             if obj:
@@ -29191,7 +29191,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
     /* "View.MemoryView":424
  *         have_slices, index = _unellipsify(index, self.view.ndim)
- * 
+ *
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             obj = self.is_slice(value)
  *             if obj:
@@ -29203,7 +29203,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
  *                 self.setitem_slice_assign_scalar(self[index], value)
  *         else:
  *             self.setitem_indexed(index, value)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef is_slice(self, obj):
  */
   /*else*/ {
@@ -29215,7 +29215,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
   /* "View.MemoryView":418
  *             return self.convert_item_to_object(itemp)
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):             # <<<<<<<<<<<<<<
  *         if self.view.readonly:
  *             raise TypeError("Cannot assign to read-only memoryview")
@@ -29240,7 +29240,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
 /* "View.MemoryView":433
  *             self.setitem_indexed(index, value)
- * 
+ *
  *     cdef is_slice(self, obj):             # <<<<<<<<<<<<<<
  *         if not isinstance(obj, memoryview):
  *             try:
@@ -29265,13 +29265,13 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
   __Pyx_INCREF(__pyx_v_obj);
 
   /* "View.MemoryView":434
- * 
+ *
  *     cdef is_slice(self, obj):
  *         if not isinstance(obj, memoryview):             # <<<<<<<<<<<<<<
  *             try:
  *                 obj = memoryview(obj, self.flags & ~PyBUF_WRITABLE | PyBUF_ANY_CONTIGUOUS,
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_obj, __pyx_memoryview_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_obj, __pyx_memoryview_type);
   __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
   if (__pyx_t_2) {
 
@@ -29357,7 +29357,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
  *                                  self.dtype_is_object)
  *             except TypeError:             # <<<<<<<<<<<<<<
  *                 return None
- * 
+ *
  */
       __pyx_t_9 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError);
       if (__pyx_t_9) {
@@ -29371,7 +29371,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
  *                                  self.dtype_is_object)
  *             except TypeError:
  *                 return None             # <<<<<<<<<<<<<<
- * 
+ *
  *         return obj
  */
         __Pyx_XDECREF(__pyx_r);
@@ -29406,7 +29406,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
     }
 
     /* "View.MemoryView":434
- * 
+ *
  *     cdef is_slice(self, obj):
  *         if not isinstance(obj, memoryview):             # <<<<<<<<<<<<<<
  *             try:
@@ -29416,9 +29416,9 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
   /* "View.MemoryView":441
  *                 return None
- * 
+ *
  *         return obj             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef setitem_slice_assignment(self, dst, src):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -29428,7 +29428,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
   /* "View.MemoryView":433
  *             self.setitem_indexed(index, value)
- * 
+ *
  *     cdef is_slice(self, obj):             # <<<<<<<<<<<<<<
  *         if not isinstance(obj, memoryview):
  *             try:
@@ -29450,7 +29450,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
 /* "View.MemoryView":443
  *         return obj
- * 
+ *
  *     cdef setitem_slice_assignment(self, dst, src):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice dst_slice
  *         cdef __Pyx_memviewslice src_slice
@@ -29474,7 +29474,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
   /* "View.MemoryView":447
  *         cdef __Pyx_memviewslice src_slice
- * 
+ *
  *         memoryview_copy_contents(get_slice_from_memview(src, &src_slice)[0],             # <<<<<<<<<<<<<<
  *                                  get_slice_from_memview(dst, &dst_slice)[0],
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
@@ -29483,11 +29483,11 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(((struct __pyx_memoryview_obj *)__pyx_v_src), (&__pyx_v_src_slice)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 447, __pyx_L1_error)
 
   /* "View.MemoryView":448
- * 
+ *
  *         memoryview_copy_contents(get_slice_from_memview(src, &src_slice)[0],
  *                                  get_slice_from_memview(dst, &dst_slice)[0],             # <<<<<<<<<<<<<<
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
- * 
+ *
  */
   if (!(likely(((__pyx_v_dst) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_dst, __pyx_memoryview_type))))) __PYX_ERR(1, 448, __pyx_L1_error)
   __pyx_t_2 = __pyx_memoryview_get_slice_from_memoryview(((struct __pyx_memoryview_obj *)__pyx_v_dst), (&__pyx_v_dst_slice)); if (unlikely(__pyx_t_2 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 448, __pyx_L1_error)
@@ -29496,7 +29496,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
  *         memoryview_copy_contents(get_slice_from_memview(src, &src_slice)[0],
  *                                  get_slice_from_memview(dst, &dst_slice)[0],
  *                                  src.ndim, dst.ndim, self.dtype_is_object)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_src, __pyx_n_s_ndim); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 449, __pyx_L1_error)
@@ -29510,7 +29510,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
   /* "View.MemoryView":447
  *         cdef __Pyx_memviewslice src_slice
- * 
+ *
  *         memoryview_copy_contents(get_slice_from_memview(src, &src_slice)[0],             # <<<<<<<<<<<<<<
  *                                  get_slice_from_memview(dst, &dst_slice)[0],
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
@@ -29519,7 +29519,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
   /* "View.MemoryView":443
  *         return obj
- * 
+ *
  *     cdef setitem_slice_assignment(self, dst, src):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice dst_slice
  *         cdef __Pyx_memviewslice src_slice
@@ -29540,7 +29540,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
 /* "View.MemoryView":451
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
- * 
+ *
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):             # <<<<<<<<<<<<<<
  *         cdef int array[128]
  *         cdef void *tmp = NULL
@@ -29576,7 +29576,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *         cdef int array[128]
  *         cdef void *tmp = NULL             # <<<<<<<<<<<<<<
  *         cdef void *item
- * 
+ *
  */
   __pyx_v_tmp = NULL;
 
@@ -29584,7 +29584,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *         cdef __Pyx_memviewslice *dst_slice
  *         cdef __Pyx_memviewslice tmp_slice
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if <size_t>self.view.itemsize > sizeof(array):
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_dst, (&__pyx_v_tmp_slice)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 458, __pyx_L1_error)
@@ -29592,7 +29592,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":460
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)
- * 
+ *
  *         if <size_t>self.view.itemsize > sizeof(array):             # <<<<<<<<<<<<<<
  *             tmp = PyMem_Malloc(self.view.itemsize)
  *             if tmp == NULL:
@@ -29601,7 +29601,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
   if (__pyx_t_2) {
 
     /* "View.MemoryView":461
- * 
+ *
  *         if <size_t>self.view.itemsize > sizeof(array):
  *             tmp = PyMem_Malloc(self.view.itemsize)             # <<<<<<<<<<<<<<
  *             if tmp == NULL:
@@ -29648,7 +29648,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
     /* "View.MemoryView":460
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)
- * 
+ *
  *         if <size_t>self.view.itemsize > sizeof(array):             # <<<<<<<<<<<<<<
  *             tmp = PyMem_Malloc(self.view.itemsize)
  *             if tmp == NULL:
@@ -29660,7 +29660,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *             item = tmp
  *         else:
  *             item = <void *> array             # <<<<<<<<<<<<<<
- * 
+ *
  *         try:
  */
   /*else*/ {
@@ -29670,7 +29670,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":468
  *             item = <void *> array
- * 
+ *
  *         try:             # <<<<<<<<<<<<<<
  *             if self.dtype_is_object:
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -29678,7 +29678,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
   /*try:*/ {
 
     /* "View.MemoryView":469
- * 
+ *
  *         try:
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -29697,7 +29697,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
       (((PyObject **)__pyx_v_item)[0]) = ((PyObject *)__pyx_v_value);
 
       /* "View.MemoryView":469
- * 
+ *
  *         try:
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -29710,8 +29710,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *                 (<PyObject **> item)[0] = <PyObject *> value
  *             else:
  *                 self.assign_item_from_object(<char *> item, value)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     /*else*/ {
       __pyx_t_3 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->assign_item_from_object(__pyx_v_self, ((char *)__pyx_v_item), __pyx_v_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 472, __pyx_L6_error)
@@ -29721,8 +29721,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
     __pyx_L8:;
 
     /* "View.MemoryView":476
- * 
- * 
+ *
+ *
  *             if self.view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -29731,7 +29731,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
     if (__pyx_t_2) {
 
       /* "View.MemoryView":477
- * 
+ *
  *             if self.view.suboffsets != NULL:
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)             # <<<<<<<<<<<<<<
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -29742,8 +29742,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
       /* "View.MemoryView":476
- * 
- * 
+ *
+ *
  *             if self.view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -29764,7 +29764,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *                                 item, self.dtype_is_object)
  *         finally:
  *             PyMem_Free(tmp)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef setitem_indexed(self, index, value):
  */
   /*finally:*/ {
@@ -29809,7 +29809,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":451
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
- * 
+ *
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):             # <<<<<<<<<<<<<<
  *         cdef int array[128]
  *         cdef void *tmp = NULL
@@ -29830,7 +29830,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
 /* "View.MemoryView":483
  *             PyMem_Free(tmp)
- * 
+ *
  *     cdef setitem_indexed(self, index, value):             # <<<<<<<<<<<<<<
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)
@@ -29848,11 +29848,11 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
   __Pyx_RefNannySetupContext("setitem_indexed", 0);
 
   /* "View.MemoryView":484
- * 
+ *
  *     cdef setitem_indexed(self, index, value):
  *         cdef char *itemp = self.get_item_pointer(index)             # <<<<<<<<<<<<<<
  *         self.assign_item_from_object(itemp, value)
- * 
+ *
  */
   __pyx_t_1 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->get_item_pointer(__pyx_v_self, __pyx_v_index); if (unlikely(__pyx_t_1 == ((char *)NULL))) __PYX_ERR(1, 484, __pyx_L1_error)
   __pyx_v_itemp = __pyx_t_1;
@@ -29861,7 +29861,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
  *     cdef setitem_indexed(self, index, value):
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):
  */
   __pyx_t_2 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->assign_item_from_object(__pyx_v_self, __pyx_v_itemp, __pyx_v_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 485, __pyx_L1_error)
@@ -29870,7 +29870,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
 
   /* "View.MemoryView":483
  *             PyMem_Free(tmp)
- * 
+ *
  *     cdef setitem_indexed(self, index, value):             # <<<<<<<<<<<<<<
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)
@@ -29891,7 +29891,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
 
 /* "View.MemoryView":487
  *         self.assign_item_from_object(itemp, value)
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -29924,7 +29924,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *         know how to convert the type"""
  *         import struct             # <<<<<<<<<<<<<<
  *         cdef bytes bytesitem
- * 
+ *
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_struct, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 490, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -29933,7 +29933,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
   /* "View.MemoryView":493
  *         cdef bytes bytesitem
- * 
+ *
  *         bytesitem = itemp[:self.view.itemsize]             # <<<<<<<<<<<<<<
  *         try:
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -29944,7 +29944,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
   __pyx_t_1 = 0;
 
   /* "View.MemoryView":494
- * 
+ *
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -30021,7 +30021,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
       __pyx_t_1 = 0;
 
       /* "View.MemoryView":494
- * 
+ *
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -30037,7 +30037,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *             return result
  */
     /*else:*/ {
-      __pyx_t_10 = strlen(__pyx_v_self->view.format); 
+      __pyx_t_10 = strlen(__pyx_v_self->view.format);
       __pyx_t_11 = ((__pyx_t_10 == 1) != 0);
       if (__pyx_t_11) {
 
@@ -30046,7 +30046,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *             if len(self.view.format) == 1:
  *                 return result[0]             # <<<<<<<<<<<<<<
  *             return result
- * 
+ *
  */
         __Pyx_XDECREF(__pyx_r);
         __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_result, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 500, __pyx_L5_except_error)
@@ -30068,7 +30068,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *             if len(self.view.format) == 1:
  *                 return result[0]
  *             return result             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):
  */
       __Pyx_XDECREF(__pyx_r);
@@ -30121,7 +30121,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
     __pyx_L5_except_error:;
 
     /* "View.MemoryView":494
- * 
+ *
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -30142,7 +30142,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
   /* "View.MemoryView":487
  *         self.assign_item_from_object(itemp, value)
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -30168,7 +30168,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
 /* "View.MemoryView":503
  *             return result
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -30214,17 +30214,17 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":511
  *         cdef Py_ssize_t i
- * 
+ *
  *         if isinstance(value, tuple):             # <<<<<<<<<<<<<<
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
  */
-  __pyx_t_2 = PyTuple_Check(__pyx_v_value); 
+  __pyx_t_2 = PyTuple_Check(__pyx_v_value);
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
     /* "View.MemoryView":512
- * 
+ *
  *         if isinstance(value, tuple):
  *             bytesvalue = struct.pack(self.view.format, *value)             # <<<<<<<<<<<<<<
  *         else:
@@ -30255,7 +30255,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
     /* "View.MemoryView":511
  *         cdef Py_ssize_t i
- * 
+ *
  *         if isinstance(value, tuple):             # <<<<<<<<<<<<<<
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
@@ -30267,7 +30267,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
  *             bytesvalue = struct.pack(self.view.format, value)             # <<<<<<<<<<<<<<
- * 
+ *
  *         for i, c in enumerate(bytesvalue):
  */
   /*else*/ {
@@ -30330,10 +30330,10 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":516
  *             bytesvalue = struct.pack(self.view.format, value)
- * 
+ *
  *         for i, c in enumerate(bytesvalue):             # <<<<<<<<<<<<<<
  *             itemp[i] = c
- * 
+ *
  */
   __pyx_t_9 = 0;
   if (unlikely(__pyx_v_bytesvalue == Py_None)) {
@@ -30349,28 +30349,28 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
     __pyx_v_c = (__pyx_t_11[0]);
 
     /* "View.MemoryView":517
- * 
+ *
  *         for i, c in enumerate(bytesvalue):
  *             itemp[i] = c             # <<<<<<<<<<<<<<
- * 
+ *
  *     @cname('getbuffer')
  */
     __pyx_v_i = __pyx_t_9;
 
     /* "View.MemoryView":516
  *             bytesvalue = struct.pack(self.view.format, value)
- * 
+ *
  *         for i, c in enumerate(bytesvalue):             # <<<<<<<<<<<<<<
  *             itemp[i] = c
- * 
+ *
  */
     __pyx_t_9 = (__pyx_t_9 + 1);
 
     /* "View.MemoryView":517
- * 
+ *
  *         for i, c in enumerate(bytesvalue):
  *             itemp[i] = c             # <<<<<<<<<<<<<<
- * 
+ *
  *     @cname('getbuffer')
  */
     (__pyx_v_itemp[__pyx_v_i]) = __pyx_v_c;
@@ -30379,7 +30379,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":503
  *             return result
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -30406,7 +30406,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 }
 
 /* "View.MemoryView":520
- * 
+ *
  *     @cname('getbuffer')
  *     def __getbuffer__(self, Py_buffer *info, int flags):             # <<<<<<<<<<<<<<
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
@@ -30453,7 +30453,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_flags & PyBUF_WRITABLE) != 0);
   if (__pyx_t_2) {
@@ -30470,7 +30470,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_ND:
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 522, __pyx_L1_error)
@@ -30484,13 +30484,13 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":524
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")
- * 
+ *
  *         if flags & PyBUF_ND:             # <<<<<<<<<<<<<<
  *             info.shape = self.view.shape
  *         else:
@@ -30499,7 +30499,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":525
- * 
+ *
  *         if flags & PyBUF_ND:
  *             info.shape = self.view.shape             # <<<<<<<<<<<<<<
  *         else:
@@ -30510,7 +30510,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":524
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")
- * 
+ *
  *         if flags & PyBUF_ND:             # <<<<<<<<<<<<<<
  *             info.shape = self.view.shape
  *         else:
@@ -30522,7 +30522,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.shape = self.view.shape
  *         else:
  *             info.shape = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_STRIDES:
  */
   /*else*/ {
@@ -30532,7 +30532,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":529
  *             info.shape = NULL
- * 
+ *
  *         if flags & PyBUF_STRIDES:             # <<<<<<<<<<<<<<
  *             info.strides = self.view.strides
  *         else:
@@ -30541,7 +30541,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":530
- * 
+ *
  *         if flags & PyBUF_STRIDES:
  *             info.strides = self.view.strides             # <<<<<<<<<<<<<<
  *         else:
@@ -30552,7 +30552,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":529
  *             info.shape = NULL
- * 
+ *
  *         if flags & PyBUF_STRIDES:             # <<<<<<<<<<<<<<
  *             info.strides = self.view.strides
  *         else:
@@ -30564,7 +30564,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.strides = self.view.strides
  *         else:
  *             info.strides = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_INDIRECT:
  */
   /*else*/ {
@@ -30574,7 +30574,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":534
  *             info.strides = NULL
- * 
+ *
  *         if flags & PyBUF_INDIRECT:             # <<<<<<<<<<<<<<
  *             info.suboffsets = self.view.suboffsets
  *         else:
@@ -30583,7 +30583,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":535
- * 
+ *
  *         if flags & PyBUF_INDIRECT:
  *             info.suboffsets = self.view.suboffsets             # <<<<<<<<<<<<<<
  *         else:
@@ -30594,7 +30594,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":534
  *             info.strides = NULL
- * 
+ *
  *         if flags & PyBUF_INDIRECT:             # <<<<<<<<<<<<<<
  *             info.suboffsets = self.view.suboffsets
  *         else:
@@ -30606,7 +30606,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.suboffsets = self.view.suboffsets
  *         else:
  *             info.suboffsets = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  */
   /*else*/ {
@@ -30616,7 +30616,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":539
  *             info.suboffsets = NULL
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.view.format
  *         else:
@@ -30625,7 +30625,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":540
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  *             info.format = self.view.format             # <<<<<<<<<<<<<<
  *         else:
@@ -30636,7 +30636,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":539
  *             info.suboffsets = NULL
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.view.format
  *         else:
@@ -30648,7 +30648,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.format = self.view.format
  *         else:
  *             info.format = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         info.buf = self.view.buf
  */
   /*else*/ {
@@ -30658,7 +30658,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":544
  *             info.format = NULL
- * 
+ *
  *         info.buf = self.view.buf             # <<<<<<<<<<<<<<
  *         info.ndim = self.view.ndim
  *         info.itemsize = self.view.itemsize
@@ -30667,7 +30667,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   __pyx_v_info->buf = __pyx_t_6;
 
   /* "View.MemoryView":545
- * 
+ *
  *         info.buf = self.view.buf
  *         info.ndim = self.view.ndim             # <<<<<<<<<<<<<<
  *         info.itemsize = self.view.itemsize
@@ -30701,7 +30701,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *         info.len = self.view.len
  *         info.readonly = self.view.readonly             # <<<<<<<<<<<<<<
  *         info.obj = self
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_self->view.readonly;
   __pyx_v_info->readonly = __pyx_t_1;
@@ -30710,7 +30710,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *         info.len = self.view.len
  *         info.readonly = self.view.readonly
  *         info.obj = self             # <<<<<<<<<<<<<<
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_memoryview_getbuffer, "getbuffer(obj, view, flags)")
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_self));
@@ -30720,7 +30720,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   __pyx_v_info->obj = ((PyObject *)__pyx_v_self);
 
   /* "View.MemoryView":520
- * 
+ *
  *     @cname('getbuffer')
  *     def __getbuffer__(self, Py_buffer *info, int flags):             # <<<<<<<<<<<<<<
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
@@ -30750,7 +30750,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 }
 
 /* "View.MemoryView":555
- * 
+ *
  *     @property
  *     def T(self):             # <<<<<<<<<<<<<<
  *         cdef _memoryviewslice result = memoryview_copy(self)
@@ -30799,7 +30799,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
  *         cdef _memoryviewslice result = memoryview_copy(self)
  *         transpose_memslice(&result.from_slice)             # <<<<<<<<<<<<<<
  *         return result
- * 
+ *
  */
   __pyx_t_2 = __pyx_memslice_transpose((&__pyx_v_result->from_slice)); if (unlikely(__pyx_t_2 == ((int)0))) __PYX_ERR(1, 557, __pyx_L1_error)
 
@@ -30807,7 +30807,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
  *         cdef _memoryviewslice result = memoryview_copy(self)
  *         transpose_memslice(&result.from_slice)
  *         return result             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -30816,7 +30816,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
   goto __pyx_L0;
 
   /* "View.MemoryView":555
- * 
+ *
  *     @property
  *     def T(self):             # <<<<<<<<<<<<<<
  *         cdef _memoryviewslice result = memoryview_copy(self)
@@ -30836,11 +30836,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
 }
 
 /* "View.MemoryView":561
- * 
+ *
  *     @property
  *     def base(self):             # <<<<<<<<<<<<<<
  *         return self.obj
- * 
+ *
  */
 
 /* Python wrapper */
@@ -30865,7 +30865,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
  *     @property
  *     def base(self):
  *         return self.obj             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -30874,11 +30874,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
   goto __pyx_L0;
 
   /* "View.MemoryView":561
- * 
+ *
  *     @property
  *     def base(self):             # <<<<<<<<<<<<<<
  *         return self.obj
- * 
+ *
  */
 
   /* function exit code */
@@ -30889,11 +30889,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
 }
 
 /* "View.MemoryView":565
- * 
+ *
  *     @property
  *     def shape(self):             # <<<<<<<<<<<<<<
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])
- * 
+ *
  */
 
 /* Python wrapper */
@@ -30927,7 +30927,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
  *     @property
  *     def shape(self):
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -30950,11 +30950,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
   goto __pyx_L0;
 
   /* "View.MemoryView":565
- * 
+ *
  *     @property
  *     def shape(self):             # <<<<<<<<<<<<<<
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])
- * 
+ *
  */
 
   /* function exit code */
@@ -30970,11 +30970,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
 }
 
 /* "View.MemoryView":569
- * 
+ *
  *     @property
  *     def strides(self):             # <<<<<<<<<<<<<<
  *         if self.view.strides == NULL:
- * 
+ *
  */
 
 /* Python wrapper */
@@ -31009,7 +31009,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
  *     @property
  *     def strides(self):
  *         if self.view.strides == NULL:             # <<<<<<<<<<<<<<
- * 
+ *
  *             raise ValueError("Buffer view does not expose strides")
  */
   __pyx_t_1 = ((__pyx_v_self->view.strides == NULL) != 0);
@@ -31017,9 +31017,9 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
 
     /* "View.MemoryView":572
  *         if self.view.strides == NULL:
- * 
+ *
  *             raise ValueError("Buffer view does not expose strides")             # <<<<<<<<<<<<<<
- * 
+ *
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
     __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__41, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 572, __pyx_L1_error)
@@ -31032,16 +31032,16 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
  *     @property
  *     def strides(self):
  *         if self.view.strides == NULL:             # <<<<<<<<<<<<<<
- * 
+ *
  *             raise ValueError("Buffer view does not expose strides")
  */
   }
 
   /* "View.MemoryView":574
  *             raise ValueError("Buffer view does not expose strides")
- * 
+ *
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -31064,11 +31064,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
   goto __pyx_L0;
 
   /* "View.MemoryView":569
- * 
+ *
  *     @property
  *     def strides(self):             # <<<<<<<<<<<<<<
  *         if self.view.strides == NULL:
- * 
+ *
  */
 
   /* function exit code */
@@ -31084,7 +31084,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
 }
 
 /* "View.MemoryView":577
- * 
+ *
  *     @property
  *     def suboffsets(self):             # <<<<<<<<<<<<<<
  *         if self.view.suboffsets == NULL:
@@ -31124,7 +31124,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:             # <<<<<<<<<<<<<<
  *             return (-1,) * self.view.ndim
- * 
+ *
  */
   __pyx_t_1 = ((__pyx_v_self->view.suboffsets == NULL) != 0);
   if (__pyx_t_1) {
@@ -31133,7 +31133,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:
  *             return (-1,) * self.view.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
  */
     __Pyx_XDECREF(__pyx_r);
@@ -31151,15 +31151,15 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:             # <<<<<<<<<<<<<<
  *             return (-1,) * self.view.ndim
- * 
+ *
  */
   }
 
   /* "View.MemoryView":581
  *             return (-1,) * self.view.ndim
- * 
+ *
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -31182,7 +31182,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
   goto __pyx_L0;
 
   /* "View.MemoryView":577
- * 
+ *
  *     @property
  *     def suboffsets(self):             # <<<<<<<<<<<<<<
  *         if self.view.suboffsets == NULL:
@@ -31202,11 +31202,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
 }
 
 /* "View.MemoryView":584
- * 
+ *
  *     @property
  *     def ndim(self):             # <<<<<<<<<<<<<<
  *         return self.view.ndim
- * 
+ *
  */
 
 /* Python wrapper */
@@ -31235,7 +31235,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
  *     @property
  *     def ndim(self):
  *         return self.view.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -31246,11 +31246,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
   goto __pyx_L0;
 
   /* "View.MemoryView":584
- * 
+ *
  *     @property
  *     def ndim(self):             # <<<<<<<<<<<<<<
  *         return self.view.ndim
- * 
+ *
  */
 
   /* function exit code */
@@ -31265,11 +31265,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
 }
 
 /* "View.MemoryView":588
- * 
+ *
  *     @property
  *     def itemsize(self):             # <<<<<<<<<<<<<<
  *         return self.view.itemsize
- * 
+ *
  */
 
 /* Python wrapper */
@@ -31298,7 +31298,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
  *     @property
  *     def itemsize(self):
  *         return self.view.itemsize             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -31309,11 +31309,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
   goto __pyx_L0;
 
   /* "View.MemoryView":588
- * 
+ *
  *     @property
  *     def itemsize(self):             # <<<<<<<<<<<<<<
  *         return self.view.itemsize
- * 
+ *
  */
 
   /* function exit code */
@@ -31328,11 +31328,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
 }
 
 /* "View.MemoryView":592
- * 
+ *
  *     @property
  *     def nbytes(self):             # <<<<<<<<<<<<<<
  *         return self.size * self.view.itemsize
- * 
+ *
  */
 
 /* Python wrapper */
@@ -31363,7 +31363,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
  *     @property
  *     def nbytes(self):
  *         return self.size * self.view.itemsize             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -31380,11 +31380,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
   goto __pyx_L0;
 
   /* "View.MemoryView":592
- * 
+ *
  *     @property
  *     def nbytes(self):             # <<<<<<<<<<<<<<
  *         return self.size * self.view.itemsize
- * 
+ *
  */
 
   /* function exit code */
@@ -31401,7 +31401,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
 }
 
 /* "View.MemoryView":596
- * 
+ *
  *     @property
  *     def size(self):             # <<<<<<<<<<<<<<
  *         if self._size is None:
@@ -31442,7 +31442,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:             # <<<<<<<<<<<<<<
  *             result = 1
- * 
+ *
  */
   __pyx_t_1 = (__pyx_v_self->_size == Py_None);
   __pyx_t_2 = (__pyx_t_1 != 0);
@@ -31452,7 +31452,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:
  *             result = 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             for length in self.view.shape[:self.view.ndim]:
  */
     __Pyx_INCREF(__pyx_int_1);
@@ -31460,10 +31460,10 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
     /* "View.MemoryView":600
  *             result = 1
- * 
+ *
  *             for length in self.view.shape[:self.view.ndim]:             # <<<<<<<<<<<<<<
  *                 result *= length
- * 
+ *
  */
     __pyx_t_4 = (__pyx_v_self->view.shape + __pyx_v_self->view.ndim);
     for (__pyx_t_5 = __pyx_v_self->view.shape; __pyx_t_5 < __pyx_t_4; __pyx_t_5++) {
@@ -31474,10 +31474,10 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
       __pyx_t_6 = 0;
 
       /* "View.MemoryView":601
- * 
+ *
  *             for length in self.view.shape[:self.view.ndim]:
  *                 result *= length             # <<<<<<<<<<<<<<
- * 
+ *
  *             self._size = result
  */
       __pyx_t_6 = PyNumber_InPlaceMultiply(__pyx_v_result, __pyx_v_length); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 601, __pyx_L1_error)
@@ -31488,9 +31488,9 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
     /* "View.MemoryView":603
  *                 result *= length
- * 
+ *
  *             self._size = result             # <<<<<<<<<<<<<<
- * 
+ *
  *         return self._size
  */
     __Pyx_INCREF(__pyx_v_result);
@@ -31504,15 +31504,15 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:             # <<<<<<<<<<<<<<
  *             result = 1
- * 
+ *
  */
   }
 
   /* "View.MemoryView":605
  *             self._size = result
- * 
+ *
  *         return self._size             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -31521,7 +31521,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
   goto __pyx_L0;
 
   /* "View.MemoryView":596
- * 
+ *
  *     @property
  *     def size(self):             # <<<<<<<<<<<<<<
  *         if self._size is None:
@@ -31543,7 +31543,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
 /* "View.MemoryView":607
  *         return self._size
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]
@@ -31569,11 +31569,11 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
   __Pyx_RefNannySetupContext("__len__", 0);
 
   /* "View.MemoryView":608
- * 
+ *
  *     def __len__(self):
  *         if self.view.ndim >= 1:             # <<<<<<<<<<<<<<
  *             return self.view.shape[0]
- * 
+ *
  */
   __pyx_t_1 = ((__pyx_v_self->view.ndim >= 1) != 0);
   if (__pyx_t_1) {
@@ -31582,26 +31582,26 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
  *     def __len__(self):
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         return 0
  */
     __pyx_r = (__pyx_v_self->view.shape[0]);
     goto __pyx_L0;
 
     /* "View.MemoryView":608
- * 
+ *
  *     def __len__(self):
  *         if self.view.ndim >= 1:             # <<<<<<<<<<<<<<
  *             return self.view.shape[0]
- * 
+ *
  */
   }
 
   /* "View.MemoryView":611
  *             return self.view.shape[0]
- * 
+ *
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __repr__(self):
  */
   __pyx_r = 0;
@@ -31609,7 +31609,7 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
 
   /* "View.MemoryView":607
  *         return self._size
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]
@@ -31623,7 +31623,7 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
 
 /* "View.MemoryView":613
  *         return 0
- * 
+ *
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))
@@ -31654,11 +31654,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
   __Pyx_RefNannySetupContext("__repr__", 0);
 
   /* "View.MemoryView":614
- * 
+ *
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,             # <<<<<<<<<<<<<<
  *                                                id(self))
- * 
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 614, __pyx_L1_error)
@@ -31674,18 +31674,18 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __str__(self):
  */
   __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_id, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
   /* "View.MemoryView":614
- * 
+ *
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,             # <<<<<<<<<<<<<<
  *                                                id(self))
- * 
+ *
  */
   __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -31704,7 +31704,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
 
   /* "View.MemoryView":613
  *         return 0
- * 
+ *
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))
@@ -31725,10 +31725,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
 
 /* "View.MemoryView":617
  *                                                id(self))
- * 
+ *
  *     def __str__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -31755,11 +31755,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
   __Pyx_RefNannySetupContext("__str__", 0);
 
   /* "View.MemoryView":618
- * 
+ *
  *     def __str__(self):
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 618, __pyx_L1_error)
@@ -31784,10 +31784,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
 
   /* "View.MemoryView":617
  *                                                id(self))
- * 
+ *
  *     def __str__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)
- * 
+ *
  */
 
   /* function exit code */
@@ -31803,8 +31803,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
 }
 
 /* "View.MemoryView":621
- * 
- * 
+ *
+ *
  *     def is_c_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -31840,7 +31840,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)             # <<<<<<<<<<<<<<
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- * 
+ *
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_self, (&__pyx_v_tmp)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 624, __pyx_L1_error)
   __pyx_v_mslice = __pyx_t_1;
@@ -31849,7 +31849,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def is_f_contig(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -31860,8 +31860,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
   goto __pyx_L0;
 
   /* "View.MemoryView":621
- * 
- * 
+ *
+ *
  *     def is_c_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -31880,7 +31880,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
 
 /* "View.MemoryView":627
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- * 
+ *
  *     def is_f_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -31916,7 +31916,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)             # <<<<<<<<<<<<<<
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- * 
+ *
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_self, (&__pyx_v_tmp)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(1, 630, __pyx_L1_error)
   __pyx_v_mslice = __pyx_t_1;
@@ -31925,7 +31925,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def copy(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -31937,7 +31937,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
 
   /* "View.MemoryView":627
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- * 
+ *
  *     def is_f_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -31956,7 +31956,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
 
 /* "View.MemoryView":633
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- * 
+ *
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
@@ -31991,14 +31991,14 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
  *     def copy(self):
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS             # <<<<<<<<<<<<<<
- * 
+ *
  *         slice_copy(self, &mslice)
  */
   __pyx_v_flags = (__pyx_v_self->flags & (~PyBUF_F_CONTIGUOUS));
 
   /* "View.MemoryView":637
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
- * 
+ *
  *         slice_copy(self, &mslice)             # <<<<<<<<<<<<<<
  *         mslice = slice_copy_contig(&mslice, "c", self.view.ndim,
  *                                    self.view.itemsize,
@@ -32006,7 +32006,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
   __pyx_memoryview_slice_copy(__pyx_v_self, (&__pyx_v_mslice));
 
   /* "View.MemoryView":638
- * 
+ *
  *         slice_copy(self, &mslice)
  *         mslice = slice_copy_contig(&mslice, "c", self.view.ndim,             # <<<<<<<<<<<<<<
  *                                    self.view.itemsize,
@@ -32017,9 +32017,9 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
   /* "View.MemoryView":643
  *                                    self.dtype_is_object)
- * 
+ *
  *         return memoryview_copy_from_slice(self, &mslice)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def copy_fortran(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -32031,7 +32031,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
   /* "View.MemoryView":633
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- * 
+ *
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
@@ -32050,7 +32050,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
 /* "View.MemoryView":645
  *         return memoryview_copy_from_slice(self, &mslice)
- * 
+ *
  *     def copy_fortran(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
@@ -32086,14 +32086,14 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
  *     def copy_fortran(self):
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS             # <<<<<<<<<<<<<<
- * 
+ *
  *         slice_copy(self, &src)
  */
   __pyx_v_flags = (__pyx_v_self->flags & (~PyBUF_C_CONTIGUOUS));
 
   /* "View.MemoryView":649
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
- * 
+ *
  *         slice_copy(self, &src)             # <<<<<<<<<<<<<<
  *         dst = slice_copy_contig(&src, "fortran", self.view.ndim,
  *                                 self.view.itemsize,
@@ -32101,7 +32101,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
   __pyx_memoryview_slice_copy(__pyx_v_self, (&__pyx_v_src));
 
   /* "View.MemoryView":650
- * 
+ *
  *         slice_copy(self, &src)
  *         dst = slice_copy_contig(&src, "fortran", self.view.ndim,             # <<<<<<<<<<<<<<
  *                                 self.view.itemsize,
@@ -32112,10 +32112,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
 
   /* "View.MemoryView":655
  *                                 self.dtype_is_object)
- * 
+ *
  *         return memoryview_copy_from_slice(self, &dst)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = __pyx_memoryview_copy_object_from_slice(__pyx_v_self, (&__pyx_v_dst)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 655, __pyx_L1_error)
@@ -32126,7 +32126,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
 
   /* "View.MemoryView":645
  *         return memoryview_copy_from_slice(self, &mslice)
- * 
+ *
  *     def copy_fortran(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
@@ -32257,7 +32257,7 @@ static PyObject *__pyx_pf___pyx_memoryview_2__setstate_cython__(CYTHON_UNUSED st
 }
 
 /* "View.MemoryView":659
- * 
+ *
  * @cname('__pyx_memoryview_new')
  * cdef memoryview_cwrapper(object o, int flags, bint dtype_is_object, __Pyx_TypeInfo *typeinfo):             # <<<<<<<<<<<<<<
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
@@ -32309,7 +32309,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
  *     result.typeinfo = typeinfo             # <<<<<<<<<<<<<<
  *     return result
- * 
+ *
  */
   __pyx_v_result->typeinfo = __pyx_v_typeinfo;
 
@@ -32317,7 +32317,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
  *     result.typeinfo = typeinfo
  *     return result             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_check')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -32326,7 +32326,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
   goto __pyx_L0;
 
   /* "View.MemoryView":659
- * 
+ *
  * @cname('__pyx_memoryview_new')
  * cdef memoryview_cwrapper(object o, int flags, bint dtype_is_object, __Pyx_TypeInfo *typeinfo):             # <<<<<<<<<<<<<<
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
@@ -32348,11 +32348,11 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
 }
 
 /* "View.MemoryView":665
- * 
+ *
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o):             # <<<<<<<<<<<<<<
  *     return isinstance(o, memoryview)
- * 
+ *
  */
 
 static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
@@ -32365,19 +32365,19 @@ static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o):
  *     return isinstance(o, memoryview)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef tuple _unellipsify(object index, int ndim):
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_o, __pyx_memoryview_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_o, __pyx_memoryview_type);
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
   /* "View.MemoryView":665
- * 
+ *
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o):             # <<<<<<<<<<<<<<
  *     return isinstance(o, memoryview)
- * 
+ *
  */
 
   /* function exit code */
@@ -32388,7 +32388,7 @@ static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
 
 /* "View.MemoryView":668
  *     return isinstance(o, memoryview)
- * 
+ *
  * cdef tuple _unellipsify(object index, int ndim):             # <<<<<<<<<<<<<<
  *     """
  *     Replace all ellipses with full slices and fill incomplete indices with
@@ -32427,7 +32427,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         tup = (index,)
  *     else:
  */
-  __pyx_t_1 = PyTuple_Check(__pyx_v_index); 
+  __pyx_t_1 = PyTuple_Check(__pyx_v_index);
   __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
   if (__pyx_t_2) {
 
@@ -32460,7 +32460,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         tup = (index,)
  *     else:
  *         tup = index             # <<<<<<<<<<<<<<
- * 
+ *
  *     result = []
  */
   /*else*/ {
@@ -32471,7 +32471,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":678
  *         tup = index
- * 
+ *
  *     result = []             # <<<<<<<<<<<<<<
  *     have_slices = False
  *     seen_ellipsis = False
@@ -32482,7 +32482,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
   __pyx_t_3 = 0;
 
   /* "View.MemoryView":679
- * 
+ *
  *     result = []
  *     have_slices = False             # <<<<<<<<<<<<<<
  *     seen_ellipsis = False
@@ -32653,10 +32653,10 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         else:
  *             if not isinstance(item, slice) and not PyIndex_Check(item):             # <<<<<<<<<<<<<<
  *                 raise TypeError("Cannot index with type '%s'" % type(item))
- * 
+ *
  */
     /*else*/ {
-      __pyx_t_2 = PySlice_Check(__pyx_v_item); 
+      __pyx_t_2 = PySlice_Check(__pyx_v_item);
       __pyx_t_10 = ((!(__pyx_t_2 != 0)) != 0);
       if (__pyx_t_10) {
       } else {
@@ -32672,7 +32672,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         else:
  *             if not isinstance(item, slice) and not PyIndex_Check(item):
  *                 raise TypeError("Cannot index with type '%s'" % type(item))             # <<<<<<<<<<<<<<
- * 
+ *
  *             have_slices = have_slices or isinstance(item, slice)
  */
         __pyx_t_7 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Cannot_index_with_type_s, ((PyObject *)Py_TYPE(__pyx_v_item))); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 691, __pyx_L1_error)
@@ -32689,16 +32689,16 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         else:
  *             if not isinstance(item, slice) and not PyIndex_Check(item):             # <<<<<<<<<<<<<<
  *                 raise TypeError("Cannot index with type '%s'" % type(item))
- * 
+ *
  */
       }
 
       /* "View.MemoryView":693
  *                 raise TypeError("Cannot index with type '%s'" % type(item))
- * 
+ *
  *             have_slices = have_slices or isinstance(item, slice)             # <<<<<<<<<<<<<<
  *             result.append(item)
- * 
+ *
  */
       __pyx_t_10 = (__pyx_v_have_slices != 0);
       if (!__pyx_t_10) {
@@ -32706,17 +32706,17 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
         __pyx_t_1 = __pyx_t_10;
         goto __pyx_L11_bool_binop_done;
       }
-      __pyx_t_10 = PySlice_Check(__pyx_v_item); 
+      __pyx_t_10 = PySlice_Check(__pyx_v_item);
       __pyx_t_2 = (__pyx_t_10 != 0);
       __pyx_t_1 = __pyx_t_2;
       __pyx_L11_bool_binop_done:;
       __pyx_v_have_slices = __pyx_t_1;
 
       /* "View.MemoryView":694
- * 
+ *
  *             have_slices = have_slices or isinstance(item, slice)
  *             result.append(item)             # <<<<<<<<<<<<<<
- * 
+ *
  *     nslices = ndim - len(result)
  */
       __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_v_item); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(1, 694, __pyx_L1_error)
@@ -32736,7 +32736,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":696
  *             result.append(item)
- * 
+ *
  *     nslices = ndim - len(result)             # <<<<<<<<<<<<<<
  *     if nslices:
  *         result.extend([slice(None)] * nslices)
@@ -32745,11 +32745,11 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
   __pyx_v_nslices = (__pyx_v_ndim - __pyx_t_5);
 
   /* "View.MemoryView":697
- * 
+ *
  *     nslices = ndim - len(result)
  *     if nslices:             # <<<<<<<<<<<<<<
  *         result.extend([slice(None)] * nslices)
- * 
+ *
  */
   __pyx_t_1 = (__pyx_v_nslices != 0);
   if (__pyx_t_1) {
@@ -32758,7 +32758,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *     nslices = ndim - len(result)
  *     if nslices:
  *         result.extend([slice(None)] * nslices)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return have_slices or nslices, tuple(result)
  */
     __pyx_t_3 = PyList_New(1 * ((__pyx_v_nslices<0) ? 0:__pyx_v_nslices)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 698, __pyx_L1_error)
@@ -32774,19 +32774,19 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "View.MemoryView":697
- * 
+ *
  *     nslices = ndim - len(result)
  *     if nslices:             # <<<<<<<<<<<<<<
  *         result.extend([slice(None)] * nslices)
- * 
+ *
  */
   }
 
   /* "View.MemoryView":700
  *         result.extend([slice(None)] * nslices)
- * 
+ *
  *     return have_slices or nslices, tuple(result)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -32819,7 +32819,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":668
  *     return isinstance(o, memoryview)
- * 
+ *
  * cdef tuple _unellipsify(object index, int ndim):             # <<<<<<<<<<<<<<
  *     """
  *     Replace all ellipses with full slices and fill incomplete indices with
@@ -32845,7 +32845,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
 /* "View.MemoryView":702
  *     return have_slices or nslices, tuple(result)
- * 
+ *
  * cdef assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim):             # <<<<<<<<<<<<<<
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:
@@ -32866,7 +32866,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
   __Pyx_RefNannySetupContext("assert_direct_dimensions", 0);
 
   /* "View.MemoryView":703
- * 
+ *
  * cdef assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim):
  *     for suboffset in suboffsets[:ndim]:             # <<<<<<<<<<<<<<
  *         if suboffset >= 0:
@@ -32882,7 +32882,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("Indirect dimensions not supported")
- * 
+ *
  */
     __pyx_t_4 = ((__pyx_v_suboffset >= 0) != 0);
     if (unlikely(__pyx_t_4)) {
@@ -32891,8 +32891,8 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:
  *             raise ValueError("Indirect dimensions not supported")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__46, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 705, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
@@ -32905,14 +32905,14 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("Indirect dimensions not supported")
- * 
+ *
  */
     }
   }
 
   /* "View.MemoryView":702
  *     return have_slices or nslices, tuple(result)
- * 
+ *
  * cdef assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim):             # <<<<<<<<<<<<<<
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:
@@ -32932,7 +32932,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
 }
 
 /* "View.MemoryView":712
- * 
+ *
  * @cname('__pyx_memview_slice')
  * cdef memoryview memview_slice(memoryview memview, object indices):             # <<<<<<<<<<<<<<
  *     cdef int new_ndim = 0, suboffset_dim = -1, dim
@@ -32986,19 +32986,19 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
   __pyx_v_suboffset_dim = -1;
 
   /* "View.MemoryView":720
- * 
- * 
+ *
+ *
  *     memset(&dst, 0, sizeof(dst))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef _memoryviewslice memviewsliceobj
  */
   (void)(memset((&__pyx_v_dst), 0, (sizeof(__pyx_v_dst))));
 
   /* "View.MemoryView":724
  *     cdef _memoryviewslice memviewsliceobj
- * 
+ *
  *     assert memview.view.ndim > 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
@@ -33012,17 +33012,17 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
   /* "View.MemoryView":726
  *     assert memview.view.ndim > 0
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         memviewsliceobj = memview
  *         p_src = &memviewsliceobj.from_slice
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":727
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  *         memviewsliceobj = memview             # <<<<<<<<<<<<<<
  *         p_src = &memviewsliceobj.from_slice
@@ -33045,7 +33045,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
     /* "View.MemoryView":726
  *     assert memview.view.ndim > 0
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         memviewsliceobj = memview
  *         p_src = &memviewsliceobj.from_slice
@@ -33058,7 +33058,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         slice_copy(memview, &src)             # <<<<<<<<<<<<<<
  *         p_src = &src
- * 
+ *
  */
   /*else*/ {
     __pyx_memoryview_slice_copy(__pyx_v_memview, (&__pyx_v_src));
@@ -33067,36 +33067,36 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         slice_copy(memview, &src)
  *         p_src = &src             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_v_p_src = (&__pyx_v_src);
   }
   __pyx_L3:;
 
   /* "View.MemoryView":737
- * 
- * 
+ *
+ *
  *     dst.memview = p_src.memview             # <<<<<<<<<<<<<<
  *     dst.data = p_src.data
- * 
+ *
  */
   __pyx_t_4 = __pyx_v_p_src->memview;
   __pyx_v_dst.memview = __pyx_t_4;
 
   /* "View.MemoryView":738
- * 
+ *
  *     dst.memview = p_src.memview
  *     dst.data = p_src.data             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_5 = __pyx_v_p_src->data;
   __pyx_v_dst.data = __pyx_t_5;
 
   /* "View.MemoryView":743
- * 
- * 
+ *
+ *
  *     cdef __Pyx_memviewslice *p_dst = &dst             # <<<<<<<<<<<<<<
  *     cdef int *p_suboffset_dim = &suboffset_dim
  *     cdef Py_ssize_t start, stop, step
@@ -33104,7 +33104,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
   __pyx_v_p_dst = (&__pyx_v_dst);
 
   /* "View.MemoryView":744
- * 
+ *
  *     cdef __Pyx_memviewslice *p_dst = &dst
  *     cdef int *p_suboffset_dim = &suboffset_dim             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t start, stop, step
@@ -33114,7 +33114,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
   /* "View.MemoryView":748
  *     cdef bint have_start, have_stop, have_step
- * 
+ *
  *     for dim, index in enumerate(indices):             # <<<<<<<<<<<<<<
  *         if PyIndex_Check(index):
  *             slice_memviewslice(
@@ -33165,7 +33165,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
     __pyx_t_6 = (__pyx_t_6 + 1);
 
     /* "View.MemoryView":749
- * 
+ *
  *     for dim, index in enumerate(indices):
  *         if PyIndex_Check(index):             # <<<<<<<<<<<<<<
  *             slice_memviewslice(
@@ -33193,7 +33193,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
       __pyx_t_11 = __pyx_memoryview_slice_memviewslice(__pyx_v_p_dst, (__pyx_v_p_src->shape[__pyx_v_dim]), (__pyx_v_p_src->strides[__pyx_v_dim]), (__pyx_v_p_src->suboffsets[__pyx_v_dim]), __pyx_v_dim, __pyx_v_new_ndim, __pyx_v_p_suboffset_dim, __pyx_t_10, 0, 0, 0, 0, 0, 0); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(1, 750, __pyx_L1_error)
 
       /* "View.MemoryView":749
- * 
+ *
  *     for dim, index in enumerate(indices):
  *         if PyIndex_Check(index):             # <<<<<<<<<<<<<<
  *             slice_memviewslice(
@@ -33287,7 +33287,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *             start = index.start or 0
  *             stop = index.stop or 0             # <<<<<<<<<<<<<<
  *             step = index.step or 0
- * 
+ *
  */
       __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_index, __pyx_n_s_stop); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 763, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
@@ -33308,7 +33308,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *             start = index.start or 0
  *             stop = index.stop or 0
  *             step = index.step or 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             have_start = index.start is not None
  */
       __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_index, __pyx_n_s_step); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 764, __pyx_L1_error)
@@ -33328,7 +33328,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
       /* "View.MemoryView":766
  *             step = index.step or 0
- * 
+ *
  *             have_start = index.start is not None             # <<<<<<<<<<<<<<
  *             have_stop = index.stop is not None
  *             have_step = index.step is not None
@@ -33340,11 +33340,11 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
       __pyx_v_have_start = __pyx_t_1;
 
       /* "View.MemoryView":767
- * 
+ *
  *             have_start = index.start is not None
  *             have_stop = index.stop is not None             # <<<<<<<<<<<<<<
  *             have_step = index.step is not None
- * 
+ *
  */
       __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_index, __pyx_n_s_stop); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 767, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
@@ -33356,7 +33356,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *             have_start = index.start is not None
  *             have_stop = index.stop is not None
  *             have_step = index.step is not None             # <<<<<<<<<<<<<<
- * 
+ *
  *             slice_memviewslice(
  */
       __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_index, __pyx_n_s_step); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 768, __pyx_L1_error)
@@ -33367,7 +33367,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
       /* "View.MemoryView":770
  *             have_step = index.step is not None
- * 
+ *
  *             slice_memviewslice(             # <<<<<<<<<<<<<<
  *                 p_dst, p_src.shape[dim], p_src.strides[dim], p_src.suboffsets[dim],
  *                 dim, new_ndim, p_suboffset_dim,
@@ -33378,7 +33378,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *                 have_start, have_stop, have_step,
  *                 True)
  *             new_ndim += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  */
       __pyx_v_new_ndim = (__pyx_v_new_ndim + 1);
@@ -33387,7 +33387,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
     /* "View.MemoryView":748
  *     cdef bint have_start, have_stop, have_step
- * 
+ *
  *     for dim, index in enumerate(indices):             # <<<<<<<<<<<<<<
  *         if PyIndex_Check(index):
  *             slice_memviewslice(
@@ -33397,17 +33397,17 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
   /* "View.MemoryView":778
  *             new_ndim += 1
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         return memoryview_fromslice(dst, new_ndim,
  *                                     memviewsliceobj.to_object_func,
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":779
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  *         return memoryview_fromslice(dst, new_ndim,             # <<<<<<<<<<<<<<
  *                                     memviewsliceobj.to_object_func,
@@ -33434,7 +33434,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
     if (unlikely(!__pyx_v_memviewsliceobj)) { __Pyx_RaiseUnboundLocalError("memviewsliceobj"); __PYX_ERR(1, 781, __pyx_L1_error) }
 
     /* "View.MemoryView":779
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  *         return memoryview_fromslice(dst, new_ndim,             # <<<<<<<<<<<<<<
  *                                     memviewsliceobj.to_object_func,
@@ -33449,7 +33449,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
     /* "View.MemoryView":778
  *             new_ndim += 1
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         return memoryview_fromslice(dst, new_ndim,
  *                                     memviewsliceobj.to_object_func,
@@ -33461,7 +33461,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         return memoryview_fromslice(dst, new_ndim, NULL, NULL,             # <<<<<<<<<<<<<<
  *                                     memview.dtype_is_object)
- * 
+ *
  */
   /*else*/ {
     __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -33470,8 +33470,8 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         return memoryview_fromslice(dst, new_ndim, NULL, NULL,
  *                                     memview.dtype_is_object)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_dst, __pyx_v_new_ndim, NULL, NULL, __pyx_v_memview->dtype_is_object); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 784, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -33481,7 +33481,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         return memoryview_fromslice(dst, new_ndim, NULL, NULL,             # <<<<<<<<<<<<<<
  *                                     memview.dtype_is_object)
- * 
+ *
  */
     if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_memoryview_type))))) __PYX_ERR(1, 784, __pyx_L1_error)
     __pyx_r = ((struct __pyx_memoryview_obj *)__pyx_t_3);
@@ -33490,7 +33490,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
   }
 
   /* "View.MemoryView":712
- * 
+ *
  * @cname('__pyx_memview_slice')
  * cdef memoryview memview_slice(memoryview memview, object indices):             # <<<<<<<<<<<<<<
  *     cdef int new_ndim = 0, suboffset_dim = -1, dim
@@ -33512,7 +33512,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 }
 
 /* "View.MemoryView":809
- * 
+ *
  * @cname('__pyx_memoryview_slice_memviewslice')
  * cdef int slice_memviewslice(             # <<<<<<<<<<<<<<
  *         __Pyx_memviewslice *dst,
@@ -33532,9 +33532,9 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
   /* "View.MemoryView":829
  *     cdef bint negative_step
- * 
+ *
  *     if not is_slice:             # <<<<<<<<<<<<<<
- * 
+ *
  *         if start < 0:
  */
   __pyx_t_1 = ((!(__pyx_v_is_slice != 0)) != 0);
@@ -33542,7 +33542,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":831
  *     if not is_slice:
- * 
+ *
  *         if start < 0:             # <<<<<<<<<<<<<<
  *             start += shape
  *         if not 0 <= start < shape:
@@ -33551,7 +33551,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     if (__pyx_t_1) {
 
       /* "View.MemoryView":832
- * 
+ *
  *         if start < 0:
  *             start += shape             # <<<<<<<<<<<<<<
  *         if not 0 <= start < shape:
@@ -33561,7 +33561,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
       /* "View.MemoryView":831
  *     if not is_slice:
- * 
+ *
  *         if start < 0:             # <<<<<<<<<<<<<<
  *             start += shape
  *         if not 0 <= start < shape:
@@ -33587,7 +33587,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *         if not 0 <= start < shape:
  *             _err_dim(IndexError, "Index out of bounds (axis %d)", dim)             # <<<<<<<<<<<<<<
  *     else:
- * 
+ *
  */
       __pyx_t_3 = __pyx_memoryview_err_dim(__pyx_builtin_IndexError, ((char *)"Index out of bounds (axis %d)"), __pyx_v_dim); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 834, __pyx_L1_error)
 
@@ -33602,9 +33602,9 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":829
  *     cdef bint negative_step
- * 
+ *
  *     if not is_slice:             # <<<<<<<<<<<<<<
- * 
+ *
  *         if start < 0:
  */
     goto __pyx_L3;
@@ -33612,9 +33612,9 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
   /* "View.MemoryView":837
  *     else:
- * 
+ *
  *         negative_step = have_step != 0 and step < 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if have_step and step == 0:
  */
   /*else*/ {
@@ -33631,10 +33631,10 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":839
  *         negative_step = have_step != 0 and step < 0
- * 
+ *
  *         if have_step and step == 0:             # <<<<<<<<<<<<<<
  *             _err_dim(ValueError, "Step may not be zero (axis %d)", dim)
- * 
+ *
  */
     __pyx_t_1 = (__pyx_v_have_step != 0);
     if (__pyx_t_1) {
@@ -33648,26 +33648,26 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     if (__pyx_t_2) {
 
       /* "View.MemoryView":840
- * 
+ *
  *         if have_step and step == 0:
  *             _err_dim(ValueError, "Step may not be zero (axis %d)", dim)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_t_3 = __pyx_memoryview_err_dim(__pyx_builtin_ValueError, ((char *)"Step may not be zero (axis %d)"), __pyx_v_dim); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 840, __pyx_L1_error)
 
       /* "View.MemoryView":839
  *         negative_step = have_step != 0 and step < 0
- * 
+ *
  *         if have_step and step == 0:             # <<<<<<<<<<<<<<
  *             _err_dim(ValueError, "Step may not be zero (axis %d)", dim)
- * 
+ *
  */
     }
 
     /* "View.MemoryView":843
- * 
- * 
+ *
+ *
  *         if have_start:             # <<<<<<<<<<<<<<
  *             if start < 0:
  *                 start += shape
@@ -33676,7 +33676,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     if (__pyx_t_2) {
 
       /* "View.MemoryView":844
- * 
+ *
  *         if have_start:
  *             if start < 0:             # <<<<<<<<<<<<<<
  *                 start += shape
@@ -33723,7 +33723,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
         }
 
         /* "View.MemoryView":844
- * 
+ *
  *         if have_start:
  *             if start < 0:             # <<<<<<<<<<<<<<
  *                 start += shape
@@ -33794,8 +33794,8 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
       __pyx_L12:;
 
       /* "View.MemoryView":843
- * 
- * 
+ *
+ *
  *         if have_start:             # <<<<<<<<<<<<<<
  *             if start < 0:
  *                 start += shape
@@ -33837,7 +33837,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *                 start = shape - 1
  *             else:
  *                 start = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if have_stop:
  */
       /*else*/ {
@@ -33849,7 +33849,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":859
  *                 start = 0
- * 
+ *
  *         if have_stop:             # <<<<<<<<<<<<<<
  *             if stop < 0:
  *                 stop += shape
@@ -33858,7 +33858,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     if (__pyx_t_2) {
 
       /* "View.MemoryView":860
- * 
+ *
  *         if have_stop:
  *             if stop < 0:             # <<<<<<<<<<<<<<
  *                 stop += shape
@@ -33905,7 +33905,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
         }
 
         /* "View.MemoryView":860
- * 
+ *
  *         if have_stop:
  *             if stop < 0:             # <<<<<<<<<<<<<<
  *                 stop += shape
@@ -33945,7 +33945,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
       /* "View.MemoryView":859
  *                 start = 0
- * 
+ *
  *         if have_stop:             # <<<<<<<<<<<<<<
  *             if stop < 0:
  *                 stop += shape
@@ -33987,7 +33987,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *                 stop = -1
  *             else:
  *                 stop = shape             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not have_step:
  */
       /*else*/ {
@@ -33999,100 +33999,100 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":872
  *                 stop = shape
- * 
+ *
  *         if not have_step:             # <<<<<<<<<<<<<<
  *             step = 1
- * 
+ *
  */
     __pyx_t_2 = ((!(__pyx_v_have_step != 0)) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":873
- * 
+ *
  *         if not have_step:
  *             step = 1             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_v_step = 1;
 
       /* "View.MemoryView":872
  *                 stop = shape
- * 
+ *
  *         if not have_step:             # <<<<<<<<<<<<<<
  *             step = 1
- * 
+ *
  */
     }
 
     /* "View.MemoryView":877
- * 
+ *
  *         with cython.cdivision(True):
  *             new_shape = (stop - start) // step             # <<<<<<<<<<<<<<
- * 
+ *
  *             if (stop - start) - step * new_shape:
  */
     __pyx_v_new_shape = ((__pyx_v_stop - __pyx_v_start) / __pyx_v_step);
 
     /* "View.MemoryView":879
  *             new_shape = (stop - start) // step
- * 
+ *
  *             if (stop - start) - step * new_shape:             # <<<<<<<<<<<<<<
  *                 new_shape += 1
- * 
+ *
  */
     __pyx_t_2 = (((__pyx_v_stop - __pyx_v_start) - (__pyx_v_step * __pyx_v_new_shape)) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":880
- * 
+ *
  *             if (stop - start) - step * new_shape:
  *                 new_shape += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if new_shape < 0:
  */
       __pyx_v_new_shape = (__pyx_v_new_shape + 1);
 
       /* "View.MemoryView":879
  *             new_shape = (stop - start) // step
- * 
+ *
  *             if (stop - start) - step * new_shape:             # <<<<<<<<<<<<<<
  *                 new_shape += 1
- * 
+ *
  */
     }
 
     /* "View.MemoryView":882
  *                 new_shape += 1
- * 
+ *
  *         if new_shape < 0:             # <<<<<<<<<<<<<<
  *             new_shape = 0
- * 
+ *
  */
     __pyx_t_2 = ((__pyx_v_new_shape < 0) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":883
- * 
+ *
  *         if new_shape < 0:
  *             new_shape = 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_v_new_shape = 0;
 
       /* "View.MemoryView":882
  *                 new_shape += 1
- * 
+ *
  *         if new_shape < 0:             # <<<<<<<<<<<<<<
  *             new_shape = 0
- * 
+ *
  */
     }
 
     /* "View.MemoryView":886
- * 
- * 
+ *
+ *
  *         dst.strides[new_ndim] = stride * step             # <<<<<<<<<<<<<<
  *         dst.shape[new_ndim] = new_shape
  *         dst.suboffsets[new_ndim] = suboffset
@@ -34100,11 +34100,11 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     (__pyx_v_dst->strides[__pyx_v_new_ndim]) = (__pyx_v_stride * __pyx_v_step);
 
     /* "View.MemoryView":887
- * 
+ *
  *         dst.strides[new_ndim] = stride * step
  *         dst.shape[new_ndim] = new_shape             # <<<<<<<<<<<<<<
  *         dst.suboffsets[new_ndim] = suboffset
- * 
+ *
  */
     (__pyx_v_dst->shape[__pyx_v_new_ndim]) = __pyx_v_new_shape;
 
@@ -34112,16 +34112,16 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *         dst.strides[new_ndim] = stride * step
  *         dst.shape[new_ndim] = new_shape
  *         dst.suboffsets[new_ndim] = suboffset             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     (__pyx_v_dst->suboffsets[__pyx_v_new_ndim]) = __pyx_v_suboffset;
   }
   __pyx_L3:;
 
   /* "View.MemoryView":891
- * 
- * 
+ *
+ *
  *     if suboffset_dim[0] < 0:             # <<<<<<<<<<<<<<
  *         dst.data += start * stride
  *     else:
@@ -34130,7 +34130,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
   if (__pyx_t_2) {
 
     /* "View.MemoryView":892
- * 
+ *
  *     if suboffset_dim[0] < 0:
  *         dst.data += start * stride             # <<<<<<<<<<<<<<
  *     else:
@@ -34139,8 +34139,8 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     __pyx_v_dst->data = (__pyx_v_dst->data + (__pyx_v_start * __pyx_v_stride));
 
     /* "View.MemoryView":891
- * 
- * 
+ *
+ *
  *     if suboffset_dim[0] < 0:             # <<<<<<<<<<<<<<
  *         dst.data += start * stride
  *     else:
@@ -34152,7 +34152,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *         dst.data += start * stride
  *     else:
  *         dst.suboffsets[suboffset_dim[0]] += start * stride             # <<<<<<<<<<<<<<
- * 
+ *
  *     if suboffset >= 0:
  */
   /*else*/ {
@@ -34163,7 +34163,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
   /* "View.MemoryView":896
  *         dst.suboffsets[suboffset_dim[0]] += start * stride
- * 
+ *
  *     if suboffset >= 0:             # <<<<<<<<<<<<<<
  *         if not is_slice:
  *             if new_ndim == 0:
@@ -34172,7 +34172,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
   if (__pyx_t_2) {
 
     /* "View.MemoryView":897
- * 
+ *
  *     if suboffset >= 0:
  *         if not is_slice:             # <<<<<<<<<<<<<<
  *             if new_ndim == 0:
@@ -34231,7 +34231,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
       __pyx_L26:;
 
       /* "View.MemoryView":897
- * 
+ *
  *     if suboffset >= 0:
  *         if not is_slice:             # <<<<<<<<<<<<<<
  *             if new_ndim == 0:
@@ -34244,7 +34244,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *                                      "must be indexed and not sliced", dim)
  *         else:
  *             suboffset_dim[0] = new_ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *     return 0
  */
     /*else*/ {
@@ -34254,7 +34254,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":896
  *         dst.suboffsets[suboffset_dim[0]] += start * stride
- * 
+ *
  *     if suboffset >= 0:             # <<<<<<<<<<<<<<
  *         if not is_slice:
  *             if new_ndim == 0:
@@ -34263,16 +34263,16 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
   /* "View.MemoryView":906
  *             suboffset_dim[0] = new_ndim
- * 
+ *
  *     return 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "View.MemoryView":809
- * 
+ *
  * @cname('__pyx_memoryview_slice_memviewslice')
  * cdef int slice_memviewslice(             # <<<<<<<<<<<<<<
  *         __Pyx_memviewslice *dst,
@@ -34296,7 +34296,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 }
 
 /* "View.MemoryView":912
- * 
+ *
  * @cname('__pyx_pybuffer_index')
  * cdef char *pybuffer_index(Py_buffer *view, char *bufp, Py_ssize_t index,             # <<<<<<<<<<<<<<
  *                           Py_ssize_t dim) except NULL:
@@ -34334,14 +34334,14 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *     cdef Py_ssize_t shape, stride, suboffset = -1
  *     cdef Py_ssize_t itemsize = view.itemsize             # <<<<<<<<<<<<<<
  *     cdef char *resultp
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_view->itemsize;
   __pyx_v_itemsize = __pyx_t_1;
 
   /* "View.MemoryView":918
  *     cdef char *resultp
- * 
+ *
  *     if view.ndim == 0:             # <<<<<<<<<<<<<<
  *         shape = view.len / itemsize
  *         stride = itemsize
@@ -34350,7 +34350,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
   if (__pyx_t_2) {
 
     /* "View.MemoryView":919
- * 
+ *
  *     if view.ndim == 0:
  *         shape = view.len / itemsize             # <<<<<<<<<<<<<<
  *         stride = itemsize
@@ -34377,7 +34377,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 
     /* "View.MemoryView":918
  *     cdef char *resultp
- * 
+ *
  *     if view.ndim == 0:             # <<<<<<<<<<<<<<
  *         shape = view.len / itemsize
  *         stride = itemsize
@@ -34409,7 +34409,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         stride = view.strides[dim]
  *         if view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *             suboffset = view.suboffsets[dim]
- * 
+ *
  */
     __pyx_t_2 = ((__pyx_v_view->suboffsets != NULL) != 0);
     if (__pyx_t_2) {
@@ -34418,7 +34418,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         stride = view.strides[dim]
  *         if view.suboffsets != NULL:
  *             suboffset = view.suboffsets[dim]             # <<<<<<<<<<<<<<
- * 
+ *
  *     if index < 0:
  */
       __pyx_v_suboffset = (__pyx_v_view->suboffsets[__pyx_v_dim]);
@@ -34428,7 +34428,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         stride = view.strides[dim]
  *         if view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *             suboffset = view.suboffsets[dim]
- * 
+ *
  */
     }
   }
@@ -34436,7 +34436,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 
   /* "View.MemoryView":927
  *             suboffset = view.suboffsets[dim]
- * 
+ *
  *     if index < 0:             # <<<<<<<<<<<<<<
  *         index += view.shape[dim]
  *         if index < 0:
@@ -34445,7 +34445,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
   if (__pyx_t_2) {
 
     /* "View.MemoryView":928
- * 
+ *
  *     if index < 0:
  *         index += view.shape[dim]             # <<<<<<<<<<<<<<
  *         if index < 0:
@@ -34458,7 +34458,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         index += view.shape[dim]
  *         if index < 0:             # <<<<<<<<<<<<<<
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  */
     __pyx_t_2 = ((__pyx_v_index < 0) != 0);
     if (unlikely(__pyx_t_2)) {
@@ -34467,7 +34467,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         index += view.shape[dim]
  *         if index < 0:
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     if index >= shape:
  */
       __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_dim); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 930, __pyx_L1_error)
@@ -34487,13 +34487,13 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         index += view.shape[dim]
  *         if index < 0:             # <<<<<<<<<<<<<<
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  */
     }
 
     /* "View.MemoryView":927
  *             suboffset = view.suboffsets[dim]
- * 
+ *
  *     if index < 0:             # <<<<<<<<<<<<<<
  *         index += view.shape[dim]
  *         if index < 0:
@@ -34502,19 +34502,19 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 
   /* "View.MemoryView":932
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  *     if index >= shape:             # <<<<<<<<<<<<<<
  *         raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_index >= __pyx_v_shape) != 0);
   if (unlikely(__pyx_t_2)) {
 
     /* "View.MemoryView":933
- * 
+ *
  *     if index >= shape:
  *         raise IndexError("Out of bounds on buffer access (axis %d)" % dim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     resultp = bufp + index * stride
  */
     __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_dim); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 933, __pyx_L1_error)
@@ -34531,16 +34531,16 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 
     /* "View.MemoryView":932
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  *     if index >= shape:             # <<<<<<<<<<<<<<
  *         raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  */
   }
 
   /* "View.MemoryView":935
  *         raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  *     resultp = bufp + index * stride             # <<<<<<<<<<<<<<
  *     if suboffset >= 0:
  *         resultp = (<char **> resultp)[0] + suboffset
@@ -34548,11 +34548,11 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
   __pyx_v_resultp = (__pyx_v_bufp + (__pyx_v_index * __pyx_v_stride));
 
   /* "View.MemoryView":936
- * 
+ *
  *     resultp = bufp + index * stride
  *     if suboffset >= 0:             # <<<<<<<<<<<<<<
  *         resultp = (<char **> resultp)[0] + suboffset
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_suboffset >= 0) != 0);
   if (__pyx_t_2) {
@@ -34561,32 +34561,32 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *     resultp = bufp + index * stride
  *     if suboffset >= 0:
  *         resultp = (<char **> resultp)[0] + suboffset             # <<<<<<<<<<<<<<
- * 
+ *
  *     return resultp
  */
     __pyx_v_resultp = ((((char **)__pyx_v_resultp)[0]) + __pyx_v_suboffset);
 
     /* "View.MemoryView":936
- * 
+ *
  *     resultp = bufp + index * stride
  *     if suboffset >= 0:             # <<<<<<<<<<<<<<
  *         resultp = (<char **> resultp)[0] + suboffset
- * 
+ *
  */
   }
 
   /* "View.MemoryView":939
  *         resultp = (<char **> resultp)[0] + suboffset
- * 
+ *
  *     return resultp             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_resultp;
   goto __pyx_L0;
 
   /* "View.MemoryView":912
- * 
+ *
  * @cname('__pyx_pybuffer_index')
  * cdef char *pybuffer_index(Py_buffer *view, char *bufp, Py_ssize_t index,             # <<<<<<<<<<<<<<
  *                           Py_ssize_t dim) except NULL:
@@ -34605,11 +34605,11 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 }
 
 /* "View.MemoryView":945
- * 
+ *
  * @cname('__pyx_memslice_transpose')
  * cdef int transpose_memslice(__Pyx_memviewslice *memslice) nogil except 0:             # <<<<<<<<<<<<<<
  *     cdef int ndim = memslice.memview.view.ndim
- * 
+ *
  */
 
 static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
@@ -34636,7 +34636,7 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
  * @cname('__pyx_memslice_transpose')
  * cdef int transpose_memslice(__Pyx_memviewslice *memslice) nogil except 0:
  *     cdef int ndim = memslice.memview.view.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef Py_ssize_t *shape = memslice.shape
  */
   __pyx_t_1 = __pyx_v_memslice->memview->view.ndim;
@@ -34644,26 +34644,26 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
 
   /* "View.MemoryView":948
  *     cdef int ndim = memslice.memview.view.ndim
- * 
+ *
  *     cdef Py_ssize_t *shape = memslice.shape             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t *strides = memslice.strides
- * 
+ *
  */
   __pyx_t_2 = __pyx_v_memslice->shape;
   __pyx_v_shape = __pyx_t_2;
 
   /* "View.MemoryView":949
- * 
+ *
  *     cdef Py_ssize_t *shape = memslice.shape
  *     cdef Py_ssize_t *strides = memslice.strides             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = __pyx_v_memslice->strides;
   __pyx_v_strides = __pyx_t_2;
 
   /* "View.MemoryView":953
- * 
+ *
  *     cdef int i, j
  *     for i in range(ndim / 2):             # <<<<<<<<<<<<<<
  *         j = ndim - 1 - i
@@ -34688,7 +34688,7 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
  *         j = ndim - 1 - i
  *         strides[i], strides[j] = strides[j], strides[i]             # <<<<<<<<<<<<<<
  *         shape[i], shape[j] = shape[j], shape[i]
- * 
+ *
  */
     __pyx_t_5 = (__pyx_v_strides[__pyx_v_j]);
     __pyx_t_6 = (__pyx_v_strides[__pyx_v_i]);
@@ -34699,7 +34699,7 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
  *         j = ndim - 1 - i
  *         strides[i], strides[j] = strides[j], strides[i]
  *         shape[i], shape[j] = shape[j], shape[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *         if memslice.suboffsets[i] >= 0 or memslice.suboffsets[j] >= 0:
  */
     __pyx_t_6 = (__pyx_v_shape[__pyx_v_j]);
@@ -34709,10 +34709,10 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
 
     /* "View.MemoryView":958
  *         shape[i], shape[j] = shape[j], shape[i]
- * 
+ *
  *         if memslice.suboffsets[i] >= 0 or memslice.suboffsets[j] >= 0:             # <<<<<<<<<<<<<<
  *             _err(ValueError, "Cannot transpose memoryview with indirect dimensions")
- * 
+ *
  */
     __pyx_t_8 = (((__pyx_v_memslice->suboffsets[__pyx_v_i]) >= 0) != 0);
     if (!__pyx_t_8) {
@@ -34726,40 +34726,40 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
     if (__pyx_t_7) {
 
       /* "View.MemoryView":959
- * 
+ *
  *         if memslice.suboffsets[i] >= 0 or memslice.suboffsets[j] >= 0:
  *             _err(ValueError, "Cannot transpose memoryview with indirect dimensions")             # <<<<<<<<<<<<<<
- * 
+ *
  *     return 1
  */
       __pyx_t_9 = __pyx_memoryview_err(__pyx_builtin_ValueError, ((char *)"Cannot transpose memoryview with indirect dimensions")); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(1, 959, __pyx_L1_error)
 
       /* "View.MemoryView":958
  *         shape[i], shape[j] = shape[j], shape[i]
- * 
+ *
  *         if memslice.suboffsets[i] >= 0 or memslice.suboffsets[j] >= 0:             # <<<<<<<<<<<<<<
  *             _err(ValueError, "Cannot transpose memoryview with indirect dimensions")
- * 
+ *
  */
     }
   }
 
   /* "View.MemoryView":961
  *             _err(ValueError, "Cannot transpose memoryview with indirect dimensions")
- * 
+ *
  *     return 1             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 1;
   goto __pyx_L0;
 
   /* "View.MemoryView":945
- * 
+ *
  * @cname('__pyx_memslice_transpose')
  * cdef int transpose_memslice(__Pyx_memviewslice *memslice) nogil except 0:             # <<<<<<<<<<<<<<
  *     cdef int ndim = memslice.memview.view.ndim
- * 
+ *
  */
 
   /* function exit code */
@@ -34780,10 +34780,10 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
 
 /* "View.MemoryView":978
  *     cdef int (*to_dtype_func)(char *, object) except 0
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -34802,20 +34802,20 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "View.MemoryView":979
- * 
+ *
  *     def __dealloc__(self):
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):
  */
   __PYX_XDEC_MEMVIEW((&__pyx_v_self->from_slice), 1);
 
   /* "View.MemoryView":978
  *     cdef int (*to_dtype_func)(char *, object) except 0
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)
- * 
+ *
  */
 
   /* function exit code */
@@ -34824,7 +34824,7 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 
 /* "View.MemoryView":981
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         if self.to_object_func != NULL:
  *             return self.to_object_func(itemp)
@@ -34841,7 +34841,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
   __Pyx_RefNannySetupContext("convert_item_to_object", 0);
 
   /* "View.MemoryView":982
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):
  *         if self.to_object_func != NULL:             # <<<<<<<<<<<<<<
  *             return self.to_object_func(itemp)
@@ -34865,7 +34865,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
     goto __pyx_L0;
 
     /* "View.MemoryView":982
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):
  *         if self.to_object_func != NULL:             # <<<<<<<<<<<<<<
  *             return self.to_object_func(itemp)
@@ -34877,7 +34877,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
  *             return self.to_object_func(itemp)
  *         else:
  *             return memoryview.convert_item_to_object(self, itemp)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):
  */
   /*else*/ {
@@ -34891,7 +34891,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
 
   /* "View.MemoryView":981
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         if self.to_object_func != NULL:
  *             return self.to_object_func(itemp)
@@ -34910,7 +34910,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
 
 /* "View.MemoryView":987
  *             return memoryview.convert_item_to_object(self, itemp)
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         if self.to_dtype_func != NULL:
  *             self.to_dtype_func(itemp, value)
@@ -34928,7 +34928,7 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
   __Pyx_RefNannySetupContext("assign_item_from_object", 0);
 
   /* "View.MemoryView":988
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):
  *         if self.to_dtype_func != NULL:             # <<<<<<<<<<<<<<
  *             self.to_dtype_func(itemp, value)
@@ -34947,7 +34947,7 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
     __pyx_t_2 = __pyx_v_self->to_dtype_func(__pyx_v_itemp, __pyx_v_value); if (unlikely(__pyx_t_2 == ((int)0))) __PYX_ERR(1, 989, __pyx_L1_error)
 
     /* "View.MemoryView":988
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):
  *         if self.to_dtype_func != NULL:             # <<<<<<<<<<<<<<
  *             self.to_dtype_func(itemp, value)
@@ -34960,7 +34960,7 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
  *             self.to_dtype_func(itemp, value)
  *         else:
  *             memoryview.assign_item_from_object(self, itemp, value)             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   /*else*/ {
@@ -34972,7 +34972,7 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
 
   /* "View.MemoryView":987
  *             return memoryview.convert_item_to_object(self, itemp)
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         if self.to_dtype_func != NULL:
  *             self.to_dtype_func(itemp, value)
@@ -34992,11 +34992,11 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
 }
 
 /* "View.MemoryView":994
- * 
+ *
  *     @property
  *     def base(self):             # <<<<<<<<<<<<<<
  *         return self.from_object
- * 
+ *
  */
 
 /* Python wrapper */
@@ -35021,7 +35021,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_16_memoryviewslice_4base___get__
  *     @property
  *     def base(self):
  *         return self.from_object             # <<<<<<<<<<<<<<
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_memoryview_getbuffer, "getbuffer(obj, view, flags)")
  */
   __Pyx_XDECREF(__pyx_r);
@@ -35030,11 +35030,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_16_memoryviewslice_4base___get__
   goto __pyx_L0;
 
   /* "View.MemoryView":994
- * 
+ *
  *     @property
  *     def base(self):             # <<<<<<<<<<<<<<
  *         return self.from_object
- * 
+ *
  */
 
   /* function exit code */
@@ -35158,7 +35158,7 @@ static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUS
 }
 
 /* "View.MemoryView":1001
- * 
+ *
  * @cname('__pyx_memoryview_fromslice')
  * cdef memoryview_fromslice(__Pyx_memviewslice memviewslice,             # <<<<<<<<<<<<<<
  *                           int ndim,
@@ -35187,20 +35187,20 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1009
  *     cdef _memoryviewslice result
- * 
+ *
  *     if <PyObject *> memviewslice.memview == Py_None:             # <<<<<<<<<<<<<<
  *         return None
- * 
+ *
  */
   __pyx_t_1 = ((((PyObject *)__pyx_v_memviewslice.memview) == Py_None) != 0);
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1010
- * 
+ *
  *     if <PyObject *> memviewslice.memview == Py_None:
  *         return None             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
@@ -35208,18 +35208,18 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
     /* "View.MemoryView":1009
  *     cdef _memoryviewslice result
- * 
+ *
  *     if <PyObject *> memviewslice.memview == Py_None:             # <<<<<<<<<<<<<<
  *         return None
- * 
+ *
  */
   }
 
   /* "View.MemoryView":1015
- * 
- * 
+ *
+ *
  *     result = _memoryviewslice(None, 0, dtype_is_object)             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.from_slice = memviewslice
  */
   __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_v_dtype_is_object); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1015, __pyx_L1_error)
@@ -35243,28 +35243,28 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1017
  *     result = _memoryviewslice(None, 0, dtype_is_object)
- * 
+ *
  *     result.from_slice = memviewslice             # <<<<<<<<<<<<<<
  *     __PYX_INC_MEMVIEW(&memviewslice, 1)
- * 
+ *
  */
   __pyx_v_result->from_slice = __pyx_v_memviewslice;
 
   /* "View.MemoryView":1018
- * 
+ *
  *     result.from_slice = memviewslice
  *     __PYX_INC_MEMVIEW(&memviewslice, 1)             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.from_object = (<memoryview> memviewslice.memview).base
  */
   __PYX_INC_MEMVIEW((&__pyx_v_memviewslice), 1);
 
   /* "View.MemoryView":1020
  *     __PYX_INC_MEMVIEW(&memviewslice, 1)
- * 
+ *
  *     result.from_object = (<memoryview> memviewslice.memview).base             # <<<<<<<<<<<<<<
  *     result.typeinfo = memviewslice.memview.typeinfo
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_memviewslice.memview), __pyx_n_s_base); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1020, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -35275,10 +35275,10 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   __pyx_t_2 = 0;
 
   /* "View.MemoryView":1021
- * 
+ *
  *     result.from_object = (<memoryview> memviewslice.memview).base
  *     result.typeinfo = memviewslice.memview.typeinfo             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.view = memviewslice.memview.view
  */
   __pyx_t_4 = __pyx_v_memviewslice.memview->typeinfo;
@@ -35286,7 +35286,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1023
  *     result.typeinfo = memviewslice.memview.typeinfo
- * 
+ *
  *     result.view = memviewslice.memview.view             # <<<<<<<<<<<<<<
  *     result.view.buf = <void *> memviewslice.data
  *     result.view.ndim = ndim
@@ -35295,7 +35295,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   __pyx_v_result->__pyx_base.view = __pyx_t_5;
 
   /* "View.MemoryView":1024
- * 
+ *
  *     result.view = memviewslice.memview.view
  *     result.view.buf = <void *> memviewslice.data             # <<<<<<<<<<<<<<
  *     result.view.ndim = ndim
@@ -35317,7 +35317,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *     result.view.ndim = ndim
  *     (<__pyx_buffer *> &result.view).obj = Py_None             # <<<<<<<<<<<<<<
  *     Py_INCREF(Py_None)
- * 
+ *
  */
   ((Py_buffer *)(&__pyx_v_result->__pyx_base.view))->obj = Py_None;
 
@@ -35325,14 +35325,14 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *     result.view.ndim = ndim
  *     (<__pyx_buffer *> &result.view).obj = Py_None
  *     Py_INCREF(Py_None)             # <<<<<<<<<<<<<<
- * 
+ *
  *     if (<memoryview>memviewslice.memview).flags & PyBUF_WRITABLE:
  */
   Py_INCREF(Py_None);
 
   /* "View.MemoryView":1029
  *     Py_INCREF(Py_None)
- * 
+ *
  *     if (<memoryview>memviewslice.memview).flags & PyBUF_WRITABLE:             # <<<<<<<<<<<<<<
  *         result.flags = PyBUF_RECORDS
  *     else:
@@ -35341,7 +35341,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1030
- * 
+ *
  *     if (<memoryview>memviewslice.memview).flags & PyBUF_WRITABLE:
  *         result.flags = PyBUF_RECORDS             # <<<<<<<<<<<<<<
  *     else:
@@ -35351,7 +35351,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
     /* "View.MemoryView":1029
  *     Py_INCREF(Py_None)
- * 
+ *
  *     if (<memoryview>memviewslice.memview).flags & PyBUF_WRITABLE:             # <<<<<<<<<<<<<<
  *         result.flags = PyBUF_RECORDS
  *     else:
@@ -35363,7 +35363,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *         result.flags = PyBUF_RECORDS
  *     else:
  *         result.flags = PyBUF_RECORDS_RO             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.view.shape = <Py_ssize_t *> result.from_slice.shape
  */
   /*else*/ {
@@ -35373,25 +35373,25 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1034
  *         result.flags = PyBUF_RECORDS_RO
- * 
+ *
  *     result.view.shape = <Py_ssize_t *> result.from_slice.shape             # <<<<<<<<<<<<<<
  *     result.view.strides = <Py_ssize_t *> result.from_slice.strides
- * 
+ *
  */
   __pyx_v_result->__pyx_base.view.shape = ((Py_ssize_t *)__pyx_v_result->from_slice.shape);
 
   /* "View.MemoryView":1035
- * 
+ *
  *     result.view.shape = <Py_ssize_t *> result.from_slice.shape
  *     result.view.strides = <Py_ssize_t *> result.from_slice.strides             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_v_result->__pyx_base.view.strides = ((Py_ssize_t *)__pyx_v_result->from_slice.strides);
 
   /* "View.MemoryView":1038
- * 
- * 
+ *
+ *
  *     result.view.suboffsets = NULL             # <<<<<<<<<<<<<<
  *     for suboffset in result.from_slice.suboffsets[:ndim]:
  *         if suboffset >= 0:
@@ -35399,7 +35399,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   __pyx_v_result->__pyx_base.view.suboffsets = NULL;
 
   /* "View.MemoryView":1039
- * 
+ *
  *     result.view.suboffsets = NULL
  *     for suboffset in result.from_slice.suboffsets[:ndim]:             # <<<<<<<<<<<<<<
  *         if suboffset >= 0:
@@ -35425,7 +35425,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *         if suboffset >= 0:
  *             result.view.suboffsets = <Py_ssize_t *> result.from_slice.suboffsets             # <<<<<<<<<<<<<<
  *             break
- * 
+ *
  */
       __pyx_v_result->__pyx_base.view.suboffsets = ((Py_ssize_t *)__pyx_v_result->from_slice.suboffsets);
 
@@ -35433,7 +35433,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *         if suboffset >= 0:
  *             result.view.suboffsets = <Py_ssize_t *> result.from_slice.suboffsets
  *             break             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.view.len = result.view.itemsize
  */
       goto __pyx_L6_break;
@@ -35451,7 +35451,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1044
  *             break
- * 
+ *
  *     result.view.len = result.view.itemsize             # <<<<<<<<<<<<<<
  *     for length in result.view.shape[:ndim]:
  *         result.view.len *= length
@@ -35460,11 +35460,11 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   __pyx_v_result->__pyx_base.view.len = __pyx_t_9;
 
   /* "View.MemoryView":1045
- * 
+ *
  *     result.view.len = result.view.itemsize
  *     for length in result.view.shape[:ndim]:             # <<<<<<<<<<<<<<
  *         result.view.len *= length
- * 
+ *
  */
   __pyx_t_7 = (__pyx_v_result->__pyx_base.view.shape + __pyx_v_ndim);
   for (__pyx_t_8 = __pyx_v_result->__pyx_base.view.shape; __pyx_t_8 < __pyx_t_7; __pyx_t_8++) {
@@ -35478,7 +35478,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *     result.view.len = result.view.itemsize
  *     for length in result.view.shape[:ndim]:
  *         result.view.len *= length             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.to_object_func = to_object_func
  */
     __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_result->__pyx_base.view.len); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1046, __pyx_L1_error)
@@ -35493,27 +35493,27 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1048
  *         result.view.len *= length
- * 
+ *
  *     result.to_object_func = to_object_func             # <<<<<<<<<<<<<<
  *     result.to_dtype_func = to_dtype_func
- * 
+ *
  */
   __pyx_v_result->to_object_func = __pyx_v_to_object_func;
 
   /* "View.MemoryView":1049
- * 
+ *
  *     result.to_object_func = to_object_func
  *     result.to_dtype_func = to_dtype_func             # <<<<<<<<<<<<<<
- * 
+ *
  *     return result
  */
   __pyx_v_result->to_dtype_func = __pyx_v_to_dtype_func;
 
   /* "View.MemoryView":1051
  *     result.to_dtype_func = to_dtype_func
- * 
+ *
  *     return result             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_get_slice_from_memoryview')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -35522,7 +35522,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   goto __pyx_L0;
 
   /* "View.MemoryView":1001
- * 
+ *
  * @cname('__pyx_memoryview_fromslice')
  * cdef memoryview_fromslice(__Pyx_memviewslice memviewslice,             # <<<<<<<<<<<<<<
  *                           int ndim,
@@ -35544,7 +35544,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 }
 
 /* "View.MemoryView":1054
- * 
+ *
  * @cname('__pyx_memoryview_get_slice_from_memoryview')
  * cdef __Pyx_memviewslice *get_slice_from_memview(memoryview memview,             # <<<<<<<<<<<<<<
  *                                                    __Pyx_memviewslice *mslice) except NULL:
@@ -35570,7 +35570,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
  *         obj = memview
  *         return &obj.from_slice
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -35611,7 +35611,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
  *     else:
  *         slice_copy(memview, mslice)             # <<<<<<<<<<<<<<
  *         return mslice
- * 
+ *
  */
   /*else*/ {
     __pyx_memoryview_slice_copy(__pyx_v_memview, __pyx_v_mslice);
@@ -35620,7 +35620,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
  *     else:
  *         slice_copy(memview, mslice)
  *         return mslice             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_slice_copy')
  */
     __pyx_r = __pyx_v_mslice;
@@ -35628,7 +35628,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
   }
 
   /* "View.MemoryView":1054
- * 
+ *
  * @cname('__pyx_memoryview_get_slice_from_memoryview')
  * cdef __Pyx_memviewslice *get_slice_from_memview(memoryview memview,             # <<<<<<<<<<<<<<
  *                                                    __Pyx_memviewslice *mslice) except NULL:
@@ -35647,7 +35647,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
 }
 
 /* "View.MemoryView":1065
- * 
+ *
  * @cname('__pyx_memoryview_slice_copy')
  * cdef void slice_copy(memoryview memview, __Pyx_memviewslice *dst):             # <<<<<<<<<<<<<<
  *     cdef int dim
@@ -35669,7 +35669,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
 
   /* "View.MemoryView":1069
  *     cdef (Py_ssize_t*) shape, strides, suboffsets
- * 
+ *
  *     shape = memview.view.shape             # <<<<<<<<<<<<<<
  *     strides = memview.view.strides
  *     suboffsets = memview.view.suboffsets
@@ -35678,11 +35678,11 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
   __pyx_v_shape = __pyx_t_1;
 
   /* "View.MemoryView":1070
- * 
+ *
  *     shape = memview.view.shape
  *     strides = memview.view.strides             # <<<<<<<<<<<<<<
  *     suboffsets = memview.view.suboffsets
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_memview->view.strides;
   __pyx_v_strides = __pyx_t_1;
@@ -35691,7 +35691,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
  *     shape = memview.view.shape
  *     strides = memview.view.strides
  *     suboffsets = memview.view.suboffsets             # <<<<<<<<<<<<<<
- * 
+ *
  *     dst.memview = <__pyx_memoryview *> memview
  */
   __pyx_t_1 = __pyx_v_memview->view.suboffsets;
@@ -35699,25 +35699,25 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
 
   /* "View.MemoryView":1073
  *     suboffsets = memview.view.suboffsets
- * 
+ *
  *     dst.memview = <__pyx_memoryview *> memview             # <<<<<<<<<<<<<<
  *     dst.data = <char *> memview.view.buf
- * 
+ *
  */
   __pyx_v_dst->memview = ((struct __pyx_memoryview_obj *)__pyx_v_memview);
 
   /* "View.MemoryView":1074
- * 
+ *
  *     dst.memview = <__pyx_memoryview *> memview
  *     dst.data = <char *> memview.view.buf             # <<<<<<<<<<<<<<
- * 
+ *
  *     for dim in range(memview.view.ndim):
  */
   __pyx_v_dst->data = ((char *)__pyx_v_memview->view.buf);
 
   /* "View.MemoryView":1076
  *     dst.data = <char *> memview.view.buf
- * 
+ *
  *     for dim in range(memview.view.ndim):             # <<<<<<<<<<<<<<
  *         dst.shape[dim] = shape[dim]
  *         dst.strides[dim] = strides[dim]
@@ -35728,7 +35728,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
     __pyx_v_dim = __pyx_t_4;
 
     /* "View.MemoryView":1077
- * 
+ *
  *     for dim in range(memview.view.ndim):
  *         dst.shape[dim] = shape[dim]             # <<<<<<<<<<<<<<
  *         dst.strides[dim] = strides[dim]
@@ -35741,7 +35741,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
  *         dst.shape[dim] = shape[dim]
  *         dst.strides[dim] = strides[dim]             # <<<<<<<<<<<<<<
  *         dst.suboffsets[dim] = suboffsets[dim] if suboffsets else -1
- * 
+ *
  */
     (__pyx_v_dst->strides[__pyx_v_dim]) = (__pyx_v_strides[__pyx_v_dim]);
 
@@ -35749,7 +35749,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
  *         dst.shape[dim] = shape[dim]
  *         dst.strides[dim] = strides[dim]
  *         dst.suboffsets[dim] = suboffsets[dim] if suboffsets else -1             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_copy_object')
  */
     if ((__pyx_v_suboffsets != 0)) {
@@ -35761,7 +35761,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
   }
 
   /* "View.MemoryView":1065
- * 
+ *
  * @cname('__pyx_memoryview_slice_copy')
  * cdef void slice_copy(memoryview memview, __Pyx_memviewslice *dst):             # <<<<<<<<<<<<<<
  *     cdef int dim
@@ -35773,7 +35773,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
 }
 
 /* "View.MemoryView":1082
- * 
+ *
  * @cname('__pyx_memoryview_copy_object')
  * cdef memoryview_copy(memoryview memview):             # <<<<<<<<<<<<<<
  *     "Create a new memoryview object"
@@ -35795,7 +35795,7 @@ static PyObject *__pyx_memoryview_copy_object(struct __pyx_memoryview_obj *__pyx
  *     cdef __Pyx_memviewslice memviewslice
  *     slice_copy(memview, &memviewslice)             # <<<<<<<<<<<<<<
  *     return memoryview_copy_from_slice(memview, &memviewslice)
- * 
+ *
  */
   __pyx_memoryview_slice_copy(__pyx_v_memview, (&__pyx_v_memviewslice));
 
@@ -35803,7 +35803,7 @@ static PyObject *__pyx_memoryview_copy_object(struct __pyx_memoryview_obj *__pyx
  *     cdef __Pyx_memviewslice memviewslice
  *     slice_copy(memview, &memviewslice)
  *     return memoryview_copy_from_slice(memview, &memviewslice)             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_copy_object_from_slice')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -35814,7 +35814,7 @@ static PyObject *__pyx_memoryview_copy_object(struct __pyx_memoryview_obj *__pyx
   goto __pyx_L0;
 
   /* "View.MemoryView":1082
- * 
+ *
  * @cname('__pyx_memoryview_copy_object')
  * cdef memoryview_copy(memoryview memview):             # <<<<<<<<<<<<<<
  *     "Create a new memoryview object"
@@ -35833,7 +35833,7 @@ static PyObject *__pyx_memoryview_copy_object(struct __pyx_memoryview_obj *__pyx
 }
 
 /* "View.MemoryView":1089
- * 
+ *
  * @cname('__pyx_memoryview_copy_object_from_slice')
  * cdef memoryview_copy_from_slice(memoryview memview, __Pyx_memviewslice *memviewslice):             # <<<<<<<<<<<<<<
  *     """
@@ -35857,17 +35857,17 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
   /* "View.MemoryView":1096
  *     cdef int (*to_dtype_func)(char *, object) except 0
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         to_object_func = (<_memoryviewslice> memview).to_object_func
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1097
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  *         to_object_func = (<_memoryviewslice> memview).to_object_func             # <<<<<<<<<<<<<<
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
@@ -35888,7 +35888,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
     /* "View.MemoryView":1096
  *     cdef int (*to_dtype_func)(char *, object) except 0
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         to_object_func = (<_memoryviewslice> memview).to_object_func
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
@@ -35901,7 +35901,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     else:
  *         to_object_func = NULL             # <<<<<<<<<<<<<<
  *         to_dtype_func = NULL
- * 
+ *
  */
   /*else*/ {
     __pyx_v_to_object_func = NULL;
@@ -35910,7 +35910,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     else:
  *         to_object_func = NULL
  *         to_dtype_func = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,
  */
     __pyx_v_to_dtype_func = NULL;
@@ -35919,7 +35919,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
   /* "View.MemoryView":1103
  *         to_dtype_func = NULL
- * 
+ *
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,             # <<<<<<<<<<<<<<
  *                                 to_object_func, to_dtype_func,
  *                                 memview.dtype_is_object)
@@ -35930,8 +35930,8 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,
  *                                 to_object_func, to_dtype_func,
  *                                 memview.dtype_is_object)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_5 = __pyx_memoryview_fromslice((__pyx_v_memviewslice[0]), __pyx_v_memview->view.ndim, __pyx_v_to_object_func, __pyx_v_to_dtype_func, __pyx_v_memview->dtype_is_object); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -35940,7 +35940,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
   goto __pyx_L0;
 
   /* "View.MemoryView":1089
- * 
+ *
  * @cname('__pyx_memoryview_copy_object_from_slice')
  * cdef memoryview_copy_from_slice(memoryview memview, __Pyx_memviewslice *memviewslice):             # <<<<<<<<<<<<<<
  *     """
@@ -35959,8 +35959,8 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 }
 
 /* "View.MemoryView":1111
- * 
- * 
+ *
+ *
  * cdef Py_ssize_t abs_py_ssize_t(Py_ssize_t arg) nogil:             # <<<<<<<<<<<<<<
  *     if arg < 0:
  *         return -arg
@@ -35971,7 +35971,7 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
   int __pyx_t_1;
 
   /* "View.MemoryView":1112
- * 
+ *
  * cdef Py_ssize_t abs_py_ssize_t(Py_ssize_t arg) nogil:
  *     if arg < 0:             # <<<<<<<<<<<<<<
  *         return -arg
@@ -35991,7 +35991,7 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
     goto __pyx_L0;
 
     /* "View.MemoryView":1112
- * 
+ *
  * cdef Py_ssize_t abs_py_ssize_t(Py_ssize_t arg) nogil:
  *     if arg < 0:             # <<<<<<<<<<<<<<
  *         return -arg
@@ -36003,7 +36003,7 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
  *         return -arg
  *     else:
  *         return arg             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_get_best_slice_order')
  */
   /*else*/ {
@@ -36012,8 +36012,8 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
   }
 
   /* "View.MemoryView":1111
- * 
- * 
+ *
+ *
  * cdef Py_ssize_t abs_py_ssize_t(Py_ssize_t arg) nogil:             # <<<<<<<<<<<<<<
  *     if arg < 0:
  *         return -arg
@@ -36025,7 +36025,7 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
 }
 
 /* "View.MemoryView":1118
- * 
+ *
  * @cname('__pyx_get_best_slice_order')
  * cdef char get_best_order(__Pyx_memviewslice *mslice, int ndim) nogil:             # <<<<<<<<<<<<<<
  *     """
@@ -36047,7 +36047,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *     cdef int i
  *     cdef Py_ssize_t c_stride = 0             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t f_stride = 0
- * 
+ *
  */
   __pyx_v_c_stride = 0;
 
@@ -36055,14 +36055,14 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *     cdef int i
  *     cdef Py_ssize_t c_stride = 0
  *     cdef Py_ssize_t f_stride = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  */
   __pyx_v_f_stride = 0;
 
   /* "View.MemoryView":1126
  *     cdef Py_ssize_t f_stride = 0
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):             # <<<<<<<<<<<<<<
  *         if mslice.shape[i] > 1:
  *             c_stride = mslice.strides[i]
@@ -36071,7 +36071,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
     __pyx_v_i = __pyx_t_1;
 
     /* "View.MemoryView":1127
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  *         if mslice.shape[i] > 1:             # <<<<<<<<<<<<<<
  *             c_stride = mslice.strides[i]
@@ -36085,7 +36085,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         if mslice.shape[i] > 1:
  *             c_stride = mslice.strides[i]             # <<<<<<<<<<<<<<
  *             break
- * 
+ *
  */
       __pyx_v_c_stride = (__pyx_v_mslice->strides[__pyx_v_i]);
 
@@ -36093,13 +36093,13 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         if mslice.shape[i] > 1:
  *             c_stride = mslice.strides[i]
  *             break             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(ndim):
  */
       goto __pyx_L4_break;
 
       /* "View.MemoryView":1127
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  *         if mslice.shape[i] > 1:             # <<<<<<<<<<<<<<
  *             c_stride = mslice.strides[i]
@@ -36111,7 +36111,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 
   /* "View.MemoryView":1131
  *             break
- * 
+ *
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
  *         if mslice.shape[i] > 1:
  *             f_stride = mslice.strides[i]
@@ -36122,7 +36122,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
     __pyx_v_i = __pyx_t_4;
 
     /* "View.MemoryView":1132
- * 
+ *
  *     for i in range(ndim):
  *         if mslice.shape[i] > 1:             # <<<<<<<<<<<<<<
  *             f_stride = mslice.strides[i]
@@ -36136,7 +36136,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         if mslice.shape[i] > 1:
  *             f_stride = mslice.strides[i]             # <<<<<<<<<<<<<<
  *             break
- * 
+ *
  */
       __pyx_v_f_stride = (__pyx_v_mslice->strides[__pyx_v_i]);
 
@@ -36144,13 +36144,13 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         if mslice.shape[i] > 1:
  *             f_stride = mslice.strides[i]
  *             break             # <<<<<<<<<<<<<<
- * 
+ *
  *     if abs_py_ssize_t(c_stride) <= abs_py_ssize_t(f_stride):
  */
       goto __pyx_L7_break;
 
       /* "View.MemoryView":1132
- * 
+ *
  *     for i in range(ndim):
  *         if mslice.shape[i] > 1:             # <<<<<<<<<<<<<<
  *             f_stride = mslice.strides[i]
@@ -36162,7 +36162,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 
   /* "View.MemoryView":1136
  *             break
- * 
+ *
  *     if abs_py_ssize_t(c_stride) <= abs_py_ssize_t(f_stride):             # <<<<<<<<<<<<<<
  *         return 'C'
  *     else:
@@ -36171,7 +36171,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1137
- * 
+ *
  *     if abs_py_ssize_t(c_stride) <= abs_py_ssize_t(f_stride):
  *         return 'C'             # <<<<<<<<<<<<<<
  *     else:
@@ -36182,7 +36182,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 
     /* "View.MemoryView":1136
  *             break
- * 
+ *
  *     if abs_py_ssize_t(c_stride) <= abs_py_ssize_t(f_stride):             # <<<<<<<<<<<<<<
  *         return 'C'
  *     else:
@@ -36193,7 +36193,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         return 'C'
  *     else:
  *         return 'F'             # <<<<<<<<<<<<<<
- * 
+ *
  * @cython.cdivision(True)
  */
   /*else*/ {
@@ -36202,7 +36202,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
   }
 
   /* "View.MemoryView":1118
- * 
+ *
  * @cname('__pyx_get_best_slice_order')
  * cdef char get_best_order(__Pyx_memviewslice *mslice, int ndim) nogil:             # <<<<<<<<<<<<<<
  *     """
@@ -36215,7 +36215,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 }
 
 /* "View.MemoryView":1142
- * 
+ *
  * @cython.cdivision(True)
  * cdef void _copy_strided_to_strided(char *src_data, Py_ssize_t *src_strides,             # <<<<<<<<<<<<<<
  *                                    char *dst_data, Py_ssize_t *dst_strides,
@@ -36236,7 +36236,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   Py_ssize_t __pyx_t_6;
 
   /* "View.MemoryView":1149
- * 
+ *
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t src_extent = src_shape[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
@@ -36258,7 +36258,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
  *     cdef Py_ssize_t src_stride = src_strides[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- * 
+ *
  */
   __pyx_v_src_stride = (__pyx_v_src_strides[0]);
 
@@ -36266,14 +36266,14 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
  *     cdef Py_ssize_t src_stride = src_strides[0]
  *     cdef Py_ssize_t dst_stride = dst_strides[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     if ndim == 1:
  */
   __pyx_v_dst_stride = (__pyx_v_dst_strides[0]);
 
   /* "View.MemoryView":1154
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- * 
+ *
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *        if (src_stride > 0 and dst_stride > 0 and
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -36282,7 +36282,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1155
- * 
+ *
  *     if ndim == 1:
  *        if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -36317,7 +36317,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
     __pyx_L5_bool_binop_done:;
 
     /* "View.MemoryView":1155
- * 
+ *
  *     if ndim == 1:
  *        if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -36335,7 +36335,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
       (void)(memcpy(__pyx_v_dst_data, __pyx_v_src_data, (__pyx_v_itemsize * __pyx_v_dst_extent)));
 
       /* "View.MemoryView":1155
- * 
+ *
  *     if ndim == 1:
  *        if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -36389,7 +36389,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
 
     /* "View.MemoryView":1154
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- * 
+ *
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *        if (src_stride > 0 and dst_stride > 0 and
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -36424,7 +36424,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *                                      ndim - 1, itemsize)
  *             src_data += src_stride             # <<<<<<<<<<<<<<
  *             dst_data += dst_stride
- * 
+ *
  */
       __pyx_v_src_data = (__pyx_v_src_data + __pyx_v_src_stride);
 
@@ -36432,7 +36432,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *                                      ndim - 1, itemsize)
  *             src_data += src_stride
  *             dst_data += dst_stride             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,
  */
       __pyx_v_dst_data = (__pyx_v_dst_data + __pyx_v_dst_stride);
@@ -36441,7 +36441,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   __pyx_L3:;
 
   /* "View.MemoryView":1142
- * 
+ *
  * @cython.cdivision(True)
  * cdef void _copy_strided_to_strided(char *src_data, Py_ssize_t *src_strides,             # <<<<<<<<<<<<<<
  *                                    char *dst_data, Py_ssize_t *dst_strides,
@@ -36453,7 +36453,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
 
 /* "View.MemoryView":1172
  *             dst_data += dst_stride
- * 
+ *
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice *dst,
  *                                   int ndim, size_t itemsize) nogil:
@@ -36466,13 +36466,13 @@ static void copy_strided_to_strided(__Pyx_memviewslice *__pyx_v_src, __Pyx_memvi
  *                                   int ndim, size_t itemsize) nogil:
  *     _copy_strided_to_strided(src.data, src.strides, dst.data, dst.strides,             # <<<<<<<<<<<<<<
  *                              src.shape, dst.shape, ndim, itemsize)
- * 
+ *
  */
   _copy_strided_to_strided(__pyx_v_src->data, __pyx_v_src->strides, __pyx_v_dst->data, __pyx_v_dst->strides, __pyx_v_src->shape, __pyx_v_dst->shape, __pyx_v_ndim, __pyx_v_itemsize);
 
   /* "View.MemoryView":1172
  *             dst_data += dst_stride
- * 
+ *
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice *dst,
  *                                   int ndim, size_t itemsize) nogil:
@@ -36482,7 +36482,7 @@ static void copy_strided_to_strided(__Pyx_memviewslice *__pyx_v_src, __Pyx_memvi
 }
 
 /* "View.MemoryView":1179
- * 
+ *
  * @cname('__pyx_memoryview_slice_get_size')
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) nogil:             # <<<<<<<<<<<<<<
  *     "Return the size of the memory occupied by the slice in number of bytes"
@@ -36502,7 +36502,7 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) nogil:
  *     "Return the size of the memory occupied by the slice in number of bytes"
  *     cdef Py_ssize_t shape, size = src.memview.view.itemsize             # <<<<<<<<<<<<<<
- * 
+ *
  *     for shape in src.shape[:ndim]:
  */
   __pyx_t_1 = __pyx_v_src->memview->view.itemsize;
@@ -36510,10 +36510,10 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 
   /* "View.MemoryView":1183
  *     cdef Py_ssize_t shape, size = src.memview.view.itemsize
- * 
+ *
  *     for shape in src.shape[:ndim]:             # <<<<<<<<<<<<<<
  *         size *= shape
- * 
+ *
  */
   __pyx_t_3 = (__pyx_v_src->shape + __pyx_v_ndim);
   for (__pyx_t_4 = __pyx_v_src->shape; __pyx_t_4 < __pyx_t_3; __pyx_t_4++) {
@@ -36521,10 +36521,10 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
     __pyx_v_shape = (__pyx_t_2[0]);
 
     /* "View.MemoryView":1184
- * 
+ *
  *     for shape in src.shape[:ndim]:
  *         size *= shape             # <<<<<<<<<<<<<<
- * 
+ *
  *     return size
  */
     __pyx_v_size = (__pyx_v_size * __pyx_v_shape);
@@ -36532,16 +36532,16 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 
   /* "View.MemoryView":1186
  *         size *= shape
- * 
+ *
  *     return size             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_fill_contig_strides_array')
  */
   __pyx_r = __pyx_v_size;
   goto __pyx_L0;
 
   /* "View.MemoryView":1179
- * 
+ *
  * @cname('__pyx_memoryview_slice_get_size')
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) nogil:             # <<<<<<<<<<<<<<
  *     "Return the size of the memory occupied by the slice in number of bytes"
@@ -36554,7 +36554,7 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 }
 
 /* "View.MemoryView":1189
- * 
+ *
  * @cname('__pyx_fill_contig_strides_array')
  * cdef Py_ssize_t fill_contig_strides_array(             # <<<<<<<<<<<<<<
  *                 Py_ssize_t *shape, Py_ssize_t *strides, Py_ssize_t stride,
@@ -36571,7 +36571,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
   /* "View.MemoryView":1198
  *     cdef int idx
- * 
+ *
  *     if order == 'F':             # <<<<<<<<<<<<<<
  *         for idx in range(ndim):
  *             strides[idx] = stride
@@ -36580,7 +36580,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1199
- * 
+ *
  *     if order == 'F':
  *         for idx in range(ndim):             # <<<<<<<<<<<<<<
  *             strides[idx] = stride
@@ -36612,7 +36612,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
     /* "View.MemoryView":1198
  *     cdef int idx
- * 
+ *
  *     if order == 'F':             # <<<<<<<<<<<<<<
  *         for idx in range(ndim):
  *             strides[idx] = stride
@@ -36636,7 +36636,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
  *         for idx in range(ndim - 1, -1, -1):
  *             strides[idx] = stride             # <<<<<<<<<<<<<<
  *             stride *= shape[idx]
- * 
+ *
  */
       (__pyx_v_strides[__pyx_v_idx]) = __pyx_v_stride;
 
@@ -36644,7 +36644,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
  *         for idx in range(ndim - 1, -1, -1):
  *             strides[idx] = stride
  *             stride *= shape[idx]             # <<<<<<<<<<<<<<
- * 
+ *
  *     return stride
  */
       __pyx_v_stride = (__pyx_v_stride * (__pyx_v_shape[__pyx_v_idx]));
@@ -36654,16 +36654,16 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
   /* "View.MemoryView":1207
  *             stride *= shape[idx]
- * 
+ *
  *     return stride             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_copy_data_to_temp')
  */
   __pyx_r = __pyx_v_stride;
   goto __pyx_L0;
 
   /* "View.MemoryView":1189
- * 
+ *
  * @cname('__pyx_fill_contig_strides_array')
  * cdef Py_ssize_t fill_contig_strides_array(             # <<<<<<<<<<<<<<
  *                 Py_ssize_t *shape, Py_ssize_t *strides, Py_ssize_t stride,
@@ -36676,7 +36676,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 }
 
 /* "View.MemoryView":1210
- * 
+ *
  * @cname('__pyx_memoryview_copy_data_to_temp')
  * cdef void *copy_data_to_temp(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                              __Pyx_memviewslice *tmpslice,
@@ -36701,26 +36701,26 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1221
  *     cdef void *result
- * 
+ *
  *     cdef size_t itemsize = src.memview.view.itemsize             # <<<<<<<<<<<<<<
  *     cdef size_t size = slice_get_size(src, ndim)
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_src->memview->view.itemsize;
   __pyx_v_itemsize = __pyx_t_1;
 
   /* "View.MemoryView":1222
- * 
+ *
  *     cdef size_t itemsize = src.memview.view.itemsize
  *     cdef size_t size = slice_get_size(src, ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     result = malloc(size)
  */
   __pyx_v_size = __pyx_memoryview_slice_get_size(__pyx_v_src, __pyx_v_ndim);
 
   /* "View.MemoryView":1224
  *     cdef size_t size = slice_get_size(src, ndim)
- * 
+ *
  *     result = malloc(size)             # <<<<<<<<<<<<<<
  *     if not result:
  *         _err(MemoryError, NULL)
@@ -36728,11 +36728,11 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   __pyx_v_result = malloc(__pyx_v_size);
 
   /* "View.MemoryView":1225
- * 
+ *
  *     result = malloc(size)
  *     if not result:             # <<<<<<<<<<<<<<
  *         _err(MemoryError, NULL)
- * 
+ *
  */
   __pyx_t_2 = ((!(__pyx_v_result != 0)) != 0);
   if (__pyx_t_2) {
@@ -36741,23 +36741,23 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     result = malloc(size)
  *     if not result:
  *         _err(MemoryError, NULL)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_t_3 = __pyx_memoryview_err(__pyx_builtin_MemoryError, NULL); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 1226, __pyx_L1_error)
 
     /* "View.MemoryView":1225
- * 
+ *
  *     result = malloc(size)
  *     if not result:             # <<<<<<<<<<<<<<
  *         _err(MemoryError, NULL)
- * 
+ *
  */
   }
 
   /* "View.MemoryView":1229
- * 
- * 
+ *
+ *
  *     tmpslice.data = <char *> result             # <<<<<<<<<<<<<<
  *     tmpslice.memview = src.memview
  *     for i in range(ndim):
@@ -36765,7 +36765,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   __pyx_v_tmpslice->data = ((char *)__pyx_v_result);
 
   /* "View.MemoryView":1230
- * 
+ *
  *     tmpslice.data = <char *> result
  *     tmpslice.memview = src.memview             # <<<<<<<<<<<<<<
  *     for i in range(ndim):
@@ -36791,7 +36791,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         tmpslice.shape[i] = src.shape[i]             # <<<<<<<<<<<<<<
  *         tmpslice.suboffsets[i] = -1
- * 
+ *
  */
     (__pyx_v_tmpslice->shape[__pyx_v_i]) = (__pyx_v_src->shape[__pyx_v_i]);
 
@@ -36799,7 +36799,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         tmpslice.shape[i] = src.shape[i]
  *         tmpslice.suboffsets[i] = -1             # <<<<<<<<<<<<<<
- * 
+ *
  *     fill_contig_strides_array(&tmpslice.shape[0], &tmpslice.strides[0], itemsize,
  */
     (__pyx_v_tmpslice->suboffsets[__pyx_v_i]) = -1L;
@@ -36807,16 +36807,16 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1235
  *         tmpslice.suboffsets[i] = -1
- * 
+ *
  *     fill_contig_strides_array(&tmpslice.shape[0], &tmpslice.strides[0], itemsize,             # <<<<<<<<<<<<<<
  *                               ndim, order)
- * 
+ *
  */
   (void)(__pyx_fill_contig_strides_array((&(__pyx_v_tmpslice->shape[0])), (&(__pyx_v_tmpslice->strides[0])), __pyx_v_itemsize, __pyx_v_ndim, __pyx_v_order));
 
   /* "View.MemoryView":1239
- * 
- * 
+ *
+ *
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
  *         if tmpslice.shape[i] == 1:
  *             tmpslice.strides[i] = 0
@@ -36827,11 +36827,11 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
     __pyx_v_i = __pyx_t_6;
 
     /* "View.MemoryView":1240
- * 
+ *
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:             # <<<<<<<<<<<<<<
  *             tmpslice.strides[i] = 0
- * 
+ *
  */
     __pyx_t_2 = (((__pyx_v_tmpslice->shape[__pyx_v_i]) == 1) != 0);
     if (__pyx_t_2) {
@@ -36840,24 +36840,24 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:
  *             tmpslice.strides[i] = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     if slice_is_contig(src[0], order, ndim):
  */
       (__pyx_v_tmpslice->strides[__pyx_v_i]) = 0;
 
       /* "View.MemoryView":1240
- * 
+ *
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:             # <<<<<<<<<<<<<<
  *             tmpslice.strides[i] = 0
- * 
+ *
  */
     }
   }
 
   /* "View.MemoryView":1243
  *             tmpslice.strides[i] = 0
- * 
+ *
  *     if slice_is_contig(src[0], order, ndim):             # <<<<<<<<<<<<<<
  *         memcpy(result, src.data, size)
  *     else:
@@ -36866,7 +36866,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1244
- * 
+ *
  *     if slice_is_contig(src[0], order, ndim):
  *         memcpy(result, src.data, size)             # <<<<<<<<<<<<<<
  *     else:
@@ -36876,7 +36876,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
     /* "View.MemoryView":1243
  *             tmpslice.strides[i] = 0
- * 
+ *
  *     if slice_is_contig(src[0], order, ndim):             # <<<<<<<<<<<<<<
  *         memcpy(result, src.data, size)
  *     else:
@@ -36888,7 +36888,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *         memcpy(result, src.data, size)
  *     else:
  *         copy_strided_to_strided(src, tmpslice, ndim, itemsize)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return result
  */
   /*else*/ {
@@ -36898,16 +36898,16 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1248
  *         copy_strided_to_strided(src, tmpslice, ndim, itemsize)
- * 
+ *
  *     return result             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
   /* "View.MemoryView":1210
- * 
+ *
  * @cname('__pyx_memoryview_copy_data_to_temp')
  * cdef void *copy_data_to_temp(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                              __Pyx_memviewslice *tmpslice,
@@ -36931,7 +36931,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 }
 
 /* "View.MemoryView":1253
- * 
+ *
  * @cname('__pyx_memoryview_err_extents')
  * cdef int _err_extents(int i, Py_ssize_t extent1,             # <<<<<<<<<<<<<<
  *                              Py_ssize_t extent2) except -1 with gil:
@@ -36957,7 +36957,7 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
  *                              Py_ssize_t extent2) except -1 with gil:
  *     raise ValueError("got differing extents in dimension %d (got %d and %d)" %
  *                                                         (i, extent1, extent2))             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_err_dim')
  */
   __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1256, __pyx_L1_error)
@@ -36983,7 +36983,7 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
  *                              Py_ssize_t extent2) except -1 with gil:
  *     raise ValueError("got differing extents in dimension %d (got %d and %d)" %             # <<<<<<<<<<<<<<
  *                                                         (i, extent1, extent2))
- * 
+ *
  */
   __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_got_differing_extents_in_dimensi, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -36996,7 +36996,7 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
   __PYX_ERR(1, 1255, __pyx_L1_error)
 
   /* "View.MemoryView":1253
- * 
+ *
  * @cname('__pyx_memoryview_err_extents')
  * cdef int _err_extents(int i, Py_ssize_t extent1,             # <<<<<<<<<<<<<<
  *                              Py_ssize_t extent2) except -1 with gil:
@@ -37019,11 +37019,11 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
 }
 
 /* "View.MemoryView":1259
- * 
+ *
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(object error, char *msg, int dim) except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise error(msg.decode('ascii') % dim)
- * 
+ *
  */
 
 static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, char *__pyx_v_msg, int __pyx_v_dim) {
@@ -37046,7 +37046,7 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, char *__pyx_v_msg, 
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(object error, char *msg, int dim) except -1 with gil:
  *     raise error(msg.decode('ascii') % dim)             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_err')
  */
   __pyx_t_2 = __Pyx_decode_c_string(__pyx_v_msg, 0, strlen(__pyx_v_msg), NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1260, __pyx_L1_error)
@@ -37079,11 +37079,11 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, char *__pyx_v_msg, 
   __PYX_ERR(1, 1260, __pyx_L1_error)
 
   /* "View.MemoryView":1259
- * 
+ *
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(object error, char *msg, int dim) except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise error(msg.decode('ascii') % dim)
- * 
+ *
  */
 
   /* function exit code */
@@ -37103,7 +37103,7 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, char *__pyx_v_msg, 
 }
 
 /* "View.MemoryView":1263
- * 
+ *
  * @cname('__pyx_memoryview_err')
  * cdef int _err(object error, char *msg) except -1 with gil:             # <<<<<<<<<<<<<<
  *     if msg != NULL:
@@ -37180,7 +37180,7 @@ static int __pyx_memoryview_err(PyObject *__pyx_v_error, char *__pyx_v_msg) {
  *         raise error(msg.decode('ascii'))
  *     else:
  *         raise error             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_copy_contents')
  */
   /*else*/ {
@@ -37189,7 +37189,7 @@ static int __pyx_memoryview_err(PyObject *__pyx_v_error, char *__pyx_v_msg) {
   }
 
   /* "View.MemoryView":1263
- * 
+ *
  * @cname('__pyx_memoryview_err')
  * cdef int _err(object error, char *msg) except -1 with gil:             # <<<<<<<<<<<<<<
  *     if msg != NULL:
@@ -37213,7 +37213,7 @@ static int __pyx_memoryview_err(PyObject *__pyx_v_error, char *__pyx_v_msg) {
 }
 
 /* "View.MemoryView":1270
- * 
+ *
  * @cname('__pyx_memoryview_copy_contents')
  * cdef int memoryview_copy_contents(__Pyx_memviewslice src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice dst,
@@ -37284,13 +37284,13 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *     cdef bint broadcasting = False
  *     cdef bint direct_copy = False             # <<<<<<<<<<<<<<
  *     cdef __Pyx_memviewslice tmp
- * 
+ *
  */
   __pyx_v_direct_copy = 0;
 
   /* "View.MemoryView":1286
  *     cdef __Pyx_memviewslice tmp
- * 
+ *
  *     if src_ndim < dst_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
@@ -37299,7 +37299,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1287
- * 
+ *
  *     if src_ndim < dst_ndim:
  *         broadcast_leading(&src, src_ndim, dst_ndim)             # <<<<<<<<<<<<<<
  *     elif dst_ndim < src_ndim:
@@ -37309,7 +37309,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1286
  *     cdef __Pyx_memviewslice tmp
- * 
+ *
  *     if src_ndim < dst_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
@@ -37322,7 +37322,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_dst_ndim < __pyx_v_src_ndim) != 0);
   if (__pyx_t_2) {
@@ -37331,7 +37331,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
  *         broadcast_leading(&dst, dst_ndim, src_ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int ndim = max(src_ndim, dst_ndim)
  */
     __pyx_memoryview_broadcast_leading((&__pyx_v_dst), __pyx_v_dst_ndim, __pyx_v_src_ndim);
@@ -37341,16 +37341,16 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- * 
+ *
  */
   }
   __pyx_L3:;
 
   /* "View.MemoryView":1291
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- * 
+ *
  *     cdef int ndim = max(src_ndim, dst_ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(ndim):
  */
   __pyx_t_3 = __pyx_v_dst_ndim;
@@ -37364,7 +37364,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
   /* "View.MemoryView":1293
  *     cdef int ndim = max(src_ndim, dst_ndim)
- * 
+ *
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
  *         if src.shape[i] != dst.shape[i]:
  *             if src.shape[i] == 1:
@@ -37375,7 +37375,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
     __pyx_v_i = __pyx_t_4;
 
     /* "View.MemoryView":1294
- * 
+ *
  *     for i in range(ndim):
  *         if src.shape[i] != dst.shape[i]:             # <<<<<<<<<<<<<<
  *             if src.shape[i] == 1:
@@ -37426,7 +37426,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *                 src.strides[i] = 0
  *             else:
  *                 _err_extents(i, dst.shape[i], src.shape[i])             # <<<<<<<<<<<<<<
- * 
+ *
  *         if src.suboffsets[i] >= 0:
  */
       /*else*/ {
@@ -37435,7 +37435,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_L7:;
 
       /* "View.MemoryView":1294
- * 
+ *
  *     for i in range(ndim):
  *         if src.shape[i] != dst.shape[i]:             # <<<<<<<<<<<<<<
  *             if src.shape[i] == 1:
@@ -37445,38 +37445,38 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1301
  *                 _err_extents(i, dst.shape[i], src.shape[i])
- * 
+ *
  *         if src.suboffsets[i] >= 0:             # <<<<<<<<<<<<<<
  *             _err_dim(ValueError, "Dimension %d is not direct", i)
- * 
+ *
  */
     __pyx_t_2 = (((__pyx_v_src.suboffsets[__pyx_v_i]) >= 0) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1302
- * 
+ *
  *         if src.suboffsets[i] >= 0:
  *             _err_dim(ValueError, "Dimension %d is not direct", i)             # <<<<<<<<<<<<<<
- * 
+ *
  *     if slices_overlap(&src, &dst, ndim, itemsize):
  */
       __pyx_t_6 = __pyx_memoryview_err_dim(__pyx_builtin_ValueError, ((char *)"Dimension %d is not direct"), __pyx_v_i); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(1, 1302, __pyx_L1_error)
 
       /* "View.MemoryView":1301
  *                 _err_extents(i, dst.shape[i], src.shape[i])
- * 
+ *
  *         if src.suboffsets[i] >= 0:             # <<<<<<<<<<<<<<
  *             _err_dim(ValueError, "Dimension %d is not direct", i)
- * 
+ *
  */
     }
   }
 
   /* "View.MemoryView":1304
  *             _err_dim(ValueError, "Dimension %d is not direct", i)
- * 
+ *
  *     if slices_overlap(&src, &dst, ndim, itemsize):             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):
  */
   __pyx_t_2 = (__pyx_slices_overlap((&__pyx_v_src), (&__pyx_v_dst), __pyx_v_ndim, __pyx_v_itemsize) != 0);
@@ -37484,73 +37484,73 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1306
  *     if slices_overlap(&src, &dst, ndim, itemsize):
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):             # <<<<<<<<<<<<<<
  *             order = get_best_order(&dst, ndim)
- * 
+ *
  */
     __pyx_t_2 = ((!(__pyx_memviewslice_is_contig(__pyx_v_src, __pyx_v_order, __pyx_v_ndim) != 0)) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1307
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):
  *             order = get_best_order(&dst, ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)
  */
       __pyx_v_order = __pyx_get_best_slice_order((&__pyx_v_dst), __pyx_v_ndim);
 
       /* "View.MemoryView":1306
  *     if slices_overlap(&src, &dst, ndim, itemsize):
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):             # <<<<<<<<<<<<<<
  *             order = get_best_order(&dst, ndim)
- * 
+ *
  */
     }
 
     /* "View.MemoryView":1309
  *             order = get_best_order(&dst, ndim)
- * 
+ *
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)             # <<<<<<<<<<<<<<
  *         src = tmp
- * 
+ *
  */
     __pyx_t_7 = __pyx_memoryview_copy_data_to_temp((&__pyx_v_src), (&__pyx_v_tmp), __pyx_v_order, __pyx_v_ndim); if (unlikely(__pyx_t_7 == ((void *)NULL))) __PYX_ERR(1, 1309, __pyx_L1_error)
     __pyx_v_tmpdata = __pyx_t_7;
 
     /* "View.MemoryView":1310
- * 
+ *
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)
  *         src = tmp             # <<<<<<<<<<<<<<
- * 
+ *
  *     if not broadcasting:
  */
     __pyx_v_src = __pyx_v_tmp;
 
     /* "View.MemoryView":1304
  *             _err_dim(ValueError, "Dimension %d is not direct", i)
- * 
+ *
  *     if slices_overlap(&src, &dst, ndim, itemsize):             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):
  */
   }
 
   /* "View.MemoryView":1312
  *         src = tmp
- * 
+ *
  *     if not broadcasting:             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = ((!(__pyx_v_broadcasting != 0)) != 0);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1315
- * 
- * 
+ *
+ *
  *         if slice_is_contig(src, 'C', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
@@ -37559,7 +37559,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1316
- * 
+ *
  *         if slice_is_contig(src, 'C', ndim):
  *             direct_copy = slice_is_contig(dst, 'C', ndim)             # <<<<<<<<<<<<<<
  *         elif slice_is_contig(src, 'F', ndim):
@@ -37568,8 +37568,8 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_v_direct_copy = __pyx_memviewslice_is_contig(__pyx_v_dst, 'C', __pyx_v_ndim);
 
       /* "View.MemoryView":1315
- * 
- * 
+ *
+ *
  *         if slice_is_contig(src, 'C', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
@@ -37582,7 +37582,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- * 
+ *
  */
     __pyx_t_2 = (__pyx_memviewslice_is_contig(__pyx_v_src, 'F', __pyx_v_ndim) != 0);
     if (__pyx_t_2) {
@@ -37591,7 +37591,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
  *             direct_copy = slice_is_contig(dst, 'F', ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if direct_copy:
  */
       __pyx_v_direct_copy = __pyx_memviewslice_is_contig(__pyx_v_dst, 'F', __pyx_v_ndim);
@@ -37601,16 +37601,16 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- * 
+ *
  */
     }
     __pyx_L12:;
 
     /* "View.MemoryView":1320
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- * 
+ *
  *         if direct_copy:             # <<<<<<<<<<<<<<
- * 
+ *
  *             refcount_copying(&dst, dtype_is_object, ndim, False)
  */
     __pyx_t_2 = (__pyx_v_direct_copy != 0);
@@ -37618,7 +37618,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
       /* "View.MemoryView":1322
  *         if direct_copy:
- * 
+ *
  *             refcount_copying(&dst, dtype_is_object, ndim, False)             # <<<<<<<<<<<<<<
  *             memcpy(dst.data, src.data, slice_get_size(&src, ndim))
  *             refcount_copying(&dst, dtype_is_object, ndim, True)
@@ -37626,7 +37626,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 0);
 
       /* "View.MemoryView":1323
- * 
+ *
  *             refcount_copying(&dst, dtype_is_object, ndim, False)
  *             memcpy(dst.data, src.data, slice_get_size(&src, ndim))             # <<<<<<<<<<<<<<
  *             refcount_copying(&dst, dtype_is_object, ndim, True)
@@ -37648,7 +37648,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             refcount_copying(&dst, dtype_is_object, ndim, True)
  *             free(tmpdata)             # <<<<<<<<<<<<<<
  *             return 0
- * 
+ *
  */
       free(__pyx_v_tmpdata);
 
@@ -37656,7 +37656,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             refcount_copying(&dst, dtype_is_object, ndim, True)
  *             free(tmpdata)
  *             return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     if order == 'F' == get_best_order(&dst, ndim):
  */
       __pyx_r = 0;
@@ -37664,28 +37664,28 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
       /* "View.MemoryView":1320
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- * 
+ *
  *         if direct_copy:             # <<<<<<<<<<<<<<
- * 
+ *
  *             refcount_copying(&dst, dtype_is_object, ndim, False)
  */
     }
 
     /* "View.MemoryView":1312
  *         src = tmp
- * 
+ *
  *     if not broadcasting:             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   }
 
   /* "View.MemoryView":1328
  *             return 0
- * 
+ *
  *     if order == 'F' == get_best_order(&dst, ndim):             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = (__pyx_v_order == 'F');
   if (__pyx_t_2) {
@@ -37695,35 +37695,35 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   if (__pyx_t_8) {
 
     /* "View.MemoryView":1331
- * 
- * 
+ *
+ *
  *         transpose_memslice(&src)             # <<<<<<<<<<<<<<
  *         transpose_memslice(&dst)
- * 
+ *
  */
     __pyx_t_5 = __pyx_memslice_transpose((&__pyx_v_src)); if (unlikely(__pyx_t_5 == ((int)0))) __PYX_ERR(1, 1331, __pyx_L1_error)
 
     /* "View.MemoryView":1332
- * 
+ *
  *         transpose_memslice(&src)
  *         transpose_memslice(&dst)             # <<<<<<<<<<<<<<
- * 
+ *
  *     refcount_copying(&dst, dtype_is_object, ndim, False)
  */
     __pyx_t_5 = __pyx_memslice_transpose((&__pyx_v_dst)); if (unlikely(__pyx_t_5 == ((int)0))) __PYX_ERR(1, 1332, __pyx_L1_error)
 
     /* "View.MemoryView":1328
  *             return 0
- * 
+ *
  *     if order == 'F' == get_best_order(&dst, ndim):             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   }
 
   /* "View.MemoryView":1334
  *         transpose_memslice(&dst)
- * 
+ *
  *     refcount_copying(&dst, dtype_is_object, ndim, False)             # <<<<<<<<<<<<<<
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)
  *     refcount_copying(&dst, dtype_is_object, ndim, True)
@@ -37731,11 +37731,11 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 0);
 
   /* "View.MemoryView":1335
- * 
+ *
  *     refcount_copying(&dst, dtype_is_object, ndim, False)
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)             # <<<<<<<<<<<<<<
  *     refcount_copying(&dst, dtype_is_object, ndim, True)
- * 
+ *
  */
   copy_strided_to_strided((&__pyx_v_src), (&__pyx_v_dst), __pyx_v_ndim, __pyx_v_itemsize);
 
@@ -37743,32 +37743,32 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *     refcount_copying(&dst, dtype_is_object, ndim, False)
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)
  *     refcount_copying(&dst, dtype_is_object, ndim, True)             # <<<<<<<<<<<<<<
- * 
+ *
  *     free(tmpdata)
  */
   __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 1);
 
   /* "View.MemoryView":1338
  *     refcount_copying(&dst, dtype_is_object, ndim, True)
- * 
+ *
  *     free(tmpdata)             # <<<<<<<<<<<<<<
  *     return 0
- * 
+ *
  */
   free(__pyx_v_tmpdata);
 
   /* "View.MemoryView":1339
- * 
+ *
  *     free(tmpdata)
  *     return 0             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_broadcast_leading')
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "View.MemoryView":1270
- * 
+ *
  * @cname('__pyx_memoryview_copy_contents')
  * cdef int memoryview_copy_contents(__Pyx_memviewslice src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice dst,
@@ -37792,7 +37792,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 }
 
 /* "View.MemoryView":1342
- * 
+ *
  * @cname('__pyx_memoryview_broadcast_leading')
  * cdef void broadcast_leading(__Pyx_memviewslice *mslice,             # <<<<<<<<<<<<<<
  *                             int ndim,
@@ -37810,14 +37810,14 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *                             int ndim_other) nogil:
  *     cdef int i
  *     cdef int offset = ndim_other - ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  */
   __pyx_v_offset = (__pyx_v_ndim_other - __pyx_v_ndim);
 
   /* "View.MemoryView":1348
  *     cdef int offset = ndim_other - ndim
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):             # <<<<<<<<<<<<<<
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]
@@ -37826,7 +37826,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
     __pyx_v_i = __pyx_t_1;
 
     /* "View.MemoryView":1349
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  *         mslice.shape[i + offset] = mslice.shape[i]             # <<<<<<<<<<<<<<
  *         mslice.strides[i + offset] = mslice.strides[i]
@@ -37839,7 +37839,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]             # <<<<<<<<<<<<<<
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]
- * 
+ *
  */
     (__pyx_v_mslice->strides[(__pyx_v_i + __pyx_v_offset)]) = (__pyx_v_mslice->strides[__pyx_v_i]);
 
@@ -37847,7 +37847,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(offset):
  */
     (__pyx_v_mslice->suboffsets[(__pyx_v_i + __pyx_v_offset)]) = (__pyx_v_mslice->suboffsets[__pyx_v_i]);
@@ -37855,7 +37855,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
 
   /* "View.MemoryView":1353
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]
- * 
+ *
  *     for i in range(offset):             # <<<<<<<<<<<<<<
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]
@@ -37866,7 +37866,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
     __pyx_v_i = __pyx_t_3;
 
     /* "View.MemoryView":1354
- * 
+ *
  *     for i in range(offset):
  *         mslice.shape[i] = 1             # <<<<<<<<<<<<<<
  *         mslice.strides[i] = mslice.strides[0]
@@ -37879,7 +37879,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]             # <<<<<<<<<<<<<<
  *         mslice.suboffsets[i] = -1
- * 
+ *
  */
     (__pyx_v_mslice->strides[__pyx_v_i]) = (__pyx_v_mslice->strides[0]);
 
@@ -37887,14 +37887,14 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]
  *         mslice.suboffsets[i] = -1             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     (__pyx_v_mslice->suboffsets[__pyx_v_i]) = -1L;
   }
 
   /* "View.MemoryView":1342
- * 
+ *
  * @cname('__pyx_memoryview_broadcast_leading')
  * cdef void broadcast_leading(__Pyx_memviewslice *mslice,             # <<<<<<<<<<<<<<
  *                             int ndim,
@@ -37905,19 +37905,19 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
 }
 
 /* "View.MemoryView":1364
- * 
+ *
  * @cname('__pyx_memoryview_refcount_copying')
  * cdef void refcount_copying(__Pyx_memviewslice *dst, bint dtype_is_object,             # <<<<<<<<<<<<<<
  *                            int ndim, bint inc) nogil:
- * 
+ *
  */
 
 static void __pyx_memoryview_refcount_copying(__Pyx_memviewslice *__pyx_v_dst, int __pyx_v_dtype_is_object, int __pyx_v_ndim, int __pyx_v_inc) {
   int __pyx_t_1;
 
   /* "View.MemoryView":1368
- * 
- * 
+ *
+ *
  *     if dtype_is_object:             # <<<<<<<<<<<<<<
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape,
  *                                            dst.strides, ndim, inc)
@@ -37926,17 +37926,17 @@ static void __pyx_memoryview_refcount_copying(__Pyx_memviewslice *__pyx_v_dst, i
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1369
- * 
+ *
  *     if dtype_is_object:
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape,             # <<<<<<<<<<<<<<
  *                                            dst.strides, ndim, inc)
- * 
+ *
  */
     __pyx_memoryview_refcount_objects_in_slice_with_gil(__pyx_v_dst->data, __pyx_v_dst->shape, __pyx_v_dst->strides, __pyx_v_ndim, __pyx_v_inc);
 
     /* "View.MemoryView":1368
- * 
- * 
+ *
+ *
  *     if dtype_is_object:             # <<<<<<<<<<<<<<
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape,
  *                                            dst.strides, ndim, inc)
@@ -37944,18 +37944,18 @@ static void __pyx_memoryview_refcount_copying(__Pyx_memviewslice *__pyx_v_dst, i
   }
 
   /* "View.MemoryView":1364
- * 
+ *
  * @cname('__pyx_memoryview_refcount_copying')
  * cdef void refcount_copying(__Pyx_memviewslice *dst, bint dtype_is_object,             # <<<<<<<<<<<<<<
  *                            int ndim, bint inc) nogil:
- * 
+ *
  */
 
   /* function exit code */
 }
 
 /* "View.MemoryView":1373
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice_with_gil')
  * cdef void refcount_objects_in_slice_with_gil(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                              Py_ssize_t *strides, int ndim,
@@ -37973,13 +37973,13 @@ static void __pyx_memoryview_refcount_objects_in_slice_with_gil(char *__pyx_v_da
  *                                              Py_ssize_t *strides, int ndim,
  *                                              bint inc) with gil:
  *     refcount_objects_in_slice(data, shape, strides, ndim, inc)             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  */
   __pyx_memoryview_refcount_objects_in_slice(__pyx_v_data, __pyx_v_shape, __pyx_v_strides, __pyx_v_ndim, __pyx_v_inc);
 
   /* "View.MemoryView":1373
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice_with_gil')
  * cdef void refcount_objects_in_slice_with_gil(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                              Py_ssize_t *strides, int ndim,
@@ -37994,7 +37994,7 @@ static void __pyx_memoryview_refcount_objects_in_slice_with_gil(char *__pyx_v_da
 }
 
 /* "View.MemoryView":1379
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  * cdef void refcount_objects_in_slice(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                     Py_ssize_t *strides, int ndim, bint inc):
@@ -38012,7 +38012,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
 
   /* "View.MemoryView":1383
  *     cdef Py_ssize_t i
- * 
+ *
  *     for i in range(shape[0]):             # <<<<<<<<<<<<<<
  *         if ndim == 1:
  *             if inc:
@@ -38023,7 +38023,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
     __pyx_v_i = __pyx_t_3;
 
     /* "View.MemoryView":1384
- * 
+ *
  *     for i in range(shape[0]):
  *         if ndim == 1:             # <<<<<<<<<<<<<<
  *             if inc:
@@ -38074,7 +38074,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
       __pyx_L6:;
 
       /* "View.MemoryView":1384
- * 
+ *
  *     for i in range(shape[0]):
  *         if ndim == 1:             # <<<<<<<<<<<<<<
  *             if inc:
@@ -38088,7 +38088,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
  *         else:
  *             refcount_objects_in_slice(data, shape + 1, strides + 1,             # <<<<<<<<<<<<<<
  *                                       ndim - 1, inc)
- * 
+ *
  */
     /*else*/ {
 
@@ -38096,7 +38096,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
  *         else:
  *             refcount_objects_in_slice(data, shape + 1, strides + 1,
  *                                       ndim - 1, inc)             # <<<<<<<<<<<<<<
- * 
+ *
  *         data += strides[0]
  */
       __pyx_memoryview_refcount_objects_in_slice(__pyx_v_data, (__pyx_v_shape + 1), (__pyx_v_strides + 1), (__pyx_v_ndim - 1), __pyx_v_inc);
@@ -38105,16 +38105,16 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
 
     /* "View.MemoryView":1393
  *                                       ndim - 1, inc)
- * 
+ *
  *         data += strides[0]             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_v_data = (__pyx_v_data + (__pyx_v_strides[0]));
   }
 
   /* "View.MemoryView":1379
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  * cdef void refcount_objects_in_slice(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                     Py_ssize_t *strides, int ndim, bint inc):
@@ -38126,7 +38126,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
 }
 
 /* "View.MemoryView":1399
- * 
+ *
  * @cname('__pyx_memoryview_slice_assign_scalar')
  * cdef void slice_assign_scalar(__Pyx_memviewslice *dst, int ndim,             # <<<<<<<<<<<<<<
  *                               size_t itemsize, void *item,
@@ -38157,13 +38157,13 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *__pyx_v_dst
  *     _slice_assign_scalar(dst.data, dst.shape, dst.strides, ndim,
  *                          itemsize, item)
  *     refcount_copying(dst, dtype_is_object, ndim, True)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_memoryview_refcount_copying(__pyx_v_dst, __pyx_v_dtype_is_object, __pyx_v_ndim, 1);
 
   /* "View.MemoryView":1399
- * 
+ *
  * @cname('__pyx_memoryview_slice_assign_scalar')
  * cdef void slice_assign_scalar(__Pyx_memviewslice *dst, int ndim,             # <<<<<<<<<<<<<<
  *                               size_t itemsize, void *item,
@@ -38174,7 +38174,7 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *__pyx_v_dst
 }
 
 /* "View.MemoryView":1409
- * 
+ *
  * @cname('__pyx_memoryview__slice_assign_scalar')
  * cdef void _slice_assign_scalar(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                               Py_ssize_t *strides, int ndim,
@@ -38195,7 +38195,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t stride = strides[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t extent = shape[0]
- * 
+ *
  */
   __pyx_v_stride = (__pyx_v_strides[0]);
 
@@ -38203,14 +38203,14 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t stride = strides[0]
  *     cdef Py_ssize_t extent = shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     if ndim == 1:
  */
   __pyx_v_extent = (__pyx_v_shape[0]);
 
   /* "View.MemoryView":1416
  *     cdef Py_ssize_t extent = shape[0]
- * 
+ *
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *         for i in range(extent):
  *             memcpy(data, item, itemsize)
@@ -38219,7 +38219,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1417
- * 
+ *
  *     if ndim == 1:
  *         for i in range(extent):             # <<<<<<<<<<<<<<
  *             memcpy(data, item, itemsize)
@@ -38251,7 +38251,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
 
     /* "View.MemoryView":1416
  *     cdef Py_ssize_t extent = shape[0]
- * 
+ *
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *         for i in range(extent):
  *             memcpy(data, item, itemsize)
@@ -38285,8 +38285,8 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *             _slice_assign_scalar(data, shape + 1, strides + 1,
  *                                 ndim - 1, itemsize, item)
  *             data += stride             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_v_data = (__pyx_v_data + __pyx_v_stride);
     }
@@ -38294,7 +38294,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
   __pyx_L3:;
 
   /* "View.MemoryView":1409
- * 
+ *
  * @cname('__pyx_memoryview__slice_assign_scalar')
  * cdef void _slice_assign_scalar(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                               Py_ssize_t *strides, int ndim,
@@ -38706,7 +38706,7 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
 }
 
 /* "BufferFormatFromTypeInfo":1465
- * 
+ *
  * @cname('__pyx_format_from_typeinfo')
  * cdef bytes format_from_typeinfo(__Pyx_TypeInfo *type):             # <<<<<<<<<<<<<<
  *     cdef __Pyx_StructField *field
@@ -38740,7 +38740,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
 
   /* "BufferFormatFromTypeInfo":1470
  *     cdef bytes part, result
- * 
+ *
  *     if type.typegroup == 'S':             # <<<<<<<<<<<<<<
  *         assert type.fields != NULL
  *         assert type.fields.type != NULL
@@ -38749,11 +38749,11 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
   if (__pyx_t_1) {
 
     /* "BufferFormatFromTypeInfo":1471
- * 
+ *
  *     if type.typegroup == 'S':
  *         assert type.fields != NULL             # <<<<<<<<<<<<<<
  *         assert type.fields.type != NULL
- * 
+ *
  */
     #ifndef CYTHON_WITHOUT_ASSERTIONS
     if (unlikely(!Py_OptimizeFlag)) {
@@ -38768,7 +38768,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
  *     if type.typegroup == 'S':
  *         assert type.fields != NULL
  *         assert type.fields.type != NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         if type.flags & __PYX_BUF_FLAGS_PACKED_STRUCT:
  */
     #ifndef CYTHON_WITHOUT_ASSERTIONS
@@ -38782,7 +38782,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
 
     /* "BufferFormatFromTypeInfo":1474
  *         assert type.fields.type != NULL
- * 
+ *
  *         if type.flags & __PYX_BUF_FLAGS_PACKED_STRUCT:             # <<<<<<<<<<<<<<
  *             alignment = b'^'
  *         else:
@@ -38791,7 +38791,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
     if (__pyx_t_1) {
 
       /* "BufferFormatFromTypeInfo":1475
- * 
+ *
  *         if type.flags & __PYX_BUF_FLAGS_PACKED_STRUCT:
  *             alignment = b'^'             # <<<<<<<<<<<<<<
  *         else:
@@ -38802,7 +38802,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
 
       /* "BufferFormatFromTypeInfo":1474
  *         assert type.fields.type != NULL
- * 
+ *
  *         if type.flags & __PYX_BUF_FLAGS_PACKED_STRUCT:             # <<<<<<<<<<<<<<
  *             alignment = b'^'
  *         else:
@@ -38814,7 +38814,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
  *             alignment = b'^'
  *         else:
  *             alignment = b''             # <<<<<<<<<<<<<<
- * 
+ *
  *         parts = [b"T{"]
  */
     /*else*/ {
@@ -38825,10 +38825,10 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
 
     /* "BufferFormatFromTypeInfo":1479
  *             alignment = b''
- * 
+ *
  *         parts = [b"T{"]             # <<<<<<<<<<<<<<
  *         field = type.fields
- * 
+ *
  */
     __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1479, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
@@ -38839,10 +38839,10 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
     __pyx_t_2 = 0;
 
     /* "BufferFormatFromTypeInfo":1480
- * 
+ *
  *         parts = [b"T{"]
  *         field = type.fields             # <<<<<<<<<<<<<<
- * 
+ *
  *         while field.type:
  */
     __pyx_t_3 = __pyx_v_type->fields;
@@ -38850,7 +38850,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
 
     /* "BufferFormatFromTypeInfo":1482
  *         field = type.fields
- * 
+ *
  *         while field.type:             # <<<<<<<<<<<<<<
  *             part = format_from_typeinfo(field.type)
  *             parts.append(part + b':' + field.name + b':')
@@ -38860,7 +38860,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
       if (!__pyx_t_1) break;
 
       /* "BufferFormatFromTypeInfo":1483
- * 
+ *
  *         while field.type:
  *             part = format_from_typeinfo(field.type)             # <<<<<<<<<<<<<<
  *             parts.append(part + b':' + field.name + b':')
@@ -38876,7 +38876,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
  *             part = format_from_typeinfo(field.type)
  *             parts.append(part + b':' + field.name + b':')             # <<<<<<<<<<<<<<
  *             field += 1
- * 
+ *
  */
       __pyx_t_2 = PyNumber_Add(__pyx_v_part, __pyx_kp_b__52); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1484, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
@@ -38896,7 +38896,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
  *             part = format_from_typeinfo(field.type)
  *             parts.append(part + b':' + field.name + b':')
  *             field += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         result = alignment.join(parts) + b'}'
  */
       __pyx_v_field = (__pyx_v_field + 1);
@@ -38904,7 +38904,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
 
     /* "BufferFormatFromTypeInfo":1487
  *             field += 1
- * 
+ *
  *         result = alignment.join(parts) + b'}'             # <<<<<<<<<<<<<<
  *     else:
  *         fmt = __Pyx_TypeInfoToFormat(type)
@@ -38920,7 +38920,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
 
     /* "BufferFormatFromTypeInfo":1470
  *     cdef bytes part, result
- * 
+ *
  *     if type.typegroup == 'S':             # <<<<<<<<<<<<<<
  *         assert type.fields != NULL
  *         assert type.fields.type != NULL
@@ -39011,7 +39011,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
  *             result = (u"(%s)" % u','.join(extents)).encode('ascii') + fmt.string
  *         else:
  *             result = fmt.string             # <<<<<<<<<<<<<<
- * 
+ *
  *     return result
  */
     /*else*/ {
@@ -39026,7 +39026,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
 
   /* "BufferFormatFromTypeInfo":1496
  *             result = fmt.string
- * 
+ *
  *     return result             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
@@ -39035,7 +39035,7 @@ static PyObject *__pyx_format_from_typeinfo(__Pyx_TypeInfo *__pyx_v_type) {
   goto __pyx_L0;
 
   /* "BufferFormatFromTypeInfo":1465
- * 
+ *
  * @cname('__pyx_format_from_typeinfo')
  * cdef bytes format_from_typeinfo(__Pyx_TypeInfo *type):             # <<<<<<<<<<<<<<
  *     cdef __Pyx_StructField *field
@@ -40632,7 +40632,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     else:
  *         raise ValueError("Kernel code not recognized")             # <<<<<<<<<<<<<<
  *     return -factor - d * log(h)
- * 
+ *
  */
   __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_Kernel_code_not_recognized); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
@@ -40642,7 +40642,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         result = _log_kernel_norm(h, d, COSINE_KERNEL)
  *     else:
  *         raise ValueError('kernel not recognized')             # <<<<<<<<<<<<<<
- * 
+ *
  *     if return_log:
  */
   __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_u_kernel_not_recognized); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 493, __pyx_L1_error)
@@ -40654,7 +40654,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         # (e.g. assigning to NULL or a to value in another segment).
  *         self.distances = np.zeros((1, 1), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *         self.indices = np.zeros((1, 1), dtype=np.intp, order='C')
- * 
+ *
  */
   __pyx_tuple__3 = PyTuple_Pack(2, __pyx_int_1, __pyx_int_1); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 523, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
@@ -40686,7 +40686,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         # any problem due to potential access to this attribute
  *         # (e.g. assigning to NULL or a to value in another segment).
  *         self.data = np.zeros(1, dtype=NodeHeapData, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self, size_guess=100):
  */
   __pyx_tuple__7 = PyTuple_Pack(1, __pyx_int_1); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 654, __pyx_L1_error)
@@ -40697,7 +40697,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         """Remove the root of the heap, and update the remaining nodes"""
  *         if self.n == 0:
  *             raise ValueError('cannot pop on empty heap')             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef intp_t i, i_child1, i_child2, i_swap
  */
   __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_cannot_pop_on_empty_heap); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 716, __pyx_L1_error)
@@ -40727,7 +40727,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         self.idx_array = np.empty(1, dtype=np.intp, order='C')
  *         self.node_data = np.empty(1, dtype=NodeData, order='C')
  *         self.node_bounds = np.empty((1, 1, 1), dtype=np.float64)             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.leaf_size = 0
  */
   __pyx_tuple__11 = PyTuple_Pack(3, __pyx_int_1, __pyx_int_1, __pyx_int_1); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 807, __pyx_L1_error)
@@ -40741,7 +40741,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         self.data = check_array(data, dtype=np.float64, order='C')
  *         if self.data.size == 0:
  *             raise ValueError("X is an empty array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         n_samples = self.data.shape[0]
  */
   __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_X_is_an_empty_array); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 825, __pyx_L1_error)
@@ -40749,33 +40749,33 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__13);
 
   /* "sklearn/neighbors/_binary_tree.pxi":831
- * 
+ *
  *         if leaf_size < 1:
  *             raise ValueError("leaf_size must be greater than or equal to 1")             # <<<<<<<<<<<<<<
  *         self.leaf_size = leaf_size
- * 
+ *
  */
   __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_leaf_size_must_be_greater_than_o); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 831, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "sklearn/neighbors/_binary_tree.pxi":1120
- * 
+ *
  *         if X.shape[X.ndim - 1] != self.data.shape[1]:
  *             raise ValueError("query data dimension must "             # <<<<<<<<<<<<<<
  *                              "match training data dimension")
- * 
+ *
  */
   __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_u_query_data_dimension_must_match); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 1120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
 
   /* "sklearn/neighbors/_binary_tree.pxi":1124
- * 
+ *
  *         if self.data.shape[0] < k:
  *             raise ValueError("k must be less than or equal "             # <<<<<<<<<<<<<<
  *                              "to the number of training points")
- * 
+ *
  */
   __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_u_k_must_be_less_than_or_equal_to); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 1124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
@@ -40786,18 +40786,18 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         if count_only and return_distance:
  *             raise ValueError("count_only and return_distance "             # <<<<<<<<<<<<<<
  *                              "cannot both be true")
- * 
+ *
  */
   __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_count_only_and_return_distance_c); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 1238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
 
   /* "sklearn/neighbors/_binary_tree.pxi":1242
- * 
+ *
  *         if sort_results and not return_distance:
  *             raise ValueError("return_distance must be True "             # <<<<<<<<<<<<<<
  *                              "if sort_results is True")
- * 
+ *
  */
   __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_u_return_distance_must_be_True_if); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 1242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
@@ -40807,7 +40807,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         else:
  *             if r.shape != X.shape[:X.ndim - 1]:
  *                 raise ValueError("r must be broadcastable to X.shape")             # <<<<<<<<<<<<<<
- * 
+ *
  *         rarr_np = r.reshape(-1)  # store explicitly to keep in scope
  */
   __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_u_r_must_be_broadcastable_to_X_sha); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 1269, __pyx_L1_error)
@@ -40826,7 +40826,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__20);
 
   /* "sklearn/neighbors/_binary_tree.pxi":2408
- * 
+ *
  *     # use initial size 0 to check corner case
  *     cdef NodeHeap heap = NodeHeap(0)             # <<<<<<<<<<<<<<
  *     cdef NodeHeapData_t data
@@ -40836,22 +40836,22 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":945
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":945
  *         __pyx_import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline int import_umath() except -1:
  */
   __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(3, 945, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":951
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":951
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline int import_ufunc() except -1:
  */
   __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(3, 951, __pyx_L1_error)
@@ -40936,10 +40936,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__30);
 
   /* "View.MemoryView":134
- * 
+ *
  *         if not self.ndim:
  *             raise ValueError("Empty shape tuple for cython.array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if itemsize <= 0:
  */
   __pyx_tuple__31 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(1, 134, __pyx_L1_error)
@@ -40947,10 +40947,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__31);
 
   /* "View.MemoryView":137
- * 
+ *
  *         if itemsize <= 0:
  *             raise ValueError("itemsize <= 0 for cython.array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not isinstance(format, bytes):
  */
   __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(1, 137, __pyx_L1_error)
@@ -40958,11 +40958,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__32);
 
   /* "View.MemoryView":149
- * 
+ *
  *         if not self._shape:
  *             raise MemoryError("unable to allocate shape and strides.")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(1, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__33);
@@ -40972,7 +40972,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *             self.data = <char *>malloc(self.len)
  *             if not self.data:
  *                 raise MemoryError("unable to allocate array data.")             # <<<<<<<<<<<<<<
- * 
+ *
  *             if self.dtype_is_object:
  */
   __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(1, 177, __pyx_L1_error)
@@ -41013,7 +41013,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:
  *             raise TypeError("Cannot assign to read-only memoryview")             # <<<<<<<<<<<<<<
- * 
+ *
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
   __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_Cannot_assign_to_read_only_memor); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(1, 420, __pyx_L1_error)
@@ -41035,7 +41035,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_ND:
  */
   __pyx_tuple__40 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_writable_memory_vi); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(1, 522, __pyx_L1_error)
@@ -41044,9 +41044,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "View.MemoryView":572
  *         if self.view.strides == NULL:
- * 
+ *
  *             raise ValueError("Buffer view does not expose strides")             # <<<<<<<<<<<<<<
- * 
+ *
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
   __pyx_tuple__41 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(1, 572, __pyx_L1_error)
@@ -41057,7 +41057,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:
  *             return (-1,) * self.view.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
  */
   __pyx_tuple__42 = PyTuple_New(1); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(1, 579, __pyx_L1_error)
@@ -41101,8 +41101,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:
  *             raise ValueError("Indirect dimensions not supported")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_tuple__46 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(1, 705, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__46);
@@ -41131,11 +41131,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__49);
 
   /* "sklearn/neighbors/_binary_tree.pxi":459
- * 
- * 
+ *
+ *
  * def kernel_norm(h, d, kernel, return_log=False):             # <<<<<<<<<<<<<<
  *     """Given a string specification of a kernel, compute the normalization.
- * 
+ *
  */
   __pyx_tuple__55 = PyTuple_Pack(5, __pyx_n_s_h, __pyx_n_s_d, __pyx_n_s_kernel, __pyx_n_s_return_log, __pyx_n_s_result); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__55);
@@ -41147,7 +41147,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * #  this is a helper function for pickling
  * def newObj(obj):             # <<<<<<<<<<<<<<
  *     return obj.__new__(obj)
- * 
+ *
  */
   __pyx_tuple__57 = PyTuple_Pack(1, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(0, 760, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__57);
@@ -41156,7 +41156,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "sklearn/neighbors/_binary_tree.pxi":2376
  * # Python functions for benchmarking and testing C implementations
- * 
+ *
  * def load_heap(float64_t[:, ::1] X, intp_t k):             # <<<<<<<<<<<<<<
  *     """test fully loading the heap"""
  *     assert k <= X.shape[1]
@@ -41167,11 +41167,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_codeobj__60 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__59, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sklearn_neighbors__binary_tree_p, __pyx_n_s_load_heap, 2376, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__60)) __PYX_ERR(0, 2376, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":2387
- * 
- * 
+ *
+ *
  * def simultaneous_sort(float64_t[:, ::1] distances, intp_t[:, ::1] indices):             # <<<<<<<<<<<<<<
  *     """In-place simultaneous sort the given row of the arrays
- * 
+ *
  */
   __pyx_tuple__61 = PyTuple_Pack(3, __pyx_n_s_distances, __pyx_n_s_indices, __pyx_n_s_row); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 2387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__61);
@@ -41179,8 +41179,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sklearn_neighbors__binary_tree_p, __pyx_n_s_simultaneous_sort, 2387, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(0, 2387, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":2402
- * 
- * 
+ *
+ *
  * def nodeheap_sort(float64_t[::1] vals):             # <<<<<<<<<<<<<<
  *     """In-place reverse sort of vals using NodeHeap"""
  *     cdef intp_t[::1] indices = np.zeros(vals.shape[0], dtype=np.intp)
@@ -41192,7 +41192,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "View.MemoryView":287
  *         return self.name
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")             # <<<<<<<<<<<<<<
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
@@ -41202,11 +41202,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__65);
 
   /* "View.MemoryView":288
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default             # <<<<<<<<<<<<<<
  * cdef indirect = Enum("<strided and indirect>")
- * 
+ *
  */
   __pyx_tuple__66 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__66)) __PYX_ERR(1, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__66);
@@ -41216,30 +41216,30 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_tuple__67 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__67)) __PYX_ERR(1, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__67);
   __Pyx_GIVEREF(__pyx_tuple__67);
 
   /* "View.MemoryView":292
- * 
- * 
+ *
+ *
  * cdef contiguous = Enum("<contiguous and direct>")             # <<<<<<<<<<<<<<
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
- * 
+ *
  */
   __pyx_tuple__68 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__68)) __PYX_ERR(1, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__68);
   __Pyx_GIVEREF(__pyx_tuple__68);
 
   /* "View.MemoryView":293
- * 
+ *
  * cdef contiguous = Enum("<contiguous and direct>")
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_tuple__69 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(1, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__69);
@@ -41458,7 +41458,7 @@ static int __Pyx_modinit_type_import_code(void) {
   /*--- Type import code ---*/
   __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type", 
+  __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyTypeObject), __PYX_GET_STRUCT_ALIGNMENT(PyTypeObject),
   #else
@@ -41782,9 +41782,9 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/neighbors/_kd_tree.pyx":5
  * # License: BSD
- * 
+ *
  * __all__ = ['KDTree']             # <<<<<<<<<<<<<<
- * 
+ *
  * DOC_DICT = {'BinaryTree': 'KDTree', 'binary_tree': 'kd_tree'}
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 5, __pyx_L1_error)
@@ -41797,9 +41797,9 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/neighbors/_kd_tree.pyx":7
  * __all__ = ['KDTree']
- * 
+ *
  * DOC_DICT = {'BinaryTree': 'KDTree', 'binary_tree': 'kd_tree'}             # <<<<<<<<<<<<<<
- * 
+ *
  * VALID_METRICS = ['EuclideanDistance', 'ManhattanDistance',
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 7, __pyx_L1_error)
@@ -41811,10 +41811,10 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/neighbors/_kd_tree.pyx":9
  * DOC_DICT = {'BinaryTree': 'KDTree', 'binary_tree': 'kd_tree'}
- * 
+ *
  * VALID_METRICS = ['EuclideanDistance', 'ManhattanDistance',             # <<<<<<<<<<<<<<
  *                  'ChebyshevDistance', 'MinkowskiDistance']
- * 
+ *
  */
   __pyx_t_1 = PyList_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -41835,10 +41835,10 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/neighbors/_binary_tree.pxi":151
  * from libc.string cimport memcpy
- * 
+ *
  * import numpy as np             # <<<<<<<<<<<<<<
  * import warnings
- * 
+ *
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -41846,10 +41846,10 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":152
- * 
+ *
  * import numpy as np
  * import warnings             # <<<<<<<<<<<<<<
- * 
+ *
  * from ..metrics._dist_metrics cimport (
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_warnings, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
@@ -41859,7 +41859,7 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/neighbors/_binary_tree.pxi":163
  * from ._partition_nodes cimport partition_node_indices
- * 
+ *
  * from ..utils import check_array             # <<<<<<<<<<<<<<
  * from ..utils._typedefs cimport float64_t, intp_t
  * from ..utils._heap cimport heap_push
@@ -41880,15 +41880,15 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/neighbors/_binary_tree.pxi":168
  * from ..utils._sorting cimport simultaneous_sort as _simultaneous_sort
- * 
+ *
  * cnp.import_array()             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_3 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 168, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":177
- * 
+ *
  * # some handy constants
  * cdef float64_t INF = np.inf             # <<<<<<<<<<<<<<
  * cdef float64_t NEG_INF = -np.inf
@@ -41952,7 +41952,7 @@ if (!__Pyx_RefNanny) {
  * cdef float64_t ROOT_2PI = sqrt(2 * PI)
  * cdef float64_t LOG_PI = log(PI)             # <<<<<<<<<<<<<<
  * cdef float64_t LOG_2PI = log(2 * PI)
- * 
+ *
  */
   __pyx_v_7sklearn_9neighbors_8_kd_tree_LOG_PI = log(__pyx_v_7sklearn_9neighbors_8_kd_tree_PI);
 
@@ -41960,8 +41960,8 @@ if (!__Pyx_RefNanny) {
  * cdef float64_t ROOT_2PI = sqrt(2 * PI)
  * cdef float64_t LOG_PI = log(PI)
  * cdef float64_t LOG_2PI = log(2 * PI)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_v_7sklearn_9neighbors_8_kd_tree_LOG_2PI = log((2.0 * __pyx_v_7sklearn_9neighbors_8_kd_tree_PI));
 
@@ -41969,7 +41969,7 @@ if (!__Pyx_RefNanny) {
  * # build the corresponding numpy dtype for NodeHeapData
  * cdef NodeHeapData_t nhd_tmp
  * NodeHeapData = np.asarray(<NodeHeapData_t[:1]>(&nhd_tmp)).dtype             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef struct NodeData_t:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
@@ -42005,8 +42005,8 @@ if (!__Pyx_RefNanny) {
  * # build the corresponding numpy dtype for NodeData
  * cdef NodeData_t nd_tmp
  * NodeData = np.asarray(<NodeData_t[:1]>(&nd_tmp)).dtype             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -42042,16 +42042,16 @@ if (!__Pyx_RefNanny) {
  * CLASS_DOC = \
  * """             # <<<<<<<<<<<<<<
  * {BinaryTree}(X, leaf_size=40, metric='minkowski', **kwargs)
- * 
+ *
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_CLASS_DOC, __pyx_kp_u_BinaryTree_X_leaf_size_40_metri) < 0) __PYX_ERR(0, 209, __pyx_L1_error)
 
   /* "sklearn/neighbors/_binary_tree.pxi":459
- * 
- * 
+ *
+ *
  * def kernel_norm(h, d, kernel, return_log=False):             # <<<<<<<<<<<<<<
  *     """Given a string specification of a kernel, compute the normalization.
- * 
+ *
  */
   __pyx_t_7 = PyCFunction_NewEx(&__pyx_mdef_7sklearn_9neighbors_8_kd_tree_1kernel_norm, NULL, __pyx_n_s_sklearn_neighbors__kd_tree); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -42063,7 +42063,7 @@ if (!__Pyx_RefNanny) {
  * #  this is a helper function for pickling
  * def newObj(obj):             # <<<<<<<<<<<<<<
  *     return obj.__new__(obj)
- * 
+ *
  */
   __pyx_t_7 = PyCFunction_NewEx(&__pyx_mdef_7sklearn_9neighbors_8_kd_tree_3newObj, NULL, __pyx_n_s_sklearn_neighbors__kd_tree); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 760, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -42075,7 +42075,7 @@ if (!__Pyx_RefNanny) {
  * # define the reverse mapping of VALID_METRICS
  * from sklearn.metrics._dist_metrics import get_valid_metric_ids             # <<<<<<<<<<<<<<
  * VALID_METRIC_IDS = get_valid_metric_ids(VALID_METRICS)
- * 
+ *
  */
   __pyx_t_7 = PyList_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 766, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -42095,8 +42095,8 @@ if (!__Pyx_RefNanny) {
  * # define the reverse mapping of VALID_METRICS
  * from sklearn.metrics._dist_metrics import get_valid_metric_ids
  * VALID_METRIC_IDS = get_valid_metric_ids(VALID_METRICS)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_get_valid_metric_ids); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 767, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -42111,9 +42111,9 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/neighbors/_binary_tree.pxi":795
  *     cdef int n_calls
- * 
+ *
  *     _valid_metrics = VALID_METRIC_IDS             # <<<<<<<<<<<<<<
- * 
+ *
  *     # Use cinit to initialize all arrays to empty: this will prevent memory
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_VALID_METRIC_IDS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 795, __pyx_L1_error)
@@ -42123,18 +42123,18 @@ if (!__Pyx_RefNanny) {
   PyType_Modified(__pyx_ptype_7sklearn_9neighbors_8_kd_tree_BinaryTree);
 
   /* "sklearn/neighbors/_binary_tree.pxi":984
- * 
+ *
  *     @classmethod
  *     def valid_metrics(cls):             # <<<<<<<<<<<<<<
  *         """Get list of valid distance metrics.
- * 
+ *
  */
   __Pyx_GetNameInClass(__pyx_t_1, (PyObject *)__pyx_ptype_7sklearn_9neighbors_8_kd_tree_BinaryTree, __pyx_n_s_valid_metrics_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 984, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
   /* "sklearn/neighbors/_binary_tree.pxi":983
  *         )
- * 
+ *
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def valid_metrics(cls):
  *         """Get list of valid distance metrics.
@@ -42148,7 +42148,7 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/neighbors/_binary_tree.pxi":2376
  * # Python functions for benchmarking and testing C implementations
- * 
+ *
  * def load_heap(float64_t[:, ::1] X, intp_t k):             # <<<<<<<<<<<<<<
  *     """test fully loading the heap"""
  *     assert k <= X.shape[1]
@@ -42159,11 +42159,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2387
- * 
- * 
+ *
+ *
  * def simultaneous_sort(float64_t[:, ::1] distances, intp_t[:, ::1] indices):             # <<<<<<<<<<<<<<
  *     """In-place simultaneous sort the given row of the arrays
- * 
+ *
  */
   __pyx_t_7 = PyCFunction_NewEx(&__pyx_mdef_7sklearn_9neighbors_8_kd_tree_7simultaneous_sort, NULL, __pyx_n_s_sklearn_neighbors__kd_tree); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 2387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -42171,8 +42171,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
   /* "sklearn/neighbors/_binary_tree.pxi":2402
- * 
- * 
+ *
+ *
  * def nodeheap_sort(float64_t[::1] vals):             # <<<<<<<<<<<<<<
  *     """In-place reverse sort of vals using NodeHeap"""
  *     cdef intp_t[::1] indices = np.zeros(vals.shape[0], dtype=np.intp)
@@ -42187,7 +42187,7 @@ if (!__Pyx_RefNanny) {
  * cdef class KDTree(BinaryTree):
  *     __doc__ = CLASS_DOC.format(**DOC_DICT)             # <<<<<<<<<<<<<<
  *     pass
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_CLASS_DOC); if (unlikely(!__pyx_t_7)) __PYX_ERR(2, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -42229,9 +42229,9 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":210
  *         info.obj = self
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_array_getbuffer, "getbuffer(obj, view, flags)")             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __dealloc__(array self):
  */
   __pyx_t_2 = __pyx_capsule_create(((void *)(&__pyx_array_getbuffer)), ((char *)"getbuffer(obj, view, flags)")); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 210, __pyx_L1_error)
@@ -42242,7 +42242,7 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":287
  *         return self.name
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")             # <<<<<<<<<<<<<<
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
@@ -42255,11 +42255,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
 
   /* "View.MemoryView":288
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default             # <<<<<<<<<<<<<<
  * cdef indirect = Enum("<strided and indirect>")
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__66, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -42272,8 +42272,8 @@ if (!__Pyx_RefNanny) {
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__67, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -42283,11 +42283,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
 
   /* "View.MemoryView":292
- * 
- * 
+ *
+ *
  * cdef contiguous = Enum("<contiguous and direct>")             # <<<<<<<<<<<<<<
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__68, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -42297,11 +42297,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
 
   /* "View.MemoryView":293
- * 
+ *
  * cdef contiguous = Enum("<contiguous and direct>")
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__69, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -42311,7 +42311,7 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = 0;
 
   /* "View.MemoryView":317
- * 
+ *
  * DEF THREAD_LOCKS_PREALLOCATED = 8
  * cdef int __pyx_memoryview_thread_locks_used = 0             # <<<<<<<<<<<<<<
  * cdef PyThread_type_lock[THREAD_LOCKS_PREALLOCATED] __pyx_memoryview_thread_locks = [
@@ -42338,10 +42338,10 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":551
  *         info.obj = self
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_memoryview_getbuffer, "getbuffer(obj, view, flags)")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = __pyx_capsule_create(((void *)(&__pyx_memoryview_getbuffer)), ((char *)"getbuffer(obj, view, flags)")); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 551, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -42351,10 +42351,10 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":997
  *         return self.from_object
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_memoryview_getbuffer, "getbuffer(obj, view, flags)")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = __pyx_capsule_create(((void *)(&__pyx_memoryview_getbuffer)), ((char *)"getbuffer(obj, view, flags)")); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 997, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -42373,7 +42373,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "BufferFormatFromTypeInfo":1465
- * 
+ *
  * @cname('__pyx_format_from_typeinfo')
  * cdef bytes format_from_typeinfo(__Pyx_TypeInfo *type):             # <<<<<<<<<<<<<<
  *     cdef __Pyx_StructField *field
@@ -44053,8 +44053,8 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED
                 llx = lla + llb;
             return PyLong_FromLongLong(llx);
 #endif
-        
-        
+
+
     }
     #endif
     if (PyFloat_CheckExact(op1)) {
@@ -44177,8 +44177,8 @@ static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, CYTHON_U
                 llx = lla - llb;
             return PyLong_FromLongLong(llx);
 #endif
-        
-        
+
+
     }
     #endif
     if (PyFloat_CheckExact(op1)) {

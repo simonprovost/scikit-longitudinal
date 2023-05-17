@@ -4,18 +4,18 @@
 {
     "distutils": {
         "depends": [
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/arrayobject.h",
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/arrayscalars.h",
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ndarrayobject.h",
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ndarraytypes.h",
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ufuncobject.h"
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/arrayobject.h",
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/arrayscalars.h",
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ndarrayobject.h",
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ndarraytypes.h",
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include/numpy/ufuncobject.h"
         ],
         "extra_compile_args": [
             "-g0",
             "-O2"
         ],
         "include_dirs": [
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/core/include"
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/core/include"
         ],
         "libraries": [
             "m"
@@ -780,7 +780,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "numpy/ufuncobject.h"
 
     /* NumPy API declarations from "numpy/__init__.pxd" */
-    
+
 #include "pythread.h"
 #include <stdlib.h>
 #include "pystate.h"
@@ -1177,17 +1177,17 @@ typedef int __pyx_t_7sklearn_5utils_9_typedefs_int32_t;
  */
 typedef PY_LONG_LONG __pyx_t_7sklearn_5utils_9_typedefs_int64_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":690
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":690
  * # in Cython to enable them only on the right systems.
- * 
+ *
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
  */
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":691
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":691
+ *
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int32      int32_t
@@ -1195,7 +1195,7 @@ typedef npy_int8 __pyx_t_5numpy_int8_t;
  */
 typedef npy_int16 __pyx_t_5numpy_int16_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":692
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":692
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t             # <<<<<<<<<<<<<<
@@ -1204,7 +1204,7 @@ typedef npy_int16 __pyx_t_5numpy_int16_t;
  */
 typedef npy_int32 __pyx_t_5numpy_int32_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":693
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":693
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
  * ctypedef npy_int64      int64_t             # <<<<<<<<<<<<<<
@@ -1213,17 +1213,17 @@ typedef npy_int32 __pyx_t_5numpy_int32_t;
  */
 typedef npy_int64 __pyx_t_5numpy_int64_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":697
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":697
  * #ctypedef npy_int128     int128_t
- * 
+ *
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
  */
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":698
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":698
+ *
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint32     uint32_t
@@ -1231,7 +1231,7 @@ typedef npy_uint8 __pyx_t_5numpy_uint8_t;
  */
 typedef npy_uint16 __pyx_t_5numpy_uint16_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":699
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":699
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t             # <<<<<<<<<<<<<<
@@ -1240,7 +1240,7 @@ typedef npy_uint16 __pyx_t_5numpy_uint16_t;
  */
 typedef npy_uint32 __pyx_t_5numpy_uint32_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":700
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":700
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
  * ctypedef npy_uint64     uint64_t             # <<<<<<<<<<<<<<
@@ -1249,17 +1249,17 @@ typedef npy_uint32 __pyx_t_5numpy_uint32_t;
  */
 typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":704
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":704
  * #ctypedef npy_uint128    uint128_t
- * 
+ *
  * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
  * ctypedef npy_float64    float64_t
  * #ctypedef npy_float80    float80_t
  */
 typedef npy_float32 __pyx_t_5numpy_float32_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":705
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":705
+ *
  * ctypedef npy_float32    float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
  * #ctypedef npy_float80    float80_t
@@ -1267,7 +1267,7 @@ typedef npy_float32 __pyx_t_5numpy_float32_t;
  */
 typedef npy_float64 __pyx_t_5numpy_float64_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":714
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":714
  * # The int types are mapped a bit surprising --
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t             # <<<<<<<<<<<<<<
@@ -1276,92 +1276,92 @@ typedef npy_float64 __pyx_t_5numpy_float64_t;
  */
 typedef npy_long __pyx_t_5numpy_int_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":715
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":715
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t             # <<<<<<<<<<<<<<
  * ctypedef npy_longlong   longlong_t
- * 
+ *
  */
 typedef npy_longlong __pyx_t_5numpy_long_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":716
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":716
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t
  * ctypedef npy_longlong   longlong_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_ulong      uint_t
  */
 typedef npy_longlong __pyx_t_5numpy_longlong_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":718
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":718
  * ctypedef npy_longlong   longlong_t
- * 
+ *
  * ctypedef npy_ulong      uint_t             # <<<<<<<<<<<<<<
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t
  */
 typedef npy_ulong __pyx_t_5numpy_uint_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":719
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":719
+ *
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t             # <<<<<<<<<<<<<<
  * ctypedef npy_ulonglong  ulonglong_t
- * 
+ *
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":720
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":720
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_intp       intp_t
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":722
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":722
  * ctypedef npy_ulonglong  ulonglong_t
- * 
+ *
  * ctypedef npy_intp       intp_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uintp      uintp_t
- * 
+ *
  */
 typedef npy_intp __pyx_t_5numpy_intp_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":723
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":723
+ *
  * ctypedef npy_intp       intp_t
  * ctypedef npy_uintp      uintp_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_double     float_t
  */
 typedef npy_uintp __pyx_t_5numpy_uintp_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":725
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":725
  * ctypedef npy_uintp      uintp_t
- * 
+ *
  * ctypedef npy_double     float_t             # <<<<<<<<<<<<<<
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t
  */
 typedef npy_double __pyx_t_5numpy_float_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":726
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":726
+ *
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t             # <<<<<<<<<<<<<<
  * ctypedef npy_longdouble longdouble_t
- * 
+ *
  */
 typedef npy_double __pyx_t_5numpy_double_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":727
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":727
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_cfloat      cfloat_t
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
@@ -1438,38 +1438,38 @@ struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
 struct __pyx_memoryviewslice_obj;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":729
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":729
  * ctypedef npy_longdouble longdouble_t
- * 
+ *
  * ctypedef npy_cfloat      cfloat_t             # <<<<<<<<<<<<<<
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t
  */
 typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":730
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":730
+ *
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t             # <<<<<<<<<<<<<<
  * ctypedef npy_clongdouble clongdouble_t
- * 
+ *
  */
 typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":731
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":731
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t             # <<<<<<<<<<<<<<
- * 
+ *
  * ctypedef npy_cdouble     complex_t
  */
 typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":733
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":733
  * ctypedef npy_clongdouble clongdouble_t
- * 
+ *
  * ctypedef npy_cdouble     complex_t             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
@@ -1517,7 +1517,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 {
  * #  d = sqrt(sum(x_i^2 - y_i^2))
  * cdef class EuclideanDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Euclidean Distance metric
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_EuclideanDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1529,7 +1529,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_EuclideanDistance {
  * #  d = sqrt(sum((x_i - y_i2)^2 / v_i))
  * cdef class SEuclideanDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Standardized Euclidean Distance metric
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1541,7 +1541,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance {
  * #  d = sum(abs(x_i - y_i))
  * cdef class ManhattanDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Manhattan/City-block Distance metric
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_ManhattanDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1553,7 +1553,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_ManhattanDistance {
  * #  d = max_i(abs(x_i - y_i))
  * cdef class ChebyshevDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     """Chebyshev/Infinity Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_ChebyshevDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1565,7 +1565,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_ChebyshevDistance {
  * # Minkowski Distance
  * cdef class MinkowskiDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Minkowski Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1577,7 +1577,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance {
  * # W-Minkowski Distance
  * cdef class WMinkowskiDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Weighted Minkowski Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1589,7 +1589,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance {
  * #  d = sqrt( (x - y)^T V^-1 (x - y) )
  * cdef class MahalanobisDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     """Mahalanobis Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1602,7 +1602,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance {
  * #  d = N_unequal(x, y) / N_tot
  * cdef class HammingDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Hamming Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HammingDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1614,7 +1614,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HammingDistance {
  * #  D(x, y) = sum[ abs(x_i - y_i) / (abs(x_i) + abs(y_i)) ]
  * cdef class CanberraDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Canberra Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_CanberraDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1626,7 +1626,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_CanberraDistance {
  * #  D(x, y) = sum[abs(x_i - y_i)] / sum[abs(x_i) + abs(y_i)]
  * cdef class BrayCurtisDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Bray-Curtis Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_BrayCurtisDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1638,7 +1638,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_BrayCurtisDistance {
  * #  D(x, y) = N_unequal(x, y) / N_nonzero(x, y)
  * cdef class JaccardDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Jaccard Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_JaccardDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1650,7 +1650,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_JaccardDistance {
  * #  D(x, y) = n_neq / n
  * cdef class MatchingDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Matching Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MatchingDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1662,7 +1662,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MatchingDistance {
  * #  D(x, y) = n_neq / (2 * ntt + n_neq)
  * cdef class DiceDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Dice Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DiceDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1674,7 +1674,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DiceDistance {
  * #  D(x, y) = (ntf + nft - ntt + n) / (n_neq + n)
  * cdef class KulsinskiDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Kulsinski Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_KulsinskiDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1686,7 +1686,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_KulsinskiDistance {
  * #  D(x, y) = 2 * n_neq / (n + n_neq)
  * cdef class RogersTanimotoDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Rogers-Tanimoto Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_RogersTanimotoDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1698,7 +1698,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_RogersTanimotoDistance {
  * #  D(x, y) = (n - ntt) / n
  * cdef class RussellRaoDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Russell-Rao Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_RussellRaoDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1710,7 +1710,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_RussellRaoDistance {
  * #  D(x, y) = 2 * n_neq / (n + n_neq)
  * cdef class SokalMichenerDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Sokal-Michener Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SokalMichenerDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1722,7 +1722,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SokalMichenerDistance {
  * #  D(x, y) = n_neq / (0.5 * n_tt + n_neq)
  * cdef class SokalSneathDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Sokal-Sneath Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SokalSneathDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1734,7 +1734,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SokalSneathDistance {
  * #                          + cos(x1) cos(y1) sin^2 ((x2 - y2) / 2)]}
  * cdef class HaversineDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     """Haversine (Spherical) Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HaversineDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1746,7 +1746,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HaversineDistance {
  * #
  * cdef class PyFuncDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     """PyFunc Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_PyFuncDistance {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric __pyx_base;
@@ -1758,7 +1758,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_PyFuncDistance {
  * #  d = sqrt(sum(x_i^2 - y_i^2))
  * cdef class EuclideanDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Euclidean Distance metric
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_EuclideanDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1770,7 +1770,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_EuclideanDistance32 {
  * #  d = sqrt(sum((x_i - y_i2)^2 / v_i))
  * cdef class SEuclideanDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Standardized Euclidean Distance metric
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1782,7 +1782,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance32 {
  * #  d = sum(abs(x_i - y_i))
  * cdef class ManhattanDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Manhattan/City-block Distance metric
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_ManhattanDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1794,7 +1794,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_ManhattanDistance32 {
  * #  d = max_i(abs(x_i - y_i))
  * cdef class ChebyshevDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     """Chebyshev/Infinity Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_ChebyshevDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1806,7 +1806,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_ChebyshevDistance32 {
  * # Minkowski Distance
  * cdef class MinkowskiDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Minkowski Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1818,7 +1818,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance32 {
  * # W-Minkowski Distance
  * cdef class WMinkowskiDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Weighted Minkowski Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1830,7 +1830,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance32 {
  * #  d = sqrt( (x - y)^T V^-1 (x - y) )
  * cdef class MahalanobisDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     """Mahalanobis Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1843,7 +1843,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance32 {
  * #  d = N_unequal(x, y) / N_tot
  * cdef class HammingDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Hamming Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HammingDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1855,7 +1855,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HammingDistance32 {
  * #  D(x, y) = sum[ abs(x_i - y_i) / (abs(x_i) + abs(y_i)) ]
  * cdef class CanberraDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Canberra Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_CanberraDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1867,7 +1867,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_CanberraDistance32 {
  * #  D(x, y) = sum[abs(x_i - y_i)] / sum[abs(x_i) + abs(y_i)]
  * cdef class BrayCurtisDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Bray-Curtis Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_BrayCurtisDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1879,7 +1879,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_BrayCurtisDistance32 {
  * #  D(x, y) = N_unequal(x, y) / N_nonzero(x, y)
  * cdef class JaccardDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Jaccard Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_JaccardDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1891,7 +1891,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_JaccardDistance32 {
  * #  D(x, y) = n_neq / n
  * cdef class MatchingDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Matching Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MatchingDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1903,7 +1903,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MatchingDistance32 {
  * #  D(x, y) = n_neq / (2 * ntt + n_neq)
  * cdef class DiceDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Dice Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DiceDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1915,7 +1915,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DiceDistance32 {
  * #  D(x, y) = (ntf + nft - ntt + n) / (n_neq + n)
  * cdef class KulsinskiDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Kulsinski Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_KulsinskiDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1927,7 +1927,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_KulsinskiDistance32 {
  * #  D(x, y) = 2 * n_neq / (n + n_neq)
  * cdef class RogersTanimotoDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Rogers-Tanimoto Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_RogersTanimotoDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1939,7 +1939,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_RogersTanimotoDistance32 {
  * #  D(x, y) = (n - ntt) / n
  * cdef class RussellRaoDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Russell-Rao Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_RussellRaoDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1951,7 +1951,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_RussellRaoDistance32 {
  * #  D(x, y) = 2 * n_neq / (n + n_neq)
  * cdef class SokalMichenerDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Sokal-Michener Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SokalMichenerDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1963,7 +1963,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SokalMichenerDistance32 {
  * #  D(x, y) = n_neq / (0.5 * n_tt + n_neq)
  * cdef class SokalSneathDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Sokal-Sneath Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SokalSneathDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1975,7 +1975,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SokalSneathDistance32 {
  * #                          + cos(x1) cos(y1) sin^2 ((x2 - y2) / 2)]}
  * cdef class HaversineDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     """Haversine (Spherical) Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HaversineDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1987,7 +1987,7 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HaversineDistance32 {
  * #
  * cdef class PyFuncDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     """PyFunc Distance
- * 
+ *
  */
 struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_PyFuncDistance32 {
   struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 __pyx_base;
@@ -1995,10 +1995,10 @@ struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_PyFuncDistance32 {
 
 
 /* "View.MemoryView":106
- * 
+ *
  * @cname("__pyx_array")
  * cdef class array:             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef:
  */
 struct __pyx_array_obj {
@@ -2020,7 +2020,7 @@ struct __pyx_array_obj {
 
 
 /* "View.MemoryView":280
- * 
+ *
  * @cname('__pyx_MemviewEnum')
  * cdef class Enum(object):             # <<<<<<<<<<<<<<
  *     cdef object name
@@ -2033,10 +2033,10 @@ struct __pyx_MemviewEnum_obj {
 
 
 /* "View.MemoryView":331
- * 
+ *
  * @cname('__pyx_memoryview')
  * cdef class memoryview(object):             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef object obj
  */
 struct __pyx_memoryview_obj {
@@ -2056,11 +2056,11 @@ struct __pyx_memoryview_obj {
 
 
 /* "View.MemoryView":967
- * 
+ *
  * @cname('__pyx_memoryviewslice')
  * cdef class _memoryviewslice(memoryview):             # <<<<<<<<<<<<<<
  *     "Internal class for passing memoryview slices to Python"
- * 
+ *
  */
 struct __pyx_memoryviewslice_obj {
   struct __pyx_memoryview_obj __pyx_base;
@@ -2077,7 +2077,7 @@ struct __pyx_memoryviewslice_obj {
  * # Distance Metric Classes
  * cdef class DistanceMetric:             # <<<<<<<<<<<<<<
  *     """DistanceMetric class
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric {
@@ -2100,7 +2100,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric 
  * # Distance Metric Classes
  * cdef class DistanceMetric32:             # <<<<<<<<<<<<<<
  *     """DistanceMetric class
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 {
@@ -2123,7 +2123,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric3
  * #  d = sqrt(sum(x_i^2 - y_i^2))
  * cdef class EuclideanDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Euclidean Distance metric
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_EuclideanDistance {
@@ -2137,7 +2137,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_EuclideanDistan
  * #  d = sqrt(sum((x_i - y_i2)^2 / v_i))
  * cdef class SEuclideanDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Standardized Euclidean Distance metric
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance {
@@ -2151,7 +2151,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SEuclideanDista
  * #  d = sum(abs(x_i - y_i))
  * cdef class ManhattanDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Manhattan/City-block Distance metric
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_ManhattanDistance {
@@ -2165,7 +2165,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_ManhattanDistan
  * #  d = max_i(abs(x_i - y_i))
  * cdef class ChebyshevDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     """Chebyshev/Infinity Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_ChebyshevDistance {
@@ -2179,7 +2179,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_ChebyshevDistan
  * # Minkowski Distance
  * cdef class MinkowskiDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Minkowski Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance {
@@ -2193,7 +2193,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MinkowskiDistan
  * # W-Minkowski Distance
  * cdef class WMinkowskiDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Weighted Minkowski Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance {
@@ -2207,7 +2207,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_WMinkowskiDista
  * #  d = sqrt( (x - y)^T V^-1 (x - y) )
  * cdef class MahalanobisDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     """Mahalanobis Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance {
@@ -2221,7 +2221,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MahalanobisDist
  * #  d = N_unequal(x, y) / N_tot
  * cdef class HammingDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Hamming Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_HammingDistance {
@@ -2235,7 +2235,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_HammingDistance
  * #  D(x, y) = sum[ abs(x_i - y_i) / (abs(x_i) + abs(y_i)) ]
  * cdef class CanberraDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Canberra Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_CanberraDistance {
@@ -2249,7 +2249,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_CanberraDistanc
  * #  D(x, y) = sum[abs(x_i - y_i)] / sum[abs(x_i) + abs(y_i)]
  * cdef class BrayCurtisDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Bray-Curtis Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_BrayCurtisDistance {
@@ -2263,7 +2263,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_BrayCurtisDista
  * #  D(x, y) = N_unequal(x, y) / N_nonzero(x, y)
  * cdef class JaccardDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Jaccard Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_JaccardDistance {
@@ -2277,7 +2277,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_JaccardDistance
  * #  D(x, y) = n_neq / n
  * cdef class MatchingDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Matching Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MatchingDistance {
@@ -2291,7 +2291,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MatchingDistanc
  * #  D(x, y) = n_neq / (2 * ntt + n_neq)
  * cdef class DiceDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Dice Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DiceDistance {
@@ -2305,7 +2305,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DiceDistance *_
  * #  D(x, y) = (ntf + nft - ntt + n) / (n_neq + n)
  * cdef class KulsinskiDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Kulsinski Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_KulsinskiDistance {
@@ -2319,7 +2319,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_KulsinskiDistan
  * #  D(x, y) = 2 * n_neq / (n + n_neq)
  * cdef class RogersTanimotoDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Rogers-Tanimoto Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_RogersTanimotoDistance {
@@ -2333,7 +2333,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_RogersTanimotoD
  * #  D(x, y) = (n - ntt) / n
  * cdef class RussellRaoDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Russell-Rao Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_RussellRaoDistance {
@@ -2347,7 +2347,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_RussellRaoDista
  * #  D(x, y) = 2 * n_neq / (n + n_neq)
  * cdef class SokalMichenerDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Sokal-Michener Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SokalMichenerDistance {
@@ -2361,7 +2361,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SokalMichenerDi
  * #  D(x, y) = n_neq / (0.5 * n_tt + n_neq)
  * cdef class SokalSneathDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     r"""Sokal-Sneath Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SokalSneathDistance {
@@ -2375,7 +2375,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SokalSneathDist
  * #                          + cos(x1) cos(y1) sin^2 ((x2 - y2) / 2)]}
  * cdef class HaversineDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     """Haversine (Spherical) Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_HaversineDistance {
@@ -2389,7 +2389,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_HaversineDistan
  * #
  * cdef class PyFuncDistance(DistanceMetric):             # <<<<<<<<<<<<<<
  *     """PyFunc Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_PyFuncDistance {
@@ -2405,7 +2405,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  * #  d = sqrt(sum(x_i^2 - y_i^2))
  * cdef class EuclideanDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Euclidean Distance metric
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_EuclideanDistance32 {
@@ -2419,7 +2419,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_EuclideanDistan
  * #  d = sqrt(sum((x_i - y_i2)^2 / v_i))
  * cdef class SEuclideanDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Standardized Euclidean Distance metric
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance32 {
@@ -2433,7 +2433,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SEuclideanDista
  * #  d = sum(abs(x_i - y_i))
  * cdef class ManhattanDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Manhattan/City-block Distance metric
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_ManhattanDistance32 {
@@ -2447,7 +2447,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_ManhattanDistan
  * #  d = max_i(abs(x_i - y_i))
  * cdef class ChebyshevDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     """Chebyshev/Infinity Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_ChebyshevDistance32 {
@@ -2461,7 +2461,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_ChebyshevDistan
  * # Minkowski Distance
  * cdef class MinkowskiDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Minkowski Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance32 {
@@ -2475,7 +2475,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MinkowskiDistan
  * # W-Minkowski Distance
  * cdef class WMinkowskiDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Weighted Minkowski Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance32 {
@@ -2489,7 +2489,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_WMinkowskiDista
  * #  d = sqrt( (x - y)^T V^-1 (x - y) )
  * cdef class MahalanobisDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     """Mahalanobis Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance32 {
@@ -2503,7 +2503,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MahalanobisDist
  * #  d = N_unequal(x, y) / N_tot
  * cdef class HammingDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Hamming Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_HammingDistance32 {
@@ -2517,7 +2517,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_HammingDistance
  * #  D(x, y) = sum[ abs(x_i - y_i) / (abs(x_i) + abs(y_i)) ]
  * cdef class CanberraDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Canberra Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_CanberraDistance32 {
@@ -2531,7 +2531,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_CanberraDistanc
  * #  D(x, y) = sum[abs(x_i - y_i)] / sum[abs(x_i) + abs(y_i)]
  * cdef class BrayCurtisDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Bray-Curtis Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_BrayCurtisDistance32 {
@@ -2545,7 +2545,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_BrayCurtisDista
  * #  D(x, y) = N_unequal(x, y) / N_nonzero(x, y)
  * cdef class JaccardDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Jaccard Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_JaccardDistance32 {
@@ -2559,7 +2559,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_JaccardDistance
  * #  D(x, y) = n_neq / n
  * cdef class MatchingDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Matching Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MatchingDistance32 {
@@ -2573,7 +2573,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_MatchingDistanc
  * #  D(x, y) = n_neq / (2 * ntt + n_neq)
  * cdef class DiceDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Dice Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DiceDistance32 {
@@ -2587,7 +2587,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DiceDistance32 
  * #  D(x, y) = (ntf + nft - ntt + n) / (n_neq + n)
  * cdef class KulsinskiDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Kulsinski Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_KulsinskiDistance32 {
@@ -2601,7 +2601,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_KulsinskiDistan
  * #  D(x, y) = 2 * n_neq / (n + n_neq)
  * cdef class RogersTanimotoDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Rogers-Tanimoto Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_RogersTanimotoDistance32 {
@@ -2615,7 +2615,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_RogersTanimotoD
  * #  D(x, y) = (n - ntt) / n
  * cdef class RussellRaoDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Russell-Rao Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_RussellRaoDistance32 {
@@ -2629,7 +2629,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_RussellRaoDista
  * #  D(x, y) = 2 * n_neq / (n + n_neq)
  * cdef class SokalMichenerDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Sokal-Michener Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SokalMichenerDistance32 {
@@ -2643,7 +2643,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SokalMichenerDi
  * #  D(x, y) = n_neq / (0.5 * n_tt + n_neq)
  * cdef class SokalSneathDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     r"""Sokal-Sneath Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SokalSneathDistance32 {
@@ -2657,7 +2657,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_SokalSneathDist
  * #                          + cos(x1) cos(y1) sin^2 ((x2 - y2) / 2)]}
  * cdef class HaversineDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     """Haversine (Spherical) Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_HaversineDistance32 {
@@ -2671,7 +2671,7 @@ static struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_HaversineDistan
  * #
  * cdef class PyFuncDistance32(DistanceMetric32):             # <<<<<<<<<<<<<<
  *     """PyFunc Distance
- * 
+ *
  */
 
 struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_PyFuncDistance32 {
@@ -2683,10 +2683,10 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
 
 /* "View.MemoryView":106
- * 
+ *
  * @cname("__pyx_array")
  * cdef class array:             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef:
  */
 
@@ -2697,10 +2697,10 @@ static struct __pyx_vtabstruct_array *__pyx_vtabptr_array;
 
 
 /* "View.MemoryView":331
- * 
+ *
  * @cname('__pyx_memoryview')
  * cdef class memoryview(object):             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef object obj
  */
 
@@ -2717,11 +2717,11 @@ static struct __pyx_vtabstruct_memoryview *__pyx_vtabptr_memoryview;
 
 
 /* "View.MemoryView":967
- * 
+ *
  * @cname('__pyx_memoryviewslice')
  * cdef class _memoryviewslice(memoryview):             # <<<<<<<<<<<<<<
  *     "Internal class for passing memoryview slices to Python"
- * 
+ *
  */
 
 struct __pyx_vtabstruct__memoryviewslice {
@@ -4657,10 +4657,10 @@ static PyObject *__pyx_codeobj__53;
 
 /* "sklearn/metrics/_dist_metrics.pyx":21
  * from ..utils.fixes import parse_version, sp_base_version
- * 
+ *
  * cdef inline double fmax(double a, double b) noexcept nogil:             # <<<<<<<<<<<<<<
  *     return max(a, b)
- * 
+ *
  */
 
 static CYTHON_INLINE double __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(double __pyx_v_a, double __pyx_v_b) {
@@ -4670,11 +4670,11 @@ static CYTHON_INLINE double __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(doubl
   double __pyx_t_3;
 
   /* "sklearn/metrics/_dist_metrics.pyx":22
- * 
+ *
  * cdef inline double fmax(double a, double b) noexcept nogil:
  *     return max(a, b)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_1 = __pyx_v_b;
   __pyx_t_2 = __pyx_v_a;
@@ -4688,10 +4688,10 @@ static CYTHON_INLINE double __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(doubl
 
   /* "sklearn/metrics/_dist_metrics.pyx":21
  * from ..utils.fixes import parse_version, sp_base_version
- * 
+ *
  * cdef inline double fmax(double a, double b) noexcept nogil:             # <<<<<<<<<<<<<<
  *     return max(a, b)
- * 
+ *
  */
 
   /* function exit code */
@@ -4704,7 +4704,7 @@ static CYTHON_INLINE double __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(doubl
  * #  this is a helper function for pickling
  * def newObj(obj):             # <<<<<<<<<<<<<<
  *     return obj.__new__(obj)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -4736,8 +4736,8 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_newObj(CYTHON_UNUSED
  * #  this is a helper function for pickling
  * def newObj(obj):
  *     return obj.__new__(obj)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_obj, __pyx_n_s_new); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 29, __pyx_L1_error)
@@ -4766,7 +4766,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_newObj(CYTHON_UNUSED
  * #  this is a helper function for pickling
  * def newObj(obj):             # <<<<<<<<<<<<<<
  *     return obj.__new__(obj)
- * 
+ *
  */
 
   /* function exit code */
@@ -4784,7 +4784,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_newObj(CYTHON_UNUSED
 
 /* "sklearn/metrics/_dist_metrics.pyx":46
  *     BOOL_METRICS += ["kulsinski"]
- * 
+ *
  * def get_valid_metric_ids(L):             # <<<<<<<<<<<<<<
  *     """Given an iterable of metric class names or class identifiers,
  *     return a list of metric IDs which map to those classes.
@@ -4831,7 +4831,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_2get_valid_metric_id
  *     """
  *     return [key for (key, val) in METRIC_MAPPING.items()             # <<<<<<<<<<<<<<
  *             if (val.__name__ in L) or (val in L)]
- * 
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
@@ -4865,8 +4865,8 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_2get_valid_metric_id
  *     """
  *     return [key for (key, val) in METRIC_MAPPING.items()
  *             if (val.__name__ in L) or (val in L)]             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_7genexpr__pyx_v_val, __pyx_n_s_name); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 56, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_6);
@@ -4889,7 +4889,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_2get_valid_metric_id
  *     """
  *     return [key for (key, val) in METRIC_MAPPING.items()             # <<<<<<<<<<<<<<
  *             if (val.__name__ in L) or (val in L)]
- * 
+ *
  */
         if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_7genexpr__pyx_v_key))) __PYX_ERR(1, 55, __pyx_L5_error)
 
@@ -4897,8 +4897,8 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_2get_valid_metric_id
  *     """
  *     return [key for (key, val) in METRIC_MAPPING.items()
  *             if (val.__name__ in L) or (val in L)]             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       }
     }
@@ -4918,7 +4918,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_2get_valid_metric_id
 
   /* "sklearn/metrics/_dist_metrics.pyx":46
  *     BOOL_METRICS += ["kulsinski"]
- * 
+ *
  * def get_valid_metric_ids(L):             # <<<<<<<<<<<<<<
  *     """Given an iterable of metric class names or class identifiers,
  *     return a list of metric IDs which map to those classes.
@@ -4942,7 +4942,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_2get_valid_metric_id
 
 /* "sklearn/metrics/_dist_metrics.pyx":90
  * }
- * 
+ *
  * cdef inline object _buffer_to_ndarray(const float64_t* x, intp_t n):             # <<<<<<<<<<<<<<
  *     # Wrap a memory buffer with an ndarray. Warning: this is not robust.
  *     # In particular, if x is deallocated before the returned array goes
@@ -4961,8 +4961,8 @@ static CYTHON_INLINE PyObject *__pyx_f_7sklearn_7metrics_13_dist_metrics__buffer
  *     # Note: this Segfaults unless np.import_array() is called above
  *     # TODO: remove the explicit cast to cnp.intp_t* when cython min version >= 3.0
  *     return cnp.PyArray_SimpleNewFromData(1, <cnp.intp_t*>&n, cnp.NPY_FLOAT64, <void*>x)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyArray_SimpleNewFromData(1, ((__pyx_t_5numpy_intp_t *)(&__pyx_v_n)), NPY_FLOAT64, ((void *)__pyx_v_x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 98, __pyx_L1_error)
@@ -4973,7 +4973,7 @@ static CYTHON_INLINE PyObject *__pyx_f_7sklearn_7metrics_13_dist_metrics__buffer
 
   /* "sklearn/metrics/_dist_metrics.pyx":90
  * }
- * 
+ *
  * cdef inline object _buffer_to_ndarray(const float64_t* x, intp_t n):             # <<<<<<<<<<<<<<
  *     # Wrap a memory buffer with an ndarray. Warning: this is not robust.
  *     # In particular, if x is deallocated before the returned array goes
@@ -5075,7 +5075,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric___cinit__
  *         self.vec = np.zeros(1, dtype=np.float64, order='C')
  *         self.mat = np.zeros((1, 1), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *         self.size = 1
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -5107,7 +5107,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric___cinit__
  *         self.vec = np.zeros(1, dtype=np.float64, order='C')
  *         self.mat = np.zeros((1, 1), dtype=np.float64, order='C')
  *         self.size = 1             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __reduce__(self):
  */
   __pyx_v_self->size = 1;
@@ -5139,7 +5139,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric___cinit__
 
 /* "sklearn/metrics/_dist_metrics.pyx":225
  *         self.size = 1
- * 
+ *
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
  *         """
  *         reduce method used for pickling
@@ -5176,7 +5176,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_2__
  *         reduce method used for pickling
  *         """
  *         return (newObj, (self.__class__,), self.__getstate__())             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __getstate__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -5223,7 +5223,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_2__
 
   /* "sklearn/metrics/_dist_metrics.pyx":225
  *         self.size = 1
- * 
+ *
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
  *         """
  *         reduce method used for pickling
@@ -5246,7 +5246,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_2__
 
 /* "sklearn/metrics/_dist_metrics.pyx":231
  *         return (newObj, (self.__class__,), self.__getstate__())
- * 
+ *
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
  *         """
  *         get state for pickling
@@ -5302,7 +5302,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_4__
  *         if self.__class__.__name__ == "PyFuncDistance":
  *             return (float(self.p), np.asarray(self.vec), np.asarray(self.mat), self.func, self.kwargs)             # <<<<<<<<<<<<<<
  *         return (float(self.p), np.asarray(self.vec), np.asarray(self.mat))
- * 
+ *
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_2 = PyFloat_FromDouble(((double)__pyx_v_self->p)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 236, __pyx_L1_error)
@@ -5387,7 +5387,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_4__
  *         if self.__class__.__name__ == "PyFuncDistance":
  *             return (float(self.p), np.asarray(self.vec), np.asarray(self.mat), self.func, self.kwargs)
  *         return (float(self.p), np.asarray(self.vec), np.asarray(self.mat))             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setstate__(self, state):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -5456,7 +5456,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_4__
 
   /* "sklearn/metrics/_dist_metrics.pyx":231
  *         return (newObj, (self.__class__,), self.__getstate__())
- * 
+ *
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
  *         """
  *         get state for pickling
@@ -5480,7 +5480,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_4__
 
 /* "sklearn/metrics/_dist_metrics.pyx":239
  *         return (float(self.p), np.asarray(self.vec), np.asarray(self.mat))
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         """
  *         set state for pickling
@@ -5595,7 +5595,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_6__
  *             self.func = state[3]
  *             self.kwargs = state[4]             # <<<<<<<<<<<<<<
  *         self.size = self.vec.shape[0]
- * 
+ *
  */
     __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_state, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 248, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -5618,14 +5618,14 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_6__
  *             self.func = state[3]
  *             self.kwargs = state[4]
  *         self.size = self.vec.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     @classmethod
  */
   __pyx_v_self->size = (__pyx_v_self->vec.shape[0]);
 
   /* "sklearn/metrics/_dist_metrics.pyx":239
  *         return (float(self.p), np.asarray(self.vec), np.asarray(self.mat))
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         """
  *         set state for pickling
@@ -5648,11 +5648,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_6__
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":252
- * 
+ *
  *     @classmethod
  *     def get_metric(cls, metric, **kwargs):             # <<<<<<<<<<<<<<
  *         """Get the given distance metric from the string identifier.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -5741,9 +5741,9 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
  *         """
  *         if isinstance(metric, DistanceMetric):             # <<<<<<<<<<<<<<
  *             return metric
- * 
+ *
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_metric, __pyx_ptype_7sklearn_7metrics_13_dist_metrics_DistanceMetric); 
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_metric, __pyx_ptype_7sklearn_7metrics_13_dist_metrics_DistanceMetric);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -5751,7 +5751,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
  *         """
  *         if isinstance(metric, DistanceMetric):
  *             return metric             # <<<<<<<<<<<<<<
- * 
+ *
  *         if callable(metric):
  */
     __Pyx_XDECREF(__pyx_r);
@@ -5764,26 +5764,26 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
  *         """
  *         if isinstance(metric, DistanceMetric):             # <<<<<<<<<<<<<<
  *             return metric
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":267
  *             return metric
- * 
+ *
  *         if callable(metric):             # <<<<<<<<<<<<<<
  *             return PyFuncDistance(metric, **kwargs)
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyCallable_Check(__pyx_v_metric); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(1, 267, __pyx_L1_error)
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":268
- * 
+ *
  *         if callable(metric):
  *             return PyFuncDistance(metric, **kwargs)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # Map the metric string ID to the metric class
  */
     __Pyx_XDECREF(__pyx_r);
@@ -5804,21 +5804,21 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
 
     /* "sklearn/metrics/_dist_metrics.pyx":267
  *             return metric
- * 
+ *
  *         if callable(metric):             # <<<<<<<<<<<<<<
  *             return PyFuncDistance(metric, **kwargs)
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":271
- * 
+ *
  *         # Map the metric string ID to the metric class
  *         if isinstance(metric, type) and issubclass(metric, DistanceMetric):             # <<<<<<<<<<<<<<
  *             pass
  *         else:
  */
-  __pyx_t_2 = PyType_Check(__pyx_v_metric); 
+  __pyx_t_2 = PyType_Check(__pyx_v_metric);
   __pyx_t_6 = (__pyx_t_2 != 0);
   if (__pyx_t_6) {
   } else {
@@ -5887,7 +5887,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
  *                 metric = METRIC_MAPPING[metric]
  *             except:             # <<<<<<<<<<<<<<
  *                 raise ValueError("Unrecognized metric '%s'" % metric)
- * 
+ *
  */
       /*except:*/ {
         __Pyx_AddTraceback("sklearn.metrics._dist_metrics.DistanceMetric.get_metric", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -5900,7 +5900,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
  *                 metric = METRIC_MAPPING[metric]
  *             except:
  *                 raise ValueError("Unrecognized metric '%s'" % metric)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # In Minkowski special cases, return more efficient methods
  */
         __pyx_t_10 = __Pyx_PyUnicode_FormatSafe(__pyx_kp_u_Unrecognized_metric_s, __pyx_v_metric); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 277, __pyx_L10_except_error)
@@ -5932,7 +5932,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
   __pyx_L5:;
 
   /* "sklearn/metrics/_dist_metrics.pyx":280
- * 
+ *
  *         # In Minkowski special cases, return more efficient methods
  *         if metric is MinkowskiDistance:             # <<<<<<<<<<<<<<
  *             p = kwargs.pop('p', 2)
@@ -6157,7 +6157,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
     }
 
     /* "sklearn/metrics/_dist_metrics.pyx":280
- * 
+ *
  *         # In Minkowski special cases, return more efficient methods
  *         if metric is MinkowskiDistance:             # <<<<<<<<<<<<<<
  *             p = kwargs.pop('p', 2)
@@ -6169,7 +6169,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
  *                 return MinkowskiDistance(p, w, **kwargs)
  *         else:
  *             return metric(**kwargs)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self):
  */
   /*else*/ {
@@ -6185,11 +6185,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":252
- * 
+ *
  *     @classmethod
  *     def get_metric(cls, metric, **kwargs):             # <<<<<<<<<<<<<<
  *         """Get the given distance metric from the string identifier.
- * 
+ *
  */
 
   /* function exit code */
@@ -6212,7 +6212,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_8ge
 
 /* "sklearn/metrics/_dist_metrics.pyx":294
  *             return metric(**kwargs)
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         if self.__class__ is DistanceMetric:
  *             raise NotImplementedError("DistanceMetric is an abstract class")
@@ -6246,11 +6246,11 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_10__init_
   __Pyx_RefNannySetupContext("__init__", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":295
- * 
+ *
  *     def __init__(self):
  *         if self.__class__ is DistanceMetric:             # <<<<<<<<<<<<<<
  *             raise NotImplementedError("DistanceMetric is an abstract class")
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -6263,7 +6263,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_10__init_
  *     def __init__(self):
  *         if self.__class__ is DistanceMetric:
  *             raise NotImplementedError("DistanceMetric is an abstract class")             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
     __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 296, __pyx_L1_error)
@@ -6273,17 +6273,17 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_10__init_
     __PYX_ERR(1, 296, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":295
- * 
+ *
  *     def __init__(self):
  *         if self.__class__ is DistanceMetric:             # <<<<<<<<<<<<<<
  *             raise NotImplementedError("DistanceMetric is an abstract class")
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":294
  *             return metric(**kwargs)
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         if self.__class__ is DistanceMetric:
  *             raise NotImplementedError("DistanceMetric is an abstract class")
@@ -6303,10 +6303,10 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_10__init_
 
 /* "sklearn/metrics/_dist_metrics.pyx":298
  *             raise NotImplementedError("DistanceMetric is an abstract class")
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         """Validate the input data.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -6332,7 +6332,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_12_
  *         is required.
  *         """
  *         return             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t dist(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6341,10 +6341,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_12_
 
   /* "sklearn/metrics/_dist_metrics.pyx":298
  *             raise NotImplementedError("DistanceMetric is an abstract class")
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         """Validate the input data.
- * 
+ *
  */
 
   /* function exit code */
@@ -6356,7 +6356,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_12_
 
 /* "sklearn/metrics/_dist_metrics.pyx":306
  *         return
- * 
+ *
  *     cdef float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -6369,7 +6369,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         This should be overridden in a base class.
  *         """
  *         return -999             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t rdist(
  */
   __pyx_r = -999.0;
@@ -6377,7 +6377,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":306
  *         return
- * 
+ *
  *     cdef float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -6390,7 +6390,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":318
  *         return -999
- * 
+ *
  *     cdef float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -6407,7 +6407,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         squared-euclidean distance.
  *         """
  *         return self.dist(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int pdist(
  */
   __pyx_t_1 = ((struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self->__pyx_vtab)->dist(__pyx_v_self, __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 333, __pyx_L1_error)
@@ -6416,7 +6416,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":318
  *         return -999
- * 
+ *
  *     cdef float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -6440,7 +6440,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":335
  *         return self.dist(x1, x2, size)
- * 
+ *
  *     cdef int pdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t[:, ::1] X,
@@ -6514,7 +6514,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_pdist(stru
  *                 D[i1, i2] = self.dist(&X[i1, 0], &X[i2, 0], X.shape[1])
  *                 D[i2, i1] = D[i1, i2]             # <<<<<<<<<<<<<<
  *         return 0
- * 
+ *
  */
       __pyx_t_7 = __pyx_v_i1;
       __pyx_t_9 = __pyx_v_i2;
@@ -6528,15 +6528,15 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_pdist(stru
  *                 D[i1, i2] = self.dist(&X[i1, 0], &X[i2, 0], X.shape[1])
  *                 D[i2, i1] = D[i1, i2]
  *         return 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":335
  *         return self.dist(x1, x2, size)
- * 
+ *
  *     cdef int pdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t[:, ::1] X,
@@ -6552,8 +6552,8 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_pdist(stru
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":349
- * 
- * 
+ *
+ *
  *     cdef int cdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t[:, ::1] X,
@@ -6643,7 +6643,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist(stru
  *             for i2 in range(Y.shape[0]):
  *                 D[i1, i2] = self.dist(&X[i1, 0], &Y[i2, 0], X.shape[1])             # <<<<<<<<<<<<<<
  *         return 0
- * 
+ *
  */
       __pyx_t_9 = __pyx_v_i1;
       __pyx_t_10 = 0;
@@ -6660,15 +6660,15 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist(stru
  *             for i2 in range(Y.shape[0]):
  *                 D[i1, i2] = self.dist(&X[i1, 0], &Y[i2, 0], X.shape[1])
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t dist_csr(
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":349
- * 
- * 
+ *
+ *
  *     cdef int cdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t[:, ::1] X,
@@ -6686,7 +6686,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist(stru
 
 /* "sklearn/metrics/_dist_metrics.pyx":364
  *         return 0
- * 
+ *
  *     cdef float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -6699,7 +6699,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         https://www-users.cse.umn.edu/~saad/IterMethBook_2ndEd.pdf
  *         """
  *         return -999             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t rdist_csr(
  */
   __pyx_r = -999.0;
@@ -6707,7 +6707,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":364
  *         return 0
- * 
+ *
  *     cdef float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -6720,7 +6720,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":430
  *         return -999
- * 
+ *
  *     cdef float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -6746,7 +6746,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":430
  *         return -999
- * 
+ *
  *     cdef float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -6770,7 +6770,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":471
  *         )
- * 
+ *
  *     cdef int pdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -6803,13 +6803,13 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_pdist_csr(
  *             intp_t i1, i2
  *             intp_t n_x1 = x1_indptr.shape[0] - 1             # <<<<<<<<<<<<<<
  *             intp_t x1_start, x1_end, x2_start, x2_end
- * 
+ *
  */
   __pyx_v_n_x1 = ((__pyx_v_x1_indptr.shape[0]) - 1);
 
   /* "sklearn/metrics/_dist_metrics.pyx":489
  *             intp_t x1_start, x1_end, x2_start, x2_end
- * 
+ *
  *         for i1 in range(n_x1):             # <<<<<<<<<<<<<<
  *             x1_start = x1_indptr[i1]
  *             x1_end = x1_indptr[i1 + 1]
@@ -6820,7 +6820,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_pdist_csr(
     __pyx_v_i1 = __pyx_t_3;
 
     /* "sklearn/metrics/_dist_metrics.pyx":490
- * 
+ *
  *         for i1 in range(n_x1):
  *             x1_start = x1_indptr[i1]             # <<<<<<<<<<<<<<
  *             x1_end = x1_indptr[i1 + 1]
@@ -6892,7 +6892,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_pdist_csr(
  *                     size,
  *                 )
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int cdist_csr(
  */
   __pyx_r = 0;
@@ -6900,7 +6900,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_pdist_csr(
 
   /* "sklearn/metrics/_dist_metrics.pyx":471
  *         )
- * 
+ *
  *     cdef int pdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -6924,7 +6924,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_pdist_csr(
 
 /* "sklearn/metrics/_dist_metrics.pyx":508
  *         return 0
- * 
+ *
  *     cdef int cdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -6967,13 +6967,13 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist_csr(
  *             intp_t n_x1 = x1_indptr.shape[0] - 1
  *             intp_t n_x2 = x2_indptr.shape[0] - 1             # <<<<<<<<<<<<<<
  *             intp_t x1_start, x1_end, x2_start, x2_end
- * 
+ *
  */
   __pyx_v_n_x2 = ((__pyx_v_x2_indptr.shape[0]) - 1);
 
   /* "sklearn/metrics/_dist_metrics.pyx":527
  *             intp_t x1_start, x1_end, x2_start, x2_end
- * 
+ *
  *         for i1 in range(n_x1):             # <<<<<<<<<<<<<<
  *             x1_start = x1_indptr[i1]
  *             x1_end = x1_indptr[i1 + 1]
@@ -6984,7 +6984,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist_csr(
     __pyx_v_i1 = __pyx_t_3;
 
     /* "sklearn/metrics/_dist_metrics.pyx":528
- * 
+ *
  *         for i1 in range(n_x1):
  *             x1_start = x1_indptr[i1]             # <<<<<<<<<<<<<<
  *             x1_end = x1_indptr[i1 + 1]
@@ -7020,7 +7020,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist_csr(
  *             for i2 in range(n_x2):
  *                 x2_start = x2_indptr[i2]             # <<<<<<<<<<<<<<
  *                 x2_end = x2_indptr[i2 + 1]
- * 
+ *
  */
       __pyx_t_7 = __pyx_v_i2;
       __pyx_v_x2_start = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x2_indptr.data + __pyx_t_7 * __pyx_v_x2_indptr.strides[0]) )));
@@ -7029,7 +7029,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist_csr(
  *             for i2 in range(n_x2):
  *                 x2_start = x2_indptr[i2]
  *                 x2_end = x2_indptr[i2 + 1]             # <<<<<<<<<<<<<<
- * 
+ *
  *                 D[i1, i2] = self.dist_csr(
  */
       __pyx_t_7 = (__pyx_v_i2 + 1);
@@ -7037,7 +7037,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist_csr(
 
       /* "sklearn/metrics/_dist_metrics.pyx":534
  *                 x2_end = x2_indptr[i2 + 1]
- * 
+ *
  *                 D[i1, i2] = self.dist_csr(             # <<<<<<<<<<<<<<
  *                     x1_data,
  *                     x1_indices,
@@ -7053,7 +7053,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist_csr(
  *                     size,
  *                 )
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  */
   __pyx_r = 0;
@@ -7061,7 +7061,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist_csr(
 
   /* "sklearn/metrics/_dist_metrics.pyx":508
  *         return 0
- * 
+ *
  *     cdef int cdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -7085,7 +7085,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_cdist_csr(
 
 /* "sklearn/metrics/_dist_metrics.pyx":547
  *         return 0
- * 
+ *
  *     cdef float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Convert the rank-preserving surrogate distance to the distance"""
  *         return rdist
@@ -7098,7 +7098,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     cdef float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  *         """Convert the rank-preserving surrogate distance to the distance"""
  *         return rdist             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  */
   __pyx_r = __pyx_v_rdist;
@@ -7106,7 +7106,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":547
  *         return 0
- * 
+ *
  *     cdef float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Convert the rank-preserving surrogate distance to the distance"""
  *         return rdist
@@ -7119,7 +7119,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":551
  *         return rdist
- * 
+ *
  *     cdef float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Convert the distance to the rank-preserving surrogate distance"""
  *         return dist
@@ -7132,7 +7132,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     cdef float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  *         """Convert the distance to the rank-preserving surrogate distance"""
  *         return dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = __pyx_v_dist;
@@ -7140,7 +7140,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":551
  *         return rdist
- * 
+ *
  *     cdef float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Convert the distance to the rank-preserving surrogate distance"""
  *         return dist
@@ -7153,10 +7153,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":555
  *         return dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         """Convert the rank-preserving surrogate distance to the distance.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -7182,7 +7182,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_14r
  *             True distance.
  *         """
  *         return rdist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -7192,10 +7192,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_14r
 
   /* "sklearn/metrics/_dist_metrics.pyx":555
  *         return dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         """Convert the rank-preserving surrogate distance to the distance.
- * 
+ *
  */
 
   /* function exit code */
@@ -7207,10 +7207,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_14r
 
 /* "sklearn/metrics/_dist_metrics.pyx":575
  *         return rdist
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         """Convert the true distance to the rank-preserving surrogate distance.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -7236,7 +7236,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_16d
  *             Surrogate distance.
  *         """
  *         return dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pairwise_dense_dense(self, X, Y):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -7246,10 +7246,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_16d
 
   /* "sklearn/metrics/_dist_metrics.pyx":575
  *         return rdist
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         """Convert the true distance to the rank-preserving surrogate distance.
- * 
+ *
  */
 
   /* function exit code */
@@ -7261,7 +7261,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_16d
 
 /* "sklearn/metrics/_dist_metrics.pyx":595
  *         return dist
- * 
+ *
  *     def _pairwise_dense_dense(self, X, Y):             # <<<<<<<<<<<<<<
  *         cdef const float64_t[:, ::1] Xarr
  *         cdef const float64_t[:, ::1] Yarr
@@ -7355,7 +7355,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_18_
 
   /* "sklearn/metrics/_dist_metrics.pyx":600
  *         cdef float64_t[:, ::1] Darr
- * 
+ *
  *         Xarr = np.asarray(X, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *         self._validate_data(Xarr)
  *         if X is Y:
@@ -7392,7 +7392,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_18_
   __pyx_t_6.data = NULL;
 
   /* "sklearn/metrics/_dist_metrics.pyx":601
- * 
+ *
  *         Xarr = np.asarray(X, dtype=np.float64, order='C')
  *         self._validate_data(Xarr)             # <<<<<<<<<<<<<<
  *         if X is Y:
@@ -7623,7 +7623,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_18_
  *             Darr = np.empty((Xarr.shape[0], Yarr.shape[0]), dtype=np.float64, order='C')
  *             self.cdist(Xarr, Yarr, Darr)             # <<<<<<<<<<<<<<
  *         return np.asarray(Darr)
- * 
+ *
  */
     __pyx_t_10 = ((struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self->__pyx_vtab)->cdist(__pyx_v_self, __pyx_v_Xarr, __pyx_v_Yarr, __pyx_v_Darr); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 609, __pyx_L1_error)
   }
@@ -7633,7 +7633,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_18_
  *             Darr = np.empty((Xarr.shape[0], Yarr.shape[0]), dtype=np.float64, order='C')
  *             self.cdist(Xarr, Yarr, Darr)
  *         return np.asarray(Darr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pairwise_sparse_sparse(self, X: csr_matrix , Y: csr_matrix):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -7666,7 +7666,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_18_
 
   /* "sklearn/metrics/_dist_metrics.pyx":595
  *         return dist
- * 
+ *
  *     def _pairwise_dense_dense(self, X, Y):             # <<<<<<<<<<<<<<
  *         cdef const float64_t[:, ::1] Xarr
  *         cdef const float64_t[:, ::1] Yarr
@@ -7695,7 +7695,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_18_
 
 /* "sklearn/metrics/_dist_metrics.pyx":612
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_sparse_sparse(self, X: csr_matrix , Y: csr_matrix):             # <<<<<<<<<<<<<<
  *         cdef:
  *             intp_t n_X, n_features
@@ -7808,7 +7808,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
 
   /* "sklearn/metrics/_dist_metrics.pyx":626
  *             float64_t[:, ::1] Darr
- * 
+ *
  *         X_csr = X.tocsr()             # <<<<<<<<<<<<<<
  *         n_X, n_features = X_csr.shape
  *         X_data = np.asarray(X_csr.data, dtype=np.float64)
@@ -7834,7 +7834,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
   __pyx_t_1 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":627
- * 
+ *
  *         X_csr = X.tocsr()
  *         n_X, n_features = X_csr.shape             # <<<<<<<<<<<<<<
  *         X_data = np.asarray(X_csr.data, dtype=np.float64)
@@ -7852,11 +7852,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
-      __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
-      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
+      __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
+      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1);
     } else {
-      __pyx_t_2 = PyList_GET_ITEM(sequence, 0); 
-      __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
+      __pyx_t_2 = PyList_GET_ITEM(sequence, 0);
+      __pyx_t_3 = PyList_GET_ITEM(sequence, 1);
     }
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_t_3);
@@ -8148,11 +8148,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
-        __pyx_t_8 = PyTuple_GET_ITEM(sequence, 0); 
-        __pyx_t_2 = PyTuple_GET_ITEM(sequence, 1); 
+        __pyx_t_8 = PyTuple_GET_ITEM(sequence, 0);
+        __pyx_t_2 = PyTuple_GET_ITEM(sequence, 1);
       } else {
-        __pyx_t_8 = PyList_GET_ITEM(sequence, 0); 
-        __pyx_t_2 = PyList_GET_ITEM(sequence, 1); 
+        __pyx_t_8 = PyList_GET_ITEM(sequence, 0);
+        __pyx_t_2 = PyList_GET_ITEM(sequence, 1);
       }
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(__pyx_t_2);
@@ -8234,7 +8234,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
  *             Y_data = np.asarray(Y_csr.data, dtype=np.float64)
  *             Y_indices = np.asarray(Y_csr.indices, dtype=np.int32)             # <<<<<<<<<<<<<<
  *             Y_indptr = np.asarray(Y_csr.indptr, dtype=np.int32)
- * 
+ *
  */
     __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 644, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -8272,7 +8272,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
  *             Y_data = np.asarray(Y_csr.data, dtype=np.float64)
  *             Y_indices = np.asarray(Y_csr.indices, dtype=np.int32)
  *             Y_indptr = np.asarray(Y_csr.indptr, dtype=np.int32)             # <<<<<<<<<<<<<<
- * 
+ *
  *             Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')
  */
     __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 645, __pyx_L1_error)
@@ -8309,7 +8309,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
 
     /* "sklearn/metrics/_dist_metrics.pyx":647
  *             Y_indptr = np.asarray(Y_csr.indptr, dtype=np.int32)
- * 
+ *
  *             Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *             self.cdist_csr(
  *                 x1_data=&X_data[0],
@@ -8376,7 +8376,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
     __pyx_t_20 = 0;
 
     /* "sklearn/metrics/_dist_metrics.pyx":648
- * 
+ *
  *             Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')
  *             self.cdist_csr(             # <<<<<<<<<<<<<<
  *                 x1_data=&X_data[0],
@@ -8390,7 +8390,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
  *                 D=Darr,
  *             )
  *         return np.asarray(Darr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pairwise_sparse_dense(self, X: csr_matrix, Y):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -8423,7 +8423,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
 
   /* "sklearn/metrics/_dist_metrics.pyx":612
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_sparse_sparse(self, X: csr_matrix , Y: csr_matrix):             # <<<<<<<<<<<<<<
  *         cdef:
  *             intp_t n_X, n_features
@@ -8463,7 +8463,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_20_
 
 /* "sklearn/metrics/_dist_metrics.pyx":660
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_sparse_dense(self, X: csr_matrix, Y):             # <<<<<<<<<<<<<<
  *         cdef:
  *             intp_t n_X = X.shape[0]
@@ -8769,7 +8769,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
  *             const int32_t[:] X_indptr = np.asarray(
  *                 X.indptr, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indptr); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 671, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -8792,7 +8792,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
  *             const int32_t[:] X_indptr = np.asarray(
  *                 X.indptr, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 671, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -8824,7 +8824,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
   /* "sklearn/metrics/_dist_metrics.pyx":674
  *             )
- * 
+ *
  *             const float64_t[:, ::1] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y, dtype=np.float64, order="C",
  *             )
@@ -8836,7 +8836,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":675
- * 
+ *
  *             const float64_t[:, ::1] Y_data = np.asarray(
  *                 Y, dtype=np.float64, order="C",             # <<<<<<<<<<<<<<
  *             )
@@ -8860,7 +8860,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
   /* "sklearn/metrics/_dist_metrics.pyx":674
  *             )
- * 
+ *
  *             const float64_t[:, ::1] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y, dtype=np.float64, order="C",
  *             )
@@ -8890,7 +8890,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
  *             const int32_t[:] Y_indices = (
  *                 np.arange(n_features, dtype=np.int32)             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 679, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -8926,9 +8926,9 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
   /* "sklearn/metrics/_dist_metrics.pyx":682
  *             )
- * 
+ *
  *             float64_t[:, ::1] Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t i1, i2
  */
   __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 682, __pyx_L1_error)
@@ -8976,7 +8976,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
   /* "sklearn/metrics/_dist_metrics.pyx":688
  *             float64_t * x2_data
- * 
+ *
  *         with nogil:             # <<<<<<<<<<<<<<
  *             # Use the exact same adaptation for CSR than in SparseDenseDatasetsPair
  *             # for supporting the sparse-dense case with minimal overhead.
@@ -9026,7 +9026,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
  *                 x1_end = X_indptr[i1 + 1]
  *                 for i2 in range(n_Y):             # <<<<<<<<<<<<<<
  *                     x2_data = &Y_data[0, 0] + i2 * n_features
- * 
+ *
  */
           __pyx_t_15 = __pyx_v_n_Y;
           __pyx_t_16 = __pyx_t_15;
@@ -9037,7 +9037,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
  *                 x1_end = X_indptr[i1 + 1]
  *                 for i2 in range(n_Y):
  *                     x2_data = &Y_data[0, 0] + i2 * n_features             # <<<<<<<<<<<<<<
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(
  */
             __pyx_t_18 = 0;
@@ -9045,7 +9045,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
             __pyx_v_x2_data = ((&(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ (__pyx_v_Y_data.data + __pyx_t_18 * __pyx_v_Y_data.strides[0]) )) + __pyx_t_19)) )))) + (__pyx_v_i2 * __pyx_v_n_features));
 
             /* "sklearn/metrics/_dist_metrics.pyx":708
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(
  *                         x1_data=&X_data[0],             # <<<<<<<<<<<<<<
  *                         x1_indices=X_indices,
@@ -9055,7 +9055,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
             /* "sklearn/metrics/_dist_metrics.pyx":707
  *                     x2_data = &Y_data[0, 0] + i2 * n_features
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(             # <<<<<<<<<<<<<<
  *                         x1_data=&X_data[0],
  *                         x1_indices=X_indices,
@@ -9070,7 +9070,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
       /* "sklearn/metrics/_dist_metrics.pyx":688
  *             float64_t * x2_data
- * 
+ *
  *         with nogil:             # <<<<<<<<<<<<<<
  *             # Use the exact same adaptation for CSR than in SparseDenseDatasetsPair
  *             # for supporting the sparse-dense case with minimal overhead.
@@ -9096,9 +9096,9 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
   /* "sklearn/metrics/_dist_metrics.pyx":719
  *                     )
- * 
+ *
  *         return np.asarray(Darr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pairwise_dense_sparse(self, X, Y: csr_matrix):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -9131,7 +9131,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
   /* "sklearn/metrics/_dist_metrics.pyx":660
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_sparse_dense(self, X: csr_matrix, Y):             # <<<<<<<<<<<<<<
  *         cdef:
  *             intp_t n_X = X.shape[0]
@@ -9166,7 +9166,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_22_
 
 /* "sklearn/metrics/_dist_metrics.pyx":721
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_dense_sparse(self, X, Y: csr_matrix):             # <<<<<<<<<<<<<<
  *         # We could have implemented this method using _pairwise_dense_sparse by
  *         # swapping argument and by transposing the results, but this would
@@ -9285,7 +9285,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
  *         cdef:
  *             intp_t n_X = X.shape[0]             # <<<<<<<<<<<<<<
  *             intp_t n_features = X.shape[1]
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 726, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -9300,7 +9300,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
  *         cdef:
  *             intp_t n_X = X.shape[0]
  *             intp_t n_features = X.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *             const float64_t[:, ::1] X_data = np.asarray(
  */
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 727, __pyx_L1_error)
@@ -9314,7 +9314,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
   /* "sklearn/metrics/_dist_metrics.pyx":729
  *             intp_t n_features = X.shape[1]
- * 
+ *
  *             const float64_t[:, ::1] X_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 X, dtype=np.float64, order="C",
  *             )
@@ -9326,7 +9326,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":730
- * 
+ *
  *             const float64_t[:, ::1] X_data = np.asarray(
  *                 X, dtype=np.float64, order="C",             # <<<<<<<<<<<<<<
  *             )
@@ -9350,7 +9350,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
   /* "sklearn/metrics/_dist_metrics.pyx":729
  *             intp_t n_features = X.shape[1]
- * 
+ *
  *             const float64_t[:, ::1] X_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 X, dtype=np.float64, order="C",
  *             )
@@ -9384,7 +9384,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
  *             const int32_t[:] X_indices = np.arange(
  *                 n_features, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_n_features); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 733, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -9407,7 +9407,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
  *             const int32_t[:] X_indices = np.arange(
  *                 n_features, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 733, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -9439,7 +9439,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
   /* "sklearn/metrics/_dist_metrics.pyx":736
  *             )
- * 
+ *
  *             intp_t n_Y = Y.shape[0]             # <<<<<<<<<<<<<<
  *             const float64_t[:] Y_data = np.asarray(
  *                 Y.data, dtype=np.float64,
@@ -9454,7 +9454,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
   __pyx_v_n_Y = __pyx_t_3;
 
   /* "sklearn/metrics/_dist_metrics.pyx":737
- * 
+ *
  *             intp_t n_Y = Y.shape[0]
  *             const float64_t[:] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y.data, dtype=np.float64,
@@ -9477,7 +9477,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
   __Pyx_GOTREF(__pyx_t_6);
 
   /* "sklearn/metrics/_dist_metrics.pyx":737
- * 
+ *
  *             intp_t n_Y = Y.shape[0]
  *             const float64_t[:] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y.data, dtype=np.float64,
@@ -9507,7 +9507,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":737
- * 
+ *
  *             intp_t n_Y = Y.shape[0]
  *             const float64_t[:] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y.data, dtype=np.float64,
@@ -9613,7 +9613,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
  *             const int32_t[:] Y_indptr = np.asarray(
  *                 Y.indptr, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_Y, __pyx_n_s_indptr); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 744, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -9636,7 +9636,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
  *             const int32_t[:] Y_indptr = np.asarray(
  *                 Y.indptr, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 744, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -9668,9 +9668,9 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
   /* "sklearn/metrics/_dist_metrics.pyx":747
  *             )
- * 
+ *
  *             float64_t[:, ::1] Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t i1, i2
  */
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 747, __pyx_L1_error)
@@ -9718,7 +9718,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
   /* "sklearn/metrics/_dist_metrics.pyx":754
  *             intp_t x2_start, x2_end
- * 
+ *
  *         with nogil:             # <<<<<<<<<<<<<<
  *             # Use the exact same adaptation for CSR than in SparseDenseDatasetsPair
  *             # for supporting the dense-sparse case with minimal overhead.
@@ -9771,7 +9771,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
  *                 for i2 in range(n_Y):
  *                     x2_start = Y_indptr[i2]             # <<<<<<<<<<<<<<
  *                     x2_end = Y_indptr[i2 + 1]
- * 
+ *
  */
             __pyx_t_20 = __pyx_v_i2;
             __pyx_v_x2_start = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_Y_indptr.data + __pyx_t_20 * __pyx_v_Y_indptr.strides[0]) )));
@@ -9780,7 +9780,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
  *                 for i2 in range(n_Y):
  *                     x2_start = Y_indptr[i2]
  *                     x2_end = Y_indptr[i2 + 1]             # <<<<<<<<<<<<<<
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(
  */
             __pyx_t_20 = (__pyx_v_i2 + 1);
@@ -9797,7 +9797,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
             /* "sklearn/metrics/_dist_metrics.pyx":773
  *                     x2_end = Y_indptr[i2 + 1]
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(             # <<<<<<<<<<<<<<
  *                         x1_data=x1_data,
  *                         x1_indices=X_indices,
@@ -9812,7 +9812,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
       /* "sklearn/metrics/_dist_metrics.pyx":754
  *             intp_t x2_start, x2_end
- * 
+ *
  *         with nogil:             # <<<<<<<<<<<<<<
  *             # Use the exact same adaptation for CSR than in SparseDenseDatasetsPair
  *             # for supporting the dense-sparse case with minimal overhead.
@@ -9838,10 +9838,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
   /* "sklearn/metrics/_dist_metrics.pyx":785
  *                     )
- * 
+ *
  *         return np.asarray(Darr)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 785, __pyx_L1_error)
@@ -9873,7 +9873,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 
   /* "sklearn/metrics/_dist_metrics.pyx":721
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_dense_sparse(self, X, Y: csr_matrix):             # <<<<<<<<<<<<<<
  *         # We could have implemented this method using _pairwise_dense_sparse by
  *         # swapping argument and by transposing the results, but this would
@@ -9907,11 +9907,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_24_
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":788
- * 
- * 
+ *
+ *
  *     def pairwise(self, X, Y=None):             # <<<<<<<<<<<<<<
  *         """Compute the pairwise distances between X and Y
- * 
+ *
  */
 
 /* Python wrapper */
@@ -10007,7 +10007,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
  *             The distance matrix of pairwise distances between points in X and Y.
  *         """
  *         X = check_array(X, accept_sparse=['csr'])             # <<<<<<<<<<<<<<
- * 
+ *
  *         if Y is None:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_check_array); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 808, __pyx_L1_error)
@@ -10036,7 +10036,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
 
   /* "sklearn/metrics/_dist_metrics.pyx":810
  *         X = check_array(X, accept_sparse=['csr'])
- * 
+ *
  *         if Y is None:             # <<<<<<<<<<<<<<
  *             Y = X
  *         else:
@@ -10046,7 +10046,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
   if (__pyx_t_6) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":811
- * 
+ *
  *         if Y is None:
  *             Y = X             # <<<<<<<<<<<<<<
  *         else:
@@ -10057,7 +10057,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
 
     /* "sklearn/metrics/_dist_metrics.pyx":810
  *         X = check_array(X, accept_sparse=['csr'])
- * 
+ *
  *         if Y is None:             # <<<<<<<<<<<<<<
  *             Y = X
  *         else:
@@ -10069,7 +10069,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
  *             Y = X
  *         else:
  *             Y = check_array(Y, accept_sparse=['csr'])             # <<<<<<<<<<<<<<
- * 
+ *
  *         X_is_sparse = issparse(X)
  */
   /*else*/ {
@@ -10101,10 +10101,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
 
   /* "sklearn/metrics/_dist_metrics.pyx":815
  *             Y = check_array(Y, accept_sparse=['csr'])
- * 
+ *
  *         X_is_sparse = issparse(X)             # <<<<<<<<<<<<<<
  *         Y_is_sparse = issparse(Y)
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_issparse); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 815, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -10127,10 +10127,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
   __pyx_t_1 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":816
- * 
+ *
  *         X_is_sparse = issparse(X)
  *         Y_is_sparse = issparse(Y)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not X_is_sparse and not Y_is_sparse:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_issparse); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 816, __pyx_L1_error)
@@ -10155,10 +10155,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
 
   /* "sklearn/metrics/_dist_metrics.pyx":818
  *         Y_is_sparse = issparse(Y)
- * 
+ *
  *         if not X_is_sparse and not Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_dense_dense(X, Y)
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_X_is_sparse); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(1, 818, __pyx_L1_error)
   __pyx_t_7 = ((!__pyx_t_5) != 0);
@@ -10174,10 +10174,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
   if (__pyx_t_6) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":819
- * 
+ *
  *         if not X_is_sparse and not Y_is_sparse:
  *             return self._pairwise_dense_dense(X, Y)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if X_is_sparse and Y_is_sparse:
  */
     __Pyx_XDECREF(__pyx_r);
@@ -10234,19 +10234,19 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
 
     /* "sklearn/metrics/_dist_metrics.pyx":818
  *         Y_is_sparse = issparse(Y)
- * 
+ *
  *         if not X_is_sparse and not Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_dense_dense(X, Y)
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":821
  *             return self._pairwise_dense_dense(X, Y)
- * 
+ *
  *         if X_is_sparse and Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_sparse_sparse(X, Y)
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_X_is_sparse); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(1, 821, __pyx_L1_error)
   if (__pyx_t_5) {
@@ -10260,10 +10260,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
   if (__pyx_t_6) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":822
- * 
+ *
  *         if X_is_sparse and Y_is_sparse:
  *             return self._pairwise_sparse_sparse(X, Y)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if X_is_sparse and not Y_is_sparse:
  */
     __Pyx_XDECREF(__pyx_r);
@@ -10320,19 +10320,19 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
 
     /* "sklearn/metrics/_dist_metrics.pyx":821
  *             return self._pairwise_dense_dense(X, Y)
- * 
+ *
  *         if X_is_sparse and Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_sparse_sparse(X, Y)
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":824
  *             return self._pairwise_sparse_sparse(X, Y)
- * 
+ *
  *         if X_is_sparse and not Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_sparse_dense(X, Y)
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_X_is_sparse); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(1, 824, __pyx_L1_error)
   if (__pyx_t_5) {
@@ -10347,10 +10347,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
   if (__pyx_t_6) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":825
- * 
+ *
  *         if X_is_sparse and not Y_is_sparse:
  *             return self._pairwise_sparse_dense(X, Y)             # <<<<<<<<<<<<<<
- * 
+ *
  *         return self._pairwise_dense_sparse(X, Y)
  */
     __Pyx_XDECREF(__pyx_r);
@@ -10407,18 +10407,18 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
 
     /* "sklearn/metrics/_dist_metrics.pyx":824
  *             return self._pairwise_sparse_sparse(X, Y)
- * 
+ *
  *         if X_is_sparse and not Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_sparse_dense(X, Y)
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":827
  *             return self._pairwise_sparse_dense(X, Y)
- * 
+ *
  *         return self._pairwise_dense_sparse(X, Y)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __Pyx_XDECREF(__pyx_r);
@@ -10474,11 +10474,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":788
- * 
- * 
+ *
+ *
  *     def pairwise(self, X, Y=None):             # <<<<<<<<<<<<<<
  *         """Compute the pairwise distances between X and Y
- * 
+ *
  */
 
   /* function exit code */
@@ -10504,7 +10504,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_14DistanceMetric_26p
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = 2
- * 
+ *
  */
 
 /* Python wrapper */
@@ -10532,7 +10532,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance___init
  *     """
  *     def __init__(self):
  *         self.p = 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(self,
  */
   __pyx_v_self->__pyx_base.p = 2.0;
@@ -10542,7 +10542,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance___init
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = 2
- * 
+ *
  */
 
   /* function exit code */
@@ -10553,7 +10553,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance___init
 
 /* "sklearn/metrics/_dist_metrics.pyx":841
  *         self.p = 2
- * 
+ *
  *     cdef inline float64_t dist(self,             # <<<<<<<<<<<<<<
  *         const float64_t* x1,
  *         const float64_t* x2,
@@ -10570,7 +10570,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return euclidean_dist(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(self,
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_dist(__pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 846, __pyx_L1_error)
@@ -10579,7 +10579,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":841
  *         self.p = 2
- * 
+ *
  *     cdef inline float64_t dist(self,             # <<<<<<<<<<<<<<
  *         const float64_t* x1,
  *         const float64_t* x2,
@@ -10603,7 +10603,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":848
  *         return euclidean_dist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t rdist(self,             # <<<<<<<<<<<<<<
  *         const float64_t* x1,
  *         const float64_t* x2,
@@ -10620,7 +10620,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return euclidean_rdist(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_rdist(__pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 853, __pyx_L1_error)
@@ -10629,7 +10629,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":848
  *         return euclidean_dist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t rdist(self,             # <<<<<<<<<<<<<<
  *         const float64_t* x1,
  *         const float64_t* x2,
@@ -10653,20 +10653,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":855
  *         return euclidean_rdist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance__rdist_to_dist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_EuclideanDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":856
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  *         return sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  */
   __pyx_r = sqrt(__pyx_v_rdist);
@@ -10674,10 +10674,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":855
  *         return euclidean_rdist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -10687,20 +10687,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":858
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance__dist_to_rdist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_EuclideanDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":859
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  *         return dist * dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
@@ -10708,10 +10708,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":858
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -10721,10 +10721,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":861
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -10752,10 +10752,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance_
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":862
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return np.sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -10785,10 +10785,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance_
 
   /* "sklearn/metrics/_dist_metrics.pyx":861
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -10806,10 +10806,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance_
 
 /* "sklearn/metrics/_dist_metrics.pyx":864
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
 /* Python wrapper */
@@ -10835,10 +10835,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance_
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":865
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -10850,10 +10850,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance_
 
   /* "sklearn/metrics/_dist_metrics.pyx":864
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
   /* function exit code */
@@ -10869,7 +10869,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17EuclideanDistance_
 
 /* "sklearn/metrics/_dist_metrics.pyx":867
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -10892,7 +10892,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -10900,32 +10900,32 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":885
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
  *             float64_t unsquared = 0
- * 
+ *
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":886
- * 
+ *
  *             float64_t d = 0.0
  *             float64_t unsquared = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_unsquared = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":888
  *             float64_t unsquared = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -10943,11 +10943,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":889
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -10956,7 +10956,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -10964,7 +10964,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":892
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 unsquared = x1_data[i1] - x2_data[i2]
  *                 d = d + (unsquared * unsquared)
@@ -10973,7 +10973,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":893
- * 
+ *
  *             if ix1 == ix2:
  *                 unsquared = x1_data[i1] - x2_data[i2]             # <<<<<<<<<<<<<<
  *                 d = d + (unsquared * unsquared)
@@ -11010,7 +11010,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":892
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 unsquared = x1_data[i1] - x2_data[i2]
  *                 d = d + (unsquared * unsquared)
@@ -11080,7 +11080,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x2_data[i2]
  *                 d = d + (unsquared * unsquared)             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + (__pyx_v_unsquared * __pyx_v_unsquared));
 
@@ -11088,7 +11088,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x2_data[i2]
  *                 d = d + (unsquared * unsquared)
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -11098,7 +11098,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":906
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 unsquared = x2_data[i2]
@@ -11107,7 +11107,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":907
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 unsquared = x2_data[i2]
@@ -11147,7 +11147,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":906
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 unsquared = x2_data[i2]
@@ -11181,7 +11181,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x1_data[i1]
  *                 d = d + (unsquared * unsquared)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + (__pyx_v_unsquared * __pyx_v_unsquared));
 
@@ -11189,7 +11189,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x1_data[i1]
  *                 d = d + (unsquared * unsquared)
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -11199,9 +11199,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":917
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -11209,7 +11209,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":867
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -11222,7 +11222,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":919
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -11256,7 +11256,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":919
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -11396,7 +11396,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance___ini
  *         self.vec = np.asarray(V, dtype=np.float64)
  *         self.size = self.vec.shape[0]             # <<<<<<<<<<<<<<
  *         self.p = 2
- * 
+ *
  */
   __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.vec.shape[0]);
 
@@ -11404,7 +11404,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance___ini
  *         self.vec = np.asarray(V, dtype=np.float64)
  *         self.size = self.vec.shape[0]
  *         self.p = 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
   __pyx_v_self->__pyx_base.p = 2.0;
@@ -11436,7 +11436,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance___ini
 
 /* "sklearn/metrics/_dist_metrics.pyx":958
  *         self.p = 2
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('SEuclidean dist: size of V does not match')
@@ -11468,11 +11468,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":959
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('SEuclidean dist: size of V does not match')
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 959, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -11492,7 +11492,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:
  *             raise ValueError('SEuclidean dist: size of V does not match')             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 960, __pyx_L1_error)
@@ -11502,17 +11502,17 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
     __PYX_ERR(1, 960, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":959
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('SEuclidean dist: size of V does not match')
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":958
  *         self.p = 2
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('SEuclidean dist: size of V does not match')
@@ -11535,7 +11535,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":962
  *             raise ValueError('SEuclidean dist: size of V does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -11586,7 +11586,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tmp = x1[j] - x2[j]
  *             d += (tmp * tmp / self.vec[j])             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_t_4 = __pyx_v_j;
     __pyx_v_d = (__pyx_v_d + ((__pyx_v_tmp * __pyx_v_tmp) / ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_4)) ))))));
@@ -11596,7 +11596,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tmp = x1[j] - x2[j]
  *             d += (tmp * tmp / self.vec[j])
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_r = __pyx_v_d;
@@ -11604,7 +11604,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":962
  *             raise ValueError('SEuclidean dist: size of V does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -11617,7 +11617,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":975
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -11634,7 +11634,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return sqrt(self.rdist(x1, x2, size))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 981, __pyx_L1_error)
@@ -11643,7 +11643,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":975
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -11667,20 +11667,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":983
  *         return sqrt(self.rdist(x1, x2, size))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance__rdist_to_dist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":984
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  *         return sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  */
   __pyx_r = sqrt(__pyx_v_rdist);
@@ -11688,10 +11688,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":983
  *         return sqrt(self.rdist(x1, x2, size))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -11701,20 +11701,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":986
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance__dist_to_rdist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":987
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  *         return dist * dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
@@ -11722,10 +11722,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":986
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -11735,10 +11735,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":989
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -11766,10 +11766,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":990
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return np.sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -11799,10 +11799,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":989
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -11820,10 +11820,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":992
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
 /* Python wrapper */
@@ -11849,10 +11849,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":993
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -11864,10 +11864,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":992
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
   /* function exit code */
@@ -11883,7 +11883,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18SEuclideanDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":995
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -11906,7 +11906,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -11914,32 +11914,32 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1013
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
  *             float64_t unsquared = 0
- * 
+ *
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1014
- * 
+ *
  *             float64_t d = 0.0
  *             float64_t unsquared = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_unsquared = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1016
  *             float64_t unsquared = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -11957,11 +11957,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1017
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -11970,7 +11970,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -11978,7 +11978,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1020
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 unsquared = x1_data[i1] - x2_data[i2]
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
@@ -11987,7 +11987,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1021
- * 
+ *
  *             if ix1 == ix2:
  *                 unsquared = x1_data[i1] - x2_data[i2]             # <<<<<<<<<<<<<<
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
@@ -12025,7 +12025,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1020
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 unsquared = x1_data[i1] - x2_data[i2]
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
@@ -12096,7 +12096,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x2_data[i2]
  *                 d = d + (unsquared * unsquared) / self.vec[ix2]             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_ix2;
       __pyx_v_d = (__pyx_v_d + ((__pyx_v_unsquared * __pyx_v_unsquared) / ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_3)) ))))));
@@ -12105,7 +12105,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x2_data[i2]
  *                 d = d + (unsquared * unsquared) / self.vec[ix2]
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -12115,7 +12115,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1034
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -12124,7 +12124,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1035
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
@@ -12175,7 +12175,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1034
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -12229,7 +12229,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
     }
@@ -12240,7 +12240,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
  *                 i1 = i1 + 1
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -12248,7 +12248,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":995
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -12261,7 +12261,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1048
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -12295,7 +12295,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1048
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -12322,7 +12322,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = 1
- * 
+ *
  */
 
 /* Python wrapper */
@@ -12350,7 +12350,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17ManhattanDistance___init
  *     """
  *     def __init__(self):
  *         self.p = 1             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_v_self->__pyx_base.p = 1.0;
@@ -12360,7 +12360,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17ManhattanDistance___init
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = 1
- * 
+ *
  */
 
   /* function exit code */
@@ -12371,7 +12371,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17ManhattanDistance___init
 
 /* "sklearn/metrics/_dist_metrics.pyx":1085
  *         self.p = 1
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -12411,7 +12411,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d += fabs(x1[j] - x2[j])             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j]))));
   }
@@ -12420,7 +12420,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d += fabs(x1[j] - x2[j])
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -12428,7 +12428,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1085
  *         self.p = 1
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -12441,7 +12441,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1097
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -12463,7 +12463,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -12471,23 +12471,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1115
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1117
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -12505,11 +12505,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1118
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -12518,7 +12518,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -12526,7 +12526,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1121
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = d + fabs(x1_data[i1] - x2_data[i2])
  *                 i1 = i1 + 1
@@ -12535,7 +12535,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1122
- * 
+ *
  *             if ix1 == ix2:
  *                 d = d + fabs(x1_data[i1] - x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -12563,7 +12563,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1121
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = d + fabs(x1_data[i1] - x2_data[i2])
  *                 i1 = i1 + 1
@@ -12614,7 +12614,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = d + fabs(x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_d = (__pyx_v_d + fabs((__pyx_v_x2_data[__pyx_v_i2])));
@@ -12623,7 +12623,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = d + fabs(x2_data[i2])
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -12633,7 +12633,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1132
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d = d + fabs(x2_data[i2])
@@ -12642,7 +12642,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1133
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 d = d + fabs(x2_data[i2])
@@ -12673,7 +12673,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1132
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d = d + fabs(x2_data[i2])
@@ -12698,7 +12698,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d = d + fabs(x1_data[i1])             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + fabs((__pyx_v_x1_data[__pyx_v_i1])));
 
@@ -12706,7 +12706,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d = d + fabs(x1_data[i1])
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -12716,17 +12716,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1141
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1097
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -12742,7 +12742,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = INF
- * 
+ *
  */
 
 /* Python wrapper */
@@ -12770,7 +12770,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17ChebyshevDistance___init
  *     """
  *     def __init__(self):
  *         self.p = INF             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_v_self->__pyx_base.p = __pyx_v_7sklearn_7metrics_13_dist_metrics_INF;
@@ -12780,7 +12780,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17ChebyshevDistance___init
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = INF
- * 
+ *
  */
 
   /* function exit code */
@@ -12791,7 +12791,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17ChebyshevDistance___init
 
 /* "sklearn/metrics/_dist_metrics.pyx":1168
  *         self.p = INF
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -12831,7 +12831,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d = fmax(d, fabs(x1[j] - x2[j]))             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_v_d = __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(__pyx_v_d, fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j]))));
   }
@@ -12840,15 +12840,15 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d = fmax(d, fabs(x1[j] - x2[j]))
  *         return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1168
  *         self.p = INF
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -12860,8 +12860,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":1181
- * 
- * 
+ *
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -12883,7 +12883,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -12891,23 +12891,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1199
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1201
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -12925,11 +12925,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1202
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -12938,7 +12938,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -12946,7 +12946,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1205
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = fmax(d, fabs(x1_data[i1] - x2_data[i2]))
  *                 i1 = i1 + 1
@@ -12955,7 +12955,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1206
- * 
+ *
  *             if ix1 == ix2:
  *                 d = fmax(d, fabs(x1_data[i1] - x2_data[i2]))             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -12983,7 +12983,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1205
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = fmax(d, fabs(x1_data[i1] - x2_data[i2]))
  *                 i1 = i1 + 1
@@ -13034,7 +13034,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = fmax(d, fabs(x2_data[i2]))             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_d = __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(__pyx_v_d, fabs((__pyx_v_x2_data[__pyx_v_i2])));
@@ -13043,7 +13043,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = fmax(d, fabs(x2_data[i2]))
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -13053,7 +13053,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1216
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d = fmax(d, fabs(x2_data[i2]))
@@ -13062,7 +13062,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1217
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 d = fmax(d, fabs(x2_data[i2]))
@@ -13093,7 +13093,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1216
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d = fmax(d, fabs(x2_data[i2]))
@@ -13118,7 +13118,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d = fmax(d, fabs(x1_data[i1]))             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(__pyx_v_d, fabs((__pyx_v_x1_data[__pyx_v_i1])));
 
@@ -13126,7 +13126,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d = fmax(d, fabs(x1_data[i1]))
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -13136,17 +13136,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1225
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1181
- * 
- * 
+ *
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -13321,7 +13321,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance___init
  *         elif np.isinf(p):
  *             raise ValueError("MinkowskiDistance requires finite p. "             # <<<<<<<<<<<<<<
  *                              "For p=inf, use ChebyshevDistance.")
- * 
+ *
  */
     __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -13340,7 +13340,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance___init
 
   /* "sklearn/metrics/_dist_metrics.pyx":1262
  *                              "For p=inf, use ChebyshevDistance.")
- * 
+ *
  *         self.p = p             # <<<<<<<<<<<<<<
  *         if w is not None:
  *             w_array = check_array(
@@ -13349,7 +13349,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance___init
   __pyx_v_self->__pyx_base.p = __pyx_t_5;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1263
- * 
+ *
  *         self.p = p
  *         if w is not None:             # <<<<<<<<<<<<<<
  *             w_array = check_array(
@@ -13483,7 +13483,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance___init
     __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.vec.shape[0]);
 
     /* "sklearn/metrics/_dist_metrics.pyx":1263
- * 
+ *
  *         self.p = p
  *         if w is not None:             # <<<<<<<<<<<<<<
  *             w_array = check_array(
@@ -13497,7 +13497,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance___init
  *         else:
  *             self.vec = np.asarray([], dtype=np.float64)             # <<<<<<<<<<<<<<
  *             self.size = 0
- * 
+ *
  */
   /*else*/ {
     __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 1272, __pyx_L1_error)
@@ -13537,7 +13537,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance___init
  *         else:
  *             self.vec = np.asarray([], dtype=np.float64)
  *             self.size = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
     __pyx_v_self->__pyx_base.size = 0;
@@ -13572,7 +13572,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance___init
 
 /* "sklearn/metrics/_dist_metrics.pyx":1275
  *             self.size = 0
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if self.size > 0 and X.shape[1] != self.size:
  *             raise ValueError("MinkowskiDistance: the size of w must match "
@@ -13607,7 +13607,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1276
- * 
+ *
  *     def _validate_data(self, X):
  *         if self.size > 0 and X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError("MinkowskiDistance: the size of w must match "
@@ -13656,7 +13656,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
  *             raise ValueError("MinkowskiDistance: the size of w must match "
  *                              f"the number of features ({X.shape[1]}). "             # <<<<<<<<<<<<<<
  *                              f"Currently len(w)={self.size}.")
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1278, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -13680,7 +13680,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
  *             raise ValueError("MinkowskiDistance: the size of w must match "
  *                              f"the number of features ({X.shape[1]}). "
  *                              f"Currently len(w)={self.size}.")             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(
  */
     __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_self->__pyx_base.size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1279, __pyx_L1_error)
@@ -13716,7 +13716,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
     __PYX_ERR(1, 1277, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":1276
- * 
+ *
  *     def _validate_data(self, X):
  *         if self.size > 0 and X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError("MinkowskiDistance: the size of w must match "
@@ -13726,7 +13726,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
 
   /* "sklearn/metrics/_dist_metrics.pyx":1275
  *             self.size = 0
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if self.size > 0 and X.shape[1] != self.size:
  *             raise ValueError("MinkowskiDistance: the size of w must match "
@@ -13749,7 +13749,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
 
 /* "sklearn/metrics/_dist_metrics.pyx":1281
  *                              f"Currently len(w)={self.size}.")
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -13845,7 +13845,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             for j in range(size):
  *                 d += (pow(fabs(x1[j] - x2[j]), self.p))             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + pow(fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j]))), __pyx_v_self->__pyx_base.p));
     }
@@ -13856,7 +13856,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             for j in range(size):
  *                 d += (pow(fabs(x1[j] - x2[j]), self.p))
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_r = __pyx_v_d;
@@ -13864,7 +13864,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1281
  *                              f"Currently len(w)={self.size}.")
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -13877,7 +13877,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1298
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -13894,7 +13894,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 1304, __pyx_L1_error)
@@ -13903,7 +13903,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1298
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -13927,20 +13927,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1306
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance__rdist_to_dist(struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1307
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  *         return pow(rdist, 1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  */
   __pyx_r = pow(__pyx_v_rdist, (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)1.) / __pyx_v_self->__pyx_base.p));
@@ -13948,10 +13948,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1306
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -13961,20 +13961,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1309
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(dist, self.p)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance__dist_to_rdist(struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1310
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  *         return pow(dist, self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = pow(__pyx_v_dist, __pyx_v_self->__pyx_base.p);
@@ -13982,10 +13982,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1309
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(dist, self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -13995,10 +13995,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1312
  *         return pow(dist, self.p)
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return rdist ** (1. / self.p)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -14025,10 +14025,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1313
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return rdist ** (1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -14043,10 +14043,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
 
   /* "sklearn/metrics/_dist_metrics.pyx":1312
  *         return pow(dist, self.p)
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return rdist ** (1. / self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -14063,10 +14063,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
 
 /* "sklearn/metrics/_dist_metrics.pyx":1315
  *         return rdist ** (1. / self.p)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** self.p
- * 
+ *
  */
 
 /* Python wrapper */
@@ -14093,10 +14093,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1316
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** self.p             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -14111,10 +14111,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
 
   /* "sklearn/metrics/_dist_metrics.pyx":1315
  *         return rdist ** (1. / self.p)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** self.p
- * 
+ *
  */
 
   /* function exit code */
@@ -14131,7 +14131,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17MinkowskiDistance_
 
 /* "sklearn/metrics/_dist_metrics.pyx":1318
  *         return dist ** self.p
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -14154,7 +14154,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -14162,32 +14162,32 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1336
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
  *             bint has_w = self.size > 0
- * 
+ *
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1337
- * 
+ *
  *             float64_t d = 0.0
  *             bint has_w = self.size > 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if has_w:
  */
   __pyx_v_has_w = (__pyx_v_self->__pyx_base.size > 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1339
  *             bint has_w = self.size > 0
- * 
+ *
  *         if has_w:             # <<<<<<<<<<<<<<
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]
@@ -14196,7 +14196,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1340
- * 
+ *
  *         if has_w:
  *             while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix1 = x1_indices[i1]
@@ -14219,7 +14219,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_i1;
       __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -14228,7 +14228,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]
  *                 ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if ix1 == ix2:
  */
       __pyx_t_3 = __pyx_v_i2;
@@ -14236,7 +14236,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1344
  *                 ix2 = x2_indices[i2]
- * 
+ *
  *                 if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                     d = d + (self.vec[ix1] * pow(fabs(
  *                         x1_data[i1] - x2_data[i2]
@@ -14245,7 +14245,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
       if (__pyx_t_1) {
 
         /* "sklearn/metrics/_dist_metrics.pyx":1345
- * 
+ *
  *                 if ix1 == ix2:
  *                     d = d + (self.vec[ix1] * pow(fabs(             # <<<<<<<<<<<<<<
  *                         x1_data[i1] - x2_data[i2]
@@ -14282,7 +14282,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
         /* "sklearn/metrics/_dist_metrics.pyx":1344
  *                 ix2 = x2_indices[i2]
- * 
+ *
  *                 if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                     d = d + (self.vec[ix1] * pow(fabs(
  *                         x1_data[i1] - x2_data[i2]
@@ -14334,7 +14334,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     d = d + (self.vec[ix2] * pow(fabs(x2_data[i2]), self.p))             # <<<<<<<<<<<<<<
  *                     i2 = i2 + 1
- * 
+ *
  */
       /*else*/ {
         __pyx_t_3 = __pyx_v_ix2;
@@ -14344,7 +14344,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     d = d + (self.vec[ix2] * pow(fabs(x2_data[i2]), self.p))
  *                     i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             if i1 == x1_end:
  */
         __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -14354,7 +14354,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1357
  *                     i2 = i2 + 1
- * 
+ *
  *             if i1 == x1_end:             # <<<<<<<<<<<<<<
  *                 while i2 < x2_end:
  *                     ix2 = x2_indices[i2]
@@ -14363,7 +14363,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1358
- * 
+ *
  *             if i1 == x1_end:
  *                 while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                     ix2 = x2_indices[i2]
@@ -14405,7 +14405,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1357
  *                     i2 = i2 + 1
- * 
+ *
  *             if i1 == x1_end:             # <<<<<<<<<<<<<<
  *                 while i2 < x2_end:
  *                     ix2 = x2_indices[i2]
@@ -14440,7 +14440,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                     ix1 = x1_indices[i1]
  *                     d = d + (self.vec[ix1] * pow(fabs(x1_data[i1]), self.p))             # <<<<<<<<<<<<<<
  *                     i1 = i1 + 1
- * 
+ *
  */
         __pyx_t_3 = __pyx_v_ix1;
         __pyx_v_d = (__pyx_v_d + ((*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_3)) ))) * pow(fabs((__pyx_v_x1_data[__pyx_v_i1])), __pyx_v_self->__pyx_base.p)));
@@ -14449,7 +14449,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                     ix1 = x1_indices[i1]
  *                     d = d + (self.vec[ix1] * pow(fabs(x1_data[i1]), self.p))
  *                     i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             return d
  */
         __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -14459,7 +14459,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1368
  *                     i1 = i1 + 1
- * 
+ *
  *             return d             # <<<<<<<<<<<<<<
  *         else:
  *             while i1 < x1_end and i2 < x2_end:
@@ -14469,7 +14469,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1339
  *             bint has_w = self.size > 0
- * 
+ *
  *         if has_w:             # <<<<<<<<<<<<<<
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]
@@ -14501,7 +14501,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_i1;
       __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -14510,7 +14510,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]
  *                 ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if ix1 == ix2:
  */
       __pyx_t_3 = __pyx_v_i2;
@@ -14518,7 +14518,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1374
  *                 ix2 = x2_indices[i2]
- * 
+ *
  *                 if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                     d = d + (pow(fabs(
  *                         x1_data[i1] - x2_data[i2]
@@ -14527,7 +14527,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
       if (__pyx_t_1) {
 
         /* "sklearn/metrics/_dist_metrics.pyx":1375
- * 
+ *
  *                 if ix1 == ix2:
  *                     d = d + (pow(fabs(             # <<<<<<<<<<<<<<
  *                         x1_data[i1] - x2_data[i2]
@@ -14555,7 +14555,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
         /* "sklearn/metrics/_dist_metrics.pyx":1374
  *                 ix2 = x2_indices[i2]
- * 
+ *
  *                 if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                     d = d + (pow(fabs(
  *                         x1_data[i1] - x2_data[i2]
@@ -14606,7 +14606,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))             # <<<<<<<<<<<<<<
  *                     i2 = i2 + 1
- * 
+ *
  */
       /*else*/ {
         __pyx_v_d = (__pyx_v_d + pow(fabs((__pyx_v_x2_data[__pyx_v_i2])), __pyx_v_self->__pyx_base.p));
@@ -14615,7 +14615,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))
  *                     i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             if i1 == x1_end:
  */
         __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -14625,7 +14625,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1387
  *                     i2 = i2 + 1
- * 
+ *
  *             if i1 == x1_end:             # <<<<<<<<<<<<<<
  *                 while i2 < x2_end:
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))
@@ -14634,7 +14634,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1388
- * 
+ *
  *             if i1 == x1_end:
  *                 while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))
@@ -14665,7 +14665,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1387
  *                     i2 = i2 + 1
- * 
+ *
  *             if i1 == x1_end:             # <<<<<<<<<<<<<<
  *                 while i2 < x2_end:
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))
@@ -14690,7 +14690,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 while i1 < x1_end:
  *                     d = d + (pow(fabs(x1_data[i1]), self.p))             # <<<<<<<<<<<<<<
  *                     i1 = i1 + 1
- * 
+ *
  */
         __pyx_v_d = (__pyx_v_d + pow(fabs((__pyx_v_x1_data[__pyx_v_i1])), __pyx_v_self->__pyx_base.p));
 
@@ -14698,7 +14698,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 while i1 < x1_end:
  *                     d = d + (pow(fabs(x1_data[i1]), self.p))
  *                     i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             return d
  */
         __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -14708,9 +14708,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1396
  *                     i1 = i1 + 1
- * 
+ *
  *             return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
     __pyx_r = __pyx_v_d;
@@ -14719,7 +14719,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1318
  *         return dist ** self.p
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -14732,7 +14732,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1398
  *             return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -14766,7 +14766,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1398
  *             return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -14789,7 +14789,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":1444
- * 
+ *
  *     """
  *     def __init__(self, p, w):             # <<<<<<<<<<<<<<
  *         from warnings import warn
@@ -14912,7 +14912,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance___ini
 
   /* "sklearn/metrics/_dist_metrics.pyx":1455
  *             "convention.", FutureWarning)
- * 
+ *
  *         if p < 1:             # <<<<<<<<<<<<<<
  *             raise ValueError("p must be greater than 1")
  *         elif np.isinf(p):
@@ -14923,7 +14923,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance___ini
   if (unlikely(__pyx_t_3)) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1456
- * 
+ *
  *         if p < 1:
  *             raise ValueError("p must be greater than 1")             # <<<<<<<<<<<<<<
  *         elif np.isinf(p):
@@ -14937,7 +14937,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance___ini
 
     /* "sklearn/metrics/_dist_metrics.pyx":1455
  *             "convention.", FutureWarning)
- * 
+ *
  *         if p < 1:             # <<<<<<<<<<<<<<
  *             raise ValueError("p must be greater than 1")
  *         elif np.isinf(p):
@@ -15012,7 +15012,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance___ini
  *         self.p = p
  *         self.vec = np.asarray(w, dtype=np.float64)             # <<<<<<<<<<<<<<
  *         self.size = self.vec.shape[0]
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1461, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -15049,13 +15049,13 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance___ini
  *         self.p = p
  *         self.vec = np.asarray(w, dtype=np.float64)
  *         self.size = self.vec.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
   __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.vec.shape[0]);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1444
- * 
+ *
  *     """
  *     def __init__(self, p, w):             # <<<<<<<<<<<<<<
  *         from warnings import warn
@@ -15082,7 +15082,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance___ini
 
 /* "sklearn/metrics/_dist_metrics.pyx":1464
  *         self.size = self.vec.shape[0]
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('WMinkowskiDistance dist: '
@@ -15114,7 +15114,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1465
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('WMinkowskiDistance dist: '
@@ -15139,7 +15139,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
  *         if X.shape[1] != self.size:
  *             raise ValueError('WMinkowskiDistance dist: '             # <<<<<<<<<<<<<<
  *                              'size of w does not match')
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1466, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -15148,7 +15148,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
     __PYX_ERR(1, 1466, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":1465
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('WMinkowskiDistance dist: '
@@ -15158,7 +15158,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":1464
  *         self.size = self.vec.shape[0]
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('WMinkowskiDistance dist: '
@@ -15181,7 +15181,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":1469
  *                              'size of w does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -15198,7 +15198,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1476
  *     ) except -1 nogil:
- * 
+ *
  *         cdef float64_t d = 0             # <<<<<<<<<<<<<<
  *         cdef intp_t j
  *         for j in range(size):
@@ -15222,7 +15222,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d += (pow(self.vec[j] * fabs(x1[j] - x2[j]), self.p))             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_t_4 = __pyx_v_j;
     __pyx_v_d = (__pyx_v_d + pow(((*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_4)) ))) * fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j])))), __pyx_v_self->__pyx_base.p));
@@ -15232,7 +15232,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d += (pow(self.vec[j] * fabs(x1[j] - x2[j]), self.p))
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_r = __pyx_v_d;
@@ -15240,7 +15240,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1469
  *                              'size of w does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -15253,7 +15253,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1482
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -15270,7 +15270,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 1488, __pyx_L1_error)
@@ -15279,7 +15279,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1482
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -15303,20 +15303,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1490
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance__rdist_to_dist(struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1491
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  *         return pow(rdist, 1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  */
   __pyx_r = pow(__pyx_v_rdist, (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)1.) / __pyx_v_self->__pyx_base.p));
@@ -15324,10 +15324,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1490
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -15337,20 +15337,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1493
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(dist, self.p)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance__dist_to_rdist(struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1494
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  *         return pow(dist, self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = pow(__pyx_v_dist, __pyx_v_self->__pyx_base.p);
@@ -15358,10 +15358,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1493
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(dist, self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -15371,10 +15371,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1496
  *         return pow(dist, self.p)
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return rdist ** (1. / self.p)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -15401,10 +15401,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1497
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return rdist ** (1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -15419,10 +15419,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":1496
  *         return pow(dist, self.p)
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return rdist ** (1. / self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -15439,10 +15439,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":1499
  *         return rdist ** (1. / self.p)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** self.p
- * 
+ *
  */
 
 /* Python wrapper */
@@ -15469,10 +15469,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1500
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** self.p             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -15487,10 +15487,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":1499
  *         return rdist ** (1. / self.p)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** self.p
- * 
+ *
  */
 
   /* function exit code */
@@ -15507,7 +15507,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_18WMinkowskiDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":1502
  *         return dist ** self.p
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -15529,7 +15529,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -15537,23 +15537,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1520
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1522
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -15571,11 +15571,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1523
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -15584,7 +15584,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -15592,7 +15592,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1526
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = d + pow(self.vec[ix1] * fabs(
  *                     x1_data[i1] - x2_data[i2]
@@ -15601,7 +15601,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1527
- * 
+ *
  *             if ix1 == ix2:
  *                 d = d + pow(self.vec[ix1] * fabs(             # <<<<<<<<<<<<<<
  *                     x1_data[i1] - x2_data[i2]
@@ -15638,7 +15638,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1526
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = d + pow(self.vec[ix1] * fabs(
  *                     x1_data[i1] - x2_data[i2]
@@ -15690,7 +15690,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = d + pow(self.vec[ix2] * fabs(x2_data[i2]), self.p)             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_t_3 = __pyx_v_ix2;
@@ -15700,7 +15700,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = d + pow(self.vec[ix2] * fabs(x2_data[i2]), self.p)
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -15710,7 +15710,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1539
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -15719,7 +15719,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1540
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
@@ -15761,7 +15761,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1539
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -15796,7 +15796,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 ix1 = x1_indices[i1]
  *                 d = d + pow(self.vec[ix1] * fabs(x1_data[i1]), self.p)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_ix1;
       __pyx_v_d = (__pyx_v_d + pow(((*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_3)) ))) * fabs((__pyx_v_x1_data[__pyx_v_i1]))), __pyx_v_self->__pyx_base.p));
@@ -15805,7 +15805,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 ix1 = x1_indices[i1]
  *                 d = d + pow(self.vec[ix1] * fabs(x1_data[i1]), self.p)
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -15815,9 +15815,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1550
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -15825,7 +15825,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1502
  *         return dist ** self.p
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -15838,7 +15838,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1552
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -15872,7 +15872,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1552
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -15896,7 +15896,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1599
  *     cdef float64_t[::1] buffer
- * 
+ *
  *     def __init__(self, V=None, VI=None):             # <<<<<<<<<<<<<<
  *         if VI is None:
  *             if V is None:
@@ -15993,7 +15993,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance___in
   __Pyx_INCREF(__pyx_v_VI);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1600
- * 
+ *
  *     def __init__(self, V=None, VI=None):
  *         if VI is None:             # <<<<<<<<<<<<<<
  *             if V is None:
@@ -16070,7 +16070,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance___in
     __pyx_t_3 = 0;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1600
- * 
+ *
  *     def __init__(self, V=None, VI=None):
  *         if VI is None:             # <<<<<<<<<<<<<<
  *             if V is None:
@@ -16083,7 +16083,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance___in
  *             VI = np.linalg.inv(V)
  *         if VI.ndim != 2 or VI.shape[0] != VI.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("V/VI must be square")
- * 
+ *
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_VI, __pyx_n_s_ndim); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1605, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -16120,7 +16120,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance___in
  *             VI = np.linalg.inv(V)
  *         if VI.ndim != 2 or VI.shape[0] != VI.shape[1]:
  *             raise ValueError("V/VI must be square")             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.mat = np.asarray(VI, dtype=np.float64, order='C')
  */
     __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1606, __pyx_L1_error)
@@ -16134,15 +16134,15 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance___in
  *             VI = np.linalg.inv(V)
  *         if VI.ndim != 2 or VI.shape[0] != VI.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("V/VI must be square")
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":1608
  *             raise ValueError("V/VI must be square")
- * 
+ *
  *         self.mat = np.asarray(VI, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.size = self.mat.shape[0]
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1608, __pyx_L1_error)
@@ -16179,18 +16179,18 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance___in
 
   /* "sklearn/metrics/_dist_metrics.pyx":1610
  *         self.mat = np.asarray(VI, dtype=np.float64, order='C')
- * 
+ *
  *         self.size = self.mat.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         # We need to create a buffer to store the vectors' coordinates' differences
  */
   __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.mat.shape[0]);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1613
- * 
+ *
  *         # We need to create a buffer to store the vectors' coordinates' differences
  *         self.buffer = np.zeros(self.size, dtype=np.float64)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setstate__(self, state):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 1613, __pyx_L1_error)
@@ -16228,7 +16228,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance___in
 
   /* "sklearn/metrics/_dist_metrics.pyx":1599
  *     cdef float64_t[::1] buffer
- * 
+ *
  *     def __init__(self, V=None, VI=None):             # <<<<<<<<<<<<<<
  *         if VI is None:
  *             if V is None:
@@ -16255,7 +16255,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance___in
 
 /* "sklearn/metrics/_dist_metrics.pyx":1615
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         super().__setstate__(state)
  *         self.size = self.mat.shape[0]
@@ -16289,7 +16289,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
   __Pyx_RefNannySetupContext("__setstate__", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1616
- * 
+ *
  *     def __setstate__(self, state):
  *         super().__setstate__(state)             # <<<<<<<<<<<<<<
  *         self.size = self.mat.shape[0]
@@ -16331,7 +16331,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
  *         super().__setstate__(state)
  *         self.size = self.mat.shape[0]             # <<<<<<<<<<<<<<
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  */
   __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.mat.shape[0]);
 
@@ -16339,7 +16339,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
  *         super().__setstate__(state)
  *         self.size = self.mat.shape[0]
  *         self.buffer = np.zeros(self.size, dtype=np.float64)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1618, __pyx_L1_error)
@@ -16377,7 +16377,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
 
   /* "sklearn/metrics/_dist_metrics.pyx":1615
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         super().__setstate__(state)
  *         self.size = self.mat.shape[0]
@@ -16403,7 +16403,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
 
 /* "sklearn/metrics/_dist_metrics.pyx":1620
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('Mahalanobis dist: size of V does not match')
@@ -16435,11 +16435,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1621
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('Mahalanobis dist: size of V does not match')
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1621, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -16459,7 +16459,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:
  *             raise ValueError('Mahalanobis dist: size of V does not match')             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1622, __pyx_L1_error)
@@ -16469,17 +16469,17 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
     __PYX_ERR(1, 1622, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":1621
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('Mahalanobis dist: size of V does not match')
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":1620
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('Mahalanobis dist: size of V does not match')
@@ -16502,7 +16502,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
 
 /* "sklearn/metrics/_dist_metrics.pyx":1624
  *             raise ValueError('Mahalanobis dist: size of V does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -16529,16 +16529,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     ) except -1 nogil:
  *         cdef float64_t tmp, d = 0             # <<<<<<<<<<<<<<
  *         cdef intp_t i, j
- * 
+ *
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1634
- * 
+ *
  *         # compute (x1 - x2).T * VI * (x1 - x2)
  *         for i in range(size):             # <<<<<<<<<<<<<<
  *             self.buffer[i] = x1[i] - x2[i]
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_size;
   __pyx_t_2 = __pyx_t_1;
@@ -16549,7 +16549,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         # compute (x1 - x2).T * VI * (x1 - x2)
  *         for i in range(size):
  *             self.buffer[i] = x1[i] - x2[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *         for i in range(size):
  */
     __pyx_t_4 = __pyx_v_i;
@@ -16558,7 +16558,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1637
  *             self.buffer[i] = x1[i] - x2[i]
- * 
+ *
  *         for i in range(size):             # <<<<<<<<<<<<<<
  *             tmp = 0
  *             for j in range(size):
@@ -16569,7 +16569,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     __pyx_v_i = __pyx_t_3;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1638
- * 
+ *
  *         for i in range(size):
  *             tmp = 0             # <<<<<<<<<<<<<<
  *             for j in range(size):
@@ -16607,7 +16607,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tmp += self.mat[i, j] * self.buffer[j]
  *             d += tmp * self.buffer[i]             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_t_4 = __pyx_v_i;
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * (*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_self->buffer.data) + __pyx_t_4)) )))));
@@ -16617,7 +16617,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tmp += self.mat[i, j] * self.buffer[j]
  *             d += tmp * self.buffer[i]
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_r = __pyx_v_d;
@@ -16625,7 +16625,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1624
  *             raise ValueError('Mahalanobis dist: size of V does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -16638,7 +16638,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1644
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -16655,7 +16655,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return sqrt(self.rdist(x1, x2, size))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 1650, __pyx_L1_error)
@@ -16664,7 +16664,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1644
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -16688,20 +16688,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1652
  *         return sqrt(self.rdist(x1, x2, size))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance__rdist_to_dist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1653
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  *         return sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  */
   __pyx_r = sqrt(__pyx_v_rdist);
@@ -16709,10 +16709,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1652
  *         return sqrt(self.rdist(x1, x2, size))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -16722,20 +16722,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1655
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistance__dist_to_rdist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1656
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  *         return dist * dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
@@ -16743,10 +16743,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1655
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -16756,10 +16756,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1658
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -16787,10 +16787,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1659
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return np.sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -16820,10 +16820,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
 
   /* "sklearn/metrics/_dist_metrics.pyx":1658
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -16841,10 +16841,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
 
 /* "sklearn/metrics/_dist_metrics.pyx":1661
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
 /* Python wrapper */
@@ -16870,10 +16870,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1662
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -16885,10 +16885,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
 
   /* "sklearn/metrics/_dist_metrics.pyx":1661
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
   /* function exit code */
@@ -16904,7 +16904,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MahalanobisDistanc
 
 /* "sklearn/metrics/_dist_metrics.pyx":1664
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -16937,7 +16937,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -16945,23 +16945,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t tmp, d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1682
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t tmp, d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1684
  *             float64_t tmp, d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -16979,11 +16979,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1685
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -16992,7 +16992,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -17000,7 +17000,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1688
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 self.buffer[ix1] = x1_data[i1] - x2_data[i2]
  *                 i1 = i1 + 1
@@ -17009,7 +17009,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1689
- * 
+ *
  *             if ix1 == ix2:
  *                 self.buffer[ix1] = x1_data[i1] - x2_data[i2]             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -17038,7 +17038,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1688
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 self.buffer[ix1] = x1_data[i1] - x2_data[i2]
  *                 i1 = i1 + 1
@@ -17090,7 +17090,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 self.buffer[ix2] = - x2_data[i2]             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_t_3 = __pyx_v_ix2;
@@ -17100,7 +17100,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 self.buffer[ix2] = - x2_data[i2]
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -17110,7 +17110,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1699
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -17119,7 +17119,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1700
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
@@ -17161,7 +17161,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1699
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -17196,7 +17196,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 ix1 = x1_indices[i1]
  *                 self.buffer[ix1] = x1_data[i1]             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_ix1;
       *((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_self->buffer.data) + __pyx_t_3)) )) = (__pyx_v_x1_data[__pyx_v_i1]);
@@ -17205,7 +17205,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 ix1 = x1_indices[i1]
  *                 self.buffer[ix1] = x1_data[i1]
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         for i in range(size):
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -17215,7 +17215,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1710
  *                 i1 = i1 + 1
- * 
+ *
  *         for i in range(size):             # <<<<<<<<<<<<<<
  *             tmp = 0
  *             for j in range(size):
@@ -17226,7 +17226,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     __pyx_v_i = __pyx_t_5;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1711
- * 
+ *
  *         for i in range(size):
  *             tmp = 0             # <<<<<<<<<<<<<<
  *             for j in range(size):
@@ -17251,7 +17251,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             for j in range(size):
  *                 tmp += self.mat[i, j] * self.buffer[j]             # <<<<<<<<<<<<<<
  *             d += tmp * self.buffer[i]
- * 
+ *
  */
       __pyx_t_9 = __pyx_v_i;
       __pyx_t_10 = __pyx_v_j;
@@ -17263,7 +17263,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             for j in range(size):
  *                 tmp += self.mat[i, j] * self.buffer[j]
  *             d += tmp * self.buffer[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
     __pyx_t_6 = __pyx_v_i;
@@ -17272,9 +17272,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1716
  *             d += tmp * self.buffer[i]
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -17282,7 +17282,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1664
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -17295,7 +17295,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1718
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -17329,7 +17329,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1718
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -17404,7 +17404,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             if x1[j] != x2[j]:
  *                 n_unequal += 1             # <<<<<<<<<<<<<<
  *         return float(n_unequal) / size
- * 
+ *
  */
       __pyx_v_n_unequal = (__pyx_v_n_unequal + 1);
 
@@ -17422,8 +17422,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             if x1[j] != x2[j]:
  *                 n_unequal += 1
  *         return float(n_unequal) / size             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((double)__pyx_v_n_unequal) / ((double)__pyx_v_size));
   goto __pyx_L0;
@@ -17442,8 +17442,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":1769
- * 
- * 
+ *
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -17465,7 +17465,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -17473,23 +17473,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1787
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1789
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -17507,11 +17507,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1790
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -17520,7 +17520,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -17528,7 +17528,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1793
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d += (x1_data[i1] != x2_data[i2])
  *                 i1 = i1 + 1
@@ -17537,7 +17537,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1794
- * 
+ *
  *             if ix1 == ix2:
  *                 d += (x1_data[i1] != x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -17565,7 +17565,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1793
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d += (x1_data[i1] != x2_data[i2])
  *                 i1 = i1 + 1
@@ -17616,7 +17616,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d += (x2_data[i2] != 0)             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_d = (__pyx_v_d + ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0));
@@ -17625,7 +17625,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d += (x2_data[i2] != 0)
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -17635,7 +17635,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1804
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d += (x2_data[i2] != 0)
@@ -17644,7 +17644,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1805
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 d += (x2_data[i2] != 0)
@@ -17675,7 +17675,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1804
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d += (x2_data[i2] != 0)
@@ -17700,7 +17700,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d += (x1_data[i1] != 0)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0));
 
@@ -17708,7 +17708,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d += (x1_data[i1] != 0)
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         d /= size
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -17718,26 +17718,26 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1813
  *                 i1 = i1 + 1
- * 
+ *
  *         d /= size             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
   __pyx_v_d = (__pyx_v_d / __pyx_v_size);
 
   /* "sklearn/metrics/_dist_metrics.pyx":1815
  *         d /= size
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1769
- * 
- * 
+ *
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -17811,7 +17811,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             if denom > 0:
  *                 d += fabs(x1[j] - x2[j]) / denom             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j])))) / __pyx_v_denom));
 
@@ -17829,7 +17829,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             if denom > 0:
  *                 d += fabs(x1[j] - x2[j]) / denom
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -17850,7 +17850,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1844
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -17872,7 +17872,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -17880,23 +17880,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1862
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1864
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -17914,11 +17914,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1865
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -17927,7 +17927,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -17935,7 +17935,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1868
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d += (
  *                         fabs(x1_data[i1] - x2_data[i2]) /
@@ -17944,7 +17944,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1869
- * 
+ *
  *             if ix1 == ix2:
  *                 d += (             # <<<<<<<<<<<<<<
  *                         fabs(x1_data[i1] - x2_data[i2]) /
@@ -17972,7 +17972,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1868
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d += (
  *                         fabs(x1_data[i1] - x2_data[i2]) /
@@ -18023,7 +18023,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d += 1.             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_d = (__pyx_v_d + 1.);
@@ -18032,7 +18032,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d += 1.
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -18042,7 +18042,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1882
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d += 1.
@@ -18051,7 +18051,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1883
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 d += 1.
@@ -18082,7 +18082,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1882
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d += 1.
@@ -18107,7 +18107,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d += 1.             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + 1.);
 
@@ -18115,7 +18115,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d += 1.
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -18125,9 +18125,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1891
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = __pyx_v_d;
@@ -18135,7 +18135,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1844
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -18238,7 +18238,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             return num / denom
  *         else:
  *             return 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   /*else*/ {
@@ -18261,7 +18261,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":1921
  *             return 0.0
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -18284,7 +18284,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -18292,32 +18292,32 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t num = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1939
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t num = 0.0             # <<<<<<<<<<<<<<
  *             float64_t denom = 0.0
- * 
+ *
  */
   __pyx_v_num = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1940
- * 
+ *
  *             float64_t num = 0.0
  *             float64_t denom = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_denom = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":1942
  *             float64_t denom = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -18335,11 +18335,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":1943
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -18348,7 +18348,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -18356,7 +18356,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1946
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 num += fabs(x1_data[i1] - x2_data[i2])
  *                 denom += fabs(x1_data[i1]) + fabs(x2_data[i2])
@@ -18365,7 +18365,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":1947
- * 
+ *
  *             if ix1 == ix2:
  *                 num += fabs(x1_data[i1] - x2_data[i2])             # <<<<<<<<<<<<<<
  *                 denom += fabs(x1_data[i1]) + fabs(x2_data[i2])
@@ -18402,7 +18402,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":1946
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 num += fabs(x1_data[i1] - x2_data[i2])
  *                 denom += fabs(x1_data[i1]) + fabs(x2_data[i2])
@@ -18472,7 +18472,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 num += fabs(x2_data[i2])
  *                 denom += fabs(x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
       __pyx_v_denom = (__pyx_v_denom + fabs((__pyx_v_x2_data[__pyx_v_i2])));
 
@@ -18480,7 +18480,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 num += fabs(x2_data[i2])
  *                 denom += fabs(x2_data[i2])
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -18490,7 +18490,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1960
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 num += fabs(x1_data[i1])
@@ -18499,7 +18499,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":1961
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 num += fabs(x1_data[i1])
@@ -18539,7 +18539,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":1960
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 num += fabs(x1_data[i1])
@@ -18573,7 +18573,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 num += fabs(x2_data[i2])
  *                 denom += fabs(x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_denom = (__pyx_v_denom + fabs((__pyx_v_x2_data[__pyx_v_i2])));
 
@@ -18581,7 +18581,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 num += fabs(x2_data[i2])
  *                 denom += fabs(x2_data[i2])
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return num / denom
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -18591,9 +18591,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1971
  *                 i1 = i1 + 1
- * 
+ *
  *         return num / denom             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = (__pyx_v_num / __pyx_v_denom);
@@ -18601,7 +18601,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":1921
  *             return 0.0
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -18721,7 +18721,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         if nnz == 0:
  *             return 0             # <<<<<<<<<<<<<<
  *         return (nnz - n_eq) * 1.0 / nnz
- * 
+ *
  */
     __pyx_r = 0.0;
     goto __pyx_L0;
@@ -18739,7 +18739,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         if nnz == 0:
  *             return 0
  *         return (nnz - n_eq) * 1.0 / nnz             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = (((__pyx_v_nnz - __pyx_v_n_eq) * 1.0) / ((double)__pyx_v_nnz));
@@ -18760,7 +18760,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2005
  *         return (nnz - n_eq) * 1.0 / nnz
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -18785,7 +18785,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -18793,16 +18793,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, nnz = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2023
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, nnz = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
@@ -18810,7 +18810,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2025
  *             intp_t tf1, tf2, n_tt = 0, nnz = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -18828,11 +18828,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2026
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -18841,7 +18841,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -18849,25 +18849,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2029
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2030
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2032
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 nnz += (tf1 or tf2)
  *                 n_tt += (tf1 and tf2)
@@ -18876,7 +18876,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2033
- * 
+ *
  *             if ix1 == ix2:
  *                 nnz += (tf1 or tf2)             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
@@ -18927,7 +18927,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2032
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 nnz += (tf1 or tf2)
  *                 n_tt += (tf1 and tf2)
@@ -18978,7 +18978,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 nnz += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_nnz = (__pyx_v_nnz + __pyx_v_tf2);
@@ -18987,7 +18987,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 nnz += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -18997,7 +18997,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2044
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -19006,7 +19006,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":2045
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -19046,7 +19046,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2044
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -19080,7 +19080,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 nnz += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_nnz = (__pyx_v_nnz + __pyx_v_tf1);
 
@@ -19088,7 +19088,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 nnz += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         # Based on https://github.com/scipy/scipy/pull/7373
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -19111,7 +19111,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         if nnz == 0:
  *             return 0             # <<<<<<<<<<<<<<
  *         return (nnz - n_tt) * 1.0 / nnz
- * 
+ *
  */
     __pyx_r = 0.0;
     goto __pyx_L0;
@@ -19129,7 +19129,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         if nnz == 0:
  *             return 0
  *         return (nnz - n_tt) * 1.0 / nnz             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = (((__pyx_v_nnz - __pyx_v_n_tt) * 1.0) / ((double)__pyx_v_nnz));
@@ -19137,7 +19137,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2005
  *         return (nnz - n_eq) * 1.0 / nnz
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -19210,7 +19210,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *         return n_neq * 1. / size
- * 
+ *
  */
     __pyx_v_n_neq = (__pyx_v_n_neq + (__pyx_v_tf1 != __pyx_v_tf2));
   }
@@ -19219,7 +19219,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)
  *         return n_neq * 1. / size             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = ((__pyx_v_n_neq * 1.) / ((double)__pyx_v_size));
@@ -19240,7 +19240,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2088
  *         return n_neq * 1. / size
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -19264,7 +19264,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -19272,23 +19272,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2106
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_neq = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2108
  *             intp_t tf1, tf2, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -19306,11 +19306,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2109
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -19319,7 +19319,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -19327,7 +19327,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2112
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 tf1 = x1_data[i1] != 0
  *                 tf2 = x2_data[i2] != 0
@@ -19336,7 +19336,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2113
- * 
+ *
  *             if ix1 == ix2:
  *                 tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -19382,7 +19382,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2112
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 tf1 = x1_data[i1] != 0
  *                 tf2 = x2_data[i2] != 0
@@ -19433,7 +19433,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += (x2_data[i2] != 0)             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0));
@@ -19442,7 +19442,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += (x2_data[i2] != 0)
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -19452,7 +19452,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2125
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 n_neq += (x2_data[i2] != 0)
@@ -19461,7 +19461,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":2126
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 n_neq += (x2_data[i2] != 0)
@@ -19492,7 +19492,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2125
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 n_neq += (x2_data[i2] != 0)
@@ -19517,7 +19517,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 n_neq += (x1_data[i1] != 0)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0));
 
@@ -19525,7 +19525,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 n_neq += (x1_data[i1] != 0)
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return n_neq * 1.0 / size
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -19535,9 +19535,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2134
  *                 i1 = i1 + 1
- * 
+ *
  *         return n_neq * 1.0 / size             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((__pyx_v_n_neq * 1.0) / ((double)__pyx_v_size));
@@ -19545,7 +19545,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2088
  *         return n_neq * 1. / size
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -19557,7 +19557,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":2149
- * 
+ *
  *     """
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
@@ -19637,7 +19637,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_tt += (tf1 and tf2)
  *             n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *         return n_neq / (2.0 * n_tt + n_neq)
- * 
+ *
  */
     __pyx_v_n_neq = (__pyx_v_n_neq + (__pyx_v_tf1 != __pyx_v_tf2));
   }
@@ -19646,14 +19646,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_tt += (tf1 and tf2)
  *             n_neq += (tf1 != tf2)
  *         return n_neq / (2.0 * n_tt + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = (((double)__pyx_v_n_neq) / ((2.0 * __pyx_v_n_tt) + __pyx_v_n_neq));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2149
- * 
+ *
  *     """
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
@@ -19667,7 +19667,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2164
  *         return n_neq / (2.0 * n_tt + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -19692,7 +19692,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -19700,16 +19700,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2182
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
@@ -19717,7 +19717,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2184
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -19735,11 +19735,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2185
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -19748,7 +19748,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -19756,25 +19756,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2188
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2189
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2191
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -19783,7 +19783,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2192
- * 
+ *
  *             if ix1 == ix2:
  *                 n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
@@ -19827,7 +19827,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2191
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -19878,7 +19878,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -19887,7 +19887,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -19897,7 +19897,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2203
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -19906,7 +19906,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":2204
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -19946,7 +19946,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2203
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -19980,7 +19980,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -19988,7 +19988,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return n_neq / (2.0 * n_tt + n_neq)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -19998,17 +19998,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2214
  *                 i1 = i1 + 1
- * 
+ *
  *         return n_neq / (2.0 * n_tt + n_neq)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((double)__pyx_v_n_neq) / ((2.0 * __pyx_v_n_tt) + __pyx_v_n_neq));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2164
  *         return n_neq / (2.0 * n_tt + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -20020,7 +20020,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":2230
- * 
+ *
  *     """
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
@@ -20093,7 +20093,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_neq += (tf1 != tf2)
  *             n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)
- * 
+ *
  */
     if (__pyx_v_tf1) {
     } else {
@@ -20109,14 +20109,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_neq += (tf1 != tf2)
  *             n_tt += (tf1 and tf2)
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = ((((__pyx_v_n_neq - __pyx_v_n_tt) + __pyx_v_size) * 1.0) / ((double)(__pyx_v_n_neq + __pyx_v_size)));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2230
- * 
+ *
  *     """
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
@@ -20130,7 +20130,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2245
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -20155,7 +20155,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -20163,16 +20163,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2263
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
@@ -20180,7 +20180,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2265
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -20198,11 +20198,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2266
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -20211,7 +20211,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -20219,25 +20219,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2269
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2270
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2272
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -20246,7 +20246,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2273
- * 
+ *
  *             if ix1 == ix2:
  *                 n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
@@ -20290,7 +20290,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2272
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -20341,7 +20341,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -20350,7 +20350,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -20360,7 +20360,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2284
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -20369,7 +20369,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":2285
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -20409,7 +20409,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2284
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -20443,7 +20443,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -20451,7 +20451,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -20461,9 +20461,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2295
  *                 i1 = i1 + 1
- * 
+ *
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((((__pyx_v_n_neq - __pyx_v_n_tt) + __pyx_v_size) * 1.0) / ((double)(__pyx_v_n_neq + __pyx_v_size)));
@@ -20471,7 +20471,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2245
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -20544,7 +20544,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  */
     __pyx_v_n_neq = (__pyx_v_n_neq + (__pyx_v_tf1 != __pyx_v_tf2));
   }
@@ -20553,7 +20553,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)
  *         return (2.0 * n_neq) / (size + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = ((2.0 * __pyx_v_n_neq) / ((double)(__pyx_v_size + __pyx_v_n_neq)));
@@ -20574,7 +20574,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2323
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -20598,7 +20598,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -20606,23 +20606,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2341
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_neq = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2343
  *             intp_t tf1, tf2, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -20640,11 +20640,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2344
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -20653,7 +20653,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -20661,25 +20661,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2347
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2348
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2350
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
  *                 i1 = i1 + 1
@@ -20688,7 +20688,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2351
- * 
+ *
  *             if ix1 == ix2:
  *                 n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -20716,7 +20716,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2350
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
  *                 i1 = i1 + 1
@@ -20767,7 +20767,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -20776,7 +20776,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -20786,7 +20786,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2361
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -20795,7 +20795,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":2362
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -20835,7 +20835,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2361
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -20869,7 +20869,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -20877,7 +20877,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return (2.0 * n_neq) / (size + n_neq)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -20887,9 +20887,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2372
  *                 i1 = i1 + 1
- * 
+ *
  *         return (2.0 * n_neq) / (size + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((2.0 * __pyx_v_n_neq) / ((double)(__pyx_v_size + __pyx_v_n_neq)));
@@ -20897,7 +20897,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2323
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -20971,7 +20971,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *         return (size - n_tt) * 1. / size
- * 
+ *
  */
     if (__pyx_v_tf1) {
     } else {
@@ -20987,7 +20987,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_tt += (tf1 and tf2)
  *         return (size - n_tt) * 1. / size             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = (((__pyx_v_size - __pyx_v_n_tt) * 1.) / ((double)__pyx_v_size));
@@ -21008,7 +21008,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2400
  *         return (size - n_tt) * 1. / size
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -21032,7 +21032,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -21040,23 +21040,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2418
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2420
  *             intp_t tf1, tf2, n_tt = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -21074,11 +21074,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2421
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -21087,7 +21087,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -21095,25 +21095,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2424
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2425
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2427
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 i1 = i1 + 1
@@ -21122,7 +21122,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2428
- * 
+ *
  *             if ix1 == ix2:
  *                 n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -21157,7 +21157,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2427
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 i1 = i1 + 1
@@ -21198,7 +21198,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 i1 = i1 + 1
  *             else:
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         # We don't need to go through all the longuest
  */
     /*else*/ {
@@ -21209,17 +21209,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2440
  *         # and thus n_tt won't be increased.
- * 
+ *
  *         return (size - n_tt) * 1. / size             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((__pyx_v_size - __pyx_v_n_tt) * 1.) / ((double)__pyx_v_size));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2400
  *         return (size - n_tt) * 1. / size
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -21292,7 +21292,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  */
     __pyx_v_n_neq = (__pyx_v_n_neq + (__pyx_v_tf1 != __pyx_v_tf2));
   }
@@ -21301,7 +21301,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)
  *         return (2.0 * n_neq) / (size + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = ((2.0 * __pyx_v_n_neq) / ((double)(__pyx_v_size + __pyx_v_n_neq)));
@@ -21322,7 +21322,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2470
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -21346,7 +21346,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -21354,23 +21354,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2488
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_neq = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2490
  *             intp_t tf1, tf2, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -21388,11 +21388,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2491
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -21401,7 +21401,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -21409,25 +21409,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2494
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2495
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2497
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
  *                 i1 = i1 + 1
@@ -21436,7 +21436,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2498
- * 
+ *
  *             if ix1 == ix2:
  *                 n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -21464,7 +21464,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2497
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
  *                 i1 = i1 + 1
@@ -21515,7 +21515,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -21524,7 +21524,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -21534,7 +21534,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2508
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -21543,7 +21543,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":2509
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -21583,7 +21583,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2508
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -21617,7 +21617,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -21625,7 +21625,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return (2.0 * n_neq) / (size + n_neq)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -21635,9 +21635,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2519
  *                 i1 = i1 + 1
- * 
+ *
  *         return (2.0 * n_neq) / (size + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((2.0 * __pyx_v_n_neq) / ((double)(__pyx_v_size + __pyx_v_n_neq)));
@@ -21645,7 +21645,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2470
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -21730,7 +21730,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_neq += (tf1 != tf2)
  *             n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *         return n_neq / (0.5 * n_tt + n_neq)
- * 
+ *
  */
     if (__pyx_v_tf1) {
     } else {
@@ -21746,7 +21746,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_neq += (tf1 != tf2)
  *             n_tt += (tf1 and tf2)
  *         return n_neq / (0.5 * n_tt + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = (((double)__pyx_v_n_neq) / ((0.5 * __pyx_v_n_tt) + __pyx_v_n_neq));
@@ -21767,7 +21767,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2548
  *         return n_neq / (0.5 * n_tt + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -21792,7 +21792,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -21800,16 +21800,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2566
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
@@ -21817,7 +21817,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2568
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -21835,11 +21835,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2569
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -21848,7 +21848,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -21856,25 +21856,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2572
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2573
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2575
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -21883,7 +21883,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2576
- * 
+ *
  *             if ix1 == ix2:
  *                 n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
@@ -21927,7 +21927,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2575
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -21978,7 +21978,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -21987,7 +21987,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -21997,7 +21997,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2587
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -22006,7 +22006,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":2588
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -22046,7 +22046,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2587
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -22080,7 +22080,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -22088,7 +22088,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return n_neq / (0.5 * n_tt + n_neq)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -22098,17 +22098,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2598
  *                 i1 = i1 + 1
- * 
+ *
  *         return n_neq / (0.5 * n_tt + n_neq)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((double)__pyx_v_n_neq) / ((0.5 * __pyx_v_n_tt) + __pyx_v_n_neq));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2548
  *         return n_neq / (0.5 * n_tt + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -22121,7 +22121,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2617
  *     """
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != 2:
  *             raise ValueError("Haversine distance only valid "
@@ -22152,7 +22152,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":2618
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != 2:             # <<<<<<<<<<<<<<
  *             raise ValueError("Haversine distance only valid "
@@ -22175,7 +22175,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
  *         if X.shape[1] != 2:
  *             raise ValueError("Haversine distance only valid "             # <<<<<<<<<<<<<<
  *                              "in 2 dimensions")
- * 
+ *
  */
     __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2619, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -22184,7 +22184,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
     __PYX_ERR(1, 2619, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":2618
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != 2:             # <<<<<<<<<<<<<<
  *             raise ValueError("Haversine distance only valid "
@@ -22194,7 +22194,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
 
   /* "sklearn/metrics/_dist_metrics.pyx":2617
  *     """
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != 2:
  *             raise ValueError("Haversine distance only valid "
@@ -22216,7 +22216,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
 
 /* "sklearn/metrics/_dist_metrics.pyx":2622
  *                              "in 2 dimensions")
- * 
+ *
  *     cdef inline float64_t rdist(self,             # <<<<<<<<<<<<<<
  *         const float64_t* x1,
  *         const float64_t* x2,
@@ -22241,7 +22241,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         cdef float64_t sin_0 = sin(0.5 * ((x1[0]) - (x2[0])))
  *         cdef float64_t sin_1 = sin(0.5 * ((x1[1]) - (x2[1])))             # <<<<<<<<<<<<<<
  *         return (sin_0 * sin_0 + cos(x1[0]) * cos(x2[0]) * sin_1 * sin_1)
- * 
+ *
  */
   __pyx_v_sin_1 = sin((0.5 * ((__pyx_v_x1[1]) - (__pyx_v_x2[1]))));
 
@@ -22249,7 +22249,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         cdef float64_t sin_0 = sin(0.5 * ((x1[0]) - (x2[0])))
  *         cdef float64_t sin_1 = sin(0.5 * ((x1[1]) - (x2[1])))
  *         return (sin_0 * sin_0 + cos(x1[0]) * cos(x2[0]) * sin_1 * sin_1)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(self,
  */
   __pyx_r = ((__pyx_v_sin_0 * __pyx_v_sin_0) + (((cos((__pyx_v_x1[0])) * cos((__pyx_v_x2[0]))) * __pyx_v_sin_1) * __pyx_v_sin_1));
@@ -22257,7 +22257,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2622
  *                              "in 2 dimensions")
- * 
+ *
  *     cdef inline float64_t rdist(self,             # <<<<<<<<<<<<<<
  *         const float64_t* x1,
  *         const float64_t* x2,
@@ -22270,7 +22270,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2631
  *         return (sin_0 * sin_0 + cos(x1[0]) * cos(x2[0]) * sin_1 * sin_1)
- * 
+ *
  *     cdef inline float64_t dist(self,             # <<<<<<<<<<<<<<
  *         const float64_t* x1,
  *         const float64_t* x2,
@@ -22287,7 +22287,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return 2 * asin(sqrt(self.rdist(x1, x2, size)))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 2636, __pyx_L1_error)
@@ -22296,7 +22296,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2631
  *         return (sin_0 * sin_0 + cos(x1[0]) * cos(x2[0]) * sin_1 * sin_1)
- * 
+ *
  *     cdef inline float64_t dist(self,             # <<<<<<<<<<<<<<
  *         const float64_t* x1,
  *         const float64_t* x2,
@@ -22320,20 +22320,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2638
  *         return 2 * asin(sqrt(self.rdist(x1, x2, size)))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return 2 * asin(sqrt(rdist))
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_17HaversineDistance__rdist_to_dist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HaversineDistance *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2639
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:
  *         return 2 * asin(sqrt(rdist))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  */
   __pyx_r = (2.0 * asin(sqrt(__pyx_v_rdist)));
@@ -22341,10 +22341,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2638
  *         return 2 * asin(sqrt(self.rdist(x1, x2, size)))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float64_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return 2 * asin(sqrt(rdist))
- * 
+ *
  */
 
   /* function exit code */
@@ -22354,7 +22354,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2641
  *         return 2 * asin(sqrt(rdist))
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         cdef float64_t tmp = sin(0.5 *  dist)
  *         return tmp * tmp
@@ -22365,11 +22365,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2642
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  *         cdef float64_t tmp = sin(0.5 *  dist)             # <<<<<<<<<<<<<<
  *         return tmp * tmp
- * 
+ *
  */
   __pyx_v_tmp = sin((0.5 * __pyx_v_dist));
 
@@ -22377,7 +22377,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:
  *         cdef float64_t tmp = sin(0.5 *  dist)
  *         return tmp * tmp             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = (__pyx_v_tmp * __pyx_v_tmp);
@@ -22385,7 +22385,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2641
  *         return 2 * asin(sqrt(rdist))
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         cdef float64_t tmp = sin(0.5 *  dist)
  *         return tmp * tmp
@@ -22398,10 +22398,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2645
  *         return tmp * tmp
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return 2 * np.arcsin(np.sqrt(rdist))
- * 
+ *
  */
 
 /* Python wrapper */
@@ -22431,10 +22431,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":2646
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return 2 * np.arcsin(np.sqrt(rdist))             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -22488,10 +22488,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
 
   /* "sklearn/metrics/_dist_metrics.pyx":2645
  *         return tmp * tmp
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return 2 * np.arcsin(np.sqrt(rdist))
- * 
+ *
  */
 
   /* function exit code */
@@ -22511,7 +22511,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
 
 /* "sklearn/metrics/_dist_metrics.pyx":2648
  *         return 2 * np.arcsin(np.sqrt(rdist))
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         tmp = np.sin(0.5 * dist)
  *         return tmp * tmp
@@ -22544,11 +22544,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":2649
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         tmp = np.sin(0.5 * dist)             # <<<<<<<<<<<<<<
  *         return tmp * tmp
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 2649, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -22580,7 +22580,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
  *     def dist_to_rdist(self, dist):
  *         tmp = np.sin(0.5 * dist)
  *         return tmp * tmp             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -22592,7 +22592,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
 
   /* "sklearn/metrics/_dist_metrics.pyx":2648
  *         return 2 * np.arcsin(np.sqrt(rdist))
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         tmp = np.sin(0.5 * dist)
  *         return tmp * tmp
@@ -22615,7 +22615,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_17HaversineDistance_
 
 /* "sklearn/metrics/_dist_metrics.pyx":2652
  *         return tmp * tmp
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *          self,
  *          const float64_t* x1_data,
@@ -22641,7 +22641,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2652
  *         return tmp * tmp
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *          self,
  *          const float64_t* x1_data,
@@ -22665,7 +22665,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2676
  *         )))
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -22694,7 +22694,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -22702,14 +22702,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t x1_0 = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2694
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t x1_0 = 0             # <<<<<<<<<<<<<<
  *             float64_t x1_1 = 0
  *             float64_t x2_0 = 0
@@ -22717,7 +22717,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   __pyx_v_x1_0 = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2695
- * 
+ *
  *             float64_t x1_0 = 0
  *             float64_t x1_1 = 0             # <<<<<<<<<<<<<<
  *             float64_t x2_0 = 0
@@ -22745,7 +22745,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2701
  *             float64_t sin_1
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -22763,11 +22763,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":2702
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -22776,18 +22776,18 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             # Find the components in the 2D vectors to work with
  */
     __pyx_t_3 = __pyx_v_i2;
     __pyx_v_ix2 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x2_indices.data + __pyx_t_3 * __pyx_v_x2_indices.strides[0]) )));
 
     /* "sklearn/metrics/_dist_metrics.pyx":2706
- * 
+ *
  *             # Find the components in the 2D vectors to work with
  *             x1_component = ix1 if (x1_start == 0) else ix1 % x1_start             # <<<<<<<<<<<<<<
  *             x2_component = ix2 if (x2_start == 0) else ix2 % x2_start
- * 
+ *
  */
     if (((__pyx_v_x1_start == 0) != 0)) {
       __pyx_t_3 = __pyx_v_ix1;
@@ -22800,7 +22800,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             # Find the components in the 2D vectors to work with
  *             x1_component = ix1 if (x1_start == 0) else ix1 % x1_start
  *             x2_component = ix2 if (x2_start == 0) else ix2 % x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             if x1_component == 0:
  */
     if (((__pyx_v_x2_start == 0) != 0)) {
@@ -22812,7 +22812,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2709
  *             x2_component = ix2 if (x2_start == 0) else ix2 % x2_start
- * 
+ *
  *             if x1_component == 0:             # <<<<<<<<<<<<<<
  *                 x1_0 = x1_data[i1]
  *             else:
@@ -22821,7 +22821,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2710
- * 
+ *
  *             if x1_component == 0:
  *                 x1_0 = x1_data[i1]             # <<<<<<<<<<<<<<
  *             else:
@@ -22831,7 +22831,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2709
  *             x2_component = ix2 if (x2_start == 0) else ix2 % x2_start
- * 
+ *
  *             if x1_component == 0:             # <<<<<<<<<<<<<<
  *                 x1_0 = x1_data[i1]
  *             else:
@@ -22843,7 +22843,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 x1_0 = x1_data[i1]
  *             else:
  *                 x1_1 = x1_data[i1]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if x2_component == 0:
  */
     /*else*/ {
@@ -22853,7 +22853,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2714
  *                 x1_1 = x1_data[i1]
- * 
+ *
  *             if x2_component == 0:             # <<<<<<<<<<<<<<
  *                 x2_0 = x2_data[i2]
  *             else:
@@ -22862,7 +22862,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":2715
- * 
+ *
  *             if x2_component == 0:
  *                 x2_0 = x2_data[i2]             # <<<<<<<<<<<<<<
  *             else:
@@ -22872,7 +22872,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":2714
  *                 x1_1 = x1_data[i1]
- * 
+ *
  *             if x2_component == 0:             # <<<<<<<<<<<<<<
  *                 x2_0 = x2_data[i2]
  *             else:
@@ -22884,7 +22884,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 x2_0 = x2_data[i2]
  *             else:
  *                 x2_1 = x2_data[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             i1 = i1 + 1
  */
     /*else*/ {
@@ -22894,18 +22894,18 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2719
  *                 x2_1 = x2_data[i2]
- * 
+ *
  *             i1 = i1 + 1             # <<<<<<<<<<<<<<
  *             i2 = i2 + 1
- * 
+ *
  */
     __pyx_v_i1 = (__pyx_v_i1 + 1);
 
     /* "sklearn/metrics/_dist_metrics.pyx":2720
- * 
+ *
  *             i1 = i1 + 1
  *             i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
     __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -22913,7 +22913,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2722
  *             i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -22922,7 +22922,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":2723
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
@@ -23009,7 +23009,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":2722
  *             i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -23087,7 +23087,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     x1_1 = x1_data[i1]             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       /*else*/ {
         __pyx_v_x1_1 = (__pyx_v_x1_data[__pyx_v_i1]);
@@ -23098,7 +23098,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     x1_1 = x1_data[i1]
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         sin_0 = sin(0.5 * (x1_0 - x2_0))
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -23108,27 +23108,27 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2741
  *                 i1 = i1 + 1
- * 
+ *
  *         sin_0 = sin(0.5 * (x1_0 - x2_0))             # <<<<<<<<<<<<<<
  *         sin_1 = sin(0.5 * (x1_1 - x2_1))
- * 
+ *
  */
   __pyx_v_sin_0 = sin((0.5 * (__pyx_v_x1_0 - __pyx_v_x2_0)));
 
   /* "sklearn/metrics/_dist_metrics.pyx":2742
- * 
+ *
  *         sin_0 = sin(0.5 * (x1_0 - x2_0))
  *         sin_1 = sin(0.5 * (x1_1 - x2_1))             # <<<<<<<<<<<<<<
- * 
+ *
  *         return (sin_0 * sin_0 + cos(x1_0) * cos(x2_0) * sin_1 * sin_1)
  */
   __pyx_v_sin_1 = sin((0.5 * (__pyx_v_x1_1 - __pyx_v_x2_1)));
 
   /* "sklearn/metrics/_dist_metrics.pyx":2744
  *         sin_1 = sin(0.5 * (x1_1 - x2_1))
- * 
+ *
  *         return (sin_0 * sin_0 + cos(x1_0) * cos(x2_0) * sin_1 * sin_1)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((__pyx_v_sin_0 * __pyx_v_sin_0) + (((cos(__pyx_v_x1_0) * cos(__pyx_v_x2_0)) * __pyx_v_sin_1) * __pyx_v_sin_1));
@@ -23136,7 +23136,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":2676
  *         )))
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1_data,
@@ -23223,7 +23223,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14PyFuncDistance___init__(
  *     def __init__(self, func, **kwargs):
  *         self.func = func             # <<<<<<<<<<<<<<
  *         self.kwargs = kwargs
- * 
+ *
  */
   __Pyx_INCREF(__pyx_v_func);
   __Pyx_GIVEREF(__pyx_v_func);
@@ -23235,7 +23235,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_14PyFuncDistance___init__(
  *     def __init__(self, func, **kwargs):
  *         self.func = func
  *         self.kwargs = kwargs             # <<<<<<<<<<<<<<
- * 
+ *
  *     # in cython < 0.26, GIL was required to be acquired during definition of
  */
   __Pyx_INCREF(__pyx_v_kwargs);
@@ -23277,7 +23277,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return self._dist(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist(
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_14PyFuncDistance__dist(__pyx_v_self, __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 2774, __pyx_L1_error)
@@ -23310,7 +23310,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":2776
  *         return self._dist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t _dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -23457,7 +23457,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         except TypeError:
  *             raise TypeError("Custom distance function must accept two "             # <<<<<<<<<<<<<<
  *                             "vectors and return a float.")
- * 
+ *
  */
       __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 2791, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_9);
@@ -23490,7 +23490,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
   /* "sklearn/metrics/_dist_metrics.pyx":2776
  *         return self._dist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t _dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float64_t* x1,
@@ -23518,7 +23518,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
 /* "sklearn/metrics/_dist_metrics.pyx":2825
  * }
- * 
+ *
  * cdef inline object _buffer_to_ndarray32(const float32_t* x, intp_t n):             # <<<<<<<<<<<<<<
  *     # Wrap a memory buffer with an ndarray. Warning: this is not robust.
  *     # In particular, if x is deallocated before the returned array goes
@@ -23537,8 +23537,8 @@ static CYTHON_INLINE PyObject *__pyx_f_7sklearn_7metrics_13_dist_metrics__buffer
  *     # Note: this Segfaults unless np.import_array() is called above
  *     # TODO: remove the explicit cast to cnp.intp_t* when cython min version >= 3.0
  *     return cnp.PyArray_SimpleNewFromData(1, <cnp.intp_t*>&n, cnp.NPY_FLOAT64, <void*>x)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyArray_SimpleNewFromData(1, ((__pyx_t_5numpy_intp_t *)(&__pyx_v_n)), NPY_FLOAT64, ((void *)__pyx_v_x)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2833, __pyx_L1_error)
@@ -23549,7 +23549,7 @@ static CYTHON_INLINE PyObject *__pyx_f_7sklearn_7metrics_13_dist_metrics__buffer
 
   /* "sklearn/metrics/_dist_metrics.pyx":2825
  * }
- * 
+ *
  * cdef inline object _buffer_to_ndarray32(const float32_t* x, intp_t n):             # <<<<<<<<<<<<<<
  *     # Wrap a memory buffer with an ndarray. Warning: this is not robust.
  *     # In particular, if x is deallocated before the returned array goes
@@ -23651,7 +23651,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32___cinit
  *         self.vec = np.zeros(1, dtype=np.float64, order='C')
  *         self.mat = np.zeros((1, 1), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *         self.size = 1
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 2957, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -23683,7 +23683,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32___cinit
  *         self.vec = np.zeros(1, dtype=np.float64, order='C')
  *         self.mat = np.zeros((1, 1), dtype=np.float64, order='C')
  *         self.size = 1             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __reduce__(self):
  */
   __pyx_v_self->size = 1;
@@ -23715,7 +23715,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32___cinit
 
 /* "sklearn/metrics/_dist_metrics.pyx":2960
  *         self.size = 1
- * 
+ *
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
  *         """
  *         reduce method used for pickling
@@ -23752,7 +23752,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *         reduce method used for pickling
  *         """
  *         return (newObj, (self.__class__,), self.__getstate__())             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __getstate__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -23799,7 +23799,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":2960
  *         self.size = 1
- * 
+ *
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
  *         """
  *         reduce method used for pickling
@@ -23822,7 +23822,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
 /* "sklearn/metrics/_dist_metrics.pyx":2966
  *         return (newObj, (self.__class__,), self.__getstate__())
- * 
+ *
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
  *         """
  *         get state for pickling
@@ -23878,7 +23878,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_4
  *         if self.__class__.__name__ == "PyFuncDistance32":
  *             return (float(self.p), np.asarray(self.vec), np.asarray(self.mat), self.func, self.kwargs)             # <<<<<<<<<<<<<<
  *         return (float(self.p), np.asarray(self.vec), np.asarray(self.mat))
- * 
+ *
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_2 = PyFloat_FromDouble(((double)__pyx_v_self->p)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 2971, __pyx_L1_error)
@@ -23963,7 +23963,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_4
  *         if self.__class__.__name__ == "PyFuncDistance32":
  *             return (float(self.p), np.asarray(self.vec), np.asarray(self.mat), self.func, self.kwargs)
  *         return (float(self.p), np.asarray(self.vec), np.asarray(self.mat))             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setstate__(self, state):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -24032,7 +24032,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_4
 
   /* "sklearn/metrics/_dist_metrics.pyx":2966
  *         return (newObj, (self.__class__,), self.__getstate__())
- * 
+ *
  *     def __getstate__(self):             # <<<<<<<<<<<<<<
  *         """
  *         get state for pickling
@@ -24056,7 +24056,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_4
 
 /* "sklearn/metrics/_dist_metrics.pyx":2974
  *         return (float(self.p), np.asarray(self.vec), np.asarray(self.mat))
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         """
  *         set state for pickling
@@ -24171,7 +24171,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_6
  *             self.func = state[3]
  *             self.kwargs = state[4]             # <<<<<<<<<<<<<<
  *         self.size = self.vec.shape[0]
- * 
+ *
  */
     __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_state, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 2983, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -24194,14 +24194,14 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_6
  *             self.func = state[3]
  *             self.kwargs = state[4]
  *         self.size = self.vec.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     @classmethod
  */
   __pyx_v_self->size = (__pyx_v_self->vec.shape[0]);
 
   /* "sklearn/metrics/_dist_metrics.pyx":2974
  *         return (float(self.p), np.asarray(self.vec), np.asarray(self.mat))
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         """
  *         set state for pickling
@@ -24224,11 +24224,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_6
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":2987
- * 
+ *
  *     @classmethod
  *     def get_metric(cls, metric, **kwargs):             # <<<<<<<<<<<<<<
  *         """Get the given distance metric from the string identifier.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -24317,9 +24317,9 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
  *         """
  *         if isinstance(metric, DistanceMetric32):             # <<<<<<<<<<<<<<
  *             return metric
- * 
+ *
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_metric, __pyx_ptype_7sklearn_7metrics_13_dist_metrics_DistanceMetric32); 
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_metric, __pyx_ptype_7sklearn_7metrics_13_dist_metrics_DistanceMetric32);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -24327,7 +24327,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
  *         """
  *         if isinstance(metric, DistanceMetric32):
  *             return metric             # <<<<<<<<<<<<<<
- * 
+ *
  *         if callable(metric):
  */
     __Pyx_XDECREF(__pyx_r);
@@ -24340,26 +24340,26 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
  *         """
  *         if isinstance(metric, DistanceMetric32):             # <<<<<<<<<<<<<<
  *             return metric
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":3002
  *             return metric
- * 
+ *
  *         if callable(metric):             # <<<<<<<<<<<<<<
  *             return PyFuncDistance32(metric, **kwargs)
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyCallable_Check(__pyx_v_metric); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(1, 3002, __pyx_L1_error)
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3003
- * 
+ *
  *         if callable(metric):
  *             return PyFuncDistance32(metric, **kwargs)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # Map the metric string ID to the metric class
  */
     __Pyx_XDECREF(__pyx_r);
@@ -24380,21 +24380,21 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
 
     /* "sklearn/metrics/_dist_metrics.pyx":3002
  *             return metric
- * 
+ *
  *         if callable(metric):             # <<<<<<<<<<<<<<
  *             return PyFuncDistance32(metric, **kwargs)
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":3006
- * 
+ *
  *         # Map the metric string ID to the metric class
  *         if isinstance(metric, type) and issubclass(metric, DistanceMetric32):             # <<<<<<<<<<<<<<
  *             pass
  *         else:
  */
-  __pyx_t_2 = PyType_Check(__pyx_v_metric); 
+  __pyx_t_2 = PyType_Check(__pyx_v_metric);
   __pyx_t_6 = (__pyx_t_2 != 0);
   if (__pyx_t_6) {
   } else {
@@ -24463,7 +24463,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
  *                 metric = METRIC_MAPPING32[metric]
  *             except:             # <<<<<<<<<<<<<<
  *                 raise ValueError("Unrecognized metric '%s'" % metric)
- * 
+ *
  */
       /*except:*/ {
         __Pyx_AddTraceback("sklearn.metrics._dist_metrics.DistanceMetric32.get_metric", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -24476,7 +24476,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
  *                 metric = METRIC_MAPPING32[metric]
  *             except:
  *                 raise ValueError("Unrecognized metric '%s'" % metric)             # <<<<<<<<<<<<<<
- * 
+ *
  *         # In Minkowski special cases, return more efficient methods
  */
         __pyx_t_10 = __Pyx_PyUnicode_FormatSafe(__pyx_kp_u_Unrecognized_metric_s, __pyx_v_metric); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 3012, __pyx_L10_except_error)
@@ -24508,7 +24508,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
   __pyx_L5:;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3015
- * 
+ *
  *         # In Minkowski special cases, return more efficient methods
  *         if metric is MinkowskiDistance32:             # <<<<<<<<<<<<<<
  *             p = kwargs.pop('p', 2)
@@ -24733,7 +24733,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
     }
 
     /* "sklearn/metrics/_dist_metrics.pyx":3015
- * 
+ *
  *         # In Minkowski special cases, return more efficient methods
  *         if metric is MinkowskiDistance32:             # <<<<<<<<<<<<<<
  *             p = kwargs.pop('p', 2)
@@ -24745,7 +24745,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
  *                 return MinkowskiDistance32(p, w, **kwargs)
  *         else:
  *             return metric(**kwargs)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __init__(self):
  */
   /*else*/ {
@@ -24761,11 +24761,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":2987
- * 
+ *
  *     @classmethod
  *     def get_metric(cls, metric, **kwargs):             # <<<<<<<<<<<<<<
  *         """Get the given distance metric from the string identifier.
- * 
+ *
  */
 
   /* function exit code */
@@ -24788,7 +24788,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_8
 
 /* "sklearn/metrics/_dist_metrics.pyx":3029
  *             return metric(**kwargs)
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         if self.__class__ is DistanceMetric32:
  *             raise NotImplementedError("DistanceMetric32 is an abstract class")
@@ -24822,11 +24822,11 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_10__ini
   __Pyx_RefNannySetupContext("__init__", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3030
- * 
+ *
  *     def __init__(self):
  *         if self.__class__ is DistanceMetric32:             # <<<<<<<<<<<<<<
  *             raise NotImplementedError("DistanceMetric32 is an abstract class")
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 3030, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -24839,7 +24839,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_10__ini
  *     def __init__(self):
  *         if self.__class__ is DistanceMetric32:
  *             raise NotImplementedError("DistanceMetric32 is an abstract class")             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
     __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 3031, __pyx_L1_error)
@@ -24849,17 +24849,17 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_10__ini
     __PYX_ERR(1, 3031, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":3030
- * 
+ *
  *     def __init__(self):
  *         if self.__class__ is DistanceMetric32:             # <<<<<<<<<<<<<<
  *             raise NotImplementedError("DistanceMetric32 is an abstract class")
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":3029
  *             return metric(**kwargs)
- * 
+ *
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         if self.__class__ is DistanceMetric32:
  *             raise NotImplementedError("DistanceMetric32 is an abstract class")
@@ -24879,10 +24879,10 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_10__ini
 
 /* "sklearn/metrics/_dist_metrics.pyx":3033
  *             raise NotImplementedError("DistanceMetric32 is an abstract class")
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         """Validate the input data.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -24908,7 +24908,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
  *         is required.
  *         """
  *         return             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t dist(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -24917,10 +24917,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
   /* "sklearn/metrics/_dist_metrics.pyx":3033
  *             raise NotImplementedError("DistanceMetric32 is an abstract class")
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         """Validate the input data.
- * 
+ *
  */
 
   /* function exit code */
@@ -24932,7 +24932,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
 /* "sklearn/metrics/_dist_metrics.pyx":3041
  *         return
- * 
+ *
  *     cdef float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -24945,7 +24945,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         This should be overridden in a base class.
  *         """
  *         return -999             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t rdist(
  */
   __pyx_r = -999.0;
@@ -24953,7 +24953,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3041
  *         return
- * 
+ *
  *     cdef float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -24966,7 +24966,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3053
  *         return -999
- * 
+ *
  *     cdef float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -24983,7 +24983,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         squared-euclidean distance.
  *         """
  *         return self.dist(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int pdist(
  */
   __pyx_t_1 = ((struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 *)__pyx_v_self->__pyx_vtab)->dist(__pyx_v_self, __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 3068, __pyx_L1_error)
@@ -24992,7 +24992,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3053
  *         return -999
- * 
+ *
  *     cdef float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -25016,7 +25016,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3070
  *         return self.dist(x1, x2, size)
- * 
+ *
  *     cdef int pdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t[:, ::1] X,
@@ -25090,7 +25090,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_pdist(st
  *                 D[i1, i2] = self.dist(&X[i1, 0], &X[i2, 0], X.shape[1])
  *                 D[i2, i1] = D[i1, i2]             # <<<<<<<<<<<<<<
  *         return 0
- * 
+ *
  */
       __pyx_t_7 = __pyx_v_i1;
       __pyx_t_9 = __pyx_v_i2;
@@ -25104,15 +25104,15 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_pdist(st
  *                 D[i1, i2] = self.dist(&X[i1, 0], &X[i2, 0], X.shape[1])
  *                 D[i2, i1] = D[i1, i2]
  *         return 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3070
  *         return self.dist(x1, x2, size)
- * 
+ *
  *     cdef int pdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t[:, ::1] X,
@@ -25128,8 +25128,8 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_pdist(st
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":3084
- * 
- * 
+ *
+ *
  *     cdef int cdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t[:, ::1] X,
@@ -25219,7 +25219,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist(st
  *             for i2 in range(Y.shape[0]):
  *                 D[i1, i2] = self.dist(&X[i1, 0], &Y[i2, 0], X.shape[1])             # <<<<<<<<<<<<<<
  *         return 0
- * 
+ *
  */
       __pyx_t_9 = __pyx_v_i1;
       __pyx_t_10 = 0;
@@ -25236,15 +25236,15 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist(st
  *             for i2 in range(Y.shape[0]):
  *                 D[i1, i2] = self.dist(&X[i1, 0], &Y[i2, 0], X.shape[1])
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t dist_csr(
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3084
- * 
- * 
+ *
+ *
  *     cdef int cdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t[:, ::1] X,
@@ -25262,7 +25262,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist(st
 
 /* "sklearn/metrics/_dist_metrics.pyx":3099
  *         return 0
- * 
+ *
  *     cdef float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -25275,7 +25275,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         https://www-users.cse.umn.edu/~saad/IterMethBook_2ndEd.pdf
  *         """
  *         return -999             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t rdist_csr(
  */
   __pyx_r = -999.0;
@@ -25283,7 +25283,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3099
  *         return 0
- * 
+ *
  *     cdef float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -25296,7 +25296,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3165
  *         return -999
- * 
+ *
  *     cdef float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -25322,7 +25322,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3165
  *         return -999
- * 
+ *
  *     cdef float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -25346,7 +25346,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3206
  *         )
- * 
+ *
  *     cdef int pdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -25379,13 +25379,13 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_pdist_cs
  *             intp_t i1, i2
  *             intp_t n_x1 = x1_indptr.shape[0] - 1             # <<<<<<<<<<<<<<
  *             intp_t x1_start, x1_end, x2_start, x2_end
- * 
+ *
  */
   __pyx_v_n_x1 = ((__pyx_v_x1_indptr.shape[0]) - 1);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3224
  *             intp_t x1_start, x1_end, x2_start, x2_end
- * 
+ *
  *         for i1 in range(n_x1):             # <<<<<<<<<<<<<<
  *             x1_start = x1_indptr[i1]
  *             x1_end = x1_indptr[i1 + 1]
@@ -25396,7 +25396,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_pdist_cs
     __pyx_v_i1 = __pyx_t_3;
 
     /* "sklearn/metrics/_dist_metrics.pyx":3225
- * 
+ *
  *         for i1 in range(n_x1):
  *             x1_start = x1_indptr[i1]             # <<<<<<<<<<<<<<
  *             x1_end = x1_indptr[i1 + 1]
@@ -25468,7 +25468,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_pdist_cs
  *                     size,
  *                 )
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int cdist_csr(
  */
   __pyx_r = 0;
@@ -25476,7 +25476,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_pdist_cs
 
   /* "sklearn/metrics/_dist_metrics.pyx":3206
  *         )
- * 
+ *
  *     cdef int pdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -25500,7 +25500,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_pdist_cs
 
 /* "sklearn/metrics/_dist_metrics.pyx":3243
  *         return 0
- * 
+ *
  *     cdef int cdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -25543,13 +25543,13 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist_cs
  *             intp_t n_x1 = x1_indptr.shape[0] - 1
  *             intp_t n_x2 = x2_indptr.shape[0] - 1             # <<<<<<<<<<<<<<
  *             intp_t x1_start, x1_end, x2_start, x2_end
- * 
+ *
  */
   __pyx_v_n_x2 = ((__pyx_v_x2_indptr.shape[0]) - 1);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3262
  *             intp_t x1_start, x1_end, x2_start, x2_end
- * 
+ *
  *         for i1 in range(n_x1):             # <<<<<<<<<<<<<<
  *             x1_start = x1_indptr[i1]
  *             x1_end = x1_indptr[i1 + 1]
@@ -25560,7 +25560,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist_cs
     __pyx_v_i1 = __pyx_t_3;
 
     /* "sklearn/metrics/_dist_metrics.pyx":3263
- * 
+ *
  *         for i1 in range(n_x1):
  *             x1_start = x1_indptr[i1]             # <<<<<<<<<<<<<<
  *             x1_end = x1_indptr[i1 + 1]
@@ -25596,7 +25596,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist_cs
  *             for i2 in range(n_x2):
  *                 x2_start = x2_indptr[i2]             # <<<<<<<<<<<<<<
  *                 x2_end = x2_indptr[i2 + 1]
- * 
+ *
  */
       __pyx_t_7 = __pyx_v_i2;
       __pyx_v_x2_start = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x2_indptr.data + __pyx_t_7 * __pyx_v_x2_indptr.strides[0]) )));
@@ -25605,7 +25605,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist_cs
  *             for i2 in range(n_x2):
  *                 x2_start = x2_indptr[i2]
  *                 x2_end = x2_indptr[i2 + 1]             # <<<<<<<<<<<<<<
- * 
+ *
  *                 D[i1, i2] = self.dist_csr(
  */
       __pyx_t_7 = (__pyx_v_i2 + 1);
@@ -25613,7 +25613,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist_cs
 
       /* "sklearn/metrics/_dist_metrics.pyx":3269
  *                 x2_end = x2_indptr[i2 + 1]
- * 
+ *
  *                 D[i1, i2] = self.dist_csr(             # <<<<<<<<<<<<<<
  *                     x1_data,
  *                     x1_indices,
@@ -25629,7 +25629,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist_cs
  *                     size,
  *                 )
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  */
   __pyx_r = 0;
@@ -25637,7 +25637,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist_cs
 
   /* "sklearn/metrics/_dist_metrics.pyx":3243
  *         return 0
- * 
+ *
  *     cdef int cdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -25661,7 +25661,7 @@ static int __pyx_f_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_cdist_cs
 
 /* "sklearn/metrics/_dist_metrics.pyx":3282
  *         return 0
- * 
+ *
  *     cdef float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Convert the rank-preserving surrogate distance to the distance"""
  *         return rdist
@@ -25674,7 +25674,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     cdef float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  *         """Convert the rank-preserving surrogate distance to the distance"""
  *         return rdist             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  */
   __pyx_r = __pyx_v_rdist;
@@ -25682,7 +25682,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3282
  *         return 0
- * 
+ *
  *     cdef float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Convert the rank-preserving surrogate distance to the distance"""
  *         return rdist
@@ -25695,7 +25695,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3286
  *         return rdist
- * 
+ *
  *     cdef float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Convert the distance to the rank-preserving surrogate distance"""
  *         return dist
@@ -25708,7 +25708,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     cdef float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  *         """Convert the distance to the rank-preserving surrogate distance"""
  *         return dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = __pyx_v_dist;
@@ -25716,7 +25716,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3286
  *         return rdist
- * 
+ *
  *     cdef float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         """Convert the distance to the rank-preserving surrogate distance"""
  *         return dist
@@ -25729,10 +25729,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3290
  *         return dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         """Convert the rank-preserving surrogate distance to the distance.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -25758,7 +25758,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
  *             True distance.
  *         """
  *         return rdist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -25768,10 +25768,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
   /* "sklearn/metrics/_dist_metrics.pyx":3290
  *         return dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         """Convert the rank-preserving surrogate distance to the distance.
- * 
+ *
  */
 
   /* function exit code */
@@ -25783,10 +25783,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
 /* "sklearn/metrics/_dist_metrics.pyx":3310
  *         return rdist
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         """Convert the true distance to the rank-preserving surrogate distance.
- * 
+ *
  */
 
 /* Python wrapper */
@@ -25812,7 +25812,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
  *             Surrogate distance.
  *         """
  *         return dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pairwise_dense_dense(self, X, Y):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -25822,10 +25822,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
   /* "sklearn/metrics/_dist_metrics.pyx":3310
  *         return rdist
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         """Convert the true distance to the rank-preserving surrogate distance.
- * 
+ *
  */
 
   /* function exit code */
@@ -25837,7 +25837,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
 /* "sklearn/metrics/_dist_metrics.pyx":3330
  *         return dist
- * 
+ *
  *     def _pairwise_dense_dense(self, X, Y):             # <<<<<<<<<<<<<<
  *         cdef const float32_t[:, ::1] Xarr
  *         cdef const float32_t[:, ::1] Yarr
@@ -25931,7 +25931,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
   /* "sklearn/metrics/_dist_metrics.pyx":3335
  *         cdef float64_t[:, ::1] Darr
- * 
+ *
  *         Xarr = np.asarray(X, dtype=np.float32, order='C')             # <<<<<<<<<<<<<<
  *         self._validate_data(Xarr)
  *         if X is Y:
@@ -25968,7 +25968,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
   __pyx_t_6.data = NULL;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3336
- * 
+ *
  *         Xarr = np.asarray(X, dtype=np.float32, order='C')
  *         self._validate_data(Xarr)             # <<<<<<<<<<<<<<
  *         if X is Y:
@@ -26199,7 +26199,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
  *             Darr = np.empty((Xarr.shape[0], Yarr.shape[0]), dtype=np.float64, order='C')
  *             self.cdist(Xarr, Yarr, Darr)             # <<<<<<<<<<<<<<
  *         return np.asarray(Darr)
- * 
+ *
  */
     __pyx_t_10 = ((struct __pyx_vtabstruct_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 *)__pyx_v_self->__pyx_vtab)->cdist(__pyx_v_self, __pyx_v_Xarr, __pyx_v_Yarr, __pyx_v_Darr); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 3344, __pyx_L1_error)
   }
@@ -26209,7 +26209,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
  *             Darr = np.empty((Xarr.shape[0], Yarr.shape[0]), dtype=np.float64, order='C')
  *             self.cdist(Xarr, Yarr, Darr)
  *         return np.asarray(Darr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pairwise_sparse_sparse(self, X: csr_matrix , Y: csr_matrix):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -26242,7 +26242,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
   /* "sklearn/metrics/_dist_metrics.pyx":3330
  *         return dist
- * 
+ *
  *     def _pairwise_dense_dense(self, X, Y):             # <<<<<<<<<<<<<<
  *         cdef const float32_t[:, ::1] Xarr
  *         cdef const float32_t[:, ::1] Yarr
@@ -26271,7 +26271,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_1
 
 /* "sklearn/metrics/_dist_metrics.pyx":3347
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_sparse_sparse(self, X: csr_matrix , Y: csr_matrix):             # <<<<<<<<<<<<<<
  *         cdef:
  *             intp_t n_X, n_features
@@ -26384,7 +26384,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3361
  *             float64_t[:, ::1] Darr
- * 
+ *
  *         X_csr = X.tocsr()             # <<<<<<<<<<<<<<
  *         n_X, n_features = X_csr.shape
  *         X_data = np.asarray(X_csr.data, dtype=np.float32)
@@ -26410,7 +26410,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   __pyx_t_1 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3362
- * 
+ *
  *         X_csr = X.tocsr()
  *         n_X, n_features = X_csr.shape             # <<<<<<<<<<<<<<
  *         X_data = np.asarray(X_csr.data, dtype=np.float32)
@@ -26428,11 +26428,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
-      __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
-      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
+      __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
+      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1);
     } else {
-      __pyx_t_2 = PyList_GET_ITEM(sequence, 0); 
-      __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
+      __pyx_t_2 = PyList_GET_ITEM(sequence, 0);
+      __pyx_t_3 = PyList_GET_ITEM(sequence, 1);
     }
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_t_3);
@@ -26724,11 +26724,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
-        __pyx_t_8 = PyTuple_GET_ITEM(sequence, 0); 
-        __pyx_t_2 = PyTuple_GET_ITEM(sequence, 1); 
+        __pyx_t_8 = PyTuple_GET_ITEM(sequence, 0);
+        __pyx_t_2 = PyTuple_GET_ITEM(sequence, 1);
       } else {
-        __pyx_t_8 = PyList_GET_ITEM(sequence, 0); 
-        __pyx_t_2 = PyList_GET_ITEM(sequence, 1); 
+        __pyx_t_8 = PyList_GET_ITEM(sequence, 0);
+        __pyx_t_2 = PyList_GET_ITEM(sequence, 1);
       }
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(__pyx_t_2);
@@ -26810,7 +26810,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             Y_data = np.asarray(Y_csr.data, dtype=np.float32)
  *             Y_indices = np.asarray(Y_csr.indices, dtype=np.int32)             # <<<<<<<<<<<<<<
  *             Y_indptr = np.asarray(Y_csr.indptr, dtype=np.int32)
- * 
+ *
  */
     __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 3379, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -26848,7 +26848,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             Y_data = np.asarray(Y_csr.data, dtype=np.float32)
  *             Y_indices = np.asarray(Y_csr.indices, dtype=np.int32)
  *             Y_indptr = np.asarray(Y_csr.indptr, dtype=np.int32)             # <<<<<<<<<<<<<<
- * 
+ *
  *             Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')
  */
     __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 3380, __pyx_L1_error)
@@ -26885,7 +26885,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
     /* "sklearn/metrics/_dist_metrics.pyx":3382
  *             Y_indptr = np.asarray(Y_csr.indptr, dtype=np.int32)
- * 
+ *
  *             Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *             self.cdist_csr(
  *                 x1_data=&X_data[0],
@@ -26952,7 +26952,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
     __pyx_t_20 = 0;
 
     /* "sklearn/metrics/_dist_metrics.pyx":3383
- * 
+ *
  *             Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')
  *             self.cdist_csr(             # <<<<<<<<<<<<<<
  *                 x1_data=&X_data[0],
@@ -26966,7 +26966,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *                 D=Darr,
  *             )
  *         return np.asarray(Darr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pairwise_sparse_dense(self, X: csr_matrix, Y):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -26999,7 +26999,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3347
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_sparse_sparse(self, X: csr_matrix , Y: csr_matrix):             # <<<<<<<<<<<<<<
  *         cdef:
  *             intp_t n_X, n_features
@@ -27039,7 +27039,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
 /* "sklearn/metrics/_dist_metrics.pyx":3395
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_sparse_dense(self, X: csr_matrix, Y):             # <<<<<<<<<<<<<<
  *         cdef:
  *             intp_t n_X = X.shape[0]
@@ -27345,7 +27345,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             const int32_t[:] X_indptr = np.asarray(
  *                 X.indptr, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indptr); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 3406, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -27368,7 +27368,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             const int32_t[:] X_indptr = np.asarray(
  *                 X.indptr, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 3406, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -27400,7 +27400,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3409
  *             )
- * 
+ *
  *             const float32_t[:, ::1] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y, dtype=np.float32, order="C",
  *             )
@@ -27412,7 +27412,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3410
- * 
+ *
  *             const float32_t[:, ::1] Y_data = np.asarray(
  *                 Y, dtype=np.float32, order="C",             # <<<<<<<<<<<<<<
  *             )
@@ -27436,7 +27436,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3409
  *             )
- * 
+ *
  *             const float32_t[:, ::1] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y, dtype=np.float32, order="C",
  *             )
@@ -27466,7 +27466,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             const int32_t[:] Y_indices = (
  *                 np.arange(n_features, dtype=np.int32)             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 3414, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -27502,9 +27502,9 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3417
  *             )
- * 
+ *
  *             float64_t[:, ::1] Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t i1, i2
  */
   __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 3417, __pyx_L1_error)
@@ -27552,7 +27552,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3423
  *             float32_t * x2_data
- * 
+ *
  *         with nogil:             # <<<<<<<<<<<<<<
  *             # Use the exact same adaptation for CSR than in SparseDenseDatasetsPair
  *             # for supporting the sparse-dense case with minimal overhead.
@@ -27602,7 +27602,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *                 x1_end = X_indptr[i1 + 1]
  *                 for i2 in range(n_Y):             # <<<<<<<<<<<<<<
  *                     x2_data = &Y_data[0, 0] + i2 * n_features
- * 
+ *
  */
           __pyx_t_15 = __pyx_v_n_Y;
           __pyx_t_16 = __pyx_t_15;
@@ -27613,7 +27613,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *                 x1_end = X_indptr[i1 + 1]
  *                 for i2 in range(n_Y):
  *                     x2_data = &Y_data[0, 0] + i2 * n_features             # <<<<<<<<<<<<<<
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(
  */
             __pyx_t_18 = 0;
@@ -27621,7 +27621,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
             __pyx_v_x2_data = ((&(*((__pyx_t_7sklearn_5utils_9_typedefs_float32_t const  *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float32_t const  *) ( /* dim=0 */ (__pyx_v_Y_data.data + __pyx_t_18 * __pyx_v_Y_data.strides[0]) )) + __pyx_t_19)) )))) + (__pyx_v_i2 * __pyx_v_n_features));
 
             /* "sklearn/metrics/_dist_metrics.pyx":3443
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(
  *                         x1_data=&X_data[0],             # <<<<<<<<<<<<<<
  *                         x1_indices=X_indices,
@@ -27631,7 +27631,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
             /* "sklearn/metrics/_dist_metrics.pyx":3442
  *                     x2_data = &Y_data[0, 0] + i2 * n_features
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(             # <<<<<<<<<<<<<<
  *                         x1_data=&X_data[0],
  *                         x1_indices=X_indices,
@@ -27646,7 +27646,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
       /* "sklearn/metrics/_dist_metrics.pyx":3423
  *             float32_t * x2_data
- * 
+ *
  *         with nogil:             # <<<<<<<<<<<<<<
  *             # Use the exact same adaptation for CSR than in SparseDenseDatasetsPair
  *             # for supporting the sparse-dense case with minimal overhead.
@@ -27672,9 +27672,9 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3454
  *                     )
- * 
+ *
  *         return np.asarray(Darr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pairwise_dense_sparse(self, X, Y: csr_matrix):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -27707,7 +27707,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3395
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_sparse_dense(self, X: csr_matrix, Y):             # <<<<<<<<<<<<<<
  *         cdef:
  *             intp_t n_X = X.shape[0]
@@ -27742,7 +27742,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
 /* "sklearn/metrics/_dist_metrics.pyx":3456
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_dense_sparse(self, X, Y: csr_matrix):             # <<<<<<<<<<<<<<
  *         # We could have implemented this method using _pairwise_dense_sparse by
  *         # swapping argument and by transposing the results, but this would
@@ -27861,7 +27861,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *         cdef:
  *             intp_t n_X = X.shape[0]             # <<<<<<<<<<<<<<
  *             intp_t n_features = X.shape[1]
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 3461, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -27876,7 +27876,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *         cdef:
  *             intp_t n_X = X.shape[0]
  *             intp_t n_features = X.shape[1]             # <<<<<<<<<<<<<<
- * 
+ *
  *             const float32_t[:, ::1] X_data = np.asarray(
  */
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3462, __pyx_L1_error)
@@ -27890,7 +27890,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3464
  *             intp_t n_features = X.shape[1]
- * 
+ *
  *             const float32_t[:, ::1] X_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 X, dtype=np.float32, order="C",
  *             )
@@ -27902,7 +27902,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3465
- * 
+ *
  *             const float32_t[:, ::1] X_data = np.asarray(
  *                 X, dtype=np.float32, order="C",             # <<<<<<<<<<<<<<
  *             )
@@ -27926,7 +27926,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3464
  *             intp_t n_features = X.shape[1]
- * 
+ *
  *             const float32_t[:, ::1] X_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 X, dtype=np.float32, order="C",
  *             )
@@ -27960,7 +27960,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             const int32_t[:] X_indices = np.arange(
  *                 n_features, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_n_features); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 3468, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -27983,7 +27983,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             const int32_t[:] X_indices = np.arange(
  *                 n_features, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 3468, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -28015,7 +28015,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3471
  *             )
- * 
+ *
  *             intp_t n_Y = Y.shape[0]             # <<<<<<<<<<<<<<
  *             const float32_t[:] Y_data = np.asarray(
  *                 Y.data, dtype=np.float32,
@@ -28030,7 +28030,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   __pyx_v_n_Y = __pyx_t_3;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3472
- * 
+ *
  *             intp_t n_Y = Y.shape[0]
  *             const float32_t[:] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y.data, dtype=np.float32,
@@ -28053,7 +28053,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   __Pyx_GOTREF(__pyx_t_6);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3472
- * 
+ *
  *             intp_t n_Y = Y.shape[0]
  *             const float32_t[:] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y.data, dtype=np.float32,
@@ -28083,7 +28083,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3472
- * 
+ *
  *             intp_t n_Y = Y.shape[0]
  *             const float32_t[:] Y_data = np.asarray(             # <<<<<<<<<<<<<<
  *                 Y.data, dtype=np.float32,
@@ -28189,7 +28189,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             const int32_t[:] Y_indptr = np.asarray(
  *                 Y.indptr, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_Y, __pyx_n_s_indptr); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 3479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -28212,7 +28212,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             const int32_t[:] Y_indptr = np.asarray(
  *                 Y.indptr, dtype=np.int32,             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
   __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 3479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -28244,9 +28244,9 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3482
  *             )
- * 
+ *
  *             float64_t[:, ::1] Darr = np.empty((n_X, n_Y), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t i1, i2
  */
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 3482, __pyx_L1_error)
@@ -28294,7 +28294,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3489
  *             intp_t x2_start, x2_end
- * 
+ *
  *         with nogil:             # <<<<<<<<<<<<<<
  *             # Use the exact same adaptation for CSR than in SparseDenseDatasetsPair
  *             # for supporting the dense-sparse case with minimal overhead.
@@ -28347,7 +28347,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *                 for i2 in range(n_Y):
  *                     x2_start = Y_indptr[i2]             # <<<<<<<<<<<<<<
  *                     x2_end = Y_indptr[i2 + 1]
- * 
+ *
  */
             __pyx_t_20 = __pyx_v_i2;
             __pyx_v_x2_start = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_Y_indptr.data + __pyx_t_20 * __pyx_v_Y_indptr.strides[0]) )));
@@ -28356,7 +28356,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *                 for i2 in range(n_Y):
  *                     x2_start = Y_indptr[i2]
  *                     x2_end = Y_indptr[i2 + 1]             # <<<<<<<<<<<<<<
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(
  */
             __pyx_t_20 = (__pyx_v_i2 + 1);
@@ -28373,7 +28373,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
             /* "sklearn/metrics/_dist_metrics.pyx":3508
  *                     x2_end = Y_indptr[i2 + 1]
- * 
+ *
  *                     Darr[i1, i2] = self.dist_csr(             # <<<<<<<<<<<<<<
  *                         x1_data=x1_data,
  *                         x1_indices=X_indices,
@@ -28388,7 +28388,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
       /* "sklearn/metrics/_dist_metrics.pyx":3489
  *             intp_t x2_start, x2_end
- * 
+ *
  *         with nogil:             # <<<<<<<<<<<<<<
  *             # Use the exact same adaptation for CSR than in SparseDenseDatasetsPair
  *             # for supporting the dense-sparse case with minimal overhead.
@@ -28414,10 +28414,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3520
  *                     )
- * 
+ *
  *         return np.asarray(Darr)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3520, __pyx_L1_error)
@@ -28449,7 +28449,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3456
  *         return np.asarray(Darr)
- * 
+ *
  *     def _pairwise_dense_sparse(self, X, Y: csr_matrix):             # <<<<<<<<<<<<<<
  *         # We could have implemented this method using _pairwise_dense_sparse by
  *         # swapping argument and by transposing the results, but this would
@@ -28483,11 +28483,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":3523
- * 
- * 
+ *
+ *
  *     def pairwise(self, X, Y=None):             # <<<<<<<<<<<<<<
  *         """Compute the pairwise distances between X and Y
- * 
+ *
  */
 
 /* Python wrapper */
@@ -28583,7 +28583,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             The distance matrix of pairwise distances between points in X and Y.
  *         """
  *         X = check_array(X, accept_sparse=['csr'])             # <<<<<<<<<<<<<<
- * 
+ *
  *         if Y is None:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_check_array); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 3543, __pyx_L1_error)
@@ -28612,7 +28612,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3545
  *         X = check_array(X, accept_sparse=['csr'])
- * 
+ *
  *         if Y is None:             # <<<<<<<<<<<<<<
  *             Y = X
  *         else:
@@ -28622,7 +28622,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   if (__pyx_t_6) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3546
- * 
+ *
  *         if Y is None:
  *             Y = X             # <<<<<<<<<<<<<<
  *         else:
@@ -28633,7 +28633,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
     /* "sklearn/metrics/_dist_metrics.pyx":3545
  *         X = check_array(X, accept_sparse=['csr'])
- * 
+ *
  *         if Y is None:             # <<<<<<<<<<<<<<
  *             Y = X
  *         else:
@@ -28645,7 +28645,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *             Y = X
  *         else:
  *             Y = check_array(Y, accept_sparse=['csr'])             # <<<<<<<<<<<<<<
- * 
+ *
  *         X_is_sparse = issparse(X)
  */
   /*else*/ {
@@ -28677,10 +28677,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3550
  *             Y = check_array(Y, accept_sparse=['csr'])
- * 
+ *
  *         X_is_sparse = issparse(X)             # <<<<<<<<<<<<<<
  *         Y_is_sparse = issparse(Y)
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_issparse); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -28703,10 +28703,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   __pyx_t_1 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3551
- * 
+ *
  *         X_is_sparse = issparse(X)
  *         Y_is_sparse = issparse(Y)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not X_is_sparse and not Y_is_sparse:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_issparse); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3551, __pyx_L1_error)
@@ -28731,10 +28731,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
   /* "sklearn/metrics/_dist_metrics.pyx":3553
  *         Y_is_sparse = issparse(Y)
- * 
+ *
  *         if not X_is_sparse and not Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_dense_dense(X, Y)
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_X_is_sparse); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(1, 3553, __pyx_L1_error)
   __pyx_t_7 = ((!__pyx_t_5) != 0);
@@ -28750,10 +28750,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   if (__pyx_t_6) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3554
- * 
+ *
  *         if not X_is_sparse and not Y_is_sparse:
  *             return self._pairwise_dense_dense(X, Y)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if X_is_sparse and Y_is_sparse:
  */
     __Pyx_XDECREF(__pyx_r);
@@ -28810,19 +28810,19 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
     /* "sklearn/metrics/_dist_metrics.pyx":3553
  *         Y_is_sparse = issparse(Y)
- * 
+ *
  *         if not X_is_sparse and not Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_dense_dense(X, Y)
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":3556
  *             return self._pairwise_dense_dense(X, Y)
- * 
+ *
  *         if X_is_sparse and Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_sparse_sparse(X, Y)
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_X_is_sparse); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(1, 3556, __pyx_L1_error)
   if (__pyx_t_5) {
@@ -28836,10 +28836,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   if (__pyx_t_6) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3557
- * 
+ *
  *         if X_is_sparse and Y_is_sparse:
  *             return self._pairwise_sparse_sparse(X, Y)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if X_is_sparse and not Y_is_sparse:
  */
     __Pyx_XDECREF(__pyx_r);
@@ -28896,19 +28896,19 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
     /* "sklearn/metrics/_dist_metrics.pyx":3556
  *             return self._pairwise_dense_dense(X, Y)
- * 
+ *
  *         if X_is_sparse and Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_sparse_sparse(X, Y)
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":3559
  *             return self._pairwise_sparse_sparse(X, Y)
- * 
+ *
  *         if X_is_sparse and not Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_sparse_dense(X, Y)
- * 
+ *
  */
   __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_X_is_sparse); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(1, 3559, __pyx_L1_error)
   if (__pyx_t_5) {
@@ -28923,10 +28923,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   if (__pyx_t_6) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3560
- * 
+ *
  *         if X_is_sparse and not Y_is_sparse:
  *             return self._pairwise_sparse_dense(X, Y)             # <<<<<<<<<<<<<<
- * 
+ *
  *         return self._pairwise_dense_sparse(X, Y)
  */
     __Pyx_XDECREF(__pyx_r);
@@ -28983,18 +28983,18 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
 
     /* "sklearn/metrics/_dist_metrics.pyx":3559
  *             return self._pairwise_sparse_sparse(X, Y)
- * 
+ *
  *         if X_is_sparse and not Y_is_sparse:             # <<<<<<<<<<<<<<
  *             return self._pairwise_sparse_dense(X, Y)
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":3562
  *             return self._pairwise_sparse_dense(X, Y)
- * 
+ *
  *         return self._pairwise_dense_sparse(X, Y)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __Pyx_XDECREF(__pyx_r);
@@ -29050,11 +29050,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3523
- * 
- * 
+ *
+ *
  *     def pairwise(self, X, Y=None):             # <<<<<<<<<<<<<<
  *         """Compute the pairwise distances between X and Y
- * 
+ *
  */
 
   /* function exit code */
@@ -29080,7 +29080,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_16DistanceMetric32_2
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = 2
- * 
+ *
  */
 
 /* Python wrapper */
@@ -29108,7 +29108,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance32___in
  *     """
  *     def __init__(self):
  *         self.p = 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(self,
  */
   __pyx_v_self->__pyx_base.p = 2.0;
@@ -29118,7 +29118,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance32___in
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = 2
- * 
+ *
  */
 
   /* function exit code */
@@ -29129,7 +29129,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance32___in
 
 /* "sklearn/metrics/_dist_metrics.pyx":3576
  *         self.p = 2
- * 
+ *
  *     cdef inline float64_t dist(self,             # <<<<<<<<<<<<<<
  *         const float32_t* x1,
  *         const float32_t* x2,
@@ -29146,7 +29146,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return euclidean_dist32(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(self,
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_dist32(__pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 3581, __pyx_L1_error)
@@ -29155,7 +29155,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3576
  *         self.p = 2
- * 
+ *
  *     cdef inline float64_t dist(self,             # <<<<<<<<<<<<<<
  *         const float32_t* x1,
  *         const float32_t* x2,
@@ -29179,7 +29179,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3583
  *         return euclidean_dist32(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t rdist(self,             # <<<<<<<<<<<<<<
  *         const float32_t* x1,
  *         const float32_t* x2,
@@ -29196,7 +29196,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return euclidean_rdist32(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_rdist32(__pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 3588, __pyx_L1_error)
@@ -29205,7 +29205,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3583
  *         return euclidean_dist32(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t rdist(self,             # <<<<<<<<<<<<<<
  *         const float32_t* x1,
  *         const float32_t* x2,
@@ -29229,20 +29229,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3590
  *         return euclidean_rdist32(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance32__rdist_to_dist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_EuclideanDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3591
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  *         return sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  */
   __pyx_r = sqrt(__pyx_v_rdist);
@@ -29250,10 +29250,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3590
  *         return euclidean_rdist32(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -29263,20 +29263,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3593
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance32__dist_to_rdist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_EuclideanDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3594
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  *         return dist * dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
@@ -29284,10 +29284,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3593
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -29297,10 +29297,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3596
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -29328,10 +29328,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance3
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3597
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return np.sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -29361,10 +29361,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance3
 
   /* "sklearn/metrics/_dist_metrics.pyx":3596
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -29382,10 +29382,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance3
 
 /* "sklearn/metrics/_dist_metrics.pyx":3599
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
 /* Python wrapper */
@@ -29411,10 +29411,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance3
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3600
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -29426,10 +29426,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance3
 
   /* "sklearn/metrics/_dist_metrics.pyx":3599
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
   /* function exit code */
@@ -29445,7 +29445,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19EuclideanDistance3
 
 /* "sklearn/metrics/_dist_metrics.pyx":3602
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -29468,7 +29468,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -29476,32 +29476,32 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3620
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
  *             float64_t unsquared = 0
- * 
+ *
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3621
- * 
+ *
  *             float64_t d = 0.0
  *             float64_t unsquared = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_unsquared = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3623
  *             float64_t unsquared = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -29519,11 +29519,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":3624
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -29532,7 +29532,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -29540,7 +29540,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":3627
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 unsquared = x1_data[i1] - x2_data[i2]
  *                 d = d + (unsquared * unsquared)
@@ -29549,7 +29549,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":3628
- * 
+ *
  *             if ix1 == ix2:
  *                 unsquared = x1_data[i1] - x2_data[i2]             # <<<<<<<<<<<<<<
  *                 d = d + (unsquared * unsquared)
@@ -29586,7 +29586,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":3627
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 unsquared = x1_data[i1] - x2_data[i2]
  *                 d = d + (unsquared * unsquared)
@@ -29656,7 +29656,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x2_data[i2]
  *                 d = d + (unsquared * unsquared)             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + (__pyx_v_unsquared * __pyx_v_unsquared));
 
@@ -29664,7 +29664,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x2_data[i2]
  *                 d = d + (unsquared * unsquared)
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -29674,7 +29674,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3641
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 unsquared = x2_data[i2]
@@ -29683,7 +29683,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3642
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 unsquared = x2_data[i2]
@@ -29723,7 +29723,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":3641
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 unsquared = x2_data[i2]
@@ -29757,7 +29757,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x1_data[i1]
  *                 d = d + (unsquared * unsquared)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + (__pyx_v_unsquared * __pyx_v_unsquared));
 
@@ -29765,7 +29765,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x1_data[i1]
  *                 d = d + (unsquared * unsquared)
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -29775,9 +29775,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3652
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -29785,7 +29785,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3602
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -29798,7 +29798,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3654
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -29832,7 +29832,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3654
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -29972,7 +29972,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance32___i
  *         self.vec = np.asarray(V, dtype=np.float64)
  *         self.size = self.vec.shape[0]             # <<<<<<<<<<<<<<
  *         self.p = 2
- * 
+ *
  */
   __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.vec.shape[0]);
 
@@ -29980,7 +29980,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance32___i
  *         self.vec = np.asarray(V, dtype=np.float64)
  *         self.size = self.vec.shape[0]
  *         self.p = 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
   __pyx_v_self->__pyx_base.p = 2.0;
@@ -30012,7 +30012,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance32___i
 
 /* "sklearn/metrics/_dist_metrics.pyx":3693
  *         self.p = 2
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('SEuclidean dist: size of V does not match')
@@ -30044,11 +30044,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3694
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('SEuclidean dist: size of V does not match')
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 3694, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -30068,7 +30068,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:
  *             raise ValueError('SEuclidean dist: size of V does not match')             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 3695, __pyx_L1_error)
@@ -30078,17 +30078,17 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
     __PYX_ERR(1, 3695, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":3694
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('SEuclidean dist: size of V does not match')
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":3693
  *         self.p = 2
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('SEuclidean dist: size of V does not match')
@@ -30111,7 +30111,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":3697
  *             raise ValueError('SEuclidean dist: size of V does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -30162,7 +30162,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tmp = x1[j] - x2[j]
  *             d += (tmp * tmp / self.vec[j])             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_t_4 = __pyx_v_j;
     __pyx_v_d = (__pyx_v_d + ((__pyx_v_tmp * __pyx_v_tmp) / ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_4)) ))))));
@@ -30172,7 +30172,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tmp = x1[j] - x2[j]
  *             d += (tmp * tmp / self.vec[j])
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_r = __pyx_v_d;
@@ -30180,7 +30180,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3697
  *             raise ValueError('SEuclidean dist: size of V does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -30193,7 +30193,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3710
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -30210,7 +30210,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return sqrt(self.rdist(x1, x2, size))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance32_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 3716, __pyx_L1_error)
@@ -30219,7 +30219,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3710
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -30243,20 +30243,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3718
  *         return sqrt(self.rdist(x1, x2, size))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance32__rdist_to_dist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3719
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  *         return sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  */
   __pyx_r = sqrt(__pyx_v_rdist);
@@ -30264,10 +30264,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3718
  *         return sqrt(self.rdist(x1, x2, size))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -30277,20 +30277,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3721
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance32__dist_to_rdist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_SEuclideanDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3722
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  *         return dist * dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
@@ -30298,10 +30298,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3721
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -30311,10 +30311,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3724
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -30342,10 +30342,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3725
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return np.sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -30375,10 +30375,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":3724
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -30396,10 +30396,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":3727
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
 /* Python wrapper */
@@ -30425,10 +30425,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":3728
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -30440,10 +30440,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":3727
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
   /* function exit code */
@@ -30459,7 +30459,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20SEuclideanDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":3730
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -30482,7 +30482,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -30490,32 +30490,32 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3748
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
  *             float64_t unsquared = 0
- * 
+ *
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3749
- * 
+ *
  *             float64_t d = 0.0
  *             float64_t unsquared = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_unsquared = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3751
  *             float64_t unsquared = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -30533,11 +30533,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":3752
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -30546,7 +30546,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -30554,7 +30554,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":3755
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 unsquared = x1_data[i1] - x2_data[i2]
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
@@ -30563,7 +30563,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":3756
- * 
+ *
  *             if ix1 == ix2:
  *                 unsquared = x1_data[i1] - x2_data[i2]             # <<<<<<<<<<<<<<
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
@@ -30601,7 +30601,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":3755
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 unsquared = x1_data[i1] - x2_data[i2]
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
@@ -30672,7 +30672,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x2_data[i2]
  *                 d = d + (unsquared * unsquared) / self.vec[ix2]             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_ix2;
       __pyx_v_d = (__pyx_v_d + ((__pyx_v_unsquared * __pyx_v_unsquared) / ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)(*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_3)) ))))));
@@ -30681,7 +30681,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 unsquared = x2_data[i2]
  *                 d = d + (unsquared * unsquared) / self.vec[ix2]
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -30691,7 +30691,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3769
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -30700,7 +30700,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3770
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
@@ -30751,7 +30751,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":3769
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -30805,7 +30805,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
     }
@@ -30816,7 +30816,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 d = d + (unsquared * unsquared) / self.vec[ix1]
  *                 i1 = i1 + 1
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -30824,7 +30824,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3730
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -30837,7 +30837,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3783
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -30871,7 +30871,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3783
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -30898,7 +30898,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = 1
- * 
+ *
  */
 
 /* Python wrapper */
@@ -30926,7 +30926,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19ManhattanDistance32___in
  *     """
  *     def __init__(self):
  *         self.p = 1             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_v_self->__pyx_base.p = 1.0;
@@ -30936,7 +30936,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19ManhattanDistance32___in
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = 1
- * 
+ *
  */
 
   /* function exit code */
@@ -30947,7 +30947,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19ManhattanDistance32___in
 
 /* "sklearn/metrics/_dist_metrics.pyx":3820
  *         self.p = 1
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -30987,7 +30987,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d += fabs(x1[j] - x2[j])             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j]))));
   }
@@ -30996,7 +30996,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d += fabs(x1[j] - x2[j])
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -31004,7 +31004,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3820
  *         self.p = 1
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -31017,7 +31017,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":3832
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -31039,7 +31039,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -31047,23 +31047,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3850
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3852
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -31081,11 +31081,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":3853
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -31094,7 +31094,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -31102,7 +31102,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":3856
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = d + fabs(x1_data[i1] - x2_data[i2])
  *                 i1 = i1 + 1
@@ -31111,7 +31111,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":3857
- * 
+ *
  *             if ix1 == ix2:
  *                 d = d + fabs(x1_data[i1] - x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -31139,7 +31139,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":3856
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = d + fabs(x1_data[i1] - x2_data[i2])
  *                 i1 = i1 + 1
@@ -31190,7 +31190,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = d + fabs(x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_d = (__pyx_v_d + fabs((__pyx_v_x2_data[__pyx_v_i2])));
@@ -31199,7 +31199,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = d + fabs(x2_data[i2])
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -31209,7 +31209,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3867
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d = d + fabs(x2_data[i2])
@@ -31218,7 +31218,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3868
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 d = d + fabs(x2_data[i2])
@@ -31249,7 +31249,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":3867
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d = d + fabs(x2_data[i2])
@@ -31274,7 +31274,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d = d + fabs(x1_data[i1])             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + fabs((__pyx_v_x1_data[__pyx_v_i1])));
 
@@ -31282,7 +31282,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d = d + fabs(x1_data[i1])
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -31292,17 +31292,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3876
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3832
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -31318,7 +31318,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = INF32
- * 
+ *
  */
 
 /* Python wrapper */
@@ -31346,7 +31346,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19ChebyshevDistance32___in
  *     """
  *     def __init__(self):
  *         self.p = INF32             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_v_self->__pyx_base.p = __pyx_v_7sklearn_7metrics_13_dist_metrics_INF32;
@@ -31356,7 +31356,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19ChebyshevDistance32___in
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.p = INF32
- * 
+ *
  */
 
   /* function exit code */
@@ -31367,7 +31367,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19ChebyshevDistance32___in
 
 /* "sklearn/metrics/_dist_metrics.pyx":3903
  *         self.p = INF32
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -31407,7 +31407,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d = fmax(d, fabs(x1[j] - x2[j]))             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_v_d = __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(__pyx_v_d, fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j]))));
   }
@@ -31416,15 +31416,15 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d = fmax(d, fabs(x1[j] - x2[j]))
  *         return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3903
  *         self.p = INF32
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -31436,8 +31436,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":3916
- * 
- * 
+ *
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -31459,7 +31459,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -31467,23 +31467,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3934
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3936
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -31501,11 +31501,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":3937
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -31514,7 +31514,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -31522,7 +31522,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":3940
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = fmax(d, fabs(x1_data[i1] - x2_data[i2]))
  *                 i1 = i1 + 1
@@ -31531,7 +31531,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":3941
- * 
+ *
  *             if ix1 == ix2:
  *                 d = fmax(d, fabs(x1_data[i1] - x2_data[i2]))             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -31559,7 +31559,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":3940
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = fmax(d, fabs(x1_data[i1] - x2_data[i2]))
  *                 i1 = i1 + 1
@@ -31610,7 +31610,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = fmax(d, fabs(x2_data[i2]))             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_d = __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(__pyx_v_d, fabs((__pyx_v_x2_data[__pyx_v_i2])));
@@ -31619,7 +31619,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = fmax(d, fabs(x2_data[i2]))
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -31629,7 +31629,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3951
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d = fmax(d, fabs(x2_data[i2]))
@@ -31638,7 +31638,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":3952
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 d = fmax(d, fabs(x2_data[i2]))
@@ -31669,7 +31669,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":3951
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d = fmax(d, fabs(x2_data[i2]))
@@ -31694,7 +31694,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d = fmax(d, fabs(x1_data[i1]))             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = __pyx_f_7sklearn_7metrics_13_dist_metrics_fmax(__pyx_v_d, fabs((__pyx_v_x1_data[__pyx_v_i1])));
 
@@ -31702,7 +31702,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d = fmax(d, fabs(x1_data[i1]))
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -31712,17 +31712,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":3960
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3916
- * 
- * 
+ *
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -31897,7 +31897,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32___in
  *         elif np.isinf(p):
  *             raise ValueError("MinkowskiDistance requires finite p. "             # <<<<<<<<<<<<<<
  *                              "For p=inf, use ChebyshevDistance.")
- * 
+ *
  */
     __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 3994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -31916,7 +31916,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32___in
 
   /* "sklearn/metrics/_dist_metrics.pyx":3997
  *                              "For p=inf, use ChebyshevDistance.")
- * 
+ *
  *         self.p = p             # <<<<<<<<<<<<<<
  *         if w is not None:
  *             w_array = check_array(
@@ -31925,7 +31925,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32___in
   __pyx_v_self->__pyx_base.p = __pyx_t_5;
 
   /* "sklearn/metrics/_dist_metrics.pyx":3998
- * 
+ *
  *         self.p = p
  *         if w is not None:             # <<<<<<<<<<<<<<
  *             w_array = check_array(
@@ -32059,7 +32059,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32___in
     __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.vec.shape[0]);
 
     /* "sklearn/metrics/_dist_metrics.pyx":3998
- * 
+ *
  *         self.p = p
  *         if w is not None:             # <<<<<<<<<<<<<<
  *             w_array = check_array(
@@ -32073,7 +32073,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32___in
  *         else:
  *             self.vec = np.asarray([], dtype=np.float64)             # <<<<<<<<<<<<<<
  *             self.size = 0
- * 
+ *
  */
   /*else*/ {
     __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 4007, __pyx_L1_error)
@@ -32113,7 +32113,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32___in
  *         else:
  *             self.vec = np.asarray([], dtype=np.float64)
  *             self.size = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
     __pyx_v_self->__pyx_base.size = 0;
@@ -32148,7 +32148,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32___in
 
 /* "sklearn/metrics/_dist_metrics.pyx":4010
  *             self.size = 0
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if self.size > 0 and X.shape[1] != self.size:
  *             raise ValueError("MinkowskiDistance: the size of w must match "
@@ -32183,7 +32183,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4011
- * 
+ *
  *     def _validate_data(self, X):
  *         if self.size > 0 and X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError("MinkowskiDistance: the size of w must match "
@@ -32232,7 +32232,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
  *             raise ValueError("MinkowskiDistance: the size of w must match "
  *                              f"the number of features ({X.shape[1]}). "             # <<<<<<<<<<<<<<
  *                              f"Currently len(w)={self.size}.")
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 4013, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -32256,7 +32256,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
  *             raise ValueError("MinkowskiDistance: the size of w must match "
  *                              f"the number of features ({X.shape[1]}). "
  *                              f"Currently len(w)={self.size}.")             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(
  */
     __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_self->__pyx_base.size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 4014, __pyx_L1_error)
@@ -32292,7 +32292,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
     __PYX_ERR(1, 4012, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":4011
- * 
+ *
  *     def _validate_data(self, X):
  *         if self.size > 0 and X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError("MinkowskiDistance: the size of w must match "
@@ -32302,7 +32302,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
 
   /* "sklearn/metrics/_dist_metrics.pyx":4010
  *             self.size = 0
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if self.size > 0 and X.shape[1] != self.size:
  *             raise ValueError("MinkowskiDistance: the size of w must match "
@@ -32325,7 +32325,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
 
 /* "sklearn/metrics/_dist_metrics.pyx":4016
  *                              f"Currently len(w)={self.size}.")
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -32421,7 +32421,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             for j in range(size):
  *                 d += (pow(fabs(x1[j] - x2[j]), self.p))             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + pow(fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j]))), __pyx_v_self->__pyx_base.p));
     }
@@ -32432,7 +32432,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             for j in range(size):
  *                 d += (pow(fabs(x1[j] - x2[j]), self.p))
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_r = __pyx_v_d;
@@ -32440,7 +32440,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4016
  *                              f"Currently len(w)={self.size}.")
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -32453,7 +32453,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4033
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -32470,7 +32470,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 4039, __pyx_L1_error)
@@ -32479,7 +32479,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4033
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -32503,20 +32503,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4041
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32__rdist_to_dist(struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4042
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  *         return pow(rdist, 1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  */
   __pyx_r = pow(__pyx_v_rdist, (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)1.) / __pyx_v_self->__pyx_base.p));
@@ -32524,10 +32524,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4041
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -32537,20 +32537,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4044
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(dist, self.p)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance32__dist_to_rdist(struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MinkowskiDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4045
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  *         return pow(dist, self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = pow(__pyx_v_dist, __pyx_v_self->__pyx_base.p);
@@ -32558,10 +32558,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4044
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(dist, self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -32571,10 +32571,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4047
  *         return pow(dist, self.p)
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return rdist ** (1. / self.p)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -32601,10 +32601,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4048
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return rdist ** (1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -32619,10 +32619,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
 
   /* "sklearn/metrics/_dist_metrics.pyx":4047
  *         return pow(dist, self.p)
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return rdist ** (1. / self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -32639,10 +32639,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
 
 /* "sklearn/metrics/_dist_metrics.pyx":4050
  *         return rdist ** (1. / self.p)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** self.p
- * 
+ *
  */
 
 /* Python wrapper */
@@ -32669,10 +32669,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4051
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** self.p             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -32687,10 +32687,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
 
   /* "sklearn/metrics/_dist_metrics.pyx":4050
  *         return rdist ** (1. / self.p)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** self.p
- * 
+ *
  */
 
   /* function exit code */
@@ -32707,7 +32707,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19MinkowskiDistance3
 
 /* "sklearn/metrics/_dist_metrics.pyx":4053
  *         return dist ** self.p
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -32730,7 +32730,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -32738,32 +32738,32 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4071
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
  *             bint has_w = self.size > 0
- * 
+ *
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4072
- * 
+ *
  *             float64_t d = 0.0
  *             bint has_w = self.size > 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if has_w:
  */
   __pyx_v_has_w = (__pyx_v_self->__pyx_base.size > 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4074
  *             bint has_w = self.size > 0
- * 
+ *
  *         if has_w:             # <<<<<<<<<<<<<<
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]
@@ -32772,7 +32772,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4075
- * 
+ *
  *         if has_w:
  *             while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix1 = x1_indices[i1]
@@ -32795,7 +32795,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_i1;
       __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -32804,7 +32804,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]
  *                 ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if ix1 == ix2:
  */
       __pyx_t_3 = __pyx_v_i2;
@@ -32812,7 +32812,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4079
  *                 ix2 = x2_indices[i2]
- * 
+ *
  *                 if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                     d = d + (self.vec[ix1] * pow(fabs(
  *                         x1_data[i1] - x2_data[i2]
@@ -32821,7 +32821,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
       if (__pyx_t_1) {
 
         /* "sklearn/metrics/_dist_metrics.pyx":4080
- * 
+ *
  *                 if ix1 == ix2:
  *                     d = d + (self.vec[ix1] * pow(fabs(             # <<<<<<<<<<<<<<
  *                         x1_data[i1] - x2_data[i2]
@@ -32858,7 +32858,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
         /* "sklearn/metrics/_dist_metrics.pyx":4079
  *                 ix2 = x2_indices[i2]
- * 
+ *
  *                 if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                     d = d + (self.vec[ix1] * pow(fabs(
  *                         x1_data[i1] - x2_data[i2]
@@ -32910,7 +32910,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     d = d + (self.vec[ix2] * pow(fabs(x2_data[i2]), self.p))             # <<<<<<<<<<<<<<
  *                     i2 = i2 + 1
- * 
+ *
  */
       /*else*/ {
         __pyx_t_3 = __pyx_v_ix2;
@@ -32920,7 +32920,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     d = d + (self.vec[ix2] * pow(fabs(x2_data[i2]), self.p))
  *                     i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             if i1 == x1_end:
  */
         __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -32930,7 +32930,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4092
  *                     i2 = i2 + 1
- * 
+ *
  *             if i1 == x1_end:             # <<<<<<<<<<<<<<
  *                 while i2 < x2_end:
  *                     ix2 = x2_indices[i2]
@@ -32939,7 +32939,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4093
- * 
+ *
  *             if i1 == x1_end:
  *                 while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                     ix2 = x2_indices[i2]
@@ -32981,7 +32981,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4092
  *                     i2 = i2 + 1
- * 
+ *
  *             if i1 == x1_end:             # <<<<<<<<<<<<<<
  *                 while i2 < x2_end:
  *                     ix2 = x2_indices[i2]
@@ -33016,7 +33016,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                     ix1 = x1_indices[i1]
  *                     d = d + (self.vec[ix1] * pow(fabs(x1_data[i1]), self.p))             # <<<<<<<<<<<<<<
  *                     i1 = i1 + 1
- * 
+ *
  */
         __pyx_t_3 = __pyx_v_ix1;
         __pyx_v_d = (__pyx_v_d + ((*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_3)) ))) * pow(fabs((__pyx_v_x1_data[__pyx_v_i1])), __pyx_v_self->__pyx_base.p)));
@@ -33025,7 +33025,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                     ix1 = x1_indices[i1]
  *                     d = d + (self.vec[ix1] * pow(fabs(x1_data[i1]), self.p))
  *                     i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             return d
  */
         __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -33035,7 +33035,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4103
  *                     i1 = i1 + 1
- * 
+ *
  *             return d             # <<<<<<<<<<<<<<
  *         else:
  *             while i1 < x1_end and i2 < x2_end:
@@ -33045,7 +33045,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4074
  *             bint has_w = self.size > 0
- * 
+ *
  *         if has_w:             # <<<<<<<<<<<<<<
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]
@@ -33077,7 +33077,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_i1;
       __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -33086,7 +33086,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end and i2 < x2_end:
  *                 ix1 = x1_indices[i1]
  *                 ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *                 if ix1 == ix2:
  */
       __pyx_t_3 = __pyx_v_i2;
@@ -33094,7 +33094,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4109
  *                 ix2 = x2_indices[i2]
- * 
+ *
  *                 if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                     d = d + (pow(fabs(
  *                         x1_data[i1] - x2_data[i2]
@@ -33103,7 +33103,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
       if (__pyx_t_1) {
 
         /* "sklearn/metrics/_dist_metrics.pyx":4110
- * 
+ *
  *                 if ix1 == ix2:
  *                     d = d + (pow(fabs(             # <<<<<<<<<<<<<<
  *                         x1_data[i1] - x2_data[i2]
@@ -33131,7 +33131,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
         /* "sklearn/metrics/_dist_metrics.pyx":4109
  *                 ix2 = x2_indices[i2]
- * 
+ *
  *                 if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                     d = d + (pow(fabs(
  *                         x1_data[i1] - x2_data[i2]
@@ -33182,7 +33182,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))             # <<<<<<<<<<<<<<
  *                     i2 = i2 + 1
- * 
+ *
  */
       /*else*/ {
         __pyx_v_d = (__pyx_v_d + pow(fabs((__pyx_v_x2_data[__pyx_v_i2])), __pyx_v_self->__pyx_base.p));
@@ -33191,7 +33191,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))
  *                     i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             if i1 == x1_end:
  */
         __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -33201,7 +33201,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4122
  *                     i2 = i2 + 1
- * 
+ *
  *             if i1 == x1_end:             # <<<<<<<<<<<<<<
  *                 while i2 < x2_end:
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))
@@ -33210,7 +33210,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4123
- * 
+ *
  *             if i1 == x1_end:
  *                 while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))
@@ -33241,7 +33241,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4122
  *                     i2 = i2 + 1
- * 
+ *
  *             if i1 == x1_end:             # <<<<<<<<<<<<<<
  *                 while i2 < x2_end:
  *                     d = d + (pow(fabs(x2_data[i2]), self.p))
@@ -33266,7 +33266,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 while i1 < x1_end:
  *                     d = d + (pow(fabs(x1_data[i1]), self.p))             # <<<<<<<<<<<<<<
  *                     i1 = i1 + 1
- * 
+ *
  */
         __pyx_v_d = (__pyx_v_d + pow(fabs((__pyx_v_x1_data[__pyx_v_i1])), __pyx_v_self->__pyx_base.p));
 
@@ -33274,7 +33274,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 while i1 < x1_end:
  *                     d = d + (pow(fabs(x1_data[i1]), self.p))
  *                     i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             return d
  */
         __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -33284,9 +33284,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4131
  *                     i1 = i1 + 1
- * 
+ *
  *             return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
     __pyx_r = __pyx_v_d;
@@ -33295,7 +33295,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4053
  *         return dist ** self.p
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -33308,7 +33308,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4133
  *             return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -33342,7 +33342,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4133
  *             return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -33365,7 +33365,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":4179
- * 
+ *
  *     """
  *     def __init__(self, p, w):             # <<<<<<<<<<<<<<
  *         from warnings import warn
@@ -33488,7 +33488,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32___i
 
   /* "sklearn/metrics/_dist_metrics.pyx":4190
  *             "convention.", FutureWarning)
- * 
+ *
  *         if p < 1:             # <<<<<<<<<<<<<<
  *             raise ValueError("p must be greater than 1")
  *         elif np.isinf(p):
@@ -33499,7 +33499,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32___i
   if (unlikely(__pyx_t_3)) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4191
- * 
+ *
  *         if p < 1:
  *             raise ValueError("p must be greater than 1")             # <<<<<<<<<<<<<<
  *         elif np.isinf(p):
@@ -33513,7 +33513,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32___i
 
     /* "sklearn/metrics/_dist_metrics.pyx":4190
  *             "convention.", FutureWarning)
- * 
+ *
  *         if p < 1:             # <<<<<<<<<<<<<<
  *             raise ValueError("p must be greater than 1")
  *         elif np.isinf(p):
@@ -33588,7 +33588,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32___i
  *         self.p = p
  *         self.vec = np.asarray(w, dtype=np.float64)             # <<<<<<<<<<<<<<
  *         self.size = self.vec.shape[0]
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 4196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -33625,13 +33625,13 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32___i
  *         self.p = p
  *         self.vec = np.asarray(w, dtype=np.float64)
  *         self.size = self.vec.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
   __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.vec.shape[0]);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4179
- * 
+ *
  *     """
  *     def __init__(self, p, w):             # <<<<<<<<<<<<<<
  *         from warnings import warn
@@ -33658,7 +33658,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32___i
 
 /* "sklearn/metrics/_dist_metrics.pyx":4199
  *         self.size = self.vec.shape[0]
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('WMinkowskiDistance dist: '
@@ -33690,7 +33690,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4200
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('WMinkowskiDistance dist: '
@@ -33715,7 +33715,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
  *         if X.shape[1] != self.size:
  *             raise ValueError('WMinkowskiDistance dist: '             # <<<<<<<<<<<<<<
  *                              'size of w does not match')
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 4201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -33724,7 +33724,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
     __PYX_ERR(1, 4201, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":4200
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('WMinkowskiDistance dist: '
@@ -33734,7 +33734,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":4199
  *         self.size = self.vec.shape[0]
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('WMinkowskiDistance dist: '
@@ -33757,7 +33757,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":4204
  *                              'size of w does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -33774,7 +33774,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4211
  *     ) except -1 nogil:
- * 
+ *
  *         cdef float64_t d = 0             # <<<<<<<<<<<<<<
  *         cdef intp_t j
  *         for j in range(size):
@@ -33798,7 +33798,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d += (pow(self.vec[j] * fabs(x1[j] - x2[j]), self.p))             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_t_4 = __pyx_v_j;
     __pyx_v_d = (__pyx_v_d + pow(((*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_4)) ))) * fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j])))), __pyx_v_self->__pyx_base.p));
@@ -33808,7 +33808,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         for j in range(size):
  *             d += (pow(self.vec[j] * fabs(x1[j] - x2[j]), self.p))
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_r = __pyx_v_d;
@@ -33816,7 +33816,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4204
  *                              'size of w does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -33829,7 +33829,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4217
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -33846,7 +33846,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 4223, __pyx_L1_error)
@@ -33855,7 +33855,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4217
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -33879,20 +33879,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4225
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32__rdist_to_dist(struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4226
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  *         return pow(rdist, 1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  */
   __pyx_r = pow(__pyx_v_rdist, (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)1.) / __pyx_v_self->__pyx_base.p));
@@ -33900,10 +33900,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4225
  *         return pow(self.rdist(x1, x2, size), 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -33913,20 +33913,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4228
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(dist, self.p)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance32__dist_to_rdist(struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_WMinkowskiDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4229
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  *         return pow(dist, self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = pow(__pyx_v_dist, __pyx_v_self->__pyx_base.p);
@@ -33934,10 +33934,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4228
  *         return pow(rdist, 1. / self.p)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return pow(dist, self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -33947,10 +33947,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4231
  *         return pow(dist, self.p)
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return rdist ** (1. / self.p)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -33977,10 +33977,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4232
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return rdist ** (1. / self.p)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -33995,10 +33995,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":4231
  *         return pow(dist, self.p)
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return rdist ** (1. / self.p)
- * 
+ *
  */
 
   /* function exit code */
@@ -34015,10 +34015,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":4234
  *         return rdist ** (1. / self.p)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** self.p
- * 
+ *
  */
 
 /* Python wrapper */
@@ -34045,10 +34045,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4235
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** self.p             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -34063,10 +34063,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
 
   /* "sklearn/metrics/_dist_metrics.pyx":4234
  *         return rdist ** (1. / self.p)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** self.p
- * 
+ *
  */
 
   /* function exit code */
@@ -34083,7 +34083,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_20WMinkowskiDistance
 
 /* "sklearn/metrics/_dist_metrics.pyx":4237
  *         return dist ** self.p
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -34105,7 +34105,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -34113,23 +34113,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4255
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4257
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -34147,11 +34147,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4258
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -34160,7 +34160,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -34168,7 +34168,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4261
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = d + pow(self.vec[ix1] * fabs(
  *                     x1_data[i1] - x2_data[i2]
@@ -34177,7 +34177,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4262
- * 
+ *
  *             if ix1 == ix2:
  *                 d = d + pow(self.vec[ix1] * fabs(             # <<<<<<<<<<<<<<
  *                     x1_data[i1] - x2_data[i2]
@@ -34214,7 +34214,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4261
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d = d + pow(self.vec[ix1] * fabs(
  *                     x1_data[i1] - x2_data[i2]
@@ -34266,7 +34266,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = d + pow(self.vec[ix2] * fabs(x2_data[i2]), self.p)             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_t_3 = __pyx_v_ix2;
@@ -34276,7 +34276,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d = d + pow(self.vec[ix2] * fabs(x2_data[i2]), self.p)
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -34286,7 +34286,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4274
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -34295,7 +34295,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4275
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
@@ -34337,7 +34337,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4274
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -34372,7 +34372,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 ix1 = x1_indices[i1]
  *                 d = d + pow(self.vec[ix1] * fabs(x1_data[i1]), self.p)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_ix1;
       __pyx_v_d = (__pyx_v_d + pow(((*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t const  *) __pyx_v_self->__pyx_base.vec.data) + __pyx_t_3)) ))) * fabs((__pyx_v_x1_data[__pyx_v_i1]))), __pyx_v_self->__pyx_base.p));
@@ -34381,7 +34381,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 ix1 = x1_indices[i1]
  *                 d = d + pow(self.vec[ix1] * fabs(x1_data[i1]), self.p)
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -34391,9 +34391,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4285
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -34401,7 +34401,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4237
  *         return dist ** self.p
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -34414,7 +34414,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4287
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -34448,7 +34448,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4287
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -34472,7 +34472,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4334
  *     cdef float64_t[::1] buffer
- * 
+ *
  *     def __init__(self, V=None, VI=None):             # <<<<<<<<<<<<<<
  *         if VI is None:
  *             if V is None:
@@ -34569,7 +34569,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32___
   __Pyx_INCREF(__pyx_v_VI);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4335
- * 
+ *
  *     def __init__(self, V=None, VI=None):
  *         if VI is None:             # <<<<<<<<<<<<<<
  *             if V is None:
@@ -34646,7 +34646,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32___
     __pyx_t_3 = 0;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4335
- * 
+ *
  *     def __init__(self, V=None, VI=None):
  *         if VI is None:             # <<<<<<<<<<<<<<
  *             if V is None:
@@ -34659,7 +34659,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32___
  *             VI = np.linalg.inv(V)
  *         if VI.ndim != 2 or VI.shape[0] != VI.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("V/VI must be square")
- * 
+ *
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_VI, __pyx_n_s_ndim); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 4340, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -34696,7 +34696,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32___
  *             VI = np.linalg.inv(V)
  *         if VI.ndim != 2 or VI.shape[0] != VI.shape[1]:
  *             raise ValueError("V/VI must be square")             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.mat = np.asarray(VI, dtype=np.float64, order='C')
  */
     __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 4341, __pyx_L1_error)
@@ -34710,15 +34710,15 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32___
  *             VI = np.linalg.inv(V)
  *         if VI.ndim != 2 or VI.shape[0] != VI.shape[1]:             # <<<<<<<<<<<<<<
  *             raise ValueError("V/VI must be square")
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":4343
  *             raise ValueError("V/VI must be square")
- * 
+ *
  *         self.mat = np.asarray(VI, dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.size = self.mat.shape[0]
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 4343, __pyx_L1_error)
@@ -34755,18 +34755,18 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32___
 
   /* "sklearn/metrics/_dist_metrics.pyx":4345
  *         self.mat = np.asarray(VI, dtype=np.float64, order='C')
- * 
+ *
  *         self.size = self.mat.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         # We need to create a buffer to store the vectors' coordinates' differences
  */
   __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.mat.shape[0]);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4348
- * 
+ *
  *         # We need to create a buffer to store the vectors' coordinates' differences
  *         self.buffer = np.zeros(self.size, dtype=np.float64)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setstate__(self, state):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 4348, __pyx_L1_error)
@@ -34804,7 +34804,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32___
 
   /* "sklearn/metrics/_dist_metrics.pyx":4334
  *     cdef float64_t[::1] buffer
- * 
+ *
  *     def __init__(self, V=None, VI=None):             # <<<<<<<<<<<<<<
  *         if VI is None:
  *             if V is None:
@@ -34831,7 +34831,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32___
 
 /* "sklearn/metrics/_dist_metrics.pyx":4350
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         super().__setstate__(state)
  *         self.size = self.mat.shape[0]
@@ -34865,7 +34865,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
   __Pyx_RefNannySetupContext("__setstate__", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4351
- * 
+ *
  *     def __setstate__(self, state):
  *         super().__setstate__(state)             # <<<<<<<<<<<<<<
  *         self.size = self.mat.shape[0]
@@ -34907,7 +34907,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
  *         super().__setstate__(state)
  *         self.size = self.mat.shape[0]             # <<<<<<<<<<<<<<
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  */
   __pyx_v_self->__pyx_base.size = (__pyx_v_self->__pyx_base.mat.shape[0]);
 
@@ -34915,7 +34915,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
  *         super().__setstate__(state)
  *         self.size = self.mat.shape[0]
  *         self.buffer = np.zeros(self.size, dtype=np.float64)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4353, __pyx_L1_error)
@@ -34953,7 +34953,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
 
   /* "sklearn/metrics/_dist_metrics.pyx":4350
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         super().__setstate__(state)
  *         self.size = self.mat.shape[0]
@@ -34979,7 +34979,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
 
 /* "sklearn/metrics/_dist_metrics.pyx":4355
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('Mahalanobis dist: size of V does not match')
@@ -35011,11 +35011,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4356
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('Mahalanobis dist: size of V does not match')
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -35035,7 +35035,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:
  *             raise ValueError('Mahalanobis dist: size of V does not match')             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 4357, __pyx_L1_error)
@@ -35045,17 +35045,17 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
     __PYX_ERR(1, 4357, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":4356
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:             # <<<<<<<<<<<<<<
  *             raise ValueError('Mahalanobis dist: size of V does not match')
- * 
+ *
  */
   }
 
   /* "sklearn/metrics/_dist_metrics.pyx":4355
  *         self.buffer = np.zeros(self.size, dtype=np.float64)
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != self.size:
  *             raise ValueError('Mahalanobis dist: size of V does not match')
@@ -35078,7 +35078,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
 
 /* "sklearn/metrics/_dist_metrics.pyx":4359
  *             raise ValueError('Mahalanobis dist: size of V does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -35105,16 +35105,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     ) except -1 nogil:
  *         cdef float64_t tmp, d = 0             # <<<<<<<<<<<<<<
  *         cdef intp_t i, j
- * 
+ *
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4369
- * 
+ *
  *         # compute (x1 - x2).T * VI * (x1 - x2)
  *         for i in range(size):             # <<<<<<<<<<<<<<
  *             self.buffer[i] = x1[i] - x2[i]
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_size;
   __pyx_t_2 = __pyx_t_1;
@@ -35125,7 +35125,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         # compute (x1 - x2).T * VI * (x1 - x2)
  *         for i in range(size):
  *             self.buffer[i] = x1[i] - x2[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *         for i in range(size):
  */
     __pyx_t_4 = __pyx_v_i;
@@ -35134,7 +35134,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4372
  *             self.buffer[i] = x1[i] - x2[i]
- * 
+ *
  *         for i in range(size):             # <<<<<<<<<<<<<<
  *             tmp = 0
  *             for j in range(size):
@@ -35145,7 +35145,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     __pyx_v_i = __pyx_t_3;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4373
- * 
+ *
  *         for i in range(size):
  *             tmp = 0             # <<<<<<<<<<<<<<
  *             for j in range(size):
@@ -35183,7 +35183,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tmp += self.mat[i, j] * self.buffer[j]
  *             d += tmp * self.buffer[i]             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
     __pyx_t_4 = __pyx_v_i;
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * (*((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_self->buffer.data) + __pyx_t_4)) )))));
@@ -35193,7 +35193,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tmp += self.mat[i, j] * self.buffer[j]
  *             d += tmp * self.buffer[i]
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(
  */
   __pyx_r = __pyx_v_d;
@@ -35201,7 +35201,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4359
  *             raise ValueError('Mahalanobis dist: size of V does not match')
- * 
+ *
  *     cdef inline float64_t rdist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -35214,7 +35214,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4379
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -35231,7 +35231,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return sqrt(self.rdist(x1, x2, size))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 4385, __pyx_L1_error)
@@ -35240,7 +35240,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4379
  *         return d
- * 
+ *
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -35264,20 +35264,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4387
  *         return sqrt(self.rdist(x1, x2, size))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32__rdist_to_dist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4388
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  *         return sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  */
   __pyx_r = sqrt(__pyx_v_rdist);
@@ -35285,10 +35285,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4387
  *         return sqrt(self.rdist(x1, x2, size))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -35298,20 +35298,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4390
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistance32__dist_to_rdist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_MahalanobisDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4391
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  *         return dist * dist             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
@@ -35319,10 +35319,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4390
  *         return sqrt(rdist)
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -35332,10 +35332,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4393
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -35363,10 +35363,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4394
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return np.sqrt(rdist)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -35396,10 +35396,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
 
   /* "sklearn/metrics/_dist_metrics.pyx":4393
  *         return dist * dist
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return np.sqrt(rdist)
- * 
+ *
  */
 
   /* function exit code */
@@ -35417,10 +35417,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
 
 /* "sklearn/metrics/_dist_metrics.pyx":4396
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
 /* Python wrapper */
@@ -35446,10 +35446,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4397
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         return dist ** 2             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -35461,10 +35461,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
 
   /* "sklearn/metrics/_dist_metrics.pyx":4396
  *         return np.sqrt(rdist)
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         return dist ** 2
- * 
+ *
  */
 
   /* function exit code */
@@ -35480,7 +35480,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_21MahalanobisDistanc
 
 /* "sklearn/metrics/_dist_metrics.pyx":4399
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -35513,7 +35513,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -35521,23 +35521,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t tmp, d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4417
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t tmp, d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4419
  *             float64_t tmp, d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -35555,11 +35555,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4420
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -35568,7 +35568,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -35576,7 +35576,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4423
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 self.buffer[ix1] = x1_data[i1] - x2_data[i2]
  *                 i1 = i1 + 1
@@ -35585,7 +35585,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4424
- * 
+ *
  *             if ix1 == ix2:
  *                 self.buffer[ix1] = x1_data[i1] - x2_data[i2]             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -35614,7 +35614,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4423
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 self.buffer[ix1] = x1_data[i1] - x2_data[i2]
  *                 i1 = i1 + 1
@@ -35666,7 +35666,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 self.buffer[ix2] = - x2_data[i2]             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_t_3 = __pyx_v_ix2;
@@ -35676,7 +35676,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 self.buffer[ix2] = - x2_data[i2]
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -35686,7 +35686,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4434
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -35695,7 +35695,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4435
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
@@ -35737,7 +35737,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4434
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -35772,7 +35772,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 ix1 = x1_indices[i1]
  *                 self.buffer[ix1] = x1_data[i1]             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_t_3 = __pyx_v_ix1;
       *((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) ( /* dim=0 */ ((char *) (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t *) __pyx_v_self->buffer.data) + __pyx_t_3)) )) = (__pyx_v_x1_data[__pyx_v_i1]);
@@ -35781,7 +35781,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 ix1 = x1_indices[i1]
  *                 self.buffer[ix1] = x1_data[i1]
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         for i in range(size):
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -35791,7 +35791,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4445
  *                 i1 = i1 + 1
- * 
+ *
  *         for i in range(size):             # <<<<<<<<<<<<<<
  *             tmp = 0
  *             for j in range(size):
@@ -35802,7 +35802,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     __pyx_v_i = __pyx_t_5;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4446
- * 
+ *
  *         for i in range(size):
  *             tmp = 0             # <<<<<<<<<<<<<<
  *             for j in range(size):
@@ -35827,7 +35827,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             for j in range(size):
  *                 tmp += self.mat[i, j] * self.buffer[j]             # <<<<<<<<<<<<<<
  *             d += tmp * self.buffer[i]
- * 
+ *
  */
       __pyx_t_9 = __pyx_v_i;
       __pyx_t_10 = __pyx_v_j;
@@ -35839,7 +35839,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             for j in range(size):
  *                 tmp += self.mat[i, j] * self.buffer[j]
  *             d += tmp * self.buffer[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
     __pyx_t_6 = __pyx_v_i;
@@ -35848,9 +35848,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4451
  *             d += tmp * self.buffer[i]
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -35858,7 +35858,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4399
  *         return dist ** 2
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -35871,7 +35871,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4453
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -35905,7 +35905,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4453
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -35980,7 +35980,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             if x1[j] != x2[j]:
  *                 n_unequal += 1             # <<<<<<<<<<<<<<
  *         return float(n_unequal) / size
- * 
+ *
  */
       __pyx_v_n_unequal = (__pyx_v_n_unequal + 1);
 
@@ -35998,8 +35998,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             if x1[j] != x2[j]:
  *                 n_unequal += 1
  *         return float(n_unequal) / size             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((double)__pyx_v_n_unequal) / ((double)__pyx_v_size));
   goto __pyx_L0;
@@ -36018,8 +36018,8 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":4504
- * 
- * 
+ *
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -36041,7 +36041,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -36049,23 +36049,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4522
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4524
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -36083,11 +36083,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4525
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -36096,7 +36096,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -36104,7 +36104,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4528
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d += (x1_data[i1] != x2_data[i2])
  *                 i1 = i1 + 1
@@ -36113,7 +36113,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4529
- * 
+ *
  *             if ix1 == ix2:
  *                 d += (x1_data[i1] != x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -36141,7 +36141,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4528
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d += (x1_data[i1] != x2_data[i2])
  *                 i1 = i1 + 1
@@ -36192,7 +36192,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d += (x2_data[i2] != 0)             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_d = (__pyx_v_d + ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0));
@@ -36201,7 +36201,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d += (x2_data[i2] != 0)
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -36211,7 +36211,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4539
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d += (x2_data[i2] != 0)
@@ -36220,7 +36220,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4540
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 d += (x2_data[i2] != 0)
@@ -36251,7 +36251,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4539
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d += (x2_data[i2] != 0)
@@ -36276,7 +36276,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d += (x1_data[i1] != 0)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0));
 
@@ -36284,7 +36284,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d += (x1_data[i1] != 0)
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         d /= size
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -36294,26 +36294,26 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4548
  *                 i1 = i1 + 1
- * 
+ *
  *         d /= size             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
   __pyx_v_d = (__pyx_v_d / __pyx_v_size);
 
   /* "sklearn/metrics/_dist_metrics.pyx":4550
  *         d /= size
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4504
- * 
- * 
+ *
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -36387,7 +36387,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             if denom > 0:
  *                 d += fabs(x1[j] - x2[j]) / denom             # <<<<<<<<<<<<<<
  *         return d
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + (((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)fabs(((__pyx_v_x1[__pyx_v_j]) - (__pyx_v_x2[__pyx_v_j])))) / __pyx_v_denom));
 
@@ -36405,7 +36405,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             if denom > 0:
  *                 d += fabs(x1[j] - x2[j]) / denom
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = __pyx_v_d;
@@ -36426,7 +36426,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4579
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -36448,7 +36448,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -36456,23 +36456,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t d = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4597
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t d = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_d = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4599
  *             float64_t d = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -36490,11 +36490,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4600
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -36503,7 +36503,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -36511,7 +36511,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4603
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d += (
  *                         fabs(x1_data[i1] - x2_data[i2]) /
@@ -36520,7 +36520,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4604
- * 
+ *
  *             if ix1 == ix2:
  *                 d += (             # <<<<<<<<<<<<<<
  *                         fabs(x1_data[i1] - x2_data[i2]) /
@@ -36548,7 +36548,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4603
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 d += (
  *                         fabs(x1_data[i1] - x2_data[i2]) /
@@ -36599,7 +36599,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d += 1.             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_d = (__pyx_v_d + 1.);
@@ -36608,7 +36608,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 d += 1.
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -36618,7 +36618,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4617
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d += 1.
@@ -36627,7 +36627,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4618
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 d += 1.
@@ -36658,7 +36658,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4617
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 d += 1.
@@ -36683,7 +36683,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d += 1.             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_d = (__pyx_v_d + 1.);
 
@@ -36691,7 +36691,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 d += 1.
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return d
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -36701,9 +36701,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4626
  *                 i1 = i1 + 1
- * 
+ *
  *         return d             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = __pyx_v_d;
@@ -36711,7 +36711,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4579
  *         return d
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -36814,7 +36814,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             return num / denom
  *         else:
  *             return 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   /*else*/ {
@@ -36837,7 +36837,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4656
  *             return 0.0
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -36860,7 +36860,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -36868,32 +36868,32 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t num = 0.0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4674
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t num = 0.0             # <<<<<<<<<<<<<<
  *             float64_t denom = 0.0
- * 
+ *
  */
   __pyx_v_num = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4675
- * 
+ *
  *             float64_t num = 0.0
  *             float64_t denom = 0.0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_denom = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4677
  *             float64_t denom = 0.0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -36911,11 +36911,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4678
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -36924,7 +36924,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -36932,7 +36932,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4681
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 num += fabs(x1_data[i1] - x2_data[i2])
  *                 denom += fabs(x1_data[i1]) + fabs(x2_data[i2])
@@ -36941,7 +36941,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4682
- * 
+ *
  *             if ix1 == ix2:
  *                 num += fabs(x1_data[i1] - x2_data[i2])             # <<<<<<<<<<<<<<
  *                 denom += fabs(x1_data[i1]) + fabs(x2_data[i2])
@@ -36978,7 +36978,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4681
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 num += fabs(x1_data[i1] - x2_data[i2])
  *                 denom += fabs(x1_data[i1]) + fabs(x2_data[i2])
@@ -37048,7 +37048,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 num += fabs(x2_data[i2])
  *                 denom += fabs(x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
       __pyx_v_denom = (__pyx_v_denom + fabs((__pyx_v_x2_data[__pyx_v_i2])));
 
@@ -37056,7 +37056,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 num += fabs(x2_data[i2])
  *                 denom += fabs(x2_data[i2])
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -37066,7 +37066,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4695
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 num += fabs(x1_data[i1])
@@ -37075,7 +37075,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4696
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 num += fabs(x1_data[i1])
@@ -37115,7 +37115,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4695
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 num += fabs(x1_data[i1])
@@ -37149,7 +37149,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 num += fabs(x2_data[i2])
  *                 denom += fabs(x2_data[i2])             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_denom = (__pyx_v_denom + fabs((__pyx_v_x2_data[__pyx_v_i2])));
 
@@ -37157,7 +37157,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 num += fabs(x2_data[i2])
  *                 denom += fabs(x2_data[i2])
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return num / denom
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -37167,9 +37167,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4706
  *                 i1 = i1 + 1
- * 
+ *
  *         return num / denom             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = (__pyx_v_num / __pyx_v_denom);
@@ -37177,7 +37177,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4656
  *             return 0.0
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -37297,7 +37297,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         if nnz == 0:
  *             return 0             # <<<<<<<<<<<<<<
  *         return (nnz - n_eq) * 1.0 / nnz
- * 
+ *
  */
     __pyx_r = 0.0;
     goto __pyx_L0;
@@ -37315,7 +37315,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         if nnz == 0:
  *             return 0
  *         return (nnz - n_eq) * 1.0 / nnz             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = (((__pyx_v_nnz - __pyx_v_n_eq) * 1.0) / ((double)__pyx_v_nnz));
@@ -37336,7 +37336,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4740
  *         return (nnz - n_eq) * 1.0 / nnz
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -37361,7 +37361,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -37369,16 +37369,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, nnz = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4758
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, nnz = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
@@ -37386,7 +37386,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4760
  *             intp_t tf1, tf2, n_tt = 0, nnz = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -37404,11 +37404,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4761
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -37417,7 +37417,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -37425,25 +37425,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4764
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":4765
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":4767
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 nnz += (tf1 or tf2)
  *                 n_tt += (tf1 and tf2)
@@ -37452,7 +37452,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4768
- * 
+ *
  *             if ix1 == ix2:
  *                 nnz += (tf1 or tf2)             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
@@ -37503,7 +37503,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4767
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 nnz += (tf1 or tf2)
  *                 n_tt += (tf1 and tf2)
@@ -37554,7 +37554,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 nnz += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_nnz = (__pyx_v_nnz + __pyx_v_tf2);
@@ -37563,7 +37563,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 nnz += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -37573,7 +37573,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4779
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -37582,7 +37582,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4780
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -37622,7 +37622,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4779
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -37656,7 +37656,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 nnz += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_nnz = (__pyx_v_nnz + __pyx_v_tf1);
 
@@ -37664,7 +37664,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 nnz += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         # Based on https://github.com/scipy/scipy/pull/7373
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -37687,7 +37687,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         if nnz == 0:
  *             return 0             # <<<<<<<<<<<<<<
  *         return (nnz - n_tt) * 1.0 / nnz
- * 
+ *
  */
     __pyx_r = 0.0;
     goto __pyx_L0;
@@ -37705,7 +37705,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         if nnz == 0:
  *             return 0
  *         return (nnz - n_tt) * 1.0 / nnz             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = (((__pyx_v_nnz - __pyx_v_n_tt) * 1.0) / ((double)__pyx_v_nnz));
@@ -37713,7 +37713,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4740
  *         return (nnz - n_eq) * 1.0 / nnz
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -37786,7 +37786,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *         return n_neq * 1. / size
- * 
+ *
  */
     __pyx_v_n_neq = (__pyx_v_n_neq + (__pyx_v_tf1 != __pyx_v_tf2));
   }
@@ -37795,7 +37795,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)
  *         return n_neq * 1. / size             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = ((__pyx_v_n_neq * 1.) / ((double)__pyx_v_size));
@@ -37816,7 +37816,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4823
  *         return n_neq * 1. / size
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -37840,7 +37840,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -37848,23 +37848,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4841
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_neq = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4843
  *             intp_t tf1, tf2, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -37882,11 +37882,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4844
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -37895,7 +37895,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -37903,7 +37903,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4847
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 tf1 = x1_data[i1] != 0
  *                 tf2 = x2_data[i2] != 0
@@ -37912,7 +37912,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4848
- * 
+ *
  *             if ix1 == ix2:
  *                 tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -37958,7 +37958,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4847
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 tf1 = x1_data[i1] != 0
  *                 tf2 = x2_data[i2] != 0
@@ -38009,7 +38009,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += (x2_data[i2] != 0)             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0));
@@ -38018,7 +38018,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += (x2_data[i2] != 0)
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -38028,7 +38028,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4860
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 n_neq += (x2_data[i2] != 0)
@@ -38037,7 +38037,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4861
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 n_neq += (x2_data[i2] != 0)
@@ -38068,7 +38068,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4860
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 n_neq += (x2_data[i2] != 0)
@@ -38093,7 +38093,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 n_neq += (x1_data[i1] != 0)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0));
 
@@ -38101,7 +38101,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             while i1 < x1_end:
  *                 n_neq += (x1_data[i1] != 0)
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return n_neq * 1.0 / size
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -38111,9 +38111,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4869
  *                 i1 = i1 + 1
- * 
+ *
  *         return n_neq * 1.0 / size             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((__pyx_v_n_neq * 1.0) / ((double)__pyx_v_size));
@@ -38121,7 +38121,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4823
  *         return n_neq * 1. / size
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -38133,7 +38133,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":4884
- * 
+ *
  *     """
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
@@ -38213,7 +38213,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_tt += (tf1 and tf2)
  *             n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *         return n_neq / (2.0 * n_tt + n_neq)
- * 
+ *
  */
     __pyx_v_n_neq = (__pyx_v_n_neq + (__pyx_v_tf1 != __pyx_v_tf2));
   }
@@ -38222,14 +38222,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_tt += (tf1 and tf2)
  *             n_neq += (tf1 != tf2)
  *         return n_neq / (2.0 * n_tt + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = (((double)__pyx_v_n_neq) / ((2.0 * __pyx_v_n_tt) + __pyx_v_n_neq));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4884
- * 
+ *
  *     """
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
@@ -38243,7 +38243,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4899
  *         return n_neq / (2.0 * n_tt + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -38268,7 +38268,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -38276,16 +38276,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4917
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
@@ -38293,7 +38293,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4919
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -38311,11 +38311,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":4920
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -38324,7 +38324,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -38332,25 +38332,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4923
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":4924
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":4926
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -38359,7 +38359,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":4927
- * 
+ *
  *             if ix1 == ix2:
  *                 n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
@@ -38403,7 +38403,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":4926
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -38454,7 +38454,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -38463,7 +38463,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -38473,7 +38473,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4938
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -38482,7 +38482,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":4939
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -38522,7 +38522,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":4938
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -38556,7 +38556,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -38564,7 +38564,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return n_neq / (2.0 * n_tt + n_neq)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -38574,17 +38574,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4949
  *                 i1 = i1 + 1
- * 
+ *
  *         return n_neq / (2.0 * n_tt + n_neq)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((double)__pyx_v_n_neq) / ((2.0 * __pyx_v_n_tt) + __pyx_v_n_neq));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4899
  *         return n_neq / (2.0 * n_tt + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -38596,7 +38596,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 }
 
 /* "sklearn/metrics/_dist_metrics.pyx":4965
- * 
+ *
  *     """
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
@@ -38669,7 +38669,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_neq += (tf1 != tf2)
  *             n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)
- * 
+ *
  */
     if (__pyx_v_tf1) {
     } else {
@@ -38685,14 +38685,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_neq += (tf1 != tf2)
  *             n_tt += (tf1 and tf2)
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = ((((__pyx_v_n_neq - __pyx_v_n_tt) + __pyx_v_size) * 1.0) / ((double)(__pyx_v_n_neq + __pyx_v_size)));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4965
- * 
+ *
  *     """
  *     cdef inline float64_t dist(             # <<<<<<<<<<<<<<
  *         self,
@@ -38706,7 +38706,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":4980
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -38731,7 +38731,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -38739,16 +38739,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":4998
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
@@ -38756,7 +38756,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5000
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -38774,11 +38774,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":5001
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -38787,7 +38787,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -38795,25 +38795,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5004
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5005
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5007
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -38822,7 +38822,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":5008
- * 
+ *
  *             if ix1 == ix2:
  *                 n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
@@ -38866,7 +38866,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":5007
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -38917,7 +38917,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -38926,7 +38926,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -38936,7 +38936,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5019
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -38945,7 +38945,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":5020
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -38985,7 +38985,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5019
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -39019,7 +39019,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -39027,7 +39027,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -39037,9 +39037,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5030
  *                 i1 = i1 + 1
- * 
+ *
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((((__pyx_v_n_neq - __pyx_v_n_tt) + __pyx_v_size) * 1.0) / ((double)(__pyx_v_n_neq + __pyx_v_size)));
@@ -39047,7 +39047,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":4980
  *         return (n_neq - n_tt + size) * 1.0 / (n_neq + size)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -39120,7 +39120,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  */
     __pyx_v_n_neq = (__pyx_v_n_neq + (__pyx_v_tf1 != __pyx_v_tf2));
   }
@@ -39129,7 +39129,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)
  *         return (2.0 * n_neq) / (size + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = ((2.0 * __pyx_v_n_neq) / ((double)(__pyx_v_size + __pyx_v_n_neq)));
@@ -39150,7 +39150,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5058
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -39174,7 +39174,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -39182,23 +39182,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5076
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_neq = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5078
  *             intp_t tf1, tf2, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -39216,11 +39216,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":5079
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -39229,7 +39229,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -39237,25 +39237,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5082
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5083
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5085
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
  *                 i1 = i1 + 1
@@ -39264,7 +39264,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":5086
- * 
+ *
  *             if ix1 == ix2:
  *                 n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -39292,7 +39292,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":5085
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
  *                 i1 = i1 + 1
@@ -39343,7 +39343,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -39352,7 +39352,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -39362,7 +39362,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5096
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -39371,7 +39371,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":5097
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -39411,7 +39411,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5096
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -39445,7 +39445,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -39453,7 +39453,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return (2.0 * n_neq) / (size + n_neq)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -39463,9 +39463,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5107
  *                 i1 = i1 + 1
- * 
+ *
  *         return (2.0 * n_neq) / (size + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((2.0 * __pyx_v_n_neq) / ((double)(__pyx_v_size + __pyx_v_n_neq)));
@@ -39473,7 +39473,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5058
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -39547,7 +39547,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *         return (size - n_tt) * 1. / size
- * 
+ *
  */
     if (__pyx_v_tf1) {
     } else {
@@ -39563,7 +39563,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_tt += (tf1 and tf2)
  *         return (size - n_tt) * 1. / size             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = (((__pyx_v_size - __pyx_v_n_tt) * 1.) / ((double)__pyx_v_size));
@@ -39584,7 +39584,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5135
  *         return (size - n_tt) * 1. / size
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -39608,7 +39608,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -39616,23 +39616,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5153
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5155
  *             intp_t tf1, tf2, n_tt = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -39650,11 +39650,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":5156
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -39663,7 +39663,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -39671,25 +39671,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5159
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5160
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5162
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 i1 = i1 + 1
@@ -39698,7 +39698,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":5163
- * 
+ *
  *             if ix1 == ix2:
  *                 n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -39733,7 +39733,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":5162
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 i1 = i1 + 1
@@ -39774,7 +39774,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 i1 = i1 + 1
  *             else:
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         # We don't need to go through all the longuest
  */
     /*else*/ {
@@ -39785,17 +39785,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5175
  *         # and thus n_tt won't be increased.
- * 
+ *
  *         return (size - n_tt) * 1. / size             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((__pyx_v_size - __pyx_v_n_tt) * 1.) / ((double)__pyx_v_size));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5135
  *         return (size - n_tt) * 1. / size
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -39868,7 +39868,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  */
     __pyx_v_n_neq = (__pyx_v_n_neq + (__pyx_v_tf1 != __pyx_v_tf2));
   }
@@ -39877,7 +39877,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             tf2 = x2[j] != 0
  *             n_neq += (tf1 != tf2)
  *         return (2.0 * n_neq) / (size + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = ((2.0 * __pyx_v_n_neq) / ((double)(__pyx_v_size + __pyx_v_n_neq)));
@@ -39898,7 +39898,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5205
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -39922,7 +39922,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -39930,23 +39930,23 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5223
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_neq = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5225
  *             intp_t tf1, tf2, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -39964,11 +39964,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":5226
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -39977,7 +39977,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -39985,25 +39985,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5229
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5230
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5232
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
  *                 i1 = i1 + 1
@@ -40012,7 +40012,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":5233
- * 
+ *
  *             if ix1 == ix2:
  *                 n_neq += (tf1 != tf2)             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
@@ -40040,7 +40040,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":5232
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
  *                 i1 = i1 + 1
@@ -40091,7 +40091,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -40100,7 +40100,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -40110,7 +40110,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5243
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -40119,7 +40119,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":5244
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -40159,7 +40159,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5243
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -40193,7 +40193,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -40201,7 +40201,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return (2.0 * n_neq) / (size + n_neq)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -40211,9 +40211,9 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5254
  *                 i1 = i1 + 1
- * 
+ *
  *         return (2.0 * n_neq) / (size + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((2.0 * __pyx_v_n_neq) / ((double)(__pyx_v_size + __pyx_v_n_neq)));
@@ -40221,7 +40221,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5205
  *         return (2.0 * n_neq) / (size + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -40306,7 +40306,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_neq += (tf1 != tf2)
  *             n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *         return n_neq / (0.5 * n_tt + n_neq)
- * 
+ *
  */
     if (__pyx_v_tf1) {
     } else {
@@ -40322,7 +40322,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             n_neq += (tf1 != tf2)
  *             n_tt += (tf1 and tf2)
  *         return n_neq / (0.5 * n_tt + n_neq)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __pyx_r = (((double)__pyx_v_n_neq) / ((0.5 * __pyx_v_n_tt) + __pyx_v_n_neq));
@@ -40343,7 +40343,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5283
  *         return n_neq / (0.5 * n_tt + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -40368,7 +40368,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -40376,16 +40376,16 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5301
  *             intp_t i2 = x2_start
- * 
+ *
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  */
   __pyx_v_n_tt = 0;
@@ -40393,7 +40393,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5303
  *             intp_t tf1, tf2, n_tt = 0, n_neq = 0
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -40411,11 +40411,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":5304
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -40424,7 +40424,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  */
     __pyx_t_3 = __pyx_v_i2;
@@ -40432,25 +40432,25 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5307
  *             ix2 = x2_indices[i2]
- * 
+ *
  *             tf1 = x1_data[i1] != 0             # <<<<<<<<<<<<<<
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  */
     __pyx_v_tf1 = ((__pyx_v_x1_data[__pyx_v_i1]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5308
- * 
+ *
  *             tf1 = x1_data[i1] != 0
  *             tf2 = x2_data[i2] != 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             if ix1 == ix2:
  */
     __pyx_v_tf2 = ((__pyx_v_x2_data[__pyx_v_i2]) != 0.0);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5310
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -40459,7 +40459,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":5311
- * 
+ *
  *             if ix1 == ix2:
  *                 n_tt += (tf1 and tf2)             # <<<<<<<<<<<<<<
  *                 n_neq += (tf1 != tf2)
@@ -40503,7 +40503,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":5310
  *             tf2 = x2_data[i2] != 0
- * 
+ *
  *             if ix1 == ix2:             # <<<<<<<<<<<<<<
  *                 n_tt += (tf1 and tf2)
  *                 n_neq += (tf1 != tf2)
@@ -40554,7 +40554,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2             # <<<<<<<<<<<<<<
  *                 i2 = i2 + 1
- * 
+ *
  */
     /*else*/ {
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf2);
@@ -40563,7 +40563,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             else:
  *                 n_neq += tf2
  *                 i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
       __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -40573,7 +40573,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5322
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -40582,7 +40582,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":5323
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 tf2 = x2_data[i2] != 0
@@ -40622,7 +40622,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5322
  *                 i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 tf2 = x2_data[i2] != 0
@@ -40656,7 +40656,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       __pyx_v_n_neq = (__pyx_v_n_neq + __pyx_v_tf1);
 
@@ -40664,7 +40664,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 tf1 = x1_data[i1] != 0
  *                 n_neq += tf1
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         return n_neq / (0.5 * n_tt + n_neq)
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -40674,17 +40674,17 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5333
  *                 i1 = i1 + 1
- * 
+ *
  *         return n_neq / (0.5 * n_tt + n_neq)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (((double)__pyx_v_n_neq) / ((0.5 * __pyx_v_n_tt) + __pyx_v_n_neq));
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5283
  *         return n_neq / (0.5 * n_tt + n_neq)
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -40697,7 +40697,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5352
  *     """
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != 2:
  *             raise ValueError("Haversine distance only valid "
@@ -40728,7 +40728,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
   __Pyx_RefNannySetupContext("_validate_data", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":5353
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != 2:             # <<<<<<<<<<<<<<
  *             raise ValueError("Haversine distance only valid "
@@ -40751,7 +40751,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
  *         if X.shape[1] != 2:
  *             raise ValueError("Haversine distance only valid "             # <<<<<<<<<<<<<<
  *                              "in 2 dimensions")
- * 
+ *
  */
     __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5354, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -40760,7 +40760,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
     __PYX_ERR(1, 5354, __pyx_L1_error)
 
     /* "sklearn/metrics/_dist_metrics.pyx":5353
- * 
+ *
  *     def _validate_data(self, X):
  *         if X.shape[1] != 2:             # <<<<<<<<<<<<<<
  *             raise ValueError("Haversine distance only valid "
@@ -40770,7 +40770,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
 
   /* "sklearn/metrics/_dist_metrics.pyx":5352
  *     """
- * 
+ *
  *     def _validate_data(self, X):             # <<<<<<<<<<<<<<
  *         if X.shape[1] != 2:
  *             raise ValueError("Haversine distance only valid "
@@ -40792,7 +40792,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
 
 /* "sklearn/metrics/_dist_metrics.pyx":5357
  *                              "in 2 dimensions")
- * 
+ *
  *     cdef inline float64_t rdist(self,             # <<<<<<<<<<<<<<
  *         const float32_t* x1,
  *         const float32_t* x2,
@@ -40817,7 +40817,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         cdef float64_t sin_0 = sin(0.5 * ((x1[0]) - (x2[0])))
  *         cdef float64_t sin_1 = sin(0.5 * ((x1[1]) - (x2[1])))             # <<<<<<<<<<<<<<
  *         return (sin_0 * sin_0 + cos(x1[0]) * cos(x2[0]) * sin_1 * sin_1)
- * 
+ *
  */
   __pyx_v_sin_1 = sin((0.5 * ((__pyx_v_x1[1]) - (__pyx_v_x2[1]))));
 
@@ -40825,7 +40825,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         cdef float64_t sin_0 = sin(0.5 * ((x1[0]) - (x2[0])))
  *         cdef float64_t sin_1 = sin(0.5 * ((x1[1]) - (x2[1])))
  *         return (sin_0 * sin_0 + cos(x1[0]) * cos(x2[0]) * sin_1 * sin_1)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist(self,
  */
   __pyx_r = ((__pyx_v_sin_0 * __pyx_v_sin_0) + (((cos((__pyx_v_x1[0])) * cos((__pyx_v_x2[0]))) * __pyx_v_sin_1) * __pyx_v_sin_1));
@@ -40833,7 +40833,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5357
  *                              "in 2 dimensions")
- * 
+ *
  *     cdef inline float64_t rdist(self,             # <<<<<<<<<<<<<<
  *         const float32_t* x1,
  *         const float32_t* x2,
@@ -40846,7 +40846,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5366
  *         return (sin_0 * sin_0 + cos(x1[0]) * cos(x2[0]) * sin_1 * sin_1)
- * 
+ *
  *     cdef inline float64_t dist(self,             # <<<<<<<<<<<<<<
  *         const float32_t* x1,
  *         const float32_t* x2,
@@ -40863,7 +40863,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return 2 * asin(sqrt(self.rdist(x1, x2, size)))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_19HaversineDistance32_rdist(((struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_DistanceMetric32 *)__pyx_v_self), __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 5371, __pyx_L1_error)
@@ -40872,7 +40872,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5366
  *         return (sin_0 * sin_0 + cos(x1[0]) * cos(x2[0]) * sin_1 * sin_1)
- * 
+ *
  *     cdef inline float64_t dist(self,             # <<<<<<<<<<<<<<
  *         const float32_t* x1,
  *         const float32_t* x2,
@@ -40896,20 +40896,20 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5373
  *         return 2 * asin(sqrt(self.rdist(x1, x2, size)))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return 2 * asin(sqrt(rdist))
- * 
+ *
  */
 
 static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_19HaversineDistance32__rdist_to_dist(CYTHON_UNUSED struct __pyx_obj_7sklearn_7metrics_13_dist_metrics_HaversineDistance32 *__pyx_v_self, __pyx_t_7sklearn_5utils_9_typedefs_float32_t __pyx_v_rdist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5374
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:
  *         return 2 * asin(sqrt(rdist))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  */
   __pyx_r = (2.0 * asin(sqrt(__pyx_v_rdist)));
@@ -40917,10 +40917,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5373
  *         return 2 * asin(sqrt(self.rdist(x1, x2, size)))
- * 
+ *
  *     cdef inline float64_t _rdist_to_dist(self, float32_t rdist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         return 2 * asin(sqrt(rdist))
- * 
+ *
  */
 
   /* function exit code */
@@ -40930,7 +40930,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5376
  *         return 2 * asin(sqrt(rdist))
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         cdef float64_t tmp = sin(0.5 *  dist)
  *         return tmp * tmp
@@ -40941,11 +40941,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5377
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  *         cdef float64_t tmp = sin(0.5 *  dist)             # <<<<<<<<<<<<<<
  *         return tmp * tmp
- * 
+ *
  */
   __pyx_v_tmp = sin((0.5 * __pyx_v_dist));
 
@@ -40953,7 +40953,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:
  *         cdef float64_t tmp = sin(0.5 *  dist)
  *         return tmp * tmp             # <<<<<<<<<<<<<<
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  */
   __pyx_r = (__pyx_v_tmp * __pyx_v_tmp);
@@ -40961,7 +40961,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5376
  *         return 2 * asin(sqrt(rdist))
- * 
+ *
  *     cdef inline float64_t _dist_to_rdist(self, float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *         cdef float64_t tmp = sin(0.5 *  dist)
  *         return tmp * tmp
@@ -40974,10 +40974,10 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5380
  *         return tmp * tmp
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return 2 * np.arcsin(np.sqrt(rdist))
- * 
+ *
  */
 
 /* Python wrapper */
@@ -41007,10 +41007,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
   __Pyx_RefNannySetupContext("rdist_to_dist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":5381
- * 
+ *
  *     def rdist_to_dist(self, rdist):
  *         return 2 * np.arcsin(np.sqrt(rdist))             # <<<<<<<<<<<<<<
- * 
+ *
  *     def dist_to_rdist(self, dist):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -41064,10 +41064,10 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
 
   /* "sklearn/metrics/_dist_metrics.pyx":5380
  *         return tmp * tmp
- * 
+ *
  *     def rdist_to_dist(self, rdist):             # <<<<<<<<<<<<<<
  *         return 2 * np.arcsin(np.sqrt(rdist))
- * 
+ *
  */
 
   /* function exit code */
@@ -41087,7 +41087,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
 
 /* "sklearn/metrics/_dist_metrics.pyx":5383
  *         return 2 * np.arcsin(np.sqrt(rdist))
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         tmp = np.sin(0.5 * dist)
  *         return tmp * tmp
@@ -41120,11 +41120,11 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
   __Pyx_RefNannySetupContext("dist_to_rdist", 0);
 
   /* "sklearn/metrics/_dist_metrics.pyx":5384
- * 
+ *
  *     def dist_to_rdist(self, dist):
  *         tmp = np.sin(0.5 * dist)             # <<<<<<<<<<<<<<
  *         return tmp * tmp
- * 
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -41156,7 +41156,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
  *     def dist_to_rdist(self, dist):
  *         tmp = np.sin(0.5 * dist)
  *         return tmp * tmp             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t dist_csr(
  */
   __Pyx_XDECREF(__pyx_r);
@@ -41168,7 +41168,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
 
   /* "sklearn/metrics/_dist_metrics.pyx":5383
  *         return 2 * np.arcsin(np.sqrt(rdist))
- * 
+ *
  *     def dist_to_rdist(self, dist):             # <<<<<<<<<<<<<<
  *         tmp = np.sin(0.5 * dist)
  *         return tmp * tmp
@@ -41191,7 +41191,7 @@ static PyObject *__pyx_pf_7sklearn_7metrics_13_dist_metrics_19HaversineDistance3
 
 /* "sklearn/metrics/_dist_metrics.pyx":5387
  *         return tmp * tmp
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *          self,
  *          const float32_t* x1_data,
@@ -41217,7 +41217,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5387
  *         return tmp * tmp
- * 
+ *
  *     cdef inline float64_t dist_csr(             # <<<<<<<<<<<<<<
  *          self,
  *          const float32_t* x1_data,
@@ -41241,7 +41241,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5411
  *         )))
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -41270,7 +41270,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start             # <<<<<<<<<<<<<<
  *             intp_t i2 = x2_start
- * 
+ *
  */
   __pyx_v_i1 = __pyx_v_x1_start;
 
@@ -41278,14 +41278,14 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             intp_t ix1, ix2
  *             intp_t i1 = x1_start
  *             intp_t i2 = x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             float64_t x1_0 = 0
  */
   __pyx_v_i2 = __pyx_v_x2_start;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5429
  *             intp_t i2 = x2_start
- * 
+ *
  *             float64_t x1_0 = 0             # <<<<<<<<<<<<<<
  *             float64_t x1_1 = 0
  *             float64_t x2_0 = 0
@@ -41293,7 +41293,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   __pyx_v_x1_0 = 0.0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":5430
- * 
+ *
  *             float64_t x1_0 = 0
  *             float64_t x1_1 = 0             # <<<<<<<<<<<<<<
  *             float64_t x2_0 = 0
@@ -41321,7 +41321,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5436
  *             float64_t sin_1
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:             # <<<<<<<<<<<<<<
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]
@@ -41339,11 +41339,11 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (!__pyx_t_1) break;
 
     /* "sklearn/metrics/_dist_metrics.pyx":5437
- * 
+ *
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]             # <<<<<<<<<<<<<<
  *             ix2 = x2_indices[i2]
- * 
+ *
  */
     __pyx_t_3 = __pyx_v_i1;
     __pyx_v_ix1 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x1_indices.data + __pyx_t_3 * __pyx_v_x1_indices.strides[0]) )));
@@ -41352,18 +41352,18 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         while i1 < x1_end and i2 < x2_end:
  *             ix1 = x1_indices[i1]
  *             ix2 = x2_indices[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             # Find the components in the 2D vectors to work with
  */
     __pyx_t_3 = __pyx_v_i2;
     __pyx_v_ix2 = (*((__pyx_t_7sklearn_5utils_9_typedefs_int32_t const  *) ( /* dim=0 */ (__pyx_v_x2_indices.data + __pyx_t_3 * __pyx_v_x2_indices.strides[0]) )));
 
     /* "sklearn/metrics/_dist_metrics.pyx":5441
- * 
+ *
  *             # Find the components in the 2D vectors to work with
  *             x1_component = ix1 if (x1_start == 0) else ix1 % x1_start             # <<<<<<<<<<<<<<
  *             x2_component = ix2 if (x2_start == 0) else ix2 % x2_start
- * 
+ *
  */
     if (((__pyx_v_x1_start == 0) != 0)) {
       __pyx_t_3 = __pyx_v_ix1;
@@ -41376,7 +41376,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *             # Find the components in the 2D vectors to work with
  *             x1_component = ix1 if (x1_start == 0) else ix1 % x1_start
  *             x2_component = ix2 if (x2_start == 0) else ix2 % x2_start             # <<<<<<<<<<<<<<
- * 
+ *
  *             if x1_component == 0:
  */
     if (((__pyx_v_x2_start == 0) != 0)) {
@@ -41388,7 +41388,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5444
  *             x2_component = ix2 if (x2_start == 0) else ix2 % x2_start
- * 
+ *
  *             if x1_component == 0:             # <<<<<<<<<<<<<<
  *                 x1_0 = x1_data[i1]
  *             else:
@@ -41397,7 +41397,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":5445
- * 
+ *
  *             if x1_component == 0:
  *                 x1_0 = x1_data[i1]             # <<<<<<<<<<<<<<
  *             else:
@@ -41407,7 +41407,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":5444
  *             x2_component = ix2 if (x2_start == 0) else ix2 % x2_start
- * 
+ *
  *             if x1_component == 0:             # <<<<<<<<<<<<<<
  *                 x1_0 = x1_data[i1]
  *             else:
@@ -41419,7 +41419,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 x1_0 = x1_data[i1]
  *             else:
  *                 x1_1 = x1_data[i1]             # <<<<<<<<<<<<<<
- * 
+ *
  *             if x2_component == 0:
  */
     /*else*/ {
@@ -41429,7 +41429,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5449
  *                 x1_1 = x1_data[i1]
- * 
+ *
  *             if x2_component == 0:             # <<<<<<<<<<<<<<
  *                 x2_0 = x2_data[i2]
  *             else:
@@ -41438,7 +41438,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
     if (__pyx_t_1) {
 
       /* "sklearn/metrics/_dist_metrics.pyx":5450
- * 
+ *
  *             if x2_component == 0:
  *                 x2_0 = x2_data[i2]             # <<<<<<<<<<<<<<
  *             else:
@@ -41448,7 +41448,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
       /* "sklearn/metrics/_dist_metrics.pyx":5449
  *                 x1_1 = x1_data[i1]
- * 
+ *
  *             if x2_component == 0:             # <<<<<<<<<<<<<<
  *                 x2_0 = x2_data[i2]
  *             else:
@@ -41460,7 +41460,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 x2_0 = x2_data[i2]
  *             else:
  *                 x2_1 = x2_data[i2]             # <<<<<<<<<<<<<<
- * 
+ *
  *             i1 = i1 + 1
  */
     /*else*/ {
@@ -41470,18 +41470,18 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5454
  *                 x2_1 = x2_data[i2]
- * 
+ *
  *             i1 = i1 + 1             # <<<<<<<<<<<<<<
  *             i2 = i2 + 1
- * 
+ *
  */
     __pyx_v_i1 = (__pyx_v_i1 + 1);
 
     /* "sklearn/metrics/_dist_metrics.pyx":5455
- * 
+ *
  *             i1 = i1 + 1
  *             i2 = i2 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if i1 == x1_end:
  */
     __pyx_v_i2 = (__pyx_v_i2 + 1);
@@ -41489,7 +41489,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5457
  *             i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -41498,7 +41498,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
   if (__pyx_t_1) {
 
     /* "sklearn/metrics/_dist_metrics.pyx":5458
- * 
+ *
  *         if i1 == x1_end:
  *             while i2 < x2_end:             # <<<<<<<<<<<<<<
  *                 ix2 = x2_indices[i2]
@@ -41585,7 +41585,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
     /* "sklearn/metrics/_dist_metrics.pyx":5457
  *             i2 = i2 + 1
- * 
+ *
  *         if i1 == x1_end:             # <<<<<<<<<<<<<<
  *             while i2 < x2_end:
  *                 ix2 = x2_indices[i2]
@@ -41663,7 +41663,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     x1_1 = x1_data[i1]             # <<<<<<<<<<<<<<
  *                 i1 = i1 + 1
- * 
+ *
  */
       /*else*/ {
         __pyx_v_x1_1 = (__pyx_v_x1_data[__pyx_v_i1]);
@@ -41674,7 +41674,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *                 else:
  *                     x1_1 = x1_data[i1]
  *                 i1 = i1 + 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         sin_0 = sin(0.5 * (x1_0 - x2_0))
  */
       __pyx_v_i1 = (__pyx_v_i1 + 1);
@@ -41684,27 +41684,27 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5476
  *                 i1 = i1 + 1
- * 
+ *
  *         sin_0 = sin(0.5 * (x1_0 - x2_0))             # <<<<<<<<<<<<<<
  *         sin_1 = sin(0.5 * (x1_1 - x2_1))
- * 
+ *
  */
   __pyx_v_sin_0 = sin((0.5 * (__pyx_v_x1_0 - __pyx_v_x2_0)));
 
   /* "sklearn/metrics/_dist_metrics.pyx":5477
- * 
+ *
  *         sin_0 = sin(0.5 * (x1_0 - x2_0))
  *         sin_1 = sin(0.5 * (x1_1 - x2_1))             # <<<<<<<<<<<<<<
- * 
+ *
  *         return (sin_0 * sin_0 + cos(x1_0) * cos(x2_0) * sin_1 * sin_1)
  */
   __pyx_v_sin_1 = sin((0.5 * (__pyx_v_x1_1 - __pyx_v_x2_1)));
 
   /* "sklearn/metrics/_dist_metrics.pyx":5479
  *         sin_1 = sin(0.5 * (x1_1 - x2_1))
- * 
+ *
  *         return (sin_0 * sin_0 + cos(x1_0) * cos(x2_0) * sin_1 * sin_1)             # <<<<<<<<<<<<<<
- * 
+ *
  * #------------------------------------------------------------
  */
   __pyx_r = ((__pyx_v_sin_0 * __pyx_v_sin_0) + (((cos(__pyx_v_x1_0) * cos(__pyx_v_x2_0)) * __pyx_v_sin_1) * __pyx_v_sin_1));
@@ -41712,7 +41712,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
   /* "sklearn/metrics/_dist_metrics.pyx":5411
  *         )))
- * 
+ *
  *     cdef inline float64_t rdist_csr(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1_data,
@@ -41799,7 +41799,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16PyFuncDistance32___init_
  *     def __init__(self, func, **kwargs):
  *         self.func = func             # <<<<<<<<<<<<<<
  *         self.kwargs = kwargs
- * 
+ *
  */
   __Pyx_INCREF(__pyx_v_func);
   __Pyx_GIVEREF(__pyx_v_func);
@@ -41811,7 +41811,7 @@ static int __pyx_pf_7sklearn_7metrics_13_dist_metrics_16PyFuncDistance32___init_
  *     def __init__(self, func, **kwargs):
  *         self.func = func
  *         self.kwargs = kwargs             # <<<<<<<<<<<<<<
- * 
+ *
  *     # in cython < 0.26, GIL was required to be acquired during definition of
  */
   __Pyx_INCREF(__pyx_v_kwargs);
@@ -41853,7 +41853,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
  *         intp_t size,
  *     ) except -1 nogil:
  *         return self._dist(x1, x2, size)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t _dist(
  */
   __pyx_t_1 = __pyx_f_7sklearn_7metrics_13_dist_metrics_16PyFuncDistance32__dist(__pyx_v_self, __pyx_v_x1, __pyx_v_x2, __pyx_v_size); if (unlikely(__pyx_t_1 == ((__pyx_t_7sklearn_5utils_9_typedefs_float64_t)-1.0))) __PYX_ERR(1, 5509, __pyx_L1_error)
@@ -41886,7 +41886,7 @@ static __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13
 
 /* "sklearn/metrics/_dist_metrics.pyx":5511
  *         return self._dist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t _dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -42065,7 +42065,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 
   /* "sklearn/metrics/_dist_metrics.pyx":5511
  *         return self._dist(x1, x2, size)
- * 
+ *
  *     cdef inline float64_t _dist(             # <<<<<<<<<<<<<<
  *         self,
  *         const float32_t* x1,
@@ -42143,7 +42143,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t> (x1[j] - x2[j])
  *         d += tmp * tmp             # <<<<<<<<<<<<<<
  *     return sqrt(d)
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * __pyx_v_tmp));
   }
@@ -42152,8 +42152,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t> (x1[j] - x2[j])
  *         d += tmp * tmp
  *     return sqrt(d)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = sqrt(__pyx_v_d);
   goto __pyx_L0;
@@ -42172,8 +42172,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/metrics/_dist_metrics.pxd":27
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist(             # <<<<<<<<<<<<<<
  *     const float64_t* x1,
  *     const float64_t* x2,
@@ -42223,7 +42223,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t>(x1[j] - x2[j])
  *         d += tmp * tmp             # <<<<<<<<<<<<<<
  *     return d
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * __pyx_v_tmp));
   }
@@ -42232,15 +42232,15 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t>(x1[j] - x2[j])
  *         d += tmp * tmp
  *     return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pxd":27
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist(             # <<<<<<<<<<<<<<
  *     const float64_t* x1,
  *     const float64_t* x2,
@@ -42252,32 +42252,32 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/metrics/_dist_metrics.pxd":40
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_dist_to_rdist(const float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return dist * dist
- * 
+ *
  */
 
 static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_dist_to_rdist(__pyx_t_7sklearn_5utils_9_typedefs_float64_t const __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pxd":41
- * 
+ *
  * cdef inline float64_t euclidean_dist_to_rdist(const float64_t dist) except -1 nogil:
  *     return dist * dist             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pxd":40
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_dist_to_rdist(const float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -42286,32 +42286,32 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/metrics/_dist_metrics.pxd":44
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist_to_dist(const float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return sqrt(dist)
- * 
+ *
  */
 
 static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_rdist_to_dist(__pyx_t_7sklearn_5utils_9_typedefs_float64_t const __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pxd":45
- * 
+ *
  * cdef inline float64_t euclidean_rdist_to_dist(const float64_t dist) except -1 nogil:
  *     return sqrt(dist)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = sqrt(__pyx_v_dist);
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pxd":44
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist_to_dist(const float64_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return sqrt(dist)
- * 
+ *
  */
 
   /* function exit code */
@@ -42371,7 +42371,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t> (x1[j] - x2[j])
  *         d += tmp * tmp             # <<<<<<<<<<<<<<
  *     return sqrt(d)
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * __pyx_v_tmp));
   }
@@ -42380,8 +42380,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t> (x1[j] - x2[j])
  *         d += tmp * tmp
  *     return sqrt(d)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = sqrt(__pyx_v_d);
   goto __pyx_L0;
@@ -42400,8 +42400,8 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/metrics/_dist_metrics.pxd":158
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist32(             # <<<<<<<<<<<<<<
  *     const float32_t* x1,
  *     const float32_t* x2,
@@ -42451,7 +42451,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t>(x1[j] - x2[j])
  *         d += tmp * tmp             # <<<<<<<<<<<<<<
  *     return d
- * 
+ *
  */
     __pyx_v_d = (__pyx_v_d + (__pyx_v_tmp * __pyx_v_tmp));
   }
@@ -42460,15 +42460,15 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
  *         tmp = <float64_t>(x1[j] - x2[j])
  *         d += tmp * tmp
  *     return d             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_d;
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pxd":158
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist32(             # <<<<<<<<<<<<<<
  *     const float32_t* x1,
  *     const float32_t* x2,
@@ -42480,32 +42480,32 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/metrics/_dist_metrics.pxd":171
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_dist_to_rdist32(const float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return dist * dist
- * 
+ *
  */
 
 static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_dist_to_rdist32(__pyx_t_7sklearn_5utils_9_typedefs_float32_t const __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pxd":172
- * 
+ *
  * cdef inline float64_t euclidean_dist_to_rdist32(const float32_t dist) except -1 nogil:
  *     return dist * dist             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = (__pyx_v_dist * __pyx_v_dist);
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pxd":171
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_dist_to_rdist32(const float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return dist * dist
- * 
+ *
  */
 
   /* function exit code */
@@ -42514,32 +42514,32 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
 }
 
 /* "sklearn/metrics/_dist_metrics.pxd":175
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist_to_dist32(const float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return sqrt(dist)
- * 
+ *
  */
 
 static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklearn_7metrics_13_dist_metrics_euclidean_rdist_to_dist32(__pyx_t_7sklearn_5utils_9_typedefs_float32_t const __pyx_v_dist) {
   __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_r;
 
   /* "sklearn/metrics/_dist_metrics.pxd":176
- * 
+ *
  * cdef inline float64_t euclidean_rdist_to_dist32(const float32_t dist) except -1 nogil:
  *     return sqrt(dist)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = sqrt(__pyx_v_dist);
   goto __pyx_L0;
 
   /* "sklearn/metrics/_dist_metrics.pxd":175
- * 
- * 
+ *
+ *
  * cdef inline float64_t euclidean_rdist_to_dist32(const float32_t dist) except -1 nogil:             # <<<<<<<<<<<<<<
  *     return sqrt(dist)
- * 
+ *
  */
 
   /* function exit code */
@@ -42547,12 +42547,12 @@ static CYTHON_INLINE __pyx_t_7sklearn_5utils_9_typedefs_float64_t __pyx_f_7sklea
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":735
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":735
  * ctypedef npy_cdouble     complex_t
- * 
+ *
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__pyx_v_a) {
@@ -42564,11 +42564,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew1", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":736
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":736
+ *
  * cdef inline object PyArray_MultiIterNew1(a):
  *     return PyArray_MultiIterNew(1, <void*>a)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew2(a, b):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -42578,12 +42578,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":735
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":735
  * ctypedef npy_cdouble     complex_t
- * 
+ *
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
- * 
+ *
  */
 
   /* function exit code */
@@ -42597,12 +42597,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":738
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":738
  *     return PyArray_MultiIterNew(1, <void*>a)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__pyx_v_a, PyObject *__pyx_v_b) {
@@ -42614,11 +42614,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew2", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":739
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":739
+ *
  * cdef inline object PyArray_MultiIterNew2(a, b):
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -42628,12 +42628,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":738
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":738
  *     return PyArray_MultiIterNew(1, <void*>a)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- * 
+ *
  */
 
   /* function exit code */
@@ -42647,12 +42647,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":741
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":741
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c) {
@@ -42664,11 +42664,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew3", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":742
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":742
+ *
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -42678,12 +42678,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":741
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":741
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- * 
+ *
  */
 
   /* function exit code */
@@ -42697,12 +42697,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":744
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":744
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d) {
@@ -42714,11 +42714,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew4", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":745
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":745
+ *
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -42728,12 +42728,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":744
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":744
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- * 
+ *
  */
 
   /* function exit code */
@@ -42747,12 +42747,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":747
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":747
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- * 
+ *
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d, PyObject *__pyx_v_e) {
@@ -42764,11 +42764,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew5", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":748
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":748
+ *
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -42778,12 +42778,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":747
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":747
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- * 
+ *
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- * 
+ *
  */
 
   /* function exit code */
@@ -42797,9 +42797,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":750
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":750
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- * 
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape
@@ -42811,8 +42811,8 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("PyDataType_SHAPE", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":751
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":751
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
  *         return <tuple>d.subarray.shape
@@ -42821,7 +42821,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   __pyx_t_1 = (PyDataType_HASSUBARRAY(__pyx_v_d) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":752
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":752
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape             # <<<<<<<<<<<<<<
@@ -42833,8 +42833,8 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     __pyx_r = ((PyObject*)__pyx_v_d->subarray->shape);
     goto __pyx_L0;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":751
- * 
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":751
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
  *         return <tuple>d.subarray.shape
@@ -42842,12 +42842,12 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
  */
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":754
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":754
  *         return <tuple>d.subarray.shape
  *     else:
  *         return ()             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
@@ -42856,9 +42856,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     goto __pyx_L0;
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":750
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":750
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- * 
+ *
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape
@@ -42871,9 +42871,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":929
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":929
  *     int _import_umath() except -1
- * 
+ *
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
@@ -42883,27 +42883,27 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_array_base", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":930
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":930
+ *
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!             # <<<<<<<<<<<<<<
  *     PyArray_SetBaseObject(arr, base)
- * 
+ *
  */
   Py_INCREF(__pyx_v_base);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":931
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":931
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline object get_array_base(ndarray arr):
  */
   (void)(PyArray_SetBaseObject(__pyx_v_arr, __pyx_v_base));
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":929
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":929
  *     int _import_umath() except -1
- * 
+ *
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
@@ -42913,9 +42913,9 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyFinishContext();
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":933
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":933
  *     PyArray_SetBaseObject(arr, base)
- * 
+ *
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
@@ -42928,8 +42928,8 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("get_array_base", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":934
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":934
+ *
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)             # <<<<<<<<<<<<<<
  *     if base is NULL:
@@ -42937,7 +42937,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  */
   __pyx_v_base = PyArray_BASE(__pyx_v_arr);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":935
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":935
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -42947,18 +42947,18 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_t_1 = ((__pyx_v_base == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":936
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":936
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
  *         return None             # <<<<<<<<<<<<<<
  *     return <object>base
- * 
+ *
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":935
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":935
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -42967,11 +42967,11 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  */
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":937
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":937
  *     if base is NULL:
  *         return None
  *     return <object>base             # <<<<<<<<<<<<<<
- * 
+ *
  * # Versions of the import_* functions which are more suitable for
  */
   __Pyx_XDECREF(__pyx_r);
@@ -42979,9 +42979,9 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_r = ((PyObject *)__pyx_v_base);
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":933
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":933
  *     PyArray_SetBaseObject(arr, base)
- * 
+ *
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
@@ -42994,7 +42994,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":941
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":941
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -43018,7 +43018,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_array", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -43034,7 +43034,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":943
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":943
  * cdef inline int import_array() except -1:
  *     try:
  *         __pyx_import_array()             # <<<<<<<<<<<<<<
@@ -43043,7 +43043,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  */
       __pyx_t_4 = _import_array(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 943, __pyx_L3_error)
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -43057,12 +43057,12 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":944
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":944
  *     try:
  *         __pyx_import_array()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.multiarray failed to import")
- * 
+ *
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -43072,11 +43072,11 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":945
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":945
  *         __pyx_import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline int import_umath() except -1:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 945, __pyx_L5_except_error)
@@ -43088,7 +43088,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":942
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -43103,7 +43103,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":941
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":941
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -43126,9 +43126,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":947
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":947
  *         raise ImportError("numpy.core.multiarray failed to import")
- * 
+ *
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -43150,8 +43150,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_umath", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
+ *
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -43166,7 +43166,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":949
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":949
  * cdef inline int import_umath() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
@@ -43175,8 +43175,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  */
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 949, __pyx_L3_error)
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
- * 
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
+ *
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -43189,12 +43189,12 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":950
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":950
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.umath failed to import")
- * 
+ *
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -43204,11 +43204,11 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":951
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":951
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline int import_ufunc() except -1:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 951, __pyx_L5_except_error)
@@ -43220,8 +43220,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
- * 
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":948
+ *
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -43235,9 +43235,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":947
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":947
  *         raise ImportError("numpy.core.multiarray failed to import")
- * 
+ *
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -43258,9 +43258,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":953
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":953
  *         raise ImportError("numpy.core.umath failed to import")
- * 
+ *
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -43282,8 +43282,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_ufunc", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
+ *
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -43298,7 +43298,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":955
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":955
  * cdef inline int import_ufunc() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
@@ -43307,8 +43307,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  */
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 955, __pyx_L3_error)
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
- * 
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
+ *
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -43321,12 +43321,12 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":956
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":956
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.umath failed to import")
- * 
+ *
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -43336,11 +43336,11 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":957
+      /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":957
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef extern from *:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 957, __pyx_L5_except_error)
@@ -43352,8 +43352,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
- * 
+    /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":954
+ *
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -43367,9 +43367,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":953
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":953
  *         raise ImportError("numpy.core.umath failed to import")
- * 
+ *
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -43390,9 +43390,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":967
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":967
+ *
+ *
  * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
@@ -43403,19 +43403,19 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("is_timedelta64_object", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":979
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":979
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyTimedeltaArrType_Type)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyTimedeltaArrType_Type));
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":967
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":967
+ *
+ *
  * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
@@ -43427,9 +43427,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":982
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":982
+ *
+ *
  * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
@@ -43440,19 +43440,19 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("is_datetime64_object", 0);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":994
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":994
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyDatetimeArrType_Type)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyDatetimeArrType_Type));
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":982
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":982
+ *
+ *
  * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
@@ -43464,9 +43464,9 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":997
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":997
+ *
+ *
  * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
@@ -43475,19 +43475,19 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
 static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *__pyx_v_obj) {
   npy_datetime __pyx_r;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1004
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1004
  *     also needed.  That can be found using `get_datetime64_unit`.
  *     """
  *     return (<PyDatetimeScalarObject*>obj).obval             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((PyDatetimeScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":997
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":997
+ *
+ *
  * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
@@ -43498,9 +43498,9 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1007
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1007
+ *
+ *
  * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
@@ -43509,19 +43509,19 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
 static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject *__pyx_v_obj) {
   npy_timedelta __pyx_r;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1011
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1011
  *     returns the int64 value underlying scalar numpy timedelta64 object
  *     """
  *     return (<PyTimedeltaScalarObject*>obj).obval             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((PyTimedeltaScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1007
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1007
+ *
+ *
  * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
@@ -43532,9 +43532,9 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
   return __pyx_r;
 }
 
-/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1014
- * 
- * 
+/* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1014
+ *
+ *
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -43543,7 +43543,7 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
 static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObject *__pyx_v_obj) {
   NPY_DATETIMEUNIT __pyx_r;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1018
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1018
  *     returns the unit part of the dtype for a numpy datetime64 object.
  *     """
  *     return <NPY_DATETIMEUNIT>(<PyDatetimeScalarObject*>obj).obmeta.base             # <<<<<<<<<<<<<<
@@ -43551,9 +43551,9 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
   __pyx_r = ((NPY_DATETIMEUNIT)((PyDatetimeScalarObject *)__pyx_v_obj)->obmeta.base);
   goto __pyx_L0;
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1014
- * 
- * 
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":1014
+ *
+ *
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -43566,10 +43566,10 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
 
 /* "View.MemoryView":123
  *         cdef bint dtype_is_object
- * 
+ *
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- * 
+ *
  */
 
 /* Python wrapper */
@@ -43662,10 +43662,10 @@ static int __pyx_array___cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, P
     } else {
 
       /* "View.MemoryView":124
- * 
+ *
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,
  *                   mode="c", bint allocate_buffer=True):             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef int idx
  */
       __pyx_v_allocate_buffer = ((int)1);
@@ -43687,10 +43687,10 @@ static int __pyx_array___cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, P
 
   /* "View.MemoryView":123
  *         cdef bint dtype_is_object
- * 
+ *
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- * 
+ *
  */
 
   /* function exit code */
@@ -43729,10 +43729,10 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
   /* "View.MemoryView":130
  *         cdef PyObject **p
- * 
+ *
  *         self.ndim = <int> len(shape)             # <<<<<<<<<<<<<<
  *         self.itemsize = itemsize
- * 
+ *
  */
   if (unlikely(__pyx_v_shape == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
@@ -43742,29 +43742,29 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_v_self->ndim = ((int)__pyx_t_1);
 
   /* "View.MemoryView":131
- * 
+ *
  *         self.ndim = <int> len(shape)
  *         self.itemsize = itemsize             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not self.ndim:
  */
   __pyx_v_self->itemsize = __pyx_v_itemsize;
 
   /* "View.MemoryView":133
  *         self.itemsize = itemsize
- * 
+ *
  *         if not self.ndim:             # <<<<<<<<<<<<<<
  *             raise ValueError("Empty shape tuple for cython.array")
- * 
+ *
  */
   __pyx_t_2 = ((!(__pyx_v_self->ndim != 0)) != 0);
   if (unlikely(__pyx_t_2)) {
 
     /* "View.MemoryView":134
- * 
+ *
  *         if not self.ndim:
  *             raise ValueError("Empty shape tuple for cython.array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if itemsize <= 0:
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 134, __pyx_L1_error)
@@ -43775,28 +43775,28 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":133
  *         self.itemsize = itemsize
- * 
+ *
  *         if not self.ndim:             # <<<<<<<<<<<<<<
  *             raise ValueError("Empty shape tuple for cython.array")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":136
  *             raise ValueError("Empty shape tuple for cython.array")
- * 
+ *
  *         if itemsize <= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("itemsize <= 0 for cython.array")
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_itemsize <= 0) != 0);
   if (unlikely(__pyx_t_2)) {
 
     /* "View.MemoryView":137
- * 
+ *
  *         if itemsize <= 0:
  *             raise ValueError("itemsize <= 0 for cython.array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not isinstance(format, bytes):
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 137, __pyx_L1_error)
@@ -43807,26 +43807,26 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":136
  *             raise ValueError("Empty shape tuple for cython.array")
- * 
+ *
  *         if itemsize <= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("itemsize <= 0 for cython.array")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":139
  *             raise ValueError("itemsize <= 0 for cython.array")
- * 
+ *
  *         if not isinstance(format, bytes):             # <<<<<<<<<<<<<<
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  */
-  __pyx_t_2 = PyBytes_Check(__pyx_v_format); 
+  __pyx_t_2 = PyBytes_Check(__pyx_v_format);
   __pyx_t_4 = ((!(__pyx_t_2 != 0)) != 0);
   if (__pyx_t_4) {
 
     /* "View.MemoryView":140
- * 
+ *
  *         if not isinstance(format, bytes):
  *             format = format.encode('ASCII')             # <<<<<<<<<<<<<<
  *         self._format = format  # keep a reference to the byte string
@@ -43854,7 +43854,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":139
  *             raise ValueError("itemsize <= 0 for cython.array")
- * 
+ *
  *         if not isinstance(format, bytes):             # <<<<<<<<<<<<<<
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
@@ -43866,7 +43866,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string             # <<<<<<<<<<<<<<
  *         self.format = self._format
- * 
+ *
  */
   if (!(likely(PyBytes_CheckExact(__pyx_v_format))||((__pyx_v_format) == Py_None)||((void)PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_v_format)->tp_name), 0))) __PYX_ERR(3, 141, __pyx_L1_error)
   __pyx_t_3 = __pyx_v_format;
@@ -43881,8 +43881,8 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             format = format.encode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  *         self.format = self._format             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   if (unlikely(__pyx_v_self->_format == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
@@ -43892,39 +43892,39 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_v_self->format = __pyx_t_7;
 
   /* "View.MemoryView":145
- * 
- * 
+ *
+ *
  *         self._shape = <Py_ssize_t *> PyObject_Malloc(sizeof(Py_ssize_t)*self.ndim*2)             # <<<<<<<<<<<<<<
  *         self._strides = self._shape + self.ndim
- * 
+ *
  */
   __pyx_v_self->_shape = ((Py_ssize_t *)PyObject_Malloc((((sizeof(Py_ssize_t)) * __pyx_v_self->ndim) * 2)));
 
   /* "View.MemoryView":146
- * 
+ *
  *         self._shape = <Py_ssize_t *> PyObject_Malloc(sizeof(Py_ssize_t)*self.ndim*2)
  *         self._strides = self._shape + self.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not self._shape:
  */
   __pyx_v_self->_strides = (__pyx_v_self->_shape + __pyx_v_self->ndim);
 
   /* "View.MemoryView":148
  *         self._strides = self._shape + self.ndim
- * 
+ *
  *         if not self._shape:             # <<<<<<<<<<<<<<
  *             raise MemoryError("unable to allocate shape and strides.")
- * 
+ *
  */
   __pyx_t_4 = ((!(__pyx_v_self->_shape != 0)) != 0);
   if (unlikely(__pyx_t_4)) {
 
     /* "View.MemoryView":149
- * 
+ *
  *         if not self._shape:
  *             raise MemoryError("unable to allocate shape and strides.")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 149, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -43934,16 +43934,16 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
     /* "View.MemoryView":148
  *         self._strides = self._shape + self.ndim
- * 
+ *
  *         if not self._shape:             # <<<<<<<<<<<<<<
  *             raise MemoryError("unable to allocate shape and strides.")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":152
- * 
- * 
+ *
+ *
  *         for idx, dim in enumerate(shape):             # <<<<<<<<<<<<<<
  *             if dim <= 0:
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
@@ -43965,7 +43965,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     __pyx_t_8 = (__pyx_t_8 + 1);
 
     /* "View.MemoryView":153
- * 
+ *
  *         for idx, dim in enumerate(shape):
  *             if dim <= 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
@@ -43979,7 +43979,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             if dim <= 0:
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))             # <<<<<<<<<<<<<<
  *             self._shape[idx] = dim
- * 
+ *
  */
       __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_idx); if (unlikely(!__pyx_t_5)) __PYX_ERR(3, 154, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
@@ -44004,7 +44004,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
       __PYX_ERR(3, 154, __pyx_L1_error)
 
       /* "View.MemoryView":153
- * 
+ *
  *         for idx, dim in enumerate(shape):
  *             if dim <= 0:             # <<<<<<<<<<<<<<
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
@@ -44016,14 +44016,14 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             if dim <= 0:
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
  *             self._shape[idx] = dim             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef char order
  */
     (__pyx_v_self->_shape[__pyx_v_idx]) = __pyx_v_dim;
 
     /* "View.MemoryView":152
- * 
- * 
+ *
+ *
  *         for idx, dim in enumerate(shape):             # <<<<<<<<<<<<<<
  *             if dim <= 0:
  *                 raise ValueError("Invalid shape in axis %d: %d." % (idx, dim))
@@ -44032,7 +44032,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "View.MemoryView":158
- * 
+ *
  *         cdef char order
  *         if mode == 'fortran':             # <<<<<<<<<<<<<<
  *             order = b'F'
@@ -44064,7 +44064,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     __pyx_v_self->mode = __pyx_n_u_fortran;
 
     /* "View.MemoryView":158
- * 
+ *
  *         cdef char order
  *         if mode == 'fortran':             # <<<<<<<<<<<<<<
  *             order = b'F'
@@ -44119,7 +44119,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             self.mode = u'c'
  *         else:
  *             raise ValueError("Invalid mode, expected 'c' or 'fortran', got %s" % mode)             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.len = fill_contig_strides_array(self._shape, self._strides,
  */
   /*else*/ {
@@ -44136,16 +44136,16 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
   /* "View.MemoryView":167
  *             raise ValueError("Invalid mode, expected 'c' or 'fortran', got %s" % mode)
- * 
+ *
  *         self.len = fill_contig_strides_array(self._shape, self._strides,             # <<<<<<<<<<<<<<
  *                                              itemsize, self.ndim, order)
- * 
+ *
  */
   __pyx_v_self->len = __pyx_fill_contig_strides_array(__pyx_v_self->_shape, __pyx_v_self->_strides, __pyx_v_itemsize, __pyx_v_self->ndim, __pyx_v_order);
 
   /* "View.MemoryView":170
  *                                              itemsize, self.ndim, order)
- * 
+ *
  *         self.free_data = allocate_buffer             # <<<<<<<<<<<<<<
  *         self.dtype_is_object = format == b'O'
  *         if allocate_buffer:
@@ -44153,11 +44153,11 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_v_self->free_data = __pyx_v_allocate_buffer;
 
   /* "View.MemoryView":171
- * 
+ *
  *         self.free_data = allocate_buffer
  *         self.dtype_is_object = format == b'O'             # <<<<<<<<<<<<<<
  *         if allocate_buffer:
- * 
+ *
  */
   __pyx_t_10 = PyObject_RichCompare(__pyx_v_format, __pyx_n_b_O, Py_EQ); __Pyx_XGOTREF(__pyx_t_10); if (unlikely(!__pyx_t_10)) __PYX_ERR(3, 171, __pyx_L1_error)
   __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(3, 171, __pyx_L1_error)
@@ -44168,15 +44168,15 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *         self.free_data = allocate_buffer
  *         self.dtype_is_object = format == b'O'
  *         if allocate_buffer:             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_4 = (__pyx_v_allocate_buffer != 0);
   if (__pyx_t_4) {
 
     /* "View.MemoryView":175
- * 
- * 
+ *
+ *
  *             self.data = <char *>malloc(self.len)             # <<<<<<<<<<<<<<
  *             if not self.data:
  *                 raise MemoryError("unable to allocate array data.")
@@ -44184,11 +44184,11 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     __pyx_v_self->data = ((char *)malloc(__pyx_v_self->len));
 
     /* "View.MemoryView":176
- * 
+ *
  *             self.data = <char *>malloc(self.len)
  *             if not self.data:             # <<<<<<<<<<<<<<
  *                 raise MemoryError("unable to allocate array data.")
- * 
+ *
  */
     __pyx_t_4 = ((!(__pyx_v_self->data != 0)) != 0);
     if (unlikely(__pyx_t_4)) {
@@ -44197,7 +44197,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             self.data = <char *>malloc(self.len)
  *             if not self.data:
  *                 raise MemoryError("unable to allocate array data.")             # <<<<<<<<<<<<<<
- * 
+ *
  *             if self.dtype_is_object:
  */
       __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(3, 177, __pyx_L1_error)
@@ -44207,17 +44207,17 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
       __PYX_ERR(3, 177, __pyx_L1_error)
 
       /* "View.MemoryView":176
- * 
+ *
  *             self.data = <char *>malloc(self.len)
  *             if not self.data:             # <<<<<<<<<<<<<<
  *                 raise MemoryError("unable to allocate array data.")
- * 
+ *
  */
     }
 
     /* "View.MemoryView":179
  *                 raise MemoryError("unable to allocate array data.")
- * 
+ *
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 p = <PyObject **> self.data
  *                 for i in range(self.len / itemsize):
@@ -44226,7 +44226,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     if (__pyx_t_4) {
 
       /* "View.MemoryView":180
- * 
+ *
  *             if self.dtype_is_object:
  *                 p = <PyObject **> self.data             # <<<<<<<<<<<<<<
  *                 for i in range(self.len / itemsize):
@@ -44259,7 +44259,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *                 for i in range(self.len / itemsize):
  *                     p[i] = Py_None             # <<<<<<<<<<<<<<
  *                     Py_INCREF(Py_None)
- * 
+ *
  */
         (__pyx_v_p[__pyx_v_i]) = Py_None;
 
@@ -44267,7 +44267,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *                 for i in range(self.len / itemsize):
  *                     p[i] = Py_None
  *                     Py_INCREF(Py_None)             # <<<<<<<<<<<<<<
- * 
+ *
  *     @cname('getbuffer')
  */
         Py_INCREF(Py_None);
@@ -44275,7 +44275,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 
       /* "View.MemoryView":179
  *                 raise MemoryError("unable to allocate array data.")
- * 
+ *
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 p = <PyObject **> self.data
  *                 for i in range(self.len / itemsize):
@@ -44286,17 +44286,17 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *         self.free_data = allocate_buffer
  *         self.dtype_is_object = format == b'O'
  *         if allocate_buffer:             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   }
 
   /* "View.MemoryView":123
  *         cdef bint dtype_is_object
- * 
+ *
  *     def __cinit__(array self, tuple shape, Py_ssize_t itemsize, format not None,             # <<<<<<<<<<<<<<
  *                   mode="c", bint allocate_buffer=True):
- * 
+ *
  */
 
   /* function exit code */
@@ -44316,7 +44316,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
 }
 
 /* "View.MemoryView":186
- * 
+ *
  *     @cname('getbuffer')
  *     def __getbuffer__(self, Py_buffer *info, int flags):             # <<<<<<<<<<<<<<
  *         cdef int bufmode = -1
@@ -44523,7 +44523,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *         info.suboffsets = NULL
  *         info.itemsize = self.itemsize             # <<<<<<<<<<<<<<
  *         info.readonly = 0
- * 
+ *
  */
   __pyx_t_5 = __pyx_v_self->itemsize;
   __pyx_v_info->itemsize = __pyx_t_5;
@@ -44532,14 +44532,14 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *         info.suboffsets = NULL
  *         info.itemsize = self.itemsize
  *         info.readonly = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  */
   __pyx_v_info->readonly = 0;
 
   /* "View.MemoryView":203
  *         info.readonly = 0
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.format
  *         else:
@@ -44548,7 +44548,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
   if (__pyx_t_1) {
 
     /* "View.MemoryView":204
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  *             info.format = self.format             # <<<<<<<<<<<<<<
  *         else:
@@ -44559,7 +44559,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
     /* "View.MemoryView":203
  *         info.readonly = 0
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.format
  *         else:
@@ -44571,7 +44571,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *             info.format = self.format
  *         else:
  *             info.format = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         info.obj = self
  */
   /*else*/ {
@@ -44581,9 +44581,9 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
   /* "View.MemoryView":208
  *             info.format = NULL
- * 
+ *
  *         info.obj = self             # <<<<<<<<<<<<<<
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_array_getbuffer, "getbuffer(obj, view, flags)")
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_self));
@@ -44593,7 +44593,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
   __pyx_v_info->obj = ((PyObject *)__pyx_v_self);
 
   /* "View.MemoryView":186
- * 
+ *
  *     @cname('getbuffer')
  *     def __getbuffer__(self, Py_buffer *info, int flags):             # <<<<<<<<<<<<<<
  *         cdef int bufmode = -1
@@ -44624,7 +44624,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
 
 /* "View.MemoryView":212
  *     __pyx_getbuffer = capsule(<void *> &__pyx_array_getbuffer, "getbuffer(obj, view, flags)")
- * 
+ *
  *     def __dealloc__(array self):             # <<<<<<<<<<<<<<
  *         if self.callback_free_data != NULL:
  *             self.callback_free_data(self.data)
@@ -44647,7 +44647,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "View.MemoryView":213
- * 
+ *
  *     def __dealloc__(array self):
  *         if self.callback_free_data != NULL:             # <<<<<<<<<<<<<<
  *             self.callback_free_data(self.data)
@@ -44666,7 +44666,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
     __pyx_v_self->callback_free_data(__pyx_v_self->data);
 
     /* "View.MemoryView":213
- * 
+ *
  *     def __dealloc__(array self):
  *         if self.callback_free_data != NULL:             # <<<<<<<<<<<<<<
  *             self.callback_free_data(self.data)
@@ -44718,7 +44718,7 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
  *                                           self._strides, self.ndim, False)
  *             free(self.data)             # <<<<<<<<<<<<<<
  *         PyObject_Free(self._shape)
- * 
+ *
  */
     free(__pyx_v_self->data);
 
@@ -44736,14 +44736,14 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
  *                                           self._strides, self.ndim, False)
  *             free(self.data)
  *         PyObject_Free(self._shape)             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   PyObject_Free(__pyx_v_self->_shape);
 
   /* "View.MemoryView":212
  *     __pyx_getbuffer = capsule(<void *> &__pyx_array_getbuffer, "getbuffer(obj, view, flags)")
- * 
+ *
  *     def __dealloc__(array self):             # <<<<<<<<<<<<<<
  *         if self.callback_free_data != NULL:
  *             self.callback_free_data(self.data)
@@ -44754,11 +44754,11 @@ static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struc
 }
 
 /* "View.MemoryView":223
- * 
+ *
  *     @property
  *     def memview(self):             # <<<<<<<<<<<<<<
  *         return self.get_memview()
- * 
+ *
  */
 
 /* Python wrapper */
@@ -44787,7 +44787,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
  *     @property
  *     def memview(self):
  *         return self.get_memview()             # <<<<<<<<<<<<<<
- * 
+ *
  *     @cname('get_memview')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -44798,11 +44798,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
   goto __pyx_L0;
 
   /* "View.MemoryView":223
- * 
+ *
  *     @property
  *     def memview(self):             # <<<<<<<<<<<<<<
  *         return self.get_memview()
- * 
+ *
  */
 
   /* function exit code */
@@ -44817,7 +44817,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_5array_7memview___get__(struct _
 }
 
 /* "View.MemoryView":227
- * 
+ *
  *     @cname('get_memview')
  *     cdef get_memview(self):             # <<<<<<<<<<<<<<
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
@@ -44841,7 +44841,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
  *     cdef get_memview(self):
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE             # <<<<<<<<<<<<<<
  *         return  memoryview(self, flags, self.dtype_is_object)
- * 
+ *
  */
   __pyx_v_flags = ((PyBUF_ANY_CONTIGUOUS | PyBUF_FORMAT) | PyBUF_WRITABLE);
 
@@ -44849,7 +44849,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
  *     cdef get_memview(self):
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
  *         return  memoryview(self, flags, self.dtype_is_object)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -44876,7 +44876,7 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
   goto __pyx_L0;
 
   /* "View.MemoryView":227
- * 
+ *
  *     @cname('get_memview')
  *     cdef get_memview(self):             # <<<<<<<<<<<<<<
  *         flags =  PyBUF_ANY_CONTIGUOUS|PyBUF_FORMAT|PyBUF_WRITABLE
@@ -44898,10 +44898,10 @@ static PyObject *__pyx_array_get_memview(struct __pyx_array_obj *__pyx_v_self) {
 
 /* "View.MemoryView":231
  *         return  memoryview(self, flags, self.dtype_is_object)
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         return self._shape[0]
- * 
+ *
  */
 
 /* Python wrapper */
@@ -44923,10 +44923,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
   __Pyx_RefNannySetupContext("__len__", 0);
 
   /* "View.MemoryView":232
- * 
+ *
  *     def __len__(self):
  *         return self._shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __getattr__(self, attr):
  */
   __pyx_r = (__pyx_v_self->_shape[0]);
@@ -44934,10 +44934,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
 
   /* "View.MemoryView":231
  *         return  memoryview(self, flags, self.dtype_is_object)
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         return self._shape[0]
- * 
+ *
  */
 
   /* function exit code */
@@ -44948,10 +44948,10 @@ static Py_ssize_t __pyx_array___pyx_pf_15View_dot_MemoryView_5array_6__len__(str
 
 /* "View.MemoryView":234
  *         return self._shape[0]
- * 
+ *
  *     def __getattr__(self, attr):             # <<<<<<<<<<<<<<
  *         return getattr(self.memview, attr)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -44978,10 +44978,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
   __Pyx_RefNannySetupContext("__getattr__", 0);
 
   /* "View.MemoryView":235
- * 
+ *
  *     def __getattr__(self, attr):
  *         return getattr(self.memview, attr)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __getitem__(self, item):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -44996,10 +44996,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
 
   /* "View.MemoryView":234
  *         return self._shape[0]
- * 
+ *
  *     def __getattr__(self, attr):             # <<<<<<<<<<<<<<
  *         return getattr(self.memview, attr)
- * 
+ *
  */
 
   /* function exit code */
@@ -45016,10 +45016,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_8__getattr__(
 
 /* "View.MemoryView":237
  *         return getattr(self.memview, attr)
- * 
+ *
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         return self.memview[item]
- * 
+ *
  */
 
 /* Python wrapper */
@@ -45046,10 +45046,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
   /* "View.MemoryView":238
- * 
+ *
  *     def __getitem__(self, item):
  *         return self.memview[item]             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setitem__(self, item, value):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -45064,10 +45064,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
 
   /* "View.MemoryView":237
  *         return getattr(self.memview, attr)
- * 
+ *
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         return self.memview[item]
- * 
+ *
  */
 
   /* function exit code */
@@ -45084,10 +45084,10 @@ static PyObject *__pyx_array___pyx_pf_15View_dot_MemoryView_5array_10__getitem__
 
 /* "View.MemoryView":240
  *         return self.memview[item]
- * 
+ *
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
  *         self.memview[item] = value
- * 
+ *
  */
 
 /* Python wrapper */
@@ -45113,11 +45113,11 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_12__setitem__(struc
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
   /* "View.MemoryView":241
- * 
+ *
  *     def __setitem__(self, item, value):
  *         self.memview[item] = value             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_memview); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -45126,10 +45126,10 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_12__setitem__(struc
 
   /* "View.MemoryView":240
  *         return self.memview[item]
- * 
+ *
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
  *         self.memview[item] = value
- * 
+ *
  */
 
   /* function exit code */
@@ -45258,7 +45258,7 @@ static PyObject *__pyx_pf___pyx_array_2__setstate_cython__(CYTHON_UNUSED struct 
 }
 
 /* "View.MemoryView":245
- * 
+ *
  * @cname("__pyx_array_new")
  * cdef array array_cwrapper(tuple shape, Py_ssize_t itemsize, char *format,             # <<<<<<<<<<<<<<
  *                           char *mode, char *buf):
@@ -45281,7 +45281,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
   /* "View.MemoryView":249
  *     cdef array result
- * 
+ *
  *     if buf == NULL:             # <<<<<<<<<<<<<<
  *         result = array(shape, itemsize, format, mode.decode('ASCII'))
  *     else:
@@ -45290,7 +45290,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
   if (__pyx_t_1) {
 
     /* "View.MemoryView":250
- * 
+ *
  *     if buf == NULL:
  *         result = array(shape, itemsize, format, mode.decode('ASCII'))             # <<<<<<<<<<<<<<
  *     else:
@@ -45324,7 +45324,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
     /* "View.MemoryView":249
  *     cdef array result
- * 
+ *
  *     if buf == NULL:             # <<<<<<<<<<<<<<
  *         result = array(shape, itemsize, format, mode.decode('ASCII'))
  *     else:
@@ -45366,7 +45366,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
  *         result = array(shape, itemsize, format, mode.decode('ASCII'),
  *                        allocate_buffer=False)             # <<<<<<<<<<<<<<
  *         result.data = buf
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -45390,7 +45390,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
  *         result = array(shape, itemsize, format, mode.decode('ASCII'),
  *                        allocate_buffer=False)
  *         result.data = buf             # <<<<<<<<<<<<<<
- * 
+ *
  *     return result
  */
     __pyx_v_result->data = __pyx_v_buf;
@@ -45399,10 +45399,10 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
 
   /* "View.MemoryView":256
  *         result.data = buf
- * 
+ *
  *     return result             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __Pyx_INCREF(((PyObject *)__pyx_v_result));
@@ -45410,7 +45410,7 @@ static struct __pyx_array_obj *__pyx_array_new(PyObject *__pyx_v_shape, Py_ssize
   goto __pyx_L0;
 
   /* "View.MemoryView":245
- * 
+ *
  * @cname("__pyx_array_new")
  * cdef array array_cwrapper(tuple shape, Py_ssize_t itemsize, char *format,             # <<<<<<<<<<<<<<
  *                           char *mode, char *buf):
@@ -45530,7 +45530,7 @@ static int __pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum___init__(struc
  *         self.name = name
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return self.name
- * 
+ *
  */
 
 /* Python wrapper */
@@ -45555,7 +45555,7 @@ static PyObject *__pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum_2__repr_
  *         self.name = name
  *     def __repr__(self):
  *         return self.name             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")
  */
   __Pyx_XDECREF(__pyx_r);
@@ -45568,7 +45568,7 @@ static PyObject *__pyx_MemviewEnum___pyx_pf_15View_dot_MemoryView_4Enum_2__repr_
  *         self.name = name
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return self.name
- * 
+ *
  */
 
   /* function exit code */
@@ -45872,7 +45872,7 @@ static PyObject *__pyx_pf___pyx_MemviewEnum_2__setstate_cython__(struct __pyx_Me
 }
 
 /* "View.MemoryView":299
- * 
+ *
  * @cname('__pyx_align_pointer')
  * cdef void *align_pointer(void *memory, size_t alignment) nogil:             # <<<<<<<<<<<<<<
  *     "Align pointer memory on a given boundary"
@@ -45890,59 +45890,59 @@ static void *__pyx_align_pointer(void *__pyx_v_memory, size_t __pyx_v_alignment)
  *     "Align pointer memory on a given boundary"
  *     cdef Py_intptr_t aligned_p = <Py_intptr_t> memory             # <<<<<<<<<<<<<<
  *     cdef size_t offset
- * 
+ *
  */
   __pyx_v_aligned_p = ((Py_intptr_t)__pyx_v_memory);
 
   /* "View.MemoryView":305
- * 
+ *
  *     with cython.cdivision(True):
  *         offset = aligned_p % alignment             # <<<<<<<<<<<<<<
- * 
+ *
  *     if offset > 0:
  */
   __pyx_v_offset = (__pyx_v_aligned_p % __pyx_v_alignment);
 
   /* "View.MemoryView":307
  *         offset = aligned_p % alignment
- * 
+ *
  *     if offset > 0:             # <<<<<<<<<<<<<<
  *         aligned_p += alignment - offset
- * 
+ *
  */
   __pyx_t_1 = ((__pyx_v_offset > 0) != 0);
   if (__pyx_t_1) {
 
     /* "View.MemoryView":308
- * 
+ *
  *     if offset > 0:
  *         aligned_p += alignment - offset             # <<<<<<<<<<<<<<
- * 
+ *
  *     return <void *> aligned_p
  */
     __pyx_v_aligned_p = (__pyx_v_aligned_p + (__pyx_v_alignment - __pyx_v_offset));
 
     /* "View.MemoryView":307
  *         offset = aligned_p % alignment
- * 
+ *
  *     if offset > 0:             # <<<<<<<<<<<<<<
  *         aligned_p += alignment - offset
- * 
+ *
  */
   }
 
   /* "View.MemoryView":310
  *         aligned_p += alignment - offset
- * 
+ *
  *     return <void *> aligned_p             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = ((void *)__pyx_v_aligned_p);
   goto __pyx_L0;
 
   /* "View.MemoryView":299
- * 
+ *
  * @cname('__pyx_align_pointer')
  * cdef void *align_pointer(void *memory, size_t alignment) nogil:             # <<<<<<<<<<<<<<
  *     "Align pointer memory on a given boundary"
@@ -45956,7 +45956,7 @@ static void *__pyx_align_pointer(void *__pyx_v_memory, size_t __pyx_v_alignment)
 
 /* "View.MemoryView":346
  *     cdef __Pyx_TypeInfo *typeinfo
- * 
+ *
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):             # <<<<<<<<<<<<<<
  *         self.obj = obj
  *         self.flags = flags
@@ -46057,7 +46057,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
   /* "View.MemoryView":347
- * 
+ *
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):
  *         self.obj = obj             # <<<<<<<<<<<<<<
  *         self.flags = flags
@@ -46122,7 +46122,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             if <PyObject *> self.view.obj == NULL:
  *                 (<__pyx_buffer *> &self.view).obj = Py_None             # <<<<<<<<<<<<<<
  *                 Py_INCREF(Py_None)
- * 
+ *
  */
       ((Py_buffer *)(&__pyx_v_self->view))->obj = Py_None;
 
@@ -46130,7 +46130,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             if <PyObject *> self.view.obj == NULL:
  *                 (<__pyx_buffer *> &self.view).obj = Py_None
  *                 Py_INCREF(Py_None)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():
  */
       Py_INCREF(Py_None);
@@ -46155,7 +46155,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":355
  *                 Py_INCREF(Py_None)
- * 
+ *
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():             # <<<<<<<<<<<<<<
  *             global __pyx_memoryview_thread_locks_used
  *             if __pyx_memoryview_thread_locks_used < THREAD_LOCKS_PREALLOCATED:
@@ -46224,7 +46224,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:             # <<<<<<<<<<<<<<
  *                     raise MemoryError
- * 
+ *
  */
       __pyx_t_1 = ((__pyx_v_self->lock == NULL) != 0);
       if (unlikely(__pyx_t_1)) {
@@ -46233,7 +46233,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:
  *                     raise MemoryError             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  */
         PyErr_NoMemory(); __PYX_ERR(3, 363, __pyx_L1_error)
@@ -46243,7 +46243,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *                 self.lock = PyThread_allocate_lock()
  *                 if self.lock is NULL:             # <<<<<<<<<<<<<<
  *                     raise MemoryError
- * 
+ *
  */
       }
 
@@ -46258,7 +46258,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
     /* "View.MemoryView":355
  *                 Py_INCREF(Py_None)
- * 
+ *
  *         if not __PYX_CYTHON_ATOMICS_ENABLED():             # <<<<<<<<<<<<<<
  *             global __pyx_memoryview_thread_locks_used
  *             if __pyx_memoryview_thread_locks_used < THREAD_LOCKS_PREALLOCATED:
@@ -46267,7 +46267,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":365
  *                     raise MemoryError
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
@@ -46276,7 +46276,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
   if (__pyx_t_1) {
 
     /* "View.MemoryView":366
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')             # <<<<<<<<<<<<<<
  *         else:
@@ -46295,7 +46295,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
     /* "View.MemoryView":365
  *                     raise MemoryError
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
@@ -46307,7 +46307,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *             self.dtype_is_object = (self.view.format[0] == b'O' and self.view.format[1] == b'\0')
  *         else:
  *             self.dtype_is_object = dtype_is_object             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.acquisition_count_aligned_p = <__pyx_atomic_int *> align_pointer(
  */
   /*else*/ {
@@ -46317,7 +46317,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
   /* "View.MemoryView":370
  *             self.dtype_is_object = dtype_is_object
- * 
+ *
  *         self.acquisition_count_aligned_p = <__pyx_atomic_int *> align_pointer(             # <<<<<<<<<<<<<<
  *                   <void *> &self.acquisition_count[0], sizeof(__pyx_atomic_int))
  *         self.typeinfo = NULL
@@ -46328,14 +46328,14 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
  *         self.acquisition_count_aligned_p = <__pyx_atomic_int *> align_pointer(
  *                   <void *> &self.acquisition_count[0], sizeof(__pyx_atomic_int))
  *         self.typeinfo = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __dealloc__(memoryview self):
  */
   __pyx_v_self->typeinfo = NULL;
 
   /* "View.MemoryView":346
  *     cdef __Pyx_TypeInfo *typeinfo
- * 
+ *
  *     def __cinit__(memoryview self, object obj, int flags, bint dtype_is_object=False):             # <<<<<<<<<<<<<<
  *         self.obj = obj
  *         self.flags = flags
@@ -46354,7 +46354,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview___cinit_
 
 /* "View.MemoryView":374
  *         self.typeinfo = NULL
- * 
+ *
  *     def __dealloc__(memoryview self):             # <<<<<<<<<<<<<<
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -46384,7 +46384,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "View.MemoryView":375
- * 
+ *
  *     def __dealloc__(memoryview self):
  *         if self.obj is not None:             # <<<<<<<<<<<<<<
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -46399,12 +46399,12 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)             # <<<<<<<<<<<<<<
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:
- * 
+ *
  */
     __Pyx_ReleaseBuffer((&__pyx_v_self->view));
 
     /* "View.MemoryView":375
- * 
+ *
  *     def __dealloc__(memoryview self):
  *         if self.obj is not None:             # <<<<<<<<<<<<<<
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -46417,7 +46417,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:             # <<<<<<<<<<<<<<
- * 
+ *
  *             (<__pyx_buffer *> &self.view).obj = NULL
  */
   __pyx_t_2 = ((((Py_buffer *)(&__pyx_v_self->view))->obj == Py_None) != 0);
@@ -46425,18 +46425,18 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
     /* "View.MemoryView":379
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:
- * 
+ *
  *             (<__pyx_buffer *> &self.view).obj = NULL             # <<<<<<<<<<<<<<
  *             Py_DECREF(Py_None)
- * 
+ *
  */
     ((Py_buffer *)(&__pyx_v_self->view))->obj = NULL;
 
     /* "View.MemoryView":380
- * 
+ *
  *             (<__pyx_buffer *> &self.view).obj = NULL
  *             Py_DECREF(Py_None)             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef int i
  */
     Py_DECREF(Py_None);
@@ -46445,7 +46445,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
  *         elif (<__pyx_buffer *> &self.view).obj == Py_None:             # <<<<<<<<<<<<<<
- * 
+ *
  *             (<__pyx_buffer *> &self.view).obj = NULL
  */
   }
@@ -46555,7 +46555,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
  *                     break
  *             else:
  *                 PyThread_free_lock(self.lock)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:
  */
       PyThread_free_lock(__pyx_v_self->lock);
@@ -46573,7 +46573,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
   /* "View.MemoryView":374
  *         self.typeinfo = NULL
- * 
+ *
  *     def __dealloc__(memoryview self):             # <<<<<<<<<<<<<<
  *         if self.obj is not None:
  *             __Pyx_ReleaseBuffer(&self.view)
@@ -46585,7 +46585,7 @@ static void __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_2__deal
 
 /* "View.MemoryView":395
  *                 PyThread_free_lock(self.lock)
- * 
+ *
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:             # <<<<<<<<<<<<<<
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf
@@ -46613,17 +46613,17 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf             # <<<<<<<<<<<<<<
- * 
+ *
  *         for dim, idx in enumerate(index):
  */
   __pyx_v_itemp = ((char *)__pyx_v_self->view.buf);
 
   /* "View.MemoryView":399
  *         cdef char *itemp = <char *> self.view.buf
- * 
+ *
  *         for dim, idx in enumerate(index):             # <<<<<<<<<<<<<<
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- * 
+ *
  */
   __pyx_t_1 = 0;
   if (likely(PyList_CheckExact(__pyx_v_index)) || PyTuple_CheckExact(__pyx_v_index)) {
@@ -46671,10 +46671,10 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
     __pyx_t_1 = (__pyx_t_1 + 1);
 
     /* "View.MemoryView":400
- * 
+ *
  *         for dim, idx in enumerate(index):
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         return itemp
  */
     __pyx_t_6 = __Pyx_PyIndex_AsSsize_t(__pyx_v_idx); if (unlikely((__pyx_t_6 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(3, 400, __pyx_L1_error)
@@ -46683,27 +46683,27 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
 
     /* "View.MemoryView":399
  *         cdef char *itemp = <char *> self.view.buf
- * 
+ *
  *         for dim, idx in enumerate(index):             # <<<<<<<<<<<<<<
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- * 
+ *
  */
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "View.MemoryView":402
  *             itemp = pybuffer_index(&self.view, itemp, idx, dim)
- * 
+ *
  *         return itemp             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_itemp;
   goto __pyx_L0;
 
   /* "View.MemoryView":395
  *                 PyThread_free_lock(self.lock)
- * 
+ *
  *     cdef char *get_item_pointer(memoryview self, object index) except NULL:             # <<<<<<<<<<<<<<
  *         cdef Py_ssize_t dim
  *         cdef char *itemp = <char *> self.view.buf
@@ -46722,8 +46722,8 @@ static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__py
 }
 
 /* "View.MemoryView":405
- * 
- * 
+ *
+ *
  *     def __getitem__(memoryview self, object index):             # <<<<<<<<<<<<<<
  *         if index is Ellipsis:
  *             return self
@@ -46760,11 +46760,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
   /* "View.MemoryView":406
- * 
+ *
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:             # <<<<<<<<<<<<<<
  *             return self
- * 
+ *
  */
   __pyx_t_1 = (__pyx_v_index == __pyx_builtin_Ellipsis);
   __pyx_t_2 = (__pyx_t_1 != 0);
@@ -46774,7 +46774,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:
  *             return self             # <<<<<<<<<<<<<<
- * 
+ *
  *         have_slices, indices = _unellipsify(index, self.view.ndim)
  */
     __Pyx_XDECREF(__pyx_r);
@@ -46783,19 +46783,19 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
     goto __pyx_L0;
 
     /* "View.MemoryView":406
- * 
+ *
  *     def __getitem__(memoryview self, object index):
  *         if index is Ellipsis:             # <<<<<<<<<<<<<<
  *             return self
- * 
+ *
  */
   }
 
   /* "View.MemoryView":409
  *             return self
- * 
+ *
  *         have_slices, indices = _unellipsify(index, self.view.ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         cdef char *itemp
  */
   __pyx_t_3 = _unellipsify(__pyx_v_index, __pyx_v_self->view.ndim); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 409, __pyx_L1_error)
@@ -46809,8 +46809,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
       __PYX_ERR(3, 409, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
-    __pyx_t_5 = PyTuple_GET_ITEM(sequence, 1); 
+    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0);
+    __pyx_t_5 = PyTuple_GET_ITEM(sequence, 1);
     __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_5);
     #else
@@ -46829,7 +46829,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   __pyx_t_5 = 0;
 
   /* "View.MemoryView":412
- * 
+ *
  *         cdef char *itemp
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             return memview_slice(self, indices)
@@ -46853,7 +46853,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
     goto __pyx_L0;
 
     /* "View.MemoryView":412
- * 
+ *
  *         cdef char *itemp
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             return memview_slice(self, indices)
@@ -46866,7 +46866,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *         else:
  *             itemp = self.get_item_pointer(indices)             # <<<<<<<<<<<<<<
  *             return self.convert_item_to_object(itemp)
- * 
+ *
  */
   /*else*/ {
     __pyx_t_6 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->get_item_pointer(__pyx_v_self, __pyx_v_indices); if (unlikely(__pyx_t_6 == ((char *)NULL))) __PYX_ERR(3, 415, __pyx_L1_error)
@@ -46876,7 +46876,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
  *         else:
  *             itemp = self.get_item_pointer(indices)
  *             return self.convert_item_to_object(itemp)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):
  */
     __Pyx_XDECREF(__pyx_r);
@@ -46888,8 +46888,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
   }
 
   /* "View.MemoryView":405
- * 
- * 
+ *
+ *
  *     def __getitem__(memoryview self, object index):             # <<<<<<<<<<<<<<
  *         if index is Ellipsis:
  *             return self
@@ -46912,7 +46912,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_4_
 
 /* "View.MemoryView":418
  *             return self.convert_item_to_object(itemp)
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):             # <<<<<<<<<<<<<<
  *         if self.view.readonly:
  *             raise TypeError("Cannot assign to read-only memoryview")
@@ -46947,11 +46947,11 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
   __Pyx_INCREF(__pyx_v_index);
 
   /* "View.MemoryView":419
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise TypeError("Cannot assign to read-only memoryview")
- * 
+ *
  */
   __pyx_t_1 = (__pyx_v_self->view.readonly != 0);
   if (unlikely(__pyx_t_1)) {
@@ -46960,7 +46960,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:
  *             raise TypeError("Cannot assign to read-only memoryview")             # <<<<<<<<<<<<<<
- * 
+ *
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
     __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 420, __pyx_L1_error)
@@ -46970,19 +46970,19 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
     __PYX_ERR(3, 420, __pyx_L1_error)
 
     /* "View.MemoryView":419
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise TypeError("Cannot assign to read-only memoryview")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":422
  *             raise TypeError("Cannot assign to read-only memoryview")
- * 
+ *
  *         have_slices, index = _unellipsify(index, self.view.ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if have_slices:
  */
   __pyx_t_2 = _unellipsify(__pyx_v_index, __pyx_v_self->view.ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 422, __pyx_L1_error)
@@ -46996,8 +46996,8 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
       __PYX_ERR(3, 422, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
-    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1); 
+    __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0);
+    __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1);
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_4);
     #else
@@ -47017,7 +47017,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
   /* "View.MemoryView":424
  *         have_slices, index = _unellipsify(index, self.view.ndim)
- * 
+ *
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             obj = self.is_slice(value)
  *             if obj:
@@ -47026,7 +47026,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
   if (__pyx_t_1) {
 
     /* "View.MemoryView":425
- * 
+ *
  *         if have_slices:
  *             obj = self.is_slice(value)             # <<<<<<<<<<<<<<
  *             if obj:
@@ -47091,7 +47091,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
     /* "View.MemoryView":424
  *         have_slices, index = _unellipsify(index, self.view.ndim)
- * 
+ *
  *         if have_slices:             # <<<<<<<<<<<<<<
  *             obj = self.is_slice(value)
  *             if obj:
@@ -47103,7 +47103,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
  *                 self.setitem_slice_assign_scalar(self[index], value)
  *         else:
  *             self.setitem_indexed(index, value)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef is_slice(self, obj):
  */
   /*else*/ {
@@ -47115,7 +47115,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
   /* "View.MemoryView":418
  *             return self.convert_item_to_object(itemp)
- * 
+ *
  *     def __setitem__(memoryview self, object index, object value):             # <<<<<<<<<<<<<<
  *         if self.view.readonly:
  *             raise TypeError("Cannot assign to read-only memoryview")
@@ -47140,7 +47140,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
 
 /* "View.MemoryView":433
  *             self.setitem_indexed(index, value)
- * 
+ *
  *     cdef is_slice(self, obj):             # <<<<<<<<<<<<<<
  *         if not isinstance(obj, memoryview):
  *             try:
@@ -47165,13 +47165,13 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
   __Pyx_INCREF(__pyx_v_obj);
 
   /* "View.MemoryView":434
- * 
+ *
  *     cdef is_slice(self, obj):
  *         if not isinstance(obj, memoryview):             # <<<<<<<<<<<<<<
  *             try:
  *                 obj = memoryview(obj, self.flags & ~PyBUF_WRITABLE | PyBUF_ANY_CONTIGUOUS,
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_obj, __pyx_memoryview_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_obj, __pyx_memoryview_type);
   __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
   if (__pyx_t_2) {
 
@@ -47257,7 +47257,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
  *                                  self.dtype_is_object)
  *             except TypeError:             # <<<<<<<<<<<<<<
  *                 return None
- * 
+ *
  */
       __pyx_t_9 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError);
       if (__pyx_t_9) {
@@ -47271,7 +47271,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
  *                                  self.dtype_is_object)
  *             except TypeError:
  *                 return None             # <<<<<<<<<<<<<<
- * 
+ *
  *         return obj
  */
         __Pyx_XDECREF(__pyx_r);
@@ -47306,7 +47306,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
     }
 
     /* "View.MemoryView":434
- * 
+ *
  *     cdef is_slice(self, obj):
  *         if not isinstance(obj, memoryview):             # <<<<<<<<<<<<<<
  *             try:
@@ -47316,9 +47316,9 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
   /* "View.MemoryView":441
  *                 return None
- * 
+ *
  *         return obj             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef setitem_slice_assignment(self, dst, src):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -47328,7 +47328,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
   /* "View.MemoryView":433
  *             self.setitem_indexed(index, value)
- * 
+ *
  *     cdef is_slice(self, obj):             # <<<<<<<<<<<<<<
  *         if not isinstance(obj, memoryview):
  *             try:
@@ -47350,7 +47350,7 @@ static PyObject *__pyx_memoryview_is_slice(struct __pyx_memoryview_obj *__pyx_v_
 
 /* "View.MemoryView":443
  *         return obj
- * 
+ *
  *     cdef setitem_slice_assignment(self, dst, src):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice dst_slice
  *         cdef __Pyx_memviewslice src_slice
@@ -47374,7 +47374,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
   /* "View.MemoryView":447
  *         cdef __Pyx_memviewslice src_slice
- * 
+ *
  *         memoryview_copy_contents(get_slice_from_memview(src, &src_slice)[0],             # <<<<<<<<<<<<<<
  *                                  get_slice_from_memview(dst, &dst_slice)[0],
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
@@ -47383,11 +47383,11 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(((struct __pyx_memoryview_obj *)__pyx_v_src), (&__pyx_v_src_slice)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(3, 447, __pyx_L1_error)
 
   /* "View.MemoryView":448
- * 
+ *
  *         memoryview_copy_contents(get_slice_from_memview(src, &src_slice)[0],
  *                                  get_slice_from_memview(dst, &dst_slice)[0],             # <<<<<<<<<<<<<<
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
- * 
+ *
  */
   if (!(likely(((__pyx_v_dst) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_dst, __pyx_memoryview_type))))) __PYX_ERR(3, 448, __pyx_L1_error)
   __pyx_t_2 = __pyx_memoryview_get_slice_from_memoryview(((struct __pyx_memoryview_obj *)__pyx_v_dst), (&__pyx_v_dst_slice)); if (unlikely(__pyx_t_2 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(3, 448, __pyx_L1_error)
@@ -47396,7 +47396,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
  *         memoryview_copy_contents(get_slice_from_memview(src, &src_slice)[0],
  *                                  get_slice_from_memview(dst, &dst_slice)[0],
  *                                  src.ndim, dst.ndim, self.dtype_is_object)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_src, __pyx_n_s_ndim); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 449, __pyx_L1_error)
@@ -47410,7 +47410,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
   /* "View.MemoryView":447
  *         cdef __Pyx_memviewslice src_slice
- * 
+ *
  *         memoryview_copy_contents(get_slice_from_memview(src, &src_slice)[0],             # <<<<<<<<<<<<<<
  *                                  get_slice_from_memview(dst, &dst_slice)[0],
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
@@ -47419,7 +47419,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
   /* "View.MemoryView":443
  *         return obj
- * 
+ *
  *     cdef setitem_slice_assignment(self, dst, src):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice dst_slice
  *         cdef __Pyx_memviewslice src_slice
@@ -47440,7 +47440,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assignment(struct __pyx_memoryvi
 
 /* "View.MemoryView":451
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
- * 
+ *
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):             # <<<<<<<<<<<<<<
  *         cdef int array[128]
  *         cdef void *tmp = NULL
@@ -47476,7 +47476,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *         cdef int array[128]
  *         cdef void *tmp = NULL             # <<<<<<<<<<<<<<
  *         cdef void *item
- * 
+ *
  */
   __pyx_v_tmp = NULL;
 
@@ -47484,7 +47484,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *         cdef __Pyx_memviewslice *dst_slice
  *         cdef __Pyx_memviewslice tmp_slice
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if <size_t>self.view.itemsize > sizeof(array):
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_dst, (&__pyx_v_tmp_slice)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(3, 458, __pyx_L1_error)
@@ -47492,7 +47492,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":460
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)
- * 
+ *
  *         if <size_t>self.view.itemsize > sizeof(array):             # <<<<<<<<<<<<<<
  *             tmp = PyMem_Malloc(self.view.itemsize)
  *             if tmp == NULL:
@@ -47501,7 +47501,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
   if (__pyx_t_2) {
 
     /* "View.MemoryView":461
- * 
+ *
  *         if <size_t>self.view.itemsize > sizeof(array):
  *             tmp = PyMem_Malloc(self.view.itemsize)             # <<<<<<<<<<<<<<
  *             if tmp == NULL:
@@ -47548,7 +47548,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
     /* "View.MemoryView":460
  *         dst_slice = get_slice_from_memview(dst, &tmp_slice)
- * 
+ *
  *         if <size_t>self.view.itemsize > sizeof(array):             # <<<<<<<<<<<<<<
  *             tmp = PyMem_Malloc(self.view.itemsize)
  *             if tmp == NULL:
@@ -47560,7 +47560,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *             item = tmp
  *         else:
  *             item = <void *> array             # <<<<<<<<<<<<<<
- * 
+ *
  *         try:
  */
   /*else*/ {
@@ -47570,7 +47570,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":468
  *             item = <void *> array
- * 
+ *
  *         try:             # <<<<<<<<<<<<<<
  *             if self.dtype_is_object:
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -47578,7 +47578,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
   /*try:*/ {
 
     /* "View.MemoryView":469
- * 
+ *
  *         try:
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -47597,7 +47597,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
       (((PyObject **)__pyx_v_item)[0]) = ((PyObject *)__pyx_v_value);
 
       /* "View.MemoryView":469
- * 
+ *
  *         try:
  *             if self.dtype_is_object:             # <<<<<<<<<<<<<<
  *                 (<PyObject **> item)[0] = <PyObject *> value
@@ -47610,8 +47610,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *                 (<PyObject **> item)[0] = <PyObject *> value
  *             else:
  *                 self.assign_item_from_object(<char *> item, value)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     /*else*/ {
       __pyx_t_3 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->assign_item_from_object(__pyx_v_self, ((char *)__pyx_v_item), __pyx_v_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 472, __pyx_L6_error)
@@ -47621,8 +47621,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
     __pyx_L8:;
 
     /* "View.MemoryView":476
- * 
- * 
+ *
+ *
  *             if self.view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -47631,7 +47631,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
     if (__pyx_t_2) {
 
       /* "View.MemoryView":477
- * 
+ *
  *             if self.view.suboffsets != NULL:
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)             # <<<<<<<<<<<<<<
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -47642,8 +47642,8 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
       /* "View.MemoryView":476
- * 
- * 
+ *
+ *
  *             if self.view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *                 assert_direct_dimensions(self.view.suboffsets, self.view.ndim)
  *             slice_assign_scalar(dst_slice, dst.view.ndim, self.view.itemsize,
@@ -47664,7 +47664,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
  *                                 item, self.dtype_is_object)
  *         finally:
  *             PyMem_Free(tmp)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef setitem_indexed(self, index, value):
  */
   /*finally:*/ {
@@ -47709,7 +47709,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
   /* "View.MemoryView":451
  *                                  src.ndim, dst.ndim, self.dtype_is_object)
- * 
+ *
  *     cdef setitem_slice_assign_scalar(self, memoryview dst, value):             # <<<<<<<<<<<<<<
  *         cdef int array[128]
  *         cdef void *tmp = NULL
@@ -47730,7 +47730,7 @@ static PyObject *__pyx_memoryview_setitem_slice_assign_scalar(struct __pyx_memor
 
 /* "View.MemoryView":483
  *             PyMem_Free(tmp)
- * 
+ *
  *     cdef setitem_indexed(self, index, value):             # <<<<<<<<<<<<<<
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)
@@ -47748,11 +47748,11 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
   __Pyx_RefNannySetupContext("setitem_indexed", 0);
 
   /* "View.MemoryView":484
- * 
+ *
  *     cdef setitem_indexed(self, index, value):
  *         cdef char *itemp = self.get_item_pointer(index)             # <<<<<<<<<<<<<<
  *         self.assign_item_from_object(itemp, value)
- * 
+ *
  */
   __pyx_t_1 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->get_item_pointer(__pyx_v_self, __pyx_v_index); if (unlikely(__pyx_t_1 == ((char *)NULL))) __PYX_ERR(3, 484, __pyx_L1_error)
   __pyx_v_itemp = __pyx_t_1;
@@ -47761,7 +47761,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
  *     cdef setitem_indexed(self, index, value):
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):
  */
   __pyx_t_2 = ((struct __pyx_vtabstruct_memoryview *)__pyx_v_self->__pyx_vtab)->assign_item_from_object(__pyx_v_self, __pyx_v_itemp, __pyx_v_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 485, __pyx_L1_error)
@@ -47770,7 +47770,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
 
   /* "View.MemoryView":483
  *             PyMem_Free(tmp)
- * 
+ *
  *     cdef setitem_indexed(self, index, value):             # <<<<<<<<<<<<<<
  *         cdef char *itemp = self.get_item_pointer(index)
  *         self.assign_item_from_object(itemp, value)
@@ -47791,7 +47791,7 @@ static PyObject *__pyx_memoryview_setitem_indexed(struct __pyx_memoryview_obj *_
 
 /* "View.MemoryView":487
  *         self.assign_item_from_object(itemp, value)
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -47824,7 +47824,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *         know how to convert the type"""
  *         import struct             # <<<<<<<<<<<<<<
  *         cdef bytes bytesitem
- * 
+ *
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_struct, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 490, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -47833,7 +47833,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
   /* "View.MemoryView":493
  *         cdef bytes bytesitem
- * 
+ *
  *         bytesitem = itemp[:self.view.itemsize]             # <<<<<<<<<<<<<<
  *         try:
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -47844,7 +47844,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
   __pyx_t_1 = 0;
 
   /* "View.MemoryView":494
- * 
+ *
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -47921,7 +47921,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
       __pyx_t_1 = 0;
 
       /* "View.MemoryView":494
- * 
+ *
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -47937,7 +47937,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *             return result
  */
     /*else:*/ {
-      __pyx_t_10 = strlen(__pyx_v_self->view.format); 
+      __pyx_t_10 = strlen(__pyx_v_self->view.format);
       __pyx_t_11 = ((__pyx_t_10 == 1) != 0);
       if (__pyx_t_11) {
 
@@ -47946,7 +47946,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *             if len(self.view.format) == 1:
  *                 return result[0]             # <<<<<<<<<<<<<<
  *             return result
- * 
+ *
  */
         __Pyx_XDECREF(__pyx_r);
         __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_result, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 500, __pyx_L5_except_error)
@@ -47968,7 +47968,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *             if len(self.view.format) == 1:
  *                 return result[0]
  *             return result             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):
  */
       __Pyx_XDECREF(__pyx_r);
@@ -48021,7 +48021,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
     __pyx_L5_except_error:;
 
     /* "View.MemoryView":494
- * 
+ *
  *         bytesitem = itemp[:self.view.itemsize]
  *         try:             # <<<<<<<<<<<<<<
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -48042,7 +48042,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
   /* "View.MemoryView":487
  *         self.assign_item_from_object(itemp, value)
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -48068,7 +48068,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
 
 /* "View.MemoryView":503
  *             return result
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -48114,17 +48114,17 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":511
  *         cdef Py_ssize_t i
- * 
+ *
  *         if isinstance(value, tuple):             # <<<<<<<<<<<<<<
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
  */
-  __pyx_t_2 = PyTuple_Check(__pyx_v_value); 
+  __pyx_t_2 = PyTuple_Check(__pyx_v_value);
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
     /* "View.MemoryView":512
- * 
+ *
  *         if isinstance(value, tuple):
  *             bytesvalue = struct.pack(self.view.format, *value)             # <<<<<<<<<<<<<<
  *         else:
@@ -48155,7 +48155,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
     /* "View.MemoryView":511
  *         cdef Py_ssize_t i
- * 
+ *
  *         if isinstance(value, tuple):             # <<<<<<<<<<<<<<
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
@@ -48167,7 +48167,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
  *             bytesvalue = struct.pack(self.view.format, *value)
  *         else:
  *             bytesvalue = struct.pack(self.view.format, value)             # <<<<<<<<<<<<<<
- * 
+ *
  *         for i, c in enumerate(bytesvalue):
  */
   /*else*/ {
@@ -48230,10 +48230,10 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":516
  *             bytesvalue = struct.pack(self.view.format, value)
- * 
+ *
  *         for i, c in enumerate(bytesvalue):             # <<<<<<<<<<<<<<
  *             itemp[i] = c
- * 
+ *
  */
   __pyx_t_9 = 0;
   if (unlikely(__pyx_v_bytesvalue == Py_None)) {
@@ -48249,28 +48249,28 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
     __pyx_v_c = (__pyx_t_11[0]);
 
     /* "View.MemoryView":517
- * 
+ *
  *         for i, c in enumerate(bytesvalue):
  *             itemp[i] = c             # <<<<<<<<<<<<<<
- * 
+ *
  *     @cname('getbuffer')
  */
     __pyx_v_i = __pyx_t_9;
 
     /* "View.MemoryView":516
  *             bytesvalue = struct.pack(self.view.format, value)
- * 
+ *
  *         for i, c in enumerate(bytesvalue):             # <<<<<<<<<<<<<<
  *             itemp[i] = c
- * 
+ *
  */
     __pyx_t_9 = (__pyx_t_9 + 1);
 
     /* "View.MemoryView":517
- * 
+ *
  *         for i, c in enumerate(bytesvalue):
  *             itemp[i] = c             # <<<<<<<<<<<<<<
- * 
+ *
  *     @cname('getbuffer')
  */
     (__pyx_v_itemp[__pyx_v_i]) = __pyx_v_c;
@@ -48279,7 +48279,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 
   /* "View.MemoryView":503
  *             return result
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         """Only used if instantiated manually by the user, or if Cython doesn't
  *         know how to convert the type"""
@@ -48306,7 +48306,7 @@ static PyObject *__pyx_memoryview_assign_item_from_object(struct __pyx_memoryvie
 }
 
 /* "View.MemoryView":520
- * 
+ *
  *     @cname('getbuffer')
  *     def __getbuffer__(self, Py_buffer *info, int flags):             # <<<<<<<<<<<<<<
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
@@ -48353,7 +48353,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_flags & PyBUF_WRITABLE) != 0);
   if (__pyx_t_2) {
@@ -48370,7 +48370,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_ND:
  */
     __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 522, __pyx_L1_error)
@@ -48384,13 +48384,13 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:             # <<<<<<<<<<<<<<
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")
- * 
+ *
  */
   }
 
   /* "View.MemoryView":524
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")
- * 
+ *
  *         if flags & PyBUF_ND:             # <<<<<<<<<<<<<<
  *             info.shape = self.view.shape
  *         else:
@@ -48399,7 +48399,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":525
- * 
+ *
  *         if flags & PyBUF_ND:
  *             info.shape = self.view.shape             # <<<<<<<<<<<<<<
  *         else:
@@ -48410,7 +48410,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":524
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")
- * 
+ *
  *         if flags & PyBUF_ND:             # <<<<<<<<<<<<<<
  *             info.shape = self.view.shape
  *         else:
@@ -48422,7 +48422,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.shape = self.view.shape
  *         else:
  *             info.shape = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_STRIDES:
  */
   /*else*/ {
@@ -48432,7 +48432,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":529
  *             info.shape = NULL
- * 
+ *
  *         if flags & PyBUF_STRIDES:             # <<<<<<<<<<<<<<
  *             info.strides = self.view.strides
  *         else:
@@ -48441,7 +48441,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":530
- * 
+ *
  *         if flags & PyBUF_STRIDES:
  *             info.strides = self.view.strides             # <<<<<<<<<<<<<<
  *         else:
@@ -48452,7 +48452,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":529
  *             info.shape = NULL
- * 
+ *
  *         if flags & PyBUF_STRIDES:             # <<<<<<<<<<<<<<
  *             info.strides = self.view.strides
  *         else:
@@ -48464,7 +48464,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.strides = self.view.strides
  *         else:
  *             info.strides = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_INDIRECT:
  */
   /*else*/ {
@@ -48474,7 +48474,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":534
  *             info.strides = NULL
- * 
+ *
  *         if flags & PyBUF_INDIRECT:             # <<<<<<<<<<<<<<
  *             info.suboffsets = self.view.suboffsets
  *         else:
@@ -48483,7 +48483,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":535
- * 
+ *
  *         if flags & PyBUF_INDIRECT:
  *             info.suboffsets = self.view.suboffsets             # <<<<<<<<<<<<<<
  *         else:
@@ -48494,7 +48494,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":534
  *             info.strides = NULL
- * 
+ *
  *         if flags & PyBUF_INDIRECT:             # <<<<<<<<<<<<<<
  *             info.suboffsets = self.view.suboffsets
  *         else:
@@ -48506,7 +48506,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.suboffsets = self.view.suboffsets
  *         else:
  *             info.suboffsets = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  */
   /*else*/ {
@@ -48516,7 +48516,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":539
  *             info.suboffsets = NULL
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.view.format
  *         else:
@@ -48525,7 +48525,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   if (__pyx_t_1) {
 
     /* "View.MemoryView":540
- * 
+ *
  *         if flags & PyBUF_FORMAT:
  *             info.format = self.view.format             # <<<<<<<<<<<<<<
  *         else:
@@ -48536,7 +48536,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
     /* "View.MemoryView":539
  *             info.suboffsets = NULL
- * 
+ *
  *         if flags & PyBUF_FORMAT:             # <<<<<<<<<<<<<<
  *             info.format = self.view.format
  *         else:
@@ -48548,7 +48548,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *             info.format = self.view.format
  *         else:
  *             info.format = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *         info.buf = self.view.buf
  */
   /*else*/ {
@@ -48558,7 +48558,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 
   /* "View.MemoryView":544
  *             info.format = NULL
- * 
+ *
  *         info.buf = self.view.buf             # <<<<<<<<<<<<<<
  *         info.ndim = self.view.ndim
  *         info.itemsize = self.view.itemsize
@@ -48567,7 +48567,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   __pyx_v_info->buf = __pyx_t_6;
 
   /* "View.MemoryView":545
- * 
+ *
  *         info.buf = self.view.buf
  *         info.ndim = self.view.ndim             # <<<<<<<<<<<<<<
  *         info.itemsize = self.view.itemsize
@@ -48601,7 +48601,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *         info.len = self.view.len
  *         info.readonly = self.view.readonly             # <<<<<<<<<<<<<<
  *         info.obj = self
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_self->view.readonly;
   __pyx_v_info->readonly = __pyx_t_1;
@@ -48610,7 +48610,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  *         info.len = self.view.len
  *         info.readonly = self.view.readonly
  *         info.obj = self             # <<<<<<<<<<<<<<
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_memoryview_getbuffer, "getbuffer(obj, view, flags)")
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_self));
@@ -48620,7 +48620,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
   __pyx_v_info->obj = ((PyObject *)__pyx_v_self);
 
   /* "View.MemoryView":520
- * 
+ *
  *     @cname('getbuffer')
  *     def __getbuffer__(self, Py_buffer *info, int flags):             # <<<<<<<<<<<<<<
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
@@ -48650,7 +48650,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
 }
 
 /* "View.MemoryView":555
- * 
+ *
  *     @property
  *     def T(self):             # <<<<<<<<<<<<<<
  *         cdef _memoryviewslice result = memoryview_copy(self)
@@ -48699,7 +48699,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
  *         cdef _memoryviewslice result = memoryview_copy(self)
  *         transpose_memslice(&result.from_slice)             # <<<<<<<<<<<<<<
  *         return result
- * 
+ *
  */
   __pyx_t_2 = __pyx_memslice_transpose((&__pyx_v_result->from_slice)); if (unlikely(__pyx_t_2 == ((int)0))) __PYX_ERR(3, 557, __pyx_L1_error)
 
@@ -48707,7 +48707,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
  *         cdef _memoryviewslice result = memoryview_copy(self)
  *         transpose_memslice(&result.from_slice)
  *         return result             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -48716,7 +48716,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
   goto __pyx_L0;
 
   /* "View.MemoryView":555
- * 
+ *
  *     @property
  *     def T(self):             # <<<<<<<<<<<<<<
  *         cdef _memoryviewslice result = memoryview_copy(self)
@@ -48736,11 +48736,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_1T___get__(struct _
 }
 
 /* "View.MemoryView":561
- * 
+ *
  *     @property
  *     def base(self):             # <<<<<<<<<<<<<<
  *         return self.obj
- * 
+ *
  */
 
 /* Python wrapper */
@@ -48765,7 +48765,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
  *     @property
  *     def base(self):
  *         return self.obj             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -48774,11 +48774,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
   goto __pyx_L0;
 
   /* "View.MemoryView":561
- * 
+ *
  *     @property
  *     def base(self):             # <<<<<<<<<<<<<<
  *         return self.obj
- * 
+ *
  */
 
   /* function exit code */
@@ -48789,11 +48789,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4base___get__(struc
 }
 
 /* "View.MemoryView":565
- * 
+ *
  *     @property
  *     def shape(self):             # <<<<<<<<<<<<<<
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])
- * 
+ *
  */
 
 /* Python wrapper */
@@ -48827,7 +48827,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
  *     @property
  *     def shape(self):
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -48850,11 +48850,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
   goto __pyx_L0;
 
   /* "View.MemoryView":565
- * 
+ *
  *     @property
  *     def shape(self):             # <<<<<<<<<<<<<<
  *         return tuple([length for length in self.view.shape[:self.view.ndim]])
- * 
+ *
  */
 
   /* function exit code */
@@ -48870,11 +48870,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_5shape___get__(stru
 }
 
 /* "View.MemoryView":569
- * 
+ *
  *     @property
  *     def strides(self):             # <<<<<<<<<<<<<<
  *         if self.view.strides == NULL:
- * 
+ *
  */
 
 /* Python wrapper */
@@ -48909,7 +48909,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
  *     @property
  *     def strides(self):
  *         if self.view.strides == NULL:             # <<<<<<<<<<<<<<
- * 
+ *
  *             raise ValueError("Buffer view does not expose strides")
  */
   __pyx_t_1 = ((__pyx_v_self->view.strides == NULL) != 0);
@@ -48917,9 +48917,9 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
 
     /* "View.MemoryView":572
  *         if self.view.strides == NULL:
- * 
+ *
  *             raise ValueError("Buffer view does not expose strides")             # <<<<<<<<<<<<<<
- * 
+ *
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
     __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 572, __pyx_L1_error)
@@ -48932,16 +48932,16 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
  *     @property
  *     def strides(self):
  *         if self.view.strides == NULL:             # <<<<<<<<<<<<<<
- * 
+ *
  *             raise ValueError("Buffer view does not expose strides")
  */
   }
 
   /* "View.MemoryView":574
  *             raise ValueError("Buffer view does not expose strides")
- * 
+ *
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -48964,11 +48964,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
   goto __pyx_L0;
 
   /* "View.MemoryView":569
- * 
+ *
  *     @property
  *     def strides(self):             # <<<<<<<<<<<<<<
  *         if self.view.strides == NULL:
- * 
+ *
  */
 
   /* function exit code */
@@ -48984,7 +48984,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
 }
 
 /* "View.MemoryView":577
- * 
+ *
  *     @property
  *     def suboffsets(self):             # <<<<<<<<<<<<<<
  *         if self.view.suboffsets == NULL:
@@ -49024,7 +49024,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:             # <<<<<<<<<<<<<<
  *             return (-1,) * self.view.ndim
- * 
+ *
  */
   __pyx_t_1 = ((__pyx_v_self->view.suboffsets == NULL) != 0);
   if (__pyx_t_1) {
@@ -49033,7 +49033,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:
  *             return (-1,) * self.view.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
  */
     __Pyx_XDECREF(__pyx_r);
@@ -49051,15 +49051,15 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:             # <<<<<<<<<<<<<<
  *             return (-1,) * self.view.ndim
- * 
+ *
  */
   }
 
   /* "View.MemoryView":581
  *             return (-1,) * self.view.ndim
- * 
+ *
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -49082,7 +49082,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
   goto __pyx_L0;
 
   /* "View.MemoryView":577
- * 
+ *
  *     @property
  *     def suboffsets(self):             # <<<<<<<<<<<<<<
  *         if self.view.suboffsets == NULL:
@@ -49102,11 +49102,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
 }
 
 /* "View.MemoryView":584
- * 
+ *
  *     @property
  *     def ndim(self):             # <<<<<<<<<<<<<<
  *         return self.view.ndim
- * 
+ *
  */
 
 /* Python wrapper */
@@ -49135,7 +49135,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
  *     @property
  *     def ndim(self):
  *         return self.view.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -49146,11 +49146,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
   goto __pyx_L0;
 
   /* "View.MemoryView":584
- * 
+ *
  *     @property
  *     def ndim(self):             # <<<<<<<<<<<<<<
  *         return self.view.ndim
- * 
+ *
  */
 
   /* function exit code */
@@ -49165,11 +49165,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4ndim___get__(struc
 }
 
 /* "View.MemoryView":588
- * 
+ *
  *     @property
  *     def itemsize(self):             # <<<<<<<<<<<<<<
  *         return self.view.itemsize
- * 
+ *
  */
 
 /* Python wrapper */
@@ -49198,7 +49198,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
  *     @property
  *     def itemsize(self):
  *         return self.view.itemsize             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -49209,11 +49209,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
   goto __pyx_L0;
 
   /* "View.MemoryView":588
- * 
+ *
  *     @property
  *     def itemsize(self):             # <<<<<<<<<<<<<<
  *         return self.view.itemsize
- * 
+ *
  */
 
   /* function exit code */
@@ -49228,11 +49228,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_8itemsize___get__(s
 }
 
 /* "View.MemoryView":592
- * 
+ *
  *     @property
  *     def nbytes(self):             # <<<<<<<<<<<<<<
  *         return self.size * self.view.itemsize
- * 
+ *
  */
 
 /* Python wrapper */
@@ -49263,7 +49263,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
  *     @property
  *     def nbytes(self):
  *         return self.size * self.view.itemsize             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
@@ -49280,11 +49280,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
   goto __pyx_L0;
 
   /* "View.MemoryView":592
- * 
+ *
  *     @property
  *     def nbytes(self):             # <<<<<<<<<<<<<<
  *         return self.size * self.view.itemsize
- * 
+ *
  */
 
   /* function exit code */
@@ -49301,7 +49301,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_6nbytes___get__(str
 }
 
 /* "View.MemoryView":596
- * 
+ *
  *     @property
  *     def size(self):             # <<<<<<<<<<<<<<
  *         if self._size is None:
@@ -49342,7 +49342,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:             # <<<<<<<<<<<<<<
  *             result = 1
- * 
+ *
  */
   __pyx_t_1 = (__pyx_v_self->_size == Py_None);
   __pyx_t_2 = (__pyx_t_1 != 0);
@@ -49352,7 +49352,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:
  *             result = 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             for length in self.view.shape[:self.view.ndim]:
  */
     __Pyx_INCREF(__pyx_int_1);
@@ -49360,10 +49360,10 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
     /* "View.MemoryView":600
  *             result = 1
- * 
+ *
  *             for length in self.view.shape[:self.view.ndim]:             # <<<<<<<<<<<<<<
  *                 result *= length
- * 
+ *
  */
     __pyx_t_4 = (__pyx_v_self->view.shape + __pyx_v_self->view.ndim);
     for (__pyx_t_5 = __pyx_v_self->view.shape; __pyx_t_5 < __pyx_t_4; __pyx_t_5++) {
@@ -49374,10 +49374,10 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
       __pyx_t_6 = 0;
 
       /* "View.MemoryView":601
- * 
+ *
  *             for length in self.view.shape[:self.view.ndim]:
  *                 result *= length             # <<<<<<<<<<<<<<
- * 
+ *
  *             self._size = result
  */
       __pyx_t_6 = PyNumber_InPlaceMultiply(__pyx_v_result, __pyx_v_length); if (unlikely(!__pyx_t_6)) __PYX_ERR(3, 601, __pyx_L1_error)
@@ -49388,9 +49388,9 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
     /* "View.MemoryView":603
  *                 result *= length
- * 
+ *
  *             self._size = result             # <<<<<<<<<<<<<<
- * 
+ *
  *         return self._size
  */
     __Pyx_INCREF(__pyx_v_result);
@@ -49404,15 +49404,15 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
  *     def size(self):
  *         if self._size is None:             # <<<<<<<<<<<<<<
  *             result = 1
- * 
+ *
  */
   }
 
   /* "View.MemoryView":605
  *             self._size = result
- * 
+ *
  *         return self._size             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -49421,7 +49421,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
   goto __pyx_L0;
 
   /* "View.MemoryView":596
- * 
+ *
  *     @property
  *     def size(self):             # <<<<<<<<<<<<<<
  *         if self._size is None:
@@ -49443,7 +49443,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_4size___get__(struc
 
 /* "View.MemoryView":607
  *         return self._size
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]
@@ -49469,11 +49469,11 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
   __Pyx_RefNannySetupContext("__len__", 0);
 
   /* "View.MemoryView":608
- * 
+ *
  *     def __len__(self):
  *         if self.view.ndim >= 1:             # <<<<<<<<<<<<<<
  *             return self.view.shape[0]
- * 
+ *
  */
   __pyx_t_1 = ((__pyx_v_self->view.ndim >= 1) != 0);
   if (__pyx_t_1) {
@@ -49482,26 +49482,26 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
  *     def __len__(self):
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *         return 0
  */
     __pyx_r = (__pyx_v_self->view.shape[0]);
     goto __pyx_L0;
 
     /* "View.MemoryView":608
- * 
+ *
  *     def __len__(self):
  *         if self.view.ndim >= 1:             # <<<<<<<<<<<<<<
  *             return self.view.shape[0]
- * 
+ *
  */
   }
 
   /* "View.MemoryView":611
  *             return self.view.shape[0]
- * 
+ *
  *         return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __repr__(self):
  */
   __pyx_r = 0;
@@ -49509,7 +49509,7 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
 
   /* "View.MemoryView":607
  *         return self._size
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         if self.view.ndim >= 1:
  *             return self.view.shape[0]
@@ -49523,7 +49523,7 @@ static Py_ssize_t __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_1
 
 /* "View.MemoryView":613
  *         return 0
- * 
+ *
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))
@@ -49554,11 +49554,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
   __Pyx_RefNannySetupContext("__repr__", 0);
 
   /* "View.MemoryView":614
- * 
+ *
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,             # <<<<<<<<<<<<<<
  *                                                id(self))
- * 
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 614, __pyx_L1_error)
@@ -49574,18 +49574,18 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __str__(self):
  */
   __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_id, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
   /* "View.MemoryView":614
- * 
+ *
  *     def __repr__(self):
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,             # <<<<<<<<<<<<<<
  *                                                id(self))
- * 
+ *
  */
   __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -49604,7 +49604,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
 
   /* "View.MemoryView":613
  *         return 0
- * 
+ *
  *     def __repr__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r at 0x%x>" % (self.base.__class__.__name__,
  *                                                id(self))
@@ -49625,10 +49625,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_12
 
 /* "View.MemoryView":617
  *                                                id(self))
- * 
+ *
  *     def __str__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -49655,11 +49655,11 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
   __Pyx_RefNannySetupContext("__str__", 0);
 
   /* "View.MemoryView":618
- * 
+ *
  *     def __str__(self):
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 618, __pyx_L1_error)
@@ -49684,10 +49684,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
 
   /* "View.MemoryView":617
  *                                                id(self))
- * 
+ *
  *     def __str__(self):             # <<<<<<<<<<<<<<
  *         return "<MemoryView of %r object>" % (self.base.__class__.__name__,)
- * 
+ *
  */
 
   /* function exit code */
@@ -49703,8 +49703,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_14
 }
 
 /* "View.MemoryView":621
- * 
- * 
+ *
+ *
  *     def is_c_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -49740,7 +49740,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)             # <<<<<<<<<<<<<<
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- * 
+ *
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_self, (&__pyx_v_tmp)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(3, 624, __pyx_L1_error)
   __pyx_v_mslice = __pyx_t_1;
@@ -49749,7 +49749,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def is_f_contig(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -49760,8 +49760,8 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
   goto __pyx_L0;
 
   /* "View.MemoryView":621
- * 
- * 
+ *
+ *
  *     def is_c_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -49780,7 +49780,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_16
 
 /* "View.MemoryView":627
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- * 
+ *
  *     def is_f_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -49816,7 +49816,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)             # <<<<<<<<<<<<<<
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- * 
+ *
  */
   __pyx_t_1 = __pyx_memoryview_get_slice_from_memoryview(__pyx_v_self, (&__pyx_v_tmp)); if (unlikely(__pyx_t_1 == ((__Pyx_memviewslice *)NULL))) __PYX_ERR(3, 630, __pyx_L1_error)
   __pyx_v_mslice = __pyx_t_1;
@@ -49825,7 +49825,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
  *         cdef __Pyx_memviewslice tmp
  *         mslice = get_slice_from_memview(self, &tmp)
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def copy(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -49837,7 +49837,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
 
   /* "View.MemoryView":627
  *         return slice_is_contig(mslice[0], 'C', self.view.ndim)
- * 
+ *
  *     def is_f_contig(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice *mslice
  *         cdef __Pyx_memviewslice tmp
@@ -49856,7 +49856,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_18
 
 /* "View.MemoryView":633
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- * 
+ *
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
@@ -49891,14 +49891,14 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
  *     def copy(self):
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS             # <<<<<<<<<<<<<<
- * 
+ *
  *         slice_copy(self, &mslice)
  */
   __pyx_v_flags = (__pyx_v_self->flags & (~PyBUF_F_CONTIGUOUS));
 
   /* "View.MemoryView":637
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
- * 
+ *
  *         slice_copy(self, &mslice)             # <<<<<<<<<<<<<<
  *         mslice = slice_copy_contig(&mslice, "c", self.view.ndim,
  *                                    self.view.itemsize,
@@ -49906,7 +49906,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
   __pyx_memoryview_slice_copy(__pyx_v_self, (&__pyx_v_mslice));
 
   /* "View.MemoryView":638
- * 
+ *
  *         slice_copy(self, &mslice)
  *         mslice = slice_copy_contig(&mslice, "c", self.view.ndim,             # <<<<<<<<<<<<<<
  *                                    self.view.itemsize,
@@ -49917,9 +49917,9 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
   /* "View.MemoryView":643
  *                                    self.dtype_is_object)
- * 
+ *
  *         return memoryview_copy_from_slice(self, &mslice)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def copy_fortran(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -49931,7 +49931,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
   /* "View.MemoryView":633
  *         return slice_is_contig(mslice[0], 'F', self.view.ndim)
- * 
+ *
  *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice mslice
  *         cdef int flags = self.flags & ~PyBUF_F_CONTIGUOUS
@@ -49950,7 +49950,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_20
 
 /* "View.MemoryView":645
  *         return memoryview_copy_from_slice(self, &mslice)
- * 
+ *
  *     def copy_fortran(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
@@ -49986,14 +49986,14 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
  *     def copy_fortran(self):
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS             # <<<<<<<<<<<<<<
- * 
+ *
  *         slice_copy(self, &src)
  */
   __pyx_v_flags = (__pyx_v_self->flags & (~PyBUF_C_CONTIGUOUS));
 
   /* "View.MemoryView":649
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
- * 
+ *
  *         slice_copy(self, &src)             # <<<<<<<<<<<<<<
  *         dst = slice_copy_contig(&src, "fortran", self.view.ndim,
  *                                 self.view.itemsize,
@@ -50001,7 +50001,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
   __pyx_memoryview_slice_copy(__pyx_v_self, (&__pyx_v_src));
 
   /* "View.MemoryView":650
- * 
+ *
  *         slice_copy(self, &src)
  *         dst = slice_copy_contig(&src, "fortran", self.view.ndim,             # <<<<<<<<<<<<<<
  *                                 self.view.itemsize,
@@ -50012,10 +50012,10 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
 
   /* "View.MemoryView":655
  *                                 self.dtype_is_object)
- * 
+ *
  *         return memoryview_copy_from_slice(self, &dst)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = __pyx_memoryview_copy_object_from_slice(__pyx_v_self, (&__pyx_v_dst)); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 655, __pyx_L1_error)
@@ -50026,7 +50026,7 @@ static PyObject *__pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_22
 
   /* "View.MemoryView":645
  *         return memoryview_copy_from_slice(self, &mslice)
- * 
+ *
  *     def copy_fortran(self):             # <<<<<<<<<<<<<<
  *         cdef __Pyx_memviewslice src, dst
  *         cdef int flags = self.flags & ~PyBUF_C_CONTIGUOUS
@@ -50157,7 +50157,7 @@ static PyObject *__pyx_pf___pyx_memoryview_2__setstate_cython__(CYTHON_UNUSED st
 }
 
 /* "View.MemoryView":659
- * 
+ *
  * @cname('__pyx_memoryview_new')
  * cdef memoryview_cwrapper(object o, int flags, bint dtype_is_object, __Pyx_TypeInfo *typeinfo):             # <<<<<<<<<<<<<<
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
@@ -50209,7 +50209,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
  *     result.typeinfo = typeinfo             # <<<<<<<<<<<<<<
  *     return result
- * 
+ *
  */
   __pyx_v_result->typeinfo = __pyx_v_typeinfo;
 
@@ -50217,7 +50217,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
  *     result.typeinfo = typeinfo
  *     return result             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_check')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -50226,7 +50226,7 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
   goto __pyx_L0;
 
   /* "View.MemoryView":659
- * 
+ *
  * @cname('__pyx_memoryview_new')
  * cdef memoryview_cwrapper(object o, int flags, bint dtype_is_object, __Pyx_TypeInfo *typeinfo):             # <<<<<<<<<<<<<<
  *     cdef memoryview result = memoryview(o, flags, dtype_is_object)
@@ -50248,11 +50248,11 @@ static PyObject *__pyx_memoryview_new(PyObject *__pyx_v_o, int __pyx_v_flags, in
 }
 
 /* "View.MemoryView":665
- * 
+ *
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o):             # <<<<<<<<<<<<<<
  *     return isinstance(o, memoryview)
- * 
+ *
  */
 
 static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
@@ -50265,19 +50265,19 @@ static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o):
  *     return isinstance(o, memoryview)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef tuple _unellipsify(object index, int ndim):
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_o, __pyx_memoryview_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_o, __pyx_memoryview_type);
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
   /* "View.MemoryView":665
- * 
+ *
  * @cname('__pyx_memoryview_check')
  * cdef inline bint memoryview_check(object o):             # <<<<<<<<<<<<<<
  *     return isinstance(o, memoryview)
- * 
+ *
  */
 
   /* function exit code */
@@ -50288,7 +50288,7 @@ static CYTHON_INLINE int __pyx_memoryview_check(PyObject *__pyx_v_o) {
 
 /* "View.MemoryView":668
  *     return isinstance(o, memoryview)
- * 
+ *
  * cdef tuple _unellipsify(object index, int ndim):             # <<<<<<<<<<<<<<
  *     """
  *     Replace all ellipses with full slices and fill incomplete indices with
@@ -50327,7 +50327,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         tup = (index,)
  *     else:
  */
-  __pyx_t_1 = PyTuple_Check(__pyx_v_index); 
+  __pyx_t_1 = PyTuple_Check(__pyx_v_index);
   __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
   if (__pyx_t_2) {
 
@@ -50360,7 +50360,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         tup = (index,)
  *     else:
  *         tup = index             # <<<<<<<<<<<<<<
- * 
+ *
  *     result = []
  */
   /*else*/ {
@@ -50371,7 +50371,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":678
  *         tup = index
- * 
+ *
  *     result = []             # <<<<<<<<<<<<<<
  *     have_slices = False
  *     seen_ellipsis = False
@@ -50382,7 +50382,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
   __pyx_t_3 = 0;
 
   /* "View.MemoryView":679
- * 
+ *
  *     result = []
  *     have_slices = False             # <<<<<<<<<<<<<<
  *     seen_ellipsis = False
@@ -50553,10 +50553,10 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         else:
  *             if not isinstance(item, slice) and not PyIndex_Check(item):             # <<<<<<<<<<<<<<
  *                 raise TypeError("Cannot index with type '%s'" % type(item))
- * 
+ *
  */
     /*else*/ {
-      __pyx_t_2 = PySlice_Check(__pyx_v_item); 
+      __pyx_t_2 = PySlice_Check(__pyx_v_item);
       __pyx_t_10 = ((!(__pyx_t_2 != 0)) != 0);
       if (__pyx_t_10) {
       } else {
@@ -50572,7 +50572,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         else:
  *             if not isinstance(item, slice) and not PyIndex_Check(item):
  *                 raise TypeError("Cannot index with type '%s'" % type(item))             # <<<<<<<<<<<<<<
- * 
+ *
  *             have_slices = have_slices or isinstance(item, slice)
  */
         __pyx_t_7 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Cannot_index_with_type_s, ((PyObject *)Py_TYPE(__pyx_v_item))); if (unlikely(!__pyx_t_7)) __PYX_ERR(3, 691, __pyx_L1_error)
@@ -50589,16 +50589,16 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         else:
  *             if not isinstance(item, slice) and not PyIndex_Check(item):             # <<<<<<<<<<<<<<
  *                 raise TypeError("Cannot index with type '%s'" % type(item))
- * 
+ *
  */
       }
 
       /* "View.MemoryView":693
  *                 raise TypeError("Cannot index with type '%s'" % type(item))
- * 
+ *
  *             have_slices = have_slices or isinstance(item, slice)             # <<<<<<<<<<<<<<
  *             result.append(item)
- * 
+ *
  */
       __pyx_t_10 = (__pyx_v_have_slices != 0);
       if (!__pyx_t_10) {
@@ -50606,17 +50606,17 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
         __pyx_t_1 = __pyx_t_10;
         goto __pyx_L11_bool_binop_done;
       }
-      __pyx_t_10 = PySlice_Check(__pyx_v_item); 
+      __pyx_t_10 = PySlice_Check(__pyx_v_item);
       __pyx_t_2 = (__pyx_t_10 != 0);
       __pyx_t_1 = __pyx_t_2;
       __pyx_L11_bool_binop_done:;
       __pyx_v_have_slices = __pyx_t_1;
 
       /* "View.MemoryView":694
- * 
+ *
  *             have_slices = have_slices or isinstance(item, slice)
  *             result.append(item)             # <<<<<<<<<<<<<<
- * 
+ *
  *     nslices = ndim - len(result)
  */
       __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_v_item); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(3, 694, __pyx_L1_error)
@@ -50636,7 +50636,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":696
  *             result.append(item)
- * 
+ *
  *     nslices = ndim - len(result)             # <<<<<<<<<<<<<<
  *     if nslices:
  *         result.extend([slice(None)] * nslices)
@@ -50645,11 +50645,11 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
   __pyx_v_nslices = (__pyx_v_ndim - __pyx_t_5);
 
   /* "View.MemoryView":697
- * 
+ *
  *     nslices = ndim - len(result)
  *     if nslices:             # <<<<<<<<<<<<<<
  *         result.extend([slice(None)] * nslices)
- * 
+ *
  */
   __pyx_t_1 = (__pyx_v_nslices != 0);
   if (__pyx_t_1) {
@@ -50658,7 +50658,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *     nslices = ndim - len(result)
  *     if nslices:
  *         result.extend([slice(None)] * nslices)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return have_slices or nslices, tuple(result)
  */
     __pyx_t_3 = PyList_New(1 * ((__pyx_v_nslices<0) ? 0:__pyx_v_nslices)); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 698, __pyx_L1_error)
@@ -50674,19 +50674,19 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "View.MemoryView":697
- * 
+ *
  *     nslices = ndim - len(result)
  *     if nslices:             # <<<<<<<<<<<<<<
  *         result.extend([slice(None)] * nslices)
- * 
+ *
  */
   }
 
   /* "View.MemoryView":700
  *         result.extend([slice(None)] * nslices)
- * 
+ *
  *     return have_slices or nslices, tuple(result)             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -50719,7 +50719,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
   /* "View.MemoryView":668
  *     return isinstance(o, memoryview)
- * 
+ *
  * cdef tuple _unellipsify(object index, int ndim):             # <<<<<<<<<<<<<<
  *     """
  *     Replace all ellipses with full slices and fill incomplete indices with
@@ -50745,7 +50745,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
 
 /* "View.MemoryView":702
  *     return have_slices or nslices, tuple(result)
- * 
+ *
  * cdef assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim):             # <<<<<<<<<<<<<<
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:
@@ -50766,7 +50766,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
   __Pyx_RefNannySetupContext("assert_direct_dimensions", 0);
 
   /* "View.MemoryView":703
- * 
+ *
  * cdef assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim):
  *     for suboffset in suboffsets[:ndim]:             # <<<<<<<<<<<<<<
  *         if suboffset >= 0:
@@ -50782,7 +50782,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("Indirect dimensions not supported")
- * 
+ *
  */
     __pyx_t_4 = ((__pyx_v_suboffset >= 0) != 0);
     if (unlikely(__pyx_t_4)) {
@@ -50791,8 +50791,8 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:
  *             raise ValueError("Indirect dimensions not supported")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(3, 705, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
@@ -50805,14 +50805,14 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:             # <<<<<<<<<<<<<<
  *             raise ValueError("Indirect dimensions not supported")
- * 
+ *
  */
     }
   }
 
   /* "View.MemoryView":702
  *     return have_slices or nslices, tuple(result)
- * 
+ *
  * cdef assert_direct_dimensions(Py_ssize_t *suboffsets, int ndim):             # <<<<<<<<<<<<<<
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:
@@ -50832,7 +50832,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
 }
 
 /* "View.MemoryView":712
- * 
+ *
  * @cname('__pyx_memview_slice')
  * cdef memoryview memview_slice(memoryview memview, object indices):             # <<<<<<<<<<<<<<
  *     cdef int new_ndim = 0, suboffset_dim = -1, dim
@@ -50886,19 +50886,19 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
   __pyx_v_suboffset_dim = -1;
 
   /* "View.MemoryView":720
- * 
- * 
+ *
+ *
  *     memset(&dst, 0, sizeof(dst))             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef _memoryviewslice memviewsliceobj
  */
   (void)(memset((&__pyx_v_dst), 0, (sizeof(__pyx_v_dst))));
 
   /* "View.MemoryView":724
  *     cdef _memoryviewslice memviewsliceobj
- * 
+ *
  *     assert memview.view.ndim > 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
@@ -50912,17 +50912,17 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
   /* "View.MemoryView":726
  *     assert memview.view.ndim > 0
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         memviewsliceobj = memview
  *         p_src = &memviewsliceobj.from_slice
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":727
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  *         memviewsliceobj = memview             # <<<<<<<<<<<<<<
  *         p_src = &memviewsliceobj.from_slice
@@ -50945,7 +50945,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
     /* "View.MemoryView":726
  *     assert memview.view.ndim > 0
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         memviewsliceobj = memview
  *         p_src = &memviewsliceobj.from_slice
@@ -50958,7 +50958,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         slice_copy(memview, &src)             # <<<<<<<<<<<<<<
  *         p_src = &src
- * 
+ *
  */
   /*else*/ {
     __pyx_memoryview_slice_copy(__pyx_v_memview, (&__pyx_v_src));
@@ -50967,36 +50967,36 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         slice_copy(memview, &src)
  *         p_src = &src             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_v_p_src = (&__pyx_v_src);
   }
   __pyx_L3:;
 
   /* "View.MemoryView":737
- * 
- * 
+ *
+ *
  *     dst.memview = p_src.memview             # <<<<<<<<<<<<<<
  *     dst.data = p_src.data
- * 
+ *
  */
   __pyx_t_4 = __pyx_v_p_src->memview;
   __pyx_v_dst.memview = __pyx_t_4;
 
   /* "View.MemoryView":738
- * 
+ *
  *     dst.memview = p_src.memview
  *     dst.data = p_src.data             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_5 = __pyx_v_p_src->data;
   __pyx_v_dst.data = __pyx_t_5;
 
   /* "View.MemoryView":743
- * 
- * 
+ *
+ *
  *     cdef __Pyx_memviewslice *p_dst = &dst             # <<<<<<<<<<<<<<
  *     cdef int *p_suboffset_dim = &suboffset_dim
  *     cdef Py_ssize_t start, stop, step
@@ -51004,7 +51004,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
   __pyx_v_p_dst = (&__pyx_v_dst);
 
   /* "View.MemoryView":744
- * 
+ *
  *     cdef __Pyx_memviewslice *p_dst = &dst
  *     cdef int *p_suboffset_dim = &suboffset_dim             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t start, stop, step
@@ -51014,7 +51014,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
   /* "View.MemoryView":748
  *     cdef bint have_start, have_stop, have_step
- * 
+ *
  *     for dim, index in enumerate(indices):             # <<<<<<<<<<<<<<
  *         if PyIndex_Check(index):
  *             slice_memviewslice(
@@ -51065,7 +51065,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
     __pyx_t_6 = (__pyx_t_6 + 1);
 
     /* "View.MemoryView":749
- * 
+ *
  *     for dim, index in enumerate(indices):
  *         if PyIndex_Check(index):             # <<<<<<<<<<<<<<
  *             slice_memviewslice(
@@ -51093,7 +51093,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
       __pyx_t_11 = __pyx_memoryview_slice_memviewslice(__pyx_v_p_dst, (__pyx_v_p_src->shape[__pyx_v_dim]), (__pyx_v_p_src->strides[__pyx_v_dim]), (__pyx_v_p_src->suboffsets[__pyx_v_dim]), __pyx_v_dim, __pyx_v_new_ndim, __pyx_v_p_suboffset_dim, __pyx_t_10, 0, 0, 0, 0, 0, 0); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(3, 750, __pyx_L1_error)
 
       /* "View.MemoryView":749
- * 
+ *
  *     for dim, index in enumerate(indices):
  *         if PyIndex_Check(index):             # <<<<<<<<<<<<<<
  *             slice_memviewslice(
@@ -51187,7 +51187,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *             start = index.start or 0
  *             stop = index.stop or 0             # <<<<<<<<<<<<<<
  *             step = index.step or 0
- * 
+ *
  */
       __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_index, __pyx_n_s_stop); if (unlikely(!__pyx_t_9)) __PYX_ERR(3, 763, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
@@ -51208,7 +51208,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *             start = index.start or 0
  *             stop = index.stop or 0
  *             step = index.step or 0             # <<<<<<<<<<<<<<
- * 
+ *
  *             have_start = index.start is not None
  */
       __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_index, __pyx_n_s_step); if (unlikely(!__pyx_t_9)) __PYX_ERR(3, 764, __pyx_L1_error)
@@ -51228,7 +51228,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
       /* "View.MemoryView":766
  *             step = index.step or 0
- * 
+ *
  *             have_start = index.start is not None             # <<<<<<<<<<<<<<
  *             have_stop = index.stop is not None
  *             have_step = index.step is not None
@@ -51240,11 +51240,11 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
       __pyx_v_have_start = __pyx_t_1;
 
       /* "View.MemoryView":767
- * 
+ *
  *             have_start = index.start is not None
  *             have_stop = index.stop is not None             # <<<<<<<<<<<<<<
  *             have_step = index.step is not None
- * 
+ *
  */
       __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_index, __pyx_n_s_stop); if (unlikely(!__pyx_t_9)) __PYX_ERR(3, 767, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
@@ -51256,7 +51256,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *             have_start = index.start is not None
  *             have_stop = index.stop is not None
  *             have_step = index.step is not None             # <<<<<<<<<<<<<<
- * 
+ *
  *             slice_memviewslice(
  */
       __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_index, __pyx_n_s_step); if (unlikely(!__pyx_t_9)) __PYX_ERR(3, 768, __pyx_L1_error)
@@ -51267,7 +51267,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
       /* "View.MemoryView":770
  *             have_step = index.step is not None
- * 
+ *
  *             slice_memviewslice(             # <<<<<<<<<<<<<<
  *                 p_dst, p_src.shape[dim], p_src.strides[dim], p_src.suboffsets[dim],
  *                 dim, new_ndim, p_suboffset_dim,
@@ -51278,7 +51278,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *                 have_start, have_stop, have_step,
  *                 True)
  *             new_ndim += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  */
       __pyx_v_new_ndim = (__pyx_v_new_ndim + 1);
@@ -51287,7 +51287,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
     /* "View.MemoryView":748
  *     cdef bint have_start, have_stop, have_step
- * 
+ *
  *     for dim, index in enumerate(indices):             # <<<<<<<<<<<<<<
  *         if PyIndex_Check(index):
  *             slice_memviewslice(
@@ -51297,17 +51297,17 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
   /* "View.MemoryView":778
  *             new_ndim += 1
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         return memoryview_fromslice(dst, new_ndim,
  *                                     memviewsliceobj.to_object_func,
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":779
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  *         return memoryview_fromslice(dst, new_ndim,             # <<<<<<<<<<<<<<
  *                                     memviewsliceobj.to_object_func,
@@ -51334,7 +51334,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
     if (unlikely(!__pyx_v_memviewsliceobj)) { __Pyx_RaiseUnboundLocalError("memviewsliceobj"); __PYX_ERR(3, 781, __pyx_L1_error) }
 
     /* "View.MemoryView":779
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  *         return memoryview_fromslice(dst, new_ndim,             # <<<<<<<<<<<<<<
  *                                     memviewsliceobj.to_object_func,
@@ -51349,7 +51349,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 
     /* "View.MemoryView":778
  *             new_ndim += 1
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         return memoryview_fromslice(dst, new_ndim,
  *                                     memviewsliceobj.to_object_func,
@@ -51361,7 +51361,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         return memoryview_fromslice(dst, new_ndim, NULL, NULL,             # <<<<<<<<<<<<<<
  *                                     memview.dtype_is_object)
- * 
+ *
  */
   /*else*/ {
     __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -51370,8 +51370,8 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         return memoryview_fromslice(dst, new_ndim, NULL, NULL,
  *                                     memview.dtype_is_object)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_dst, __pyx_v_new_ndim, NULL, NULL, __pyx_v_memview->dtype_is_object); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 784, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -51381,7 +51381,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
  *     else:
  *         return memoryview_fromslice(dst, new_ndim, NULL, NULL,             # <<<<<<<<<<<<<<
  *                                     memview.dtype_is_object)
- * 
+ *
  */
     if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_memoryview_type))))) __PYX_ERR(3, 784, __pyx_L1_error)
     __pyx_r = ((struct __pyx_memoryview_obj *)__pyx_t_3);
@@ -51390,7 +51390,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
   }
 
   /* "View.MemoryView":712
- * 
+ *
  * @cname('__pyx_memview_slice')
  * cdef memoryview memview_slice(memoryview memview, object indices):             # <<<<<<<<<<<<<<
  *     cdef int new_ndim = 0, suboffset_dim = -1, dim
@@ -51412,7 +51412,7 @@ static struct __pyx_memoryview_obj *__pyx_memview_slice(struct __pyx_memoryview_
 }
 
 /* "View.MemoryView":809
- * 
+ *
  * @cname('__pyx_memoryview_slice_memviewslice')
  * cdef int slice_memviewslice(             # <<<<<<<<<<<<<<
  *         __Pyx_memviewslice *dst,
@@ -51432,9 +51432,9 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
   /* "View.MemoryView":829
  *     cdef bint negative_step
- * 
+ *
  *     if not is_slice:             # <<<<<<<<<<<<<<
- * 
+ *
  *         if start < 0:
  */
   __pyx_t_1 = ((!(__pyx_v_is_slice != 0)) != 0);
@@ -51442,7 +51442,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":831
  *     if not is_slice:
- * 
+ *
  *         if start < 0:             # <<<<<<<<<<<<<<
  *             start += shape
  *         if not 0 <= start < shape:
@@ -51451,7 +51451,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     if (__pyx_t_1) {
 
       /* "View.MemoryView":832
- * 
+ *
  *         if start < 0:
  *             start += shape             # <<<<<<<<<<<<<<
  *         if not 0 <= start < shape:
@@ -51461,7 +51461,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
       /* "View.MemoryView":831
  *     if not is_slice:
- * 
+ *
  *         if start < 0:             # <<<<<<<<<<<<<<
  *             start += shape
  *         if not 0 <= start < shape:
@@ -51487,7 +51487,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *         if not 0 <= start < shape:
  *             _err_dim(IndexError, "Index out of bounds (axis %d)", dim)             # <<<<<<<<<<<<<<
  *     else:
- * 
+ *
  */
       __pyx_t_3 = __pyx_memoryview_err_dim(__pyx_builtin_IndexError, ((char *)"Index out of bounds (axis %d)"), __pyx_v_dim); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(3, 834, __pyx_L1_error)
 
@@ -51502,9 +51502,9 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":829
  *     cdef bint negative_step
- * 
+ *
  *     if not is_slice:             # <<<<<<<<<<<<<<
- * 
+ *
  *         if start < 0:
  */
     goto __pyx_L3;
@@ -51512,9 +51512,9 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
   /* "View.MemoryView":837
  *     else:
- * 
+ *
  *         negative_step = have_step != 0 and step < 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if have_step and step == 0:
  */
   /*else*/ {
@@ -51531,10 +51531,10 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":839
  *         negative_step = have_step != 0 and step < 0
- * 
+ *
  *         if have_step and step == 0:             # <<<<<<<<<<<<<<
  *             _err_dim(ValueError, "Step may not be zero (axis %d)", dim)
- * 
+ *
  */
     __pyx_t_1 = (__pyx_v_have_step != 0);
     if (__pyx_t_1) {
@@ -51548,26 +51548,26 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     if (__pyx_t_2) {
 
       /* "View.MemoryView":840
- * 
+ *
  *         if have_step and step == 0:
  *             _err_dim(ValueError, "Step may not be zero (axis %d)", dim)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_t_3 = __pyx_memoryview_err_dim(__pyx_builtin_ValueError, ((char *)"Step may not be zero (axis %d)"), __pyx_v_dim); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(3, 840, __pyx_L1_error)
 
       /* "View.MemoryView":839
  *         negative_step = have_step != 0 and step < 0
- * 
+ *
  *         if have_step and step == 0:             # <<<<<<<<<<<<<<
  *             _err_dim(ValueError, "Step may not be zero (axis %d)", dim)
- * 
+ *
  */
     }
 
     /* "View.MemoryView":843
- * 
- * 
+ *
+ *
  *         if have_start:             # <<<<<<<<<<<<<<
  *             if start < 0:
  *                 start += shape
@@ -51576,7 +51576,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     if (__pyx_t_2) {
 
       /* "View.MemoryView":844
- * 
+ *
  *         if have_start:
  *             if start < 0:             # <<<<<<<<<<<<<<
  *                 start += shape
@@ -51623,7 +51623,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
         }
 
         /* "View.MemoryView":844
- * 
+ *
  *         if have_start:
  *             if start < 0:             # <<<<<<<<<<<<<<
  *                 start += shape
@@ -51694,8 +51694,8 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
       __pyx_L12:;
 
       /* "View.MemoryView":843
- * 
- * 
+ *
+ *
  *         if have_start:             # <<<<<<<<<<<<<<
  *             if start < 0:
  *                 start += shape
@@ -51737,7 +51737,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *                 start = shape - 1
  *             else:
  *                 start = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *         if have_stop:
  */
       /*else*/ {
@@ -51749,7 +51749,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":859
  *                 start = 0
- * 
+ *
  *         if have_stop:             # <<<<<<<<<<<<<<
  *             if stop < 0:
  *                 stop += shape
@@ -51758,7 +51758,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     if (__pyx_t_2) {
 
       /* "View.MemoryView":860
- * 
+ *
  *         if have_stop:
  *             if stop < 0:             # <<<<<<<<<<<<<<
  *                 stop += shape
@@ -51805,7 +51805,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
         }
 
         /* "View.MemoryView":860
- * 
+ *
  *         if have_stop:
  *             if stop < 0:             # <<<<<<<<<<<<<<
  *                 stop += shape
@@ -51845,7 +51845,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
       /* "View.MemoryView":859
  *                 start = 0
- * 
+ *
  *         if have_stop:             # <<<<<<<<<<<<<<
  *             if stop < 0:
  *                 stop += shape
@@ -51887,7 +51887,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *                 stop = -1
  *             else:
  *                 stop = shape             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not have_step:
  */
       /*else*/ {
@@ -51899,100 +51899,100 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":872
  *                 stop = shape
- * 
+ *
  *         if not have_step:             # <<<<<<<<<<<<<<
  *             step = 1
- * 
+ *
  */
     __pyx_t_2 = ((!(__pyx_v_have_step != 0)) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":873
- * 
+ *
  *         if not have_step:
  *             step = 1             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_v_step = 1;
 
       /* "View.MemoryView":872
  *                 stop = shape
- * 
+ *
  *         if not have_step:             # <<<<<<<<<<<<<<
  *             step = 1
- * 
+ *
  */
     }
 
     /* "View.MemoryView":877
- * 
+ *
  *         with cython.cdivision(True):
  *             new_shape = (stop - start) // step             # <<<<<<<<<<<<<<
- * 
+ *
  *             if (stop - start) - step * new_shape:
  */
     __pyx_v_new_shape = ((__pyx_v_stop - __pyx_v_start) / __pyx_v_step);
 
     /* "View.MemoryView":879
  *             new_shape = (stop - start) // step
- * 
+ *
  *             if (stop - start) - step * new_shape:             # <<<<<<<<<<<<<<
  *                 new_shape += 1
- * 
+ *
  */
     __pyx_t_2 = (((__pyx_v_stop - __pyx_v_start) - (__pyx_v_step * __pyx_v_new_shape)) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":880
- * 
+ *
  *             if (stop - start) - step * new_shape:
  *                 new_shape += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if new_shape < 0:
  */
       __pyx_v_new_shape = (__pyx_v_new_shape + 1);
 
       /* "View.MemoryView":879
  *             new_shape = (stop - start) // step
- * 
+ *
  *             if (stop - start) - step * new_shape:             # <<<<<<<<<<<<<<
  *                 new_shape += 1
- * 
+ *
  */
     }
 
     /* "View.MemoryView":882
  *                 new_shape += 1
- * 
+ *
  *         if new_shape < 0:             # <<<<<<<<<<<<<<
  *             new_shape = 0
- * 
+ *
  */
     __pyx_t_2 = ((__pyx_v_new_shape < 0) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":883
- * 
+ *
  *         if new_shape < 0:
  *             new_shape = 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_v_new_shape = 0;
 
       /* "View.MemoryView":882
  *                 new_shape += 1
- * 
+ *
  *         if new_shape < 0:             # <<<<<<<<<<<<<<
  *             new_shape = 0
- * 
+ *
  */
     }
 
     /* "View.MemoryView":886
- * 
- * 
+ *
+ *
  *         dst.strides[new_ndim] = stride * step             # <<<<<<<<<<<<<<
  *         dst.shape[new_ndim] = new_shape
  *         dst.suboffsets[new_ndim] = suboffset
@@ -52000,11 +52000,11 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     (__pyx_v_dst->strides[__pyx_v_new_ndim]) = (__pyx_v_stride * __pyx_v_step);
 
     /* "View.MemoryView":887
- * 
+ *
  *         dst.strides[new_ndim] = stride * step
  *         dst.shape[new_ndim] = new_shape             # <<<<<<<<<<<<<<
  *         dst.suboffsets[new_ndim] = suboffset
- * 
+ *
  */
     (__pyx_v_dst->shape[__pyx_v_new_ndim]) = __pyx_v_new_shape;
 
@@ -52012,16 +52012,16 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *         dst.strides[new_ndim] = stride * step
  *         dst.shape[new_ndim] = new_shape
  *         dst.suboffsets[new_ndim] = suboffset             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     (__pyx_v_dst->suboffsets[__pyx_v_new_ndim]) = __pyx_v_suboffset;
   }
   __pyx_L3:;
 
   /* "View.MemoryView":891
- * 
- * 
+ *
+ *
  *     if suboffset_dim[0] < 0:             # <<<<<<<<<<<<<<
  *         dst.data += start * stride
  *     else:
@@ -52030,7 +52030,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
   if (__pyx_t_2) {
 
     /* "View.MemoryView":892
- * 
+ *
  *     if suboffset_dim[0] < 0:
  *         dst.data += start * stride             # <<<<<<<<<<<<<<
  *     else:
@@ -52039,8 +52039,8 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
     __pyx_v_dst->data = (__pyx_v_dst->data + (__pyx_v_start * __pyx_v_stride));
 
     /* "View.MemoryView":891
- * 
- * 
+ *
+ *
  *     if suboffset_dim[0] < 0:             # <<<<<<<<<<<<<<
  *         dst.data += start * stride
  *     else:
@@ -52052,7 +52052,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *         dst.data += start * stride
  *     else:
  *         dst.suboffsets[suboffset_dim[0]] += start * stride             # <<<<<<<<<<<<<<
- * 
+ *
  *     if suboffset >= 0:
  */
   /*else*/ {
@@ -52063,7 +52063,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
   /* "View.MemoryView":896
  *         dst.suboffsets[suboffset_dim[0]] += start * stride
- * 
+ *
  *     if suboffset >= 0:             # <<<<<<<<<<<<<<
  *         if not is_slice:
  *             if new_ndim == 0:
@@ -52072,7 +52072,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
   if (__pyx_t_2) {
 
     /* "View.MemoryView":897
- * 
+ *
  *     if suboffset >= 0:
  *         if not is_slice:             # <<<<<<<<<<<<<<
  *             if new_ndim == 0:
@@ -52131,7 +52131,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
       __pyx_L26:;
 
       /* "View.MemoryView":897
- * 
+ *
  *     if suboffset >= 0:
  *         if not is_slice:             # <<<<<<<<<<<<<<
  *             if new_ndim == 0:
@@ -52144,7 +52144,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
  *                                      "must be indexed and not sliced", dim)
  *         else:
  *             suboffset_dim[0] = new_ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *     return 0
  */
     /*else*/ {
@@ -52154,7 +52154,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
     /* "View.MemoryView":896
  *         dst.suboffsets[suboffset_dim[0]] += start * stride
- * 
+ *
  *     if suboffset >= 0:             # <<<<<<<<<<<<<<
  *         if not is_slice:
  *             if new_ndim == 0:
@@ -52163,16 +52163,16 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 
   /* "View.MemoryView":906
  *             suboffset_dim[0] = new_ndim
- * 
+ *
  *     return 0             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "View.MemoryView":809
- * 
+ *
  * @cname('__pyx_memoryview_slice_memviewslice')
  * cdef int slice_memviewslice(             # <<<<<<<<<<<<<<
  *         __Pyx_memviewslice *dst,
@@ -52196,7 +52196,7 @@ static int __pyx_memoryview_slice_memviewslice(__Pyx_memviewslice *__pyx_v_dst, 
 }
 
 /* "View.MemoryView":912
- * 
+ *
  * @cname('__pyx_pybuffer_index')
  * cdef char *pybuffer_index(Py_buffer *view, char *bufp, Py_ssize_t index,             # <<<<<<<<<<<<<<
  *                           Py_ssize_t dim) except NULL:
@@ -52234,14 +52234,14 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *     cdef Py_ssize_t shape, stride, suboffset = -1
  *     cdef Py_ssize_t itemsize = view.itemsize             # <<<<<<<<<<<<<<
  *     cdef char *resultp
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_view->itemsize;
   __pyx_v_itemsize = __pyx_t_1;
 
   /* "View.MemoryView":918
  *     cdef char *resultp
- * 
+ *
  *     if view.ndim == 0:             # <<<<<<<<<<<<<<
  *         shape = view.len / itemsize
  *         stride = itemsize
@@ -52250,7 +52250,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
   if (__pyx_t_2) {
 
     /* "View.MemoryView":919
- * 
+ *
  *     if view.ndim == 0:
  *         shape = view.len / itemsize             # <<<<<<<<<<<<<<
  *         stride = itemsize
@@ -52277,7 +52277,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 
     /* "View.MemoryView":918
  *     cdef char *resultp
- * 
+ *
  *     if view.ndim == 0:             # <<<<<<<<<<<<<<
  *         shape = view.len / itemsize
  *         stride = itemsize
@@ -52309,7 +52309,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         stride = view.strides[dim]
  *         if view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *             suboffset = view.suboffsets[dim]
- * 
+ *
  */
     __pyx_t_2 = ((__pyx_v_view->suboffsets != NULL) != 0);
     if (__pyx_t_2) {
@@ -52318,7 +52318,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         stride = view.strides[dim]
  *         if view.suboffsets != NULL:
  *             suboffset = view.suboffsets[dim]             # <<<<<<<<<<<<<<
- * 
+ *
  *     if index < 0:
  */
       __pyx_v_suboffset = (__pyx_v_view->suboffsets[__pyx_v_dim]);
@@ -52328,7 +52328,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         stride = view.strides[dim]
  *         if view.suboffsets != NULL:             # <<<<<<<<<<<<<<
  *             suboffset = view.suboffsets[dim]
- * 
+ *
  */
     }
   }
@@ -52336,7 +52336,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 
   /* "View.MemoryView":927
  *             suboffset = view.suboffsets[dim]
- * 
+ *
  *     if index < 0:             # <<<<<<<<<<<<<<
  *         index += view.shape[dim]
  *         if index < 0:
@@ -52345,7 +52345,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
   if (__pyx_t_2) {
 
     /* "View.MemoryView":928
- * 
+ *
  *     if index < 0:
  *         index += view.shape[dim]             # <<<<<<<<<<<<<<
  *         if index < 0:
@@ -52358,7 +52358,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         index += view.shape[dim]
  *         if index < 0:             # <<<<<<<<<<<<<<
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  */
     __pyx_t_2 = ((__pyx_v_index < 0) != 0);
     if (unlikely(__pyx_t_2)) {
@@ -52367,7 +52367,7 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         index += view.shape[dim]
  *         if index < 0:
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     if index >= shape:
  */
       __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_dim); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 930, __pyx_L1_error)
@@ -52387,13 +52387,13 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *         index += view.shape[dim]
  *         if index < 0:             # <<<<<<<<<<<<<<
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  */
     }
 
     /* "View.MemoryView":927
  *             suboffset = view.suboffsets[dim]
- * 
+ *
  *     if index < 0:             # <<<<<<<<<<<<<<
  *         index += view.shape[dim]
  *         if index < 0:
@@ -52402,19 +52402,19 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 
   /* "View.MemoryView":932
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  *     if index >= shape:             # <<<<<<<<<<<<<<
  *         raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_index >= __pyx_v_shape) != 0);
   if (unlikely(__pyx_t_2)) {
 
     /* "View.MemoryView":933
- * 
+ *
  *     if index >= shape:
  *         raise IndexError("Out of bounds on buffer access (axis %d)" % dim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     resultp = bufp + index * stride
  */
     __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_dim); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 933, __pyx_L1_error)
@@ -52431,16 +52431,16 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 
     /* "View.MemoryView":932
  *             raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  *     if index >= shape:             # <<<<<<<<<<<<<<
  *         raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  */
   }
 
   /* "View.MemoryView":935
  *         raise IndexError("Out of bounds on buffer access (axis %d)" % dim)
- * 
+ *
  *     resultp = bufp + index * stride             # <<<<<<<<<<<<<<
  *     if suboffset >= 0:
  *         resultp = (<char **> resultp)[0] + suboffset
@@ -52448,11 +52448,11 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
   __pyx_v_resultp = (__pyx_v_bufp + (__pyx_v_index * __pyx_v_stride));
 
   /* "View.MemoryView":936
- * 
+ *
  *     resultp = bufp + index * stride
  *     if suboffset >= 0:             # <<<<<<<<<<<<<<
  *         resultp = (<char **> resultp)[0] + suboffset
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_suboffset >= 0) != 0);
   if (__pyx_t_2) {
@@ -52461,32 +52461,32 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
  *     resultp = bufp + index * stride
  *     if suboffset >= 0:
  *         resultp = (<char **> resultp)[0] + suboffset             # <<<<<<<<<<<<<<
- * 
+ *
  *     return resultp
  */
     __pyx_v_resultp = ((((char **)__pyx_v_resultp)[0]) + __pyx_v_suboffset);
 
     /* "View.MemoryView":936
- * 
+ *
  *     resultp = bufp + index * stride
  *     if suboffset >= 0:             # <<<<<<<<<<<<<<
  *         resultp = (<char **> resultp)[0] + suboffset
- * 
+ *
  */
   }
 
   /* "View.MemoryView":939
  *         resultp = (<char **> resultp)[0] + suboffset
- * 
+ *
  *     return resultp             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_resultp;
   goto __pyx_L0;
 
   /* "View.MemoryView":912
- * 
+ *
  * @cname('__pyx_pybuffer_index')
  * cdef char *pybuffer_index(Py_buffer *view, char *bufp, Py_ssize_t index,             # <<<<<<<<<<<<<<
  *                           Py_ssize_t dim) except NULL:
@@ -52505,11 +52505,11 @@ static char *__pyx_pybuffer_index(Py_buffer *__pyx_v_view, char *__pyx_v_bufp, P
 }
 
 /* "View.MemoryView":945
- * 
+ *
  * @cname('__pyx_memslice_transpose')
  * cdef int transpose_memslice(__Pyx_memviewslice *memslice) nogil except 0:             # <<<<<<<<<<<<<<
  *     cdef int ndim = memslice.memview.view.ndim
- * 
+ *
  */
 
 static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
@@ -52536,7 +52536,7 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
  * @cname('__pyx_memslice_transpose')
  * cdef int transpose_memslice(__Pyx_memviewslice *memslice) nogil except 0:
  *     cdef int ndim = memslice.memview.view.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef Py_ssize_t *shape = memslice.shape
  */
   __pyx_t_1 = __pyx_v_memslice->memview->view.ndim;
@@ -52544,26 +52544,26 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
 
   /* "View.MemoryView":948
  *     cdef int ndim = memslice.memview.view.ndim
- * 
+ *
  *     cdef Py_ssize_t *shape = memslice.shape             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t *strides = memslice.strides
- * 
+ *
  */
   __pyx_t_2 = __pyx_v_memslice->shape;
   __pyx_v_shape = __pyx_t_2;
 
   /* "View.MemoryView":949
- * 
+ *
  *     cdef Py_ssize_t *shape = memslice.shape
  *     cdef Py_ssize_t *strides = memslice.strides             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = __pyx_v_memslice->strides;
   __pyx_v_strides = __pyx_t_2;
 
   /* "View.MemoryView":953
- * 
+ *
  *     cdef int i, j
  *     for i in range(ndim / 2):             # <<<<<<<<<<<<<<
  *         j = ndim - 1 - i
@@ -52588,7 +52588,7 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
  *         j = ndim - 1 - i
  *         strides[i], strides[j] = strides[j], strides[i]             # <<<<<<<<<<<<<<
  *         shape[i], shape[j] = shape[j], shape[i]
- * 
+ *
  */
     __pyx_t_5 = (__pyx_v_strides[__pyx_v_j]);
     __pyx_t_6 = (__pyx_v_strides[__pyx_v_i]);
@@ -52599,7 +52599,7 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
  *         j = ndim - 1 - i
  *         strides[i], strides[j] = strides[j], strides[i]
  *         shape[i], shape[j] = shape[j], shape[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *         if memslice.suboffsets[i] >= 0 or memslice.suboffsets[j] >= 0:
  */
     __pyx_t_6 = (__pyx_v_shape[__pyx_v_j]);
@@ -52609,10 +52609,10 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
 
     /* "View.MemoryView":958
  *         shape[i], shape[j] = shape[j], shape[i]
- * 
+ *
  *         if memslice.suboffsets[i] >= 0 or memslice.suboffsets[j] >= 0:             # <<<<<<<<<<<<<<
  *             _err(ValueError, "Cannot transpose memoryview with indirect dimensions")
- * 
+ *
  */
     __pyx_t_8 = (((__pyx_v_memslice->suboffsets[__pyx_v_i]) >= 0) != 0);
     if (!__pyx_t_8) {
@@ -52626,40 +52626,40 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
     if (__pyx_t_7) {
 
       /* "View.MemoryView":959
- * 
+ *
  *         if memslice.suboffsets[i] >= 0 or memslice.suboffsets[j] >= 0:
  *             _err(ValueError, "Cannot transpose memoryview with indirect dimensions")             # <<<<<<<<<<<<<<
- * 
+ *
  *     return 1
  */
       __pyx_t_9 = __pyx_memoryview_err(__pyx_builtin_ValueError, ((char *)"Cannot transpose memoryview with indirect dimensions")); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(3, 959, __pyx_L1_error)
 
       /* "View.MemoryView":958
  *         shape[i], shape[j] = shape[j], shape[i]
- * 
+ *
  *         if memslice.suboffsets[i] >= 0 or memslice.suboffsets[j] >= 0:             # <<<<<<<<<<<<<<
  *             _err(ValueError, "Cannot transpose memoryview with indirect dimensions")
- * 
+ *
  */
     }
   }
 
   /* "View.MemoryView":961
  *             _err(ValueError, "Cannot transpose memoryview with indirect dimensions")
- * 
+ *
  *     return 1             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = 1;
   goto __pyx_L0;
 
   /* "View.MemoryView":945
- * 
+ *
  * @cname('__pyx_memslice_transpose')
  * cdef int transpose_memslice(__Pyx_memviewslice *memslice) nogil except 0:             # <<<<<<<<<<<<<<
  *     cdef int ndim = memslice.memview.view.ndim
- * 
+ *
  */
 
   /* function exit code */
@@ -52680,10 +52680,10 @@ static int __pyx_memslice_transpose(__Pyx_memviewslice *__pyx_v_memslice) {
 
 /* "View.MemoryView":978
  *     cdef int (*to_dtype_func)(char *, object) except 0
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -52702,20 +52702,20 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "View.MemoryView":979
- * 
+ *
  *     def __dealloc__(self):
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):
  */
   __PYX_XDEC_MEMVIEW((&__pyx_v_self->from_slice), 1);
 
   /* "View.MemoryView":978
  *     cdef int (*to_dtype_func)(char *, object) except 0
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)
- * 
+ *
  */
 
   /* function exit code */
@@ -52724,7 +52724,7 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 
 /* "View.MemoryView":981
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         if self.to_object_func != NULL:
  *             return self.to_object_func(itemp)
@@ -52741,7 +52741,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
   __Pyx_RefNannySetupContext("convert_item_to_object", 0);
 
   /* "View.MemoryView":982
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):
  *         if self.to_object_func != NULL:             # <<<<<<<<<<<<<<
  *             return self.to_object_func(itemp)
@@ -52765,7 +52765,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
     goto __pyx_L0;
 
     /* "View.MemoryView":982
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):
  *         if self.to_object_func != NULL:             # <<<<<<<<<<<<<<
  *             return self.to_object_func(itemp)
@@ -52777,7 +52777,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
  *             return self.to_object_func(itemp)
  *         else:
  *             return memoryview.convert_item_to_object(self, itemp)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):
  */
   /*else*/ {
@@ -52791,7 +52791,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
 
   /* "View.MemoryView":981
  *         __PYX_XDEC_MEMVIEW(&self.from_slice, 1)
- * 
+ *
  *     cdef convert_item_to_object(self, char *itemp):             # <<<<<<<<<<<<<<
  *         if self.to_object_func != NULL:
  *             return self.to_object_func(itemp)
@@ -52810,7 +52810,7 @@ static PyObject *__pyx_memoryviewslice_convert_item_to_object(struct __pyx_memor
 
 /* "View.MemoryView":987
  *             return memoryview.convert_item_to_object(self, itemp)
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         if self.to_dtype_func != NULL:
  *             self.to_dtype_func(itemp, value)
@@ -52828,7 +52828,7 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
   __Pyx_RefNannySetupContext("assign_item_from_object", 0);
 
   /* "View.MemoryView":988
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):
  *         if self.to_dtype_func != NULL:             # <<<<<<<<<<<<<<
  *             self.to_dtype_func(itemp, value)
@@ -52847,7 +52847,7 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
     __pyx_t_2 = __pyx_v_self->to_dtype_func(__pyx_v_itemp, __pyx_v_value); if (unlikely(__pyx_t_2 == ((int)0))) __PYX_ERR(3, 989, __pyx_L1_error)
 
     /* "View.MemoryView":988
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):
  *         if self.to_dtype_func != NULL:             # <<<<<<<<<<<<<<
  *             self.to_dtype_func(itemp, value)
@@ -52860,7 +52860,7 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
  *             self.to_dtype_func(itemp, value)
  *         else:
  *             memoryview.assign_item_from_object(self, itemp, value)             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   /*else*/ {
@@ -52872,7 +52872,7 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
 
   /* "View.MemoryView":987
  *             return memoryview.convert_item_to_object(self, itemp)
- * 
+ *
  *     cdef assign_item_from_object(self, char *itemp, object value):             # <<<<<<<<<<<<<<
  *         if self.to_dtype_func != NULL:
  *             self.to_dtype_func(itemp, value)
@@ -52892,11 +52892,11 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
 }
 
 /* "View.MemoryView":994
- * 
+ *
  *     @property
  *     def base(self):             # <<<<<<<<<<<<<<
  *         return self.from_object
- * 
+ *
  */
 
 /* Python wrapper */
@@ -52921,7 +52921,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_16_memoryviewslice_4base___get__
  *     @property
  *     def base(self):
  *         return self.from_object             # <<<<<<<<<<<<<<
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_memoryview_getbuffer, "getbuffer(obj, view, flags)")
  */
   __Pyx_XDECREF(__pyx_r);
@@ -52930,11 +52930,11 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_16_memoryviewslice_4base___get__
   goto __pyx_L0;
 
   /* "View.MemoryView":994
- * 
+ *
  *     @property
  *     def base(self):             # <<<<<<<<<<<<<<
  *         return self.from_object
- * 
+ *
  */
 
   /* function exit code */
@@ -53058,7 +53058,7 @@ static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUS
 }
 
 /* "View.MemoryView":1001
- * 
+ *
  * @cname('__pyx_memoryview_fromslice')
  * cdef memoryview_fromslice(__Pyx_memviewslice memviewslice,             # <<<<<<<<<<<<<<
  *                           int ndim,
@@ -53087,20 +53087,20 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1009
  *     cdef _memoryviewslice result
- * 
+ *
  *     if <PyObject *> memviewslice.memview == Py_None:             # <<<<<<<<<<<<<<
  *         return None
- * 
+ *
  */
   __pyx_t_1 = ((((PyObject *)__pyx_v_memviewslice.memview) == Py_None) != 0);
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1010
- * 
+ *
  *     if <PyObject *> memviewslice.memview == Py_None:
  *         return None             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
@@ -53108,18 +53108,18 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
     /* "View.MemoryView":1009
  *     cdef _memoryviewslice result
- * 
+ *
  *     if <PyObject *> memviewslice.memview == Py_None:             # <<<<<<<<<<<<<<
  *         return None
- * 
+ *
  */
   }
 
   /* "View.MemoryView":1015
- * 
- * 
+ *
+ *
  *     result = _memoryviewslice(None, 0, dtype_is_object)             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.from_slice = memviewslice
  */
   __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_v_dtype_is_object); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 1015, __pyx_L1_error)
@@ -53143,28 +53143,28 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1017
  *     result = _memoryviewslice(None, 0, dtype_is_object)
- * 
+ *
  *     result.from_slice = memviewslice             # <<<<<<<<<<<<<<
  *     __PYX_INC_MEMVIEW(&memviewslice, 1)
- * 
+ *
  */
   __pyx_v_result->from_slice = __pyx_v_memviewslice;
 
   /* "View.MemoryView":1018
- * 
+ *
  *     result.from_slice = memviewslice
  *     __PYX_INC_MEMVIEW(&memviewslice, 1)             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.from_object = (<memoryview> memviewslice.memview).base
  */
   __PYX_INC_MEMVIEW((&__pyx_v_memviewslice), 1);
 
   /* "View.MemoryView":1020
  *     __PYX_INC_MEMVIEW(&memviewslice, 1)
- * 
+ *
  *     result.from_object = (<memoryview> memviewslice.memview).base             # <<<<<<<<<<<<<<
  *     result.typeinfo = memviewslice.memview.typeinfo
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_memviewslice.memview), __pyx_n_s_base); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 1020, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -53175,10 +53175,10 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   __pyx_t_2 = 0;
 
   /* "View.MemoryView":1021
- * 
+ *
  *     result.from_object = (<memoryview> memviewslice.memview).base
  *     result.typeinfo = memviewslice.memview.typeinfo             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.view = memviewslice.memview.view
  */
   __pyx_t_4 = __pyx_v_memviewslice.memview->typeinfo;
@@ -53186,7 +53186,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1023
  *     result.typeinfo = memviewslice.memview.typeinfo
- * 
+ *
  *     result.view = memviewslice.memview.view             # <<<<<<<<<<<<<<
  *     result.view.buf = <void *> memviewslice.data
  *     result.view.ndim = ndim
@@ -53195,7 +53195,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   __pyx_v_result->__pyx_base.view = __pyx_t_5;
 
   /* "View.MemoryView":1024
- * 
+ *
  *     result.view = memviewslice.memview.view
  *     result.view.buf = <void *> memviewslice.data             # <<<<<<<<<<<<<<
  *     result.view.ndim = ndim
@@ -53217,7 +53217,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *     result.view.ndim = ndim
  *     (<__pyx_buffer *> &result.view).obj = Py_None             # <<<<<<<<<<<<<<
  *     Py_INCREF(Py_None)
- * 
+ *
  */
   ((Py_buffer *)(&__pyx_v_result->__pyx_base.view))->obj = Py_None;
 
@@ -53225,14 +53225,14 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *     result.view.ndim = ndim
  *     (<__pyx_buffer *> &result.view).obj = Py_None
  *     Py_INCREF(Py_None)             # <<<<<<<<<<<<<<
- * 
+ *
  *     if (<memoryview>memviewslice.memview).flags & PyBUF_WRITABLE:
  */
   Py_INCREF(Py_None);
 
   /* "View.MemoryView":1029
  *     Py_INCREF(Py_None)
- * 
+ *
  *     if (<memoryview>memviewslice.memview).flags & PyBUF_WRITABLE:             # <<<<<<<<<<<<<<
  *         result.flags = PyBUF_RECORDS
  *     else:
@@ -53241,7 +53241,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1030
- * 
+ *
  *     if (<memoryview>memviewslice.memview).flags & PyBUF_WRITABLE:
  *         result.flags = PyBUF_RECORDS             # <<<<<<<<<<<<<<
  *     else:
@@ -53251,7 +53251,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
     /* "View.MemoryView":1029
  *     Py_INCREF(Py_None)
- * 
+ *
  *     if (<memoryview>memviewslice.memview).flags & PyBUF_WRITABLE:             # <<<<<<<<<<<<<<
  *         result.flags = PyBUF_RECORDS
  *     else:
@@ -53263,7 +53263,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *         result.flags = PyBUF_RECORDS
  *     else:
  *         result.flags = PyBUF_RECORDS_RO             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.view.shape = <Py_ssize_t *> result.from_slice.shape
  */
   /*else*/ {
@@ -53273,25 +53273,25 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1034
  *         result.flags = PyBUF_RECORDS_RO
- * 
+ *
  *     result.view.shape = <Py_ssize_t *> result.from_slice.shape             # <<<<<<<<<<<<<<
  *     result.view.strides = <Py_ssize_t *> result.from_slice.strides
- * 
+ *
  */
   __pyx_v_result->__pyx_base.view.shape = ((Py_ssize_t *)__pyx_v_result->from_slice.shape);
 
   /* "View.MemoryView":1035
- * 
+ *
  *     result.view.shape = <Py_ssize_t *> result.from_slice.shape
  *     result.view.strides = <Py_ssize_t *> result.from_slice.strides             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_v_result->__pyx_base.view.strides = ((Py_ssize_t *)__pyx_v_result->from_slice.strides);
 
   /* "View.MemoryView":1038
- * 
- * 
+ *
+ *
  *     result.view.suboffsets = NULL             # <<<<<<<<<<<<<<
  *     for suboffset in result.from_slice.suboffsets[:ndim]:
  *         if suboffset >= 0:
@@ -53299,7 +53299,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   __pyx_v_result->__pyx_base.view.suboffsets = NULL;
 
   /* "View.MemoryView":1039
- * 
+ *
  *     result.view.suboffsets = NULL
  *     for suboffset in result.from_slice.suboffsets[:ndim]:             # <<<<<<<<<<<<<<
  *         if suboffset >= 0:
@@ -53325,7 +53325,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *         if suboffset >= 0:
  *             result.view.suboffsets = <Py_ssize_t *> result.from_slice.suboffsets             # <<<<<<<<<<<<<<
  *             break
- * 
+ *
  */
       __pyx_v_result->__pyx_base.view.suboffsets = ((Py_ssize_t *)__pyx_v_result->from_slice.suboffsets);
 
@@ -53333,7 +53333,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *         if suboffset >= 0:
  *             result.view.suboffsets = <Py_ssize_t *> result.from_slice.suboffsets
  *             break             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.view.len = result.view.itemsize
  */
       goto __pyx_L6_break;
@@ -53351,7 +53351,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1044
  *             break
- * 
+ *
  *     result.view.len = result.view.itemsize             # <<<<<<<<<<<<<<
  *     for length in result.view.shape[:ndim]:
  *         result.view.len *= length
@@ -53360,11 +53360,11 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   __pyx_v_result->__pyx_base.view.len = __pyx_t_9;
 
   /* "View.MemoryView":1045
- * 
+ *
  *     result.view.len = result.view.itemsize
  *     for length in result.view.shape[:ndim]:             # <<<<<<<<<<<<<<
  *         result.view.len *= length
- * 
+ *
  */
   __pyx_t_7 = (__pyx_v_result->__pyx_base.view.shape + __pyx_v_ndim);
   for (__pyx_t_8 = __pyx_v_result->__pyx_base.view.shape; __pyx_t_8 < __pyx_t_7; __pyx_t_8++) {
@@ -53378,7 +53378,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
  *     result.view.len = result.view.itemsize
  *     for length in result.view.shape[:ndim]:
  *         result.view.len *= length             # <<<<<<<<<<<<<<
- * 
+ *
  *     result.to_object_func = to_object_func
  */
     __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_result->__pyx_base.view.len); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 1046, __pyx_L1_error)
@@ -53393,27 +53393,27 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 
   /* "View.MemoryView":1048
  *         result.view.len *= length
- * 
+ *
  *     result.to_object_func = to_object_func             # <<<<<<<<<<<<<<
  *     result.to_dtype_func = to_dtype_func
- * 
+ *
  */
   __pyx_v_result->to_object_func = __pyx_v_to_object_func;
 
   /* "View.MemoryView":1049
- * 
+ *
  *     result.to_object_func = to_object_func
  *     result.to_dtype_func = to_dtype_func             # <<<<<<<<<<<<<<
- * 
+ *
  *     return result
  */
   __pyx_v_result->to_dtype_func = __pyx_v_to_dtype_func;
 
   /* "View.MemoryView":1051
  *     result.to_dtype_func = to_dtype_func
- * 
+ *
  *     return result             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_get_slice_from_memoryview')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -53422,7 +53422,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
   goto __pyx_L0;
 
   /* "View.MemoryView":1001
- * 
+ *
  * @cname('__pyx_memoryview_fromslice')
  * cdef memoryview_fromslice(__Pyx_memviewslice memviewslice,             # <<<<<<<<<<<<<<
  *                           int ndim,
@@ -53444,7 +53444,7 @@ static PyObject *__pyx_memoryview_fromslice(__Pyx_memviewslice __pyx_v_memviewsl
 }
 
 /* "View.MemoryView":1054
- * 
+ *
  * @cname('__pyx_memoryview_get_slice_from_memoryview')
  * cdef __Pyx_memviewslice *get_slice_from_memview(memoryview memview,             # <<<<<<<<<<<<<<
  *                                                    __Pyx_memviewslice *mslice) except NULL:
@@ -53470,7 +53470,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
  *         obj = memview
  *         return &obj.from_slice
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
@@ -53511,7 +53511,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
  *     else:
  *         slice_copy(memview, mslice)             # <<<<<<<<<<<<<<
  *         return mslice
- * 
+ *
  */
   /*else*/ {
     __pyx_memoryview_slice_copy(__pyx_v_memview, __pyx_v_mslice);
@@ -53520,7 +53520,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
  *     else:
  *         slice_copy(memview, mslice)
  *         return mslice             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_slice_copy')
  */
     __pyx_r = __pyx_v_mslice;
@@ -53528,7 +53528,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
   }
 
   /* "View.MemoryView":1054
- * 
+ *
  * @cname('__pyx_memoryview_get_slice_from_memoryview')
  * cdef __Pyx_memviewslice *get_slice_from_memview(memoryview memview,             # <<<<<<<<<<<<<<
  *                                                    __Pyx_memviewslice *mslice) except NULL:
@@ -53547,7 +53547,7 @@ static __Pyx_memviewslice *__pyx_memoryview_get_slice_from_memoryview(struct __p
 }
 
 /* "View.MemoryView":1065
- * 
+ *
  * @cname('__pyx_memoryview_slice_copy')
  * cdef void slice_copy(memoryview memview, __Pyx_memviewslice *dst):             # <<<<<<<<<<<<<<
  *     cdef int dim
@@ -53569,7 +53569,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
 
   /* "View.MemoryView":1069
  *     cdef (Py_ssize_t*) shape, strides, suboffsets
- * 
+ *
  *     shape = memview.view.shape             # <<<<<<<<<<<<<<
  *     strides = memview.view.strides
  *     suboffsets = memview.view.suboffsets
@@ -53578,11 +53578,11 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
   __pyx_v_shape = __pyx_t_1;
 
   /* "View.MemoryView":1070
- * 
+ *
  *     shape = memview.view.shape
  *     strides = memview.view.strides             # <<<<<<<<<<<<<<
  *     suboffsets = memview.view.suboffsets
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_memview->view.strides;
   __pyx_v_strides = __pyx_t_1;
@@ -53591,7 +53591,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
  *     shape = memview.view.shape
  *     strides = memview.view.strides
  *     suboffsets = memview.view.suboffsets             # <<<<<<<<<<<<<<
- * 
+ *
  *     dst.memview = <__pyx_memoryview *> memview
  */
   __pyx_t_1 = __pyx_v_memview->view.suboffsets;
@@ -53599,25 +53599,25 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
 
   /* "View.MemoryView":1073
  *     suboffsets = memview.view.suboffsets
- * 
+ *
  *     dst.memview = <__pyx_memoryview *> memview             # <<<<<<<<<<<<<<
  *     dst.data = <char *> memview.view.buf
- * 
+ *
  */
   __pyx_v_dst->memview = ((struct __pyx_memoryview_obj *)__pyx_v_memview);
 
   /* "View.MemoryView":1074
- * 
+ *
  *     dst.memview = <__pyx_memoryview *> memview
  *     dst.data = <char *> memview.view.buf             # <<<<<<<<<<<<<<
- * 
+ *
  *     for dim in range(memview.view.ndim):
  */
   __pyx_v_dst->data = ((char *)__pyx_v_memview->view.buf);
 
   /* "View.MemoryView":1076
  *     dst.data = <char *> memview.view.buf
- * 
+ *
  *     for dim in range(memview.view.ndim):             # <<<<<<<<<<<<<<
  *         dst.shape[dim] = shape[dim]
  *         dst.strides[dim] = strides[dim]
@@ -53628,7 +53628,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
     __pyx_v_dim = __pyx_t_4;
 
     /* "View.MemoryView":1077
- * 
+ *
  *     for dim in range(memview.view.ndim):
  *         dst.shape[dim] = shape[dim]             # <<<<<<<<<<<<<<
  *         dst.strides[dim] = strides[dim]
@@ -53641,7 +53641,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
  *         dst.shape[dim] = shape[dim]
  *         dst.strides[dim] = strides[dim]             # <<<<<<<<<<<<<<
  *         dst.suboffsets[dim] = suboffsets[dim] if suboffsets else -1
- * 
+ *
  */
     (__pyx_v_dst->strides[__pyx_v_dim]) = (__pyx_v_strides[__pyx_v_dim]);
 
@@ -53649,7 +53649,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
  *         dst.shape[dim] = shape[dim]
  *         dst.strides[dim] = strides[dim]
  *         dst.suboffsets[dim] = suboffsets[dim] if suboffsets else -1             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_copy_object')
  */
     if ((__pyx_v_suboffsets != 0)) {
@@ -53661,7 +53661,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
   }
 
   /* "View.MemoryView":1065
- * 
+ *
  * @cname('__pyx_memoryview_slice_copy')
  * cdef void slice_copy(memoryview memview, __Pyx_memviewslice *dst):             # <<<<<<<<<<<<<<
  *     cdef int dim
@@ -53673,7 +53673,7 @@ static void __pyx_memoryview_slice_copy(struct __pyx_memoryview_obj *__pyx_v_mem
 }
 
 /* "View.MemoryView":1082
- * 
+ *
  * @cname('__pyx_memoryview_copy_object')
  * cdef memoryview_copy(memoryview memview):             # <<<<<<<<<<<<<<
  *     "Create a new memoryview object"
@@ -53695,7 +53695,7 @@ static PyObject *__pyx_memoryview_copy_object(struct __pyx_memoryview_obj *__pyx
  *     cdef __Pyx_memviewslice memviewslice
  *     slice_copy(memview, &memviewslice)             # <<<<<<<<<<<<<<
  *     return memoryview_copy_from_slice(memview, &memviewslice)
- * 
+ *
  */
   __pyx_memoryview_slice_copy(__pyx_v_memview, (&__pyx_v_memviewslice));
 
@@ -53703,7 +53703,7 @@ static PyObject *__pyx_memoryview_copy_object(struct __pyx_memoryview_obj *__pyx
  *     cdef __Pyx_memviewslice memviewslice
  *     slice_copy(memview, &memviewslice)
  *     return memoryview_copy_from_slice(memview, &memviewslice)             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_copy_object_from_slice')
  */
   __Pyx_XDECREF(__pyx_r);
@@ -53714,7 +53714,7 @@ static PyObject *__pyx_memoryview_copy_object(struct __pyx_memoryview_obj *__pyx
   goto __pyx_L0;
 
   /* "View.MemoryView":1082
- * 
+ *
  * @cname('__pyx_memoryview_copy_object')
  * cdef memoryview_copy(memoryview memview):             # <<<<<<<<<<<<<<
  *     "Create a new memoryview object"
@@ -53733,7 +53733,7 @@ static PyObject *__pyx_memoryview_copy_object(struct __pyx_memoryview_obj *__pyx
 }
 
 /* "View.MemoryView":1089
- * 
+ *
  * @cname('__pyx_memoryview_copy_object_from_slice')
  * cdef memoryview_copy_from_slice(memoryview memview, __Pyx_memviewslice *memviewslice):             # <<<<<<<<<<<<<<
  *     """
@@ -53757,17 +53757,17 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
   /* "View.MemoryView":1096
  *     cdef int (*to_dtype_func)(char *, object) except 0
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         to_object_func = (<_memoryviewslice> memview).to_object_func
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
  */
-  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type); 
+  __pyx_t_1 = __Pyx_TypeCheck(((PyObject *)__pyx_v_memview), __pyx_memoryviewslice_type);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1097
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):
  *         to_object_func = (<_memoryviewslice> memview).to_object_func             # <<<<<<<<<<<<<<
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
@@ -53788,7 +53788,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
     /* "View.MemoryView":1096
  *     cdef int (*to_dtype_func)(char *, object) except 0
- * 
+ *
  *     if isinstance(memview, _memoryviewslice):             # <<<<<<<<<<<<<<
  *         to_object_func = (<_memoryviewslice> memview).to_object_func
  *         to_dtype_func = (<_memoryviewslice> memview).to_dtype_func
@@ -53801,7 +53801,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     else:
  *         to_object_func = NULL             # <<<<<<<<<<<<<<
  *         to_dtype_func = NULL
- * 
+ *
  */
   /*else*/ {
     __pyx_v_to_object_func = NULL;
@@ -53810,7 +53810,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     else:
  *         to_object_func = NULL
  *         to_dtype_func = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,
  */
     __pyx_v_to_dtype_func = NULL;
@@ -53819,7 +53819,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 
   /* "View.MemoryView":1103
  *         to_dtype_func = NULL
- * 
+ *
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,             # <<<<<<<<<<<<<<
  *                                 to_object_func, to_dtype_func,
  *                                 memview.dtype_is_object)
@@ -53830,8 +53830,8 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
  *     return memoryview_fromslice(memviewslice[0], memview.view.ndim,
  *                                 to_object_func, to_dtype_func,
  *                                 memview.dtype_is_object)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_5 = __pyx_memoryview_fromslice((__pyx_v_memviewslice[0]), __pyx_v_memview->view.ndim, __pyx_v_to_object_func, __pyx_v_to_dtype_func, __pyx_v_memview->dtype_is_object); if (unlikely(!__pyx_t_5)) __PYX_ERR(3, 1103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -53840,7 +53840,7 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
   goto __pyx_L0;
 
   /* "View.MemoryView":1089
- * 
+ *
  * @cname('__pyx_memoryview_copy_object_from_slice')
  * cdef memoryview_copy_from_slice(memoryview memview, __Pyx_memviewslice *memviewslice):             # <<<<<<<<<<<<<<
  *     """
@@ -53859,8 +53859,8 @@ static PyObject *__pyx_memoryview_copy_object_from_slice(struct __pyx_memoryview
 }
 
 /* "View.MemoryView":1111
- * 
- * 
+ *
+ *
  * cdef Py_ssize_t abs_py_ssize_t(Py_ssize_t arg) nogil:             # <<<<<<<<<<<<<<
  *     if arg < 0:
  *         return -arg
@@ -53871,7 +53871,7 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
   int __pyx_t_1;
 
   /* "View.MemoryView":1112
- * 
+ *
  * cdef Py_ssize_t abs_py_ssize_t(Py_ssize_t arg) nogil:
  *     if arg < 0:             # <<<<<<<<<<<<<<
  *         return -arg
@@ -53891,7 +53891,7 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
     goto __pyx_L0;
 
     /* "View.MemoryView":1112
- * 
+ *
  * cdef Py_ssize_t abs_py_ssize_t(Py_ssize_t arg) nogil:
  *     if arg < 0:             # <<<<<<<<<<<<<<
  *         return -arg
@@ -53903,7 +53903,7 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
  *         return -arg
  *     else:
  *         return arg             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_get_best_slice_order')
  */
   /*else*/ {
@@ -53912,8 +53912,8 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
   }
 
   /* "View.MemoryView":1111
- * 
- * 
+ *
+ *
  * cdef Py_ssize_t abs_py_ssize_t(Py_ssize_t arg) nogil:             # <<<<<<<<<<<<<<
  *     if arg < 0:
  *         return -arg
@@ -53925,7 +53925,7 @@ static Py_ssize_t abs_py_ssize_t(Py_ssize_t __pyx_v_arg) {
 }
 
 /* "View.MemoryView":1118
- * 
+ *
  * @cname('__pyx_get_best_slice_order')
  * cdef char get_best_order(__Pyx_memviewslice *mslice, int ndim) nogil:             # <<<<<<<<<<<<<<
  *     """
@@ -53947,7 +53947,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *     cdef int i
  *     cdef Py_ssize_t c_stride = 0             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t f_stride = 0
- * 
+ *
  */
   __pyx_v_c_stride = 0;
 
@@ -53955,14 +53955,14 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *     cdef int i
  *     cdef Py_ssize_t c_stride = 0
  *     cdef Py_ssize_t f_stride = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  */
   __pyx_v_f_stride = 0;
 
   /* "View.MemoryView":1126
  *     cdef Py_ssize_t f_stride = 0
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):             # <<<<<<<<<<<<<<
  *         if mslice.shape[i] > 1:
  *             c_stride = mslice.strides[i]
@@ -53971,7 +53971,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
     __pyx_v_i = __pyx_t_1;
 
     /* "View.MemoryView":1127
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  *         if mslice.shape[i] > 1:             # <<<<<<<<<<<<<<
  *             c_stride = mslice.strides[i]
@@ -53985,7 +53985,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         if mslice.shape[i] > 1:
  *             c_stride = mslice.strides[i]             # <<<<<<<<<<<<<<
  *             break
- * 
+ *
  */
       __pyx_v_c_stride = (__pyx_v_mslice->strides[__pyx_v_i]);
 
@@ -53993,13 +53993,13 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         if mslice.shape[i] > 1:
  *             c_stride = mslice.strides[i]
  *             break             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(ndim):
  */
       goto __pyx_L4_break;
 
       /* "View.MemoryView":1127
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  *         if mslice.shape[i] > 1:             # <<<<<<<<<<<<<<
  *             c_stride = mslice.strides[i]
@@ -54011,7 +54011,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 
   /* "View.MemoryView":1131
  *             break
- * 
+ *
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
  *         if mslice.shape[i] > 1:
  *             f_stride = mslice.strides[i]
@@ -54022,7 +54022,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
     __pyx_v_i = __pyx_t_4;
 
     /* "View.MemoryView":1132
- * 
+ *
  *     for i in range(ndim):
  *         if mslice.shape[i] > 1:             # <<<<<<<<<<<<<<
  *             f_stride = mslice.strides[i]
@@ -54036,7 +54036,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         if mslice.shape[i] > 1:
  *             f_stride = mslice.strides[i]             # <<<<<<<<<<<<<<
  *             break
- * 
+ *
  */
       __pyx_v_f_stride = (__pyx_v_mslice->strides[__pyx_v_i]);
 
@@ -54044,13 +54044,13 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         if mslice.shape[i] > 1:
  *             f_stride = mslice.strides[i]
  *             break             # <<<<<<<<<<<<<<
- * 
+ *
  *     if abs_py_ssize_t(c_stride) <= abs_py_ssize_t(f_stride):
  */
       goto __pyx_L7_break;
 
       /* "View.MemoryView":1132
- * 
+ *
  *     for i in range(ndim):
  *         if mslice.shape[i] > 1:             # <<<<<<<<<<<<<<
  *             f_stride = mslice.strides[i]
@@ -54062,7 +54062,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 
   /* "View.MemoryView":1136
  *             break
- * 
+ *
  *     if abs_py_ssize_t(c_stride) <= abs_py_ssize_t(f_stride):             # <<<<<<<<<<<<<<
  *         return 'C'
  *     else:
@@ -54071,7 +54071,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1137
- * 
+ *
  *     if abs_py_ssize_t(c_stride) <= abs_py_ssize_t(f_stride):
  *         return 'C'             # <<<<<<<<<<<<<<
  *     else:
@@ -54082,7 +54082,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 
     /* "View.MemoryView":1136
  *             break
- * 
+ *
  *     if abs_py_ssize_t(c_stride) <= abs_py_ssize_t(f_stride):             # <<<<<<<<<<<<<<
  *         return 'C'
  *     else:
@@ -54093,7 +54093,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
  *         return 'C'
  *     else:
  *         return 'F'             # <<<<<<<<<<<<<<
- * 
+ *
  * @cython.cdivision(True)
  */
   /*else*/ {
@@ -54102,7 +54102,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
   }
 
   /* "View.MemoryView":1118
- * 
+ *
  * @cname('__pyx_get_best_slice_order')
  * cdef char get_best_order(__Pyx_memviewslice *mslice, int ndim) nogil:             # <<<<<<<<<<<<<<
  *     """
@@ -54115,7 +54115,7 @@ static char __pyx_get_best_slice_order(__Pyx_memviewslice *__pyx_v_mslice, int _
 }
 
 /* "View.MemoryView":1142
- * 
+ *
  * @cython.cdivision(True)
  * cdef void _copy_strided_to_strided(char *src_data, Py_ssize_t *src_strides,             # <<<<<<<<<<<<<<
  *                                    char *dst_data, Py_ssize_t *dst_strides,
@@ -54136,7 +54136,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   Py_ssize_t __pyx_t_6;
 
   /* "View.MemoryView":1149
- * 
+ *
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t src_extent = src_shape[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
@@ -54158,7 +54158,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
  *     cdef Py_ssize_t src_stride = src_strides[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- * 
+ *
  */
   __pyx_v_src_stride = (__pyx_v_src_strides[0]);
 
@@ -54166,14 +54166,14 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *     cdef Py_ssize_t dst_extent = dst_shape[0]
  *     cdef Py_ssize_t src_stride = src_strides[0]
  *     cdef Py_ssize_t dst_stride = dst_strides[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     if ndim == 1:
  */
   __pyx_v_dst_stride = (__pyx_v_dst_strides[0]);
 
   /* "View.MemoryView":1154
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- * 
+ *
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *        if (src_stride > 0 and dst_stride > 0 and
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -54182,7 +54182,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1155
- * 
+ *
  *     if ndim == 1:
  *        if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -54217,7 +54217,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
     __pyx_L5_bool_binop_done:;
 
     /* "View.MemoryView":1155
- * 
+ *
  *     if ndim == 1:
  *        if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -54235,7 +54235,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
       (void)(memcpy(__pyx_v_dst_data, __pyx_v_src_data, (__pyx_v_itemsize * __pyx_v_dst_extent)));
 
       /* "View.MemoryView":1155
- * 
+ *
  *     if ndim == 1:
  *        if (src_stride > 0 and dst_stride > 0 and             # <<<<<<<<<<<<<<
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -54289,7 +54289,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
 
     /* "View.MemoryView":1154
  *     cdef Py_ssize_t dst_stride = dst_strides[0]
- * 
+ *
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *        if (src_stride > 0 and dst_stride > 0 and
  *            <size_t> src_stride == itemsize == <size_t> dst_stride):
@@ -54324,7 +54324,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *                                      ndim - 1, itemsize)
  *             src_data += src_stride             # <<<<<<<<<<<<<<
  *             dst_data += dst_stride
- * 
+ *
  */
       __pyx_v_src_data = (__pyx_v_src_data + __pyx_v_src_stride);
 
@@ -54332,7 +54332,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
  *                                      ndim - 1, itemsize)
  *             src_data += src_stride
  *             dst_data += dst_stride             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,
  */
       __pyx_v_dst_data = (__pyx_v_dst_data + __pyx_v_dst_stride);
@@ -54341,7 +54341,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
   __pyx_L3:;
 
   /* "View.MemoryView":1142
- * 
+ *
  * @cython.cdivision(True)
  * cdef void _copy_strided_to_strided(char *src_data, Py_ssize_t *src_strides,             # <<<<<<<<<<<<<<
  *                                    char *dst_data, Py_ssize_t *dst_strides,
@@ -54353,7 +54353,7 @@ static void _copy_strided_to_strided(char *__pyx_v_src_data, Py_ssize_t *__pyx_v
 
 /* "View.MemoryView":1172
  *             dst_data += dst_stride
- * 
+ *
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice *dst,
  *                                   int ndim, size_t itemsize) nogil:
@@ -54366,13 +54366,13 @@ static void copy_strided_to_strided(__Pyx_memviewslice *__pyx_v_src, __Pyx_memvi
  *                                   int ndim, size_t itemsize) nogil:
  *     _copy_strided_to_strided(src.data, src.strides, dst.data, dst.strides,             # <<<<<<<<<<<<<<
  *                              src.shape, dst.shape, ndim, itemsize)
- * 
+ *
  */
   _copy_strided_to_strided(__pyx_v_src->data, __pyx_v_src->strides, __pyx_v_dst->data, __pyx_v_dst->strides, __pyx_v_src->shape, __pyx_v_dst->shape, __pyx_v_ndim, __pyx_v_itemsize);
 
   /* "View.MemoryView":1172
  *             dst_data += dst_stride
- * 
+ *
  * cdef void copy_strided_to_strided(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice *dst,
  *                                   int ndim, size_t itemsize) nogil:
@@ -54382,7 +54382,7 @@ static void copy_strided_to_strided(__Pyx_memviewslice *__pyx_v_src, __Pyx_memvi
 }
 
 /* "View.MemoryView":1179
- * 
+ *
  * @cname('__pyx_memoryview_slice_get_size')
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) nogil:             # <<<<<<<<<<<<<<
  *     "Return the size of the memory occupied by the slice in number of bytes"
@@ -54402,7 +54402,7 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) nogil:
  *     "Return the size of the memory occupied by the slice in number of bytes"
  *     cdef Py_ssize_t shape, size = src.memview.view.itemsize             # <<<<<<<<<<<<<<
- * 
+ *
  *     for shape in src.shape[:ndim]:
  */
   __pyx_t_1 = __pyx_v_src->memview->view.itemsize;
@@ -54410,10 +54410,10 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 
   /* "View.MemoryView":1183
  *     cdef Py_ssize_t shape, size = src.memview.view.itemsize
- * 
+ *
  *     for shape in src.shape[:ndim]:             # <<<<<<<<<<<<<<
  *         size *= shape
- * 
+ *
  */
   __pyx_t_3 = (__pyx_v_src->shape + __pyx_v_ndim);
   for (__pyx_t_4 = __pyx_v_src->shape; __pyx_t_4 < __pyx_t_3; __pyx_t_4++) {
@@ -54421,10 +54421,10 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
     __pyx_v_shape = (__pyx_t_2[0]);
 
     /* "View.MemoryView":1184
- * 
+ *
  *     for shape in src.shape[:ndim]:
  *         size *= shape             # <<<<<<<<<<<<<<
- * 
+ *
  *     return size
  */
     __pyx_v_size = (__pyx_v_size * __pyx_v_shape);
@@ -54432,16 +54432,16 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 
   /* "View.MemoryView":1186
  *         size *= shape
- * 
+ *
  *     return size             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_fill_contig_strides_array')
  */
   __pyx_r = __pyx_v_size;
   goto __pyx_L0;
 
   /* "View.MemoryView":1179
- * 
+ *
  * @cname('__pyx_memoryview_slice_get_size')
  * cdef Py_ssize_t slice_get_size(__Pyx_memviewslice *src, int ndim) nogil:             # <<<<<<<<<<<<<<
  *     "Return the size of the memory occupied by the slice in number of bytes"
@@ -54454,7 +54454,7 @@ static Py_ssize_t __pyx_memoryview_slice_get_size(__Pyx_memviewslice *__pyx_v_sr
 }
 
 /* "View.MemoryView":1189
- * 
+ *
  * @cname('__pyx_fill_contig_strides_array')
  * cdef Py_ssize_t fill_contig_strides_array(             # <<<<<<<<<<<<<<
  *                 Py_ssize_t *shape, Py_ssize_t *strides, Py_ssize_t stride,
@@ -54471,7 +54471,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
   /* "View.MemoryView":1198
  *     cdef int idx
- * 
+ *
  *     if order == 'F':             # <<<<<<<<<<<<<<
  *         for idx in range(ndim):
  *             strides[idx] = stride
@@ -54480,7 +54480,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1199
- * 
+ *
  *     if order == 'F':
  *         for idx in range(ndim):             # <<<<<<<<<<<<<<
  *             strides[idx] = stride
@@ -54512,7 +54512,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
     /* "View.MemoryView":1198
  *     cdef int idx
- * 
+ *
  *     if order == 'F':             # <<<<<<<<<<<<<<
  *         for idx in range(ndim):
  *             strides[idx] = stride
@@ -54536,7 +54536,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
  *         for idx in range(ndim - 1, -1, -1):
  *             strides[idx] = stride             # <<<<<<<<<<<<<<
  *             stride *= shape[idx]
- * 
+ *
  */
       (__pyx_v_strides[__pyx_v_idx]) = __pyx_v_stride;
 
@@ -54544,7 +54544,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
  *         for idx in range(ndim - 1, -1, -1):
  *             strides[idx] = stride
  *             stride *= shape[idx]             # <<<<<<<<<<<<<<
- * 
+ *
  *     return stride
  */
       __pyx_v_stride = (__pyx_v_stride * (__pyx_v_shape[__pyx_v_idx]));
@@ -54554,16 +54554,16 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 
   /* "View.MemoryView":1207
  *             stride *= shape[idx]
- * 
+ *
  *     return stride             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_copy_data_to_temp')
  */
   __pyx_r = __pyx_v_stride;
   goto __pyx_L0;
 
   /* "View.MemoryView":1189
- * 
+ *
  * @cname('__pyx_fill_contig_strides_array')
  * cdef Py_ssize_t fill_contig_strides_array(             # <<<<<<<<<<<<<<
  *                 Py_ssize_t *shape, Py_ssize_t *strides, Py_ssize_t stride,
@@ -54576,7 +54576,7 @@ static Py_ssize_t __pyx_fill_contig_strides_array(Py_ssize_t *__pyx_v_shape, Py_
 }
 
 /* "View.MemoryView":1210
- * 
+ *
  * @cname('__pyx_memoryview_copy_data_to_temp')
  * cdef void *copy_data_to_temp(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                              __Pyx_memviewslice *tmpslice,
@@ -54601,26 +54601,26 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1221
  *     cdef void *result
- * 
+ *
  *     cdef size_t itemsize = src.memview.view.itemsize             # <<<<<<<<<<<<<<
  *     cdef size_t size = slice_get_size(src, ndim)
- * 
+ *
  */
   __pyx_t_1 = __pyx_v_src->memview->view.itemsize;
   __pyx_v_itemsize = __pyx_t_1;
 
   /* "View.MemoryView":1222
- * 
+ *
  *     cdef size_t itemsize = src.memview.view.itemsize
  *     cdef size_t size = slice_get_size(src, ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     result = malloc(size)
  */
   __pyx_v_size = __pyx_memoryview_slice_get_size(__pyx_v_src, __pyx_v_ndim);
 
   /* "View.MemoryView":1224
  *     cdef size_t size = slice_get_size(src, ndim)
- * 
+ *
  *     result = malloc(size)             # <<<<<<<<<<<<<<
  *     if not result:
  *         _err(MemoryError, NULL)
@@ -54628,11 +54628,11 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   __pyx_v_result = malloc(__pyx_v_size);
 
   /* "View.MemoryView":1225
- * 
+ *
  *     result = malloc(size)
  *     if not result:             # <<<<<<<<<<<<<<
  *         _err(MemoryError, NULL)
- * 
+ *
  */
   __pyx_t_2 = ((!(__pyx_v_result != 0)) != 0);
   if (__pyx_t_2) {
@@ -54641,23 +54641,23 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     result = malloc(size)
  *     if not result:
  *         _err(MemoryError, NULL)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_t_3 = __pyx_memoryview_err(__pyx_builtin_MemoryError, NULL); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(3, 1226, __pyx_L1_error)
 
     /* "View.MemoryView":1225
- * 
+ *
  *     result = malloc(size)
  *     if not result:             # <<<<<<<<<<<<<<
  *         _err(MemoryError, NULL)
- * 
+ *
  */
   }
 
   /* "View.MemoryView":1229
- * 
- * 
+ *
+ *
  *     tmpslice.data = <char *> result             # <<<<<<<<<<<<<<
  *     tmpslice.memview = src.memview
  *     for i in range(ndim):
@@ -54665,7 +54665,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   __pyx_v_tmpslice->data = ((char *)__pyx_v_result);
 
   /* "View.MemoryView":1230
- * 
+ *
  *     tmpslice.data = <char *> result
  *     tmpslice.memview = src.memview             # <<<<<<<<<<<<<<
  *     for i in range(ndim):
@@ -54691,7 +54691,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         tmpslice.shape[i] = src.shape[i]             # <<<<<<<<<<<<<<
  *         tmpslice.suboffsets[i] = -1
- * 
+ *
  */
     (__pyx_v_tmpslice->shape[__pyx_v_i]) = (__pyx_v_src->shape[__pyx_v_i]);
 
@@ -54699,7 +54699,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         tmpslice.shape[i] = src.shape[i]
  *         tmpslice.suboffsets[i] = -1             # <<<<<<<<<<<<<<
- * 
+ *
  *     fill_contig_strides_array(&tmpslice.shape[0], &tmpslice.strides[0], itemsize,
  */
     (__pyx_v_tmpslice->suboffsets[__pyx_v_i]) = -1L;
@@ -54707,16 +54707,16 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1235
  *         tmpslice.suboffsets[i] = -1
- * 
+ *
  *     fill_contig_strides_array(&tmpslice.shape[0], &tmpslice.strides[0], itemsize,             # <<<<<<<<<<<<<<
  *                               ndim, order)
- * 
+ *
  */
   (void)(__pyx_fill_contig_strides_array((&(__pyx_v_tmpslice->shape[0])), (&(__pyx_v_tmpslice->strides[0])), __pyx_v_itemsize, __pyx_v_ndim, __pyx_v_order));
 
   /* "View.MemoryView":1239
- * 
- * 
+ *
+ *
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
  *         if tmpslice.shape[i] == 1:
  *             tmpslice.strides[i] = 0
@@ -54727,11 +54727,11 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
     __pyx_v_i = __pyx_t_6;
 
     /* "View.MemoryView":1240
- * 
+ *
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:             # <<<<<<<<<<<<<<
  *             tmpslice.strides[i] = 0
- * 
+ *
  */
     __pyx_t_2 = (((__pyx_v_tmpslice->shape[__pyx_v_i]) == 1) != 0);
     if (__pyx_t_2) {
@@ -54740,24 +54740,24 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:
  *             tmpslice.strides[i] = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     if slice_is_contig(src[0], order, ndim):
  */
       (__pyx_v_tmpslice->strides[__pyx_v_i]) = 0;
 
       /* "View.MemoryView":1240
- * 
+ *
  *     for i in range(ndim):
  *         if tmpslice.shape[i] == 1:             # <<<<<<<<<<<<<<
  *             tmpslice.strides[i] = 0
- * 
+ *
  */
     }
   }
 
   /* "View.MemoryView":1243
  *             tmpslice.strides[i] = 0
- * 
+ *
  *     if slice_is_contig(src[0], order, ndim):             # <<<<<<<<<<<<<<
  *         memcpy(result, src.data, size)
  *     else:
@@ -54766,7 +54766,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1244
- * 
+ *
  *     if slice_is_contig(src[0], order, ndim):
  *         memcpy(result, src.data, size)             # <<<<<<<<<<<<<<
  *     else:
@@ -54776,7 +54776,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
     /* "View.MemoryView":1243
  *             tmpslice.strides[i] = 0
- * 
+ *
  *     if slice_is_contig(src[0], order, ndim):             # <<<<<<<<<<<<<<
  *         memcpy(result, src.data, size)
  *     else:
@@ -54788,7 +54788,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
  *         memcpy(result, src.data, size)
  *     else:
  *         copy_strided_to_strided(src, tmpslice, ndim, itemsize)             # <<<<<<<<<<<<<<
- * 
+ *
  *     return result
  */
   /*else*/ {
@@ -54798,16 +54798,16 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 
   /* "View.MemoryView":1248
  *         copy_strided_to_strided(src, tmpslice, ndim, itemsize)
- * 
+ *
  *     return result             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
   /* "View.MemoryView":1210
- * 
+ *
  * @cname('__pyx_memoryview_copy_data_to_temp')
  * cdef void *copy_data_to_temp(__Pyx_memviewslice *src,             # <<<<<<<<<<<<<<
  *                              __Pyx_memviewslice *tmpslice,
@@ -54831,7 +54831,7 @@ static void *__pyx_memoryview_copy_data_to_temp(__Pyx_memviewslice *__pyx_v_src,
 }
 
 /* "View.MemoryView":1253
- * 
+ *
  * @cname('__pyx_memoryview_err_extents')
  * cdef int _err_extents(int i, Py_ssize_t extent1,             # <<<<<<<<<<<<<<
  *                              Py_ssize_t extent2) except -1 with gil:
@@ -54857,7 +54857,7 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
  *                              Py_ssize_t extent2) except -1 with gil:
  *     raise ValueError("got differing extents in dimension %d (got %d and %d)" %
  *                                                         (i, extent1, extent2))             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_err_dim')
  */
   __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 1256, __pyx_L1_error)
@@ -54883,7 +54883,7 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
  *                              Py_ssize_t extent2) except -1 with gil:
  *     raise ValueError("got differing extents in dimension %d (got %d and %d)" %             # <<<<<<<<<<<<<<
  *                                                         (i, extent1, extent2))
- * 
+ *
  */
   __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_got_differing_extents_in_dimensi, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 1255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -54896,7 +54896,7 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
   __PYX_ERR(3, 1255, __pyx_L1_error)
 
   /* "View.MemoryView":1253
- * 
+ *
  * @cname('__pyx_memoryview_err_extents')
  * cdef int _err_extents(int i, Py_ssize_t extent1,             # <<<<<<<<<<<<<<
  *                              Py_ssize_t extent2) except -1 with gil:
@@ -54919,11 +54919,11 @@ static int __pyx_memoryview_err_extents(int __pyx_v_i, Py_ssize_t __pyx_v_extent
 }
 
 /* "View.MemoryView":1259
- * 
+ *
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(object error, char *msg, int dim) except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise error(msg.decode('ascii') % dim)
- * 
+ *
  */
 
 static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, char *__pyx_v_msg, int __pyx_v_dim) {
@@ -54946,7 +54946,7 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, char *__pyx_v_msg, 
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(object error, char *msg, int dim) except -1 with gil:
  *     raise error(msg.decode('ascii') % dim)             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_err')
  */
   __pyx_t_2 = __Pyx_decode_c_string(__pyx_v_msg, 0, strlen(__pyx_v_msg), NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_2)) __PYX_ERR(3, 1260, __pyx_L1_error)
@@ -54979,11 +54979,11 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, char *__pyx_v_msg, 
   __PYX_ERR(3, 1260, __pyx_L1_error)
 
   /* "View.MemoryView":1259
- * 
+ *
  * @cname('__pyx_memoryview_err_dim')
  * cdef int _err_dim(object error, char *msg, int dim) except -1 with gil:             # <<<<<<<<<<<<<<
  *     raise error(msg.decode('ascii') % dim)
- * 
+ *
  */
 
   /* function exit code */
@@ -55003,7 +55003,7 @@ static int __pyx_memoryview_err_dim(PyObject *__pyx_v_error, char *__pyx_v_msg, 
 }
 
 /* "View.MemoryView":1263
- * 
+ *
  * @cname('__pyx_memoryview_err')
  * cdef int _err(object error, char *msg) except -1 with gil:             # <<<<<<<<<<<<<<
  *     if msg != NULL:
@@ -55080,7 +55080,7 @@ static int __pyx_memoryview_err(PyObject *__pyx_v_error, char *__pyx_v_msg) {
  *         raise error(msg.decode('ascii'))
  *     else:
  *         raise error             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_copy_contents')
  */
   /*else*/ {
@@ -55089,7 +55089,7 @@ static int __pyx_memoryview_err(PyObject *__pyx_v_error, char *__pyx_v_msg) {
   }
 
   /* "View.MemoryView":1263
- * 
+ *
  * @cname('__pyx_memoryview_err')
  * cdef int _err(object error, char *msg) except -1 with gil:             # <<<<<<<<<<<<<<
  *     if msg != NULL:
@@ -55113,7 +55113,7 @@ static int __pyx_memoryview_err(PyObject *__pyx_v_error, char *__pyx_v_msg) {
 }
 
 /* "View.MemoryView":1270
- * 
+ *
  * @cname('__pyx_memoryview_copy_contents')
  * cdef int memoryview_copy_contents(__Pyx_memviewslice src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice dst,
@@ -55184,13 +55184,13 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *     cdef bint broadcasting = False
  *     cdef bint direct_copy = False             # <<<<<<<<<<<<<<
  *     cdef __Pyx_memviewslice tmp
- * 
+ *
  */
   __pyx_v_direct_copy = 0;
 
   /* "View.MemoryView":1286
  *     cdef __Pyx_memviewslice tmp
- * 
+ *
  *     if src_ndim < dst_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
@@ -55199,7 +55199,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1287
- * 
+ *
  *     if src_ndim < dst_ndim:
  *         broadcast_leading(&src, src_ndim, dst_ndim)             # <<<<<<<<<<<<<<
  *     elif dst_ndim < src_ndim:
@@ -55209,7 +55209,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1286
  *     cdef __Pyx_memviewslice tmp
- * 
+ *
  *     if src_ndim < dst_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
@@ -55222,7 +55222,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_dst_ndim < __pyx_v_src_ndim) != 0);
   if (__pyx_t_2) {
@@ -55231,7 +55231,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:
  *         broadcast_leading(&dst, dst_ndim, src_ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef int ndim = max(src_ndim, dst_ndim)
  */
     __pyx_memoryview_broadcast_leading((&__pyx_v_dst), __pyx_v_dst_ndim, __pyx_v_src_ndim);
@@ -55241,16 +55241,16 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *         broadcast_leading(&src, src_ndim, dst_ndim)
  *     elif dst_ndim < src_ndim:             # <<<<<<<<<<<<<<
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- * 
+ *
  */
   }
   __pyx_L3:;
 
   /* "View.MemoryView":1291
  *         broadcast_leading(&dst, dst_ndim, src_ndim)
- * 
+ *
  *     cdef int ndim = max(src_ndim, dst_ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(ndim):
  */
   __pyx_t_3 = __pyx_v_dst_ndim;
@@ -55264,7 +55264,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
   /* "View.MemoryView":1293
  *     cdef int ndim = max(src_ndim, dst_ndim)
- * 
+ *
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
  *         if src.shape[i] != dst.shape[i]:
  *             if src.shape[i] == 1:
@@ -55275,7 +55275,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
     __pyx_v_i = __pyx_t_4;
 
     /* "View.MemoryView":1294
- * 
+ *
  *     for i in range(ndim):
  *         if src.shape[i] != dst.shape[i]:             # <<<<<<<<<<<<<<
  *             if src.shape[i] == 1:
@@ -55326,7 +55326,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *                 src.strides[i] = 0
  *             else:
  *                 _err_extents(i, dst.shape[i], src.shape[i])             # <<<<<<<<<<<<<<
- * 
+ *
  *         if src.suboffsets[i] >= 0:
  */
       /*else*/ {
@@ -55335,7 +55335,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_L7:;
 
       /* "View.MemoryView":1294
- * 
+ *
  *     for i in range(ndim):
  *         if src.shape[i] != dst.shape[i]:             # <<<<<<<<<<<<<<
  *             if src.shape[i] == 1:
@@ -55345,38 +55345,38 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1301
  *                 _err_extents(i, dst.shape[i], src.shape[i])
- * 
+ *
  *         if src.suboffsets[i] >= 0:             # <<<<<<<<<<<<<<
  *             _err_dim(ValueError, "Dimension %d is not direct", i)
- * 
+ *
  */
     __pyx_t_2 = (((__pyx_v_src.suboffsets[__pyx_v_i]) >= 0) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1302
- * 
+ *
  *         if src.suboffsets[i] >= 0:
  *             _err_dim(ValueError, "Dimension %d is not direct", i)             # <<<<<<<<<<<<<<
- * 
+ *
  *     if slices_overlap(&src, &dst, ndim, itemsize):
  */
       __pyx_t_6 = __pyx_memoryview_err_dim(__pyx_builtin_ValueError, ((char *)"Dimension %d is not direct"), __pyx_v_i); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(3, 1302, __pyx_L1_error)
 
       /* "View.MemoryView":1301
  *                 _err_extents(i, dst.shape[i], src.shape[i])
- * 
+ *
  *         if src.suboffsets[i] >= 0:             # <<<<<<<<<<<<<<
  *             _err_dim(ValueError, "Dimension %d is not direct", i)
- * 
+ *
  */
     }
   }
 
   /* "View.MemoryView":1304
  *             _err_dim(ValueError, "Dimension %d is not direct", i)
- * 
+ *
  *     if slices_overlap(&src, &dst, ndim, itemsize):             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):
  */
   __pyx_t_2 = (__pyx_slices_overlap((&__pyx_v_src), (&__pyx_v_dst), __pyx_v_ndim, __pyx_v_itemsize) != 0);
@@ -55384,73 +55384,73 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
     /* "View.MemoryView":1306
  *     if slices_overlap(&src, &dst, ndim, itemsize):
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):             # <<<<<<<<<<<<<<
  *             order = get_best_order(&dst, ndim)
- * 
+ *
  */
     __pyx_t_2 = ((!(__pyx_memviewslice_is_contig(__pyx_v_src, __pyx_v_order, __pyx_v_ndim) != 0)) != 0);
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1307
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):
  *             order = get_best_order(&dst, ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)
  */
       __pyx_v_order = __pyx_get_best_slice_order((&__pyx_v_dst), __pyx_v_ndim);
 
       /* "View.MemoryView":1306
  *     if slices_overlap(&src, &dst, ndim, itemsize):
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):             # <<<<<<<<<<<<<<
  *             order = get_best_order(&dst, ndim)
- * 
+ *
  */
     }
 
     /* "View.MemoryView":1309
  *             order = get_best_order(&dst, ndim)
- * 
+ *
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)             # <<<<<<<<<<<<<<
  *         src = tmp
- * 
+ *
  */
     __pyx_t_7 = __pyx_memoryview_copy_data_to_temp((&__pyx_v_src), (&__pyx_v_tmp), __pyx_v_order, __pyx_v_ndim); if (unlikely(__pyx_t_7 == ((void *)NULL))) __PYX_ERR(3, 1309, __pyx_L1_error)
     __pyx_v_tmpdata = __pyx_t_7;
 
     /* "View.MemoryView":1310
- * 
+ *
  *         tmpdata = copy_data_to_temp(&src, &tmp, order, ndim)
  *         src = tmp             # <<<<<<<<<<<<<<
- * 
+ *
  *     if not broadcasting:
  */
     __pyx_v_src = __pyx_v_tmp;
 
     /* "View.MemoryView":1304
  *             _err_dim(ValueError, "Dimension %d is not direct", i)
- * 
+ *
  *     if slices_overlap(&src, &dst, ndim, itemsize):             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not slice_is_contig(src, order, ndim):
  */
   }
 
   /* "View.MemoryView":1312
  *         src = tmp
- * 
+ *
  *     if not broadcasting:             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = ((!(__pyx_v_broadcasting != 0)) != 0);
   if (__pyx_t_2) {
 
     /* "View.MemoryView":1315
- * 
- * 
+ *
+ *
  *         if slice_is_contig(src, 'C', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
@@ -55459,7 +55459,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
     if (__pyx_t_2) {
 
       /* "View.MemoryView":1316
- * 
+ *
  *         if slice_is_contig(src, 'C', ndim):
  *             direct_copy = slice_is_contig(dst, 'C', ndim)             # <<<<<<<<<<<<<<
  *         elif slice_is_contig(src, 'F', ndim):
@@ -55468,8 +55468,8 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_v_direct_copy = __pyx_memviewslice_is_contig(__pyx_v_dst, 'C', __pyx_v_ndim);
 
       /* "View.MemoryView":1315
- * 
- * 
+ *
+ *
  *         if slice_is_contig(src, 'C', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
@@ -55482,7 +55482,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- * 
+ *
  */
     __pyx_t_2 = (__pyx_memviewslice_is_contig(__pyx_v_src, 'F', __pyx_v_ndim) != 0);
     if (__pyx_t_2) {
@@ -55491,7 +55491,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):
  *             direct_copy = slice_is_contig(dst, 'F', ndim)             # <<<<<<<<<<<<<<
- * 
+ *
  *         if direct_copy:
  */
       __pyx_v_direct_copy = __pyx_memviewslice_is_contig(__pyx_v_dst, 'F', __pyx_v_ndim);
@@ -55501,16 +55501,16 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             direct_copy = slice_is_contig(dst, 'C', ndim)
  *         elif slice_is_contig(src, 'F', ndim):             # <<<<<<<<<<<<<<
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- * 
+ *
  */
     }
     __pyx_L12:;
 
     /* "View.MemoryView":1320
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- * 
+ *
  *         if direct_copy:             # <<<<<<<<<<<<<<
- * 
+ *
  *             refcount_copying(&dst, dtype_is_object, ndim, False)
  */
     __pyx_t_2 = (__pyx_v_direct_copy != 0);
@@ -55518,7 +55518,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
       /* "View.MemoryView":1322
  *         if direct_copy:
- * 
+ *
  *             refcount_copying(&dst, dtype_is_object, ndim, False)             # <<<<<<<<<<<<<<
  *             memcpy(dst.data, src.data, slice_get_size(&src, ndim))
  *             refcount_copying(&dst, dtype_is_object, ndim, True)
@@ -55526,7 +55526,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
       __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 0);
 
       /* "View.MemoryView":1323
- * 
+ *
  *             refcount_copying(&dst, dtype_is_object, ndim, False)
  *             memcpy(dst.data, src.data, slice_get_size(&src, ndim))             # <<<<<<<<<<<<<<
  *             refcount_copying(&dst, dtype_is_object, ndim, True)
@@ -55548,7 +55548,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             refcount_copying(&dst, dtype_is_object, ndim, True)
  *             free(tmpdata)             # <<<<<<<<<<<<<<
  *             return 0
- * 
+ *
  */
       free(__pyx_v_tmpdata);
 
@@ -55556,7 +55556,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *             refcount_copying(&dst, dtype_is_object, ndim, True)
  *             free(tmpdata)
  *             return 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     if order == 'F' == get_best_order(&dst, ndim):
  */
       __pyx_r = 0;
@@ -55564,28 +55564,28 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 
       /* "View.MemoryView":1320
  *             direct_copy = slice_is_contig(dst, 'F', ndim)
- * 
+ *
  *         if direct_copy:             # <<<<<<<<<<<<<<
- * 
+ *
  *             refcount_copying(&dst, dtype_is_object, ndim, False)
  */
     }
 
     /* "View.MemoryView":1312
  *         src = tmp
- * 
+ *
  *     if not broadcasting:             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   }
 
   /* "View.MemoryView":1328
  *             return 0
- * 
+ *
  *     if order == 'F' == get_best_order(&dst, ndim):             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_2 = (__pyx_v_order == 'F');
   if (__pyx_t_2) {
@@ -55595,35 +55595,35 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   if (__pyx_t_8) {
 
     /* "View.MemoryView":1331
- * 
- * 
+ *
+ *
  *         transpose_memslice(&src)             # <<<<<<<<<<<<<<
  *         transpose_memslice(&dst)
- * 
+ *
  */
     __pyx_t_5 = __pyx_memslice_transpose((&__pyx_v_src)); if (unlikely(__pyx_t_5 == ((int)0))) __PYX_ERR(3, 1331, __pyx_L1_error)
 
     /* "View.MemoryView":1332
- * 
+ *
  *         transpose_memslice(&src)
  *         transpose_memslice(&dst)             # <<<<<<<<<<<<<<
- * 
+ *
  *     refcount_copying(&dst, dtype_is_object, ndim, False)
  */
     __pyx_t_5 = __pyx_memslice_transpose((&__pyx_v_dst)); if (unlikely(__pyx_t_5 == ((int)0))) __PYX_ERR(3, 1332, __pyx_L1_error)
 
     /* "View.MemoryView":1328
  *             return 0
- * 
+ *
  *     if order == 'F' == get_best_order(&dst, ndim):             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   }
 
   /* "View.MemoryView":1334
  *         transpose_memslice(&dst)
- * 
+ *
  *     refcount_copying(&dst, dtype_is_object, ndim, False)             # <<<<<<<<<<<<<<
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)
  *     refcount_copying(&dst, dtype_is_object, ndim, True)
@@ -55631,11 +55631,11 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
   __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 0);
 
   /* "View.MemoryView":1335
- * 
+ *
  *     refcount_copying(&dst, dtype_is_object, ndim, False)
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)             # <<<<<<<<<<<<<<
  *     refcount_copying(&dst, dtype_is_object, ndim, True)
- * 
+ *
  */
   copy_strided_to_strided((&__pyx_v_src), (&__pyx_v_dst), __pyx_v_ndim, __pyx_v_itemsize);
 
@@ -55643,32 +55643,32 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
  *     refcount_copying(&dst, dtype_is_object, ndim, False)
  *     copy_strided_to_strided(&src, &dst, ndim, itemsize)
  *     refcount_copying(&dst, dtype_is_object, ndim, True)             # <<<<<<<<<<<<<<
- * 
+ *
  *     free(tmpdata)
  */
   __pyx_memoryview_refcount_copying((&__pyx_v_dst), __pyx_v_dtype_is_object, __pyx_v_ndim, 1);
 
   /* "View.MemoryView":1338
  *     refcount_copying(&dst, dtype_is_object, ndim, True)
- * 
+ *
  *     free(tmpdata)             # <<<<<<<<<<<<<<
  *     return 0
- * 
+ *
  */
   free(__pyx_v_tmpdata);
 
   /* "View.MemoryView":1339
- * 
+ *
  *     free(tmpdata)
  *     return 0             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_broadcast_leading')
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "View.MemoryView":1270
- * 
+ *
  * @cname('__pyx_memoryview_copy_contents')
  * cdef int memoryview_copy_contents(__Pyx_memviewslice src,             # <<<<<<<<<<<<<<
  *                                   __Pyx_memviewslice dst,
@@ -55692,7 +55692,7 @@ static int __pyx_memoryview_copy_contents(__Pyx_memviewslice __pyx_v_src, __Pyx_
 }
 
 /* "View.MemoryView":1342
- * 
+ *
  * @cname('__pyx_memoryview_broadcast_leading')
  * cdef void broadcast_leading(__Pyx_memviewslice *mslice,             # <<<<<<<<<<<<<<
  *                             int ndim,
@@ -55710,14 +55710,14 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *                             int ndim_other) nogil:
  *     cdef int i
  *     cdef int offset = ndim_other - ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  */
   __pyx_v_offset = (__pyx_v_ndim_other - __pyx_v_ndim);
 
   /* "View.MemoryView":1348
  *     cdef int offset = ndim_other - ndim
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):             # <<<<<<<<<<<<<<
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]
@@ -55726,7 +55726,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
     __pyx_v_i = __pyx_t_1;
 
     /* "View.MemoryView":1349
- * 
+ *
  *     for i in range(ndim - 1, -1, -1):
  *         mslice.shape[i + offset] = mslice.shape[i]             # <<<<<<<<<<<<<<
  *         mslice.strides[i + offset] = mslice.strides[i]
@@ -55739,7 +55739,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]             # <<<<<<<<<<<<<<
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]
- * 
+ *
  */
     (__pyx_v_mslice->strides[(__pyx_v_i + __pyx_v_offset)]) = (__pyx_v_mslice->strides[__pyx_v_i]);
 
@@ -55747,7 +55747,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i + offset] = mslice.shape[i]
  *         mslice.strides[i + offset] = mslice.strides[i]
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]             # <<<<<<<<<<<<<<
- * 
+ *
  *     for i in range(offset):
  */
     (__pyx_v_mslice->suboffsets[(__pyx_v_i + __pyx_v_offset)]) = (__pyx_v_mslice->suboffsets[__pyx_v_i]);
@@ -55755,7 +55755,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
 
   /* "View.MemoryView":1353
  *         mslice.suboffsets[i + offset] = mslice.suboffsets[i]
- * 
+ *
  *     for i in range(offset):             # <<<<<<<<<<<<<<
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]
@@ -55766,7 +55766,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
     __pyx_v_i = __pyx_t_3;
 
     /* "View.MemoryView":1354
- * 
+ *
  *     for i in range(offset):
  *         mslice.shape[i] = 1             # <<<<<<<<<<<<<<
  *         mslice.strides[i] = mslice.strides[0]
@@ -55779,7 +55779,7 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]             # <<<<<<<<<<<<<<
  *         mslice.suboffsets[i] = -1
- * 
+ *
  */
     (__pyx_v_mslice->strides[__pyx_v_i]) = (__pyx_v_mslice->strides[0]);
 
@@ -55787,14 +55787,14 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
  *         mslice.shape[i] = 1
  *         mslice.strides[i] = mslice.strides[0]
  *         mslice.suboffsets[i] = -1             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     (__pyx_v_mslice->suboffsets[__pyx_v_i]) = -1L;
   }
 
   /* "View.MemoryView":1342
- * 
+ *
  * @cname('__pyx_memoryview_broadcast_leading')
  * cdef void broadcast_leading(__Pyx_memviewslice *mslice,             # <<<<<<<<<<<<<<
  *                             int ndim,
@@ -55805,19 +55805,19 @@ static void __pyx_memoryview_broadcast_leading(__Pyx_memviewslice *__pyx_v_mslic
 }
 
 /* "View.MemoryView":1364
- * 
+ *
  * @cname('__pyx_memoryview_refcount_copying')
  * cdef void refcount_copying(__Pyx_memviewslice *dst, bint dtype_is_object,             # <<<<<<<<<<<<<<
  *                            int ndim, bint inc) nogil:
- * 
+ *
  */
 
 static void __pyx_memoryview_refcount_copying(__Pyx_memviewslice *__pyx_v_dst, int __pyx_v_dtype_is_object, int __pyx_v_ndim, int __pyx_v_inc) {
   int __pyx_t_1;
 
   /* "View.MemoryView":1368
- * 
- * 
+ *
+ *
  *     if dtype_is_object:             # <<<<<<<<<<<<<<
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape,
  *                                            dst.strides, ndim, inc)
@@ -55826,17 +55826,17 @@ static void __pyx_memoryview_refcount_copying(__Pyx_memviewslice *__pyx_v_dst, i
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1369
- * 
+ *
  *     if dtype_is_object:
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape,             # <<<<<<<<<<<<<<
  *                                            dst.strides, ndim, inc)
- * 
+ *
  */
     __pyx_memoryview_refcount_objects_in_slice_with_gil(__pyx_v_dst->data, __pyx_v_dst->shape, __pyx_v_dst->strides, __pyx_v_ndim, __pyx_v_inc);
 
     /* "View.MemoryView":1368
- * 
- * 
+ *
+ *
  *     if dtype_is_object:             # <<<<<<<<<<<<<<
  *         refcount_objects_in_slice_with_gil(dst.data, dst.shape,
  *                                            dst.strides, ndim, inc)
@@ -55844,18 +55844,18 @@ static void __pyx_memoryview_refcount_copying(__Pyx_memviewslice *__pyx_v_dst, i
   }
 
   /* "View.MemoryView":1364
- * 
+ *
  * @cname('__pyx_memoryview_refcount_copying')
  * cdef void refcount_copying(__Pyx_memviewslice *dst, bint dtype_is_object,             # <<<<<<<<<<<<<<
  *                            int ndim, bint inc) nogil:
- * 
+ *
  */
 
   /* function exit code */
 }
 
 /* "View.MemoryView":1373
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice_with_gil')
  * cdef void refcount_objects_in_slice_with_gil(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                              Py_ssize_t *strides, int ndim,
@@ -55873,13 +55873,13 @@ static void __pyx_memoryview_refcount_objects_in_slice_with_gil(char *__pyx_v_da
  *                                              Py_ssize_t *strides, int ndim,
  *                                              bint inc) with gil:
  *     refcount_objects_in_slice(data, shape, strides, ndim, inc)             # <<<<<<<<<<<<<<
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  */
   __pyx_memoryview_refcount_objects_in_slice(__pyx_v_data, __pyx_v_shape, __pyx_v_strides, __pyx_v_ndim, __pyx_v_inc);
 
   /* "View.MemoryView":1373
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice_with_gil')
  * cdef void refcount_objects_in_slice_with_gil(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                              Py_ssize_t *strides, int ndim,
@@ -55894,7 +55894,7 @@ static void __pyx_memoryview_refcount_objects_in_slice_with_gil(char *__pyx_v_da
 }
 
 /* "View.MemoryView":1379
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  * cdef void refcount_objects_in_slice(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                     Py_ssize_t *strides, int ndim, bint inc):
@@ -55912,7 +55912,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
 
   /* "View.MemoryView":1383
  *     cdef Py_ssize_t i
- * 
+ *
  *     for i in range(shape[0]):             # <<<<<<<<<<<<<<
  *         if ndim == 1:
  *             if inc:
@@ -55923,7 +55923,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
     __pyx_v_i = __pyx_t_3;
 
     /* "View.MemoryView":1384
- * 
+ *
  *     for i in range(shape[0]):
  *         if ndim == 1:             # <<<<<<<<<<<<<<
  *             if inc:
@@ -55974,7 +55974,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
       __pyx_L6:;
 
       /* "View.MemoryView":1384
- * 
+ *
  *     for i in range(shape[0]):
  *         if ndim == 1:             # <<<<<<<<<<<<<<
  *             if inc:
@@ -55988,7 +55988,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
  *         else:
  *             refcount_objects_in_slice(data, shape + 1, strides + 1,             # <<<<<<<<<<<<<<
  *                                       ndim - 1, inc)
- * 
+ *
  */
     /*else*/ {
 
@@ -55996,7 +55996,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
  *         else:
  *             refcount_objects_in_slice(data, shape + 1, strides + 1,
  *                                       ndim - 1, inc)             # <<<<<<<<<<<<<<
- * 
+ *
  *         data += strides[0]
  */
       __pyx_memoryview_refcount_objects_in_slice(__pyx_v_data, (__pyx_v_shape + 1), (__pyx_v_strides + 1), (__pyx_v_ndim - 1), __pyx_v_inc);
@@ -56005,16 +56005,16 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
 
     /* "View.MemoryView":1393
  *                                       ndim - 1, inc)
- * 
+ *
  *         data += strides[0]             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
     __pyx_v_data = (__pyx_v_data + (__pyx_v_strides[0]));
   }
 
   /* "View.MemoryView":1379
- * 
+ *
  * @cname('__pyx_memoryview_refcount_objects_in_slice')
  * cdef void refcount_objects_in_slice(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                                     Py_ssize_t *strides, int ndim, bint inc):
@@ -56026,7 +56026,7 @@ static void __pyx_memoryview_refcount_objects_in_slice(char *__pyx_v_data, Py_ss
 }
 
 /* "View.MemoryView":1399
- * 
+ *
  * @cname('__pyx_memoryview_slice_assign_scalar')
  * cdef void slice_assign_scalar(__Pyx_memviewslice *dst, int ndim,             # <<<<<<<<<<<<<<
  *                               size_t itemsize, void *item,
@@ -56057,13 +56057,13 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *__pyx_v_dst
  *     _slice_assign_scalar(dst.data, dst.shape, dst.strides, ndim,
  *                          itemsize, item)
  *     refcount_copying(dst, dtype_is_object, ndim, True)             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_memoryview_refcount_copying(__pyx_v_dst, __pyx_v_dtype_is_object, __pyx_v_ndim, 1);
 
   /* "View.MemoryView":1399
- * 
+ *
  * @cname('__pyx_memoryview_slice_assign_scalar')
  * cdef void slice_assign_scalar(__Pyx_memviewslice *dst, int ndim,             # <<<<<<<<<<<<<<
  *                               size_t itemsize, void *item,
@@ -56074,7 +56074,7 @@ static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *__pyx_v_dst
 }
 
 /* "View.MemoryView":1409
- * 
+ *
  * @cname('__pyx_memoryview__slice_assign_scalar')
  * cdef void _slice_assign_scalar(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                               Py_ssize_t *strides, int ndim,
@@ -56095,7 +56095,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t stride = strides[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t extent = shape[0]
- * 
+ *
  */
   __pyx_v_stride = (__pyx_v_strides[0]);
 
@@ -56103,14 +56103,14 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *     cdef Py_ssize_t i
  *     cdef Py_ssize_t stride = strides[0]
  *     cdef Py_ssize_t extent = shape[0]             # <<<<<<<<<<<<<<
- * 
+ *
  *     if ndim == 1:
  */
   __pyx_v_extent = (__pyx_v_shape[0]);
 
   /* "View.MemoryView":1416
  *     cdef Py_ssize_t extent = shape[0]
- * 
+ *
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *         for i in range(extent):
  *             memcpy(data, item, itemsize)
@@ -56119,7 +56119,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
   if (__pyx_t_1) {
 
     /* "View.MemoryView":1417
- * 
+ *
  *     if ndim == 1:
  *         for i in range(extent):             # <<<<<<<<<<<<<<
  *             memcpy(data, item, itemsize)
@@ -56151,7 +56151,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
 
     /* "View.MemoryView":1416
  *     cdef Py_ssize_t extent = shape[0]
- * 
+ *
  *     if ndim == 1:             # <<<<<<<<<<<<<<
  *         for i in range(extent):
  *             memcpy(data, item, itemsize)
@@ -56185,8 +56185,8 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
  *             _slice_assign_scalar(data, shape + 1, strides + 1,
  *                                 ndim - 1, itemsize, item)
  *             data += stride             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
       __pyx_v_data = (__pyx_v_data + __pyx_v_stride);
     }
@@ -56194,7 +56194,7 @@ static void __pyx_memoryview__slice_assign_scalar(char *__pyx_v_data, Py_ssize_t
   __pyx_L3:;
 
   /* "View.MemoryView":1409
- * 
+ *
  * @cname('__pyx_memoryview__slice_assign_scalar')
  * cdef void _slice_assign_scalar(char *data, Py_ssize_t *shape,             # <<<<<<<<<<<<<<
  *                               Py_ssize_t *strides, int ndim,
@@ -61484,7 +61484,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         self.vec = np.zeros(1, dtype=np.float64, order='C')
  *         self.mat = np.zeros((1, 1), dtype=np.float64, order='C')             # <<<<<<<<<<<<<<
  *         self.size = 1
- * 
+ *
  */
   __pyx_tuple__2 = PyTuple_Pack(2, __pyx_int_1, __pyx_int_1); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(1, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
@@ -61497,7 +61497,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def __init__(self):
  *         if self.__class__ is DistanceMetric:
  *             raise NotImplementedError("DistanceMetric is an abstract class")             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
   __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_DistanceMetric_is_an_abstract_cl); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(1, 296, __pyx_L1_error)
@@ -61519,7 +61519,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:
  *             raise ValueError('SEuclidean dist: size of V does not match')             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(
  */
   __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_SEuclidean_dist_size_of_V_does_n); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(1, 960, __pyx_L1_error)
@@ -61542,7 +61542,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         elif np.isinf(p):
  *             raise ValueError("MinkowskiDistance requires finite p. "             # <<<<<<<<<<<<<<
  *                              "For p=inf, use ChebyshevDistance.")
- * 
+ *
  */
   __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_MinkowskiDistance_requires_finit); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(1, 1259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
@@ -61586,7 +61586,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         if X.shape[1] != self.size:
  *             raise ValueError('WMinkowskiDistance dist: '             # <<<<<<<<<<<<<<
  *                              'size of w does not match')
- * 
+ *
  */
   __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_WMinkowskiDistance_dist_size_of); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 1466, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
@@ -61607,7 +61607,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *             VI = np.linalg.inv(V)
  *         if VI.ndim != 2 or VI.shape[0] != VI.shape[1]:
  *             raise ValueError("V/VI must be square")             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.mat = np.asarray(VI, dtype=np.float64, order='C')
  */
   __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_u_V_VI_must_be_square); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(1, 1606, __pyx_L1_error)
@@ -61618,7 +61618,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def _validate_data(self, X):
  *         if X.shape[1] != self.size:
  *             raise ValueError('Mahalanobis dist: size of V does not match')             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef inline float64_t rdist(
  */
   __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_u_Mahalanobis_dist_size_of_V_does); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(1, 1622, __pyx_L1_error)
@@ -61630,7 +61630,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         if X.shape[1] != 2:
  *             raise ValueError("Haversine distance only valid "             # <<<<<<<<<<<<<<
  *                              "in 2 dimensions")
- * 
+ *
  */
   __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_Haversine_distance_only_valid_in); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 2619, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
@@ -61641,7 +61641,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         except TypeError:
  *             raise TypeError("Custom distance function must accept two "             # <<<<<<<<<<<<<<
  *                             "vectors and return a float.")
- * 
+ *
  */
   __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_u_Custom_distance_function_must_ac); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(1, 2791, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
@@ -61651,7 +61651,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def __init__(self):
  *         if self.__class__ is DistanceMetric32:
  *             raise NotImplementedError("DistanceMetric32 is an abstract class")             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _validate_data(self, X):
  */
   __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_u_DistanceMetric32_is_an_abstract); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(1, 3031, __pyx_L1_error)
@@ -61669,22 +61669,22 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__20);
   __Pyx_GIVEREF(__pyx_tuple__20);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":945
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":945
  *         __pyx_import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline int import_umath() except -1:
  */
   __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(2, 945, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-fehbx_ea/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":951
+  /* "../../../../../../../private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-zsevs9rc/overlay/lib/python3.10/site-packages/numpy/__init__.pxd":951
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline int import_ufunc() except -1:
  */
   __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(2, 951, __pyx_L1_error)
@@ -61692,10 +61692,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__22);
 
   /* "View.MemoryView":134
- * 
+ *
  *         if not self.ndim:
  *             raise ValueError("Empty shape tuple for cython.array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if itemsize <= 0:
  */
   __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(3, 134, __pyx_L1_error)
@@ -61703,10 +61703,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__23);
 
   /* "View.MemoryView":137
- * 
+ *
  *         if itemsize <= 0:
  *             raise ValueError("itemsize <= 0 for cython.array")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not isinstance(format, bytes):
  */
   __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(3, 137, __pyx_L1_error)
@@ -61714,11 +61714,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__24);
 
   /* "View.MemoryView":149
- * 
+ *
  *         if not self._shape:
  *             raise MemoryError("unable to allocate shape and strides.")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(3, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__25);
@@ -61728,7 +61728,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *             self.data = <char *>malloc(self.len)
  *             if not self.data:
  *                 raise MemoryError("unable to allocate array data.")             # <<<<<<<<<<<<<<
- * 
+ *
  *             if self.dtype_is_object:
  */
   __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(3, 177, __pyx_L1_error)
@@ -61769,7 +61769,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def __setitem__(memoryview self, object index, object value):
  *         if self.view.readonly:
  *             raise TypeError("Cannot assign to read-only memoryview")             # <<<<<<<<<<<<<<
- * 
+ *
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
   __pyx_tuple__30 = PyTuple_Pack(1, __pyx_kp_s_Cannot_assign_to_read_only_memor); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(3, 420, __pyx_L1_error)
@@ -61791,7 +61791,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def __getbuffer__(self, Py_buffer *info, int flags):
  *         if flags & PyBUF_WRITABLE and self.view.readonly:
  *             raise ValueError("Cannot create writable memory view from read-only memoryview")             # <<<<<<<<<<<<<<
- * 
+ *
  *         if flags & PyBUF_ND:
  */
   __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_writable_memory_vi); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(3, 522, __pyx_L1_error)
@@ -61800,9 +61800,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "View.MemoryView":572
  *         if self.view.strides == NULL:
- * 
+ *
  *             raise ValueError("Buffer view does not expose strides")             # <<<<<<<<<<<<<<
- * 
+ *
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
   __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(3, 572, __pyx_L1_error)
@@ -61813,7 +61813,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     def suboffsets(self):
  *         if self.view.suboffsets == NULL:
  *             return (-1,) * self.view.ndim             # <<<<<<<<<<<<<<
- * 
+ *
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
  */
   __pyx_tuple__34 = PyTuple_New(1); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(3, 579, __pyx_L1_error)
@@ -61857,8 +61857,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     for suboffset in suboffsets[:ndim]:
  *         if suboffset >= 0:
  *             raise ValueError("Indirect dimensions not supported")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(3, 705, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__38);
@@ -61891,7 +61891,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * #  this is a helper function for pickling
  * def newObj(obj):             # <<<<<<<<<<<<<<
  *     return obj.__new__(obj)
- * 
+ *
  */
   __pyx_tuple__42 = PyTuple_Pack(1, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(1, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__42);
@@ -61911,7 +61911,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "sklearn/metrics/_dist_metrics.pyx":46
  *     BOOL_METRICS += ["kulsinski"]
- * 
+ *
  * def get_valid_metric_ids(L):             # <<<<<<<<<<<<<<
  *     """Given an iterable of metric class names or class identifiers,
  *     return a list of metric IDs which map to those classes.
@@ -61923,7 +61923,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "View.MemoryView":287
  *         return self.name
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")             # <<<<<<<<<<<<<<
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
@@ -61933,11 +61933,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__47);
 
   /* "View.MemoryView":288
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default             # <<<<<<<<<<<<<<
  * cdef indirect = Enum("<strided and indirect>")
- * 
+ *
  */
   __pyx_tuple__48 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(3, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__48);
@@ -61947,30 +61947,30 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_tuple__49 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(3, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__49);
   __Pyx_GIVEREF(__pyx_tuple__49);
 
   /* "View.MemoryView":292
- * 
- * 
+ *
+ *
  * cdef contiguous = Enum("<contiguous and direct>")             # <<<<<<<<<<<<<<
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
- * 
+ *
  */
   __pyx_tuple__50 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(3, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__50);
   __Pyx_GIVEREF(__pyx_tuple__50);
 
   /* "View.MemoryView":293
- * 
+ *
  * cdef contiguous = Enum("<contiguous and direct>")
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_tuple__51 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__51)) __PYX_ERR(3, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__51);
@@ -62810,7 +62810,7 @@ static int __Pyx_modinit_type_import_code(void) {
   /*--- Type import code ---*/
   __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type", 
+  __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type",
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyTypeObject), __PYX_GET_STRUCT_ALIGNMENT(PyTypeObject),
   #else
@@ -63100,10 +63100,10 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/metrics/_dist_metrics.pyx":9
  * # License: BSD
- * 
+ *
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as cnp
- * 
+ *
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -63112,16 +63112,16 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/metrics/_dist_metrics.pyx":12
  * cimport numpy as cnp
- * 
+ *
  * cnp.import_array()  # required in order to use C-API             # <<<<<<<<<<<<<<
- * 
+ *
  * from libc.math cimport fabs, sqrt, exp, pow, cos, sin, asin
  */
   __pyx_t_2 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(1, 12, __pyx_L1_error)
 
   /* "sklearn/metrics/_dist_metrics.pyx":16
  * from libc.math cimport fabs, sqrt, exp, pow, cos, sin, asin
- * 
+ *
  * from scipy.sparse import csr_matrix, issparse             # <<<<<<<<<<<<<<
  * from ..utils._typedefs cimport float64_t, float32_t, int32_t, intp_t
  * from ..utils import check_array
@@ -63152,7 +63152,7 @@ if (!__Pyx_RefNanny) {
  * from ..utils._typedefs cimport float64_t, float32_t, int32_t, intp_t
  * from ..utils import check_array             # <<<<<<<<<<<<<<
  * from ..utils.fixes import parse_version, sp_base_version
- * 
+ *
  */
   __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63172,7 +63172,7 @@ if (!__Pyx_RefNanny) {
  * from ..utils._typedefs cimport float64_t, float32_t, int32_t, intp_t
  * from ..utils import check_array
  * from ..utils.fixes import parse_version, sp_base_version             # <<<<<<<<<<<<<<
- * 
+ *
  * cdef inline double fmax(double a, double b) noexcept nogil:
  */
   __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 19, __pyx_L1_error)
@@ -63201,7 +63201,7 @@ if (!__Pyx_RefNanny) {
  * #  this is a helper function for pickling
  * def newObj(obj):             # <<<<<<<<<<<<<<
  *     return obj.__new__(obj)
- * 
+ *
  */
   __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_7sklearn_7metrics_13_dist_metrics_1newObj, NULL, __pyx_n_s_sklearn_metrics__dist_metrics); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63209,8 +63209,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":32
- * 
- * 
+ *
+ *
  * BOOL_METRICS = [             # <<<<<<<<<<<<<<
  *     "hamming",
  *     "matching",
@@ -63269,7 +63269,7 @@ if (!__Pyx_RefNanny) {
  * if sp_base_version < parse_version("1.11"):
  *     # Deprecated in SciPy 1.9 and removed in SciPy 1.11
  *     BOOL_METRICS += ["kulsinski"]             # <<<<<<<<<<<<<<
- * 
+ *
  * def get_valid_metric_ids(L):
  */
     __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_BOOL_METRICS); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 44, __pyx_L1_error)
@@ -63297,7 +63297,7 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn/metrics/_dist_metrics.pyx":46
  *     BOOL_METRICS += ["kulsinski"]
- * 
+ *
  * def get_valid_metric_ids(L):             # <<<<<<<<<<<<<<
  *     """Given an iterable of metric class names or class identifiers,
  *     return a list of metric IDs which map to those classes.
@@ -63530,18 +63530,18 @@ if (!__Pyx_RefNanny) {
  *     'haversine': HaversineDistance,
  *     'pyfunc': PyFuncDistance,             # <<<<<<<<<<<<<<
  * }
- * 
+ *
  */
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_pyfunc, ((PyObject *)__pyx_ptype_7sklearn_7metrics_13_dist_metrics_PyFuncDistance)) < 0) __PYX_ERR(1, 63, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_METRIC_MAPPING, __pyx_t_3) < 0) __PYX_ERR(1, 62, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":101
- * 
- * 
+ *
+ *
  * cdef float64_t INF = np.inf             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63553,18 +63553,18 @@ if (!__Pyx_RefNanny) {
   __pyx_v_7sklearn_7metrics_13_dist_metrics_INF = __pyx_t_6;
 
   /* "sklearn/metrics/_dist_metrics.pyx":252
- * 
+ *
  *     @classmethod
  *     def get_metric(cls, metric, **kwargs):             # <<<<<<<<<<<<<<
  *         """Get the given distance metric from the string identifier.
- * 
+ *
  */
   __Pyx_GetNameInClass(__pyx_t_4, (PyObject *)__pyx_ptype_7sklearn_7metrics_13_dist_metrics_DistanceMetric, __pyx_n_s_get_metric); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
   /* "sklearn/metrics/_dist_metrics.pyx":251
  *         self.size = self.vec.shape[0]
- * 
+ *
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def get_metric(cls, metric, **kwargs):
  *         """Get the given distance metric from the string identifier.
@@ -63799,18 +63799,18 @@ if (!__Pyx_RefNanny) {
  *     'haversine': HaversineDistance32,
  *     'pyfunc': PyFuncDistance32,             # <<<<<<<<<<<<<<
  * }
- * 
+ *
  */
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_pyfunc, ((PyObject *)__pyx_ptype_7sklearn_7metrics_13_dist_metrics_PyFuncDistance32)) < 0) __PYX_ERR(1, 2798, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_METRIC_MAPPING32, __pyx_t_3) < 0) __PYX_ERR(1, 2797, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2836
- * 
- * 
+ *
+ *
  * cdef float32_t INF32 = np.inf             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 2836, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63822,18 +63822,18 @@ if (!__Pyx_RefNanny) {
   __pyx_v_7sklearn_7metrics_13_dist_metrics_INF32 = __pyx_t_7;
 
   /* "sklearn/metrics/_dist_metrics.pyx":2987
- * 
+ *
  *     @classmethod
  *     def get_metric(cls, metric, **kwargs):             # <<<<<<<<<<<<<<
  *         """Get the given distance metric from the string identifier.
- * 
+ *
  */
   __Pyx_GetNameInClass(__pyx_t_4, (PyObject *)__pyx_ptype_7sklearn_7metrics_13_dist_metrics_DistanceMetric32, __pyx_n_s_get_metric); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 2987, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
   /* "sklearn/metrics/_dist_metrics.pyx":2986
  *         self.size = self.vec.shape[0]
- * 
+ *
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def get_metric(cls, metric, **kwargs):
  *         """Get the given distance metric from the string identifier.
@@ -63858,9 +63858,9 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":210
  *         info.obj = self
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_array_getbuffer, "getbuffer(obj, view, flags)")             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __dealloc__(array self):
  */
   __pyx_t_3 = __pyx_capsule_create(((void *)(&__pyx_array_getbuffer)), ((char *)"getbuffer(obj, view, flags)")); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 210, __pyx_L1_error)
@@ -63871,7 +63871,7 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":287
  *         return self.name
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")             # <<<<<<<<<<<<<<
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
@@ -63884,11 +63884,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_3 = 0;
 
   /* "View.MemoryView":288
- * 
+ *
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default             # <<<<<<<<<<<<<<
  * cdef indirect = Enum("<strided and indirect>")
- * 
+ *
  */
   __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__48, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63901,8 +63901,8 @@ if (!__Pyx_RefNanny) {
  * cdef generic = Enum("<strided and direct or indirect>")
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__49, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63912,11 +63912,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_3 = 0;
 
   /* "View.MemoryView":292
- * 
- * 
+ *
+ *
  * cdef contiguous = Enum("<contiguous and direct>")             # <<<<<<<<<<<<<<
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
- * 
+ *
  */
   __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__50, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63926,11 +63926,11 @@ if (!__Pyx_RefNanny) {
   __pyx_t_3 = 0;
 
   /* "View.MemoryView":293
- * 
+ *
  * cdef contiguous = Enum("<contiguous and direct>")
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__51, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63940,7 +63940,7 @@ if (!__Pyx_RefNanny) {
   __pyx_t_3 = 0;
 
   /* "View.MemoryView":317
- * 
+ *
  * DEF THREAD_LOCKS_PREALLOCATED = 8
  * cdef int __pyx_memoryview_thread_locks_used = 0             # <<<<<<<<<<<<<<
  * cdef PyThread_type_lock[THREAD_LOCKS_PREALLOCATED] __pyx_memoryview_thread_locks = [
@@ -63967,10 +63967,10 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":551
  *         info.obj = self
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_memoryview_getbuffer, "getbuffer(obj, view, flags)")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_3 = __pyx_capsule_create(((void *)(&__pyx_memoryview_getbuffer)), ((char *)"getbuffer(obj, view, flags)")); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 551, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -63980,10 +63980,10 @@ if (!__Pyx_RefNanny) {
 
   /* "View.MemoryView":997
  *         return self.from_object
- * 
+ *
  *     __pyx_getbuffer = capsule(<void *> &__pyx_memoryview_getbuffer, "getbuffer(obj, view, flags)")             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __pyx_t_3 = __pyx_capsule_create(((void *)(&__pyx_memoryview_getbuffer)), ((char *)"getbuffer(obj, view, flags)")); if (unlikely(!__pyx_t_3)) __PYX_ERR(3, 997, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -66437,8 +66437,8 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED
                 llx = lla + llb;
             return PyLong_FromLongLong(llx);
 #endif
-        
-        
+
+
     }
     #endif
     if (PyFloat_CheckExact(op1)) {
