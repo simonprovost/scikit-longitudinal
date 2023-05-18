@@ -54,16 +54,27 @@ setup_git_hooks:
 	chmod +x .git/hooks/pre-push
 
 compile_scikit_tree:
-	source .env && \
+	@echo "Sourcing .env..."
+	source .env ; \
+	@echo "Removing poetry.lock..."
 	rm -rf poetry.lock ; \
+	@echo "Removing poetry environment..."
 	poetry env remove $${POETRY_ENV_NAME} ; \
-	cd scikit-learn && \
-	make clean && \
-	export LDFLAGS=$${LDFLAGS} && \
-	export CPPFLAGS=$${CPPFLAGS} && \
-	pip install --verbose --no-build-isolation --editable . && \
-	cd .. && \
+	@echo "Moving to scikit-learn directory..."
+	cd scikit-learn ; \
+	@echo "Running make clean..."
+	make clean ; \
+	@echo "Exporting LDFLAGS..."
+	export LDFLAGS=$${LDFLAGS} ; \
+	@echo "Exporting CPPFLAGS..."
+	export CPPFLAGS=$${CPPFLAGS} ; \
+	@echo "Installing with pip..."
+	pip install --verbose --no-build-isolation --editable . ; \
+	@echo "Moving back to parent directory..."
+	cd .. ; \
+	@echo "Installing with poetry..."
 	poetry install
+
 
 install_dev:
 	@echo "Install dev (can take a couple of minutes) ..."

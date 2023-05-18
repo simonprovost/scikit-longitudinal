@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Scikit-longitudinal"
-version = "0.0.1"
+version = "0.0.2"
 description = "Scikit-longitudinal, an open-source Python lib for longitudinal data analysis, builds on Scikit-learn's foundation. It offers specialized tools to tackle challenges of repeated measures data, ideal for researchers, data scientists, & analysts."
 authors = ["Simon Provost <sgp28@kent.ac.uk>"]
 readme = "README.md"

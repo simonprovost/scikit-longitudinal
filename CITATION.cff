@@ -5,7 +5,7 @@ authors:
     given-names: "Simon"
     orcid: "0000-0001-8402-5464"
 title: "Scikit-Longitudinal"
-version: "v0.0.1"
+version: "v0.0.2"
 date-released: "2023-03-27"
 repository-code: "https://github.com/simonprovost/scikit-longitudinal"
 license: "The project's under MIT license"
