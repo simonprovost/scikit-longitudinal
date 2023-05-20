@@ -260,21 +260,21 @@ class LongitudinalDataset:
         return self._target
 
     @property
-    def X_train(self) -> pd.DataFrame:
+    def X_train(self) -> np.ndarray:
         """Get the training data.
 
         Returns:
-            pd.DataFrame: The training data.
+            np.ndarray: The training data.
 
         """
         return self._X_train
 
     @property
-    def X_test(self) -> pd.DataFrame:
+    def X_test(self) -> np.ndarray:
         """Get the test data.
 
         Returns:
-            pd.DataFrame: The test data.
+            np.ndarray: The test data.
 
         """
         return self._X_test
