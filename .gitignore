@@ -1,5 +1,9 @@
 # .gitignore
 
+# Lib
+*.so
+*.o
+
 # Data
 data/
 # Python artifacts
