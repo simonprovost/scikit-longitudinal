@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 
-from scikit_longitudinal.estimators.tree import LexicoRF
+from scikit_longitudinal.estimators.tree import LexcioRFClassifier
 from scikit_longitudinal.experiments.engine import DatasetInfo, ExperimentEngine
 
 
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     }
 
     dt_classifier = RandomForestClassifier()
-    nt_classifier = LexicoRF(
+    nt_classifier = LexcioRFClassifier(
         features_group=[[0, 1], [2, 3]],
     )
 

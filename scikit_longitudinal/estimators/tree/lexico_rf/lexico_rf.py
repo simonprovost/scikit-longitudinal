@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 
 # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
-class LexicoDecisionTree(DecisionTreeClassifier):
+class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
     """LexicoDecisionTree.
 
     This implementation provides the LexicoDecisionTree, an adaptation of the sklearn decision tree algorithm for
@@ -81,10 +81,10 @@ class LexicoDecisionTree(DecisionTreeClassifier):
         >>> from sklearn.datasets import load_iris
         >>> from sklearn.model_selection import train_test_split
         >>> from sklearn.metrics import accuracy_score
-        >>> from scikit_longitudinal.estimators.tree import LexicoDecisionTree
+        >>> from scikit_longitudinal.estimators.tree import LexicoDecisionTreeClassifier
         >>> X, y = load_iris(return_X_y=True)
         >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        >>> clf = LexicoDecisionTree(threshold_gain=0.1, features_group=[[0,1],[2,3]])
+        >>> clf = LexicoDecisionTreeClassifier(threshold_gain=0.1, features_group=[[0,1],[2,3]])
         >>> clf.fit(X_train, y_train)
         >>> y_pred = clf.predict(X_test)
         >>> accuracy_score(y_test, y_pred)
@@ -135,7 +135,7 @@ class LexicoDecisionTree(DecisionTreeClassifier):
         )
 
 
-class LexicoRF(RandomForestClassifier):
+class LexcioRFClassifier(RandomForestClassifier):
     """A random forest classifier for longitudinal data.
 
     LexicoRF is a random forest classifier for longitudinal data that uses a lexicographic bi-objective
@@ -196,10 +196,10 @@ class LexicoRF(RandomForestClassifier):
         >>> from sklearn.datasets import load_iris
         >>> from sklearn.model_selection import train_test_split
         >>> from sklearn.metrics import accuracy_score
-        >>> from scikit_longitudinal.estimators.tree import LexicoRF
+        >>> from scikit_longitudinal.estimators.tree import LexcioRFClassifier
         >>> X, y = load_iris(return_X_y=True)
         >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        >>> clf = LexicoRF(threshold_gain=0.1, features_group=[[0,1],[2,3]])
+        >>> clf = LexcioRFClassifier(threshold_gain=0.1, features_group=[[0,1],[2,3]])
         >>> clf.fit(X_train, y_train)
         >>> y_pred = clf.predict(X_test)
         >>> accuracy_score(y_test, y_pred)
@@ -261,7 +261,7 @@ class LexicoRF(RandomForestClassifier):
         )
 
     def _validate_estimator(self):
-        self.estimator_ = LexicoDecisionTree(
+        self.estimator_ = LexicoDecisionTreeClassifier(
             threshold_gain=self.threshold_gain,
             features_group=self.features_group,
             criterion=self.criterion,
