@@ -212,7 +212,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         """
         if len(self.features_group) <= 1:
             raise ValueError("features_group must be greater than 1.")
-
         self.root = self._build_outer_tree(X, y, 0, "outer_root")
         return self
 

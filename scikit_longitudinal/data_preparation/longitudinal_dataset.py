@@ -77,7 +77,7 @@ def check_extension(allowed_extensions: List[str]):  # pragma: no cover
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args, **kwargs):
-            file_path = kwargs.get("output_path", None) or args[1]
+            file_path = kwargs.get("file_path", None) or kwargs.get("output_path", None) or args[1]
             if Path(file_path).suffix.lower() not in allowed_extensions:
                 raise ValueError(f"Unsupported file format: {file_path}")
             return func(*args, **kwargs)
@@ -130,9 +130,11 @@ class LongitudinalDataset:
             FileNotFoundError: If the file specified in the file_path parameter does not exist.
 
         """
-        if not Path(file_path).is_file():
+        if isinstance(file_path, str) and not Path(file_path).is_file():
             raise FileNotFoundError(f"File not found: {file_path}")
-        self.file_path = Path(file_path)
+        if isinstance(file_path, Path) and not file_path.is_file():
+            raise FileNotFoundError(f"File not found: {file_path}")
+        self.file_path = Path(file_path) if isinstance(file_path, str) else file_path
         self._data = None
         self._target = None
         self._feature_groups = None

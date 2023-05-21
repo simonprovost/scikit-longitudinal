@@ -1,5 +1,7 @@
 # .gitignore
 
+main.py
+
 # Lib
 *.so
 *.o

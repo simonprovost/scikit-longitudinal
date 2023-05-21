@@ -4,7 +4,7 @@ from sklearn.datasets import load_iris, make_classification
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-from scikit_longitudinal.estimators.tree import LexcioRFClassifier
+from scikit_longitudinal.estimators.tree import LexicoRFClassifier
 from scikit_longitudinal.estimators.tree.lexico_rf.lexico_rf import LexicoDecisionTreeClassifier
 
 
@@ -61,7 +61,7 @@ class TestLexico:
     )
     def test_lexico_RF_iris(self, train_test_data_iris, threshold_gain, features_group, n_estimators, random_state):
         X_train, X_test, y_train, y_test = train_test_data_iris
-        clf = LexcioRFClassifier(
+        clf = LexicoRFClassifier(
             n_estimators=n_estimators,
             threshold_gain=threshold_gain,
             features_group=features_group,
@@ -111,7 +111,7 @@ class TestLexico:
     ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
-        clf = LexcioRFClassifier(
+        clf = LexicoRFClassifier(
             n_estimators=n_estimators,
             threshold_gain=threshold_gain,
             features_group=features_group,

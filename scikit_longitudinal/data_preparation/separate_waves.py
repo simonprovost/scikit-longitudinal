@@ -1,12 +1,14 @@
 from typing import List, Union
 
 import numpy as np
+import pandas as pd
 import ray
+from overrides import override
 from sklearn.base import BaseEstimator, ClassifierMixin, clone
 from sklearn.ensemble import StackingClassifier, VotingClassifier
 from sklearn.exceptions import NotFittedError
 
-from scikit_longitudinal.data_preparation import LongitudinalDataset
+from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
 
 
 def validate_extract_wave_input(func):
@@ -47,8 +49,8 @@ def validate_extract_wave_output(func):  # pragma: no cover
 
     def wrapper(self, wave: int):
         X_wave, y_wave = func(self, wave)
-        expected_features = len([group[wave] for group in self.dataset.feature_groups() if wave < len(group)]) + len(
-            self.dataset.non_longitudinal_features()
+        expected_features = len([group[wave] for group in self.features_group if wave < len(group)]) + len(
+            self.non_longitudinal_features
         )
         if X_wave.shape[1] != expected_features:
             raise ValueError(f"Invalid number of features in X_wave: {X_wave.shape[1]}. Expected {expected_features}.")
@@ -72,7 +74,7 @@ def validate_fit_input(func):
     """
 
     def wrapper(self, X, y):
-        if self.classifier is None or self.dataset is None or self.dataset.feature_groups() is None:
+        if self.classifier is None or self.dataset is None or self.features_group is None:
             raise ValueError("The classifier, dataset, and feature groups must not be None.")
         return func(self, X, y)
 
@@ -162,7 +164,7 @@ def train_classifier(classifier, X_wave, y_wave, wave):  # pragma: no cover
 
 
 # pylint: disable=too-many-instance-attributes, too-many-arguments
-class SepWav(BaseEstimator, ClassifierMixin):
+class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
     """The SepWav (Separate Waves) class for data transformation in longitudinal data analysis.
 
     This technique involves supplying an algorithm defined by the user one wave at a time. Predicting a class
@@ -219,8 +221,10 @@ class SepWav(BaseEstimator, ClassifierMixin):
 
     def __init__(
         self,
-        dataset: "LongitudinalDataset",
-        classifier: "BaseEstimator",
+        features_group: List[List[Union[int, str]]],
+        classifier: ["BaseEstimator"] = None,
+        non_longitudinal_features: List[Union[int, str]] = None,
+        feature_list_names: List[str] = None,
         ensemble_strategy: str = "voting",
         voting_weights: List[float] = None,
         voting_strategy: str = "hard",
@@ -232,7 +236,12 @@ class SepWav(BaseEstimator, ClassifierMixin):
         parallel: bool = False,
         num_cpus: int = -1,
     ):
-        self.dataset = dataset
+        self.dataset = pd.DataFrame([])
+        self.target = np.ndarray([])
+        self.features_group = features_group
+        self.non_longitudinal_features = non_longitudinal_features
+        self.feature_list_names = feature_list_names
+
         self.classifier = classifier
         self.classifiers = []
         self.ensemble_strategy = ensemble_strategy
@@ -252,6 +261,14 @@ class SepWav(BaseEstimator, ClassifierMixin):
                 ray.init(num_cpus=self.num_cpus)
             else:
                 ray.init()
+
+    @override
+    def _prepare_data(self, X: np.ndarray, y: np.ndarray = None) -> "SepWav":
+        """Prepare the data for the transformation.
+
+        Replaced by the fit method.
+        """
+        return self
 
     @validate_extract_wave_input
     @validate_extract_wave_output
@@ -275,11 +292,12 @@ class SepWav(BaseEstimator, ClassifierMixin):
             ValueError: If the wave number is less than 0.
 
         """
-        feature_indices = [group[wave] for group in self.dataset.feature_groups() if wave < len(group)]
-        feature_indices.extend(self.dataset.non_longitudinal_features())
+        feature_indices = [group[wave] for group in self.features_group if wave < len(group)]
+        if self.non_longitudinal_features is not None:
+            feature_indices.extend(self.non_longitudinal_features)
 
-        X_wave = self.dataset.X_train.iloc[:, feature_indices]
-        y_wave = self.dataset.y_train
+        X_wave = self.dataset.iloc[:, feature_indices]
+        y_wave = self.target
 
         return X_wave, y_wave
 
@@ -296,9 +314,8 @@ class SepWav(BaseEstimator, ClassifierMixin):
         and fits it on the training data.
 
         Args:
-            X (Union[List[List[float]], np.ndarray]): The input samples. This can be a list of lists or a numpy array,
-              where each inner list or sub-array represents an observation, and its elements represent the features.
-            y (Union[List[float], np.ndarray]): The target values. This can be a list or a numpy array.
+            X (Union[List[List[float]], np.ndarray]): The input samples.
+            y (Union[List[float], np.ndarray]): The target values.
 
         Returns:
             self: Returns self.
@@ -308,18 +325,20 @@ class SepWav(BaseEstimator, ClassifierMixin):
               is neither 'voting' nor 'stacking'.
 
         """
+        self.dataset = pd.DataFrame(X, columns=self.feature_list_names)
+        self.target = y
+
         if self.parallel:
             futures = [
                 train_classifier.remote(self.classifier, X_train, y_train, wave)
                 for wave, (X_train, y_train) in enumerate(
-                    self._extract_wave(wave=i)
-                    for i in range(max(len(group) for group in self.dataset.feature_groups()))
+                    self._extract_wave(wave=i) for i in range(max(len(group) for group in self.features_group))
                 )
             ]
 
             self.classifiers = ray.get(futures)
         else:
-            for i in range(max(len(group) for group in self.dataset.feature_groups())):
+            for i in range(max(len(group) for group in self.features_group)):
                 X_wave, y_wave = self._extract_wave(wave=i)
                 clf_wave = clone(self.classifier)
                 clf_wave.fit(X_wave, y_wave)
@@ -334,7 +353,7 @@ class SepWav(BaseEstimator, ClassifierMixin):
         else:
             raise ValueError(f"Invalid ensemble strategy: {self.ensemble_strategy}")
 
-        self.clf_ensemble.fit(self.dataset.X_train, self.dataset.y_train)
+        self.clf_ensemble.fit(self.dataset, self.target)
 
         return self
 

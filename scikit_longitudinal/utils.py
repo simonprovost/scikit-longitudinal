@@ -7,7 +7,7 @@ import numpy as np  # pragma: no cover
 from sklearn.ensemble import RandomForestClassifier  # pragma: no cover
 from sklearn.tree import DecisionTreeClassifier, export_graphviz  # pragma: no cover
 
-from scikit_longitudinal.estimators.tree import LexcioRFClassifier, LexicoDecisionTreeClassifier  # pragma: no cover
+from scikit_longitudinal.estimators.tree import LexicoRFClassifier, LexicoDecisionTreeClassifier  # pragma: no cover
 
 
 # pylint: disable=W9016
@@ -72,7 +72,7 @@ def save_trees_graphviz(
             Output directory. Defaults to 'output'.
 
     """
-    if isinstance(model, (RandomForestClassifier, LexcioRFClassifier)):
+    if isinstance(model, (RandomForestClassifier, LexicoRFClassifier)):
         trees = model.estimators_
     elif isinstance(model, (DecisionTreeClassifier, LexicoDecisionTreeClassifier)):
         trees = [model]

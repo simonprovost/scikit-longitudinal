@@ -135,7 +135,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
         )
 
 
-class LexcioRFClassifier(RandomForestClassifier):
+class LexicoRFClassifier(RandomForestClassifier):
     """A random forest classifier for longitudinal data.
 
     LexicoRF is a random forest classifier for longitudinal data that uses a lexicographic bi-objective
@@ -196,10 +196,10 @@ class LexcioRFClassifier(RandomForestClassifier):
         >>> from sklearn.datasets import load_iris
         >>> from sklearn.model_selection import train_test_split
         >>> from sklearn.metrics import accuracy_score
-        >>> from scikit_longitudinal.estimators.tree import LexcioRFClassifier
+        >>> from scikit_longitudinal.estimators.tree import LexicoRFClassifier
         >>> X, y = load_iris(return_X_y=True)
         >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        >>> clf = LexcioRFClassifier(threshold_gain=0.1, features_group=[[0,1],[2,3]])
+        >>> clf = LexicoRFClassifier(threshold_gain=0.1, features_group=[[0,1],[2,3]])
         >>> clf.fit(X_train, y_train)
         >>> y_pred = clf.predict(X_test)
         >>> accuracy_score(y_test, y_pred)
