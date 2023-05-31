@@ -10,7 +10,7 @@
             "-O2"
         ],
         "include_dirs": [
-            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-u2gioxsj/overlay/lib/python3.10/site-packages/numpy/core/include"
+            "/private/var/folders/sk/705pffl95sv3nzj0n2ls78cc0000gp/T/pip-build-env-21j1xyoj/overlay/lib/python3.10/site-packages/numpy/core/include"
         ],
         "language": "c++",
         "libraries": [

@@ -1,5 +1,11 @@
 # .gitignore
 
+main.py
+
+# Lib
+*.so
+*.o
+
 # Data
 data/
 # Python artifacts

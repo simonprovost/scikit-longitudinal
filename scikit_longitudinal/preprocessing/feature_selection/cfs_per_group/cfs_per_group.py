@@ -132,26 +132,22 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
     def __init__(
-        self,
-        non_longitudinal_features: Optional[List[int]] = None,
-        search_method: str = "greedySearch",
-        features_group: Optional[List[List[int]]] = None,
-        parallel: bool = False,
-        cfs_longitudinal_outer_search_method: str = None,
-        cfs_longitudinal_inner_search_method: str = "exhaustiveSearch",
-        cfs_per_group_version=2,
-        num_cpus: int = -1,
+            self,
+            non_longitudinal_features: Optional[List[int]] = None,
+            search_method: str = "greedySearch",
+            features_group: Optional[List[List[int]]] = None,
+            parallel: bool = False,
+            cfs_longitudinal_outer_search_method: str = None,
+            cfs_longitudinal_inner_search_method: str = "exhaustiveSearch",
+            cfs_per_group_version=2,
+            num_cpus: int = -1,
+            cfs_type: str = "auto",
     ):
         assert search_method in {
             "exhaustiveSearch",
             "greedySearch",
         }, "search_method must be: 'exhaustiveSearch', or 'greedySearch'"
 
-        if features_group is not None and ray.is_initialized() is False:
-            if num_cpus != -1:
-                ray.init(num_cpus=num_cpus)
-            else:
-                ray.init()
         self.search_method = search_method
         self.features_group = features_group
         self.parallel = parallel
@@ -163,8 +159,25 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         self.selected_longitudinal_features_ = []
         self.non_longitudinal_features = non_longitudinal_features
         self.num_cpus = num_cpus
-        self.cfs_type_ = "cfs_longitudinal" if self.features_group is not None else "cfs"
+        if cfs_type == "auto":
+            if self.features_group is not None:
+                self.cfs_type_ = "cfs_longitudinal"
+            else:
+                self.cfs_type_ = "cfs"
+        elif cfs_type in {"cfs", "cfs_longitudinal"}:
+            self.cfs_type_ = cfs_type
+        else:
+            self.cfs_type_ = "cfs"
         self.version = cfs_per_group_version
+
+        if self.features_group is not None \
+                and ray.is_initialized() is False \
+                and self.parallel is True \
+                and self.cfs_type_ != "cfs":
+            if num_cpus != -1:
+                ray.init(num_cpus=num_cpus)
+            else:
+                ray.init()
 
     @override
     def _fit(self, X: np.ndarray, y: np.ndarray) -> "CorrelationBasedFeatureSelectionPerGroup":
@@ -184,7 +197,7 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
             CorrelationBasedFeatureSelectionPerGroup: The fitted instance of the CFS algorithm.
 
         """
-        if self.features_group is not None:
+        if self.features_group is not None and self.cfs_type_ == "cfs_longitudinal":
             self.search_method = self.cfs_longitudinal_inner_search_method
             group_features_copy, group_selected_features = (
                 (self.features_group.copy(), []) if self.features_group else ([], [])
@@ -206,8 +219,8 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
             if self.version == 2:
                 # Combine inner search results with non-longitudinal features
                 combined_features = [
-                    index for sublist in group_selected_features for index in sublist
-                ] + self.non_longitudinal_features
+                                        index for sublist in group_selected_features for index in sublist
+                                    ] + self.non_longitudinal_features
 
                 # Run the outer search method on the final set of features
                 # extracted from each group
@@ -361,7 +374,7 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
     # pylint: disable=W9016
     @staticmethod
     def apply_selected_features_and_rename(
-        df: pd.DataFrame, selected_features: List, regex_match=r"^(.+)_w(\d+)$"
+            df: pd.DataFrame, selected_features: List, regex_match=r"^(.+)_w(\d+)$"
     ) -> [pd.DataFrame, None]:
         """Apply selected features to the input DataFrame and rename non-longitudinal features.
 
@@ -386,7 +399,8 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
         """
         # Apply selected features
-        df = df.iloc[:, selected_features].copy()
+        if selected_features:
+            df = df.iloc[:, selected_features].copy()
 
         # Rename non-longitudinal features
         non_longitudinal_features: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
@@ -402,5 +416,4 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
                 old_name, wave_number = columns[0]
                 new_name = f"{base_name}_wave{wave_number}"
                 df.rename(columns={old_name: new_name}, inplace=True)
-
         return df

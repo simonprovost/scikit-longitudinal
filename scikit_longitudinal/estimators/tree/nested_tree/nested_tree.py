@@ -212,7 +212,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         """
         if len(self.features_group) <= 1:
             raise ValueError("features_group must be greater than 1.")
-
         self.root = self._build_outer_tree(X, y, 0, "outer_root")
         return self
 
@@ -230,8 +229,22 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")
-
         return np.array([self._predict_single(x) for x in X])
+
+    @override
+    def _predict_proba(self, X: np.ndarray) -> np.ndarray:
+        """Predict class probabilities for samples in X.
+
+        Args:
+            X (np.ndarray): The input samples.
+
+        Returns:
+            np.ndarray: The predicted class probabilities for each input sample.
+
+        """
+        if self.root is None:
+            raise ValueError("The classifier must be fitted before making predictions.")
+        return np.array([self._predict_proba_single(x) for x in X])
 
     def _build_outer_tree(
         self,
@@ -415,6 +428,28 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             leaf_subset = x[node.group]
 
         return node.tree.predict(leaf_subset.reshape(1, -1))[0]
+
+    def _predict_proba_single(self, x: np.ndarray) -> np.ndarray:
+        """Predict the class probabilities for a single input sample.
+
+        Args:
+            x (np.ndarray): The input sample.
+
+        Returns:
+            np.ndarray: The predicted class probabilities for the input sample.
+
+        """
+        node = self.root
+        leaf_subset = None
+
+        while not node.is_leaf:
+            subset_x = x[node.group]
+            next_node_leaf_number = node.tree.apply([subset_x])[0]
+
+            node = node.children_map[next_node_leaf_number]
+            leaf_subset = x[node.group]
+
+        return node.tree.predict_proba(leaf_subset.reshape(1, -1))
 
     def print_nested_tree(
         self,

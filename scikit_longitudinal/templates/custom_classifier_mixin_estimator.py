@@ -57,8 +57,15 @@ class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOver
     def predict(self, X: np.ndarray) -> np.ndarray:
         return self._check_array_decorator(self._predict)(X)
 
+    @final
+    def predict_proba(self, X: np.ndarray) -> np.ndarray:
+        return self._check_array_decorator(self._predict_proba)(X)
+
     def _fit(self, X: np.ndarray, y: np.ndarray = None) -> "CustomClassifierMixinEstimator":
         raise NotImplementedError("Subclasses should implement _fit method")
 
     def _predict(self, X: np.ndarray) -> np.ndarray:
         raise NotImplementedError("Subclasses should implement _predict method")
+
+    def _predict_proba(self, X: np.ndarray) -> np.ndarray:
+        raise NotImplementedError("Subclasses should implement _predict_proba method")
