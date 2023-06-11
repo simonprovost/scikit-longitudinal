@@ -99,21 +99,21 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
     """
 
     def __init__(
-        self,
-        threshold_gain: float,
-        features_group: List[List[int]],
-        criterion: str = "entropy",  # Do not change this value
-        splitter: str = "lexicoRF",  # Do not change this value
-        max_depth: Optional[int] = None,
-        min_samples_split: int = 2,
-        min_samples_leaf: int = 1,
-        min_weight_fraction_leaf: float = 0.0,
-        max_features: Optional[int] = None,
-        random_state: Optional[int] = None,
-        max_leaf_nodes: Optional[int] = None,
-        min_impurity_decrease: float = 0.0,
-        class_weight: Optional[str] = None,
-        ccp_alpha: float = 0.0,
+            self,
+            threshold_gain: float = 0.10,
+            features_group: List[List[int]] = None,
+            criterion: str = "entropy",  # Do not change this value
+            splitter: str = "lexicoRF",  # Do not change this value
+            max_depth: Optional[int] = None,
+            min_samples_split: int = 2,
+            min_samples_leaf: int = 1,
+            min_weight_fraction_leaf: float = 0.0,
+            max_features: Optional[int] = None,
+            random_state: Optional[int] = None,
+            max_leaf_nodes: Optional[int] = None,
+            min_impurity_decrease: float = 0.0,
+            class_weight: Optional[str] = None,
+            ccp_alpha: float = 0.0,
     ):
         self.threshold_gain = threshold_gain
         self.features_group = features_group
@@ -214,24 +214,24 @@ class LexicoRFClassifier(RandomForestClassifier):
     """
 
     def __init__(
-        self,
-        n_estimators: int = 100,
-        threshold_gain: float = 0.10,
-        features_group: List[List[int]] = None,
-        max_depth: Optional[int] = None,
-        min_samples_split: int = 2,
-        min_samples_leaf: int = 1,
-        min_weight_fraction_leaf: float = 0.0,
-        max_features: Optional[int] = None,
-        max_leaf_nodes: Optional[int] = None,
-        min_impurity_decrease: float = 0.0,
-        class_weight: Optional[str] = None,
-        ccp_alpha: float = 0.0,
-        random_state: int = None,
-        **kwargs,
+            self,
+            n_estimators: int = 100,
+            threshold_gain: float = 0.10,
+            features_group: List[List[int]] = None,
+            max_depth: Optional[int] = None,
+            min_samples_split: int = 2,
+            min_samples_leaf: int = 1,
+            min_weight_fraction_leaf: float = 0.0,
+            max_features: Optional[int] = None,
+            max_leaf_nodes: Optional[int] = None,
+            min_impurity_decrease: float = 0.0,
+            class_weight: Optional[str] = None,
+            ccp_alpha: float = 0.0,
+            random_state: int = None,
+            **kwargs,
     ):
         self.threshold_gain = threshold_gain
-        self.features_group = features_group or []
+        self.features_group = features_group
         self.criterion = "entropy"
         self.splitter = "lexicoRF"
         self.max_depth = max_depth

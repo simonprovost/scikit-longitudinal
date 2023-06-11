@@ -15,7 +15,8 @@ from scikit_longitudinal.data_preparation.merwav_time_minus import MerWavTimeMin
 from scikit_longitudinal.data_preparation.merwav_time_plus import MerWavTimePlus
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
 from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
-
+from scikit_longitudinal.preprocessing.feature_selection.cfs_per_group import CorrelationBasedFeatureSelectionPerGroup, \
+    CorrelationBasedFeatureSelection
 
 def feature_selection_default_callback(
         step_idx: int,
@@ -26,10 +27,7 @@ def feature_selection_default_callback(
     np.ndarray, List[List[Union[int, str]]], List[Union[int, str]], List[str]]:
     _y = y
     _step_idx = step_idx
-    if name in {
-        "CorrelationBasedFeatureSelectionPerGroup",
-        "CorrelationBasedFeatureSelection",
-    }:
+    if isinstance(transformer, CorrelationBasedFeatureSelectionPerGroup) or isinstance(transformer, CorrelationBasedFeatureSelection):
         data = transformer.apply_selected_features_and_rename(
             dummy_longitudinal_dataset.data,
             None,
@@ -110,6 +108,7 @@ class LongitudinalPipeline(Pipeline):
         self.update_feature_groups_callback: Union[Callable, str] = update_feature_groups_callback
         self.feature_list_names: List[str] = feature_list_names
         self.selected_feature_indices_: np.ndarray = np.array([])
+        self.final_estimator = self.steps[-1][1]
 
         if update_feature_groups_callback is not None:
             if update_feature_groups_callback == "default":
@@ -117,7 +116,7 @@ class LongitudinalPipeline(Pipeline):
                 return
 
             if not callable(update_feature_groups_callback) or isinstance(
-                update_feature_groups_callback, str
+                    update_feature_groups_callback, str
             ):
                 raise ValueError("update_data_callback must be a callable function or a default string value.")
 
@@ -159,6 +158,35 @@ class LongitudinalPipeline(Pipeline):
                     f"Got: {', '.join([param.annotation.__name__ for param in parameters])}"
                 )
 
+
+    @property
+    def _final_estimator(self):
+        return self.final_estimator
+
+    @_final_estimator.setter
+    def _final_estimator(self, value):
+        self.final_estimator = value
+
+    def set_final_estimator(self, estimator):
+        self._final_estimator = estimator
+        self.steps[-1] = (self.steps[-1][0], estimator)
+
+    def set_step_as_final(self, step_name):
+        step_index = None
+        for i, step in enumerate(self.steps):
+            if step[0] == step_name:
+                step_index = i
+                break
+
+        if step_index is None:
+            raise ValueError(f"No step with name '{step_name}' exists in the pipeline.")
+
+        # Move the desired step to the end
+        self.steps.append(self.steps.pop(step_index))
+
+        # Update final_estimator
+        self._final_estimator = self.steps[-1][1]
+
     @handle_errors
     @validate_input
     def fit(
@@ -190,7 +218,7 @@ class LongitudinalPipeline(Pipeline):
                 self.selected_feature_indices_ = np.array(
                     [transformed_dataset.columns.get_loc(indice) for indice in transformed_dataset.columns]
                 )
-                self._longitudinal_data = transformed_dataset
+                self._longitudinal_data = transformed_dataset.to_numpy() if isinstance(transformed_dataset, pd.DataFrame) else transformed_dataset
                 continue
             elif isinstance(transformer, SepWav):
                 continue
@@ -206,7 +234,11 @@ class LongitudinalPipeline(Pipeline):
             if hasattr(transformer, "features_group") and not (
                     hasattr(transformer, "cfs_type_") and transformer.cfs_type_ == "cfs"
             ):
-                self._longitudinal_data = self._longitudinal_data[:, transformer.selected_features_]
+                if max(transformer.selected_features_) < self._longitudinal_data.shape[1]:
+                    self._longitudinal_data = self._longitudinal_data[:, transformer.selected_features_]
+                else:
+                    raise ValueError(
+                        "Indices in transformer.selected_features_ exceed the number of columns in self._longitudinal_data.")
             else:
                 self._longitudinal_data = X_transformed
 
@@ -224,14 +256,13 @@ class LongitudinalPipeline(Pipeline):
                 self._final_estimator.non_longitudinal_features = self.non_longitudinal_features
             if hasattr(self._final_estimator, "feature_list_names"):
                 self._final_estimator.feature_list_names = self.feature_list_names
-            if isinstance(self.steps[-2][1], SepWav):
+            if len(self.steps) > 1 and isinstance(self.steps[-2][1], SepWav):
                 if hasattr(self.steps[-2][1], "classifier"):
                     self.steps[-2][1].classifier = self._final_estimator
+                    self.set_step_as_final(self.steps[-2][0])
                 else:
                     raise ValueError("SepWav does not have a classifier attribute.")
-                self.steps[-2][1].fit(self._longitudinal_data, y, **fit_params)
-            else:
-                self._final_estimator.fit(self._longitudinal_data, y, **fit_params)
+            self._final_estimator.fit(self._longitudinal_data, y, **fit_params)
 
         return self
 
@@ -289,16 +320,30 @@ class LongitudinalPipeline(Pipeline):
     @validate_input
     def predict(self, X: np.ndarray, **predict_params: Dict[str, Any]) -> np.ndarray:
         if X is None:
-            raise ValueError("No data was passed to predict.")
+            raise ValueError("No data was passed to predict_proba.")
+        if not isinstance(X, np.ndarray):
+            raise ValueError("Input data must be a numpy array.")
+        X = X[:, self.selected_feature_indices_]
+
+        if hasattr(self._final_estimator, 'predict'):
+            return self._final_estimator.predict(X, **predict_params)
+        else:
+            raise NotImplementedError(
+                f"predict is not implemented for this estimator: {type(self._final_estimator)}")
+
+    @validate_input
+    def predict_proba(self, X: np.ndarray, **predict_params: Dict[str, Any]) -> np.ndarray:
+        if X is None:
+            raise ValueError("No data was passed to predict_proba.")
         if not isinstance(X, np.ndarray):
             raise ValueError("Input data must be a numpy array.")
 
         X = X[:, self.selected_feature_indices_]
 
-        if isinstance(self.steps[-2][1], SepWav):
-            return self.steps[-2][1].predict(X, **predict_params)
+        if hasattr(self._final_estimator, 'predict_proba'):
+            return self._final_estimator.predict_proba(X, **predict_params)
         else:
-            return self._final_estimator.predict(X, **predict_params)
+            raise NotImplementedError(f"predict_proba is not implemented for this estimator: {type(self._final_estimator)}")
 
     @validate_input
     def transform(self, X: np.ndarray, **transform_params: Dict[str, Any]) -> np.ndarray:
@@ -307,6 +352,8 @@ class LongitudinalPipeline(Pipeline):
         if not isinstance(X, np.ndarray):
             raise ValueError("Input data must be a numpy array.")
 
+        if self.selected_feature_indices_ is None or len(self.selected_feature_indices_) == 0:
+            print("No feature selection was performed. Returning the original data.")
+            return X
         X = X[:, self.selected_feature_indices_]
-
         return self._final_estimator.transform(X, **transform_params)

@@ -10,10 +10,13 @@ from scipy import stats
 
 from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
 
-AGG_FUNCS = {  # pragma: no cover
+def mode_with_keepdims(x, keepdims=True):
+    return stats.mode(x, keepdims=keepdims)[0][0]
+
+AGG_FUNCS = {
     "mean": np.mean,
     "median": np.median,
-    "mode": lambda x: stats.mode(x)[0][0],
+    "mode": mode_with_keepdims,
 }
 
 
@@ -32,7 +35,9 @@ def validate_feature_group_indices(func: Callable) -> Callable:
     """
 
     def wrapper(self: "AggrFunc", *args: Any, **kwargs: Any) -> Any:
-        features_group = kwargs.get("features_group")
+        features_group = self.features_group
+        if not features_group:
+            raise ValueError("features_group cannot be None.")
         if features_group:
             for feature_group in features_group:
                 if any(index >= self.dataset.shape[1] or index < 0 for index in feature_group):
@@ -225,7 +230,7 @@ class AggrFunc(DataPreparationMixin):
     @init_ray
     def __init__(
         self,
-        features_group: List[List[Union[int, str]]],
+        features_group: List[List[Union[int, str]]] = None,
         non_longitudinal_features: List[Union[int, str]] = None,
         feature_list_names: List[str] = None,
         aggregation_func: Union[str, Callable] = "mean",

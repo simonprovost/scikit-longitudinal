@@ -9,7 +9,7 @@ from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPrep
 class MerWavTimeMinus(DataPreparationMixin):
     def __init__(
         self,
-        features_group: List[List[Union[int, str]]],
+        features_group: List[List[Union[int, str]]] = None,
         non_longitudinal_features: List[Union[int, str]] = None,
         feature_list_names: List[str] = None,
     ):

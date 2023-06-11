@@ -221,13 +221,13 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
     def __init__(
         self,
-        features_group: List[List[Union[int, str]]],
+        features_group: List[List[Union[int, str]]] = None,
         classifier: ["BaseEstimator"] = None,
         non_longitudinal_features: List[Union[int, str]] = None,
         feature_list_names: List[str] = None,
         ensemble_strategy: str = "voting",
         voting_weights: List[float] = None,
-        voting_strategy: str = "hard",
+        voting_strategy: str = "soft",
         n_jobs: int = None,
         stacking_final_estimator: "BaseEstimator" = None,
         stacking_cv: int = None,
@@ -269,6 +269,12 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         Replaced by the fit method.
         """
         return self
+
+    @property
+    def classes_(self):
+        if self.clf_ensemble is None:
+            raise NotFittedError("This SepWav instance is not fitted yet. Call 'fit' with appropriate arguments.")
+        return self.clf_ensemble.classes_
 
     @validate_extract_wave_input
     @validate_extract_wave_output
@@ -346,14 +352,20 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
         if self.ensemble_strategy == "voting":
             self.clf_ensemble = VotingClassifier(
-                self.classifiers, voting=self.voting_strategy, weights=self.voting_weights, n_jobs=self.n_jobs
+                self.classifiers, voting=self.voting_strategy, weights=self.voting_weights, n_jobs=self.n_jobs,
             )
         elif self.ensemble_strategy == "stacking":
             self.clf_ensemble = StackingClassifier(self.classifiers, final_estimator=self.classifier)
         else:
             raise ValueError(f"Invalid ensemble strategy: {self.ensemble_strategy}")
 
-        self.clf_ensemble.fit(self.dataset, self.target)
+        X_data = self.dataset.values
+
+        if hasattr(X_data, "flags"):
+            if not X_data.flags['C_CONTIGUOUS']:
+                X_data = np.ascontiguousarray(X_data)
+
+        self.clf_ensemble.fit(X_data, self.target)
 
         return self
 
@@ -373,6 +385,24 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
         """
         return self.clf_ensemble.predict(X)
+
+    @validate_predict_input
+    def predict_proba(self, X: Union[List[List[float]], "np.ndarray"]) -> Union[List[List[float]], "np.ndarray"]:
+        """Predict class probabilities for X.
+
+        The predicted class probabilities of an input sample is computed as the probabilities predicted by the underlying classifiers.
+
+        Args:
+            X (Union[List[List[float]], np.ndarray)): The input samples.
+
+        Returns:
+            Union[List[List[float]], np.ndarray]: The predicted class probabilities.
+
+        """
+        if hasattr(self.clf_ensemble, 'predict_proba'):
+            return self.clf_ensemble.predict_proba(X)
+        else:
+            raise NotImplementedError(f"predict_proba is not implemented for this classifier: {self.clf_ensemble} / type: {type(self.clf_ensemble)}")
 
     @validate_predict_wave_input
     def predict_wave(self, wave: int, X: Union[List[List[float]], "np.ndarray"]) -> Union[List[float], "np.ndarray"]:

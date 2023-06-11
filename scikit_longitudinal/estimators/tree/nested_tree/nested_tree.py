@@ -11,6 +11,7 @@ from scikit_longitudinal.estimators.tree.nested_tree.utils import (
     _remove_consecutive_duplicates,
 )
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
+from sklearn.utils.multiclass import unique_labels
 
 
 # pylint: disable=R0902,R0903,R0914,,too-many-arguments,invalid-name,signature-differs,no-member
@@ -72,7 +73,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
     def __init__(
         self,
-        features_group: List[List[int]],
+        features_group: List[List[int]] = None,
         max_outer_depth: int = 3,
         max_inner_depth: int = 2,
         min_outer_samples: int = 5,
@@ -102,11 +103,12 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         self.max_outer_depth = max_outer_depth
         self.max_inner_depth = max_inner_depth
         self.min_outer_samples = min_outer_samples
-        self.inner_estimator_hyperparameters = inner_estimator_hyperparameters or {}
+        self.inner_estimator_hyperparameters = inner_estimator_hyperparameters
         self.save_nested_trees = save_nested_trees
         self.root = None
         self.parallel = parallel
         self.num_cpus = num_cpus
+        self.classes_ = None
 
         if self.parallel and ray.is_initialized() is False:  # pragma: no cover
             if num_cpus != -1:
@@ -122,9 +124,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         if min_outer_samples <= 0:
             raise ValueError("min_outer_samples must be greater than 0.")
-
-        if len(features_group) <= 1:
-            raise ValueError("features_group must be greater than 1.")
 
     class Node:
         """A node in the outer decision tree of the Nested Trees Classifier.
@@ -210,8 +209,12 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             ValueError: If there are less than or equal to 1 feature group.
 
         """
-        if len(self.features_group) <= 1:
+        if not self.features_group or len(self.features_group) <= 1:
             raise ValueError("features_group must be greater than 1.")
+        if self.inner_estimator_hyperparameters is None:
+            self.inner_estimator_hyperparameters = {}
+        if self.classes_ is None:
+            self.classes_ = unique_labels(y)
         self.root = self._build_outer_tree(X, y, 0, "outer_root")
         return self
 
@@ -244,7 +247,37 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")
-        return np.array([self._predict_proba_single(x) for x in X])
+
+        result = []
+        first_run = True
+        expected_shape = None
+        for x in X:
+            probas = self._predict_proba_single(x)
+            if probas.shape == (1, 1):
+                probas = np.array([[probas[0][0], 1.0 - probas[0][0]]])
+            probas = probas.flatten()
+            if first_run:
+                expected_shape = probas.shape
+                first_run = False
+            elif probas.shape != expected_shape:
+                raise ValueError(f"Unexpected shape for predict_proba: {probas.shape}, expected: {expected_shape}")
+            result.append(probas)
+
+        return np.array(result)
+
+    # def _predict_proba(self, X: np.ndarray) -> np.ndarray:
+    #     """Predict class probabilities for samples in X.
+    #
+    #     Args:
+    #         X (np.ndarray): The input samples.
+    #
+    #     Returns:
+    #         np.ndarray: The predicted class probabilities for each input sample.
+    #
+    #     """
+    #     if self.root is None:
+    #         raise ValueError("The classifier must be fitted before making predictions.")
+    #     return np.array([self._predict_proba_single(x) for x in X])
 
     def _build_outer_tree(
         self,

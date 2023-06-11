@@ -25,7 +25,7 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
             cfs_longitudinal_inner_search_method: str = "exhaustiveSearch",
             cfs_per_group_version=2,
             num_cpus: int = -1,
-            cfs_type: str = "auto",
+            cfs_type: str = "cfs",
     ):
         assert search_method in {
             "exhaustiveSearch",
@@ -45,27 +45,27 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
         self.num_cpus = num_cpus
         if cfs_type == "auto":
             if self.features_group is not None:
-                self.cfs_type_ = "cfs_longitudinal"
+                self.cfs_type = "cfs_longitudinal"
             else:
-                self.cfs_type_ = "cfs"
+                self.cfs_type = "cfs"
         elif cfs_type in {"cfs", "cfs_longitudinal"}:
-            self.cfs_type_ = cfs_type
+            self.cfs_type = cfs_type
         else:
-            self.cfs_type_ = "cfs"
-        self.version = cfs_per_group_version
+            self.cfs_type = "cfs"
+        self.cfs_per_group_version = cfs_per_group_version
 
         if self.features_group is not None \
                 and ray.is_initialized() is False \
                 and self.parallel is True \
-                and self.cfs_type_ != "cfs":
+                and self.cfs_type != "cfs":
             if num_cpus != -1:
                 ray.init(num_cpus=num_cpus)
             else:
                 ray.init()
 
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray) -> "CorrelationBasedFeatureSelectionPerGroup":
-        if self.features_group is not None and self.cfs_type_ == "cfs_longitudinal":
+    def _fit(self, X: np.ndarray, y: np.ndarray) -> "CorrelationBasedFeatureSelection":
+        if self.features_group is not None and self.cfs_type == "cfs_longitudinal":
             self.search_method = self.cfs_longitudinal_inner_search_method
             group_features_copy, group_selected_features = (
                 (self.features_group.copy(), []) if self.features_group else ([], [])
@@ -84,7 +84,7 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
             else:
                 group_selected_features = [self._fit_subset(X, y, group) for group in group_features_copy]
 
-            if self.version == 2:
+            if self.cfs_per_group_version == 2:
                 # Combine inner search results with non-longitudinal features
                 combined_features = [
                                         index for sublist in group_selected_features for index in sublist
@@ -98,7 +98,7 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
                 # Get the final set of selected features based on the outer search results
                 flattened_list = np.array(combined_features)
                 self.selected_features_ = flattened_list[selected_indices].tolist()
-            elif self.version == 1:
+            elif self.cfs_per_group_version == 1:
                 # Only use the inner search results as the selected features for version 1
                 flattened_list = np.array([index for sublist in group_selected_features for index in sublist])
                 self.selected_features_ = (flattened_list.tolist() or []) + (self.non_longitudinal_features or [])
@@ -113,7 +113,7 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
 
     @override
     def _transform(self, X: np.ndarray) -> np.ndarray:
-        if self.cfs_type_ == "cfs_longitudinal":
+        if self.cfs_type == "cfs_longitudinal":
             return X
         return X[:, self.selected_features_]
 
