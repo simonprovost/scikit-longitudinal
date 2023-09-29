@@ -1,17 +1,18 @@
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
 import ray
 from overrides import override
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.utils.multiclass import unique_labels
 
-from scikit_longitudinal.estimators.tree.nested_tree.utils import (
+from scikit_longitudinal.data_preparation.longitudinal_dataset import clean_padding
+from scikit_longitudinal.estimators.trees.nested_trees.utils import (
     _fit_inner_tree_and_calculate_gini,
     _fit_inner_tree_plus_calculate_gini_ray,
     _remove_consecutive_duplicates,
 )
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
-from sklearn.utils.multiclass import unique_labels
 
 
 # pylint: disable=R0902,R0903,R0914,,too-many-arguments,invalid-name,signature-differs,no-member
@@ -19,29 +20,39 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
     """Nested Trees Classifier for longitudinal data.
 
     The Nested Trees Classifier is a unique and innovative classification algorithm specifically designed for
-    longitudinal datasets. It constructs a model similar to conventional decision tree algorithms but with a key
-    difference: the nodes in the tree are not simple attribute-value tests but rather smaller, inner decision
-    trees. This creates a two-layer structure with an outer tree containing inner decision trees at each node,
-    taking full advantage of the longitudinal information present in the data. The outer decision use a custom
-    decision tree that selects longitudinal attributes, which are groups of time-specific attributes, to build the
-    tree. While the inner embedded decision tree is a Scikit Learn decision tree which works with subset based on
-    the longitudinal attribute of the parent node.
+    longitudinal datasets. The algorithm in question is designed to create a model that bears resemblance to
+    traditional decision tree algorithms. However, it distinguishes itself by employing a unique approach: instead of
+    utilising straightforward attribute-value tests as nodes in the tree, it employs smaller decision trees nested
+    within. The implementation results in the establishment of a hierarchical framework consisting of a primary tree
+    structure encompassing subordinate decision trees nested within each node. This design optimally leverages the
+    longitudinal data's inherent information. The outer decision employs a bespoke decision tree algorithm that
+    employs a selection process for longitudinal attributes. These attributes are categorised as groups of
+    time-specific attributes, which are then utilised in the construction of the decision tree. The inner embedded
+    decision tree utilised in this system is implemented using Scikit Learn's decision tree algorithm. This algorithm
+    operates by partitioning the dataset into subsets based on the longitudinal attribute of the parent node.
 
     Args:
-        features_group (List[List[int]]): A list of lists, where each inner list contains the indices of features that
+        features_group (List[List[int]]):
+            A list of lists, where each inner list contains the indices of features that
             correspond to a specific longitudinal attribute.
-        max_outer_depth (int, optional): The maximum depth of the outer custom decision tree. Defaults to 3.
-        max_inner_depth (int, optional): The maximum depth of the inner decision trees. Defaults to 2.
-        min_outer_samples (int, optional): The minimum number of samples required to split an internal node in the outer
+        max_outer_depth (int, optional):
+            The maximum depth of the outer custom decision tree. Defaults to 3.
+        max_inner_depth (int, optional):
+            The maximum depth of the inner decision trees. Defaults to 2.
+        min_outer_samples (int, optional): T
+            he minimum number of samples required to split an internal node in the outer
             decision tree. Defaults to 5.
-        inner_estimator_hyperparameters (Dict[str, Any], optional): A dictionary of hyperparameters to be passed to the
+        inner_estimator_hyperparameters (Dict[str, Any], optional):
+            A dictionary of hyperparameters to be passed to the
             inner Scikit-learn decision tree estimators. If not provided, default hyperparameters will be used.
             Defaults to None.
-        save_nested_trees (bool, optional): If set to True, the nested trees structure plot will be saved, which may be
+        save_nested_trees (bool, optional):
+            If set to True, the nested trees structure plot will be saved, which may be
             useful for model interpretation and visualization. Defaults to False.
 
     Attributes:
-        root (Node, optional): The root node of the outer decision tree. Set to None upon initialisation, it will be
+        root (Node, optional):
+            The root node of the outer decision tree. Set to None upon initialisation, it will be
             updated during the model fitting process. Defaults to None.
 
     Examples:
@@ -74,6 +85,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
     def __init__(
         self,
         features_group: List[List[int]] = None,
+        non_longitudinal_features: List[Union[int, str]] = None,
         max_outer_depth: int = 3,
         max_inner_depth: int = 2,
         min_outer_samples: int = 5,
@@ -86,7 +98,8 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         Args:
             features_group : List[List[int]]
-                List of lists, where each inner list represents a group of features.
+                A list of lists, where each inner list contains the indices of features that
+                correspond to a specific longitudinal attribute.
             max_outer_depth : int, optional (default=None)
                 The maximum depth of the outer decision tree. If None, the tree is grown until all leaves are pure.
             max_inner_depth : int, optional (default=None)
@@ -97,9 +110,9 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 If True, use parallelization for fitting inner trees.
             save_nested_trees : bool, optional (default=False)
                 If True, save inner decision tree visualizations as image files.
-
         """
         self.features_group = features_group
+        self.non_longitudinal_features = non_longitudinal_features
         self.max_outer_depth = max_outer_depth
         self.max_inner_depth = max_inner_depth
         self.min_outer_samples = min_outer_samples
@@ -160,13 +173,13 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 A list of feature group indices used to split the data in this node.
 
         Raises:
-            ValueError: If tree is not provided, or if node_name is an empty string.
+            ValueError:
+                If tree is not provided, or if node_name is an empty string.
 
         Examples:
             >>> from sklearn.tree import DecisionTreeClassifier
             >>> inner_tree = DecisionTreeClassifier()
             >>> node = Node(is_leaf=False, tree=inner_tree, node_name="dummy_node")
-
         """
 
         def __init__(
@@ -206,9 +219,14 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             NestedTreesClassifier: The fitted classifier.
 
         Raises:
-            ValueError: If there are less than or equal to 1 feature group.
-
+            ValueError:
+                If there are less than or equal to 1 feature group.
         """
+        if self.non_longitudinal_features is not None:
+            self.features_group.append(self.non_longitudinal_features)
+        if self.features_group is not None:
+            self.features_group = clean_padding(self.features_group)
+
         if not self.features_group or len(self.features_group) <= 1:
             raise ValueError("features_group must be greater than 1.")
         if self.inner_estimator_hyperparameters is None:
@@ -227,8 +245,8 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 The input samples.
 
         Returns:
-            np.ndarray: The predicted class labels for each input sample.
-
+            np.ndarray:
+                The predicted class labels for each input sample.
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")
@@ -239,11 +257,12 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         """Predict class probabilities for samples in X.
 
         Args:
-            X (np.ndarray): The input samples.
+            X (np.ndarray):
+                The input samples.
 
         Returns:
-            np.ndarray: The predicted class probabilities for each input sample.
-
+            np.ndarray:
+                The predicted class probabilities for each input sample.
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")
@@ -264,20 +283,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             result.append(probas)
 
         return np.array(result)
-
-    # def _predict_proba(self, X: np.ndarray) -> np.ndarray:
-    #     """Predict class probabilities for samples in X.
-    #
-    #     Args:
-    #         X (np.ndarray): The input samples.
-    #
-    #     Returns:
-    #         np.ndarray: The predicted class probabilities for each input sample.
-    #
-    #     """
-    #     if self.root is None:
-    #         raise ValueError("The classifier must be fitted before making predictions.")
-    #     return np.array([self._predict_proba_single(x) for x in X])
 
     def _build_outer_tree(
         self,
@@ -348,8 +353,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         Returns:
             Tuple[DecisionTreeClassifier, List[Tuple[np.ndarray, np.ndarray, int]], List[int]]:
-            A tuple containing the best inner decision tree, the associated split, and the best feature group.
-
+                A tuple containing the best inner decision tree, the associated split, and the best feature group.
         """
         min_gini = float("inf")
         best_tree = None
@@ -375,6 +379,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         else:
             for i, group in enumerate(self.features_group):
                 subset_X_temp = X[:, group]
+                print(f"Group {i}: {group}\n" f"Subset X: {subset_X_temp}\n")
                 tree, _, gini = _fit_inner_tree_and_calculate_gini(
                     subset_X_temp,
                     y,
@@ -406,7 +411,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 The best split of the data, represented as a list of tuples with (X subset, y subset, leaf number).
             depth (int):
                 The current depth of the node in the outer decision tree.
-
         """
         for i, (subset_X, subset_y, leaf_number) in enumerate(best_split):
             child_node_name = f"outer_{node.node_name}_d{depth + 1}_g{i}_l{leaf_number}"
@@ -430,10 +434,9 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         Returns:
             List[Tuple[np.ndarray, np.ndarray, int]]:
                 A list of tuples representing the split data, with each tuple containing:
-                * X subset corresponding to a leaf node
-                * y subset corresponding to a leaf node
-                * Leaf number
-
+                    * X subset corresponding to a leaf node
+                    * y subset corresponding to a leaf node
+                    * Leaf number
         """
         leaves = tree.apply(subset_X)
         unique_leaves = np.unique(leaves)
@@ -448,7 +451,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         Returns:
             int: The predicted class label for the input sample.
-
         """
         node = self.root
         leaf_subset = None
@@ -470,7 +472,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         Returns:
             np.ndarray: The predicted class probabilities for the input sample.
-
         """
         node = self.root
         leaf_subset = None
@@ -502,7 +503,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 A string to prepend before the node's name in the output. Default is "".
             parent_name (str, optional):
                 The name of the parent node in the outer decision tree. Default is "".
-
         """
         if node is None:
             node = self.root
