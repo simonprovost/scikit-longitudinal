@@ -2,7 +2,9 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 
 from scikit_longitudinal.experiments.engine import DatasetInfo, ExperimentEngine
-from scikit_longitudinal.preprocessing.feature_selection.cfs_per_group import CorrelationBasedFeatureSelectionPerGroup
+from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import (
+    CorrelationBasedFeatureSelectionPerGroup,
+)
 
 
 class CustomFeatureSelector:
@@ -14,18 +16,15 @@ class CustomFeatureSelector:
     def fit(self, X_train, y_train):
         if self.cfs_type == "Exh-CFS-Gr":
             clf = CorrelationBasedFeatureSelectionPerGroup(
-                features_group=self.longitudinal_data.feature_groups(),
-                cfs_longitudinal_outer_search_method="greedySearch",
                 non_longitudinal_features=self.longitudinal_data.non_longitudinal_features(),
+                features_group=self.longitudinal_data.feature_groups(),
                 parallel=True,
-                cfs_per_group_version=1,
+                outer_search_method="greedySearch",
+                version=1,
             )
         else:
             clf = CorrelationBasedFeatureSelectionPerGroup(
-                features_group=None,
-                cfs_longitudinal_outer_search_method=None,
-                non_longitudinal_features=None,
-                parallel=False,
+                non_longitudinal_features=None, features_group=None, parallel=False, outer_search_method=None
             )
 
         self.clf = clf.fit(X_train, y_train)
