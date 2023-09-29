@@ -1,10 +1,7 @@
 import itertools
 import os
-from typing import Union, Tuple, List
 
-import numpy as np
-import pandas as pd
-from sklearn.base import TransformerMixin
+import pytest
 from sklearn.metrics import classification_report
 from sklearn.tree import DecisionTreeClassifier
 
@@ -13,11 +10,13 @@ from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 from scikit_longitudinal.data_preparation.merwav_time_minus import MerWavTimeMinus
 from scikit_longitudinal.data_preparation.merwav_time_plus import MerWavTimePlus
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
-from scikit_longitudinal.estimators.tree import LexicoRFClassifier, LexicoDecisionTreeClassifier, NestedTreesClassifier
+from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier, LexicoRFClassifier, NestedTreesClassifier
 from scikit_longitudinal.pipeline import LongitudinalPipeline
-from scikit_longitudinal.preprocessing.feature_selection.cfs_per_group import CorrelationBasedFeatureSelectionPerGroup
+from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import (
+    CorrelationBasedFeatureSelection,
+    CorrelationBasedFeatureSelectionPerGroup,
+)
 
-import pytest
 
 # SepWav(Voting) -> Standard CFS -> DecisionTreeClassifier
 def SepWavStandardCFSDecisionTreeClassifierVoting(longitudinal_data):
@@ -33,9 +32,7 @@ def SepWavStandardCFSDecisionTreeClassifierVoting(longitudinal_data):
         ),
         (
             "CorrelationBasedFeatureSelection",
-            CorrelationBasedFeatureSelectionPerGroup(
-                cfs_type="cfs",
-            ),
+            CorrelationBasedFeatureSelection(),
         ),
         (
             "DecisionTreeClassifier",
@@ -61,9 +58,7 @@ def SepWavStandardCFSDecisionTreeClassifierStacking(longitudinal_data):
         ),
         (
             "CorrelationBasedFeatureSelection",
-            CorrelationBasedFeatureSelectionPerGroup(
-                cfs_type="cfs",
-            ),
+            CorrelationBasedFeatureSelection(),
         ),
         (
             "DecisionTreeClassifier",
@@ -133,13 +128,10 @@ def AggrFuncStandardCFSDecisionTreeClassifier(longitudinal_data):
         ),
         (
             "CorrelationBasedFeatureSelection",
-            CorrelationBasedFeatureSelectionPerGroup(
-                cfs_type="cfs",
-            ),
+            CorrelationBasedFeatureSelection(),
         ),
         (
             "DecisionTreeClassifier",
-
             DecisionTreeClassifier(
                 random_state=42,
                 max_depth=4,
@@ -183,9 +175,7 @@ def MerWavTimeMinusStandardCFSDecisionTreeClassifier(longitudinal_data):
         ),
         (
             "CorrelationBasedFeatureSelection",
-            CorrelationBasedFeatureSelectionPerGroup(
-                cfs_type="cfs",
-            ),
+            CorrelationBasedFeatureSelection(),
         ),
         (
             "DecisionTreeClassifier",
@@ -232,10 +222,10 @@ def MerWavTimePlusExhaustiveCFSLexicoRFClassifier(longitudinal_data):
         (
             "CorrelationBasedFeatureSelectionPerGroup",
             CorrelationBasedFeatureSelectionPerGroup(
-                features_group=longitudinal_data.feature_groups(),
-                cfs_longitudinal_outer_search_method="greedySearch",
                 non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
+                features_group=longitudinal_data.feature_groups(),
                 parallel=True,
+                outer_search_method="greedySearch",
             ),
         ),
         (
@@ -244,7 +234,7 @@ def MerWavTimePlusExhaustiveCFSLexicoRFClassifier(longitudinal_data):
                 n_estimators=5,
                 features_group=longitudinal_data.feature_groups(),
                 random_state=42,
-            )
+            ),
         ),
     ]
 
@@ -266,7 +256,7 @@ def MerWavTimePlusLexicoRFClassifier(longitudinal_data):
                 n_estimators=5,
                 features_group=longitudinal_data.feature_groups(),
                 random_state=42,
-            )
+            ),
         ),
     ]
 
@@ -288,9 +278,10 @@ def MerWavTimePlusLexicoDTClassifier(longitudinal_data):
                 threshold_gain=0.015,
                 features_group=longitudinal_data.feature_groups(),
                 random_state=42,
-            )
+            ),
         ),
     ]
+
 
 def MerWavTimePlusExhaustiveCFSNestedTree(longitudinal_data):
     return [
@@ -305,10 +296,10 @@ def MerWavTimePlusExhaustiveCFSNestedTree(longitudinal_data):
         (
             "CorrelationBasedFeatureSelectionPerGroup",
             CorrelationBasedFeatureSelectionPerGroup(
-                features_group=longitudinal_data.feature_groups(),
-                cfs_longitudinal_outer_search_method="greedySearch",
                 non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
+                features_group=longitudinal_data.feature_groups(),
                 parallel=True,
+                outer_search_method="greedySearch",
             ),
         ),
         (
@@ -317,9 +308,10 @@ def MerWavTimePlusExhaustiveCFSNestedTree(longitudinal_data):
                 features_group=longitudinal_data.feature_groups(),
                 parallel=True,
                 save_nested_trees=False,
-            )
+            ),
         ),
     ]
+
 
 # MerWavTimePlus -> NestedTree
 def MerWavTimePlusNestedTree(longitudinal_data):
@@ -338,50 +330,46 @@ def MerWavTimePlusNestedTree(longitudinal_data):
                 features_group=longitudinal_data.feature_groups(),
                 parallel=True,
                 save_nested_trees=False,
-            )
+            ),
         ),
     ]
 
+
 pipelines_dict = {
-    'MerWavTimeMinusDecisionTreeClassifier': MerWavTimeMinusDecisionTreeClassifier,
-    'AggrFuncDecisionTreeClassifier': AggrFuncDecisionTreeClassifier,
-    'SepWavDecisionTreeClassifierVoting': SepWavDecisionTreeClassifierVoting,
-    'SepWavDecisionTreeClassifierStacking': SepWavDecisionTreeClassifierStacking,
-    'MerWavTimePlusLexicoRFClassifier': MerWavTimePlusLexicoRFClassifier,
-    'MerWavTimePlusLexicoDTClassifier': MerWavTimePlusLexicoDTClassifier,
-    'MerWavTimePlusNestedTree': MerWavTimePlusNestedTree,
-
-    'MerWavTimeMinusStandardCFSDecisionTreeClassifier': MerWavTimeMinusStandardCFSDecisionTreeClassifier,
-    'AggrFuncStandardCFSDecisionTreeClassifier': AggrFuncStandardCFSDecisionTreeClassifier,
-    'SepWavStandardCFSDecisionTreeClassifierVoting': SepWavStandardCFSDecisionTreeClassifierVoting,
-    'SepWavStandardCFSDecisionTreeClassifierStacking': SepWavStandardCFSDecisionTreeClassifierStacking,
-
-    'MerWavTimePlusExhaustiveCFSNestedTree': MerWavTimePlusExhaustiveCFSNestedTree,
-    'MerWavTimePlusExhaustiveCFSLexicoRFClassifier': MerWavTimePlusExhaustiveCFSLexicoRFClassifier,
+    "MerWavTimeMinusDecisionTreeClassifier": MerWavTimeMinusDecisionTreeClassifier,
+    "AggrFuncDecisionTreeClassifier": AggrFuncDecisionTreeClassifier,
+    "SepWavDecisionTreeClassifierVoting": SepWavDecisionTreeClassifierVoting,
+    "SepWavDecisionTreeClassifierStacking": SepWavDecisionTreeClassifierStacking,
+    "MerWavTimePlusLexicoRFClassifier": MerWavTimePlusLexicoRFClassifier,
+    "MerWavTimePlusLexicoDTClassifier": MerWavTimePlusLexicoDTClassifier,
+    "MerWavTimePlusNestedTree": MerWavTimePlusNestedTree,
+    "MerWavTimeMinusStandardCFSDecisionTreeClassifier": MerWavTimeMinusStandardCFSDecisionTreeClassifier,
+    "AggrFuncStandardCFSDecisionTreeClassifier": AggrFuncStandardCFSDecisionTreeClassifier,
+    "SepWavStandardCFSDecisionTreeClassifierVoting": SepWavStandardCFSDecisionTreeClassifierVoting,
+    "SepWavStandardCFSDecisionTreeClassifierStacking": SepWavStandardCFSDecisionTreeClassifierStacking,
+    "MerWavTimePlusExhaustiveCFSNestedTree": MerWavTimePlusExhaustiveCFSNestedTree,
+    "MerWavTimePlusExhaustiveCFSLexicoRFClassifier": MerWavTimePlusExhaustiveCFSLexicoRFClassifier,
 }
 
 
 class TestLongitudinalPipelines:
     @pytest.fixture(
-        params=list
-            (itertools.product(
-            [
-                "core",
-                "nurse"
-            ],
-            [
-                "angina_dataset.csv",
-                "arthritis_dataset.csv",
-                "cataract_dataset.csv",
-                "dementia_dataset.csv",
-                "hbp_dataset.csv",
-                "diabetes_dataset.csv",
-                "osteoporosis_dataset.csv",
-                "heartattack_dataset.csv",
-                "parkinsons_dataset.csv",
-                "stroke_dataset.csv"
-            ]
-        )
+        params=list(
+            itertools.product(
+                ["core", "nurse"],
+                [
+                    "angina_dataset.csv",
+                    "arthritis_dataset.csv",
+                    "cataract_dataset.csv",
+                    "dementia_dataset.csv",
+                    "hbp_dataset.csv",
+                    "diabetes_dataset.csv",
+                    "osteoporosis_dataset.csv",
+                    "heartattack_dataset.csv",
+                    "parkinsons_dataset.csv",
+                    "stroke_dataset.csv",
+                ],
+            )
         )
     )
     def longitudinal_data(self, request):
@@ -408,7 +396,8 @@ class TestLongitudinalPipelines:
             feature_list_names=longitudinal_data.data.columns.tolist(),
         )
         longitudinal_pipeline.fit(
-            longitudinal_data.X_train, longitudinal_data.y_train,
+            longitudinal_data.X_train,
+            longitudinal_data.y_train,
         )
         assert len(longitudinal_pipeline.steps) > 0, f"Pipeline {pipeline_name} does not contain any steps"
 
@@ -419,7 +408,7 @@ class TestLongitudinalPipelines:
 
         assert y_pred is not None, "Predict method failed"
         assert len(y_pred) == len(
-            longitudinal_data.y_test), f"Size mismatch between predicted and actual values for {pipeline_name}"
+            longitudinal_data.y_test
+        ), f"Size mismatch between predicted and actual values for {pipeline_name}"
         unique_y = longitudinal_data.y_train.unique()
         assert set(y_pred).issubset(unique_y), f"Invalid class labels in predictions for {pipeline_name}"
-
