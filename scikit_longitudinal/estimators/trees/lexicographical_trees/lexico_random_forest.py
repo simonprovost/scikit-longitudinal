@@ -81,6 +81,7 @@ class LexicoRFClassifier(RandomForestClassifier):
 
         Ribeiro, C. and Freitas, A., 2020, December. A new random forest method for longitudinal data
         classification using a lexicographic bi-objective approach. In 2020 IEEE Symposium Series on
+
     """
 
     def __init__(

@@ -18,8 +18,7 @@ def default_callback(
     name: str,
     transformer: TransformerMixin,
 ) -> Tuple[np.ndarray, List[List[int]], List[Union[int, str]], List[str]]:
-    """
-    Default callback function for updating feature groups.
+    """Default callback function for updating feature groups.
 
     Args:
         step_idx:
@@ -39,6 +38,7 @@ def default_callback(
         - List representing the updated feature groups.
         - List of non-longitudinal features.
         - List of column names in the updated data.
+
     """
     if isinstance(transformer, CorrelationBasedFeatureSelectionPerGroup):
         data = transformer.apply_selected_features_and_rename(dummy_longitudinal_dataset.data, None)
@@ -73,6 +73,7 @@ def validate_update_feature_groups_callback(callback: Callable) -> Callable:
 
     Raises:
         ValueError: If the callback is not valid.
+
     """
     if callback == "default":
         return default_callback

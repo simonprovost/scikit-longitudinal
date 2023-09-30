@@ -60,14 +60,14 @@ class ElsaDataHandler:
     def core_preprocessing(self) -> None:
         """Preprocesses the core dataset.
 
-        The renaming of certain attributes from "longitudinal" to "non-longitudinal" has been implemented.
-        Specifically, the attribute names have been updated from "wN" to "waveN" to reflect this change. The default
-        behaviour of the LongitudinalDataset class is modified in order to prevent the automatic creation of a group
-        for the features. Instead, a separate group is created for each of the non-longitudinal attributes that are
-        specified. Furthermore, it is worth noting that certain attributes have been deemed superfluous for the
-        purpose of classification. Specifically, the age attributes have been excluded, with particular emphasis on
-        the final attribute (age_w8), as it pertains to the individual's age in the past and is therefore deemed
-        irrelevant.
+        The renaming of certain attributes from "longitudinal" to "non-longitudinal" has been implemented. Specifically,
+        the attribute names have been updated from "wN" to "waveN" to reflect this change. The default behaviour of the
+        LongitudinalDataset class is modified in order to prevent the automatic creation of a group for the features.
+        Instead, a separate group is created for each of the non-longitudinal attributes that are specified.
+        Furthermore, it is worth noting that certain attributes have been deemed superfluous for the purpose of
+        classification. Specifically, the age attributes have been excluded, with particular emphasis on the final
+        attribute (age_w8), as it pertains to the individual's age in the past and is therefore deemed irrelevant.
+
         """
         column_mapping = {
             "dicdnf_w7": "dicdnf_wave7",
@@ -93,14 +93,14 @@ class ElsaDataHandler:
     def nurse_preprocessing(self) -> None:
         """Preprocesses the nurse dataset.
 
-        The renaming of certain attributes from "longitudinal" to "non-longitudinal" has been implemented.
-        Specifically, the attribute names have been updated from "wN" to "waveN" to reflect this change. The default
-        behaviour of the LongitudinalDataset class is modified in order to prevent the automatic creation of a group
-        for the features. Instead, a separate group is created for each of the non-longitudinal attributes that are
-        specified. Furthermore, it is worth noting that certain attributes have been deemed superfluous for the
-        purpose of classification. Specifically, the age attributes have been excluded, with particular emphasis on
-        the final attribute (age_w8), as it pertains to the individual's age in the past and is therefore deemed
-        irrelevant.
+        The renaming of certain attributes from "longitudinal" to "non-longitudinal" has been implemented. Specifically,
+        the attribute names have been updated from "wN" to "waveN" to reflect this change. The default behaviour of the
+        LongitudinalDataset class is modified in order to prevent the automatic creation of a group for the features.
+        Instead, a separate group is created for each of the non-longitudinal attributes that are specified.
+        Furthermore, it is worth noting that certain attributes have been deemed superfluous for the purpose of
+        classification. Specifically, the age attributes have been excluded, with particular emphasis on the final
+        attribute (age_w8), as it pertains to the individual's age in the past and is therefore deemed irrelevant.
+
         """
         column_mapping = {
             "indager_w8": "indager_wave8",
@@ -117,6 +117,7 @@ class ElsaDataHandler:
 
         Returns:
             list: A list of unique class names.
+
         """
         columns = self.df.columns
         unique_classes = []
@@ -154,6 +155,7 @@ class ElsaDataHandler:
         Returns:
             pd.DataFrame:
                 The dataset corresponding to the class name, or None if the class does not exist.
+
         """
         return self.datasets.get(class_name, None)
 
@@ -168,6 +170,7 @@ class ElsaDataHandler:
 
         Raises:
             ValueError: If an unsupported file format is provided.
+
         """
         if not os.path.exists(dir_output):
             os.makedirs(dir_output)
@@ -191,6 +194,7 @@ def main(args):  # pragma: no cover
     """Main function for the ELSA data handler.
 
     Used by the makefile target rule named `make create_elsa_core_datasets`.
+
     """
 
     csv_path = args.csv_path

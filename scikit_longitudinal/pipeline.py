@@ -14,8 +14,7 @@ from scikit_longitudinal.pipeline_managers.manage_steps import configure_and_fit
 
 # pylint: disable=W0511
 class LongitudinalPipeline(Pipeline):
-    """
-    Custom pipeline for handling and processing longitudinal techniques (preprocessors, classifier, etc.).
+    """Custom pipeline for handling and processing longitudinal techniques (preprocessors, classifier, etc.).
 
     This class extends the scikit-learn's Pipeline to offer specialised methods and
     attributes for working with longitudinal data. It ensures that the longitudinal features
@@ -40,6 +39,7 @@ class LongitudinalPipeline(Pipeline):
     Note:
         While this class maintains the interface of scikit-learn's Pipeline, it includes
         specific methods and validations to ensure the correct processing of longitudinal data.
+
     """
 
     def __init__(
@@ -71,8 +71,7 @@ class LongitudinalPipeline(Pipeline):
         y: Optional[Union[pd.Series, np.ndarray]] = None,
         **fit_params: Dict[str, Any],
     ) -> "LongitudinalPipeline":
-        """
-        Fit the transformers in the pipeline and then the final estimator.
+        """Fit the transformers in the pipeline and then the final estimator.
 
         For each step, the transformers are configured and fitted. The data is transformed
         and updated for each step, ensuring that the longitudinal feature structure is maintained.
@@ -88,6 +87,7 @@ class LongitudinalPipeline(Pipeline):
         Returns:
             LongitudinalPipeline:
                 The fitted pipeline.
+
         """
         self._longitudinal_data = X.copy()
         self.selected_feature_indices_ = np.arange(X.shape[1])
@@ -183,8 +183,7 @@ class LongitudinalPipeline(Pipeline):
 
     @validate_input
     def predict(self, X: np.ndarray, **predict_params: Dict[str, Any]) -> np.ndarray:
-        """
-        Predict the target values using the final estimator of the pipeline.
+        """Predict the target values using the final estimator of the pipeline.
 
         Args:
             X (np.ndarray):
@@ -199,6 +198,7 @@ class LongitudinalPipeline(Pipeline):
         Raises:
             NotImplementedError:
                 If the final estimator does not have a predict method.
+
         """
         X = X[:, self.selected_feature_indices_]
 
@@ -220,8 +220,7 @@ class LongitudinalPipeline(Pipeline):
 
     @validate_input
     def transform(self, X: np.ndarray, **transform_params: Dict[str, Any]) -> np.ndarray:
-        """
-        Transform the input data using the final estimator of the pipeline.
+        """Transform the input data using the final estimator of the pipeline.
 
         Args:
             X (np.ndarray):
@@ -232,6 +231,7 @@ class LongitudinalPipeline(Pipeline):
         Returns:
             np.ndarray:
                 Transformed data.
+
         """
         if self.selected_feature_indices_ is None or len(self.selected_feature_indices_) == 0:
             print("No feature selection was performed. Returning the original data.")

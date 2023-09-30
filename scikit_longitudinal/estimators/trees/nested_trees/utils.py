@@ -109,6 +109,7 @@ def _save_inner_tree(tree: DecisionTreeClassifier, filename: str) -> None:  # pr
             The decision tree to visualize.
         filename (str):
             The name of the file to save the image as.
+
     """
     plt.figure(figsize=(10, 10))
     plot_tree(tree, filled=True)

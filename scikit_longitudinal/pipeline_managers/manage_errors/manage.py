@@ -9,8 +9,7 @@ from rich import print
 
 
 def handle_errors(f: Callable) -> Callable:
-    """
-    Decorator to handle errors and print tracebacks for functions. S.t fit only for the moment.
+    """Decorator to handle errors and print tracebacks for functions. S.t fit only for the moment.
 
     This decorator catches exceptions, prints tracebacks, and then re-raises the exceptions.
 
@@ -23,6 +22,7 @@ def handle_errors(f: Callable) -> Callable:
     Raises:
         stopit.utils.TimeoutException: If a timeout occurs during the function's execution.
         Exception: Any other exceptions that might occur during the function's execution.
+
     """
 
     def wrapper(*args: Any, **kwargs: Any) -> Any:
@@ -41,8 +41,7 @@ def handle_errors(f: Callable) -> Callable:
 
 
 def validate_input(f: Callable) -> Callable:
-    """
-    Decorator to validate the input passed to a function. S.t predict, predict_proba, transform, and fit.
+    """Decorator to validate the input passed to a function. S.t predict, predict_proba, transform, and fit.
 
     This decorator checks if the input data is not None and is one of the following types:
     - numpy array
@@ -66,6 +65,7 @@ def validate_input(f: Callable) -> Callable:
             - If the input data is None.
             - If the input data is not one of the expected types.
             - If the target data `y` is not one of the expected types.
+
     """
 
     @wraps(f)

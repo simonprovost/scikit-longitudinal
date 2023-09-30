@@ -26,6 +26,7 @@ def clean_padding(features_group: List[List[int]]) -> List[List[int]]:
     Returns:
         List[List[int]]:
             The feature groups updated without padding.
+
     """
     if features_group is not None:
         features_group = [[idx for idx in group if idx != -1] for group in features_group]
@@ -177,6 +178,7 @@ class LongitudinalDataset:
         >>> dataset.load_data()
         >>> dataset.setup_features_group("Elsa")
         >>> dataset.convert(output_file)
+
     """
 
     @check_extension([".csv", ".arff"])
@@ -209,6 +211,7 @@ class LongitudinalDataset:
                 If the file format is not supported. Only ARFF and CSV are supported.
             FileNotFoundError:
                 If the file specified in the file_path parameter does not exist.
+
         """
         if self._data is not None:
             return
@@ -241,6 +244,7 @@ class LongitudinalDataset:
 
         Raises:
             ValueError: If no data is loaded or the target_column is not found in the dataset.
+
         """
         if self._data is None:
             raise ValueError("No data is loaded. Load data first.")
@@ -265,6 +269,7 @@ class LongitudinalDataset:
             random_state (int, optional):
                 Controls the shuffling applied to the data before applying the split. Pass an int for reproducible
                 output across multiple function calls. Defaults to None.
+
         """
         if self._data is None or self._target is None:
             raise ValueError("No data or target is loaded. Load them first.")
@@ -296,6 +301,7 @@ class LongitudinalDataset:
             random_state (int, optional):
                 Controls the shuffling applied to the data before applying the split. Pass an int for reproducible
                 output across multiple function calls. Defaults to None.
+
         """
         self.load_data()
         self.load_target(target_column, target_wave_prefix, remove_target_waves)
@@ -307,6 +313,7 @@ class LongitudinalDataset:
 
         Returns:
             pd.DataFrame: The loaded dataset.
+
         """
         return self._data
 
@@ -316,6 +323,7 @@ class LongitudinalDataset:
 
         Returns:
             pd.Series: The target.
+
         """
         return self._target
 
@@ -325,6 +333,7 @@ class LongitudinalDataset:
 
         Returns:
             np.ndarray: The training data.
+
         """
         return self._X_train
 
@@ -334,6 +343,7 @@ class LongitudinalDataset:
 
         Returns:
             np.ndarray: The test data.
+
         """
         return self._X_test
 
@@ -343,6 +353,7 @@ class LongitudinalDataset:
 
         Returns:
             pd.Series: The training target data.
+
         """
         return self._y_train
 
@@ -352,6 +363,7 @@ class LongitudinalDataset:
 
         Returns:
             pd.Series: The test target data.
+
         """
         return self._y_test
 
@@ -364,6 +376,7 @@ class LongitudinalDataset:
 
         Returns:
             pd.DataFrame: Converted DataFrame.
+
         """
 
         def parse_row(line: str, row_len: int) -> List[Any]:
@@ -375,6 +388,7 @@ class LongitudinalDataset:
 
             Returns:
                 List[Any]: Parsed row as a list of values.
+
             """
             line = line.strip()  # Strip the newline character
             if "{" in line and "}" in line:
@@ -408,6 +422,7 @@ class LongitudinalDataset:
 
             Returns:
                 Tuple[List[str], int]: List of column names and the index of the @data line.
+
             """
             columns = []
             len_attr = len("@attribute")
@@ -459,6 +474,7 @@ class LongitudinalDataset:
         Args:
             output_path (Union[str, Path]):
                 Path to store the resulting file.
+
         """
         if self._data is None:
             raise ValueError("No data to convert. Load data first.")
@@ -485,6 +501,7 @@ class LongitudinalDataset:
         Args:
             output_path (Union[str, Path]):
                 Path to store the resulting file.
+
         """
         if self._data is None:
             raise ValueError("No data to save. Load or convert data first.")
@@ -506,6 +523,7 @@ class LongitudinalDataset:
 
         Raises:
             ValueError: If input_data is not one of the expected types or if a feature name is not found in the dataset.
+
         """
         if isinstance(input_data, str) and input_data.lower() == "elsa":
             self._feature_groups = self._create_elsa_feature_groups()
@@ -545,6 +563,7 @@ class LongitudinalDataset:
         Raises:
             ValueError:
                 If a feature name is not found in the dataset.
+
         """
         column_indices = {col: i for i, col in enumerate(self._data.columns)}
         index_groups = []
@@ -571,6 +590,7 @@ class LongitudinalDataset:
         Returns:
             List[List[int]]:
                 Feature groups using column indices, padded to include placeholders for missing waves.
+
         """
         wave_columns = {}
         wave_suffix_pattern = re.compile(r"_w(\d+)$")
@@ -609,6 +629,7 @@ class LongitudinalDataset:
         Returns:
             List[List[Union[int, str]]]:
                 The feature groups as a list of lists of feature names or indices.
+
         """
         if names:
             return [[self._data.columns[i] if i != -1 else "N/A" for i in group] for group in self._feature_groups]
@@ -626,6 +647,7 @@ class LongitudinalDataset:
         Returns:
             List[Union[int, str]]:
                 The non-longitudinal features as a list of feature names or indices.
+
         """
         if names:
             return [self._data.columns[i] for i in self._non_longitudinal_features]

@@ -10,8 +10,9 @@ from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_sel
 class SpecialHandlerInterface(ABC):
     """Abstract base class for special handlers.
 
-    Provides methods to handle special cases during both the transformation phase and
-    the final estimator phase of a machine learning pipeline_managers.
+    Provides methods to handle special cases during both the transformation phase and the final estimator phase of a
+    machine learning pipeline_managers.
+
     """
 
     @abstractmethod
@@ -32,6 +33,7 @@ class SpecialHandlerInterface(ABC):
 
         Returns:
             Tuple containing the potentially modified transformer, X, and y.
+
         """
 
     @abstractmethod
@@ -54,11 +56,14 @@ class SpecialHandlerInterface(ABC):
 
         Returns:
             Tuple containing the potentially modified final_estimator, steps, X, and y.
+
         """
 
 
 class CorrelationBasedFeatureSelectionPerGroupHandler(SpecialHandlerInterface):
-    """Special handler for the CorrelationBasedFeatureSelectionPerGroup transformer."""
+    """
+    Special handler for the CorrelationBasedFeatureSelectionPerGroup transformer.
+    """
 
     def handle_transform(
         self, transformer: Any, X: Any, y: Optional[Any] = None, **kwargs
@@ -66,6 +71,7 @@ class CorrelationBasedFeatureSelectionPerGroupHandler(SpecialHandlerInterface):
         """Handle special cases during the transform phase for CorrelationBasedFeatureSelectionPerGroup.
 
         Modifies the input data X based on the transformer's selected features.
+
         """
         if max(transformer.selected_features_) < X.shape[1]:
             X = X[:, transformer.selected_features_]
@@ -76,17 +82,23 @@ class CorrelationBasedFeatureSelectionPerGroupHandler(SpecialHandlerInterface):
     def handle_final_estimator(
         self, final_estimator: Any, steps: List[Tuple[str, Any]], X: Any, y: Any, **kwargs
     ) -> Tuple[Any, List[Tuple[str, Any]], Any, Any]:
-        """No special handling for the final estimator for this transformer."""
+        """
+        No special handling for the final estimator for this transformer.
+        """
         return final_estimator, steps, X, y
 
 
 class SepWavHandler(SpecialHandlerInterface):
-    """Special handler for the SepWav transformer."""
+    """
+    Special handler for the SepWav transformer.
+    """
 
     def handle_transform(
         self, transformer: Any, X: Any, y: Optional[Any] = None, **kwargs
     ) -> Tuple[Any, Any, Optional[Any]]:
-        """No special handling during the transform phase for this transformer."""
+        """
+        No special handling during the transform phase for this transformer.
+        """
         return transformer, X, y
 
     def handle_final_estimator(
@@ -94,10 +106,11 @@ class SepWavHandler(SpecialHandlerInterface):
     ) -> Tuple[Any, List[Tuple[str, Any]], Any, Any]:
         """Handle special cases for the SepWav transformer during the final estimator phase.
 
-        Modifies the classifier attribute of the SepWav object in the pipeline's steps. While the SepWav is considered
-        a transformer, it is also a classifier, and therefore needs to be handled differently than other transformers.
-        Such that the SepWav become the actual final estimator in the pipeline. Refer to the documentation of
-        SepWav for more information.
+        Modifies the classifier attribute of the SepWav object in the pipeline's steps. While the SepWav is considered a
+        transformer, it is also a classifier, and therefore needs to be handled differently than other transformers.
+        Such that the SepWav become the actual final estimator in the pipeline. Refer to the documentation of SepWav for
+        more information.
+
         """
         # TODO: This handler does not work if we have more than one preprocessor / transformer in the pipeline_managers.
         #  Find a way to make it work for any number of preprocessor / transformers.

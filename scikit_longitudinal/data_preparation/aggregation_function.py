@@ -70,6 +70,7 @@ def validate_aggregation_func(func: Callable) -> Callable:
     Returns:
         Callable:
             The decorated function.
+
     """
 
     def wrapper(self: "AggrFunc", *args: Any, **kwargs: Any) -> Any:
@@ -101,6 +102,7 @@ def init_ray(func: Callable) -> Callable:
     Returns:
         Callable:
             The decorated function.
+
     """
 
     def wrapper(self: "AggrFunc", *args: Any, **kwargs: Any) -> Any:
@@ -138,6 +140,7 @@ def get_agg_feature(
     Returns:
         pd.DataFrame:
             A DataFrame with a single column, which is the aggregated feature.
+
     """
     agg_feature = data[feature_group].agg(agg_func, axis=1)
     name = re.sub(r"_w\d+$", "", feature_group[0])
@@ -169,6 +172,7 @@ def _aggregate(
     Returns:
         pd.DataFrame:
             A DataFrame with a single column, which is the aggregated feature.
+
     """
     if (
         aggregation_func_name not in ["mean", "median"]
@@ -252,6 +256,7 @@ class AggrFunc(DataPreparationMixin):
         transformed_dataset, transformed_features_group, transformed_non_longitudinal_features, \
             transformed_feature_list_names = agg_func.transform()
         ```
+
     """
 
     @validate_aggregation_func
@@ -304,6 +309,7 @@ class AggrFunc(DataPreparationMixin):
         Returns:
             AggrFunc:
                 The instance of the class with prepared data.
+
         """
         self.dataset = pd.DataFrame(X, columns=self.feature_list_names)
         self.target = y
@@ -332,6 +338,7 @@ class AggrFunc(DataPreparationMixin):
                 The non-longitudinal features in the transformed dataset. Obviously, this is None.
             - List[str]:
                 The names of the features in the transformed dataset.
+
         """
         if self.features_group is not None:
             self.features_group = clean_padding(self.features_group)

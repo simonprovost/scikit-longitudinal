@@ -25,6 +25,7 @@ def validate_extract_wave_input(func):
 
     Raises:
         ValueError: If the wave number is less than 0.
+
     """
 
     def wrapper(self, wave: int):
@@ -48,6 +49,7 @@ def validate_extract_wave_output(func):  # pragma: no cover
 
     Raises:
         ValueError: If the number of features in the wave does not match the expected number of features.
+
     """
 
     def wrapper(self, wave: int):
@@ -74,6 +76,7 @@ def validate_fit_input(func):
 
     Raises:
         ValueError: If the classifier, dataset, or feature groups are None.
+
     """
 
     def wrapper(self, X, y):
@@ -96,6 +99,7 @@ def validate_fit_output(func):  # pragma: no cover
 
     Raises:
         ValueError: If the clf_ensemble is None after fitting.
+
     """
 
     def wrapper(self, X, y):
@@ -120,6 +124,7 @@ def validate_predict_input(func):
 
     Raises:
         NotFittedError: If the SepWav instance is not fitted yet.
+
     """
 
     def wrapper(self, X):
@@ -146,6 +151,7 @@ def validate_predict_wave_input(func):
 
     Raises:
         NotFittedError: If the SepWav instance is not fitted yet.
+
     """
 
     def wrapper(self, wave, X):
@@ -182,6 +188,7 @@ def train_classifier(classifier, X_wave, y_wave, wave):  # pragma: no cover
         tuple: A tuple containing two elements:
             - wave (string): The wave number as a string.
             - clf_wave (BaseEstimator): The trained classifier.
+
     """
     clf_wave = clone(classifier)
     clf_wave.fit(X_wave, y_wave)
@@ -257,6 +264,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         y_pred = sepwav.predict(longitudinal_data.X_test)
         print(classification_report(longitudinal_data.y_test, y_pred))
         ```
+
     """
 
     def __init__(
@@ -307,6 +315,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         """Prepare the data for the transformation.
 
         Replaced by the fit method.
+
         """
         return self
 
@@ -337,6 +346,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
         Raises:
             ValueError: If the wave number is less than 0.
+
         """
         feature_indices = [group[wave] for group in self.features_group if wave < len(group)]
         if self.non_longitudinal_features is not None:
@@ -373,6 +383,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         Raises:
             ValueError: If the classifier, dataset, or feature groups are None, or if the ensemble strategy
               is neither 'voting' nor 'stacking'.
+
         """
         self.dataset = pd.DataFrame(X, columns=self.feature_list_names)
         self.target = y
@@ -434,6 +445,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         Returns:
             Union[List[float], np.ndarray]:
                 The predicted classes.
+
         """
         return self.clf_ensemble.predict(X)
 
@@ -451,12 +463,13 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         Returns:
             Union[List[List[float]], np.ndarray]:
                 The predicted class probabilities.
+
         """
         if hasattr(self.clf_ensemble, "predict_proba"):
             return self.clf_ensemble.predict_proba(X)
         else:
             raise NotImplementedError(
-                f"predict_proba is not implemented for this classifier: "
+                "predict_proba is not implemented for this classifier: "
                 f"{self.clf_ensemble} / type: {type(self.clf_ensemble)}"
             )
 

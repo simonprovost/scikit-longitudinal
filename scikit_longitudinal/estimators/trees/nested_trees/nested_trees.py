@@ -110,6 +110,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 If True, use parallelization for fitting inner trees.
             save_nested_trees : bool, optional (default=False)
                 If True, save inner decision tree visualizations as image files.
+
         """
         self.features_group = features_group
         self.non_longitudinal_features = non_longitudinal_features
@@ -180,6 +181,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             >>> from sklearn.tree import DecisionTreeClassifier
             >>> inner_tree = DecisionTreeClassifier()
             >>> node = Node(is_leaf=False, tree=inner_tree, node_name="dummy_node")
+
         """
 
         def __init__(
@@ -221,6 +223,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         Raises:
             ValueError:
                 If there are less than or equal to 1 feature group.
+
         """
         if self.non_longitudinal_features is not None:
             self.features_group.append(self.non_longitudinal_features)
@@ -247,6 +250,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         Returns:
             np.ndarray:
                 The predicted class labels for each input sample.
+
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")
@@ -263,6 +267,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         Returns:
             np.ndarray:
                 The predicted class probabilities for each input sample.
+
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")
@@ -354,6 +359,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         Returns:
             Tuple[DecisionTreeClassifier, List[Tuple[np.ndarray, np.ndarray, int]], List[int]]:
                 A tuple containing the best inner decision tree, the associated split, and the best feature group.
+
         """
         min_gini = float("inf")
         best_tree = None
@@ -379,7 +385,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         else:
             for i, group in enumerate(self.features_group):
                 subset_X_temp = X[:, group]
-                print(f"Group {i}: {group}\n" f"Subset X: {subset_X_temp}\n")
+                print(f"Group {i}: {group}\nSubset X: {subset_X_temp}\n")
                 tree, _, gini = _fit_inner_tree_and_calculate_gini(
                     subset_X_temp,
                     y,
@@ -411,6 +417,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 The best split of the data, represented as a list of tuples with (X subset, y subset, leaf number).
             depth (int):
                 The current depth of the node in the outer decision tree.
+
         """
         for i, (subset_X, subset_y, leaf_number) in enumerate(best_split):
             child_node_name = f"outer_{node.node_name}_d{depth + 1}_g{i}_l{leaf_number}"
@@ -437,6 +444,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                     * X subset corresponding to a leaf node
                     * y subset corresponding to a leaf node
                     * Leaf number
+
         """
         leaves = tree.apply(subset_X)
         unique_leaves = np.unique(leaves)
@@ -451,6 +459,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         Returns:
             int: The predicted class label for the input sample.
+
         """
         node = self.root
         leaf_subset = None
@@ -472,6 +481,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         Returns:
             np.ndarray: The predicted class probabilities for the input sample.
+
         """
         node = self.root
         leaf_subset = None
@@ -503,6 +513,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 A string to prepend before the node's name in the output. Default is "".
             parent_name (str, optional):
                 The name of the parent node in the outer decision tree. Default is "".
+
         """
         if node is None:
             node = self.root

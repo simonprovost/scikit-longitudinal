@@ -54,8 +54,7 @@ def metrics_validate_inputs(func):
 def auprc_score(
     y_true: Union[List[int], pd.Series], y_score: np.ndarray, average: Optional[str] = "macro"
 ) -> Union[float, List[float]]:
-    """
-    Calculate the Area Under the Precision-Recall Curve (AUPRC).
+    """Calculate the Area Under the Precision-Recall Curve (AUPRC).
 
     Args:
         y_true (Union[List[int], pd.Series]): Ground truth (correct) target values.
@@ -70,6 +69,7 @@ def auprc_score(
         ValueError: If `y_score` contains non-numerical values.
         ValueError: If `y_true` contains non-integer values.
         ValueError: If `y_true` contains non-binary values (other than 0 and 1).
+
     """
     y_type = type_of_target(y_true)
     if y_score.ndim == 2:

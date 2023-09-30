@@ -79,6 +79,7 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
 
         Returns:
             CorrelationBasedFeatureSelection: The fitted feature selection algorithm.
+
         """
         match self.search_method:
             case "exhaustiveSearch":
@@ -97,5 +98,6 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
 
         Returns:
             np.ndarray: The transformed data of shape (n_samples, n_selected_features).
+
         """
         return X[:, self.selected_features_]

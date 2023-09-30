@@ -19,8 +19,7 @@ def configure_and_fit_transformer(
     non_longitudinal_features: List[Union[int, str]],
     update_feature_groups_callback: Callable,
 ) -> Tuple[Any, np.ndarray, np.ndarray, List[str]]:
-    """
-    Configure and fit a given transformer.
+    """Configure and fit a given transformer.
 
     Args:
         transformer:
@@ -47,6 +46,7 @@ def configure_and_fit_transformer(
     Returns:
         Tuple containing the configured and fitted transformer, the transformed data X,
         updated selected_feature_indices, and updated feature_list_names.
+
     """
     transformer = configure_transformer(
         transformer=transformer,
@@ -84,8 +84,7 @@ def handle_final_estimator(
     y: np.ndarray,
     fit_params: Dict[str, Any],
 ) -> Any:
-    """
-    Configure and fit the final estimator in the pipeline.
+    """Configure and fit the final estimator in the pipeline.
 
     Args:
         final_estimator:
@@ -107,6 +106,7 @@ def handle_final_estimator(
 
     Returns:
         The fitted final_estimator.
+
     """
     if hasattr(final_estimator, "features_group"):
         final_estimator.features_group = features_group

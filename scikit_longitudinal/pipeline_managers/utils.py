@@ -13,8 +13,7 @@ def configure_transformer(
     feature_list_names: List[str],
     update_feature_groups_callback: Optional[Callable] = None,
 ) -> TransformerMixin:
-    """
-    Configures the transformer with the necessary attributes based on its type.
+    """Configures the transformer with the necessary attributes based on its type.
 
     If the transformer is of type `DataPreparationMixin`, it is configured with the necessary
     attributes for data preparation. If it has the attribute 'features_group', it is configured
@@ -44,10 +43,13 @@ def configure_transformer(
             - If required attributes are missing for the transformer type.
             - If the callback function for updating feature groups is not provided for transformers
               that require it.
+
     """
 
     def check_required_attributes():
-        """Check if the required attributes are set."""
+        """
+        Check if the required attributes are set.
+        """
         if not features_group:
             raise ValueError(f"The transformer {name} requires 'features_group'.")
         if not feature_list_names:
@@ -58,7 +60,9 @@ def configure_transformer(
             )
 
     def check_update_feature_callback():
-        """Check if the update_feature_groups_callback is valid."""
+        """
+        Check if the update_feature_groups_callback is valid.
+        """
         if update_feature_groups_callback is None:
             raise ValueError(
                 f"The transformer {name} has a features_group attribute, but no update_data"
@@ -69,7 +73,9 @@ def configure_transformer(
             raise ValueError("update_data_callback must be a callable function")
 
     def set_transformer_attributes():
-        """Set the required attributes for the transformer."""
+        """
+        Set the required attributes for the transformer.
+        """
         transformer.features_group = features_group
         if hasattr(transformer, "non_longitudinal_features") and non_longitudinal_features:
             transformer.non_longitudinal_features = non_longitudinal_features
