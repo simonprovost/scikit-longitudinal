@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 
-from scikit_longitudinal.estimators.tree import LexicoRFClassifier
+from scikit_longitudinal.estimators.trees import LexicoRFClassifier
 from scikit_longitudinal.experiments.engine import DatasetInfo, ExperimentEngine
 
 

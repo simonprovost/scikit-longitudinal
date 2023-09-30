@@ -4,8 +4,7 @@ from sklearn.datasets import load_iris, make_classification
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-from scikit_longitudinal.estimators.tree import LexicoRFClassifier
-from scikit_longitudinal.estimators.tree.lexico_rf.lexico_rf import LexicoDecisionTreeClassifier
+from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier, LexicoRFClassifier
 
 
 def create_synthetic_data(

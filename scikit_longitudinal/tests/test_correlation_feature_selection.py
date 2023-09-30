@@ -4,7 +4,10 @@ import pandas as pd
 import pytest
 from scipy.io import loadmat
 
-from scikit_longitudinal.preprocessing.feature_selection.cfs_per_group import CorrelationBasedFeatureSelectionPerGroup
+from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import (
+    CorrelationBasedFeatureSelection,
+    CorrelationBasedFeatureSelectionPerGroup,
+)
 
 
 @pytest.fixture(scope="module")
@@ -57,18 +60,18 @@ def load_madelon_data_mixed():
 class TestCorrelationBasedFeatureSelectionPerGroup:
     @pytest.fixture(scope="module")
     def cfs_non_longitudinal(self):
-        return CorrelationBasedFeatureSelectionPerGroup(search_method="greedySearch")
+        return CorrelationBasedFeatureSelection(search_method="greedySearch")
 
     @pytest.fixture(scope="module", params=[True, False])
     def cfs_longitudinal(self, load_madelon_data_longitudinal, request):
         _, _, group_features = load_madelon_data_longitudinal
         return CorrelationBasedFeatureSelectionPerGroup(
             search_method="greedySearch",
-            cfs_longitudinal_inner_search_method="greedySearch",
-            cfs_longitudinal_outer_search_method="greedySearch",
-            parallel=request.param,
             features_group=group_features,
-            cfs_per_group_version=1,
+            parallel=request.param,
+            outer_search_method="greedySearch",
+            inner_search_method="greedySearch",
+            version=1,
         )
 
     def test_fit_transform_non_longitudinal(self, cfs_non_longitudinal, load_madelon_data_non_longitudinal):
@@ -90,9 +93,7 @@ class TestCorrelationBasedFeatureSelectionPerGroup:
     @pytest.mark.parametrize("search_method", ["greedySearch", "exhaustiveSearch"])
     def test_search_methods(self, search_method, load_madelon_data_non_longitudinal):
         X, y = load_madelon_data_non_longitudinal
-        cfs = CorrelationBasedFeatureSelectionPerGroup(
-            search_method=search_method,
-        )
+        cfs = CorrelationBasedFeatureSelection(search_method=search_method)
         cfs.fit(X, y)
         assert len(cfs.selected_features_) > 0
 
@@ -103,10 +104,7 @@ class TestCorrelationBasedFeatureSelectionPerGroup:
         selected_features = [0, 2, 4, 6, 8, 10, 11]
 
         cfs = CorrelationBasedFeatureSelectionPerGroup(
-            search_method="greedySearch",
-            features_group=group_features,
-            non_longitudinal_features=[10, 11],
-            cfs_per_group_version=1,
+            non_longitudinal_features=[10, 11], search_method="greedySearch", features_group=group_features, version=1
         )
         cfs.fit(X, y)
 
@@ -118,12 +116,12 @@ class TestCorrelationBasedFeatureSelectionPerGroup:
     def test_invalid_search_method(self, load_madelon_data_non_longitudinal):
         X, y = load_madelon_data_non_longitudinal
         with pytest.raises(AssertionError, match="search_method must be: 'exhaustiveSearch', or 'greedySearch'"):
-            cfs = CorrelationBasedFeatureSelectionPerGroup(search_method="invalidMethod")
+            cfs = CorrelationBasedFeatureSelection(search_method="invalidMethod")
             cfs.fit(X, y)
 
     def test_single_feature_data(self, load_madelon_data_non_longitudinal):
         X, y = load_madelon_data_non_longitudinal
         X = X[:, :1]
-        cfs = CorrelationBasedFeatureSelectionPerGroup(search_method="greedySearch")
+        cfs = CorrelationBasedFeatureSelection(search_method="greedySearch")
         cfs.fit(X, y)
         assert len(cfs.selected_features_) == 1

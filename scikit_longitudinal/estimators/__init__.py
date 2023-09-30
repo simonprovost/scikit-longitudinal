@@ -1,1 +1,1 @@
-from . import tree  # noqa
+from . import trees  # noqa

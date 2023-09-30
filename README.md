@@ -127,50 +127,40 @@
 
 ## 💡 About The Project
 
-Scikit-longitudinal is a machine learning library specifically designed for longitudinal data analysis. It provides a collection of tools and models to process, analyze, and make predictions on longitudinal data, with a simple and user-friendly interface compatible with the Scikit-learn ecosystem.
+Scikit-longitudinal is a machine learning library designed specifically for the analysis
+of longitudinal data. It provides a collection of tools and models for processing,
+analysing, and making predictions on longitudinal data, with an easy-to-use interface
+that is compatible with the Scikit-learn ecosystem.
+
+For Neural Networks based models, we
+recommend to look in the related projecs available in the [Related](#related) section - therefore,
+this current project will not provide any Neural Networks based models as of today.
 
 ## ⭐️Key Features
 
-### 📈 Classifier estimators
+We recommend you to open the [scikit_longitudinal folder's readme](scikit_longitudinal/README.md) file to see the table of key features.
 
-* Nested Tree Classifier (main code is available [here](scikit_longitudinal/estimators/tree/nested_tree/nested_tree.py))
-* Lexicographical Random Forest (main code is available [here](scikit_longitudinal/estimators/tree/lexico_rf/lexico_rf.py))
+## 🛠️ Installation
 
-### 📉 Feature Selection estimators
-
-* Correlation-based Feature Selection Per Group (CFS-PerGroup version 1 and 2) (main code is available [here](scikit_longitudinal/preprocessing/feature_selection/cfs_per_group/cfs_per_group.py))
-
-## 🛠️ Installation (ON-HOLD until the first public release).
+**ON-HOLD until the first public release**
 
 _TODO: Describe how to install the package, including any dependencies._
 
-## 🚀 Getting Started (ON-HOLD until the first public release).
+## 🚀 Getting Started
 
-````python
-import scikit_longitudinal as skl
+ON-HOLD until the first public release
 
-# Load your data
-data = ...
+_TODO: Describe how to easily use the package with a code snippet._
 
-# Initialize the Scikit-longitudinal model
-model = skl.<your_desired_estimator>()
+## 📖 Documentation
 
-# Train the model
-model.fit(data)
+ON-HOLD until the first public release
 
-# Make predictions
-predictions = model.predict(new_data)
-````
-
-## 📖 Documentation (ON-HOLD until the first public release).
-
-Use `make docs` to build the documentation locally or for detailed documentation, including tutorials and API reference,
-please visit our [official documentation](https://simonprovost.github.io/scikit-longitudinal/).
+_TODO: Describe how to access the documentation. Try Sphinx and Pdoc3._
 
 ## 🤝 Contributing (developers)
 
-
-### Setup
+### 🛠 Setup
 
 > ⚠️ **DISCLAIMER**: This project is still under development, and the setup is not yet fully automated. Furthermore, it has been tested only on macOS for now. It should work on Linux distributions, but we are not sure about Windows.
 
@@ -200,13 +190,13 @@ To set up the development environment, please follow these steps:
 🎉 Voilà! You are ready to contribute!
 
 
-### Coding Conventions
+### ✒️ Coding Conventions
 We follow the [Karma Git Commit Convention](http://karma-runner.github.io/6.4/dev/git-commit-msg.html) for commit
 messages and a modified version of the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
 with fewer restrictions for naming conventions and coding style. Please familiarize yourself with these conventions
 before contributing.
 
-#### File and Class Function Naming Conventions
+#### File and Class Function Naming Conventions:
 
 - **File names:** Snake_case naming convention is used for file names. Snake_case uses lowercase words separated by underscores (e.g., `file_name.py`).
 - **Class names**: The PascalCase (or UpperCamelCase) convention is employed (e.g., `ClassName`).
@@ -236,9 +226,12 @@ A: Longitudinal Data refers to observations made on multiple variables of intere
 
 A: Time-Series Data and Longitudinal Data both involve observations made over time, but they differ in several aspects:
 
-Focus: Time-Series Data focuses on a single variable measured at regular intervals, while Longitudinal Data involves multiple variables observed over time for each subject.
-Nature: Time-Series Data is usually employed for continuous data, whereas Longitudinal Data can handle both continuous and categorical data.
-Time gap: Time-Series Data typically deals with shorter time periods (e.g., seconds, minutes, or hours), while Longitudinal Data often spans longer durations (e.g., months or years).
+* **Focus**: _Originally_ Time-Series Data focuses on a single variable measured at regular intervals, while Longitudinal Data involves multiple variables observed over time for each subject.
+* **Nature**: Time-Series Data is usually employed for continuous data, whereas Longitudinal Data can handle both continuous and categorical data.
+* **Time gap**: Time-Series Data typically deals with shorter time periods (e.g., seconds, minutes, or hours), while Longitudinal Data often spans longer durations (e.g., months or years).
+* **Machine Learning**: Time-Series Data are frequently used to predict future values, whereas Longitudinal Data are more frequently used to predict future outcomes. In addition, the ML algorithms used for time-series are frequently distinct from those used for longitudinal data. For instance, Time-Series based techniques are based on time-windowing techniques, whereas Longitudinal based techniques frequently use the current standard for machine learning classification for the prediction task. Nevertheless, they will adapt (create variant of these standard classification based machine learning algorithm) to comprehend the temporal nature of the data.
+
+
 In summary, the main differences between Time-Series and Longitudinal Data lie in the focus, nature, and the length of the time intervals considered.
 
 ## 📝 How to Cite?
@@ -249,7 +242,7 @@ For the repository, utilise the button top right corner of the repository "How t
 
 For the paper, use the following BibTeX entry:
 
-_TODO: Add citation information for the Scikit-Longitudinal papers._
+_TODO: Add citation information for the paper we should publish about this library._
 
 ## 🔗 Related
 

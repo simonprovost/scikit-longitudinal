@@ -1,3 +1,5 @@
+# pylint: disable=R0801
+
 from abc import ABC
 from functools import wraps
 from typing import Any, Callable

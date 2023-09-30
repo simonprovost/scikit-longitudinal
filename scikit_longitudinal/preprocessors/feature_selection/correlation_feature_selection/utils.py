@@ -1,7 +1,8 @@
 # flake8: noqa
 # pylint: skip-file
-
+from itertools import combinations
 from math import log
+from typing import List
 
 import numpy as np
 
@@ -184,3 +185,64 @@ def merit_calculation(X: np.ndarray, y: np.ndarray) -> float:
     denominator = np.sqrt(n_features + feature_feature_correlation_sum)
 
     return 0 if denominator == 0 else class_feature_correlation_sum / denominator
+
+
+def _exhaustive_search(X: np.ndarray, y: np.ndarray) -> List[int]:
+    n_features = X.shape[1]
+    return max(
+        (feature_set for r in range(1, n_features + 1) for feature_set in combinations(range(n_features), r)),
+        key=lambda feature_set: merit_calculation(X[:, feature_set], y),
+        default=[],
+    )
+
+
+def _greedy_search(X: np.ndarray, y: np.ndarray) -> List[int]:
+    """Performs greedy search for feature selection.
+
+     This method starts with an empty set of features and iteratively adds
+     or removes a feature based on the merit score, which takes into account
+     the correlation with the target variable and the inter-feature correlations.
+     The process continues until no further improvement in the merit score is achieved.
+
+    Args:
+        X (np.ndarray):
+            Input data of shape (n_samples, n_features).
+        y (np.ndarray):
+            Target variable of shape (n_samples).
+
+    Returns:
+        List[int]: A list of selected feature indices.
+
+    """
+    n_features = X.shape[1]
+    selected_features: List[int] = []
+    merit_scores: List[float] = []
+
+    while True:
+        current_merit = merit_calculation(X[:, selected_features], y)
+        merit_scores.append(current_merit)
+
+        add_candidates = [
+            (merit_calculation(X[:, selected_features + [i]], y), i)
+            for i in range(n_features)
+            if i not in selected_features
+        ]
+        remove_candidates = [
+            (merit_calculation(X[:, [i for i in selected_features if i != j]], y), j) for j in selected_features
+        ]
+
+        all_candidates = add_candidates + remove_candidates
+        best_merit, best_idx = max(all_candidates, key=lambda x: x[0], default=(-np.inf, -1))
+
+        if len(merit_scores) > 5:
+            if all(merit_scores[-(i + 1)] <= merit_scores[-(i + 2)] for i in range(5)):
+                break
+
+        if best_merit <= current_merit:
+            break
+
+        if best_idx in selected_features:
+            selected_features.remove(best_idx)
+        else:
+            selected_features.append(best_idx)
+    return selected_features

@@ -1,3 +1,5 @@
+# pylint: disable=R0801
+
 from typing import List, Union
 
 import numpy as np
@@ -9,13 +11,16 @@ from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPrep
 class MerWavTimeMinus(DataPreparationMixin):
     def __init__(
         self,
-        features_group: List[List[Union[int, str]]] = None,
+        features_group: List[List[int]] = None,
         non_longitudinal_features: List[Union[int, str]] = None,
         feature_list_names: List[str] = None,
     ):
         self.features_group = features_group
         self.non_longitudinal_features = non_longitudinal_features
         self.feature_list_names = feature_list_names
+
+    def get_params(self, deep: bool = True):  # pylint: disable=W0613
+        return {}
 
     @override
     def _prepare_data(self, X: np.ndarray, y: np.ndarray = None) -> "MerWavTimeMinus":

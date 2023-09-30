@@ -40,14 +40,20 @@ def _fit_inner_tree_and_calculate_gini(
     """Copy of _fit_inner_tree_plus_calculate_gini to be used with Ray parallelization.
 
     Args:
-        subset_X (np.ndarray): The training input samples for a specific group of features.
-        y (np.ndarray): The target values (class labels).
-        group_index (int): The index of the current group of features.
-        outer_node_name (str): A unique name for the current node in the outer decision tree.
-        max_inner_depth (int): The maximum depth for the inner decision tree.
-        inner_estimator_hyperparameters (Dict[str, Any]): A dictionary of hyperparameters for the inner decision tree.
-        save_nested_trees (bool): If True, save the inner trees as images.
-        group (List[int]): The current group of features.
+        subset_X (np.ndarray):
+            The training input samples for a specific group of features.
+        y (np.ndarray):
+            The target values (class labels).
+        group_index (int):
+            The index of the current group of features.
+        outer_node_name (str):
+            A unique name for the current node in the outer decision tree.
+        max_inner_depth (int):
+            The maximum depth for the inner decision tree.
+        inner_estimator_hyperparameters (Dict[str, Any]):
+            A dictionary of hyperparameters for the inner decision tree.
+        save_nested_trees (bool):
+            If True, save the inner trees as images.
 
     Returns:
         Tuple[DecisionTreeClassifier, Any, float, np.ndarray, List[int]]: A tuple containing the fitted inner decision
@@ -67,13 +73,15 @@ def _calculate_gini(y: np.ndarray, y_pred: np.ndarray) -> float:
     """Calculate the Gini impurity of the predictions.
 
     Args:
-        y (np.ndarray): The true labels.
-        y_pred (np.ndarray): The predicted labels.
+        y (np.ndarray):
+            The true labels.
+        y_pred (np.ndarray):
+            The predicted labels.
 
     Returns:
         float: The Gini impurity of the predictions.
 
-    Formula taken from the original implementation of the Nested Trees algorithm:
+    Formula inspired from the original implementation of the Nested Trees algorithm:
     https://github.com/NestedTrees/NestedTrees/blob/main/src/ModelEvaluator.java#L105
 
     """
@@ -97,8 +105,10 @@ def _save_inner_tree(tree: DecisionTreeClassifier, filename: str) -> None:  # pr
     """Save a visual representation of the given decision tree as an image file.
 
     Args:
-        tree (DecisionTreeClassifier): The decision tree to visualize.
-        filename (str): The name of the file to save the image as.
+        tree (DecisionTreeClassifier):
+            The decision tree to visualize.
+        filename (str):
+            The name of the file to save the image as.
 
     """
     plt.figure(figsize=(10, 10))
@@ -111,10 +121,12 @@ def _remove_consecutive_duplicates(values: List[str]) -> List[str]:
     """Remove consecutive duplicates in a list of strings.
 
     Args:
-        values (List[str]): The list of strings to process.
+        values (List[str]):
+            The list of strings to process.
 
     Returns:
-        List[str]: The list of strings with consecutive duplicates removed.
+        List[str]:
+            The list of strings with consecutive duplicates removed.
 
     Examples were taken from the following string node printed from the print_nested_tree method:
 

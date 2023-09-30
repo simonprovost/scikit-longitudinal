@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from sklearn.tree import DecisionTreeClassifier
 
-from scikit_longitudinal.estimators.tree import NestedTreesClassifier
+from scikit_longitudinal.estimators.trees import NestedTreesClassifier
 
 
 @pytest.fixture
@@ -30,7 +30,7 @@ class TestNestedTreesClassifier:
         assert classifier.max_outer_depth == 3
         assert classifier.max_inner_depth == 2
         assert classifier.min_outer_samples == 5
-        assert classifier.inner_estimator_hyperparameters == {}
+        assert classifier.inner_estimator_hyperparameters is None
         assert classifier.root is None
 
     def test_fit_and_predict(self, dummy_data, features_group):
@@ -110,13 +110,13 @@ class TestNestedTreesClassifier:
             (0, 2, 5, [[0, 1, 2], [2, 3, 4]]),
             (3, 0, 5, [[0, 1, 2], [2, 3, 4]]),
             (3, 2, 0, [[0, 1, 2], [2, 3, 4]]),
-            (3, 2, 5, [[0, 1, 2]]),
         ],
     )
     def test_invalid_init_params(self, max_outer_depth, max_inner_depth, min_outer_samples, features_group):
         with pytest.raises(ValueError):
             NestedTreesClassifier(
                 features_group,
+                None,
                 max_outer_depth=max_outer_depth,
                 max_inner_depth=max_inner_depth,
                 min_outer_samples=min_outer_samples,

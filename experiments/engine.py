@@ -8,8 +8,8 @@ import numpy as np
 from sklearn.metrics import classification_report, f1_score, make_scorer
 from sklearn.model_selection import StratifiedKFold, cross_val_score
 
+from experiments.utils import get_type_name, print_message
 from scikit_longitudinal.data_preparation import LongitudinalDataset
-from scikit_longitudinal.experiments.utils import get_type_name, print_message
 
 DatasetInfo = namedtuple("DatasetInfo", ["file_path", "target_column"])
 

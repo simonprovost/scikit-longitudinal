@@ -1,6 +1,6 @@
 from sklearn.tree import DecisionTreeClassifier
 
-from scikit_longitudinal.estimators.tree import NestedTreesClassifier
+from scikit_longitudinal.estimators.trees import NestedTreesClassifier
 from scikit_longitudinal.experiments.engine import DatasetInfo, ExperimentEngine
 
 
