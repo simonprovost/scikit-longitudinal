@@ -147,8 +147,7 @@ Upon undergoing `clean_padding`, the `features_group` would appear as follows:
 features_group = [[1, 2, 3], [4, 5]]  # -1 is extricated.
 ```
 
-Consequently, these two attributes are supplied into the algorithm, enabling it to leverage the data's temporal
-structure and non-temporal structure in a manner that is consistent across all longitudinal algorithms.
+Consequently, these two attributes are provided to the algorithm, allowing it to leverage the data's temporal structure and non-temporal structure in a consistent manner across all longitudinal algorithms. Finally, to generate the content of these two attributes based on your dataset, you will have to use the Longitudinal Dataset's class to load your CSV with: [View Code](https://github.com/simonprovost/scikit-longitudinal/blob/main/scikit_longitudinal/data_preparation/longitudinal_dataset.py)
 
 ____
 
