@@ -2,7 +2,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple, Union  # pragma: 
 
 import numpy as np  # pragma: no cover
 import pandas as pd  # pragma: no cover
-from rich import print
+from rich import print  # pylint: disable=W0622
 from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline  # pragma: no cover
 
@@ -79,7 +79,7 @@ class LongitudinalPipeline(Pipeline):
         Args:
             X (np.ndarray):
                 The input data.
-            y (Optional[Union[pd.Series, np.ndarray]], default=None):
+            y (Optional[Union[pd.Series, np.ndarray]]):
                 The target variable.
             **fit_params (Dict[str, Any]):
                 Additional fitting parameters.
@@ -165,7 +165,7 @@ class LongitudinalPipeline(Pipeline):
         df = pd.DataFrame(self._longitudinal_data, columns=self.feature_list_names)
 
         dummy_longitudinal_dataset = LongitudinalDataset(file_path=None, data_frame=df)
-        dummy_longitudinal_dataset._feature_groups = self.features_group
+        dummy_longitudinal_dataset._feature_groups = self.features_group  # pylint: disable=W0212
 
         (
             updated_longitudinal_data,
@@ -204,8 +204,7 @@ class LongitudinalPipeline(Pipeline):
 
         if hasattr(self._final_estimator, "predict"):
             return self._final_estimator.predict(X, **predict_params)
-        else:
-            raise NotImplementedError(f"predict is not implemented for this estimator: {type(self._final_estimator)}")
+        raise NotImplementedError(f"predict is not implemented for this estimator: {type(self._final_estimator)}")
 
     @validate_input
     def predict_proba(self, X: np.ndarray, **predict_params: Dict[str, Any]) -> np.ndarray:
@@ -213,10 +212,7 @@ class LongitudinalPipeline(Pipeline):
 
         if hasattr(self._final_estimator, "predict_proba"):
             return self._final_estimator.predict_proba(X, **predict_params)
-        else:
-            raise NotImplementedError(
-                f"predict_proba is not implemented for this estimator: {type(self._final_estimator)}"
-            )
+        raise NotImplementedError(f"predict_proba is not implemented for this estimator: {type(self._final_estimator)}")
 
     @validate_input
     def transform(self, X: np.ndarray, **transform_params: Dict[str, Any]) -> np.ndarray:

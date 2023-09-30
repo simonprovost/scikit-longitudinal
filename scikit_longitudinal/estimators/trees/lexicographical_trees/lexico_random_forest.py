@@ -1,11 +1,10 @@
-# pylint: disable=R0901, R0902, W0221
+# pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member,R0801,R0901,R0902,W0221,R0401
 
 from typing import List, Optional
 
 from sklearn.ensemble import RandomForestClassifier
 
 
-# pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
 class LexicoRFClassifier(RandomForestClassifier):
     """A random forest classifier for longitudinal data.
 
@@ -132,7 +131,7 @@ class LexicoRFClassifier(RandomForestClassifier):
         )
 
     def _validate_estimator(self):
-        from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
+        from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier  # pylint: disable=C0415
 
         self.estimator_ = LexicoDecisionTreeClassifier(
             threshold_gain=self.threshold_gain,

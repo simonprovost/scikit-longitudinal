@@ -1,8 +1,8 @@
+# pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member,R0801,R0401
+
 from typing import List, Optional
 
 from sklearn.tree import DecisionTreeClassifier
-
-# pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
 
 
 class LexicoDecisionTreeClassifier(DecisionTreeClassifier):

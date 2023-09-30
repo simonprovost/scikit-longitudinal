@@ -112,8 +112,10 @@ class SepWavHandler(SpecialHandlerInterface):
         more information.
 
         """
-        # TODO: This handler does not work if we have more than one preprocessor / transformer in the pipeline_managers.
-        #  Find a way to make it work for any number of preprocessor / transformers.
+        # TODO: This handler does not work if we have more than one preprocessor # pylint: disable=W0511
+        #  / transformer in the  # pylint: disable=W0511
+        #  pipeline_managers \ Find a way to make it work for any number of preprocessor # pylint: disable=W0511
+        #  / transformers. # pylint: disable=W0511
 
         if len(steps) > 1 and isinstance(steps[-2][1], SepWav):
             if hasattr(steps[-2][1], "classifier"):

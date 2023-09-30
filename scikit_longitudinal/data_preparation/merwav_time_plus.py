@@ -1,3 +1,5 @@
+# pylint: disable=R0801
+
 from typing import List, Union
 
 import numpy as np
@@ -17,8 +19,8 @@ class MerWavTimePlus(DataPreparationMixin):
         self.non_longitudinal_features = non_longitudinal_features
         self.feature_list_names = feature_list_names
 
-    def get_params(self, deep: bool = True):
-        return dict()
+    def get_params(self, deep: bool = True):  # pylint: disable=W0613
+        return {}
 
     @override
     def _prepare_data(self, X: np.ndarray, y: np.ndarray = None) -> "MerWavTimePlus":

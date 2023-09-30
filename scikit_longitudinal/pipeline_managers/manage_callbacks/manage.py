@@ -12,10 +12,10 @@ from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_sel
 
 
 def default_callback(
-    step_idx: int,
+    step_idx: int,  # pylint: disable=W0613
     dummy_longitudinal_dataset: LongitudinalDataset,
-    y: Union[pd.Series, np.ndarray],
-    name: str,
+    y: Union[pd.Series, np.ndarray],  # pylint: disable=W0613
+    name: str,  # pylint: disable=W0613
     transformer: TransformerMixin,
 ) -> Tuple[np.ndarray, List[List[int]], List[Union[int, str]], List[str]]:
     """Default callback function for updating feature groups.

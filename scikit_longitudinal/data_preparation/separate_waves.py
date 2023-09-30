@@ -1,3 +1,5 @@
+# pylint: disable=R0801
+
 from typing import List, Union
 
 import numpy as np
@@ -467,11 +469,10 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         """
         if hasattr(self.clf_ensemble, "predict_proba"):
             return self.clf_ensemble.predict_proba(X)
-        else:
-            raise NotImplementedError(
-                "predict_proba is not implemented for this classifier: "
-                f"{self.clf_ensemble} / type: {type(self.clf_ensemble)}"
-            )
+        raise NotImplementedError(
+            "predict_proba is not implemented for this classifier: "
+            f"{self.clf_ensemble} / type: {type(self.clf_ensemble)}"
+        )
 
     @validate_predict_wave_input
     def predict_wave(self, wave: int, X: Union[List[List[float]], "np.ndarray"]) -> Union[List[float], "np.ndarray"]:

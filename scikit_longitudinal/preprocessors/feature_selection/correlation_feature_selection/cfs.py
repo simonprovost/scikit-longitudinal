@@ -7,9 +7,8 @@ from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_sel
 )
 from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 
-# pylint: disable=R0902
 
-
+# pylint: disable=R0902, R0801
 class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
     """Correlation-based Feature Selection (CFS).
 
@@ -81,7 +80,7 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
             CorrelationBasedFeatureSelection: The fitted feature selection algorithm.
 
         """
-        match self.search_method:
+        match self.search_method:  # pylint: disable=R0801
             case "exhaustiveSearch":
                 self.selected_features_ = _exhaustive_search(X, y)
             case "greedySearch":

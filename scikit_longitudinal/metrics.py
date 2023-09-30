@@ -1,7 +1,6 @@
 from functools import wraps
 from typing import List, Optional, Union
 
-import numpy
 import numpy as np
 import pandas as pd
 from sklearn.metrics import auc, precision_recall_curve
@@ -29,15 +28,15 @@ def metrics_validate_inputs(func):
         if len(y_true) > 0:
             first_element = y_true.iloc[0] if isinstance(y_true, pd.Series) else y_true[0]
             if (
-                isinstance(y_true, (list, numpy.ndarray))
-                and isinstance(first_element, numpy.ndarray)
+                isinstance(y_true, (list, np.ndarray))
+                and isinstance(first_element, np.ndarray)
                 and len(first_element) == 2
             ):
-                y_true = numpy.array([numpy.argmax(i) for i in y_true])
+                y_true = np.array([np.argmax(i) for i in y_true])
 
         # Validating y_true
-        if not isinstance(y_true, (list, pd.Series, numpy.ndarray)) or not all(
-            isinstance(i, (int, numpy.int64)) for i in y_true
+        if not isinstance(y_true, (list, pd.Series, np.ndarray)) or not all(
+            isinstance(i, (int, np.int64)) for i in y_true
         ):
             raise ValueError("y_true should be a list or a pandas Series, or numpy ndarray of integers.")
         if any(i not in [0, 1] for i in y_true):

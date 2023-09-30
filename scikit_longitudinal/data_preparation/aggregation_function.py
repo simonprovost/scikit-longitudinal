@@ -1,3 +1,5 @@
+# pylint: disable=R0801
+
 import re
 import warnings
 from typing import Any, Callable, List, Union
@@ -283,7 +285,7 @@ class AggrFunc(DataPreparationMixin):
         else:
             self.agg_func = aggregation_func
 
-    def get_params(self, deep: bool = True):
+    def get_params(self, deep: bool = True):  # pylint: disable=W0613
         return {
             "aggregation_func": self.aggregation_func,
             "parallel": self.parallel,

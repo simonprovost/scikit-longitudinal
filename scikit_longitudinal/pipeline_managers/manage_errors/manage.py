@@ -4,8 +4,8 @@ from typing import Any, Callable  # pragma: no cover
 
 import numpy as np  # pragma: no cover
 import pandas as pd  # pragma: no cover
-import stopit as stopit
-from rich import print
+import stopit
+from rich import print  # pylint: disable=W0622
 
 
 def handle_errors(f: Callable) -> Callable:

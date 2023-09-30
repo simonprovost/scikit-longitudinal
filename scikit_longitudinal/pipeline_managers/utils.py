@@ -31,7 +31,7 @@ def configure_transformer(
             List of non-longitudinal features.
         feature_list_names (List[str]):
             List of names corresponding to the features.
-        update_feature_groups_callback (Optional[Callable], default=None):
+        update_feature_groups_callback (Optional[Callable]):
             Callback function to update feature groups. It must be a callable if provided.
 
     Returns:
