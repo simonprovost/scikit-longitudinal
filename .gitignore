@@ -2,6 +2,9 @@
 
 main.py
 
+# PDM
+.pdm-python
+
 # Lib
 *.so
 *.o
@@ -10,6 +13,7 @@ main.py
 data/
 # Python artifacts
 __pycache__/
+__pypackages__/
 *.pyc
 *.pyo
 *.pyd

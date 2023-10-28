@@ -7,6 +7,7 @@ exclude =
     venv,
     migrations,
     .venv,
+    sklearn-fork/*
     scikit-learn/*
 max-complexity = 18
 select = B,C,E,F,W,T4,B9

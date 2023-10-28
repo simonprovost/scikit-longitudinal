@@ -6,9 +6,9 @@ import numpy as np
 import pandas as pd
 import ray
 from overrides import override
-from sklearn.base import BaseEstimator, ClassifierMixin, clone
-from sklearn.ensemble import StackingClassifier, VotingClassifier
-from sklearn.exceptions import NotFittedError
+from sklearn_fork.base import BaseEstimator, ClassifierMixin, clone
+from sklearn_fork.ensemble import StackingClassifier, VotingClassifier
+from sklearn_fork.exceptions import NotFittedError
 
 from scikit_longitudinal.data_preparation.longitudinal_dataset import clean_padding
 from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
@@ -244,8 +244,8 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
     Example:
         ```python
-        from sklearn.ensemble import RandomForestClassifier
-        from sklearn.linear_model import LogisticRegression
+        from sklearn_fork.ensemble import RandomForestClassifier
+        from sklearn_fork.linear_model import LogisticRegression
 
         # Initialize the longitudinal data
         longitudinal_data = LongitudinalDataset("dementia_dataset.csv")

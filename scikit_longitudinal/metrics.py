@@ -3,10 +3,10 @@ from typing import List, Optional, Union
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import auc, precision_recall_curve
-from sklearn.metrics._base import _average_binary_score
-from sklearn.preprocessing import label_binarize
-from sklearn.utils.multiclass import type_of_target
+from sklearn_fork.metrics import auc, precision_recall_curve
+from sklearn_fork.metrics._base import _average_binary_score
+from sklearn_fork.preprocessing import label_binarize
+from sklearn_fork.utils.multiclass import type_of_target
 
 
 def _binary_uninterpolated_average_precision(y_true, y_score):

@@ -31,7 +31,7 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
     Examples:
         >>>  # Without the longitudinal component (original CFS):
         >>> import numpy as np
-        >>> from sklearn.datasets import make_classification
+        >>> from sklearn_fork.datasets import make_classification
         >>> from scikit_longitudinal import CorrelationBasedFeatureSelection
         >>> X, y = make_classification(n_samples=100, n_features=20, random_state=42)
         >>> cfs = CorrelationBasedFeatureSelection()
@@ -80,11 +80,12 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
             CorrelationBasedFeatureSelection: The fitted feature selection algorithm.
 
         """
-        match self.search_method:  # pylint: disable=R0801
-            case "exhaustiveSearch":
-                self.selected_features_ = _exhaustive_search(X, y)
-            case "greedySearch":
-                self.selected_features_ = _greedy_search(X, y)
+        if self.search_method == "exhaustiveSearch":
+            self.selected_features_ = _exhaustive_search(X, y)
+        elif self.search_method == "greedySearch":
+            self.selected_features_ = _greedy_search(X, y)
+        else:
+            raise ValueError(f"Search method {self.search_method} is not supported.")
         return self
 
     @override

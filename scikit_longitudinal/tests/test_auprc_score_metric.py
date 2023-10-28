@@ -1,7 +1,7 @@
 import pytest
-from sklearn.datasets import make_classification
-from sklearn.dummy import DummyClassifier
-from sklearn.model_selection import train_test_split
+from sklearn_fork.datasets import make_classification
+from sklearn_fork.dummy import DummyClassifier
+from sklearn_fork.model_selection import train_test_split
 
 from scikit_longitudinal import auprc_score
 

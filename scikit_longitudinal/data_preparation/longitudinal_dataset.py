@@ -6,11 +6,10 @@ from typing import Any, Callable, List, Optional, Tuple, Union
 import arff
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn_fork.model_selection import train_test_split
+
 
 # pylint: disable=W0212, R0902, W1514, E1101, R0904
-
-
 def clean_padding(features_group: List[List[int]]) -> List[List[int]]:
     """clean_padding is a function that removes the padding from the feature groups.
 

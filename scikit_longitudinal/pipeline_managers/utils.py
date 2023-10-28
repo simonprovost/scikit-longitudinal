@@ -1,6 +1,6 @@
 from typing import Callable, List, Optional, Union
 
-from sklearn.base import TransformerMixin
+from sklearn_fork.base import TransformerMixin
 
 from scikit_longitudinal.templates import DataPreparationMixin
 

@@ -14,7 +14,7 @@ from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_sel
 from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 
 
-# pylint: disable=R0902, R0801
+# pylint: disable=R0902, R0801, R0912, W0511
 class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
     """Correlation-based Feature Selection (CFS) per group (CFS Per Group)..
 
@@ -176,6 +176,7 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
             else:
                 ray.init()
 
+        # TODO: Make sure to rework the too many branches warning
         if self.features_group is not None:
             self.search_method = self.inner_search_method
             group_features_copy, group_selected_features = (
@@ -208,11 +209,12 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
             else:
                 raise ValueError(f"Version {self.version} is not supported. Please choose version 1 or 2.")
         else:
-            match self.search_method:  # pylint: disable=R0801
-                case "exhaustiveSearch":
-                    self.selected_features_ = _exhaustive_search(X, y)
-                case "greedySearch":
-                    self.selected_features_ = _greedy_search(X, y)
+            if self.search_method == "exhaustiveSearch":
+                self.selected_features_ = _exhaustive_search(X, y)
+            elif self.search_method == "greedySearch":
+                self.selected_features_ = _greedy_search(X, y)
+            else:
+                raise ValueError(f"Search method {self.search_method} is not supported.")
 
         return self
 

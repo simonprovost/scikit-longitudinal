@@ -6,7 +6,7 @@ from typing import Any, Callable
 
 import numpy as np
 from overrides import EnforceOverrides, final
-from sklearn.utils.validation import check_array, check_X_y
+from sklearn_fork.utils.validation import check_array, check_X_y
 
 
 class DataPreparationMixin(ABC, EnforceOverrides):
