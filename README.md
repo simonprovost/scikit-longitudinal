@@ -27,8 +27,8 @@
                   <table>
                      <tr>
                         <td>
-                           <a href="https://python-poetry.org/">
-                           <img alt="poetry" src="https://img.shields.io/badge/poetry-managed-blue?style=for-the-badge&logo=python">
+                           <a href="https://pdm.fming.dev">
+                           <img alt="pdm" src="https://img.shields.io/badge/pdm-managed-blue?style=for-the-badge&logo=python">
                            </a>
                         </td>
                         <td>
@@ -160,35 +160,68 @@ _TODO: Describe how to access the documentation. Try Sphinx and Pdoc3._
 
 ## 🤝 Contributing (developers)
 
-### 🛠 Setup
+> ⚠️ **DISCLAIMER**: This project is still under development, and the setup is not yet fully automated. It has been tested on macOS and Linux distributions. The assurance of Windows compatibility is currently not guaranteed. However, our Project Packages and Dependencies Manager (PDM) enables cross-compatibility.
 
-> ⚠️ **DISCLAIMER**: This project is still under development, and the setup is not yet fully automated. Furthermore, it has been tested only on macOS for now. It should work on Linux distributions, but we are not sure about Windows.
+### 📌 Prerequisites
 
-To set up the development environment, please follow these steps:
+#### Common Requirements
+- [Python 3.9.8](https://www.python.org/downloads/release/python-398/). For managing multiple Python versions, [Pyenv](https://github.com/pyenv/pyenv) is recommended.
+- [PDM (Python Dependency Management)](https://pdm.fming.dev)
+- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/)
 
-<details>
-  <summary>📌 Prerequisites</summary>
+#### Linux-specific Requirements
+- `libomp-dev` from `apt-get`:
+  ```bash
+  sudo apt-get install libomp-dev
+  ```
 
-  * Ensure that [Poetry](https://python-poetry.org/docs/#installation) and [Pipenv](https://pipenv.pypa.io/en/latest/install/#installing-pipenv) are installed.
-  * Ensure that [Make](https://www.gnu.org/software/make/) and [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/) are installed.
-  * Ensure that [LibOmp](https://www.openmp.org/resources/openmp-compilers-tools/) is installed ([Recommended for macOS](https://formulae.brew.sh/formula/libomp)).
-  * Export necessary environment variables in your shell configuration file (e.g., `.bashrc`, `.zshrc`, or `config.fish` if you are using the fish shell). Open an issue if you need help at this stage.
-  * [macOS] Ensure that [Xcode](https://developer.apple.com/xcode/) is installed.
-  * [macOS] Ensure that [Homebrew](https://brew.sh/) is installed.
-  * [macOS] Ensure that `SDKROOT` is exported. It is usually available at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`.
+#### macOS-specific Requirements
+- [Xcode](https://developer.apple.com/xcode/) - Make sure to open XCODE and accept the license agreement.
+- [Homebrew](https://brew.sh/)
+- `SDKROOT` environment variable, typically located at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`
 
-</details>
+### 🛠 Manual Setup (macOS or Linux)
 
-1. Clone the repository: `git clone git@github.com:simonprovost/scikit-longitudinal.git`
-2. Create a `.env` file in the root directory of the project and add the following environment variables available in the `.env.example` file.
-3. Use the Makefile target rule `install_dev` to install the development dependencies:
-    ```
-    make install_dev
-    ```
-    > 📝 This command will install the development dependencies, create a Poetry virtual environment, install the package in editable mode, and run the tests. If this fails, please open an issue.
+Follow these steps for manual setup:
+
+```bash
+pdm config venv.backend conda
+pdm use 3.9
+pdm run setup_project # You might be asked to export some variables, gcc/clang, etc. Follow the instructions if so.
+export PDM_IN_ENV=in-project
+conda init bash # or zsh if you use zsh / fish if you use fish
+source ~/.bashrc # or ~/.zshrc if you use zsh / ~/.config/fish/config.fish if you use fish
+eval $(pdm venv activate $PDM_IN_ENV)
+pdm run install_project
+```
+### 🐳 Docker Setup (Linux, Python 3.9.8)
+
+#### Prerequisites
+- [Docker](https://docs.docker.com/get-docker/)
+
+#### Recommended Steps using [JetBrains (PyCharm) Docker Services](https://www.jetbrains.com/help/pycharm/docker.html)
+1. Build the Docker image using JetBrains Docker Services. Scroll at the top of the Dockerfile and click on the green arrow to build the image.
+2. Run the container in interactive mode using JetBrains Docker Services. On the Docker build window that might have appeared. Click on the "terminal" tab that shows up and you should be able to run the command interpreter inside the container.
+
+#### Manual Steps (if not using JetBrains)
+1. Build the Docker image manually. Follow the [Docker documentation](https://docs.docker.com/) to build the image.
+2. Run the container in interactive mode manually.
+
+#### Common Steps
+1. Inside the Docker container, activate your PDM-based Conda environment by running:
+   ```bash
+   eval $(pdm venv activate $PDM_IN_ENV)
+   # Alternatively, you can run:
+   # pdm venv use $PDM_IN_ENV
+   # conda activate the returned path
+   ```
+2. You can now execute your scripts or modify the Dockerfile to include them.
+3. For testing purposes, run:
+   ```bash
+   pdm run tests
+   ```
 
 🎉 Voilà! You are ready to contribute!
-
 
 ### ✒️ Coding Conventions
 We follow the [Karma Git Commit Convention](http://karma-runner.github.io/6.4/dev/git-commit-msg.html) for commit
