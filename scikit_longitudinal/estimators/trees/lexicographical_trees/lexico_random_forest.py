@@ -2,7 +2,7 @@
 
 from typing import List, Optional
 
-from sklearn.ensemble import RandomForestClassifier
+from sklearn_fork.ensemble import RandomForestClassifier
 
 
 class LexicoRFClassifier(RandomForestClassifier):
@@ -63,9 +63,9 @@ class LexicoRFClassifier(RandomForestClassifier):
             The collection of fitted sub-estimators.
 
     Examples:
-        >>> from sklearn.datasets import load_iris
-        >>> from sklearn.model_selection import train_test_split
-        >>> from sklearn.metrics import accuracy_score
+        >>> from sklearn_fork.datasets import load_iris
+        >>> from sklearn_fork.model_selection import train_test_split
+        >>> from sklearn_fork.metrics import accuracy_score
         >>> from scikit_longitudinal.estimators.tree import LexicoRFClassifier
         >>> X, y = load_iris(return_X_y=True)
         >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)

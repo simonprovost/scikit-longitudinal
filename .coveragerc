@@ -4,6 +4,7 @@ source = scikit_longitudinal/
 omit =
     scikit_longitudinal/**/tests/*
     scikit-learn/*
+    sklearn_fork/*
     ./main.py
 data_file = .coverage
 

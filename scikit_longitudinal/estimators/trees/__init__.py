@@ -1,3 +1,5 @@
+# flake8: noqa
+
 from scikit_longitudinal.estimators.trees.lexicographical_trees.lexico_decision_tree import (  # noqa
     LexicoDecisionTreeClassifier,
 )

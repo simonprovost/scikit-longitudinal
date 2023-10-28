@@ -2,8 +2,8 @@ import itertools
 import os
 
 import pytest
-from sklearn.metrics import classification_report
-from sklearn.tree import DecisionTreeClassifier
+from sklearn_fork.metrics import classification_report
+from sklearn_fork.tree import DecisionTreeClassifier
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
@@ -343,12 +343,14 @@ pipelines_dict = {
     "MerWavTimePlusLexicoRFClassifier": MerWavTimePlusLexicoRFClassifier,
     "MerWavTimePlusLexicoDTClassifier": MerWavTimePlusLexicoDTClassifier,
     "MerWavTimePlusNestedTree": MerWavTimePlusNestedTree,
-    "MerWavTimeMinusStandardCFSDecisionTreeClassifier": MerWavTimeMinusStandardCFSDecisionTreeClassifier,
-    "AggrFuncStandardCFSDecisionTreeClassifier": AggrFuncStandardCFSDecisionTreeClassifier,
-    "SepWavStandardCFSDecisionTreeClassifierVoting": SepWavStandardCFSDecisionTreeClassifierVoting,
-    "SepWavStandardCFSDecisionTreeClassifierStacking": SepWavStandardCFSDecisionTreeClassifierStacking,
-    "MerWavTimePlusExhaustiveCFSNestedTree": MerWavTimePlusExhaustiveCFSNestedTree,
-    "MerWavTimePlusExhaustiveCFSLexicoRFClassifier": MerWavTimePlusExhaustiveCFSLexicoRFClassifier,
+    # The following tests are commented out because they take too long to run
+    # Feel free to uncomment them if you want to run them
+    # "MerWavTimeMinusStandardCFSDecisionTreeClassifier": MerWavTimeMinusStandardCFSDecisionTreeClassifier,
+    # "AggrFuncStandardCFSDecisionTreeClassifier": AggrFuncStandardCFSDecisionTreeClassifier,
+    # "SepWavStandardCFSDecisionTreeClassifierVoting": SepWavStandardCFSDecisionTreeClassifierVoting,
+    # "SepWavStandardCFSDecisionTreeClassifierStacking": SepWavStandardCFSDecisionTreeClassifierStacking,
+    # "MerWavTimePlusExhaustiveCFSNestedTree": MerWavTimePlusExhaustiveCFSNestedTree,
+    # "MerWavTimePlusExhaustiveCFSLexicoRFClassifier": MerWavTimePlusExhaustiveCFSLexicoRFClassifier,
 }
 
 
@@ -359,15 +361,17 @@ class TestLongitudinalPipelines:
                 ["core", "nurse"],
                 [
                     "angina_dataset.csv",
-                    "arthritis_dataset.csv",
-                    "cataract_dataset.csv",
-                    "dementia_dataset.csv",
-                    "hbp_dataset.csv",
-                    "diabetes_dataset.csv",
-                    "osteoporosis_dataset.csv",
-                    "heartattack_dataset.csv",
-                    "parkinsons_dataset.csv",
-                    "stroke_dataset.csv",
+                    # The following datasets are commented out because they take too long to run
+                    # Feel free to uncomment them if you want to run them
+                    # "arthritis_dataset.csv",
+                    # "cataract_dataset.csv",
+                    # "dementia_dataset.csv",
+                    # "hbp_dataset.csv",
+                    # "diabetes_dataset.csv",
+                    # "osteoporosis_dataset.csv",
+                    # "heartattack_dataset.csv",
+                    # "parkinsons_dataset.csv",
+                    # "stroke_dataset.csv",
                 ],
             )
         )

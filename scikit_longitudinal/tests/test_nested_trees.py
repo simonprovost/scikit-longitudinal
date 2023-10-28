@@ -4,7 +4,7 @@ import sys
 
 import numpy as np
 import pytest
-from sklearn.tree import DecisionTreeClassifier
+from sklearn_fork.tree import DecisionTreeClassifier
 
 from scikit_longitudinal.estimators.trees import NestedTreesClassifier
 
