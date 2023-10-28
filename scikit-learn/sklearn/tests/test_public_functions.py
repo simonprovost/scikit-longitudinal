@@ -3,13 +3,12 @@ from inspect import signature
 from numbers import Integral, Real
 
 import pytest
-from sklearn.utils._param_validation import (
-    Interval,
-    InvalidParameterError,
-    generate_invalid_param_val,
-    generate_valid_param,
-    make_constraint,
-)
+
+from sklearn.utils._param_validation import generate_invalid_param_val
+from sklearn.utils._param_validation import generate_valid_param
+from sklearn.utils._param_validation import make_constraint
+from sklearn.utils._param_validation import InvalidParameterError
+from sklearn.utils._param_validation import Interval
 
 
 def _get_func_info(func_module):
@@ -18,7 +17,11 @@ def _get_func_info(func_module):
     func = getattr(module, func_name)
 
     func_sig = signature(func)
-    func_params = [p.name for p in func_sig.parameters.values() if p.kind not in (p.VAR_POSITIONAL, p.VAR_KEYWORD)]
+    func_params = [
+        p.name
+        for p in func_sig.parameters.values()
+        if p.kind not in (p.VAR_POSITIONAL, p.VAR_KEYWORD)
+    ]
 
     # The parameters `*args` and `**kwargs` are ignored since we cannot generate
     # constraints.
@@ -31,7 +34,9 @@ def _get_func_info(func_module):
     return func, func_name, func_params, required_params
 
 
-def _check_function_param_validation(func, func_name, func_params, required_params, parameter_constraints):
+def _check_function_param_validation(
+    func, func_name, func_params, required_params, parameter_constraints
+):
     """Check that an informative error is raised when the value of a parameter does not
     have an appropriate type or value.
     """
@@ -68,8 +73,12 @@ def _check_function_param_validation(func, func_name, func_params, required_para
             continue
 
         # Mixing an interval of reals and an interval of integers must be avoided.
-        if any(isinstance(constraint, Interval) and constraint.type == Integral for constraint in constraints) and any(
-            isinstance(constraint, Interval) and constraint.type == Real for constraint in constraints
+        if any(
+            isinstance(constraint, Interval) and constraint.type == Integral
+            for constraint in constraints
+        ) and any(
+            isinstance(constraint, Interval) and constraint.type == Real
+            for constraint in constraints
         ):
             raise ValueError(
                 f"The constraint for parameter {param_name} of {func_name} can't have a"
@@ -77,7 +86,9 @@ def _check_function_param_validation(func, func_name, func_params, required_para
                 " RealNotInt instead of Real."
             )
 
-        match = rf"The '{param_name}' parameter of {func_name} must be .* Got .* instead."
+        match = (
+            rf"The '{param_name}' parameter of {func_name} must be .* Got .* instead."
+        )
 
         # First, check that the error is raised if param doesn't match any valid type.
         with pytest.raises(InvalidParameterError, match=match):
@@ -276,7 +287,9 @@ def test_function_param_validation(func_module):
 
     parameter_constraints = getattr(func, "_skl_parameter_constraints")
 
-    _check_function_param_validation(func, func_name, func_params, required_params, parameter_constraints)
+    _check_function_param_validation(
+        func, func_name, func_params, required_params, parameter_constraints
+    )
 
 
 PARAM_VALIDATION_CLASS_WRAPPER_LIST = [
@@ -299,7 +312,9 @@ PARAM_VALIDATION_CLASS_WRAPPER_LIST = [
 ]
 
 
-@pytest.mark.parametrize("func_module, class_module", PARAM_VALIDATION_CLASS_WRAPPER_LIST)
+@pytest.mark.parametrize(
+    "func_module, class_module", PARAM_VALIDATION_CLASS_WRAPPER_LIST
+)
 def test_class_wrapper_param_validation(func_module, class_module):
     """Check param validation for public functions that are wrappers around
     estimators.
@@ -316,6 +331,10 @@ def test_class_wrapper_param_validation(func_module, class_module):
         **parameter_constraints_class,
         **parameter_constraints_func,
     }
-    parameter_constraints = {k: v for k, v in parameter_constraints.items() if k in func_params}
+    parameter_constraints = {
+        k: v for k, v in parameter_constraints.items() if k in func_params
+    }
 
-    _check_function_param_validation(func, func_name, func_params, required_params, parameter_constraints)
+    _check_function_param_validation(
+        func, func_name, func_params, required_params, parameter_constraints
+    )

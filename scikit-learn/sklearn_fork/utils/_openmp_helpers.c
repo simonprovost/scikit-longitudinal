@@ -1206,7 +1206,7 @@ static CYTHON_INLINE float __PYX_NAN() {
         #define omp_get_thread_num() 0
         #define omp_get_max_threads() 1
     #endif
-
+    
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -1488,11 +1488,11 @@ static const char *__pyx_f[] = {
 struct __pyx_opt_args_12sklearn_fork_5utils_15_openmp_helpers__openmp_effective_n_threads;
 
 /* "sklearn_fork/utils/_openmp_helpers.pyx":21
- *
- *
+ * 
+ * 
  * cpdef _openmp_effective_n_threads(n_threads=None, only_physical_cores=True):             # <<<<<<<<<<<<<<
  *     """Determine the effective number of threads to be used for OpenMP calls
- *
+ * 
  */
 struct __pyx_opt_args_12sklearn_fork_5utils_15_openmp_helpers__openmp_effective_n_threads {
   int __pyx_n;
@@ -2437,11 +2437,11 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 /* #### Code section: module_code ### */
 
 /* "sklearn_fork/utils/_openmp_helpers.pyx":11
- *
- *
+ * 
+ * 
  * def _openmp_parallelism_enabled():             # <<<<<<<<<<<<<<
  *     """Determines whether scikit-learn has been built with OpenMP
- *
+ * 
  */
 
 /* Python wrapper */
@@ -2474,8 +2474,8 @@ static PyObject *__pyx_pf_12sklearn_fork_5utils_15_openmp_helpers__openmp_parall
  *     # SKLEARN_OPENMP_PARALLELISM_ENABLED is resolved at compile time and defined
  *     # in _openmp_helpers.pxd as a boolean. This function exposes it to Python.
  *     return SKLEARN_OPENMP_PARALLELISM_ENABLED             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyBool_FromLong(SKLEARN_OPENMP_PARALLELISM_ENABLED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
@@ -2485,11 +2485,11 @@ static PyObject *__pyx_pf_12sklearn_fork_5utils_15_openmp_helpers__openmp_parall
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":11
- *
- *
+ * 
+ * 
  * def _openmp_parallelism_enabled():             # <<<<<<<<<<<<<<
  *     """Determines whether scikit-learn has been built with OpenMP
- *
+ * 
  */
 
   /* function exit code */
@@ -2504,14 +2504,14 @@ static PyObject *__pyx_pf_12sklearn_fork_5utils_15_openmp_helpers__openmp_parall
 }
 
 /* "sklearn_fork/utils/_openmp_helpers.pyx":21
- *
- *
+ * 
+ * 
  * cpdef _openmp_effective_n_threads(n_threads=None, only_physical_cores=True):             # <<<<<<<<<<<<<<
  *     """Determine the effective number of threads to be used for OpenMP calls
- *
+ * 
  */
 
-static PyObject *__pyx_pw_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads(PyObject *__pyx_self,
+static PyObject *__pyx_pw_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2555,7 +2555,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *     """
  *     if n_threads == 0:             # <<<<<<<<<<<<<<
  *         raise ValueError("n_threads = 0 is invalid")
- *
+ * 
  */
   __pyx_t_1 = (__Pyx_PyInt_BoolEqObjC(__pyx_v_n_threads, __pyx_int_0, 0, 0)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 53, __pyx_L1_error)
   if (unlikely(__pyx_t_1)) {
@@ -2564,7 +2564,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *     """
  *     if n_threads == 0:
  *         raise ValueError("n_threads = 0 is invalid")             # <<<<<<<<<<<<<<
- *
+ * 
  *     if not SKLEARN_OPENMP_PARALLELISM_ENABLED:
  */
     __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
@@ -2578,13 +2578,13 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *     """
  *     if n_threads == 0:             # <<<<<<<<<<<<<<
  *         raise ValueError("n_threads = 0 is invalid")
- *
+ * 
  */
   }
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":56
  *         raise ValueError("n_threads = 0 is invalid")
- *
+ * 
  *     if not SKLEARN_OPENMP_PARALLELISM_ENABLED:             # <<<<<<<<<<<<<<
  *         # OpenMP disabled at build-time => sequential mode
  *         return 1
@@ -2596,7 +2596,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *     if not SKLEARN_OPENMP_PARALLELISM_ENABLED:
  *         # OpenMP disabled at build-time => sequential mode
  *         return 1             # <<<<<<<<<<<<<<
- *
+ * 
  *     if os.getenv("OMP_NUM_THREADS"):
  */
     __Pyx_XDECREF(__pyx_r);
@@ -2606,7 +2606,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
 
     /* "sklearn_fork/utils/_openmp_helpers.pyx":56
  *         raise ValueError("n_threads = 0 is invalid")
- *
+ * 
  *     if not SKLEARN_OPENMP_PARALLELISM_ENABLED:             # <<<<<<<<<<<<<<
  *         # OpenMP disabled at build-time => sequential mode
  *         return 1
@@ -2615,7 +2615,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":60
  *         return 1
- *
+ * 
  *     if os.getenv("OMP_NUM_THREADS"):             # <<<<<<<<<<<<<<
  *         # Fall back to user provided number of threads making it possible
  *         # to exceed the number of cpus.
@@ -2665,7 +2665,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
 
     /* "sklearn_fork/utils/_openmp_helpers.pyx":60
  *         return 1
- *
+ * 
  *     if os.getenv("OMP_NUM_THREADS"):             # <<<<<<<<<<<<<<
  *         # Fall back to user provided number of threads making it possible
  *         # to exceed the number of cpus.
@@ -2761,7 +2761,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *             n_cpus = cpu_count(only_physical_cores=only_physical_cores)
  *             _CPU_COUNTS[only_physical_cores] = n_cpus             # <<<<<<<<<<<<<<
  *         max_n_threads = min(omp_get_max_threads(), n_cpus)
- *
+ * 
  */
         __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_CPU_COUNTS); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 69, __pyx_L8_except_error)
         __Pyx_GOTREF(__pyx_t_11);
@@ -2799,7 +2799,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *             n_cpus = cpu_count(only_physical_cores=only_physical_cores)
  *             _CPU_COUNTS[only_physical_cores] = n_cpus
  *         max_n_threads = min(omp_get_max_threads(), n_cpus)             # <<<<<<<<<<<<<<
- *
+ * 
  *     if n_threads is None:
  */
     __Pyx_INCREF(__pyx_v_n_cpus);
@@ -2831,7 +2831,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":72
  *         max_n_threads = min(omp_get_max_threads(), n_cpus)
- *
+ * 
  *     if n_threads is None:             # <<<<<<<<<<<<<<
  *         return max_n_threads
  *     elif n_threads < 0:
@@ -2840,7 +2840,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
   if (__pyx_t_1) {
 
     /* "sklearn_fork/utils/_openmp_helpers.pyx":73
- *
+ * 
  *     if n_threads is None:
  *         return max_n_threads             # <<<<<<<<<<<<<<
  *     elif n_threads < 0:
@@ -2853,7 +2853,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
 
     /* "sklearn_fork/utils/_openmp_helpers.pyx":72
  *         max_n_threads = min(omp_get_max_threads(), n_cpus)
- *
+ * 
  *     if n_threads is None:             # <<<<<<<<<<<<<<
  *         return max_n_threads
  *     elif n_threads < 0:
@@ -2865,7 +2865,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *         return max_n_threads
  *     elif n_threads < 0:             # <<<<<<<<<<<<<<
  *         return max(1, max_n_threads + n_threads + 1)
- *
+ * 
  */
   __pyx_t_3 = PyObject_RichCompare(__pyx_v_n_threads, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 74, __pyx_L1_error)
@@ -2876,7 +2876,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *         return max_n_threads
  *     elif n_threads < 0:
  *         return max(1, max_n_threads + n_threads + 1)             # <<<<<<<<<<<<<<
- *
+ * 
  *     return n_threads
  */
     __Pyx_XDECREF(__pyx_r);
@@ -2912,13 +2912,13 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
  *         return max_n_threads
  *     elif n_threads < 0:             # <<<<<<<<<<<<<<
  *         return max(1, max_n_threads + n_threads + 1)
- *
+ * 
  */
   }
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":77
  *         return max(1, max_n_threads + n_threads + 1)
- *
+ * 
  *     return n_threads             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
@@ -2927,11 +2927,11 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":21
- *
- *
+ * 
+ * 
  * cpdef _openmp_effective_n_threads(n_threads=None, only_physical_cores=True):             # <<<<<<<<<<<<<<
  *     """Determine the effective number of threads to be used for OpenMP calls
- *
+ * 
  */
 
   /* function exit code */
@@ -2953,7 +2953,7 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_15_openmp_helpers__openmp_effecti
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads(PyObject *__pyx_self,
+static PyObject *__pyx_pw_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2962,7 +2962,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 ); /*proto*/
 PyDoc_STRVAR(__pyx_doc_12sklearn_fork_5utils_15_openmp_helpers_2_openmp_effective_n_threads, "Determine the effective number of threads to be used for OpenMP calls\n\n    - For ``n_threads = None``,\n      - if the ``OMP_NUM_THREADS`` environment variable is set, return\n        ``openmp.omp_get_max_threads()``\n      - otherwise, return the minimum between ``openmp.omp_get_max_threads()``\n        and the number of cpus, taking cgroups quotas into account. Cgroups\n        quotas can typically be set by tools such as Docker.\n      The result of ``omp_get_max_threads`` can be influenced by environment\n      variable ``OMP_NUM_THREADS`` or at runtime by ``omp_set_num_threads``.\n\n    - For ``n_threads > 0``, return this as the maximal number of threads for\n      parallel OpenMP calls.\n\n    - For ``n_threads < 0``, return the maximal number of threads minus\n      ``|n_threads + 1|``. In particular ``n_threads = -1`` will use as many\n      threads as there are available cores on the machine.\n\n    - Raise a ValueError for ``n_threads = 0``.\n\n    Passing the `only_physical_cores=False` flag makes it possible to use extra\n    threads for SMT/HyperThreading logical cores. It has been empirically\n    observed that using as many threads as available SMT cores can slightly\n    improve the performance in some cases, but can severely degrade\n    performance other times. Therefore it is recommended to use\n    `only_physical_cores=True` unless an empirical study has been conducted to\n    assess the impact of SMT on a case-by-case basis (using various input data\n    shapes, in particular small data shapes).\n\n    If scikit-learn is built without OpenMP support, always return 1.\n    ");
 static PyMethodDef __pyx_mdef_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads = {"_openmp_effective_n_threads", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_12sklearn_fork_5utils_15_openmp_helpers_2_openmp_effective_n_threads};
-static PyObject *__pyx_pw_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads(PyObject *__pyx_self,
+static PyObject *__pyx_pw_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -3162,7 +3162,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     """
  *     if n_threads == 0:
  *         raise ValueError("n_threads = 0 is invalid")             # <<<<<<<<<<<<<<
- *
+ * 
  *     if not SKLEARN_OPENMP_PARALLELISM_ENABLED:
  */
   __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_n_threads_0_is_invalid); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 54, __pyx_L1_error)
@@ -3170,20 +3170,20 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple_);
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":11
- *
- *
+ * 
+ * 
  * def _openmp_parallelism_enabled():             # <<<<<<<<<<<<<<
  *     """Determines whether scikit-learn has been built with OpenMP
- *
+ * 
  */
   __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sklearn_fork_utils__openmp_helpe, __pyx_n_s_openmp_parallelism_enabled, 11, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 11, __pyx_L1_error)
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":21
- *
- *
+ * 
+ * 
  * cpdef _openmp_effective_n_threads(n_threads=None, only_physical_cores=True):             # <<<<<<<<<<<<<<
  *     """Determine the effective number of threads to be used for OpenMP calls
- *
+ * 
  */
   __pyx_tuple__5 = PyTuple_Pack(2, __pyx_n_s_n_threads, __pyx_n_s_only_physical_cores); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
@@ -3563,7 +3563,7 @@ if (!__Pyx_RefNanny) {
   /* "sklearn_fork/utils/_openmp_helpers.pyx":1
  * import os             # <<<<<<<<<<<<<<
  * from joblib import cpu_count
- *
+ * 
  */
   __pyx_t_2 = __Pyx_ImportDottedModule(__pyx_n_s_os, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3573,8 +3573,8 @@ if (!__Pyx_RefNanny) {
   /* "sklearn_fork/utils/_openmp_helpers.pyx":2
  * import os
  * from joblib import cpu_count             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3594,8 +3594,8 @@ if (!__Pyx_RefNanny) {
  * # the lifecycle of a Python program. This dictionary is keyed by
  * # only_physical_cores.
  * _CPU_COUNTS = {}             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -3603,11 +3603,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":11
- *
- *
+ * 
+ * 
  * def _openmp_parallelism_enabled():             # <<<<<<<<<<<<<<
  *     """Determines whether scikit-learn has been built with OpenMP
- *
+ * 
  */
   __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_12sklearn_fork_5utils_15_openmp_helpers_1_openmp_parallelism_enabled, 0, __pyx_n_s_openmp_parallelism_enabled, NULL, __pyx_n_s_sklearn_fork_utils__openmp_helpe_2, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -3615,11 +3615,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "sklearn_fork/utils/_openmp_helpers.pyx":21
- *
- *
+ * 
+ * 
  * cpdef _openmp_effective_n_threads(n_threads=None, only_physical_cores=True):             # <<<<<<<<<<<<<<
  *     """Determine the effective number of threads to be used for OpenMP calls
- *
+ * 
  */
   __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_12sklearn_fork_5utils_15_openmp_helpers_3_openmp_effective_n_threads, 0, __pyx_n_s_openmp_effective_n_threads, NULL, __pyx_n_s_sklearn_fork_utils__openmp_helpe_2, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -3630,7 +3630,7 @@ if (!__Pyx_RefNanny) {
   /* "sklearn_fork/utils/_openmp_helpers.pyx":1
  * import os             # <<<<<<<<<<<<<<
  * from joblib import cpu_count
- *
+ * 
  */
   __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -4939,7 +4939,7 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, long intval, 
         const long b = intval;
         long x;
         long a = PyInt_AS_LONG(op1);
-
+        
             x = (long)((unsigned long)a + (unsigned long)b);
             if (likely((x^a) >= 0 || (x^b) >= 0))
                 return PyInt_FromLong(x);
@@ -5039,8 +5039,8 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, long intval, 
                 llx = lla + llb;
             return PyLong_FromLongLong(llx);
 #endif
-
-
+        
+        
     }
     #endif
     if (PyFloat_CheckExact(op1)) {
@@ -5051,7 +5051,7 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, long intval, 
         double a = PyFloat_AS_DOUBLE(op1);
 #endif
             double result;
-
+            
             PyFPE_START_PROTECT("add", return NULL)
             result = ((double)a) + (double)b;
             PyFPE_END_PROTECT(result)

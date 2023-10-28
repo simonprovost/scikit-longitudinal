@@ -2,31 +2,36 @@
 #          Raghav RV <rvraghav93@gmail.com>
 # License: BSD 3 clause
 
-import importlib
 import inspect
 import warnings
-from inspect import signature
+import importlib
+
 from pkgutil import walk_packages
+from inspect import signature
 
 import numpy as np
-import pytest
-import sklearn_fork
-from sklearn_fork.datasets import make_classification
 
 # make it possible to discover experimental estimators when calling `all_estimators`
-from sklearn_fork.experimental import enable_halving_search_cv  # noqa
 from sklearn_fork.experimental import enable_iterative_imputer  # noqa
+from sklearn_fork.experimental import enable_halving_search_cv  # noqa
+
+import sklearn_fork
+from sklearn_fork.utils import IS_PYPY
+from sklearn_fork.utils._testing import check_docstring_parameters
+from sklearn_fork.utils._testing import _get_func_name
+from sklearn_fork.utils._testing import ignore_warnings
+from sklearn_fork.utils import all_estimators
+from sklearn_fork.utils.estimator_checks import _enforce_estimator_tags_y
+from sklearn_fork.utils.estimator_checks import _enforce_estimator_tags_X
+from sklearn_fork.utils.estimator_checks import _construct_instance
+from sklearn_fork.utils.fixes import sp_version, parse_version
+from sklearn_fork.utils.deprecation import _is_deprecated
+from sklearn_fork.datasets import make_classification
 from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.preprocessing import FunctionTransformer
-from sklearn_fork.utils import IS_PYPY, all_estimators
-from sklearn_fork.utils._testing import _get_func_name, check_docstring_parameters, ignore_warnings
-from sklearn_fork.utils.deprecation import _is_deprecated
-from sklearn_fork.utils.estimator_checks import (
-    _construct_instance,
-    _enforce_estimator_tags_X,
-    _enforce_estimator_tags_y,
-)
-from sklearn_fork.utils.fixes import parse_version, sp_version
+
+import pytest
+
 
 # walk_packages() ignores DeprecationWarnings, now we need to ignore
 # FutureWarnings
@@ -71,7 +76,9 @@ def test_docstring_parameters():
     # Test module docstring formatting
 
     # Skip test if numpydoc is not found
-    pytest.importorskip("numpydoc", reason="numpydoc is required to test the docstrings")
+    pytest.importorskip(
+        "numpydoc", reason="numpydoc is required to test the docstrings"
+    )
 
     # XXX unreached code as of v0.22
     from numpydoc import docscrape
@@ -88,7 +95,9 @@ def test_docstring_parameters():
             module = importlib.import_module(name)
         classes = inspect.getmembers(module, inspect.isclass)
         # Exclude non-scikit-learn classes
-        classes = [cls for cls in classes if cls[1].__module__.startswith("sklearn_fork")]
+        classes = [
+            cls for cls in classes if cls[1].__module__.startswith("sklearn_fork")
+        ]
         for cname, cls in classes:
             this_incorrect = []
             if cname in _DOCSTRING_IGNORES or cname.startswith("_"):
@@ -98,7 +107,9 @@ def test_docstring_parameters():
             with warnings.catch_warnings(record=True) as w:
                 cdoc = docscrape.ClassDoc(cls)
             if len(w):
-                raise RuntimeError("Error for __init__ of %s in %s:\n%s" % (cls, name, w[0]))
+                raise RuntimeError(
+                    "Error for __init__ of %s in %s:\n%s" % (cls, name, w[0])
+                )
 
             # Skip checks on deprecated classes
             if _is_deprecated(cls.__new__):
@@ -132,7 +143,9 @@ def test_docstring_parameters():
             if fname == "configuration" and name.endswith("setup"):
                 continue
             name_ = _get_func_name(func)
-            if not any(d in name_ for d in _DOCSTRING_IGNORES) and not _is_deprecated(func):
+            if not any(d in name_ for d in _DOCSTRING_IGNORES) and not _is_deprecated(
+                func
+            ):
                 incorrect += check_docstring_parameters(func)
 
     msg = "\n".join(incorrect)
@@ -143,8 +156,13 @@ def test_docstring_parameters():
 @ignore_warnings(category=FutureWarning)
 def test_tabs():
     # Test that there are no tabs in our source files
-    for importer, modname, ispkg in walk_packages(sklearn_fork.__path__, prefix="sklearn_fork."):
-        if IS_PYPY and ("_svmlight_format_io" in modname or "feature_extraction._hashing_fast" in modname):
+    for importer, modname, ispkg in walk_packages(
+        sklearn_fork.__path__, prefix="sklearn_fork."
+    ):
+        if IS_PYPY and (
+            "_svmlight_format_io" in modname
+            or "feature_extraction._hashing_fast" in modname
+        ):
             continue
 
         # because we don't import
@@ -317,7 +335,9 @@ def test_fit_docstring_attributes(name, Estimator):
     undocumented_attrs = set(fit_attr).difference(fit_attr_names)
     undocumented_attrs = set(undocumented_attrs).difference(skipped_attributes)
     if undocumented_attrs:
-        raise AssertionError(f"Undocumented attributes for {Estimator.__name__}: {undocumented_attrs}")
+        raise AssertionError(
+            f"Undocumented attributes for {Estimator.__name__}: {undocumented_attrs}"
+        )
 
 
 def _get_all_fitted_attributes(estimator):

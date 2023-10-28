@@ -15,10 +15,12 @@ stationary kernels often obtain better results.
 #
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.gaussian_process import GaussianProcessClassifier
 from sklearn_fork.gaussian_process.kernels import RBF, DotProduct
+
 
 xx, yy = np.meshgrid(np.linspace(-3, 3, 50), np.linspace(-3, 3, 50))
 rng = np.random.RandomState(0)
@@ -51,7 +53,8 @@ for i, kernel in enumerate(kernels):
     plt.axis([-3, 3, -3, 3])
     plt.colorbar(image)
     plt.title(
-        "%s\n Log-Marginal-Likelihood:%.3f" % (clf.kernel_, clf.log_marginal_likelihood(clf.kernel_.theta)),
+        "%s\n Log-Marginal-Likelihood:%.3f"
+        % (clf.kernel_, clf.log_marginal_likelihood(clf.kernel_.theta)),
         fontsize=12,
     )
 

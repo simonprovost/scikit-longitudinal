@@ -29,16 +29,17 @@ To run this script you need:
 
 """
 
-import json
-import logging
 import re
-import shlex
 import subprocess
 import sys
-from importlib.metadata import version
 from pathlib import Path
+import shlex
+import json
+import logging
+from importlib.metadata import version
 
 import click
+
 from jinja2 import Environment
 
 logger = logging.getLogger(__name__)
@@ -240,7 +241,9 @@ conda_build_metadata_list = [
         "channel": "conda-forge",
         "conda_dependencies": (
             ["pypy", "python"]
-            + remove_from(common_dependencies_without_coverage, ["python", "pandas", "pillow"])
+            + remove_from(
+                common_dependencies_without_coverage, ["python", "pandas", "pillow"]
+            )
             + ["ccache"]
         ),
         "package_constraints": {
@@ -326,10 +329,9 @@ conda_build_metadata_list = [
         "folder": "build_tools/cirrus",
         "platform": "linux-aarch64",
         "channel": "conda-forge",
-        "conda_dependencies": remove_from(common_dependencies_without_coverage, ["pandas", "pyamg"]) + [
-            "pip",
-            "ccache",
-        ],
+        "conda_dependencies": remove_from(
+            common_dependencies_without_coverage, ["pandas", "pyamg"]
+        ) + ["pip", "ccache"],
         "package_constraints": {
             "python": "3.9",
         },
@@ -375,7 +377,9 @@ pip_build_metadata_list = [
 
 
 def execute_command(command_list):
-    proc = subprocess.Popen(command_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.Popen(
+        command_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
 
     out, err = proc.communicate()
     out, err = out.decode(), err.decode()
@@ -383,9 +387,11 @@ def execute_command(command_list):
     if proc.returncode != 0:
         command_str = " ".join(command_list)
         raise RuntimeError(
-            "Command exited with non-zero exit code.\nExit code: {}\nCommand:\n{}\nstdout:\n{}\nstderr:\n{}\n".format(
-                proc.returncode, command_str, out, err
-            )
+            "Command exited with non-zero exit code.\n"
+            "Exit code: {}\n"
+            "Command:\n{}\n"
+            "stdout:\n{}\n"
+            "stderr:\n{}\n".format(proc.returncode, command_str, out, err)
         )
     return out
 
@@ -404,7 +410,9 @@ def get_package_with_constraint(package_name, build_metadata, uses_pip=False):
 
     comment = ""
     if constraint == "min":
-        constraint = execute_command([sys.executable, "sklearn_fork/_min_dependencies.py", package_name]).strip()
+        constraint = execute_command(
+            [sys.executable, "sklearn_fork/_min_dependencies.py", package_name]
+        ).strip()
         comment = "  # min"
 
     if re.match(r"\d[.\d]*", constraint):
@@ -522,12 +530,17 @@ def write_pip_lock_file(build_metadata):
     # create a conda environment with the correct Python version and
     # pip-compile and run pip-compile in this environment
 
-    command = f"conda create -c conda-forge -n pip-tools-python{python_version} python={python_version} pip-tools -y"
+    command = (
+        "conda create -c conda-forge -n"
+        f" pip-tools-python{python_version} python={python_version} pip-tools -y"
+    )
     execute_command(shlex.split(command))
 
     json_output = execute_command(shlex.split("conda info --json"))
     conda_info = json.loads(json_output)
-    environment_folder = [each for each in conda_info["envs"] if each.endswith(environment_name)][0]
+    environment_folder = [
+        each for each in conda_info["envs"] if each.endswith(environment_name)
+    ][0]
     environment_path = Path(environment_folder)
     pip_compile_path = environment_path / "bin" / "pip-compile"
 
@@ -551,7 +564,8 @@ def check_conda_lock_version():
     installed_conda_lock_version = version("conda-lock")
     if installed_conda_lock_version != expected_conda_lock_version:
         raise RuntimeError(
-            f"Expected conda-lock version: {expected_conda_lock_version}, got: {installed_conda_lock_version}"
+            f"Expected conda-lock version: {expected_conda_lock_version}, got:"
+            f" {installed_conda_lock_version}"
         )
 
 
@@ -564,7 +578,9 @@ def check_conda_lock_version():
 def main(select_build):
     check_conda_lock_version()
     filtered_conda_build_metadata_list = [
-        each for each in conda_build_metadata_list if re.search(select_build, each["build_name"])
+        each
+        for each in conda_build_metadata_list
+        if re.search(select_build, each["build_name"])
     ]
     logger.info("Writing conda environments")
     write_all_conda_environments(filtered_conda_build_metadata_list)
@@ -572,7 +588,9 @@ def main(select_build):
     write_all_conda_lock_files(filtered_conda_build_metadata_list)
 
     filtered_pip_build_metadata_list = [
-        each for each in pip_build_metadata_list if re.search(select_build, each["build_name"])
+        each
+        for each in pip_build_metadata_list
+        if re.search(select_build, each["build_name"])
     ]
     logger.info("Writing pip requirements")
     write_all_pip_requirements(filtered_pip_build_metadata_list)

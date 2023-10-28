@@ -2,12 +2,12 @@
 or if specifically requested via environment variable
 (e.g. for CI jobs)."""
 
-from functools import partial
-
-import numpy as np
 import scipy.sparse as sp
+import numpy as np
+from functools import partial
 from sklearn_fork.datasets.tests.test_common import check_return_X_y
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_equal
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
 
 
 def test_fetch_rcv1(fetch_rcv1_fxt, global_random_seed):
@@ -42,7 +42,9 @@ def test_fetch_rcv1(fetch_rcv1_fxt, global_random_seed):
         assert num == Y1[:, j].data.size
 
     # test shuffling and subset
-    data2 = fetch_rcv1_fxt(shuffle=True, subset="train", random_state=global_random_seed)
+    data2 = fetch_rcv1_fxt(
+        shuffle=True, subset="train", random_state=global_random_seed
+    )
     X2, Y2 = data2.data, data2.target
     s2 = data2.sample_id
 

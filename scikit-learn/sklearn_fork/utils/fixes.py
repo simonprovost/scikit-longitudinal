@@ -10,17 +10,18 @@ at which the fix is no longer needed.
 #
 # License: BSD 3 clause
 
-import sys
 from importlib import resources
+import sys
 
+import sklearn_fork
 import numpy as np
 import scipy
 import scipy.stats
-import sklearn_fork
 import threadpoolctl
 
-from ..externals._packaging.version import parse as parse_version
 from .deprecation import deprecated
+from ..externals._packaging.version import parse as parse_version
+
 
 np_version = parse_version(np.__version__)
 sp_version = parse_version(scipy.__version__)
@@ -36,9 +37,9 @@ else:
     from ..externals._lobpcg import lobpcg  # type: ignore  # noqa
 
 try:
-    from scipy.optimize._linesearch import line_search_wolfe1, line_search_wolfe2
+    from scipy.optimize._linesearch import line_search_wolfe2, line_search_wolfe1
 except ImportError:  # SciPy < 1.8
-    from scipy.optimize.linesearch import line_search_wolfe1, line_search_wolfe2  # type: ignore  # noqa
+    from scipy.optimize.linesearch import line_search_wolfe2, line_search_wolfe1  # type: ignore  # noqa
 
 
 def _object_dtype_isnan(X):
@@ -77,7 +78,9 @@ def _get_threadpool_controller():
         return None
 
     if not hasattr(sklearn_fork, "_sklearn_threadpool_controller"):
-        sklearn_fork._sklearn_threadpool_controller = threadpoolctl.ThreadpoolController()
+        sklearn_fork._sklearn_threadpool_controller = (
+            threadpoolctl.ThreadpoolController()
+        )
 
     return sklearn_fork._sklearn_threadpool_controller
 
@@ -169,6 +172,10 @@ def _is_resource(data_module, data_file_name):
 
 def _contents(data_module):
     if sys.version_info >= (3, 9):
-        return (resource.name for resource in resources.files(data_module).iterdir() if resource.is_file())
+        return (
+            resource.name
+            for resource in resources.files(data_module).iterdir()
+            if resource.is_file()
+        )
     else:
         return resources.contents(data_module)

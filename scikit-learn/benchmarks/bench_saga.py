@@ -4,18 +4,24 @@ Benchmarks of sklearn_fork SAGA vs lightning SAGA vs Liblinear. Shows the gain
 in using multinomial logistic regression in term of learning time.
 """
 import json
-import os
 import time
+import os
 
+from sklearn_fork.utils.parallel import delayed, Parallel
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.datasets import fetch_20newsgroups_vectorized, fetch_rcv1, load_digits, load_iris
+
+from sklearn_fork.datasets import (
+    fetch_rcv1,
+    load_iris,
+    load_digits,
+    fetch_20newsgroups_vectorized,
+)
 from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.metrics import log_loss
 from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.preprocessing import LabelBinarizer, LabelEncoder
 from sklearn_fork.utils.extmath import safe_sparse_dot, softmax
-from sklearn_fork.utils.parallel import Parallel, delayed
 
 
 def fit_single(
@@ -47,7 +53,9 @@ def fit_single(
         multi_class = "multinomial"
     X = X.astype(dtype)
     y = y.astype(dtype)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, stratify=y)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, random_state=42, stratify=y
+    )
     n_samples = X_train.shape[0]
     n_classes = np.unique(y_train).shape[0]
     test_scores = [1]
@@ -110,7 +118,9 @@ def fit_single(
                 # Lightning predict_proba is not implemented for n_classes > 2
                 y_pred = _predict_proba(lr, X)
             score = log_loss(y, y_pred, normalize=False) / n_samples
-            score += 0.5 * alpha * np.sum(lr.coef_**2) + beta * np.sum(np.abs(lr.coef_))
+            score += 0.5 * alpha * np.sum(lr.coef_**2) + beta * np.sum(
+                np.abs(lr.coef_)
+            )
             scores.append(score)
         train_score, test_score = tuple(scores)
 
@@ -243,7 +253,9 @@ def plot(outname=None):
         fig, axes = plt.subplots(figsize=(12, 4), ncols=4)
         ax = axes[0]
 
-        for scores, times, solver, dtype in zip(group["train_scores"], group["times"], group["solver"], group["dtype"]):
+        for scores, times, solver, dtype in zip(
+            group["train_scores"], group["times"], group["solver"], group["dtype"]
+        ):
             ax.plot(
                 times,
                 scores,
@@ -265,7 +277,9 @@ def plot(outname=None):
 
         ax = axes[1]
 
-        for scores, times, solver, dtype in zip(group["test_scores"], group["times"], group["solver"], group["dtype"]):
+        for scores, times, solver, dtype in zip(
+            group["test_scores"], group["times"], group["solver"], group["dtype"]
+        ):
             ax.plot(
                 times,
                 scores,
@@ -287,7 +301,9 @@ def plot(outname=None):
         ax.set_yscale("log")
 
         ax = axes[2]
-        for accuracy, times, solver, dtype in zip(group["accuracies"], group["times"], group["solver"], group["dtype"]):
+        for accuracy, times, solver, dtype in zip(
+            group["accuracies"], group["times"], group["solver"], group["dtype"]
+        ):
             ax.plot(
                 times,
                 accuracy,
@@ -316,7 +332,9 @@ def plot(outname=None):
         fig.subplots_adjust(top=0.9)
 
         ax = axes[3]
-        for scores, times, solver, dtype in zip(group["train_scores"], group["times"], group["solver"], group["dtype"]):
+        for scores, times, solver, dtype in zip(
+            group["train_scores"], group["times"], group["solver"], group["dtype"]
+        ):
             ax.plot(
                 np.arange(len(scores)),
                 scores,

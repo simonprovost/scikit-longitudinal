@@ -3,18 +3,25 @@
 A comparison of multilabel target formats and metrics over them
 """
 
-import argparse
-import itertools
-import sys
-from functools import partial
 from timeit import timeit
+from functools import partial
+import itertools
+import argparse
+import sys
 
 import matplotlib.pyplot as plt
-import numpy as np
 import scipy.sparse as sp
+import numpy as np
+
 from sklearn_fork.datasets import make_multilabel_classification
-from sklearn_fork.metrics import accuracy_score, f1_score, hamming_loss, jaccard_similarity_score
+from sklearn_fork.metrics import (
+    f1_score,
+    accuracy_score,
+    hamming_loss,
+    jaccard_similarity_score,
+)
 from sklearn_fork.utils._testing import ignore_warnings
+
 
 METRICS = {
     "f1": partial(f1_score, average="micro"),
@@ -148,7 +155,9 @@ if __name__ == "__main__":
         "metrics",
         nargs="*",
         default=sorted(METRICS),
-        help="Specifies metrics to benchmark, defaults to all. Choices are: {}".format(sorted(METRICS)),
+        help="Specifies metrics to benchmark, defaults to all. Choices are: {}".format(
+            sorted(METRICS)
+        ),
     )
     ap.add_argument(
         "--formats",
@@ -156,7 +165,9 @@ if __name__ == "__main__":
         choices=sorted(FORMATS),
         help="Specifies multilabel formats to benchmark (defaults to all).",
     )
-    ap.add_argument("--samples", type=int, default=1000, help="The number of samples to generate")
+    ap.add_argument(
+        "--samples", type=int, default=1000, help="The number of samples to generate"
+    )
     ap.add_argument("--classes", type=int, default=10, help="The number of classes")
     ap.add_argument(
         "--density",
@@ -168,10 +179,16 @@ if __name__ == "__main__":
         "--plot",
         choices=["classes", "density", "samples"],
         default=None,
-        help="Plot time with respect to this parameter varying up to the specified value",
+        help=(
+            "Plot time with respect to this parameter varying up to the specified value"
+        ),
     )
-    ap.add_argument("--n-steps", default=10, type=int, help="Plot this many points for each metric")
-    ap.add_argument("--n-times", default=5, type=int, help="Time performance over n_times trials")
+    ap.add_argument(
+        "--n-steps", default=10, type=int, help="Plot this many points for each metric"
+    )
+    ap.add_argument(
+        "--n-times", default=5, type=int, help="Time performance over n_times trials"
+    )
     args = ap.parse_args()
 
     if args.plot is not None:

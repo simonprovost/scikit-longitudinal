@@ -1,17 +1,26 @@
+from bz2 import BZ2File
 import gzip
+from io import BytesIO
+import numpy as np
+import scipy.sparse as sp
 import os
 import shutil
-from bz2 import BZ2File
-from io import BytesIO
 from tempfile import NamedTemporaryFile
 
-import numpy as np
 import pytest
-import scipy.sparse as sp
-import sklearn_fork
-from sklearn_fork.datasets import dump_svmlight_file, load_svmlight_file, load_svmlight_files
-from sklearn_fork.utils._testing import assert_allclose, assert_array_almost_equal, assert_array_equal, fails_if_pypy
+
 from sklearn_fork.utils.fixes import _open_binary, _path
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal, assert_allclose
+from sklearn_fork.utils._testing import fails_if_pypy
+
+import sklearn_fork
+from sklearn_fork.datasets import (
+    load_svmlight_file,
+    load_svmlight_files,
+    dump_svmlight_file,
+)
+
 
 TEST_DATA_MODULE = "sklearn_fork.datasets.tests.data"
 datafile = "svmlight_classification.txt"
@@ -100,14 +109,18 @@ def test_load_svmlight_file_multilabel():
 
 def test_load_svmlight_files():
     with _path(TEST_DATA_MODULE, datafile) as data_path:
-        X_train, y_train, X_test, y_test = load_svmlight_files([str(data_path)] * 2, dtype=np.float32)
+        X_train, y_train, X_test, y_test = load_svmlight_files(
+            [str(data_path)] * 2, dtype=np.float32
+        )
     assert_array_equal(X_train.toarray(), X_test.toarray())
     assert_array_almost_equal(y_train, y_test)
     assert X_train.dtype == np.float32
     assert X_test.dtype == np.float32
 
     with _path(TEST_DATA_MODULE, datafile) as data_path:
-        X1, y1, X2, y2, X3, y3 = load_svmlight_files([str(data_path)] * 3, dtype=np.float64)
+        X1, y1, X2, y2, X3, y3 = load_svmlight_files(
+            [str(data_path)] * 3, dtype=np.float64
+        )
     assert X1.dtype == X2.dtype
     assert X2.dtype == X3.dtype
     assert X3.dtype == np.float64
@@ -206,13 +219,18 @@ def test_load_with_qid():
         assert_array_equal(X.toarray(), [[0.53, 0.12], [0.13, 0.1], [0.87, 0.12]])
 
 
-@pytest.mark.skip("testing the overflow of 32 bit sparse indexing requires a large amount of memory")
+@pytest.mark.skip(
+    "testing the overflow of 32 bit sparse indexing requires a large amount of memory"
+)
 def test_load_large_qid():
     """
     load large libsvm / svmlight file with qid attribute. Tests 64-bit query ID
     """
     data = b"\n".join(
-        ("3 qid:{0} 1:0.53 2:0.12\n2 qid:{0} 1:0.13 2:0.1".format(i).encode() for i in range(1, 40 * 1000 * 1000))
+        (
+            "3 qid:{0} 1:0.53 2:0.12\n2 qid:{0} 1:0.13 2:0.1".format(i).encode()
+            for i in range(1, 40 * 1000 * 1000)
+        )
     )
     X, y, qid = load_svmlight_file(BytesIO(data), query_id=True)
     assert_array_equal(y[-4:], [3, 2, 3, 2])
@@ -221,7 +239,9 @@ def test_load_large_qid():
 
 def test_load_invalid_file2():
     with pytest.raises(ValueError):
-        with _path(TEST_DATA_MODULE, datafile) as data_path, _path(TEST_DATA_MODULE, invalidfile) as invalid_path:
+        with _path(TEST_DATA_MODULE, datafile) as data_path, _path(
+            TEST_DATA_MODULE, invalidfile
+        ) as invalid_path:
             load_svmlight_files([str(data_path), str(invalid_path), str(data_path)])
 
 
@@ -267,7 +287,9 @@ def test_dump():
                     # different from X_sparse.astype(dtype).asarray().
                     X_input = X.astype(dtype)
 
-                    dump_svmlight_file(X_input, y, f, comment="test", zero_based=zero_based)
+                    dump_svmlight_file(
+                        X_input, y, f, comment="test", zero_based=zero_based
+                    )
                     f.seek(0)
 
                     comment = f.readline()
@@ -293,11 +315,15 @@ def test_dump():
                     if dtype == np.float32:
                         # allow a rounding error at the last decimal place
                         assert_array_almost_equal(X_input_dense, X2_dense, 4)
-                        assert_array_almost_equal(y_dense.astype(dtype, copy=False), y2, 4)
+                        assert_array_almost_equal(
+                            y_dense.astype(dtype, copy=False), y2, 4
+                        )
                     else:
                         # allow a rounding error at the last decimal place
                         assert_array_almost_equal(X_input_dense, X2_dense, 15)
-                        assert_array_almost_equal(y_dense.astype(dtype, copy=False), y2, 15)
+                        assert_array_almost_equal(
+                            y_dense.astype(dtype, copy=False), y2, 15
+                        )
 
 
 def test_dump_multilabel():
@@ -480,8 +506,12 @@ def test_load_with_offsets(sparsity, n_samples, n_features):
     length_1 = mark_2 - mark_1
 
     # load the original sparse matrix into 3 independent CSR matrices
-    X_0, y_0 = load_svmlight_file(f, n_features=n_features, offset=mark_0, length=length_0)
-    X_1, y_1 = load_svmlight_file(f, n_features=n_features, offset=mark_1, length=length_1)
+    X_0, y_0 = load_svmlight_file(
+        f, n_features=n_features, offset=mark_0, length=length_0
+    )
+    X_1, y_1 = load_svmlight_file(
+        f, n_features=n_features, offset=mark_1, length=length_1
+    )
     X_2, y_2 = load_svmlight_file(f, n_features=n_features, offset=mark_2)
 
     y_concat = np.concatenate([y_0, y_1, y_2])
@@ -518,8 +548,12 @@ def test_load_offset_exhaustive_splits():
     # locate the split so has to test for particular boundary cases
     for mark in range(size):
         f.seek(0)
-        X_0, y_0, q_0 = load_svmlight_file(f, n_features=n_features, query_id=True, offset=0, length=mark)
-        X_1, y_1, q_1 = load_svmlight_file(f, n_features=n_features, query_id=True, offset=mark, length=-1)
+        X_0, y_0, q_0 = load_svmlight_file(
+            f, n_features=n_features, query_id=True, offset=0, length=mark
+        )
+        X_1, y_1, q_1 = load_svmlight_file(
+            f, n_features=n_features, query_id=True, offset=mark, length=-1
+        )
         q_concat = np.concatenate([q_0, q_1])
         y_concat = np.concatenate([y_0, y_1])
         X_concat = sp.vstack([X_0, X_1])

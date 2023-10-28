@@ -18,10 +18,11 @@ show how to retrieve:
 
 import numpy as np
 from matplotlib import pyplot as plt
-from sklearn_fork import tree
-from sklearn_fork.datasets import load_iris
+
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.datasets import load_iris
 from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork import tree
 
 ##############################################################################
 # Train tree classifier
@@ -92,10 +93,17 @@ while len(stack) > 0:
     else:
         is_leaves[node_id] = True
 
-print("The binary tree structure has {n} nodes and has the following tree structure:\n".format(n=n_nodes))
+print(
+    "The binary tree structure has {n} nodes and has "
+    "the following tree structure:\n".format(n=n_nodes)
+)
 for i in range(n_nodes):
     if is_leaves[i]:
-        print("{space}node={node} is a leaf node.".format(space=node_depth[i] * "\t", node=i))
+        print(
+            "{space}node={node} is a leaf node.".format(
+                space=node_depth[i] * "\t", node=i
+            )
+        )
     else:
         print(
             "{space}node={node} is a split node: "
@@ -140,7 +148,9 @@ leaf_id = clf.apply(X_test)
 
 sample_id = 0
 # obtain ids of the nodes `sample_id` goes through, i.e., row `sample_id`
-node_index = node_indicator.indices[node_indicator.indptr[sample_id] : node_indicator.indptr[sample_id + 1]]
+node_index = node_indicator.indices[
+    node_indicator.indptr[sample_id] : node_indicator.indptr[sample_id + 1]
+]
 
 print("Rules used to predict sample {id}:\n".format(id=sample_id))
 for node_id in node_index:
@@ -155,7 +165,8 @@ for node_id in node_index:
         threshold_sign = ">"
 
     print(
-        "decision node {node} : (X_test[{sample}, {feature}] = {value}) {inequality} {threshold})".format(
+        "decision node {node} : (X_test[{sample}, {feature}] = {value}) "
+        "{inequality} {threshold})".format(
             node=node_id,
             sample=sample_id,
             feature=feature[node_id],

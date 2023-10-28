@@ -216,7 +216,9 @@ class NewtonSolver(ABC):
         # gradient_times_newton = self.gradient @ self.coef_newton
         # was computed in inner_solve.
         armijo_term = sigma * self.gradient_times_newton
-        _, _, raw_prediction_newton = self.linear_loss.weight_intercept_raw(self.coef_newton, X)
+        _, _, raw_prediction_newton = self.linear_loss.weight_intercept_raw(
+            self.coef_newton, X
+        )
 
         self.coef_old = self.coef
         self.loss_value_old = self.loss_value
@@ -345,6 +347,7 @@ class NewtonSolver(ABC):
 
         Some solvers may need this, others not.
         """
+        pass
 
     def solve(self, X, y, sample_weight):
         """Solve the optimization problem.
@@ -417,7 +420,10 @@ class NewtonSolver(ABC):
                 self.fallback_lbfgs_solve(X=X, y=y, sample_weight=sample_weight)
             else:
                 warnings.warn(
-                    f"Newton solver did not converge after {self.iteration - 1} iterations.",
+                    (
+                        f"Newton solver did not converge after {self.iteration - 1} "
+                        "iterations."
+                    ),
                     ConvergenceWarning,
                 )
 
@@ -475,7 +481,9 @@ class NewtonCholeskySolver(NewtonSolver):
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter("error", scipy.linalg.LinAlgWarning)
-                self.coef_newton = scipy.linalg.solve(self.hessian, -self.gradient, check_finite=False, assume_a="sym")
+                self.coef_newton = scipy.linalg.solve(
+                    self.hessian, -self.gradient, check_finite=False, assume_a="sym"
+                )
                 self.gradient_times_newton = self.gradient @ self.coef_newton
                 if self.gradient_times_newton > 0:
                     if self.verbose:

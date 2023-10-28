@@ -41,10 +41,11 @@ number of Gaussian components instead of a continuous noisy sine curve.
 
 import itertools
 
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy import linalg
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+
 from sklearn_fork import mixture
 
 color_iter = itertools.cycle(["navy", "c", "cornflowerblue", "gold", "darkorange"])
@@ -109,11 +110,17 @@ for i in range(X.shape[0]):
     X[i, 1] = 3.0 * (np.sin(x) + np.random.normal(0, 0.2))
 
 plt.figure(figsize=(10, 10))
-plt.subplots_adjust(bottom=0.04, top=0.95, hspace=0.2, wspace=0.05, left=0.03, right=0.97)
+plt.subplots_adjust(
+    bottom=0.04, top=0.95, hspace=0.2, wspace=0.05, left=0.03, right=0.97
+)
 
 # Fit a Gaussian mixture with EM using ten components
-gmm = mixture.GaussianMixture(n_components=10, covariance_type="full", max_iter=100).fit(X)
-plot_results(X, gmm.predict(X), gmm.means_, gmm.covariances_, 0, "Expectation-maximization")
+gmm = mixture.GaussianMixture(
+    n_components=10, covariance_type="full", max_iter=100
+).fit(X)
+plot_results(
+    X, gmm.predict(X), gmm.means_, gmm.covariances_, 0, "Expectation-maximization"
+)
 
 dpgmm = mixture.BayesianGaussianMixture(
     n_components=10,
@@ -132,7 +139,8 @@ plot_results(
     dpgmm.means_,
     dpgmm.covariances_,
     1,
-    "Bayesian Gaussian mixture models with a Dirichlet process prior " r"for $\gamma_0=0.01$.",
+    "Bayesian Gaussian mixture models with a Dirichlet process prior "
+    r"for $\gamma_0=0.01$.",
 )
 
 X_s, y_s = dpgmm.sample(n_samples=2000)
@@ -141,7 +149,8 @@ plot_samples(
     y_s,
     dpgmm.n_components,
     0,
-    "Gaussian mixture with a Dirichlet process prior " r"for $\gamma_0=0.01$ sampled with $2000$ samples.",
+    "Gaussian mixture with a Dirichlet process prior "
+    r"for $\gamma_0=0.01$ sampled with $2000$ samples.",
 )
 
 dpgmm = mixture.BayesianGaussianMixture(
@@ -161,7 +170,8 @@ plot_results(
     dpgmm.means_,
     dpgmm.covariances_,
     2,
-    "Bayesian Gaussian mixture models with a Dirichlet process prior " r"for $\gamma_0=100$",
+    "Bayesian Gaussian mixture models with a Dirichlet process prior "
+    r"for $\gamma_0=100$",
 )
 
 X_s, y_s = dpgmm.sample(n_samples=2000)
@@ -170,7 +180,8 @@ plot_samples(
     y_s,
     dpgmm.n_components,
     1,
-    "Gaussian mixture with a Dirichlet process prior " r"for $\gamma_0=100$ sampled with $2000$ samples.",
+    "Gaussian mixture with a Dirichlet process prior "
+    r"for $\gamma_0=100$ sampled with $2000$ samples.",
 )
 
 plt.show()

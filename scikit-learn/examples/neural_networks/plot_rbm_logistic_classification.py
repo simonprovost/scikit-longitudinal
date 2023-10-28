@@ -23,10 +23,13 @@ feature extraction.
 # linear shifts of 1 pixel in each direction.
 
 import numpy as np
+
 from scipy.ndimage import convolve
+
 from sklearn_fork import datasets
-from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.preprocessing import minmax_scale
+
+from sklearn_fork.model_selection import train_test_split
 
 
 def nudge_dataset(X, Y):
@@ -44,7 +47,9 @@ def nudge_dataset(X, Y):
     def shift(x, w):
         return convolve(x.reshape((8, 8)), mode="constant", weights=w).ravel()
 
-    X = np.concatenate([X] + [np.apply_along_axis(shift, 1, X, vector) for vector in direction_vectors])
+    X = np.concatenate(
+        [X] + [np.apply_along_axis(shift, 1, X, vector) for vector in direction_vectors]
+    )
     Y = np.concatenate([Y for _ in range(5)], axis=0)
     return X, Y
 
@@ -109,11 +114,17 @@ raw_pixel_classifier.fit(X_train, Y_train)
 from sklearn_fork import metrics
 
 Y_pred = rbm_features_classifier.predict(X_test)
-print("Logistic regression using RBM features:\n%s\n" % (metrics.classification_report(Y_test, Y_pred)))
+print(
+    "Logistic regression using RBM features:\n%s\n"
+    % (metrics.classification_report(Y_test, Y_pred))
+)
 
 # %%
 Y_pred = raw_pixel_classifier.predict(X_test)
-print("Logistic regression using raw pixel features:\n%s\n" % (metrics.classification_report(Y_test, Y_pred)))
+print(
+    "Logistic regression using raw pixel features:\n%s\n"
+    % (metrics.classification_report(Y_test, Y_pred))
+)
 
 # %%
 # The features extracted by the BernoulliRBM help improve the classification

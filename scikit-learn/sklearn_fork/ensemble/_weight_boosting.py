@@ -23,21 +23,28 @@ The module structure is the following:
 #
 # License: BSD 3 clause
 
-import warnings
 from abc import ABCMeta, abstractmethod
-from numbers import Integral, Real
 
+from numbers import Integral, Real
 import numpy as np
+
+import warnings
+
 from scipy.special import xlogy
 
-from ..base import ClassifierMixin, RegressorMixin, is_classifier, is_regressor
-from ..metrics import accuracy_score, r2_score
-from ..tree import DecisionTreeClassifier, DecisionTreeRegressor
-from ..utils import _safe_indexing, check_random_state
-from ..utils._param_validation import HasMethods, Interval, StrOptions
-from ..utils.extmath import softmax, stable_cumsum
-from ..utils.validation import _check_sample_weight, _num_samples, check_is_fitted, has_fit_parameter
 from ._base import BaseEnsemble
+from ..base import ClassifierMixin, RegressorMixin, is_classifier, is_regressor
+
+from ..tree import DecisionTreeClassifier, DecisionTreeRegressor
+from ..utils import check_random_state, _safe_indexing
+from ..utils.extmath import softmax
+from ..utils.extmath import stable_cumsum
+from ..metrics import accuracy_score, r2_score
+from ..utils.validation import check_is_fitted
+from ..utils.validation import _check_sample_weight
+from ..utils.validation import has_fit_parameter
+from ..utils.validation import _num_samples
+from ..utils._param_validation import HasMethods, Interval, StrOptions
 
 __all__ = [
     "AdaBoostClassifier",
@@ -125,7 +132,9 @@ class BaseWeightBoosting(BaseEnsemble, metaclass=ABCMeta):
             y_numeric=is_regressor(self),
         )
 
-        sample_weight = _check_sample_weight(sample_weight, X, np.float64, copy=True, only_non_negative=True)
+        sample_weight = _check_sample_weight(
+            sample_weight, X, np.float64, copy=True, only_non_negative=True
+        )
         sample_weight /= sample_weight.sum()
 
         # Check parameters
@@ -149,7 +158,9 @@ class BaseWeightBoosting(BaseEnsemble, metaclass=ABCMeta):
             sample_weight[zero_weight_mask] = 0.0
 
             # Boosting step
-            sample_weight, estimator_weight, estimator_error = self._boost(iboost, X, y, sample_weight, random_state)
+            sample_weight, estimator_weight, estimator_error = self._boost(
+                iboost, X, y, sample_weight, random_state
+            )
 
             # Early termination
             if sample_weight is None:
@@ -222,6 +233,7 @@ class BaseWeightBoosting(BaseEnsemble, metaclass=ABCMeta):
             The classification error for the current boost.
             If None then boosting has terminated early.
         """
+        pass
 
     def staged_score(self, X, y, sample_weight=None):
         """Return staged scores for X, y.
@@ -273,18 +285,25 @@ class BaseWeightBoosting(BaseEnsemble, metaclass=ABCMeta):
             The feature importances.
         """
         if self.estimators_ is None or len(self.estimators_) == 0:
-            raise ValueError("Estimator not fitted, call `fit` before `feature_importances_`.")
+            raise ValueError(
+                "Estimator not fitted, call `fit` before `feature_importances_`."
+            )
 
         try:
             norm = self.estimator_weights_.sum()
             return (
-                sum(weight * clf.feature_importances_ for weight, clf in zip(self.estimator_weights_, self.estimators_))
+                sum(
+                    weight * clf.feature_importances_
+                    for weight, clf in zip(self.estimator_weights_, self.estimators_)
+                )
                 / norm
             )
 
         except AttributeError as e:
             raise AttributeError(
-                "Unable to compute feature importances since estimator does not have a feature_importances_ attribute"
+                "Unable to compute feature importances "
+                "since estimator does not have a "
+                "feature_importances_ attribute"
             ) from e
 
 
@@ -304,7 +323,9 @@ def _samme_proba(estimator, n_classes, X):
     np.clip(proba, np.finfo(proba.dtype).eps, None, out=proba)
     log_proba = np.log(proba)
 
-    return (n_classes - 1) * (log_proba - (1.0 / n_classes) * log_proba.sum(axis=1)[:, np.newaxis])
+    return (n_classes - 1) * (
+        log_proba - (1.0 / n_classes) * log_proba.sum(axis=1)[:, np.newaxis]
+    )
 
 
 class AdaBoostClassifier(ClassifierMixin, BaseWeightBoosting):
@@ -501,7 +522,9 @@ class AdaBoostClassifier(ClassifierMixin, BaseWeightBoosting):
                     "algorithm='SAMME' instead."
                 )
         if not has_fit_parameter(self.estimator_, "sample_weight"):
-            raise ValueError(f"{self.estimator.__class__.__name__} doesn't support sample_weight.")
+            raise ValueError(
+                f"{self.estimator.__class__.__name__} doesn't support sample_weight."
+            )
 
     def _boost(self, iboost, X, y, sample_weight, random_state):
         """Implement a single boost.
@@ -592,13 +615,18 @@ class AdaBoostClassifier(ClassifierMixin, BaseWeightBoosting):
 
         # Boost weight using multi-class AdaBoost SAMME.R alg
         estimator_weight = (
-            -1.0 * self.learning_rate * ((n_classes - 1.0) / n_classes) * xlogy(y_coding, y_predict_proba).sum(axis=1)
+            -1.0
+            * self.learning_rate
+            * ((n_classes - 1.0) / n_classes)
+            * xlogy(y_coding, y_predict_proba).sum(axis=1)
         )
 
         # Only boost the weights if it will fit again
         if not iboost == self.n_estimators - 1:
             # Only boost positive weights
-            sample_weight *= np.exp(estimator_weight * ((sample_weight > 0) | (estimator_weight < 0)))
+            sample_weight *= np.exp(
+                estimator_weight * ((sample_weight > 0) | (estimator_weight < 0))
+            )
 
         return sample_weight, 1.0, estimator_error
 
@@ -631,7 +659,9 @@ class AdaBoostClassifier(ClassifierMixin, BaseWeightBoosting):
             self.estimators_.pop(-1)
             if len(self.estimators_) == 0:
                 raise ValueError(
-                    "BaseClassifier in AdaBoostClassifier ensemble is worse than random, ensemble can not be fit."
+                    "BaseClassifier in AdaBoostClassifier "
+                    "ensemble is worse than random, ensemble "
+                    "can not be fit."
                 )
             return None, None, None
 
@@ -643,7 +673,10 @@ class AdaBoostClassifier(ClassifierMixin, BaseWeightBoosting):
         # Only boost the weights if it will fit again
         if not iboost == self.n_estimators - 1:
             # Only boost positive weights
-            sample_weight = np.exp(np.log(sample_weight) + estimator_weight * incorrect * (sample_weight > 0))
+            sample_weight = np.exp(
+                np.log(sample_weight)
+                + estimator_weight * incorrect * (sample_weight > 0)
+            )
 
         return sample_weight, estimator_weight, estimator_error
 
@@ -732,7 +765,9 @@ class AdaBoostClassifier(ClassifierMixin, BaseWeightBoosting):
 
         if self.algorithm == "SAMME.R":
             # The weights are all 1. for SAMME.R
-            pred = sum(_samme_proba(estimator, n_classes, X) for estimator in self.estimators_)
+            pred = sum(
+                _samme_proba(estimator, n_classes, X) for estimator in self.estimators_
+            )
         else:  # self.algorithm == "SAMME"
             pred = sum(
                 (estimator.predict(X) == classes).T * w
@@ -1149,7 +1184,9 @@ class AdaBoostRegressor(RegressorMixin, BaseWeightBoosting):
         estimator_weight = self.learning_rate * np.log(1.0 / beta)
 
         if not iboost == self.n_estimators - 1:
-            sample_weight[sample_mask] *= np.power(beta, (1.0 - masked_error_vector) * self.learning_rate)
+            sample_weight[sample_mask] *= np.power(
+                beta, (1.0 - masked_error_vector) * self.learning_rate
+            )
 
         return sample_weight, estimator_weight, estimator_error
 

@@ -2,18 +2,26 @@
 #          Alexandre Gramfort <alexandre.gramfort@telecom-paristech.fr>
 # License: BSD 3 clause
 
-import re
 from math import sqrt
 
 import numpy as np
-import pytest
 from scipy.sparse import csr_matrix
-from sklearn_fork import metrics, neighbors
-from sklearn_fork.datasets import load_iris
+
+from sklearn_fork import neighbors
+import re
+import pytest
+
+from sklearn_fork import metrics
 from sklearn_fork.metrics import roc_auc_score
+
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
-from sklearn_fork.utils.estimator_checks import check_outlier_corruption, parametrize_with_checks
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils.estimator_checks import check_outlier_corruption
+from sklearn_fork.utils.estimator_checks import parametrize_with_checks
+
+from sklearn_fork.datasets import load_iris
+
 
 # load the iris dataset
 # and randomly permute it
@@ -53,7 +61,9 @@ def test_lof_performance(global_dtype):
     X_train = X[:100]
 
     # Generate some abnormal novel observations
-    X_outliers = rng.uniform(low=-4, high=4, size=(20, 2)).astype(global_dtype, copy=False)
+    X_outliers = rng.uniform(low=-4, high=4, size=(20, 2)).astype(
+        global_dtype, copy=False
+    )
     X_test = np.r_[X[100:], X_outliers]
     y_test = np.array([0] * 20 + [1] * 20)
 
@@ -70,7 +80,9 @@ def test_lof_performance(global_dtype):
 def test_lof_values(global_dtype):
     # toy samples:
     X_train = np.asarray([[1, 1], [1, 2], [2, 1]], dtype=global_dtype)
-    clf1 = neighbors.LocalOutlierFactor(n_neighbors=2, contamination=0.1, novelty=True).fit(X_train)
+    clf1 = neighbors.LocalOutlierFactor(
+        n_neighbors=2, contamination=0.1, novelty=True
+    ).fit(X_train)
     clf2 = neighbors.LocalOutlierFactor(n_neighbors=2, novelty=True).fit(X_train)
     s_0 = 2.0 * sqrt(2.0) / (1.0 + sqrt(2.0))
     s_1 = (1.0 + sqrt(2)) * (1.0 / (4.0 * sqrt(2.0)) + 1.0 / (2.0 + 2.0 * sqrt(2)))
@@ -100,7 +112,9 @@ def test_lof_precomputed(global_dtype, random_state=42):
     pred_X_Y = lof_X.predict(Y)
 
     # As a dense distance matrix (n_samples by n_samples)
-    lof_D = neighbors.LocalOutlierFactor(n_neighbors=3, algorithm="brute", metric="precomputed", novelty=True)
+    lof_D = neighbors.LocalOutlierFactor(
+        n_neighbors=3, algorithm="brute", metric="precomputed", novelty=True
+    )
     lof_D.fit(DXX)
     pred_D_X = lof_D._predict()
     pred_D_Y = lof_D.predict(DYX)
@@ -124,7 +138,9 @@ def test_n_neighbors_attribute():
 def test_score_samples(global_dtype):
     X_train = np.asarray([[1, 1], [1, 2], [2, 1]], dtype=global_dtype)
     X_test = np.asarray([[2.0, 2.0]], dtype=global_dtype)
-    clf1 = neighbors.LocalOutlierFactor(n_neighbors=2, contamination=0.1, novelty=True).fit(X_train)
+    clf1 = neighbors.LocalOutlierFactor(
+        n_neighbors=2, contamination=0.1, novelty=True
+    ).fit(X_train)
     clf2 = neighbors.LocalOutlierFactor(n_neighbors=2, novelty=True).fit(X_train)
 
     clf1_scores = clf1.score_samples(X_test)
@@ -249,7 +265,9 @@ def test_lof_input_dtype_preservation(global_dtype, algorithm, contamination, no
     """Check that the fitted attributes are stored using the data type of X."""
     X = iris.data.astype(global_dtype, copy=False)
 
-    iso = neighbors.LocalOutlierFactor(n_neighbors=5, algorithm=algorithm, contamination=contamination, novelty=novelty)
+    iso = neighbors.LocalOutlierFactor(
+        n_neighbors=5, algorithm=algorithm, contamination=contamination, novelty=novelty
+    )
     iso.fit(X)
 
     assert iso.negative_outlier_factor_.dtype == global_dtype
@@ -272,11 +290,15 @@ def test_lof_dtype_equivalence(algorithm, novelty, contamination):
     # making the computation in 32 and 64 bits.
     X = np.concatenate([inliers, outliers], axis=0).astype(np.float32)
 
-    lof_32 = neighbors.LocalOutlierFactor(algorithm=algorithm, novelty=novelty, contamination=contamination)
+    lof_32 = neighbors.LocalOutlierFactor(
+        algorithm=algorithm, novelty=novelty, contamination=contamination
+    )
     X_32 = X.astype(np.float32, copy=True)
     lof_32.fit(X_32)
 
-    lof_64 = neighbors.LocalOutlierFactor(algorithm=algorithm, novelty=novelty, contamination=contamination)
+    lof_64 = neighbors.LocalOutlierFactor(
+        algorithm=algorithm, novelty=novelty, contamination=contamination
+    )
     X_64 = X.astype(np.float64, copy=True)
     lof_64.fit(X_64)
 

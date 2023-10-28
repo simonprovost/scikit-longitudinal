@@ -1,11 +1,7 @@
-import numpy as np
-
+import  numpy as np
 cimport numpy as cnp
-
 from scipy import sparse
-
 from ..utils._cython_blas cimport _dot
-
 cnp.import_array()
 
 cdef extern from *:

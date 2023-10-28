@@ -44,11 +44,11 @@ between their scores.
 
 """
 
-import numpy as np
-from matplotlib import pyplot as plt
 from sklearn_fork.datasets import load_iris
-from sklearn_fork.model_selection import GridSearchCV, KFold, cross_val_score
+from matplotlib import pyplot as plt
 from sklearn_fork.svm import SVC
+from sklearn_fork.model_selection import GridSearchCV, cross_val_score, KFold
+import numpy as np
 
 # Number of random trials
 NUM_TRIALS = 30
@@ -88,7 +88,11 @@ for i in range(NUM_TRIALS):
 
 score_difference = non_nested_scores - nested_scores
 
-print("Average difference of {:6f} with std. dev. of {:6f}.".format(score_difference.mean(), score_difference.std()))
+print(
+    "Average difference of {:6f} with std. dev. of {:6f}.".format(
+        score_difference.mean(), score_difference.std()
+    )
+)
 
 # Plot scores on each trial for nested and non-nested CV
 plt.figure()

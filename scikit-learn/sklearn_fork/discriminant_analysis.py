@@ -10,21 +10,23 @@ Linear Discriminant Analysis and Quadratic Discriminant Analysis
 # License: BSD 3-Clause
 
 import warnings
-from numbers import Integral, Real
-
 import numpy as np
 import scipy.linalg
 from scipy import linalg
+from numbers import Real, Integral
 
-from .base import BaseEstimator, ClassifierMixin, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from .covariance import empirical_covariance, ledoit_wolf, shrunk_covariance
+from .base import BaseEstimator, TransformerMixin, ClassifierMixin
+from .base import ClassNamePrefixFeaturesOutMixin
 from .linear_model._base import LinearClassifierMixin
-from .preprocessing import StandardScaler
-from .utils._array_api import _expit, device, get_namespace, size
-from .utils._param_validation import HasMethods, Interval, StrOptions
-from .utils.extmath import softmax
-from .utils.multiclass import check_classification_targets, unique_labels
+from .covariance import ledoit_wolf, empirical_covariance, shrunk_covariance
+from .utils.multiclass import unique_labels
 from .utils.validation import check_is_fitted
+from .utils._array_api import get_namespace, _expit, device, size
+from .utils.multiclass import check_classification_targets
+from .utils.extmath import softmax
+from .utils._param_validation import StrOptions, Interval, HasMethods
+from .preprocessing import StandardScaler
+
 
 __all__ = ["LinearDiscriminantAnalysis", "QuadraticDiscriminantAnalysis"]
 
@@ -76,11 +78,15 @@ def _cov(X, shrinkage=None, covariance_estimator=None):
     else:
         if shrinkage is not None and shrinkage != 0:
             raise ValueError(
-                "covariance_estimator and shrinkage parameters are not None. Only one of the two can be set."
+                "covariance_estimator and shrinkage parameters "
+                "are not None. Only one of the two can be set."
             )
         covariance_estimator.fit(X)
         if not hasattr(covariance_estimator, "covariance_"):
-            raise ValueError("%s does not have a covariance_ attribute" % covariance_estimator.__class__.__name__)
+            raise ValueError(
+                "%s does not have a covariance_ attribute"
+                % covariance_estimator.__class__.__name__
+            )
         s = covariance_estimator.covariance_
     return s
 
@@ -392,9 +398,13 @@ class LinearDiscriminantAnalysis(
            0-471-05669-3.
         """
         self.means_ = _class_means(X, y)
-        self.covariance_ = _class_cov(X, y, self.priors_, shrinkage, covariance_estimator)
+        self.covariance_ = _class_cov(
+            X, y, self.priors_, shrinkage, covariance_estimator
+        )
         self.coef_ = linalg.lstsq(self.covariance_, self.means_.T)[0].T
-        self.intercept_ = -0.5 * np.diag(np.dot(self.means_, self.coef_.T)) + np.log(self.priors_)
+        self.intercept_ = -0.5 * np.diag(np.dot(self.means_, self.coef_.T)) + np.log(
+            self.priors_
+        )
 
     def _solve_eigen(self, X, y, shrinkage, covariance_estimator):
         """Eigenvalue solver.
@@ -442,19 +452,25 @@ class LinearDiscriminantAnalysis(
            0-471-05669-3.
         """
         self.means_ = _class_means(X, y)
-        self.covariance_ = _class_cov(X, y, self.priors_, shrinkage, covariance_estimator)
+        self.covariance_ = _class_cov(
+            X, y, self.priors_, shrinkage, covariance_estimator
+        )
 
         Sw = self.covariance_  # within scatter
         St = _cov(X, shrinkage, covariance_estimator)  # total scatter
         Sb = St - Sw  # between scatter
 
         evals, evecs = linalg.eigh(Sb, Sw)
-        self.explained_variance_ratio_ = np.sort(evals / np.sum(evals))[::-1][: self._max_components]
+        self.explained_variance_ratio_ = np.sort(evals / np.sum(evals))[::-1][
+            : self._max_components
+        ]
         evecs = evecs[:, np.argsort(evals)[::-1]]  # sort eigenvectors
 
         self.scalings_ = evecs
         self.coef_ = np.dot(self.means_, evecs).dot(evecs.T)
-        self.intercept_ = -0.5 * np.diag(np.dot(self.means_, self.coef_.T)) + np.log(self.priors_)
+        self.intercept_ = -0.5 * np.diag(np.dot(self.means_, self.coef_.T)) + np.log(
+            self.priors_
+        )
 
     def _solve_svd(self, X, y):
         """SVD solver.
@@ -508,7 +524,9 @@ class LinearDiscriminantAnalysis(
 
         # 3) Between variance scaling
         # Scale weighted centers
-        X = ((xp.sqrt((n_samples * self.priors_) * fac)) * (self.means_ - self.xbar_).T).T @ scalings
+        X = (
+            (xp.sqrt((n_samples * self.priors_) * fac)) * (self.means_ - self.xbar_).T
+        ).T @ scalings
         # Centers are living in a space with n_classes-1 dim (maximum)
         # Use SVD to find projection in the space spanned by the
         # (n_classes) centers
@@ -517,7 +535,9 @@ class LinearDiscriminantAnalysis(
         if self._max_components == 0:
             self.explained_variance_ratio_ = xp.empty((0,), dtype=S.dtype)
         else:
-            self.explained_variance_ratio_ = (S**2 / xp.sum(S**2))[: self._max_components]
+            self.explained_variance_ratio_ = (S**2 / xp.sum(S**2))[
+                : self._max_components
+            ]
 
         rank = xp.sum(xp.astype(S > self.tol * S[0], xp.int32))
         self.scalings_ = scalings @ Vt.T[:, :rank]
@@ -552,13 +572,17 @@ class LinearDiscriminantAnalysis(
 
         xp, _ = get_namespace(X)
 
-        X, y = self._validate_data(X, y, ensure_min_samples=2, dtype=[xp.float64, xp.float32])
+        X, y = self._validate_data(
+            X, y, ensure_min_samples=2, dtype=[xp.float64, xp.float32]
+        )
         self.classes_ = unique_labels(y)
         n_samples, _ = X.shape
         n_classes = self.classes_.shape[0]
 
         if n_samples == n_classes:
-            raise ValueError("The number of samples must be more than the number of classes.")
+            raise ValueError(
+                "The number of samples must be more than the number of classes."
+            )
 
         if self.priors is None:  # estimate priors from sample
             _, cnts = xp.unique_counts(y)  # non-negative ints
@@ -581,14 +605,20 @@ class LinearDiscriminantAnalysis(
             self._max_components = max_components
         else:
             if self.n_components > max_components:
-                raise ValueError("n_components cannot be larger than min(n_features, n_classes - 1).")
+                raise ValueError(
+                    "n_components cannot be larger than min(n_features, n_classes - 1)."
+                )
             self._max_components = self.n_components
 
         if self.solver == "svd":
             if self.shrinkage is not None:
                 raise NotImplementedError("shrinkage not supported with 'svd' solver.")
             if self.covariance_estimator is not None:
-                raise ValueError("covariance estimator is not supported with svd solver. Try another solver")
+                raise ValueError(
+                    "covariance estimator "
+                    "is not supported "
+                    "with svd solver. Try another solver"
+                )
             self._solve_svd(X, y)
         elif self.solver == "lsqr":
             self._solve_lstsq(
@@ -607,7 +637,9 @@ class LinearDiscriminantAnalysis(
         if size(self.classes_) == 2:  # treat binary case as a special case
             coef_ = xp.asarray(self.coef_[1, :] - self.coef_[0, :], dtype=X.dtype)
             self.coef_ = xp.reshape(coef_, (1, -1))
-            intercept_ = xp.asarray(self.intercept_[1] - self.intercept_[0], dtype=X.dtype)
+            intercept_ = xp.asarray(
+                self.intercept_[1] - self.intercept_[0], dtype=X.dtype
+            )
             self.intercept_ = xp.reshape(intercept_, (1,))
         self._n_features_out = self._max_components
         return self
@@ -628,7 +660,9 @@ class LinearDiscriminantAnalysis(
             is (n_samples, min(rank, n_components)).
         """
         if self.solver == "lsqr":
-            raise NotImplementedError("transform not implemented for 'lsqr' solver (use 'svd' or 'eigen').")
+            raise NotImplementedError(
+                "transform not implemented for 'lsqr' solver (use 'svd' or 'eigen')."
+            )
         check_is_fitted(self)
         xp, _ = get_namespace(X)
         X = self._validate_data(X, reset=False)
@@ -820,7 +854,9 @@ class QuadraticDiscriminantAnalysis(ClassifierMixin, BaseEstimator):
         "tol": [Interval(Real, 0, None, closed="left")],
     }
 
-    def __init__(self, *, priors=None, reg_param=0.0, store_covariance=False, tol=1.0e-4):
+    def __init__(
+        self, *, priors=None, reg_param=0.0, store_covariance=False, tol=1.0e-4
+    ):
         self.priors = priors
         self.reg_param = reg_param
         self.store_covariance = store_covariance
@@ -857,7 +893,10 @@ class QuadraticDiscriminantAnalysis(ClassifierMixin, BaseEstimator):
         n_samples, n_features = X.shape
         n_classes = len(self.classes_)
         if n_classes < 2:
-            raise ValueError("The number of classes has to be greater than one; got %d class" % (n_classes))
+            raise ValueError(
+                "The number of classes has to be greater than one; got %d class"
+                % (n_classes)
+            )
         if self.priors is None:
             self.priors_ = np.bincount(y) / float(n_samples)
         else:
@@ -876,7 +915,8 @@ class QuadraticDiscriminantAnalysis(ClassifierMixin, BaseEstimator):
             means.append(meang)
             if len(Xg) == 1:
                 raise ValueError(
-                    "y has only 1 sample in class %s, covariance is ill defined." % str(self.classes_[ind])
+                    "y has only 1 sample in class %s, covariance is ill defined."
+                    % str(self.classes_[ind])
                 )
             Xgc = Xg - meang
             # Xgc = U * S * V.T

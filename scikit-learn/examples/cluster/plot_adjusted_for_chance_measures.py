@@ -88,7 +88,9 @@ def random_labels(n_samples, n_classes):
 # variability of a given metric at a given `n_clusters`.
 
 
-def fixed_classes_uniform_labelings_scores(score_func, n_samples, n_clusters_range, n_classes, n_runs=5):
+def fixed_classes_uniform_labelings_scores(
+    score_func, n_samples, n_clusters_range, n_classes, n_runs=5
+):
     scores = np.zeros((len(n_clusters_range), n_runs))
     labels_a = random_labels(n_samples=n_samples, n_classes=n_classes)
 
@@ -117,7 +119,9 @@ sns.color_palette("colorblind")
 plt.figure(1)
 
 for marker, (score_name, score_func) in zip("d^vx.,", score_funcs):
-    scores = fixed_classes_uniform_labelings_scores(score_func, n_samples, n_clusters_range, n_classes=n_classes)
+    scores = fixed_classes_uniform_labelings_scores(
+        score_func, n_samples, n_clusters_range, n_classes=n_classes
+    )
     plots.append(
         plt.errorbar(
             n_clusters_range,
@@ -130,7 +134,10 @@ for marker, (score_name, score_func) in zip("d^vx.,", score_funcs):
     )
     names.append(score_name)
 
-plt.title(f"Clustering measures for random uniform labeling\nagainst reference assignment with {n_classes} classes")
+plt.title(
+    "Clustering measures for random uniform labeling\n"
+    f"against reference assignment with {n_classes} classes"
+)
 plt.xlabel(f"Number of clusters (Number of samples is fixed to {n_samples})")
 plt.ylabel("Score value")
 plt.ylim(bottom=-0.05, top=1.05)
@@ -192,7 +199,9 @@ for marker, (score_name, score_func) in zip("d^vx.,", score_funcs):
     )
     names.append(score_name)
 
-plt.title("Clustering measures for 2 random uniform labelings\nwith equal number of clusters")
+plt.title(
+    "Clustering measures for 2 random uniform labelings\nwith equal number of clusters"
+)
 plt.xlabel(f"Number of clusters (Number of samples is fixed to {n_samples})")
 plt.ylabel("Score value")
 plt.legend(plots, names)

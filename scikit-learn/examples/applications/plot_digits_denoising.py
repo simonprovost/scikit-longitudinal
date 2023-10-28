@@ -33,8 +33,8 @@ We will use USPS digits dataset to reproduce presented in Sect. 4 of [1]_.
 # normalize the dataset such that all pixel values are in the range (0, 1).
 import numpy as np
 from sklearn_fork.datasets import fetch_openml
-from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.preprocessing import MinMaxScaler
+from sklearn_fork.model_selection import train_test_split
 
 X, y = fetch_openml(data_id=41082, as_frame=False, return_X_y=True, parser="pandas")
 X = MinMaxScaler().fit_transform(X)
@@ -53,7 +53,9 @@ X = MinMaxScaler().fit_transform(X)
 # The idea of this application, is to show that we can denoise corrupted images
 # by learning a PCA basis on some uncorrupted images. We will use both a PCA
 # and a kernel-based PCA to solve this problem.
-X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=0, train_size=1_000, test_size=100)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, stratify=y, random_state=0, train_size=1_000, test_size=100
+)
 
 rng = np.random.RandomState(0)
 noise = rng.normal(scale=0.25, size=X_test.shape)
@@ -84,7 +86,9 @@ def plot_digits(X, title):
 # Let's first have a look to see the difference between noise-free and noisy
 # images. We will check the test set in this regard.
 plot_digits(X_test, "Uncorrupted test images")
-plot_digits(X_test_noisy, f"Noisy test images\nMSE: {np.mean((X_test - X_test_noisy) ** 2):.2f}")
+plot_digits(
+    X_test_noisy, f"Noisy test images\nMSE: {np.mean((X_test - X_test_noisy) ** 2):.2f}"
+)
 
 # %%
 # Learn the `PCA` basis
@@ -118,7 +122,9 @@ _ = kernel_pca.fit(X_train_noisy)
 # PCA; however, we expect a better reconstruction because we use a non-linear
 # kernel to learn the PCA basis and a kernel ridge to learn the mapping
 # function.
-X_reconstructed_kernel_pca = kernel_pca.inverse_transform(kernel_pca.transform(X_test_noisy))
+X_reconstructed_kernel_pca = kernel_pca.inverse_transform(
+    kernel_pca.transform(X_test_noisy)
+)
 X_reconstructed_pca = pca.inverse_transform(pca.transform(X_test_noisy))
 
 # %%
@@ -129,7 +135,10 @@ plot_digits(
 )
 plot_digits(
     X_reconstructed_kernel_pca,
-    f"Kernel PCA reconstruction\nMSE: {np.mean((X_test - X_reconstructed_kernel_pca) ** 2):.2f}",
+    (
+        "Kernel PCA reconstruction\n"
+        f"MSE: {np.mean((X_test - X_reconstructed_kernel_pca) ** 2):.2f}"
+    ),
 )
 
 # %%

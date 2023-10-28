@@ -2,8 +2,8 @@ from functools import wraps
 
 from scipy.sparse import issparse
 
-from .._config import get_config
 from . import check_pandas_support
+from .._config import get_config
 from ._available_if import available_if
 
 
@@ -87,7 +87,9 @@ def _get_output_config(method, estimator=None):
         dense_config = get_config()[f"{method}_output"]
 
     if dense_config not in {"default", "pandas"}:
-        raise ValueError(f"output config must be 'default' or 'pandas' got {dense_config}")
+        raise ValueError(
+            f"output config must be 'default' or 'pandas' got {dense_config}"
+        )
 
     return {"dense": dense_config}
 
@@ -160,7 +162,10 @@ def _auto_wrap_is_configured(estimator):
     is manually disabled.
     """
     auto_wrap_output_keys = getattr(estimator, "_sklearn_auto_wrap_output_keys", set())
-    return hasattr(estimator, "get_feature_names_out") and "transform" in auto_wrap_output_keys
+    return (
+        hasattr(estimator, "get_feature_names_out")
+        and "transform" in auto_wrap_output_keys
+    )
 
 
 class _SetOutputMixin:
@@ -178,7 +183,9 @@ class _SetOutputMixin:
 
         # Dynamically wraps `transform` and `fit_transform` and configure it's
         # output based on `set_output`.
-        if not (isinstance(auto_wrap_output_keys, tuple) or auto_wrap_output_keys is None):
+        if not (
+            isinstance(auto_wrap_output_keys, tuple) or auto_wrap_output_keys is None
+        ):
             raise ValueError("auto_wrap_output_keys must be None or a tuple of keys.")
 
         if auto_wrap_output_keys is None:
@@ -258,7 +265,9 @@ def _safe_set_output(estimator, *, transform=None):
         Estimator instance.
     """
     set_output_for_transform = (
-        hasattr(estimator, "transform") or hasattr(estimator, "fit_transform") and transform is not None
+        hasattr(estimator, "transform")
+        or hasattr(estimator, "fit_transform")
+        and transform is not None
     )
     if not set_output_for_transform:
         # If estimator can not transform, then `set_output` does not need to be
@@ -266,5 +275,8 @@ def _safe_set_output(estimator, *, transform=None):
         return
 
     if not hasattr(estimator, "set_output"):
-        raise ValueError(f"Unable to configure output for {estimator} because `set_output` is not available.")
+        raise ValueError(
+            f"Unable to configure output for {estimator} because `set_output` "
+            "is not available."
+        )
     return estimator.set_output(transform=transform)

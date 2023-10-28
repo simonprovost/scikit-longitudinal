@@ -644,7 +644,7 @@ Tips on practical use
 Similar to DTs, the intuition for most parameters are the same. Therefore refer
 to :ref:`tips for using decision trees <tree_tips_usage>` for information on standard
 tree parameters. Specific parameters, such as ``max_features`` and
-``feature_combinations`` are different or special to OTs.
+``feature_combinations`` are different or special to OTs. 
 
   * As specified earlier, ``max_features`` is not constrained to ``n_features``
     as it is in DTs. Setting ``max_features`` higher requires more computation time because
@@ -652,7 +652,7 @@ tree parameters. Specific parameters, such as ``max_features`` and
     lets the user to sample more informative splits, thereby improving the model fit. This
     presents a tradeoff between runtime resources and improvements to the model. In practice,
     we found that sampling more splits, say up to ``max_features=n_features**2``, is desirable
-    if one is willing to spend the computational resources.
+    if one is willing to spend the computational resources. 
 
   * ``feature_combinations`` is the :math:`\lambda` term presented in the complexity
     analysis, which specifies how sparse our combination of features is. If
@@ -670,10 +670,10 @@ Other considerations are runtime and space complexity.
 
     .. [BRE] L. Breiman, J. Friedman, R. Olshen, and C. Stone. Classification
       and Regression Trees. Wadsworth, Belmont, CA, 1984.
-
+    
     .. [RF] L. Breiman. Random Forests. Machine Learning 45, 5–32 (2001).
       https://doi.org/10.1023/A:1010933404324.
-
+      
     * https://en.wikipedia.org/wiki/Decision_tree_learning
 
     * https://en.wikipedia.org/wiki/Predictive_analytics

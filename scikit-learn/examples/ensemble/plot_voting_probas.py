@@ -23,11 +23,13 @@ example dataset.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.ensemble import RandomForestClassifier, VotingClassifier
+import matplotlib.pyplot as plt
+
 from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.naive_bayes import GaussianNB
+from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.ensemble import VotingClassifier
 
 clf1 = LogisticRegression(max_iter=1000, random_state=123)
 clf2 = RandomForestClassifier(n_estimators=100, random_state=123)
@@ -69,7 +71,9 @@ p2 = ax.bar(
 
 # bars for VotingClassifier
 p3 = ax.bar(ind, [0, 0, 0, class1_1[-1]], width, color="blue", edgecolor="k")
-p4 = ax.bar(ind + width, [0, 0, 0, class2_1[-1]], width, color="steelblue", edgecolor="k")
+p4 = ax.bar(
+    ind + width, [0, 0, 0, class2_1[-1]], width, color="steelblue", edgecolor="k"
+)
 
 # plot annotations
 plt.axvline(2.8, color="k", linestyle="dashed")

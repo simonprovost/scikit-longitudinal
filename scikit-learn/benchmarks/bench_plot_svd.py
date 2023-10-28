@@ -3,13 +3,13 @@
 The data is mostly low rank but is a fat infinite tail.
 """
 import gc
-from collections import defaultdict
 from time import time
-
 import numpy as np
+from collections import defaultdict
+
 from scipy.linalg import svd
-from sklearn_fork.datasets import make_low_rank_matrix
 from sklearn_fork.utils.extmath import randomized_svd
+from sklearn_fork.datasets import make_low_rank_matrix
 
 
 def compute_bench(samples_range, features_range, n_iter=3, rank=50):
@@ -24,7 +24,9 @@ def compute_bench(samples_range, features_range, n_iter=3, rank=50):
             print("====================")
             print("Iteration %03d of %03d" % (it, max_it))
             print("====================")
-            X = make_low_rank_matrix(n_samples, n_features, effective_rank=rank, tail_strength=0.2)
+            X = make_low_rank_matrix(
+                n_samples, n_features, effective_rank=rank, tail_strength=0.2
+            )
 
             gc.collect()
             print("benchmarking scipy svd: ")
@@ -42,14 +44,16 @@ def compute_bench(samples_range, features_range, n_iter=3, rank=50):
             print("benchmarking scikit-learn randomized_svd: n_iter=%d " % n_iter)
             tstart = time()
             randomized_svd(X, rank, n_iter=n_iter)
-            results["scikit-learn randomized_svd (n_iter=%d)" % n_iter].append(time() - tstart)
+            results["scikit-learn randomized_svd (n_iter=%d)" % n_iter].append(
+                time() - tstart
+            )
 
     return results
 
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import axes3d  # noqa register the 3d projection
+    import matplotlib.pyplot as plt
 
     samples_range = np.linspace(2, 1000, 4).astype(int)
     features_range = np.linspace(2, 1000, 4).astype(int)

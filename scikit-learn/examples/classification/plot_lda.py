@@ -8,11 +8,13 @@ Approximating (OAS) estimators of covariance can improve classification.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.covariance import OAS
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import make_blobs
 from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn_fork.covariance import OAS
+
 
 n_train = 20  # samples for training
 n_test = 200  # samples for testing
@@ -48,7 +50,9 @@ for n_features in n_features_range:
         clf1 = LinearDiscriminantAnalysis(solver="lsqr", shrinkage=None).fit(X, y)
         clf2 = LinearDiscriminantAnalysis(solver="lsqr", shrinkage="auto").fit(X, y)
         oa = OAS(store_precision=False, assume_centered=False)
-        clf3 = LinearDiscriminantAnalysis(solver="lsqr", covariance_estimator=oa).fit(X, y)
+        clf3 = LinearDiscriminantAnalysis(solver="lsqr", covariance_estimator=oa).fit(
+            X, y
+        )
 
         X, y = generate_data(n_test, n_features)
         score_clf1 += clf1.score(X, y)

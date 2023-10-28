@@ -33,16 +33,19 @@ of the latent structured data of the Wikipedia content.
 # Author: Olivier Grisel <olivier.grisel@ensta.org>
 # License: BSD 3 clause
 
-import os
 from bz2 import BZ2File
+import os
 from datetime import datetime
 from pprint import pprint
 from time import time
-from urllib.request import urlopen
 
 import numpy as np
+
 from scipy import sparse
+
 from sklearn_fork.decomposition import randomized_svd
+from urllib.request import urlopen
+
 
 # %%
 # Download data, if not already on disk
@@ -162,7 +165,9 @@ def get_adjacency_matrix(redirects_filename, page_links_filename, limit=None):
 
 
 # stop after 5M links to make it possible to work in RAM
-X, redirects, index_map = get_adjacency_matrix(redirects_filename, page_links_filename, limit=5000000)
+X, redirects, index_map = get_adjacency_matrix(
+    redirects_filename, page_links_filename, limit=5000000
+)
 names = {i: name for name, i in index_map.items()}
 
 
@@ -208,7 +213,10 @@ def centrality_scores(X, alpha=0.85, max_iter=100, tol=1e-10):
     for i in range(max_iter):
         print("power iteration #%d" % i)
         prev_scores = scores
-        scores = alpha * (scores * X + np.dot(dangle, prev_scores)) + (1 - alpha) * prev_scores.sum() / n
+        scores = (
+            alpha * (scores * X + np.dot(dangle, prev_scores))
+            + (1 - alpha) * prev_scores.sum() / n
+        )
         # check convergence: normalized l_inf norm
         scores_max = np.abs(scores).max()
         if scores_max == 0.0:

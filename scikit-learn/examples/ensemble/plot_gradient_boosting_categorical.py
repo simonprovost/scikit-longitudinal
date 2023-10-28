@@ -77,11 +77,14 @@ print(f"Number of numerical features: {n_numerical_features}")
 # As a baseline, we create an estimator where the categorical features are
 # dropped:
 
-from sklearn_fork.compose import make_column_selector, make_column_transformer
 from sklearn_fork.ensemble import HistGradientBoostingRegressor
 from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.compose import make_column_transformer
+from sklearn_fork.compose import make_column_selector
 
-dropper = make_column_transformer(("drop", make_column_selector(dtype_include="category")), remainder="passthrough")
+dropper = make_column_transformer(
+    ("drop", make_column_selector(dtype_include="category")), remainder="passthrough"
+)
 hist_dropped = make_pipeline(dropper, HistGradientBoostingRegressor(random_state=42))
 
 # %%
@@ -100,7 +103,9 @@ one_hot_encoder = make_column_transformer(
     remainder="passthrough",
 )
 
-hist_one_hot = make_pipeline(one_hot_encoder, HistGradientBoostingRegressor(random_state=42))
+hist_one_hot = make_pipeline(
+    one_hot_encoder, HistGradientBoostingRegressor(random_state=42)
+)
 
 # %%
 # Gradient boosting estimator with ordinal encoding
@@ -109,8 +114,8 @@ hist_one_hot = make_pipeline(one_hot_encoder, HistGradientBoostingRegressor(rand
 # were ordered quantities, i.e. the categories will be encoded as 0, 1, 2,
 # etc., and treated as continuous features.
 
-import numpy as np
 from sklearn_fork.preprocessing import OrdinalEncoder
+import numpy as np
 
 ordinal_encoder = make_column_transformer(
     (
@@ -124,7 +129,9 @@ ordinal_encoder = make_column_transformer(
     verbose_feature_names_out=False,
 )
 
-hist_ordinal = make_pipeline(ordinal_encoder, HistGradientBoostingRegressor(random_state=42))
+hist_ordinal = make_pipeline(
+    ordinal_encoder, HistGradientBoostingRegressor(random_state=42)
+)
 
 # %%
 # Gradient boosting estimator with native categorical support
@@ -159,8 +166,8 @@ hist_native = make_pipeline(
 # models performance in terms of
 # :func:`~metrics.mean_absolute_percentage_error` and fit times.
 
-import matplotlib.pyplot as plt
 from sklearn_fork.model_selection import cross_validate
+import matplotlib.pyplot as plt
 
 scoring = "neg_mean_absolute_percentage_error"
 n_cv_folds = 3

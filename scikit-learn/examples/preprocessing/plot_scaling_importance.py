@@ -46,7 +46,9 @@ from sklearn_fork.preprocessing import StandardScaler
 X, y = load_wine(return_X_y=True, as_frame=True)
 scaler = StandardScaler().set_output(transform="pandas")
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.30, random_state=42
+)
 scaled_X_train = scaler.fit_transform(X_train)
 
 # %%
@@ -65,6 +67,7 @@ scaled_X_train = scaler.fit_transform(X_train)
 import matplotlib.pyplot as plt
 from sklearn_fork.inspection import DecisionBoundaryDisplay
 from sklearn_fork.neighbors import KNeighborsClassifier
+
 
 X_plot = X[["proline", "hue"]]
 X_plot_scaled = scaler.fit_transform(X_plot)
@@ -126,9 +129,13 @@ scaled_pca = PCA(n_components=2).fit(scaled_X_train)
 X_train_transformed = pca.transform(X_train)
 X_train_std_transformed = scaled_pca.transform(scaled_X_train)
 
-first_pca_component = pd.DataFrame(pca.components_[0], index=X.columns, columns=["without scaling"])
+first_pca_component = pd.DataFrame(
+    pca.components_[0], index=X.columns, columns=["without scaling"]
+)
 first_pca_component["with scaling"] = scaled_pca.components_[0]
-first_pca_component.plot.bar(title="Weights of the first principal component", figsize=(6, 8))
+first_pca_component.plot.bar(
+    title="Weights of the first principal component", figsize=(6, 8)
+)
 
 _ = plt.tight_layout()
 
@@ -192,8 +199,8 @@ _ = plt.tight_layout()
 # non-scaling of the data:
 
 import numpy as np
-from sklearn_fork.linear_model import LogisticRegressionCV
 from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.linear_model import LogisticRegressionCV
 
 Cs = np.logspace(-5, 5, 20)
 
@@ -211,7 +218,8 @@ print(f"Optimal C for the standardized data with PCA: {scaled_clf[-1].C_[0]:.2f}
 # was not scaled before applying PCA. We now evaluate the effect of scaling on
 # the accuracy and the mean log-loss of the optimal models:
 
-from sklearn_fork.metrics import accuracy_score, log_loss
+from sklearn_fork.metrics import accuracy_score
+from sklearn_fork.metrics import log_loss
 
 y_pred = unscaled_clf.predict(X_test)
 y_pred_scaled = scaled_clf.predict(X_test)

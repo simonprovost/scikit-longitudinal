@@ -6,15 +6,18 @@ Multi-class / multi-label utility function
 ==========================================
 
 """
-import warnings
 from collections.abc import Sequence
 from itertools import chain
+import warnings
+
+from scipy.sparse import issparse
+from scipy.sparse import dok_matrix
+from scipy.sparse import lil_matrix
 
 import numpy as np
-from scipy.sparse import dok_matrix, issparse, lil_matrix
 
+from .validation import check_array, _assert_all_finite
 from ..utils._array_api import get_namespace
-from .validation import _assert_all_finite, check_array
 
 
 def _unique_multiclass(y):
@@ -26,7 +29,9 @@ def _unique_multiclass(y):
 
 
 def _unique_indicator(y):
-    return np.arange(check_array(y, input_name="y", accept_sparse=["csr", "csc", "coo"]).shape[1])
+    return np.arange(
+        check_array(y, input_name="y", accept_sparse=["csr", "csc", "coo"]).shape[1]
+    )
 
 
 _FN_UNIQUE_LABELS = {
@@ -85,9 +90,16 @@ def unique_labels(*ys):
     # Check consistency for the indicator format
     if (
         label_type == "multilabel-indicator"
-        and len(set(check_array(y, accept_sparse=["csr", "csc", "coo"]).shape[1] for y in ys)) > 1
+        and len(
+            set(
+                check_array(y, accept_sparse=["csr", "csc", "coo"]).shape[1] for y in ys
+            )
+        )
+        > 1
     ):
-        raise ValueError("Multi-label binary indicator input with different numbers of labels")
+        raise ValueError(
+            "Multi-label binary indicator input with different numbers of labels"
+        )
 
     # Get the unique set of labels
     _unique_labels = _FN_UNIQUE_LABELS.get(label_type, None)
@@ -178,7 +190,9 @@ def is_multilabel(y):
     else:
         labels = xp.unique_values(y)
 
-        return len(labels) < 3 and (y.dtype.kind in "biu" or _is_integral_float(labels))  # bool, int, uint
+        return len(labels) < 3 and (
+            y.dtype.kind in "biu" or _is_integral_float(labels)  # bool, int, uint
+        )
 
 
 def check_classification_targets(y):
@@ -284,7 +298,9 @@ def type_of_target(y, input_name=""):
     )
 
     if not valid:
-        raise ValueError("Expected array-like (array or non-string sequence), got %r" % y)
+        raise ValueError(
+            "Expected array-like (array or non-string sequence), got %r" % y
+        )
 
     sparse_pandas = y.__class__.__name__ in ["SparseSeries", "SparseArray"]
     if sparse_pandas:
@@ -321,7 +337,11 @@ def type_of_target(y, input_name=""):
 
     # The old sequence of sequences format
     try:
-        if not hasattr(y[0], "__array__") and isinstance(y[0], Sequence) and not isinstance(y[0], str):
+        if (
+            not hasattr(y[0], "__array__")
+            and isinstance(y[0], Sequence)
+            and not isinstance(y[0], str)
+        ):
             raise ValueError(
                 "You appear to be using a legacy multi-label data"
                 " representation. Sequence of sequences are no"
@@ -391,7 +411,8 @@ def _check_partial_fit_first_call(clf, classes=None):
         if getattr(clf, "classes_", None) is not None:
             if not np.array_equal(clf.classes_, unique_labels(classes)):
                 raise ValueError(
-                    "`classes=%r` is not the same as on last call to partial_fit, was: %r" % (classes, clf.classes_)
+                    "`classes=%r` is not the same as on last call "
+                    "to partial_fit, was: %r" % (classes, clf.classes_)
                 )
 
         else:
@@ -448,7 +469,9 @@ def class_distribution(y, sample_weight=None):
                 nz_samp_weight = None
                 zeros_samp_weight_sum = y.shape[0] - y_nnz[k]
 
-            classes_k, y_k = np.unique(y.data[y.indptr[k] : y.indptr[k + 1]], return_inverse=True)
+            classes_k, y_k = np.unique(
+                y.data[y.indptr[k] : y.indptr[k + 1]], return_inverse=True
+            )
             class_prior_k = np.bincount(y_k, weights=nz_samp_weight)
 
             # An explicit zero was found, combine its weight with the weight
@@ -515,5 +538,7 @@ def _ovr_decision_function(predictions, confidences, n_classes):
     # The motivation is to use confidence levels as a way to break ties in
     # the votes without switching any decision made based on a difference
     # of 1 vote.
-    transformed_confidences = sum_of_confidences / (3 * (np.abs(sum_of_confidences) + 1))
+    transformed_confidences = sum_of_confidences / (
+        3 * (np.abs(sum_of_confidences) + 1)
+    )
     return votes + transformed_confidences

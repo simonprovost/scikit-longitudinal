@@ -15,17 +15,24 @@ from itertools import islice
 import numpy as np
 from scipy import sparse
 
-from .base import TransformerMixin, clone
-from .exceptions import NotFittedError
+from .base import clone, TransformerMixin
 from .preprocessing import FunctionTransformer
-from .utils import Bunch, _print_elapsed_time, check_pandas_support
 from .utils._estimator_html_repr import _VisualBlock
-from .utils._param_validation import HasMethods, Hidden
-from .utils._set_output import _get_output_config, _safe_set_output
+from .utils.metaestimators import available_if
+from .utils import (
+    Bunch,
+    _print_elapsed_time,
+)
 from .utils._tags import _safe_tags
-from .utils.metaestimators import _BaseComposition, available_if
-from .utils.parallel import Parallel, delayed
-from .utils.validation import check_is_fitted, check_memory
+from .utils.validation import check_memory
+from .utils.validation import check_is_fitted
+from .utils import check_pandas_support
+from .utils._param_validation import HasMethods, Hidden
+from .utils._set_output import _safe_set_output, _get_output_config
+from .utils.parallel import delayed, Parallel
+from .exceptions import NotFittedError
+
+from .utils.metaestimators import _BaseComposition
 
 __all__ = ["Pipeline", "FeatureUnion", "make_pipeline", "make_union"]
 
@@ -224,7 +231,9 @@ class Pipeline(_BaseComposition):
         for t in transformers:
             if t is None or t == "passthrough":
                 continue
-            if not (hasattr(t, "fit") or hasattr(t, "fit_transform")) or not hasattr(t, "transform"):
+            if not (hasattr(t, "fit") or hasattr(t, "fit_transform")) or not hasattr(
+                t, "transform"
+            ):
                 raise TypeError(
                     "All intermediate steps should be "
                     "transformers and implement fit and transform "
@@ -233,10 +242,15 @@ class Pipeline(_BaseComposition):
                 )
 
         # We allow last estimator to be None as an identity transformation
-        if estimator is not None and estimator != "passthrough" and not hasattr(estimator, "fit"):
+        if (
+            estimator is not None
+            and estimator != "passthrough"
+            and not hasattr(estimator, "fit")
+        ):
             raise TypeError(
-                "Last step of Pipeline should implement fit or be the string 'passthrough'. '%s' (type %s) doesn't"
-                % (estimator, type(estimator))
+                "Last step of Pipeline should implement fit "
+                "or be the string 'passthrough'. "
+                "'%s' (type %s) doesn't" % (estimator, type(estimator))
             )
 
     def _iter(self, with_final=True, filter_passthrough=True):
@@ -274,7 +288,9 @@ class Pipeline(_BaseComposition):
         if isinstance(ind, slice):
             if ind.step not in (1, None):
                 raise ValueError("Pipeline slicing only supports a step of 1")
-            return self.__class__(self.steps[ind], memory=self.memory, verbose=self.verbose)
+            return self.__class__(
+                self.steps[ind], memory=self.memory, verbose=self.verbose
+            )
         try:
             name, est = self.steps[ind]
         except TypeError:
@@ -340,7 +356,9 @@ class Pipeline(_BaseComposition):
 
         fit_transform_one_cached = memory.cache(_fit_transform_one)
 
-        for step_idx, name, transformer in self._iter(with_final=False, filter_passthrough=False):
+        for step_idx, name, transformer in self._iter(
+            with_final=False, filter_passthrough=False
+        ):
             if transformer is None or transformer == "passthrough":
                 with _print_elapsed_time("Pipeline", self._log_message(step_idx)):
                     continue
@@ -625,7 +643,9 @@ class Pipeline(_BaseComposition):
         return self.steps[-1][1].predict_log_proba(Xt, **predict_log_proba_params)
 
     def _can_transform(self):
-        return self._final_estimator == "passthrough" or hasattr(self._final_estimator, "transform")
+        return self._final_estimator == "passthrough" or hasattr(
+            self._final_estimator, "transform"
+        )
 
     @available_if(_can_transform)
     def transform(self, X):
@@ -804,7 +824,10 @@ class Pipeline(_BaseComposition):
 def _name_estimators(estimators):
     """Generate names for estimators."""
 
-    names = [estimator if isinstance(estimator, str) else type(estimator).__name__.lower() for estimator in estimators]
+    names = [
+        estimator if isinstance(estimator, str) else type(estimator).__name__.lower()
+        for estimator in estimators
+    ]
     namecount = defaultdict(int)
     for est, name in zip(estimators, names):
         namecount[name] += 1
@@ -878,7 +901,9 @@ def _transform_one(transformer, X, y, weight, **fit_params):
     return res * weight
 
 
-def _fit_transform_one(transformer, X, y, weight, message_clsname="", message=None, **fit_params):
+def _fit_transform_one(
+    transformer, X, y, weight, message_clsname="", message=None, **fit_params
+):
     """
     Fits ``transformer`` to ``X`` and ``y``. The transformed result is returned
     with the fitted transformer. If ``weight`` is not ``None``, the result will
@@ -994,7 +1019,9 @@ class FeatureUnion(TransformerMixin, _BaseComposition):
 
     _required_parameters = ["transformer_list"]
 
-    def __init__(self, transformer_list, *, n_jobs=None, transformer_weights=None, verbose=False):
+    def __init__(
+        self, transformer_list, *, n_jobs=None, transformer_weights=None, verbose=False
+    ):
         self.transformer_list = transformer_list
         self.n_jobs = n_jobs
         self.transformer_weights = transformer_weights
@@ -1081,9 +1108,12 @@ class FeatureUnion(TransformerMixin, _BaseComposition):
         for t in transformers:
             if t in ("drop", "passthrough"):
                 continue
-            if not (hasattr(t, "fit") or hasattr(t, "fit_transform")) or not hasattr(t, "transform"):
+            if not (hasattr(t, "fit") or hasattr(t, "fit_transform")) or not hasattr(
+                t, "transform"
+            ):
                 raise TypeError(
-                    "All estimators should implement fit and transform. '%s' (type %s) doesn't" % (t, type(t))
+                    "All estimators should implement fit and "
+                    "transform. '%s' (type %s) doesn't" % (t, type(t))
                 )
 
     def _validate_transformer_weights(self):
@@ -1094,7 +1124,8 @@ class FeatureUnion(TransformerMixin, _BaseComposition):
         for name in self.transformer_weights:
             if name not in transformer_names:
                 raise ValueError(
-                    f'Attempting to weight transformer "{name}", but it is not present in transformer_list.'
+                    f'Attempting to weight transformer "{name}", '
+                    "but it is not present in transformer_list."
                 )
 
     def _iter(self):
@@ -1132,7 +1163,9 @@ class FeatureUnion(TransformerMixin, _BaseComposition):
                     "Transformer %s (type %s) does not provide get_feature_names_out."
                     % (str(name), type(trans).__name__)
                 )
-            feature_names.extend([f"{name}__{f}" for f in trans.get_feature_names_out(input_features)])
+            feature_names.extend(
+                [f"{name}__{f}" for f in trans.get_feature_names_out(input_features)]
+            )
         return np.asarray(feature_names, dtype=object)
 
     def fit(self, X, y=None, **fit_params):
@@ -1234,7 +1267,8 @@ class FeatureUnion(TransformerMixin, _BaseComposition):
             sum of `n_components` (output dimension) over transformers.
         """
         Xs = Parallel(n_jobs=self.n_jobs)(
-            delayed(_transform_one)(trans, X, None, weight) for name, trans, weight in self._iter()
+            delayed(_transform_one)(trans, X, None, weight)
+            for name, trans, weight in self._iter()
         )
         if not Xs:
             # All transformers are None
@@ -1257,7 +1291,8 @@ class FeatureUnion(TransformerMixin, _BaseComposition):
     def _update_transformer_list(self, transformers):
         transformers = iter(transformers)
         self.transformer_list[:] = [
-            (name, old if old == "drop" else next(transformers)) for name, old in self.transformer_list
+            (name, old if old == "drop" else next(transformers))
+            for name, old in self.transformer_list
         ]
 
     @property

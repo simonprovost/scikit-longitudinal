@@ -32,13 +32,14 @@ have a label.
 # Authors: Vlad Niculae, Mathieu Blondel
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.cross_decomposition import CCA
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import make_multilabel_classification
-from sklearn_fork.decomposition import PCA
 from sklearn_fork.multiclass import OneVsRestClassifier
 from sklearn_fork.svm import SVC
+from sklearn_fork.decomposition import PCA
+from sklearn_fork.cross_decomposition import CCA
 
 
 def plot_hyperplane(clf, min_x, max_x, linestyle, label):
@@ -92,8 +93,12 @@ def plot_subfigure(X, Y, subplot, title, transform):
         label="Class 2",
     )
 
-    plot_hyperplane(classif.estimators_[0], min_x, max_x, "k--", "Boundary\nfor class 1")
-    plot_hyperplane(classif.estimators_[1], min_x, max_x, "k-.", "Boundary\nfor class 2")
+    plot_hyperplane(
+        classif.estimators_[0], min_x, max_x, "k--", "Boundary\nfor class 1"
+    )
+    plot_hyperplane(
+        classif.estimators_[1], min_x, max_x, "k-.", "Boundary\nfor class 2"
+    )
     plt.xticks(())
     plt.yticks(())
 
@@ -107,12 +112,16 @@ def plot_subfigure(X, Y, subplot, title, transform):
 
 plt.figure(figsize=(8, 6))
 
-X, Y = make_multilabel_classification(n_classes=2, n_labels=1, allow_unlabeled=True, random_state=1)
+X, Y = make_multilabel_classification(
+    n_classes=2, n_labels=1, allow_unlabeled=True, random_state=1
+)
 
 plot_subfigure(X, Y, 1, "With unlabeled samples + CCA", "cca")
 plot_subfigure(X, Y, 2, "With unlabeled samples + PCA", "pca")
 
-X, Y = make_multilabel_classification(n_classes=2, n_labels=1, allow_unlabeled=False, random_state=1)
+X, Y = make_multilabel_classification(
+    n_classes=2, n_labels=1, allow_unlabeled=False, random_state=1
+)
 
 plot_subfigure(X, Y, 3, "Without unlabeled samples + CCA", "cca")
 plot_subfigure(X, Y, 4, "Without unlabeled samples + PCA", "pca")

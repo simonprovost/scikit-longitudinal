@@ -3,7 +3,11 @@ import pickle
 import numpy as np
 import pytest
 from numpy.testing import assert_array_equal
-from sklearn_fork.utils._encode import _check_unknown, _encode, _get_counts, _unique
+
+from sklearn_fork.utils._encode import _unique
+from sklearn_fork.utils._encode import _encode
+from sklearn_fork.utils._encode import _check_unknown
+from sklearn_fork.utils._encode import _get_counts
 
 
 @pytest.mark.parametrize(
@@ -223,7 +227,9 @@ def test_check_unknown_with_both_missing_values():
     assert diff[0] is None
     assert np.isnan(diff[1])
 
-    diff, valid_mask = _check_unknown(values, known_values=np.array(["a", "c"], dtype=object), return_mask=True)
+    diff, valid_mask = _check_unknown(
+        values, known_values=np.array(["a", "c"], dtype=object), return_mask=True
+    )
 
     assert diff[0] is None
     assert np.isnan(diff[1])

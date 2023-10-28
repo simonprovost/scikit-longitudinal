@@ -11,18 +11,32 @@ import numpy as np
 from scipy import sparse
 from scipy.stats.mstats import mquantiles
 
-from ..base import is_classifier, is_regressor
-from ..ensemble import RandomForestRegressor
-from ..ensemble._gb import BaseGradientBoosting
-from ..ensemble._hist_gradient_boosting.gradient_boosting import BaseHistGradientBoosting
-from ..exceptions import NotFittedError
-from ..tree import DecisionTreeRegressor
-from ..utils import check_matplotlib_support  # noqa
-from ..utils import Bunch, _determine_key_type, _get_column_indices, _safe_assign, _safe_indexing, check_array
-from ..utils._param_validation import HasMethods, Integral, Interval, StrOptions, validate_params
-from ..utils.extmath import cartesian
-from ..utils.validation import check_is_fitted
 from ._pd_utils import _check_feature_names, _get_feature_index
+from ..base import is_classifier, is_regressor
+from ..utils.extmath import cartesian
+from ..utils import check_array
+from ..utils import check_matplotlib_support  # noqa
+from ..utils import _safe_indexing
+from ..utils import _safe_assign
+from ..utils import _determine_key_type
+from ..utils import _get_column_indices
+from ..utils.validation import check_is_fitted
+from ..utils import Bunch
+from ..utils._param_validation import (
+    HasMethods,
+    Integral,
+    Interval,
+    StrOptions,
+    validate_params,
+)
+from ..tree import DecisionTreeRegressor
+from ..ensemble import RandomForestRegressor
+from ..exceptions import NotFittedError
+from ..ensemble._gb import BaseGradientBoosting
+from ..ensemble._hist_gradient_boosting.gradient_boosting import (
+    BaseHistGradientBoosting,
+)
+
 
 __all__ = [
     "partial_dependence",
@@ -101,7 +115,9 @@ def _grid_from_X(X, percentiles, is_categorical, grid_resolution):
             axis = uniques
         else:
             # create axis based on percentiles and grid resolution
-            emp_percentiles = mquantiles(_safe_indexing(X, feature, axis=1), prob=percentiles, axis=0)
+            emp_percentiles = mquantiles(
+                _safe_indexing(X, feature, axis=1), prob=percentiles, axis=0
+            )
             if np.allclose(emp_percentiles[0], emp_percentiles[1]):
                 raise ValueError(
                     "percentiles are too close to each other, "
@@ -143,10 +159,17 @@ def _partial_dependence_brute(est, grid, features, X, response_method):
             # try predict_proba, then decision_function if it doesn't exist
             prediction_method = predict_proba or decision_function
         else:
-            prediction_method = predict_proba if response_method == "predict_proba" else decision_function
+            prediction_method = (
+                predict_proba
+                if response_method == "predict_proba"
+                else decision_function
+            )
         if prediction_method is None:
             if response_method == "auto":
-                raise ValueError("The estimator has no predict_proba and no decision_function method.")
+                raise ValueError(
+                    "The estimator has no predict_proba and no "
+                    "decision_function method."
+                )
             elif response_method == "predict_proba":
                 raise ValueError("The estimator has no predict_proba method.")
             else:
@@ -428,11 +451,16 @@ def partial_dependence(
         X = check_array(X, force_all_finite="allow-nan", dtype=object)
 
     if is_regressor(estimator) and response_method != "auto":
-        raise ValueError("The response_method parameter is ignored for regressors and must be 'auto'.")
+        raise ValueError(
+            "The response_method parameter is ignored for regressors and "
+            "must be 'auto'."
+        )
 
     if kind != "average":
         if method == "recursion":
-            raise ValueError("The 'recursion' method only applies when 'kind' is set to 'average'")
+            raise ValueError(
+                "The 'recursion' method only applies when 'kind' is set to 'average'"
+            )
         method = "brute"
 
     if method == "auto":
@@ -466,7 +494,8 @@ def partial_dependence(
                 "RandomForestRegressor",
             )
             raise ValueError(
-                "Only the following estimators support the 'recursion' method: {}. Try using method='brute'.".format(
+                "Only the following estimators support the 'recursion' "
+                "method: {}. Try using method='brute'.".format(
                     ", ".join(supported_classes_recursion)
                 )
             )
@@ -475,9 +504,8 @@ def partial_dependence(
 
         if response_method != "decision_function":
             raise ValueError(
-                "With the 'recursion' method, the response_method must be 'decision_function'. Got {}.".format(
-                    response_method
-                )
+                "With the 'recursion' method, the response_method must be "
+                "'decision_function'. Got {}.".format(response_method)
             )
 
     if _determine_key_type(features, accept_slice=False) == "int":
@@ -487,7 +515,9 @@ def partial_dependence(
         if np.any(np.less(features, 0)):
             raise ValueError("all features must be in [0, {}]".format(X.shape[1] - 1))
 
-    features_indices = np.asarray(_get_column_indices(X, features), dtype=np.int32, order="C").ravel()
+    features_indices = np.asarray(
+        _get_column_indices(X, features), dtype=np.int32, order="C"
+    ).ravel()
 
     feature_names = _check_feature_names(X, feature_names)
 
@@ -509,9 +539,12 @@ def partial_dependence(
         elif categorical_features.dtype.kind in ("i", "O", "U"):
             # categorical features provided as a list of indices or feature names
             categorical_features_idx = [
-                _get_feature_index(cat, feature_names=feature_names) for cat in categorical_features
+                _get_feature_index(cat, feature_names=feature_names)
+                for cat in categorical_features
             ]
-            is_categorical = [idx in categorical_features_idx for idx in features_indices]
+            is_categorical = [
+                idx in categorical_features_idx for idx in features_indices
+            ]
         else:
             raise ValueError(
                 "Expected `categorical_features` to be an array-like of boolean,"
@@ -532,17 +565,28 @@ def partial_dependence(
 
         # reshape predictions to
         # (n_outputs, n_instances, n_values_feature_0, n_values_feature_1, ...)
-        predictions = predictions.reshape(-1, X.shape[0], *[val.shape[0] for val in values])
+        predictions = predictions.reshape(
+            -1, X.shape[0], *[val.shape[0] for val in values]
+        )
     else:
-        averaged_predictions = _partial_dependence_recursion(estimator, grid, features_indices)
+        averaged_predictions = _partial_dependence_recursion(
+            estimator, grid, features_indices
+        )
 
     # reshape averaged_predictions to
     # (n_outputs, n_values_feature_0, n_values_feature_1, ...)
-    averaged_predictions = averaged_predictions.reshape(-1, *[val.shape[0] for val in values])
+    averaged_predictions = averaged_predictions.reshape(
+        -1, *[val.shape[0] for val in values]
+    )
     pdp_results = Bunch()
 
-    msg = "Key: 'values', is deprecated in 1.3 and will be removed in 1.5. Please use 'grid_values' instead."
-    pdp_results._set_deprecated(values, new_key="grid_values", deprecated_key="values", warning_message=msg)
+    msg = (
+        "Key: 'values', is deprecated in 1.3 and will be removed in 1.5. "
+        "Please use 'grid_values' instead."
+    )
+    pdp_results._set_deprecated(
+        values, new_key="grid_values", deprecated_key="values", warning_message=msg
+    )
 
     if kind == "average":
         pdp_results["average"] = averaged_predictions

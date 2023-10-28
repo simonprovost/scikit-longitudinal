@@ -3,11 +3,13 @@
 # License: BSD 3 clause
 
 from random import Random
-
 import numpy as np
-import pytest
 import scipy.sparse as sp
-from numpy.testing import assert_allclose, assert_array_equal
+from numpy.testing import assert_array_equal
+from numpy.testing import assert_allclose
+
+import pytest
+
 from sklearn_fork.feature_extraction import DictVectorizer
 from sklearn_fork.feature_selection import SelectKBest, chi2
 
@@ -96,7 +98,10 @@ def test_iterable_value():
 
 
 def test_iterable_not_string_error():
-    error_value = "Unsupported type <class 'int'> in iterable value. Only iterables of string are supported."
+    error_value = (
+        "Unsupported type <class 'int'> in iterable value. "
+        "Only iterables of string are supported."
+    )
     D2 = [{"foo": "1", "bar": "2"}, {"foo": "3", "baz": "1"}, {"foo": [1, "three"]}]
     v = DictVectorizer(sparse=False)
     with pytest.raises(TypeError) as error:
@@ -106,7 +111,9 @@ def test_iterable_not_string_error():
 
 def test_mapping_error():
     error_value = (
-        "Unsupported value type <class 'dict'> for foo: {'one': 1, 'three': 3}.\nMapping objects are not supported."
+        "Unsupported value type <class 'dict'> "
+        "for foo: {'one': 1, 'three': 3}.\n"
+        "Mapping objects are not supported."
     )
     D2 = [
         {"foo": "1", "bar": "2"},
@@ -193,7 +200,9 @@ def test_dictvectorizer_dense_sparse_equivalence():
     assert_allclose(dense_vector_transform, sparse_vector_transform.toarray())
 
     dense_inverse_transform = dense_vectorizer.inverse_transform(dense_vector_transform)
-    sparse_inverse_transform = sparse_vectorizer.inverse_transform(sparse_vector_transform)
+    sparse_inverse_transform = sparse_vectorizer.inverse_transform(
+        sparse_vector_transform
+    )
 
     expected_inverse = [{"category=thriller": 1.0}]
     assert dense_inverse_transform == expected_inverse

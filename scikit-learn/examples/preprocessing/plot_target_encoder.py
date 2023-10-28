@@ -55,7 +55,9 @@ _ = y.hist()
 # strategies. First, we list out the encoders we will be using to preprocess
 # the categorical features:
 from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.preprocessing import OneHotEncoder, OrdinalEncoder, TargetEncoder
+from sklearn_fork.preprocessing import OrdinalEncoder
+from sklearn_fork.preprocessing import OneHotEncoder
+from sklearn_fork.preprocessing import TargetEncoder
 
 categorical_preprocessors = [
     ("drop", "drop"),
@@ -67,12 +69,11 @@ categorical_preprocessors = [
     ("target", TargetEncoder(target_type="continuous")),
 ]
 
-from sklearn_fork.ensemble import HistGradientBoostingRegressor
-from sklearn_fork.model_selection import cross_validate
-
 # %%
 # Next, we evaluate the models using cross validation and record the results:
 from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.model_selection import cross_validate
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
 
 n_cv_folds = 3
 max_iter = 20
@@ -108,7 +109,9 @@ for name, categorical_preprocessor in categorical_preprocessors:
             ("categorical", categorical_preprocessor, categorical_features),
         ]
     )
-    pipe = make_pipeline(preprocessor, HistGradientBoostingRegressor(random_state=0, max_iter=max_iter))
+    pipe = make_pipeline(
+        preprocessor, HistGradientBoostingRegressor(random_state=0, max_iter=max_iter)
+    )
     evaluate_model_and_store(name, pipe)
 
 
@@ -151,7 +154,9 @@ mixed_encoded_preprocessor = ColumnTransformer(
 mixed_encoded_preprocessor.set_output(transform="pandas")
 mixed_pipe = make_pipeline(
     mixed_encoded_preprocessor,
-    HistGradientBoostingRegressor(random_state=0, max_iter=max_iter, categorical_features=low_cardinality_features),
+    HistGradientBoostingRegressor(
+        random_state=0, max_iter=max_iter, categorical_features=low_cardinality_features
+    ),
 )
 mixed_pipe
 
@@ -166,11 +171,17 @@ evaluate_model_and_store("mixed_target", mixed_pipe)
 import matplotlib.pyplot as plt
 import pandas as pd
 
-results_df = pd.DataFrame(results).set_index("preprocessor").sort_values("rmse_test_mean")
+results_df = (
+    pd.DataFrame(results).set_index("preprocessor").sort_values("rmse_test_mean")
+)
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 8), sharey=True, constrained_layout=True)
+fig, (ax1, ax2) = plt.subplots(
+    1, 2, figsize=(12, 8), sharey=True, constrained_layout=True
+)
 xticks = range(len(results_df))
-name_to_color = dict(zip((r["preprocessor"] for r in results), ["C0", "C1", "C2", "C3", "C4"]))
+name_to_color = dict(
+    zip((r["preprocessor"] for r in results), ["C0", "C1", "C2", "C3", "C4"])
+)
 
 for subset, ax in zip(["test", "train"], [ax1, ax2]):
     mean, std = f"rmse_{subset}_mean", f"rmse_{subset}_std"

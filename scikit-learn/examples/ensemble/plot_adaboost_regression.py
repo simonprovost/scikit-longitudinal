@@ -44,7 +44,9 @@ from sklearn_fork.tree import DecisionTreeRegressor
 
 regr_1 = DecisionTreeRegressor(max_depth=4)
 
-regr_2 = AdaBoostRegressor(DecisionTreeRegressor(max_depth=4), n_estimators=300, random_state=rng)
+regr_2 = AdaBoostRegressor(
+    DecisionTreeRegressor(max_depth=4), n_estimators=300, random_state=rng
+)
 
 regr_1.fit(X, y)
 regr_2.fit(X, y)

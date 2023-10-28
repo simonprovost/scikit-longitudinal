@@ -1,18 +1,28 @@
 import warnings
 
-import numpy as np
 import pytest
+import numpy as np
 from numpy.testing import assert_allclose
-from sklearn_fork.base import BaseEstimator, ClassifierMixin
-from sklearn_fork.datasets import load_iris, make_classification, make_multilabel_classification
-from sklearn_fork.inspection import DecisionBoundaryDisplay
-from sklearn_fork.inspection._plot.decision_boundary import _check_boundary_response_method
+
+from sklearn_fork.base import BaseEstimator
+from sklearn_fork.base import ClassifierMixin
+from sklearn_fork.datasets import make_classification
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor
+from sklearn_fork.datasets import load_iris
+from sklearn_fork.datasets import make_multilabel_classification
+from sklearn_fork.tree import DecisionTreeRegressor
+from sklearn_fork.tree import DecisionTreeClassifier
+
+from sklearn_fork.inspection import DecisionBoundaryDisplay
+from sklearn_fork.inspection._plot.decision_boundary import (
+    _check_boundary_response_method,
+)
+
 
 # TODO: Remove when https://github.com/numpy/numpy/issues/14397 is resolved
 pytestmark = pytest.mark.filterwarnings(
-    "ignore:In future, it will be an error for 'np.bool_':DeprecationWarning:matplotlib.*"
+    "ignore:In future, it will be an error for 'np.bool_':DeprecationWarning:"
+    "matplotlib.*"
 )
 
 
@@ -86,7 +96,10 @@ def test_multiclass_error(pyplot, response_method):
     X = X[:, [0, 1]]
     lr = LogisticRegression().fit(X, y)
 
-    msg = "Multiclass classifiers are only supported when response_method is 'predict' or 'auto'"
+    msg = (
+        "Multiclass classifiers are only supported when response_method is 'predict' or"
+        " 'auto'"
+    )
     with pytest.raises(ValueError, match=msg):
         DecisionBoundaryDisplay.from_estimator(lr, X, response_method=response_method)
 
@@ -121,7 +134,8 @@ def test_multiclass(pyplot, response_method):
     [
         (
             {"plot_method": "hello_world"},
-            r"plot_method must be one of contourf, contour, pcolormesh. Got hello_world" r" instead.",
+            r"plot_method must be one of contourf, contour, pcolormesh. Got hello_world"
+            r" instead.",
         ),
         (
             {"grid_resolution": 1},
@@ -148,7 +162,9 @@ def test_display_plot_input_error(pyplot, fitted_clf):
         disp.plot(plot_method="hello_world")
 
 
-@pytest.mark.parametrize("response_method", ["auto", "predict", "predict_proba", "decision_function"])
+@pytest.mark.parametrize(
+    "response_method", ["auto", "predict", "predict_proba", "decision_function"]
+)
 @pytest.mark.parametrize("plot_method", ["contourf", "contour"])
 def test_decision_boundary_display(pyplot, fitted_clf, response_method, plot_method):
     """Check that decision boundary is correct."""
@@ -198,7 +214,10 @@ def test_decision_boundary_display(pyplot, fitted_clf, response_method, plot_met
         ),
         (
             "auto",
-            "MyClassifier has none of the following attributes: decision_function, predict_proba, predict",
+            (
+                "MyClassifier has none of the following attributes: decision_function, "
+                "predict_proba, predict"
+            ),
         ),
         (
             "bad_method",
@@ -298,7 +317,9 @@ def test_dataframe_labels_used(pyplot, fitted_clf):
 
     # labels do not get inferred if provided to `from_estimator`
     _, ax = pyplot.subplots()
-    disp = DecisionBoundaryDisplay.from_estimator(fitted_clf, df, ax=ax, xlabel="overwritten_x", ylabel="overwritten_y")
+    disp = DecisionBoundaryDisplay.from_estimator(
+        fitted_clf, df, ax=ax, xlabel="overwritten_x", ylabel="overwritten_y"
+    )
     assert ax.get_xlabel() == "overwritten_x"
     assert ax.get_ylabel() == "overwritten_y"
 

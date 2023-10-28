@@ -14,8 +14,10 @@ present for regular K-Means.
 
 """
 import matplotlib.pyplot as plt
-from sklearn_fork.cluster import BisectingKMeans, KMeans
+
 from sklearn_fork.datasets import make_blobs
+from sklearn_fork.cluster import BisectingKMeans, KMeans
+
 
 print(__doc__)
 
@@ -36,7 +38,9 @@ clustering_algorithms = {
 }
 
 # Make subplots for each variant
-fig, axs = plt.subplots(len(clustering_algorithms), len(n_clusters_list), figsize=(12, 5))
+fig, axs = plt.subplots(
+    len(clustering_algorithms), len(n_clusters_list), figsize=(12, 5)
+)
 
 axs = axs.T
 

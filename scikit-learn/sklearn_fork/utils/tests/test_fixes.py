@@ -5,7 +5,9 @@
 
 import numpy as np
 import pytest
+
 from sklearn_fork.utils._testing import assert_array_equal
+
 from sklearn_fork.utils.fixes import _object_dtype_isnan, delayed
 
 

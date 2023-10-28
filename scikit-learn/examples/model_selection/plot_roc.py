@@ -191,7 +191,7 @@ print(f"Micro-averaged One-vs-Rest ROC AUC score:\n{micro_roc_auc_ovr:.2f}")
 # :class:`~sklearn_fork.metrics.roc_curve` and then the area under the curve with
 # :class:`~sklearn_fork.metrics.auc` for the raveled true and predicted classes.
 
-from sklearn_fork.metrics import auc, roc_curve
+from sklearn_fork.metrics import roc_curve, auc
 
 # store the fpr, tpr, and roc_auc for all averaging strategies
 fpr, tpr, roc_auc = dict(), dict(), dict()

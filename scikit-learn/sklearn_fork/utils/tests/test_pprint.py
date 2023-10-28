@@ -2,12 +2,14 @@ import re
 from pprint import PrettyPrinter
 
 import numpy as np
-from sklearn_fork import config_context
-from sklearn_fork.base import BaseEstimator, TransformerMixin
-from sklearn_fork.feature_selection import SelectKBest, chi2
+
+from sklearn_fork.utils._pprint import _EstimatorPrettyPrinter
 from sklearn_fork.linear_model import LogisticRegressionCV
 from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.utils._pprint import _EstimatorPrettyPrinter
+from sklearn_fork.base import BaseEstimator, TransformerMixin
+from sklearn_fork.feature_selection import SelectKBest, chi2
+from sklearn_fork import config_context
+
 
 # Ignore flake8 (lots of line too long issues)
 # flake8: noqa
@@ -264,7 +266,9 @@ def test_changed_only():
     assert lr.__repr__() == expected
 
     # Check with a repr that doesn't fit on a single line
-    lr = LogisticRegression(C=99, class_weight=0.4, fit_intercept=False, tol=1234, verbose=True)
+    lr = LogisticRegression(
+        C=99, class_weight=0.4, fit_intercept=False, tol=1234, verbose=True
+    )
     expected = """
 LogisticRegression(C=99, class_weight=0.4, fit_intercept=False, tol=1234,
                    verbose=True)"""
@@ -661,7 +665,9 @@ def test_complexity_print_changed_only():
         def transform(self, X, copy=None):  # pragma: no cover
             return X
 
-    estimator = DummyEstimator(make_pipeline(DummyEstimator(DummyEstimator()), DummyEstimator(), "passthrough"))
+    estimator = DummyEstimator(
+        make_pipeline(DummyEstimator(DummyEstimator()), DummyEstimator(), "passthrough")
+    )
     with config_context(print_changed_only=False):
         repr(estimator)
         nb_repr_print_changed_only_false = DummyEstimator.nb_times_repr_called

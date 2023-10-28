@@ -1,27 +1,35 @@
 # Author: Gael Varoquaux
 # License: BSD 3 clause
 
-import pickle
 import re
-import warnings
-
 import numpy as np
-import pytest
 import scipy.sparse as sp
-import sklearn_fork
+import pytest
+import warnings
 from numpy.testing import assert_allclose
-from sklearn_fork import config_context, datasets
-from sklearn_fork.base import BaseEstimator, TransformerMixin, clone, is_classifier
-from sklearn_fork.decomposition import PCA
-from sklearn_fork.exceptions import InconsistentVersionWarning
-from sklearn_fork.model_selection import GridSearchCV
-from sklearn_fork.pipeline import Pipeline
-from sklearn_fork.preprocessing import StandardScaler
+
+import sklearn_fork
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_no_warnings
+from sklearn_fork.utils._testing import ignore_warnings
+
+from sklearn_fork.base import BaseEstimator, clone, is_classifier
 from sklearn_fork.svm import SVC
-from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor
-from sklearn_fork.utils._mocking import MockDataFrame
+from sklearn_fork.preprocessing import StandardScaler
 from sklearn_fork.utils._set_output import _get_output_config
-from sklearn_fork.utils._testing import assert_array_equal, assert_no_warnings, ignore_warnings
+from sklearn_fork.pipeline import Pipeline
+from sklearn_fork.decomposition import PCA
+from sklearn_fork.model_selection import GridSearchCV
+
+from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork.tree import DecisionTreeRegressor
+from sklearn_fork import datasets
+from sklearn_fork.exceptions import InconsistentVersionWarning
+
+from sklearn_fork.base import TransformerMixin
+from sklearn_fork.utils._mocking import MockDataFrame
+from sklearn_fork import config_context
+import pickle
 
 
 #############################################################################
@@ -179,7 +187,9 @@ def test_clone_nan():
 
 
 def test_clone_sparse_matrices():
-    sparse_matrix_classes = [getattr(sp, name) for name in dir(sp) if name.endswith("_matrix")]
+    sparse_matrix_classes = [
+        getattr(sp, name) for name in dir(sp) if name.endswith("_matrix")
+    ]
 
     for cls in sparse_matrix_classes:
         sparse_matrix = cls(np.eye(5))
@@ -662,7 +672,10 @@ def test_feature_names_in():
         trans.transform(df_bad)
 
     # warns when fitted on dataframe and transforming a ndarray
-    msg = "X does not have valid feature names, but NoOpTransformer was fitted with feature names"
+    msg = (
+        "X does not have valid feature names, but NoOpTransformer was "
+        "fitted with feature names"
+    )
     with pytest.warns(UserWarning, match=msg):
         trans.transform(X_np)
 
@@ -750,7 +763,10 @@ def test_estimator_getstate_using_slots_error_message():
     class Estimator(BaseEstimator, WithSlots):
         pass
 
-    msg = "You cannot use `__slots__` in objects inheriting from `sklearn_fork.base.BaseEstimator`"
+    msg = (
+        "You cannot use `__slots__` in objects inheriting from "
+        "`sklearn_fork.base.BaseEstimator`"
+    )
 
     with pytest.raises(TypeError, match=msg):
         Estimator().__getstate__()

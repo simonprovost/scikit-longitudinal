@@ -5,20 +5,24 @@ The :mod:`sklearn_fork.pls` module implements Partial Least Squares (PLS).
 # Author: Edouard Duchesnay <edouard.duchesnay@cea.fr>
 # License: BSD 3 clause
 
+from numbers import Integral, Real
+
 import warnings
 from abc import ABCMeta, abstractmethod
-from numbers import Integral, Real
 
 import numpy as np
 from scipy.linalg import svd
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, MultiOutputMixin, RegressorMixin, TransformerMixin
-from ..exceptions import ConvergenceWarning
+from ..base import BaseEstimator, RegressorMixin, TransformerMixin
+from ..base import MultiOutputMixin
+from ..base import ClassNamePrefixFeaturesOutMixin
 from ..utils import check_array, check_consistent_length
-from ..utils._param_validation import Interval, StrOptions
+from ..utils.fixes import sp_version
+from ..utils.fixes import parse_version
 from ..utils.extmath import svd_flip
-from ..utils.fixes import parse_version, sp_version
-from ..utils.validation import FLOAT_DTYPES, check_is_fitted
+from ..utils.validation import check_is_fitted, FLOAT_DTYPES
+from ..utils._param_validation import Interval, StrOptions
+from ..exceptions import ConvergenceWarning
 
 __all__ = ["PLSCanonical", "PLSRegression", "PLSSVD"]
 
@@ -49,7 +53,9 @@ def _pinv2_old(a):
     return np.transpose(np.conjugate(np.dot(u, vh[:rank])))
 
 
-def _get_first_singular_vectors_power_method(X, Y, mode="A", max_iter=500, tol=1e-06, norm_y_weights=False):
+def _get_first_singular_vectors_power_method(
+    X, Y, mode="A", max_iter=500, tol=1e-06, norm_y_weights=False
+):
     """Return the first left and right singular vectors of X'Y.
 
     Provides an alternative to the svd(X'Y) and uses the power method instead.
@@ -223,8 +229,12 @@ class _PLS(
         self._validate_params()
 
         check_consistent_length(X, Y)
-        X = self._validate_data(X, dtype=np.float64, copy=self.copy, ensure_min_samples=2)
-        Y = check_array(Y, input_name="Y", dtype=np.float64, copy=self.copy, ensure_2d=False)
+        X = self._validate_data(
+            X, dtype=np.float64, copy=self.copy, ensure_min_samples=2
+        )
+        Y = check_array(
+            Y, input_name="Y", dtype=np.float64, copy=self.copy, ensure_2d=False
+        )
         if Y.ndim == 1:
             Y = Y.reshape(-1, 1)
 
@@ -239,14 +249,17 @@ class _PLS(
         rank_upper_bound = p if self.deflation_mode == "regression" else min(n, p, q)
         if n_components > rank_upper_bound:
             raise ValueError(
-                f"`n_components` upper bound is {rank_upper_bound}. Got {n_components} instead. Reduce `n_components`."
+                f"`n_components` upper bound is {rank_upper_bound}. "
+                f"Got {n_components} instead. Reduce `n_components`."
             )
 
         self._norm_y_weights = self.deflation_mode == "canonical"  # 1.1
         norm_y_weights = self._norm_y_weights
 
         # Scale (in place)
-        Xk, Yk, self._x_mean, self._y_mean, self._x_std, self._y_std = _center_scale_xy(X, Y, self.scale)
+        Xk, Yk, self._x_mean, self._y_mean, self._x_std, self._y_std = _center_scale_xy(
+            X, Y, self.scale
+        )
 
         self.x_weights_ = np.zeros((p, n_components))  # U
         self.y_weights_ = np.zeros((q, n_components))  # V
@@ -372,7 +385,9 @@ class _PLS(
         # Apply rotation
         x_scores = np.dot(X, self.x_rotations_)
         if Y is not None:
-            Y = check_array(Y, input_name="Y", ensure_2d=False, copy=copy, dtype=FLOAT_DTYPES)
+            Y = check_array(
+                Y, input_name="Y", ensure_2d=False, copy=copy, dtype=FLOAT_DTYPES
+            )
             if Y.ndim == 1:
                 Y = Y.reshape(-1, 1)
             Y -= self._y_mean
@@ -612,7 +627,9 @@ class PLSRegression(_PLS):
     #     - "plspm " with function plsreg2(X, Y)
     #     - "pls" with function oscorespls.fit(X, Y)
 
-    def __init__(self, n_components=2, *, scale=True, max_iter=500, tol=1e-06, copy=True):
+    def __init__(
+        self, n_components=2, *, scale=True, max_iter=500, tol=1e-06, copy=True
+    ):
         super().__init__(
             n_components=n_components,
             scale=scale,
@@ -871,7 +888,9 @@ class CCA(_PLS):
     for param in ("deflation_mode", "mode", "algorithm"):
         _parameter_constraints.pop(param)
 
-    def __init__(self, n_components=2, *, scale=True, max_iter=500, tol=1e-06, copy=True):
+    def __init__(
+        self, n_components=2, *, scale=True, max_iter=500, tol=1e-06, copy=True
+    ):
         super().__init__(
             n_components=n_components,
             scale=scale,
@@ -982,8 +1001,12 @@ class PLSSVD(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
         self._validate_params()
 
         check_consistent_length(X, Y)
-        X = self._validate_data(X, dtype=np.float64, copy=self.copy, ensure_min_samples=2)
-        Y = check_array(Y, input_name="Y", dtype=np.float64, copy=self.copy, ensure_2d=False)
+        X = self._validate_data(
+            X, dtype=np.float64, copy=self.copy, ensure_min_samples=2
+        )
+        Y = check_array(
+            Y, input_name="Y", dtype=np.float64, copy=self.copy, ensure_2d=False
+        )
         if Y.ndim == 1:
             Y = Y.reshape(-1, 1)
 
@@ -994,10 +1017,13 @@ class PLSSVD(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
         rank_upper_bound = min(X.shape[0], X.shape[1], Y.shape[1])
         if n_components > rank_upper_bound:
             raise ValueError(
-                f"`n_components` upper bound is {rank_upper_bound}. Got {n_components} instead. Reduce `n_components`."
+                f"`n_components` upper bound is {rank_upper_bound}. "
+                f"Got {n_components} instead. Reduce `n_components`."
             )
 
-        X, Y, self._x_mean, self._y_mean, self._x_std, self._y_std = _center_scale_xy(X, Y, self.scale)
+        X, Y, self._x_mean, self._y_mean, self._x_std, self._y_std = _center_scale_xy(
+            X, Y, self.scale
+        )
 
         # Compute SVD of cross-covariance matrix
         C = np.dot(X.T, Y)

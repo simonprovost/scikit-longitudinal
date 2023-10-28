@@ -6,25 +6,27 @@
 
 import itertools
 import numbers
+import numpy as np
 from abc import ABCMeta, abstractmethod
-from functools import partial
 from numbers import Integral
 from warnings import warn
+from functools import partial
 
-import numpy as np
-
+from ._base import BaseEnsemble, _partition_estimators
 from ..base import ClassifierMixin, RegressorMixin
-from ..metrics import accuracy_score, r2_score
+from ..metrics import r2_score, accuracy_score
 from ..tree import DecisionTreeClassifier, DecisionTreeRegressor
-from ..utils import check_random_state, column_or_1d, indices_to_mask
-from ..utils._param_validation import HasMethods, Interval, RealNotInt, StrOptions
-from ..utils._tags import _safe_tags
+from ..utils import check_random_state, column_or_1d
+from ..utils import indices_to_mask
 from ..utils.metaestimators import available_if
 from ..utils.multiclass import check_classification_targets
-from ..utils.parallel import Parallel, delayed
 from ..utils.random import sample_without_replacement
-from ..utils.validation import _check_sample_weight, check_is_fitted, has_fit_parameter
-from ._base import BaseEnsemble, _partition_estimators
+from ..utils._param_validation import Interval, HasMethods, StrOptions
+from ..utils._param_validation import RealNotInt
+from ..utils.validation import has_fit_parameter, check_is_fitted, _check_sample_weight
+from ..utils._tags import _safe_tags
+from ..utils.parallel import delayed, Parallel
+
 
 __all__ = ["BaggingClassifier", "BaggingRegressor"]
 
@@ -37,7 +39,9 @@ def _generate_indices(random_state, bootstrap, n_population, n_samples):
     if bootstrap:
         indices = random_state.randint(0, n_population, n_samples)
     else:
-        indices = sample_without_replacement(n_population, n_samples, random_state=random_state)
+        indices = sample_without_replacement(
+            n_population, n_samples, random_state=random_state
+        )
 
     return indices
 
@@ -56,8 +60,12 @@ def _generate_bagging_indices(
     random_state = check_random_state(random_state)
 
     # Draw indices
-    feature_indices = _generate_indices(random_state, bootstrap_features, n_features, max_features)
-    sample_indices = _generate_indices(random_state, bootstrap_samples, n_samples, max_samples)
+    feature_indices = _generate_indices(
+        random_state, bootstrap_features, n_features, max_features
+    )
+    sample_indices = _generate_indices(
+        random_state, bootstrap_samples, n_samples, max_samples
+    )
 
     return feature_indices, sample_indices
 
@@ -156,7 +164,9 @@ def _parallel_predict_proba(estimators, estimators_features, X, n_classes):
                 proba += proba_estimator
 
             else:
-                proba[:, estimator.classes_] += proba_estimator[:, range(len(estimator.classes_))]
+                proba[:, estimator.classes_] += proba_estimator[
+                    :, range(len(estimator.classes_))
+                ]
 
         else:
             # Resort to voting
@@ -196,13 +206,17 @@ def _parallel_predict_log_proba(estimators, estimators_features, X, n_classes):
 def _parallel_decision_function(estimators, estimators_features, X):
     """Private function used to compute decisions within a job."""
     return sum(
-        estimator.decision_function(X[:, features]) for estimator, features in zip(estimators, estimators_features)
+        estimator.decision_function(X[:, features])
+        for estimator, features in zip(estimators, estimators_features)
     )
 
 
 def _parallel_predict_regression(estimators, estimators_features, X):
     """Private function used to compute predictions within a job."""
-    return sum(estimator.predict(X[:, features]) for estimator, features in zip(estimators, estimators_features))
+    return sum(
+        estimator.predict(X[:, features])
+        for estimator, features in zip(estimators, estimators_features)
+    )
 
 
 def _estimator_has(attr):
@@ -431,16 +445,22 @@ class BaseBagging(BaseEnsemble, metaclass=ABCMeta):
 
         if n_more_estimators < 0:
             raise ValueError(
-                "n_estimators=%d must be larger or equal to len(estimators_)=%d when warm_start==True"
+                "n_estimators=%d must be larger or equal to "
+                "len(estimators_)=%d when warm_start==True"
                 % (self.n_estimators, len(self.estimators_))
             )
 
         elif n_more_estimators == 0:
-            warn("Warm-start fitting without increasing n_estimators does not fit new trees.")
+            warn(
+                "Warm-start fitting without increasing n_estimators does not "
+                "fit new trees."
+            )
             return self
 
         # Parallel loop
-        n_jobs, n_estimators, starts = _partition_estimators(n_more_estimators, self.n_jobs)
+        n_jobs, n_estimators, starts = _partition_estimators(
+            n_more_estimators, self.n_jobs
+        )
         total_n_estimators = sum(n_estimators)
 
         # Advance random state to state after training
@@ -451,7 +471,9 @@ class BaseBagging(BaseEnsemble, metaclass=ABCMeta):
         seeds = random_state.randint(MAX_INT, size=n_more_estimators)
         self._seeds = seeds
 
-        all_results = Parallel(n_jobs=n_jobs, verbose=self.verbose, **self._parallel_args())(
+        all_results = Parallel(
+            n_jobs=n_jobs, verbose=self.verbose, **self._parallel_args()
+        )(
             delayed(_parallel_build_estimators)(
                 n_estimators[i],
                 self,
@@ -467,8 +489,12 @@ class BaseBagging(BaseEnsemble, metaclass=ABCMeta):
         )
 
         # Reduce
-        self.estimators_ += list(itertools.chain.from_iterable(t[0] for t in all_results))
-        self.estimators_features_ += list(itertools.chain.from_iterable(t[1] for t in all_results))
+        self.estimators_ += list(
+            itertools.chain.from_iterable(t[0] for t in all_results)
+        )
+        self.estimators_features_ += list(
+            itertools.chain.from_iterable(t[1] for t in all_results)
+        )
 
         if self.oob_score:
             self._set_oob_score(X, y)
@@ -740,12 +766,16 @@ class BaggingClassifier(ClassifierMixin, BaseBagging):
 
         predictions = np.zeros((n_samples, n_classes_))
 
-        for estimator, samples, features in zip(self.estimators_, self.estimators_samples_, self.estimators_features_):
+        for estimator, samples, features in zip(
+            self.estimators_, self.estimators_samples_, self.estimators_features_
+        ):
             # Create mask for OOB samples
             mask = ~indices_to_mask(samples, n_samples)
 
             if hasattr(estimator, "predict_proba"):
-                predictions[mask, :] += estimator.predict_proba((X[mask, :])[:, features])
+                predictions[mask, :] += estimator.predict_proba(
+                    (X[mask, :])[:, features]
+                )
 
             else:
                 p = estimator.predict((X[mask, :])[:, features])
@@ -833,7 +863,9 @@ class BaggingClassifier(ClassifierMixin, BaseBagging):
         # Parallel loop
         n_jobs, _, starts = _partition_estimators(self.n_estimators, self.n_jobs)
 
-        all_proba = Parallel(n_jobs=n_jobs, verbose=self.verbose, **self._parallel_args())(
+        all_proba = Parallel(
+            n_jobs=n_jobs, verbose=self.verbose, **self._parallel_args()
+        )(
             delayed(_parallel_predict_proba)(
                 self.estimators_[starts[i] : starts[i + 1]],
                 self.estimators_features_[starts[i] : starts[i + 1]],
@@ -1217,7 +1249,9 @@ class BaggingRegressor(RegressorMixin, BaseBagging):
         predictions = np.zeros((n_samples,))
         n_predictions = np.zeros((n_samples,))
 
-        for estimator, samples, features in zip(self.estimators_, self.estimators_samples_, self.estimators_features_):
+        for estimator, samples, features in zip(
+            self.estimators_, self.estimators_samples_, self.estimators_features_
+        ):
             # Create mask for OOB samples
             mask = ~indices_to_mask(samples, n_samples)
 

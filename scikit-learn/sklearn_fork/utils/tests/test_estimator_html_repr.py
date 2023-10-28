@@ -1,26 +1,37 @@
-import html
 from contextlib import closing
+import html
 from io import StringIO
 
 import pytest
+
 from sklearn_fork import config_context
-from sklearn_fork.cluster import AgglomerativeClustering, Birch
-from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.decomposition import PCA, TruncatedSVD
-from sklearn_fork.ensemble import StackingClassifier, StackingRegressor, VotingClassifier
-from sklearn_fork.feature_selection import SelectPercentile
-from sklearn_fork.gaussian_process.kernels import ExpSineSquared
-from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.kernel_ridge import KernelRidge
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.model_selection import RandomizedSearchCV
-from sklearn_fork.multiclass import OneVsOneClassifier
 from sklearn_fork.neural_network import MLPClassifier
-from sklearn_fork.pipeline import FeatureUnion, Pipeline
-from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
-from sklearn_fork.svm import LinearSVC, LinearSVR
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.decomposition import PCA
+from sklearn_fork.decomposition import TruncatedSVD
+from sklearn_fork.pipeline import Pipeline
+from sklearn_fork.pipeline import FeatureUnion
+from sklearn_fork.compose import ColumnTransformer
+from sklearn_fork.ensemble import VotingClassifier
+from sklearn_fork.feature_selection import SelectPercentile
+from sklearn_fork.cluster import Birch
+from sklearn_fork.cluster import AgglomerativeClustering
+from sklearn_fork.preprocessing import OneHotEncoder
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.svm import LinearSVC
+from sklearn_fork.svm import LinearSVR
 from sklearn_fork.tree import DecisionTreeClassifier
-from sklearn_fork.utils._estimator_html_repr import _get_visual_block, _write_label_html, estimator_html_repr
+from sklearn_fork.multiclass import OneVsOneClassifier
+from sklearn_fork.ensemble import StackingClassifier
+from sklearn_fork.ensemble import StackingRegressor
+from sklearn_fork.gaussian_process.kernels import ExpSineSquared
+from sklearn_fork.kernel_ridge import KernelRidge
+
+from sklearn_fork.model_selection import RandomizedSearchCV
+from sklearn_fork.utils._estimator_html_repr import _write_label_html
+from sklearn_fork.utils._estimator_html_repr import _get_visual_block
+from sklearn_fork.utils._estimator_html_repr import estimator_html_repr
 
 
 @pytest.mark.parametrize("checked", [True, False])
@@ -84,12 +95,16 @@ def test_get_visual_block_feature_union():
     est_html_info = _get_visual_block(f_union)
     assert est_html_info.kind == "parallel"
     assert est_html_info.names == ("pca", "svd")
-    assert est_html_info.estimators == tuple(trans[1] for trans in f_union.transformer_list)
+    assert est_html_info.estimators == tuple(
+        trans[1] for trans in f_union.transformer_list
+    )
     assert est_html_info.name_details == (None, None)
 
 
 def test_get_visual_block_voting():
-    clf = VotingClassifier([("log_reg", LogisticRegression()), ("mlp", MLPClassifier())])
+    clf = VotingClassifier(
+        [("log_reg", LogisticRegression()), ("mlp", MLPClassifier())]
+    )
     est_html_info = _get_visual_block(clf)
     assert est_html_info.kind == "parallel"
     assert est_html_info.estimators == tuple(trans[1] for trans in clf.estimators)
@@ -98,7 +113,9 @@ def test_get_visual_block_voting():
 
 
 def test_get_visual_block_column_transformer():
-    ct = ColumnTransformer([("pca", PCA(), ["num1", "num2"]), ("svd", TruncatedSVD, [0, 3])])
+    ct = ColumnTransformer(
+        [("pca", PCA(), ["num1", "num2"]), ("svd", TruncatedSVD, [0, 3])]
+    )
     est_html_info = _get_visual_block(ct)
     assert est_html_info.kind == "parallel"
     assert est_html_info.estimators == tuple(trans[1] for trans in ct.transformers)
@@ -107,7 +124,9 @@ def test_get_visual_block_column_transformer():
 
 
 def test_estimator_html_repr_pipeline():
-    num_trans = Pipeline(steps=[("pass", "passthrough"), ("imputer", SimpleImputer(strategy="median"))])
+    num_trans = Pipeline(
+        steps=[("pass", "passthrough"), ("imputer", SimpleImputer(strategy="median"))]
+    )
 
     cat_trans = Pipeline(
         steps=[
@@ -145,13 +164,17 @@ def test_estimator_html_repr_pipeline():
         ]
     )
 
-    pipe = Pipeline([("preprocessor", preprocess), ("feat_u", feat_u), ("classifier", clf)])
+    pipe = Pipeline(
+        [("preprocessor", preprocess), ("feat_u", feat_u), ("classifier", clf)]
+    )
     html_output = estimator_html_repr(pipe)
 
     # top level estimators show estimator with changes
     assert html.escape(str(pipe)) in html_output
     for _, est in pipe.steps:
-        assert ('<div class="sk-toggleable__content"><pre>' + html.escape(str(est))) in html_output
+        assert (
+            '<div class="sk-toggleable__content"><pre>' + html.escape(str(est))
+        ) in html_output
 
     # low level estimators do not show changes
     with config_context(print_changed_only=True):
@@ -202,7 +225,9 @@ def test_stacking_classifier(final_estimator):
 
 @pytest.mark.parametrize("final_estimator", [None, LinearSVR()])
 def test_stacking_regressor(final_estimator):
-    reg = StackingRegressor(estimators=[("svr", LinearSVR())], final_estimator=final_estimator)
+    reg = StackingRegressor(
+        estimators=[("svr", LinearSVR())], final_estimator=final_estimator
+    )
     html_output = estimator_html_repr(reg)
 
     assert html.escape(str(reg.estimators[0][0])) in html_output
@@ -269,7 +294,10 @@ def test_fallback_exists():
     pca = PCA(n_components=10)
     html_output = estimator_html_repr(pca)
 
-    assert f'<div class="sk-text-repr-fallback"><pre>{html.escape(str(pca))}' in html_output
+    assert (
+        f'<div class="sk-text-repr-fallback"><pre>{html.escape(str(pca))}'
+        in html_output
+    )
 
 
 def test_show_arrow_pipeline():
@@ -277,7 +305,10 @@ def test_show_arrow_pipeline():
     pipe = Pipeline([("scale", StandardScaler()), ("log_Reg", LogisticRegression())])
 
     html_output = estimator_html_repr(pipe)
-    assert 'class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline' in html_output
+    assert (
+        'class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline'
+        in html_output
+    )
 
 
 def test_invalid_parameters_in_stacking():

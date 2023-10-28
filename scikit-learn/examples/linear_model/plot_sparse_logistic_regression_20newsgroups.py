@@ -27,10 +27,11 @@ import warnings
 
 import matplotlib.pyplot as plt
 import numpy as np
+
 from sklearn_fork.datasets import fetch_20newsgroups_vectorized
-from sklearn_fork.exceptions import ConvergenceWarning
 from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.exceptions import ConvergenceWarning
 
 warnings.filterwarnings("ignore", category=ConvergenceWarning, module="sklearn_fork")
 t0 = timeit.default_timer()
@@ -45,11 +46,16 @@ X, y = fetch_20newsgroups_vectorized(subset="all", return_X_y=True)
 X = X[:n_samples]
 y = y[:n_samples]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, stratify=y, test_size=0.1)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, random_state=42, stratify=y, test_size=0.1
+)
 train_samples, n_features = X_train.shape
 n_classes = np.unique(y).shape[0]
 
-print("Dataset 20newsgroup, train_samples=%i, n_features=%i, n_classes=%i" % (train_samples, n_features, n_classes))
+print(
+    "Dataset 20newsgroup, train_samples=%i, n_features=%i, n_classes=%i"
+    % (train_samples, n_features, n_classes)
+)
 
 models = {
     "ovr": {"name": "One versus Rest", "iters": [1, 2, 3]},
@@ -66,7 +72,10 @@ for model in models:
 
     # Small number of epochs for fast runtime
     for this_max_iter in model_params["iters"]:
-        print("[model=%s, solver=%s] Number of epochs: %s" % (model_params["name"], solver, this_max_iter))
+        print(
+            "[model=%s, solver=%s] Number of epochs: %s"
+            % (model_params["name"], solver, this_max_iter)
+        )
         lr = LogisticRegression(
             solver=solver,
             multi_class=model,
@@ -88,8 +97,14 @@ for model in models:
     models[model]["densities"] = densities
     models[model]["accuracies"] = accuracies
     print("Test accuracy for model %s: %.4f" % (model, accuracies[-1]))
-    print("%% non-zero coefficients for model %s, per class:\n %s" % (model, densities[-1]))
-    print("Run time (%i epochs) for model %s:%.2f" % (model_params["iters"][-1], model, times[-1]))
+    print(
+        "%% non-zero coefficients for model %s, per class:\n %s"
+        % (model, densities[-1])
+    )
+    print(
+        "Run time (%i epochs) for model %s:%.2f"
+        % (model_params["iters"][-1], model, times[-1])
+    )
 
 fig = plt.figure()
 ax = fig.add_subplot(111)

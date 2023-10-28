@@ -1,14 +1,16 @@
 import os
-import warnings
+from os.path import exists
+from os.path import join
 from os import environ
-from os.path import exists, join
+import warnings
 
+from sklearn_fork.utils import IS_PYPY
+from sklearn_fork.utils._testing import SkipTest
+from sklearn_fork.utils._testing import check_skip_network
+from sklearn_fork.utils.fixes import parse_version
 from sklearn_fork.datasets import get_data_home
 from sklearn_fork.datasets._base import _pkl_filepath
 from sklearn_fork.datasets._twenty_newsgroups import CACHE_NAME
-from sklearn_fork.utils import IS_PYPY
-from sklearn_fork.utils._testing import SkipTest, check_skip_network
-from sklearn_fork.utils.fixes import parse_version
 
 
 def setup_labeled_faces():
@@ -50,7 +52,8 @@ def setup_loading_other_datasets():
     run_network_tests = environ.get("SKLEARN_SKIP_NETWORK_TESTS", "1") == "0"
     if not run_network_tests:
         raise SkipTest(
-            "Skipping loading_other_datasets.rst, tests can be enabled by setting SKLEARN_SKIP_NETWORK_TESTS=0"
+            "Skipping loading_other_datasets.rst, tests can be "
+            "enabled by setting SKLEARN_SKIP_NETWORK_TESTS=0"
         )
 
 
@@ -91,7 +94,9 @@ def setup_unsupervised_learning():
     except ImportError:
         raise SkipTest("Skipping unsupervised_learning.rst, scikit-image not installed")
     # ignore deprecation warnings from scipy.misc.face
-    warnings.filterwarnings("ignore", "The binary mode of fromstring", DeprecationWarning)
+    warnings.filterwarnings(
+        "ignore", "The binary mode of fromstring", DeprecationWarning
+    )
 
 
 def skip_if_matplotlib_not_installed(fname):
@@ -123,7 +128,9 @@ def pytest_runtest_setup(item):
         setup_rcv1()
     elif fname.endswith("datasets/twenty_newsgroups.rst") or is_index:
         setup_twenty_newsgroups()
-    elif fname.endswith("tutorial/text_analytics/working_with_text_data.rst") or is_index:
+    elif (
+        fname.endswith("tutorial/text_analytics/working_with_text_data.rst") or is_index
+    ):
         setup_working_with_text_data()
     elif fname.endswith("modules/compose.rst") or is_index:
         setup_compose()

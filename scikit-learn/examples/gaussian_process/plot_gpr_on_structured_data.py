@@ -40,9 +40,11 @@ four correct classifications and fails on one.
 
 # %%
 import numpy as np
+from sklearn_fork.gaussian_process.kernels import Kernel, Hyperparameter
+from sklearn_fork.gaussian_process.kernels import GenericKernelMixin
+from sklearn_fork.gaussian_process import GaussianProcessRegressor
+from sklearn_fork.gaussian_process import GaussianProcessClassifier
 from sklearn_fork.base import clone
-from sklearn_fork.gaussian_process import GaussianProcessClassifier, GaussianProcessRegressor
-from sklearn_fork.gaussian_process.kernels import GenericKernelMixin, Hyperparameter, Kernel
 
 
 class SequenceKernel(GenericKernelMixin, Kernel):
@@ -56,13 +58,17 @@ class SequenceKernel(GenericKernelMixin, Kernel):
 
     @property
     def hyperparameter_baseline_similarity(self):
-        return Hyperparameter("baseline_similarity", "numeric", self.baseline_similarity_bounds)
+        return Hyperparameter(
+            "baseline_similarity", "numeric", self.baseline_similarity_bounds
+        )
 
     def _f(self, s1, s2):
         """
         kernel value between a pair of sequences
         """
-        return sum([1.0 if c1 == c2 else self.baseline_similarity for c1 in s1 for c2 in s2])
+        return sum(
+            [1.0 if c1 == c2 else self.baseline_similarity for c1 in s1 for c2 in s2]
+        )
 
     def _g(self, s1, s2):
         """

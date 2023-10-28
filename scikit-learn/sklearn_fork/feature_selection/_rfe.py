@@ -6,21 +6,27 @@
 
 """Recursive feature elimination for feature ranking"""
 
-from numbers import Integral
-
 import numpy as np
+from numbers import Integral
 from joblib import effective_n_jobs
 
-from ..base import BaseEstimator, MetaEstimatorMixin, clone, is_classifier
-from ..metrics import check_scoring
+
+from ..utils.metaestimators import available_if
+from ..utils.metaestimators import _safe_split
+from ..utils._param_validation import HasMethods, Interval
+from ..utils._param_validation import RealNotInt
+from ..utils._tags import _safe_tags
+from ..utils.validation import check_is_fitted
+from ..utils.parallel import delayed, Parallel
+from ..base import BaseEstimator
+from ..base import MetaEstimatorMixin
+from ..base import clone
+from ..base import is_classifier
 from ..model_selection import check_cv
 from ..model_selection._validation import _score
-from ..utils._param_validation import HasMethods, Interval, RealNotInt
-from ..utils._tags import _safe_tags
-from ..utils.metaestimators import _safe_split, available_if
-from ..utils.parallel import Parallel, delayed
-from ..utils.validation import check_is_fitted
-from ._base import SelectorMixin, _get_feature_importances
+from ..metrics import check_scoring
+from ._base import SelectorMixin
+from ._base import _get_feature_importances
 
 
 def _rfe_single_fit(rfe, estimator, X, y, train, test, scorer):
@@ -32,7 +38,9 @@ def _rfe_single_fit(rfe, estimator, X, y, train, test, scorer):
     return rfe._fit(
         X_train,
         y_train,
-        lambda estimator, features: _score(estimator, X_test[:, features], y_test, scorer),
+        lambda estimator, features: _score(
+            estimator, X_test[:, features], y_test, scorer
+        ),
     ).scores_
 
 
@@ -43,7 +51,9 @@ def _estimator_has(attr):
     check the unfitted estimator.
     """
     return lambda self: (
-        hasattr(self.estimator_, attr) if hasattr(self, "estimator_") else hasattr(self.estimator, attr)
+        hasattr(self.estimator_, attr)
+        if hasattr(self, "estimator_")
+        else hasattr(self.estimator, attr)
     )
 
 
@@ -714,14 +724,17 @@ class RFECV(RFE):
             func = delayed(_rfe_single_fit)
 
         scores = parallel(
-            func(rfe, self.estimator, X, y, train, test, scorer) for train, test in cv.split(X, y, groups)
+            func(rfe, self.estimator, X, y, train, test, scorer)
+            for train, test in cv.split(X, y, groups)
         )
 
         scores = np.array(scores)
         scores_sum = np.sum(scores, axis=0)
         scores_sum_rev = scores_sum[::-1]
         argmax_idx = len(scores_sum) - np.argmax(scores_sum_rev) - 1
-        n_features_to_select = max(n_features - (argmax_idx * step), self.min_features_to_select)
+        n_features_to_select = max(
+            n_features - (argmax_idx * step), self.min_features_to_select
+        )
 
         # Re-execute an elimination with best_k over the whole set
         rfe = RFE(

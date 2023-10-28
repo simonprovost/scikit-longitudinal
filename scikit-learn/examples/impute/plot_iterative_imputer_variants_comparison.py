@@ -44,20 +44,21 @@ complex and costly missing values imputation strategies.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn_fork.datasets import fetch_california_housing
-from sklearn_fork.ensemble import RandomForestRegressor
 
 # To use this experimental feature, we need to explicitly ask for it:
 from sklearn_fork.experimental import enable_iterative_imputer  # noqa
-from sklearn_fork.impute import IterativeImputer, SimpleImputer
-from sklearn_fork.kernel_approximation import Nystroem
+from sklearn_fork.datasets import fetch_california_housing
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.impute import IterativeImputer
 from sklearn_fork.linear_model import BayesianRidge, Ridge
-from sklearn_fork.model_selection import cross_val_score
+from sklearn_fork.kernel_approximation import Nystroem
+from sklearn_fork.ensemble import RandomForestRegressor
 from sklearn_fork.neighbors import KNeighborsRegressor
 from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.model_selection import cross_val_score
 
 N_SPLITS = 5
 
@@ -73,7 +74,9 @@ n_samples, n_features = X_full.shape
 # Estimate the score on the entire dataset, with no missing values
 br_estimator = BayesianRidge()
 score_full_data = pd.DataFrame(
-    cross_val_score(br_estimator, X_full, y_full, scoring="neg_mean_squared_error", cv=N_SPLITS),
+    cross_val_score(
+        br_estimator, X_full, y_full, scoring="neg_mean_squared_error", cv=N_SPLITS
+    ),
     columns=["Full Data"],
 )
 
@@ -87,7 +90,9 @@ X_missing[missing_samples, missing_features] = np.nan
 # Estimate the score after imputation (mean and median strategies)
 score_simple_imputer = pd.DataFrame()
 for strategy in ("mean", "median"):
-    estimator = make_pipeline(SimpleImputer(missing_values=np.nan, strategy=strategy), br_estimator)
+    estimator = make_pipeline(
+        SimpleImputer(missing_values=np.nan, strategy=strategy), br_estimator
+    )
     score_simple_imputer[strategy] = cross_val_score(
         estimator, X_missing, y_missing, scoring="neg_mean_squared_error", cv=N_SPLITS
     )
@@ -106,7 +111,9 @@ estimators = [
         n_jobs=2,
         random_state=0,
     ),
-    make_pipeline(Nystroem(kernel="polynomial", degree=2, random_state=0), Ridge(alpha=1e3)),
+    make_pipeline(
+        Nystroem(kernel="polynomial", degree=2, random_state=0), Ridge(alpha=1e3)
+    ),
     KNeighborsRegressor(n_neighbors=15),
 ]
 score_iterative_imputer = pd.DataFrame()
@@ -118,7 +125,9 @@ score_iterative_imputer = pd.DataFrame()
 tolerances = (1e-3, 1e-1, 1e-1, 1e-2)
 for impute_estimator, tol in zip(estimators, tolerances):
     estimator = make_pipeline(
-        IterativeImputer(random_state=0, estimator=impute_estimator, max_iter=25, tol=tol),
+        IterativeImputer(
+            random_state=0, estimator=impute_estimator, max_iter=25, tol=tol
+        ),
         br_estimator,
     )
     score_iterative_imputer[impute_estimator.__class__.__name__] = cross_val_score(

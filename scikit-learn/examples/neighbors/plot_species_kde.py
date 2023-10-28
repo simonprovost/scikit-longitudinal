@@ -40,8 +40,8 @@ References
 #
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork.datasets import fetch_species_distributions
 from sklearn_fork.neighbors import KernelDensity
 
@@ -112,7 +112,9 @@ for i in range(2):
 
     # construct a kernel density estimate of the distribution
     print(" - computing KDE in spherical coordinates")
-    kde = KernelDensity(bandwidth=0.04, metric="haversine", kernel="gaussian", algorithm="ball_tree")
+    kde = KernelDensity(
+        bandwidth=0.04, metric="haversine", kernel="gaussian", algorithm="ball_tree"
+    )
     kde.fit(Xtrain[ytrain == i])
 
     # evaluate only on the land: -9999 indicates ocean
@@ -138,7 +140,9 @@ for i in range(2):
         m.drawcountries()
     else:
         print(" - plot coastlines from coverage")
-        plt.contour(X, Y, land_reference, levels=[-9998], colors="k", linestyles="solid")
+        plt.contour(
+            X, Y, land_reference, levels=[-9998], colors="k", linestyles="solid"
+        )
         plt.xticks([])
         plt.yticks([])
 

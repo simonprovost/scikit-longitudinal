@@ -4,9 +4,9 @@
 import json
 import re
 import sys
-from urllib.request import urlopen
 
 from sklearn_fork.utils.fixes import parse_version
+from urllib.request import urlopen
 
 
 def json_urlread(url):
@@ -61,7 +61,9 @@ print()
 print("Web-based documentation is available for versions listed below:")
 print()
 
-ROOT_URL = "https://api.github.com/repos/scikit-learn/scikit-learn.github.io/contents/"  # noqa
+ROOT_URL = (
+    "https://api.github.com/repos/scikit-learn/scikit-learn.github.io/contents/"  # noqa
+)
 RAW_FMT = "https://raw.githubusercontent.com/scikit-learn/scikit-learn.github.io/master/%s/index.html"  # noqa
 VERSION_RE = re.compile(r"scikit-learn ([\w\.\-]+) documentation</title>")
 NAMED_DIRS = ["dev", "stable"]
@@ -91,7 +93,9 @@ for src, dst in symlinks.items():
 
 # Output in order: dev, stable, decreasing other version
 seen = set()
-for name in NAMED_DIRS + sorted((k for k in dirs if k[:1].isdigit()), key=parse_version, reverse=True):
+for name in NAMED_DIRS + sorted(
+    (k for k in dirs if k[:1].isdigit()), key=parse_version, reverse=True
+):
     version_num, file_size = dirs[name]
     if version_num in seen:
         # symlink came first
@@ -107,5 +111,8 @@ for name in NAMED_DIRS + sorted((k for k in dirs if k[:1].isdigit()), key=parse_
     )
     if file_size is not None:
         file_extension = get_file_extension(version_num)
-        out += f" (`{file_extension.upper()} {file_size} <{path}/_downloads/scikit-learn-docs.{file_extension}>`_)"
+        out += (
+            f" (`{file_extension.upper()} {file_size} <{path}/"
+            f"_downloads/scikit-learn-docs.{file_extension}>`_)"
+        )
     print(out)

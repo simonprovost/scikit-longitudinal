@@ -4,38 +4,35 @@
 #
 # License: BSD 3 clause
 import numpy as np
-import pytest
-from scipy import linalg, sparse
+from scipy import sparse
+from scipy import linalg
 from scipy.sparse.linalg import eigsh
 from scipy.special import expit
-from sklearn_fork.datasets import make_low_rank_matrix, make_sparse_spd_matrix
+
+import pytest
 from sklearn_fork.utils import gen_batches
 from sklearn_fork.utils._arpack import _init_arpack_v0
-from sklearn_fork.utils._testing import (
-    assert_allclose,
-    assert_allclose_dense_sparse,
-    assert_almost_equal,
-    assert_array_almost_equal,
-    assert_array_equal,
-    skip_if_32bit,
-)
-from sklearn_fork.utils.extmath import (
-    _deterministic_vector_sign_flip,
-    _incremental_mean_and_var,
-    _randomized_eigsh,
-    _safe_accumulator_op,
-    cartesian,
-    density,
-    log_logistic,
-    randomized_svd,
-    row_norms,
-    safe_sparse_dot,
-    softmax,
-    stable_cumsum,
-    svd_flip,
-    weighted_mode,
-)
-from sklearn_fork.utils.fixes import _eigh, _mode
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import assert_allclose_dense_sparse
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import skip_if_32bit
+from sklearn_fork.utils.fixes import _mode, _eigh
+
+from sklearn_fork.utils.extmath import density, _safe_accumulator_op
+from sklearn_fork.utils.extmath import randomized_svd, _randomized_eigsh
+from sklearn_fork.utils.extmath import row_norms
+from sklearn_fork.utils.extmath import weighted_mode
+from sklearn_fork.utils.extmath import cartesian
+from sklearn_fork.utils.extmath import log_logistic
+from sklearn_fork.utils.extmath import svd_flip
+from sklearn_fork.utils.extmath import _incremental_mean_and_var
+from sklearn_fork.utils.extmath import _deterministic_vector_sign_flip
+from sklearn_fork.utils.extmath import softmax
+from sklearn_fork.utils.extmath import stable_cumsum
+from sklearn_fork.utils.extmath import safe_sparse_dot
+from sklearn_fork.datasets import make_low_rank_matrix, make_sparse_spd_matrix
 
 
 def test_density():
@@ -58,7 +55,10 @@ def test_density_deprecated_kwargs():
     test_array = np.array([[1, 2, 3], [4, 5, 6]])
     with pytest.warns(
         FutureWarning,
-        match="Additional keyword arguments are deprecated in version 1.2 and will be removed in version 1.4.",
+        match=(
+            "Additional keyword arguments are deprecated in version 1.2 and will be"
+            " removed in version 1.4."
+        ),
     ):
         density(test_array, a=1)
 
@@ -125,7 +125,9 @@ def check_randomized_svd_low_rank(dtype):
 
     for normalizer in ["auto", "LU", "QR"]:  # 'none' would not be stable
         # compute the singular values of X using the fast approximate method
-        Ua, sa, Va = randomized_svd(X, k, power_iteration_normalizer=normalizer, random_state=0)
+        Ua, sa, Va = randomized_svd(
+            X, k, power_iteration_normalizer=normalizer, random_state=0
+        )
 
         # If the input dtype is float, then the output dtype is float of the
         # same bit size (f32 is not upcast to f64)
@@ -148,13 +150,17 @@ def check_randomized_svd_low_rank(dtype):
         assert_almost_equal(s[:k], sa, decimal=decimal)
 
         # check the singular vectors too (while not checking the sign)
-        assert_almost_equal(np.dot(U[:, :k], Vt[:k, :]), np.dot(Ua, Va), decimal=decimal)
+        assert_almost_equal(
+            np.dot(U[:, :k], Vt[:k, :]), np.dot(Ua, Va), decimal=decimal
+        )
 
         # check the sparse matrix representation
         X = sparse.csr_matrix(X)
 
         # compute the singular values of X using the fast approximate method
-        Ua, sa, Va = randomized_svd(X, k, power_iteration_normalizer=normalizer, random_state=0)
+        Ua, sa, Va = randomized_svd(
+            X, k, power_iteration_normalizer=normalizer, random_state=0
+        )
         if dtype.kind == "f":
             assert Ua.dtype == dtype
             assert sa.dtype == dtype
@@ -212,7 +218,9 @@ def test_randomized_eigsh_compared_to_others(k):
 
     # compare two versions of randomized
     # rough and fast
-    eigvals, eigvecs = _randomized_eigsh(X, n_components=k, selection="module", n_iter=25, random_state=0)
+    eigvals, eigvecs = _randomized_eigsh(
+        X, n_components=k, selection="module", n_iter=25, random_state=0
+    )
     # more accurate but slow (TODO find realistic settings here)
     eigvals_qr, eigvecs_qr = _randomized_eigsh(
         X,
@@ -225,7 +233,9 @@ def test_randomized_eigsh_compared_to_others(k):
     )
 
     # with LAPACK
-    eigvals_lapack, eigvecs_lapack = _eigh(X, subset_by_index=(n_features - k, n_features - 1))
+    eigvals_lapack, eigvecs_lapack = _eigh(
+        X, subset_by_index=(n_features - k, n_features - 1)
+    )
     indices = eigvals_lapack.argsort()[::-1]
     eigvals_lapack = eigvals_lapack[indices]
     eigvecs_lapack = eigvecs_lapack[:, indices]
@@ -250,7 +260,9 @@ def test_randomized_eigsh_compared_to_others(k):
     if k < n_features:
         v0 = _init_arpack_v0(n_features, random_state=0)
         # "LA" largest algebraic <=> selection="value" in randomized_eigsh
-        eigvals_arpack, eigvecs_arpack = eigsh(X, k, which="LA", tol=0, maxiter=None, v0=v0)
+        eigvals_arpack, eigvecs_arpack = eigsh(
+            X, k, which="LA", tol=0, maxiter=None, v0=v0
+        )
         indices = eigvals_arpack.argsort()[::-1]
         # eigenvalues
         eigvals_arpack = eigvals_arpack[indices]
@@ -349,14 +361,18 @@ def test_randomized_svd_low_rank_with_noise():
     for normalizer in ["auto", "none", "LU", "QR"]:
         # compute the singular values of X using the fast approximate
         # method without the iterated power method
-        _, sa, _ = randomized_svd(X, k, n_iter=0, power_iteration_normalizer=normalizer, random_state=0)
+        _, sa, _ = randomized_svd(
+            X, k, n_iter=0, power_iteration_normalizer=normalizer, random_state=0
+        )
 
         # the approximation does not tolerate the noise:
         assert np.abs(s[:k] - sa).max() > 0.01
 
         # compute the singular values of X using the fast approximate
         # method with iterated power method
-        _, sap, _ = randomized_svd(X, k, power_iteration_normalizer=normalizer, random_state=0)
+        _, sap, _ = randomized_svd(
+            X, k, power_iteration_normalizer=normalizer, random_state=0
+        )
 
         # the iterated power method is helping getting rid of the noise:
         assert_almost_equal(s[:k], sap, decimal=3)
@@ -385,14 +401,18 @@ def test_randomized_svd_infinite_rank():
     for normalizer in ["auto", "none", "LU", "QR"]:
         # compute the singular values of X using the fast approximate method
         # without the iterated power method
-        _, sa, _ = randomized_svd(X, k, n_iter=0, power_iteration_normalizer=normalizer, random_state=0)
+        _, sa, _ = randomized_svd(
+            X, k, n_iter=0, power_iteration_normalizer=normalizer, random_state=0
+        )
 
         # the approximation does not tolerate the noise:
         assert np.abs(s[:k] - sa).max() > 0.1
 
         # compute the singular values of X using the fast approximate method
         # with iterated power method
-        _, sap, _ = randomized_svd(X, k, n_iter=5, power_iteration_normalizer=normalizer, random_state=0)
+        _, sap, _ = randomized_svd(
+            X, k, n_iter=5, power_iteration_normalizer=normalizer, random_state=0
+        )
 
         # the iterated power method is still managing to get most of the
         # structure at the requested rank
@@ -440,10 +460,14 @@ def test_randomized_svd_power_iteration_normalizer():
     n_components = 50
 
     # Check that it diverges with many (non-normalized) power iterations
-    U, s, Vt = randomized_svd(X, n_components, n_iter=2, power_iteration_normalizer="none", random_state=0)
+    U, s, Vt = randomized_svd(
+        X, n_components, n_iter=2, power_iteration_normalizer="none", random_state=0
+    )
     A = X - U.dot(np.diag(s).dot(Vt))
     error_2 = linalg.norm(A, ord="fro")
-    U, s, Vt = randomized_svd(X, n_components, n_iter=20, power_iteration_normalizer="none", random_state=0)
+    U, s, Vt = randomized_svd(
+        X, n_components, n_iter=20, power_iteration_normalizer="none", random_state=0
+    )
     A = X - U.dot(np.diag(s).dot(Vt))
     error_20 = linalg.norm(A, ord="fro")
     assert np.abs(error_2 - error_20) > 100
@@ -479,7 +503,10 @@ def test_randomized_svd_sparse_warnings():
     n_components = 5
     for cls in (sparse.lil_matrix, sparse.dok_matrix):
         X = cls(X)
-        warn_msg = "Calculating SVD of a {} is expensive. csr_matrix is more efficient.".format(cls.__name__)
+        warn_msg = (
+            "Calculating SVD of a {} is expensive. "
+            "csr_matrix is more efficient.".format(cls.__name__)
+        )
         with pytest.warns(sparse.SparseEfficiencyWarning, match=warn_msg):
             randomized_svd(X, n_components, n_iter=1, power_iteration_normalizer="none")
 
@@ -547,7 +574,9 @@ def test_randomized_svd_sign_flip_with_transpose():
     u_flipped_with_transpose, _, v_flipped_with_transpose = randomized_svd(
         mat, 3, flip_sign=True, transpose=True, random_state=0
     )
-    u_based, v_based = max_loading_is_positive(u_flipped_with_transpose, v_flipped_with_transpose)
+    u_based, v_based = max_loading_is_positive(
+        u_flipped_with_transpose, v_flipped_with_transpose
+    )
     assert u_based
     assert not v_based
 
@@ -657,15 +686,21 @@ def test_incremental_weighted_mean_and_variance_simple(rng, dtype):
     mean, var, _ = _incremental_mean_and_var(X, 0, 0, 0, sample_weight=sample_weight)
 
     expected_mean = np.average(X, weights=sample_weight, axis=0)
-    expected_var = np.average(X**2, weights=sample_weight, axis=0) - expected_mean**2
+    expected_var = (
+        np.average(X**2, weights=sample_weight, axis=0) - expected_mean**2
+    )
     assert_almost_equal(mean, expected_mean)
     assert_almost_equal(var, expected_var)
 
 
 @pytest.mark.parametrize("mean", [0, 1e7, -1e7])
 @pytest.mark.parametrize("var", [1, 1e-8, 1e5])
-@pytest.mark.parametrize("weight_loc, weight_scale", [(0, 1), (0, 1e-8), (1, 1e-8), (10, 1), (1e7, 1)])
-def test_incremental_weighted_mean_and_variance(mean, var, weight_loc, weight_scale, rng):
+@pytest.mark.parametrize(
+    "weight_loc, weight_scale", [(0, 1), (0, 1e-8), (1, 1e-8), (10, 1), (1e7, 1)]
+)
+def test_incremental_weighted_mean_and_variance(
+    mean, var, weight_loc, weight_scale, rng
+):
     # Testing of correctness and numerical stability
     def _assert(X, sample_weight, expected_mean, expected_var):
         n = X.shape[0]
@@ -688,7 +723,9 @@ def test_incremental_weighted_mean_and_variance(mean, var, weight_loc, weight_sc
     # Compare to weighted average: np.average
     X = rng.normal(loc=mean, scale=var, size=size)
     expected_mean = _safe_accumulator_op(np.average, X, weights=weight, axis=0)
-    expected_var = _safe_accumulator_op(np.average, (X - expected_mean) ** 2, weights=weight, axis=0)
+    expected_var = _safe_accumulator_op(
+        np.average, (X - expected_mean) ** 2, weights=weight, axis=0
+    )
     _assert(X, weight, expected_mean, expected_var)
 
     # Compare to unweighted mean: np.mean
@@ -707,7 +744,9 @@ def test_incremental_weighted_mean_and_variance_ignore_nan(dtype):
     sample_weights_X = np.ones(3)
     sample_weights_X_nan = np.ones(4)
 
-    X = np.array([[170, 170, 170, 170], [430, 430, 430, 430], [300, 300, 300, 300]]).astype(dtype)
+    X = np.array(
+        [[170, 170, 170, 170], [430, 430, 430, 430], [300, 300, 300, 300]]
+    ).astype(dtype)
 
     X_nan = np.array(
         [
@@ -776,7 +815,9 @@ def test_incremental_mean_and_variance_ignore_nan():
         ]
     )
 
-    X_means, X_variances, X_count = _incremental_mean_and_var(X, old_means, old_variances, old_sample_count)
+    X_means, X_variances, X_count = _incremental_mean_and_var(
+        X, old_means, old_variances, old_sample_count
+    )
     X_nan_means, X_nan_variances, X_nan_count = _incremental_mean_and_var(
         X_nan, old_means, old_variances, old_sample_count
     )
@@ -816,7 +857,10 @@ def test_incremental_variance_numerical_stability():
         updated_sample_count = last_sample_count + 1
         samples_ratio = last_sample_count / float(updated_sample_count)
         updated_mean = x / updated_sample_count + last_mean * samples_ratio
-        updated_variance = last_variance * samples_ratio + (x - last_mean) * (x - updated_mean) / updated_sample_count
+        updated_variance = (
+            last_variance * samples_ratio
+            + (x - last_mean) * (x - updated_mean) / updated_sample_count
+        )
         return updated_mean, updated_variance, updated_sample_count
 
     # We want to show a case when one_pass_var has error > 1e-3 while
@@ -848,7 +892,9 @@ def test_incremental_variance_numerical_stability():
     mean, var = A0[0, :], np.zeros(n_features)
     n = np.full(n_features, n_samples // 2, dtype=np.int32)
     for i in range(A1.shape[0]):
-        mean, var, n = _incremental_mean_and_var(A1[i, :].reshape((1, A1.shape[1])), mean, var, n)
+        mean, var, n = _incremental_mean_and_var(
+            A1[i, :].reshape((1, A1.shape[1])), mean, var, n
+        )
     assert_array_equal(n, A.shape[0])
     assert_array_almost_equal(A.mean(axis=0), mean)
     assert tol > np.abs(np_var(A) - var).max()
@@ -873,7 +919,9 @@ def test_incremental_variance_ddof():
                 incremental_count = batch.shape[0]
                 sample_count = np.full(batch.shape[1], batch.shape[0], dtype=np.int32)
             else:
-                result = _incremental_mean_and_var(batch, incremental_means, incremental_variances, sample_count)
+                result = _incremental_mean_and_var(
+                    batch, incremental_means, incremental_variances, sample_count
+                )
                 (incremental_means, incremental_variances, incremental_count) = result
                 sample_count += batch.shape[0]
 
@@ -916,8 +964,12 @@ def test_stable_cumsum():
     assert_array_equal(stable_cumsum(A, axis=2), np.cumsum(A, axis=2))
 
 
-@pytest.mark.parametrize("A_array_constr", [np.array, sparse.csr_matrix], ids=["dense", "sparse"])
-@pytest.mark.parametrize("B_array_constr", [np.array, sparse.csr_matrix], ids=["dense", "sparse"])
+@pytest.mark.parametrize(
+    "A_array_constr", [np.array, sparse.csr_matrix], ids=["dense", "sparse"]
+)
+@pytest.mark.parametrize(
+    "B_array_constr", [np.array, sparse.csr_matrix], ids=["dense", "sparse"]
+)
 def test_safe_sparse_dot_2d(A_array_constr, B_array_constr):
     rng = np.random.RandomState(0)
 
@@ -952,7 +1004,9 @@ def test_safe_sparse_dot_nd():
     assert_allclose(actual, expected)
 
 
-@pytest.mark.parametrize("A_array_constr", [np.array, sparse.csr_matrix], ids=["dense", "sparse"])
+@pytest.mark.parametrize(
+    "A_array_constr", [np.array, sparse.csr_matrix], ids=["dense", "sparse"]
+)
 def test_safe_sparse_dot_2d_1d(A_array_constr):
     rng = np.random.RandomState(0)
 

@@ -1,22 +1,28 @@
 # License: BSD 3 clause
 
-import itertools
 import pickle
+import itertools
 
 import numpy as np
 import pytest
-from numpy.testing import assert_allclose, assert_array_almost_equal
+
 from sklearn_fork.metrics import DistanceMetric
-from sklearn_fork.neighbors._ball_tree import BallTree
-from sklearn_fork.neighbors._ball_tree import NeighborsHeap as NeighborsHeapBT
-from sklearn_fork.neighbors._ball_tree import kernel_norm
-from sklearn_fork.neighbors._ball_tree import nodeheap_sort as nodeheap_sort_bt
-from sklearn_fork.neighbors._ball_tree import simultaneous_sort as simultaneous_sort_bt
-from sklearn_fork.neighbors._kd_tree import KDTree
-from sklearn_fork.neighbors._kd_tree import NeighborsHeap as NeighborsHeapKDT
-from sklearn_fork.neighbors._kd_tree import nodeheap_sort as nodeheap_sort_kdt
-from sklearn_fork.neighbors._kd_tree import simultaneous_sort as simultaneous_sort_kdt
+from sklearn_fork.neighbors._ball_tree import (
+    BallTree,
+    kernel_norm,
+    NeighborsHeap as NeighborsHeapBT,
+    simultaneous_sort as simultaneous_sort_bt,
+    nodeheap_sort as nodeheap_sort_bt,
+)
+from sklearn_fork.neighbors._kd_tree import (
+    KDTree,
+    NeighborsHeap as NeighborsHeapKDT,
+    simultaneous_sort as simultaneous_sort_kdt,
+    nodeheap_sort as nodeheap_sort_kdt,
+)
+
 from sklearn_fork.utils import check_random_state
+from numpy.testing import assert_array_almost_equal, assert_allclose
 
 rng = np.random.RandomState(42)
 V_mahalanobis = rng.rand(3, 3)
@@ -70,19 +76,25 @@ def brute_force_neighbors(X, Y, k, metric, **kwargs):
 
 
 @pytest.mark.parametrize("Cls", [KDTree, BallTree])
-@pytest.mark.parametrize("kernel", ["gaussian", "tophat", "epanechnikov", "exponential", "linear", "cosine"])
+@pytest.mark.parametrize(
+    "kernel", ["gaussian", "tophat", "epanechnikov", "exponential", "linear", "cosine"]
+)
 @pytest.mark.parametrize("h", [0.01, 0.1, 1])
 @pytest.mark.parametrize("rtol", [0, 1e-5])
 @pytest.mark.parametrize("atol", [1e-6, 1e-2])
 @pytest.mark.parametrize("breadth_first", [True, False])
-def test_kernel_density(Cls, kernel, h, rtol, atol, breadth_first, n_samples=100, n_features=3):
+def test_kernel_density(
+    Cls, kernel, h, rtol, atol, breadth_first, n_samples=100, n_features=3
+):
     rng = check_random_state(1)
     X = rng.random_sample((n_samples, n_features))
     Y = rng.random_sample((n_samples, n_features))
     dens_true = compute_kernel_slow(Y, X, kernel, h)
 
     tree = Cls(X, leaf_size=10)
-    dens = tree.kernel_density(Y, h, atol=atol, rtol=rtol, kernel=kernel, breadth_first=breadth_first)
+    dens = tree.kernel_density(
+        Y, h, atol=atol, rtol=rtol, kernel=kernel, breadth_first=breadth_first
+    )
     assert_allclose(dens, dens_true, atol=atol, rtol=max(rtol, 1e-7))
 
 
@@ -176,7 +188,9 @@ def test_node_heap(nodeheap_sort, n_nodes=50):
     assert_array_almost_equal(vals[i1], vals2)
 
 
-@pytest.mark.parametrize("simultaneous_sort", [simultaneous_sort_bt, simultaneous_sort_kdt])
+@pytest.mark.parametrize(
+    "simultaneous_sort", [simultaneous_sort_bt, simultaneous_sort_kdt]
+)
 def test_simultaneous_sort(simultaneous_sort, n_rows=10, n_pts=201):
     rng = check_random_state(0)
     dist = rng.random_sample((n_rows, n_pts)).astype(np.float64, copy=False)

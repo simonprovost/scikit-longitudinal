@@ -46,21 +46,22 @@ of the results_.
 #          Thomas Unterthiner
 # License: BSD 3 clause
 
-import matplotlib as mpl
 import numpy as np
-from matplotlib import cm
+
+import matplotlib as mpl
 from matplotlib import pyplot as plt
+from matplotlib import cm
+
+from sklearn_fork.preprocessing import MinMaxScaler
+from sklearn_fork.preprocessing import minmax_scale
+from sklearn_fork.preprocessing import MaxAbsScaler
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.preprocessing import RobustScaler
+from sklearn_fork.preprocessing import Normalizer
+from sklearn_fork.preprocessing import QuantileTransformer
+from sklearn_fork.preprocessing import PowerTransformer
+
 from sklearn_fork.datasets import fetch_california_housing
-from sklearn_fork.preprocessing import (
-    MaxAbsScaler,
-    MinMaxScaler,
-    Normalizer,
-    PowerTransformer,
-    QuantileTransformer,
-    RobustScaler,
-    StandardScaler,
-    minmax_scale,
-)
 
 dataset = fetch_california_housing()
 X_full, y_full = dataset.data, dataset.target
@@ -183,12 +184,16 @@ def plot_distribution(axes, X, y, hist_nbins=50, title="", x0_label="", x1_label
 
     # Histogram for axis X1 (feature 5)
     hist_X1.set_ylim(ax.get_ylim())
-    hist_X1.hist(X[:, 1], bins=hist_nbins, orientation="horizontal", color="grey", ec="grey")
+    hist_X1.hist(
+        X[:, 1], bins=hist_nbins, orientation="horizontal", color="grey", ec="grey"
+    )
     hist_X1.axis("off")
 
     # Histogram for axis X0 (feature 0)
     hist_X0.set_xlim(ax.get_xlim())
-    hist_X0.hist(X[:, 0], bins=hist_nbins, orientation="vertical", color="grey", ec="grey")
+    hist_X0.hist(
+        X[:, 0], bins=hist_nbins, orientation="vertical", color="grey", ec="grey"
+    )
     hist_X0.axis("off")
 
 

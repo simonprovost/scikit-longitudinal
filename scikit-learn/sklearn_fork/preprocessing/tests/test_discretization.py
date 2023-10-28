@@ -1,15 +1,16 @@
+import pytest
+import numpy as np
+import scipy.sparse as sp
 import warnings
 
-import numpy as np
-import pytest
-import scipy.sparse as sp
 from sklearn_fork import clone
-from sklearn_fork.preprocessing import KBinsDiscretizer, OneHotEncoder
+from sklearn_fork.preprocessing import KBinsDiscretizer
+from sklearn_fork.preprocessing import OneHotEncoder
 from sklearn_fork.utils._testing import (
-    assert_allclose,
-    assert_allclose_dense_sparse,
     assert_array_almost_equal,
     assert_array_equal,
+    assert_allclose_dense_sparse,
+    assert_allclose,
 )
 
 X = [[-2, 1.5, -4, -1], [-1, 2.5, -3, -0.5], [0, 3.5, -2, 0.5], [1, 4.5, -1, 2]]
@@ -65,7 +66,9 @@ def test_kbinsdiscretizer_wrong_strategy_with_weights(strategy):
     """Check that we raise an error when the wrong strategy is used."""
     sample_weight = np.ones(shape=(len(X)))
     est = KBinsDiscretizer(n_bins=3, strategy=strategy)
-    err_msg = "`sample_weight` was provided but it cannot be used with strategy='uniform'."
+    err_msg = (
+        "`sample_weight` was provided but it cannot be used with strategy='uniform'."
+    )
     with pytest.raises(ValueError, match=err_msg):
         est.fit(X, sample_weight=sample_weight)
 
@@ -145,7 +148,9 @@ def test_invalid_n_bins_array():
     ],
 )
 def test_fit_transform_n_bins_array(strategy, expected, sample_weight):
-    est = KBinsDiscretizer(n_bins=[2, 3, 3, 3], encode="ordinal", strategy=strategy).fit(X, sample_weight=sample_weight)
+    est = KBinsDiscretizer(
+        n_bins=[2, 3, 3, 3], encode="ordinal", strategy=strategy
+    ).fit(X, sample_weight=sample_weight)
     assert_array_equal(expected, est.transform(X))
 
     # test the shape of bin_edges_
@@ -221,14 +226,18 @@ def test_encode_options():
     Xt_2 = est.transform(X)
     assert not sp.issparse(Xt_2)
     assert_array_equal(
-        OneHotEncoder(categories=[np.arange(i) for i in [2, 3, 3, 3]], sparse_output=False).fit_transform(Xt_1),
+        OneHotEncoder(
+            categories=[np.arange(i) for i in [2, 3, 3, 3]], sparse_output=False
+        ).fit_transform(Xt_1),
         Xt_2,
     )
     est = KBinsDiscretizer(n_bins=[2, 3, 3, 3], encode="onehot").fit(X)
     Xt_3 = est.transform(X)
     assert sp.issparse(Xt_3)
     assert_array_equal(
-        OneHotEncoder(categories=[np.arange(i) for i in [2, 3, 3, 3]], sparse_output=True)
+        OneHotEncoder(
+            categories=[np.arange(i) for i in [2, 3, 3, 3]], sparse_output=True
+        )
         .fit_transform(Xt_1)
         .toarray(),
         Xt_3.toarray(),
@@ -243,7 +252,9 @@ def test_encode_options():
         ("quantile", [0, 0, 0, 1, 1, 1], [0, 0, 1, 1, 2, 2], [0, 1, 2, 3, 4, 4]),
     ],
 )
-def test_nonuniform_strategies(strategy, expected_2bins, expected_3bins, expected_5bins):
+def test_nonuniform_strategies(
+    strategy, expected_2bins, expected_3bins, expected_5bins
+):
     X = np.array([0, 0.5, 2, 3, 9, 10]).reshape(-1, 1)
 
     # with 2 bins
@@ -328,7 +339,9 @@ def test_overwrite():
     assert_array_equal(Xinv, np.array([[0.5], [1.5], [2.5], [2.5]]))
 
 
-@pytest.mark.parametrize("strategy, expected_bin_edges", [("quantile", [0, 1, 3]), ("kmeans", [0, 1.5, 3])])
+@pytest.mark.parametrize(
+    "strategy, expected_bin_edges", [("quantile", [0, 1, 3]), ("kmeans", [0, 1.5, 3])]
+)
 def test_redundant_bins(strategy, expected_bin_edges):
     X = [[0], [0], [0], [0], [3], [3]]
     kbd = KBinsDiscretizer(n_bins=3, strategy=strategy)
@@ -404,7 +417,9 @@ def test_kbinsdiscretizer_subsample_default(subsample):
     kbd_with_subsampling.set_params(subsample=subsample)
     kbd_with_subsampling.fit(X)
 
-    for bin_kbd_default, bin_kbd_with_subsampling in zip(kbd_default.bin_edges_[0], kbd_with_subsampling.bin_edges_[0]):
+    for bin_kbd_default, bin_kbd_with_subsampling in zip(
+        kbd_default.bin_edges_[0], kbd_with_subsampling.bin_edges_[0]
+    ):
         np.testing.assert_allclose(bin_kbd_default, bin_kbd_with_subsampling)
     assert kbd_default.bin_edges_.shape == kbd_with_subsampling.bin_edges_.shape
 
@@ -450,11 +465,19 @@ def test_kbinsdiscretizer_subsample_values():
     [
         (
             "onehot",
-            [f"feat{col_id}_{float(bin_id)}" for col_id in range(3) for bin_id in range(4)],
+            [
+                f"feat{col_id}_{float(bin_id)}"
+                for col_id in range(3)
+                for bin_id in range(4)
+            ],
         ),
         (
             "onehot-dense",
-            [f"feat{col_id}_{float(bin_id)}" for col_id in range(3) for bin_id in range(4)],
+            [
+                f"feat{col_id}_{float(bin_id)}"
+                for col_id in range(3)
+                for bin_id in range(4)
+            ],
         ),
         ("ordinal", [f"feat{col_id}" for col_id in range(3)]),
     ],

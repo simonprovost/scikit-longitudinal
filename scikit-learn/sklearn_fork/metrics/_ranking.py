@@ -21,21 +21,24 @@ the lower the better.
 
 import warnings
 from functools import partial
-from numbers import Integral, Real
+from numbers import Real, Integral
 
 import numpy as np
 from scipy.sparse import csr_matrix, issparse
 from scipy.stats import rankdata
 
+from ..utils import assert_all_finite
+from ..utils import check_consistent_length
+from ..utils.validation import _check_pos_label_consistency, _check_sample_weight
+from ..utils import column_or_1d, check_array
+from ..utils.multiclass import type_of_target
+from ..utils.extmath import stable_cumsum
+from ..utils.sparsefuncs import count_nonzero
+from ..utils._param_validation import validate_params, StrOptions, Interval
 from ..exceptions import UndefinedMetricWarning
 from ..preprocessing import label_binarize
-from ..utils import assert_all_finite, check_array, check_consistent_length, column_or_1d
 from ..utils._encode import _encode, _unique
-from ..utils._param_validation import Interval, StrOptions, validate_params
-from ..utils.extmath import stable_cumsum
-from ..utils.multiclass import type_of_target
-from ..utils.sparsefuncs import count_nonzero
-from ..utils.validation import _check_pos_label_consistency, _check_sample_weight
+
 from ._base import _average_binary_score, _average_multiclass_ovo_score
 
 
@@ -83,7 +86,10 @@ def auc(x, y):
     y = column_or_1d(y)
 
     if x.shape[0] < 2:
-        raise ValueError("At least 2 points are needed to compute area under curve, but x.shape = %s" % x.shape)
+        raise ValueError(
+            "At least 2 points are needed to compute area under curve, but x.shape = %s"
+            % x.shape
+        )
 
     direction = 1
     dx = np.diff(x)
@@ -111,7 +117,9 @@ def auc(x, y):
         "sample_weight": ["array-like", None],
     }
 )
-def average_precision_score(y_true, y_score, *, average="macro", pos_label=1, sample_weight=None):
+def average_precision_score(
+    y_true, y_score, *, average="macro", pos_label=1, sample_weight=None
+):
     """Compute average precision (AP) from prediction scores.
 
     AP summarizes a precision-recall curve as the weighted mean of precisions
@@ -201,8 +209,12 @@ def average_precision_score(y_true, y_score, *, average="macro", pos_label=1, sa
     0.83...
     """
 
-    def _binary_uninterpolated_average_precision(y_true, y_score, pos_label=1, sample_weight=None):
-        precision, recall, _ = precision_recall_curve(y_true, y_score, pos_label=pos_label, sample_weight=sample_weight)
+    def _binary_uninterpolated_average_precision(
+        y_true, y_score, pos_label=1, sample_weight=None
+    ):
+        precision, recall, _ = precision_recall_curve(
+            y_true, y_score, pos_label=pos_label, sample_weight=sample_weight
+        )
         # Return the step function integral
         # The following works because the last entry of precision is
         # guaranteed to be 1, as returned by precision_recall_curve
@@ -220,9 +232,16 @@ def average_precision_score(y_true, y_score, *, average="macro", pos_label=1, sa
         # comparison. See https://github.com/numpy/numpy/issues/6784
         present_labels = np.unique(y_true).tolist()
         if len(present_labels) == 2 and pos_label not in present_labels:
-            raise ValueError(f"pos_label={pos_label} is not a valid label. It should be one of {present_labels}")
-    average_precision = partial(_binary_uninterpolated_average_precision, pos_label=pos_label)
-    return _average_binary_score(average_precision, y_true, y_score, average, sample_weight=sample_weight)
+            raise ValueError(
+                f"pos_label={pos_label} is not a valid label. It should be "
+                f"one of {present_labels}"
+            )
+    average_precision = partial(
+        _binary_uninterpolated_average_precision, pos_label=pos_label
+    )
+    return _average_binary_score(
+        average_precision, y_true, y_score, average, sample_weight=sample_weight
+    )
 
 
 @validate_params(
@@ -302,11 +321,14 @@ def det_curve(y_true, y_score, pos_label=None, sample_weight=None):
     >>> thresholds
     array([0.35, 0.4 , 0.8 ])
     """
-    fps, tps, thresholds = _binary_clf_curve(y_true, y_score, pos_label=pos_label, sample_weight=sample_weight)
+    fps, tps, thresholds = _binary_clf_curve(
+        y_true, y_score, pos_label=pos_label, sample_weight=sample_weight
+    )
 
     if len(np.unique(y_true)) != 2:
         raise ValueError(
-            "Only one class present in y_true. Detection error tradeoff curve is not defined in that case."
+            "Only one class present in y_true. Detection error "
+            "tradeoff curve is not defined in that case."
         )
 
     fns = tps[-1] - tps
@@ -314,7 +336,11 @@ def det_curve(y_true, y_score, pos_label=None, sample_weight=None):
     n_count = fps[-1]
 
     # start with false positives zero
-    first_ind = fps.searchsorted(fps[0], side="right") - 1 if fps.searchsorted(fps[0], side="right") > 0 else None
+    first_ind = (
+        fps.searchsorted(fps[0], side="right") - 1
+        if fps.searchsorted(fps[0], side="right") > 0
+        else None
+    )
     # stop with false negatives zero
     last_ind = tps.searchsorted(tps[-1]) + 1
     sl = slice(first_ind, last_ind)
@@ -326,7 +352,10 @@ def det_curve(y_true, y_score, pos_label=None, sample_weight=None):
 def _binary_roc_auc_score(y_true, y_score, sample_weight=None, max_fpr=None):
     """Binary roc auc score."""
     if len(np.unique(y_true)) != 2:
-        raise ValueError("Only one class present in y_true. ROC AUC score is not defined in that case.")
+        raise ValueError(
+            "Only one class present in y_true. ROC AUC score "
+            "is not defined in that case."
+        )
 
     fpr, tpr, _ = roc_curve(y_true, y_score, sample_weight=sample_weight)
     if max_fpr is None or max_fpr == 1:
@@ -548,7 +577,9 @@ def roc_auc_score(
     y_true = check_array(y_true, ensure_2d=False, dtype=None)
     y_score = check_array(y_score, ensure_2d=False)
 
-    if y_type == "multiclass" or (y_type == "binary" and y_score.ndim == 2 and y_score.shape[1] > 2):
+    if y_type == "multiclass" or (
+        y_type == "binary" and y_score.ndim == 2 and y_score.shape[1] > 2
+    ):
         # do not support partial ROC computation for multiclass
         if max_fpr is not None and max_fpr != 1.0:
             raise ValueError(
@@ -559,7 +590,9 @@ def roc_auc_score(
             )
         if multi_class == "raise":
             raise ValueError("multi_class must be in ('ovo', 'ovr')")
-        return _multiclass_roc_auc_score(y_true, y_score, labels, multi_class, average, sample_weight)
+        return _multiclass_roc_auc_score(
+            y_true, y_score, labels, multi_class, average, sample_weight
+        )
     elif y_type == "binary":
         labels = np.unique(y_true)
         y_true = label_binarize(y_true, classes=labels)[:, 0]
@@ -580,7 +613,9 @@ def roc_auc_score(
         )
 
 
-def _multiclass_roc_auc_score(y_true, y_score, labels, multi_class, average, sample_weight):
+def _multiclass_roc_auc_score(
+    y_true, y_score, labels, multi_class, average, sample_weight
+):
     """Multiclass roc auc score.
 
     Parameters
@@ -629,7 +664,8 @@ def _multiclass_roc_auc_score(y_true, y_score, labels, multi_class, average, sam
     # validation of the input y_score
     if not np.allclose(1, y_score.sum(axis=1)):
         raise ValueError(
-            "Target scores need to be probabilities for multiclass roc_auc, i.e. they should sum up to 1.0 over classes"
+            "Target scores need to be probabilities for multiclass "
+            "roc_auc, i.e. they should sum up to 1.0 over classes"
         )
 
     # validation for multiclass parameter specifications
@@ -637,18 +673,22 @@ def _multiclass_roc_auc_score(y_true, y_score, labels, multi_class, average, sam
     if multi_class == "ovr":
         average_options = ("micro",) + average_options
     if average not in average_options:
-        raise ValueError("average must be one of {0} for multiclass problems".format(average_options))
+        raise ValueError(
+            "average must be one of {0} for multiclass problems".format(average_options)
+        )
 
     multiclass_options = ("ovo", "ovr")
     if multi_class not in multiclass_options:
         raise ValueError(
-            "multi_class='{0}' is not supported for multiclass ROC AUC, multi_class must be in {1}".format(
-                multi_class, multiclass_options
-            )
+            "multi_class='{0}' is not supported "
+            "for multiclass ROC AUC, multi_class must be "
+            "in {1}".format(multi_class, multiclass_options)
         )
 
     if average is None and multi_class == "ovo":
-        raise NotImplementedError("average=None is not implemented for multi_class='ovo'.")
+        raise NotImplementedError(
+            "average=None is not implemented for multi_class='ovo'."
+        )
 
     if labels is not None:
         labels = column_or_1d(labels)
@@ -659,16 +699,18 @@ def _multiclass_roc_auc_score(y_true, y_score, labels, multi_class, average, sam
             raise ValueError("Parameter 'labels' must be ordered")
         if len(classes) != y_score.shape[1]:
             raise ValueError(
-                "Number of given labels, {0}, not equal to the number of columns in 'y_score', {1}".format(
-                    len(classes), y_score.shape[1]
-                )
+                "Number of given labels, {0}, not equal to the number "
+                "of columns in 'y_score', {1}".format(len(classes), y_score.shape[1])
             )
         if len(np.setdiff1d(y_true, classes)):
             raise ValueError("'y_true' contains labels not in parameter 'labels'")
     else:
         classes = _unique(y_true)
         if len(classes) != y_score.shape[1]:
-            raise ValueError("Number of classes in y_true not equal to the number of columns in 'y_score'")
+            raise ValueError(
+                "Number of classes in y_true not equal to the number of "
+                "columns in 'y_score'"
+            )
 
     if multi_class == "ovo":
         if sample_weight is not None:
@@ -679,7 +721,9 @@ def _multiclass_roc_auc_score(y_true, y_score, labels, multi_class, average, sam
             )
         y_true_encoded = _encode(y_true, uniques=classes)
         # Hand & Till (2001) implementation (ovo)
-        return _average_multiclass_ovo_score(_binary_roc_auc_score, y_true_encoded, y_score, average=average)
+        return _average_multiclass_ovo_score(
+            _binary_roc_auc_score, y_true_encoded, y_score, average=average
+        )
     else:
         # ovr is same as multi-label
         y_true_multilabel = label_binarize(y_true, classes=classes)
@@ -786,7 +830,9 @@ def _binary_clf_curve(y_true, y_score, pos_label=None, sample_weight=None):
         "drop_intermediate": ["boolean"],
     }
 )
-def precision_recall_curve(y_true, probas_pred, *, pos_label=None, sample_weight=None, drop_intermediate=False):
+def precision_recall_curve(
+    y_true, probas_pred, *, pos_label=None, sample_weight=None, drop_intermediate=False
+):
     """Compute precision-recall pairs for different probability thresholds.
 
     Note: this implementation is restricted to the binary classification task.
@@ -874,7 +920,9 @@ def precision_recall_curve(y_true, probas_pred, *, pos_label=None, sample_weight
     >>> thresholds
     array([0.1 , 0.35, 0.4 , 0.8 ])
     """
-    fps, tps, thresholds = _binary_clf_curve(y_true, probas_pred, pos_label=pos_label, sample_weight=sample_weight)
+    fps, tps, thresholds = _binary_clf_curve(
+        y_true, probas_pred, pos_label=pos_label, sample_weight=sample_weight
+    )
 
     if drop_intermediate and len(fps) > 2:
         # Drop thresholds corresponding to points where true positives (tps)
@@ -882,7 +930,11 @@ def precision_recall_curve(y_true, probas_pred, *, pos_label=None, sample_weight
         # only the first and last point for each tps value. All points
         # with the same tps value have the same recall and thus x coordinate.
         # They appear as a vertical line on the plot.
-        optimal_idxs = np.where(np.concatenate([[True], np.logical_or(np.diff(tps[:-1]), np.diff(tps[1:])), [True]]))[0]
+        optimal_idxs = np.where(
+            np.concatenate(
+                [[True], np.logical_or(np.diff(tps[:-1]), np.diff(tps[1:])), [True]]
+            )
+        )[0]
         fps = fps[optimal_idxs]
         tps = tps[optimal_idxs]
         thresholds = thresholds[optimal_idxs]
@@ -896,7 +948,10 @@ def precision_recall_curve(y_true, probas_pred, *, pos_label=None, sample_weight
     # When no positive label in y_true, recall is set to 1 for all thresholds
     # tps[-1] == 0 <=> y_true == all negative labels
     if tps[-1] == 0:
-        warnings.warn("No positive class found in y_true, recall is set to one for all thresholds.")
+        warnings.warn(
+            "No positive class found in y_true, "
+            "recall is set to one for all thresholds."
+        )
         recall = np.ones_like(tps)
     else:
         recall = tps / tps[-1]
@@ -915,7 +970,9 @@ def precision_recall_curve(y_true, probas_pred, *, pos_label=None, sample_weight
         "drop_intermediate": ["boolean"],
     }
 )
-def roc_curve(y_true, y_score, *, pos_label=None, sample_weight=None, drop_intermediate=True):
+def roc_curve(
+    y_true, y_score, *, pos_label=None, sample_weight=None, drop_intermediate=True
+):
     """Compute Receiver operating characteristic (ROC).
 
     Note: this implementation is restricted to the binary classification task.
@@ -1001,7 +1058,9 @@ def roc_curve(y_true, y_score, *, pos_label=None, sample_weight=None, drop_inter
     >>> thresholds
     array([1.8 , 0.8 , 0.4 , 0.35, 0.1 ])
     """
-    fps, tps, thresholds = _binary_clf_curve(y_true, y_score, pos_label=pos_label, sample_weight=sample_weight)
+    fps, tps, thresholds = _binary_clf_curve(
+        y_true, y_score, pos_label=pos_label, sample_weight=sample_weight
+    )
 
     # Attempt to drop thresholds corresponding to points in between and
     # collinear with other points. These are always suboptimal and do not
@@ -1013,7 +1072,9 @@ def roc_curve(y_true, y_score, *, pos_label=None, sample_weight=None, drop_inter
     # but does not drop more complicated cases like fps = [1, 3, 7],
     # tps = [1, 2, 4]; there is no harm in keeping too many thresholds.
     if drop_intermediate and len(fps) > 2:
-        optimal_idxs = np.where(np.r_[True, np.logical_or(np.diff(fps, 2), np.diff(tps, 2)), True])[0]
+        optimal_idxs = np.where(
+            np.r_[True, np.logical_or(np.diff(fps, 2), np.diff(tps, 2)), True]
+        )[0]
         fps = fps[optimal_idxs]
         tps = tps[optimal_idxs]
         thresholds = thresholds[optimal_idxs]
@@ -1105,7 +1166,9 @@ def label_ranking_average_precision_score(y_true, y_score, *, sample_weight=None
 
     # Handle badly formatted array and the degenerate case with one label
     y_type = type_of_target(y_true, input_name="y_true")
-    if y_type != "multilabel-indicator" and not (y_type == "binary" and y_true.ndim == 2):
+    if y_type != "multilabel-indicator" and not (
+        y_type == "binary" and y_true.ndim == 2
+    ):
         raise ValueError("{0} format is not supported".format(y_type))
 
     if not issparse(y_true):
@@ -1275,7 +1338,9 @@ def label_ranking_loss(y_true, y_score, *, sample_weight=None):
     for i, (start, stop) in enumerate(zip(y_true.indptr, y_true.indptr[1:])):
         # Sort and bin the label scores
         unique_scores, unique_inverse = np.unique(y_score[i], return_inverse=True)
-        true_at_reversed_rank = np.bincount(unique_inverse[y_true.indices[start:stop]], minlength=len(unique_scores))
+        true_at_reversed_rank = np.bincount(
+            unique_inverse[y_true.indices[start:stop]], minlength=len(unique_scores)
+        )
         all_at_reversed_rank = np.bincount(unique_inverse, minlength=len(unique_scores))
         false_at_reversed_rank = all_at_reversed_rank - true_at_reversed_rank
 
@@ -1348,7 +1413,10 @@ def _dcg_sample_scores(y_true, y_score, k=None, log_base=2, ignore_ties=False):
         cumulative_gains = discount.dot(ranked.T)
     else:
         discount_cumsum = np.cumsum(discount)
-        cumulative_gains = [_tie_averaged_dcg(y_t, y_s, discount_cumsum) for y_t, y_s in zip(y_true, y_score)]
+        cumulative_gains = [
+            _tie_averaged_dcg(y_t, y_s, discount_cumsum)
+            for y_t, y_s in zip(y_true, y_score)
+        ]
         cumulative_gains = np.asarray(cumulative_gains)
     return cumulative_gains
 
@@ -1409,7 +1477,11 @@ def _check_dcg_target_type(y_true):
         "multiclass-multioutput",
     )
     if y_type not in supported_fmt:
-        raise ValueError("Only {} formats are supported. Got {} instead".format(supported_fmt, y_type))
+        raise ValueError(
+            "Only {} formats are supported. Got {} instead".format(
+                supported_fmt, y_type
+            )
+        )
 
 
 @validate_params(
@@ -1422,7 +1494,9 @@ def _check_dcg_target_type(y_true):
         "ignore_ties": ["boolean"],
     }
 )
-def dcg_score(y_true, y_score, *, k=None, log_base=2, sample_weight=None, ignore_ties=False):
+def dcg_score(
+    y_true, y_score, *, k=None, log_base=2, sample_weight=None, ignore_ties=False
+):
     """Compute Discounted Cumulative Gain.
 
     Sum the true scores ranked in the order induced by the predicted scores,
@@ -1520,7 +1594,9 @@ def dcg_score(y_true, y_score, *, k=None, log_base=2, sample_weight=None, ignore
     check_consistent_length(y_true, y_score, sample_weight)
     _check_dcg_target_type(y_true)
     return np.average(
-        _dcg_sample_scores(y_true, y_score, k=k, log_base=log_base, ignore_ties=ignore_ties),
+        _dcg_sample_scores(
+            y_true, y_score, k=k, log_base=log_base, ignore_ties=ignore_ties
+        ),
         weights=sample_weight,
     )
 
@@ -1698,7 +1774,8 @@ def ndcg_score(y_true, y_score, *, k=None, sample_weight=None, ignore_ties=False
         )
     if y_true.ndim > 1 and y_true.shape[1] <= 1:
         raise ValueError(
-            f"Computing NDCG is only meaningful when there is more than 1 document. Got {y_true.shape[1]} instead."
+            "Computing NDCG is only meaningful when there is more than 1 document. "
+            f"Got {y_true.shape[1]} instead."
         )
     _check_dcg_target_type(y_true)
     gain = _ndcg_sample_scores(y_true, y_score, k=k, ignore_ties=ignore_ties)
@@ -1715,7 +1792,9 @@ def ndcg_score(y_true, y_score, *, k=None, sample_weight=None, ignore_ties=False
         "labels": ["array-like", None],
     }
 )
-def top_k_accuracy_score(y_true, y_score, *, k=2, normalize=True, sample_weight=None, labels=None):
+def top_k_accuracy_score(
+    y_true, y_score, *, k=2, normalize=True, sample_weight=None, labels=None
+):
     """Top-k Accuracy classification score.
 
     This metric computes the number of times where the correct label is among
@@ -1798,7 +1877,9 @@ def top_k_accuracy_score(y_true, y_score, *, k=2, normalize=True, sample_weight=
     if y_type == "binary" and labels is not None and len(labels) > 2:
         y_type = "multiclass"
     if y_type not in {"binary", "multiclass"}:
-        raise ValueError(f"y type must be 'binary' or 'multiclass', got '{y_type}' instead.")
+        raise ValueError(
+            f"y type must be 'binary' or 'multiclass', got '{y_type}' instead."
+        )
     y_score = check_array(y_score, ensure_2d=False)
     if y_type == "binary":
         if y_score.ndim == 2 and y_score.shape[1] != 1:

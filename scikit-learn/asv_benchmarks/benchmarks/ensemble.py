@@ -1,7 +1,15 @@
-from sklearn_fork.ensemble import GradientBoostingClassifier, HistGradientBoostingClassifier, RandomForestClassifier
+from sklearn_fork.ensemble import (
+    RandomForestClassifier,
+    GradientBoostingClassifier,
+    HistGradientBoostingClassifier,
+)
 
 from .common import Benchmark, Estimator, Predictor
-from .datasets import _20newsgroups_highdim_dataset, _20newsgroups_lowdim_dataset, _synth_classification_dataset
+from .datasets import (
+    _20newsgroups_highdim_dataset,
+    _20newsgroups_lowdim_dataset,
+    _synth_classification_dataset,
+)
 from .utils import make_gen_classif_scorers
 
 
@@ -96,7 +104,9 @@ class HistGradientBoostingClassifierBenchmark(Predictor, Estimator, Benchmark):
         super().setup_cache()
 
     def make_data(self, params):
-        data = _synth_classification_dataset(n_samples=10000, n_features=100, n_classes=5)
+        data = _synth_classification_dataset(
+            n_samples=10000, n_features=100, n_classes=5
+        )
 
         return data
 

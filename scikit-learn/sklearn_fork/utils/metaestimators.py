@@ -2,15 +2,15 @@
 # Author: Joel Nothman
 #         Andreas Mueller
 # License: BSD
+from typing import List, Any
+
 from abc import ABCMeta, abstractmethod
-from contextlib import suppress
-from typing import Any, List
-
 import numpy as np
+from contextlib import suppress
 
-from ..base import BaseEstimator
 from ..utils import _safe_indexing
 from ..utils._tags import _safe_tags
+from ..base import BaseEstimator
 from ._available_if import available_if
 
 __all__ = ["available_if"]
@@ -82,10 +82,16 @@ class _BaseComposition(BaseEstimator, metaclass=ABCMeta):
             raise ValueError("Names provided are not unique: {0!r}".format(list(names)))
         invalid_names = set(names).intersection(self.get_params(deep=False))
         if invalid_names:
-            raise ValueError("Estimator names conflict with constructor arguments: {0!r}".format(sorted(invalid_names)))
+            raise ValueError(
+                "Estimator names conflict with constructor arguments: {0!r}".format(
+                    sorted(invalid_names)
+                )
+            )
         invalid_names = [name for name in names if "__" in name]
         if invalid_names:
-            raise ValueError("Estimator names must not contain __: got {0!r}".format(invalid_names))
+            raise ValueError(
+                "Estimator names must not contain __: got {0!r}".format(invalid_names)
+            )
 
 
 def _safe_split(estimator, X, y, indices, train_indices=None):
@@ -134,7 +140,10 @@ def _safe_split(estimator, X, y, indices, train_indices=None):
     """
     if _safe_tags(estimator, key="pairwise"):
         if not hasattr(X, "shape"):
-            raise ValueError("Precomputed kernels or affinity matrices have to be passed as arrays or sparse matrices.")
+            raise ValueError(
+                "Precomputed kernels or affinity matrices have "
+                "to be passed as arrays or sparse matrices."
+            )
         # X is a precomputed square kernel matrix
         if X.shape[0] != X.shape[1]:
             raise ValueError("X should be a square kernel matrix")

@@ -7,8 +7,14 @@ import numpy as np
 import pytest
 import scipy.sparse as sp
 from numpy.testing import assert_array_equal
+from sklearn_fork.utils._seq_dataset import (
+    ArrayDataset32,
+    ArrayDataset64,
+    CSRDataset32,
+    CSRDataset64,
+)
+
 from sklearn_fork.datasets import load_iris
-from sklearn_fork.utils._seq_dataset import ArrayDataset32, ArrayDataset64, CSRDataset32, CSRDataset64
 from sklearn_fork.utils._testing import assert_allclose
 
 iris = load_iris()
@@ -43,11 +49,15 @@ def make_dense_dataset_64():
 
 
 def make_sparse_dataset_32():
-    return CSRDataset32(X_csr32.data, X_csr32.indptr, X_csr32.indices, y32, sample_weight32, seed=42)
+    return CSRDataset32(
+        X_csr32.data, X_csr32.indptr, X_csr32.indices, y32, sample_weight32, seed=42
+    )
 
 
 def make_sparse_dataset_64():
-    return CSRDataset64(X_csr64.data, X_csr64.indptr, X_csr64.indices, y64, sample_weight64, seed=42)
+    return CSRDataset64(
+        X_csr64.data, X_csr64.indptr, X_csr64.indices, y64, sample_weight64, seed=42
+    )
 
 
 @pytest.mark.parametrize(
@@ -150,7 +160,11 @@ def test_buffer_dtype_mismatch_error():
         ArrayDataset32(X64, y64, sample_weight64, seed=42),
 
     with pytest.raises(ValueError, match="Buffer dtype mismatch"):
-        CSRDataset64(X_csr32.data, X_csr32.indptr, X_csr32.indices, y32, sample_weight32, seed=42),
+        CSRDataset64(
+            X_csr32.data, X_csr32.indptr, X_csr32.indices, y32, sample_weight32, seed=42
+        ),
 
     with pytest.raises(ValueError, match="Buffer dtype mismatch"):
-        CSRDataset32(X_csr64.data, X_csr64.indptr, X_csr64.indices, y64, sample_weight64, seed=42),
+        CSRDataset32(
+            X_csr64.data, X_csr64.indptr, X_csr64.indices, y64, sample_weight64, seed=42
+        ),

@@ -5,23 +5,27 @@
 
 import math
 import re
-
-import numpy as np
 import pytest
+import numpy as np
 import scipy.sparse as sp
 from scipy.special import logsumexp
+
 from sklearn_fork._loss.loss import HalfMultinomialLoss
-from sklearn_fork.base import clone
-from sklearn_fork.datasets import load_iris, make_blobs, make_classification
-from sklearn_fork.linear_model import LogisticRegression, Ridge
-from sklearn_fork.linear_model._base import make_dataset
 from sklearn_fork.linear_model._linear_loss import LinearModelLoss
 from sklearn_fork.linear_model._sag import get_auto_step_size
 from sklearn_fork.linear_model._sag_fast import _multinomial_grad_loss_all_samples
-from sklearn_fork.preprocessing import LabelBinarizer, LabelEncoder
-from sklearn_fork.utils import check_random_state, compute_class_weight
-from sklearn_fork.utils._testing import assert_allclose, assert_almost_equal, assert_array_almost_equal
+from sklearn_fork.linear_model import LogisticRegression, Ridge
+from sklearn_fork.linear_model._base import make_dataset
+
 from sklearn_fork.utils.extmath import row_norms
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils import compute_class_weight
+from sklearn_fork.utils import check_random_state
+from sklearn_fork.preprocessing import LabelEncoder, LabelBinarizer
+from sklearn_fork.datasets import make_blobs, load_iris, make_classification
+from sklearn_fork.base import clone
 
 iris = load_iris()
 
@@ -112,7 +116,9 @@ def sag(
                 intercept_sum_gradient += gradient_correction
                 gradient_correction *= step_size * (1.0 - 1.0 / len(seen))
                 if saga:
-                    intercept -= (step_size * intercept_sum_gradient / len(seen) * decay) + gradient_correction
+                    intercept -= (
+                        step_size * intercept_sum_gradient / len(seen) * decay
+                    ) + gradient_correction
                 else:
                     intercept -= step_size * intercept_sum_gradient / len(seen) * decay
 
@@ -135,7 +141,9 @@ def sag_sparse(
     random_state=0,
 ):
     if step_size * alpha == 1.0:
-        raise ZeroDivisionError("Sparse sag does not handle the case step_size * alpha == 1")
+        raise ZeroDivisionError(
+            "Sparse sag does not handle the case step_size * alpha == 1"
+        )
     n_samples, n_features = X.shape[0], X.shape[1]
 
     weights = np.zeros(n_features)
@@ -168,7 +176,9 @@ def sag_sparse(
                     if last_updated[j] == 0:
                         weights[j] -= c_sum[counter - 1] * sum_gradient[j]
                     else:
-                        weights[j] -= (c_sum[counter - 1] - c_sum[last_updated[j] - 1]) * sum_gradient[j]
+                        weights[j] -= (
+                            c_sum[counter - 1] - c_sum[last_updated[j] - 1]
+                        ) * sum_gradient[j]
                     last_updated[j] = counter
 
             p = (wscale * np.dot(entry, weights)) + intercept
@@ -182,14 +192,21 @@ def sag_sparse(
             sum_gradient += gradient_correction
             if saga:
                 for j in range(n_features):
-                    weights[j] -= gradient_correction[j] * step_size * (1 - 1.0 / len(seen)) / wscale
+                    weights[j] -= (
+                        gradient_correction[j]
+                        * step_size
+                        * (1 - 1.0 / len(seen))
+                        / wscale
+                    )
 
             if fit_intercept:
                 gradient_correction = gradient - gradient_memory[idx]
                 intercept_sum_gradient += gradient_correction
                 gradient_correction *= step_size * (1.0 - 1.0 / len(seen))
                 if saga:
-                    intercept -= (step_size * intercept_sum_gradient / len(seen) * decay) + gradient_correction
+                    intercept -= (
+                        step_size * intercept_sum_gradient / len(seen) * decay
+                    ) + gradient_correction
                 else:
                     intercept -= step_size * intercept_sum_gradient / len(seen) * decay
 
@@ -206,7 +223,9 @@ def sag_sparse(
                     if last_updated[j] == 0:
                         weights[j] -= c_sum[counter] * sum_gradient[j]
                     else:
-                        weights[j] -= (c_sum[counter] - c_sum[last_updated[j] - 1]) * sum_gradient[j]
+                        weights[j] -= (
+                            c_sum[counter] - c_sum[last_updated[j] - 1]
+                        ) * sum_gradient[j]
                     last_updated[j] = counter + 1
                 c_sum[counter] = 0
                 weights *= wscale
@@ -218,7 +237,9 @@ def sag_sparse(
         if last_updated[j] == 0:
             weights[j] -= c_sum[counter - 1] * sum_gradient[j]
         else:
-            weights[j] -= (c_sum[counter - 1] - c_sum[last_updated[j] - 1]) * sum_gradient[j]
+            weights[j] -= (
+                c_sum[counter - 1] - c_sum[last_updated[j] - 1]
+            ) * sum_gradient[j]
     weights *= wscale
     return weights, intercept
 
@@ -499,7 +520,9 @@ def test_get_auto_step_size():
                 step_size_log = 1 / (2 * L_log + mun_log)
             else:
                 step_size_sqr = 1.0 / (max_squared_sum + alpha + int(fit_intercept))
-                step_size_log = 4.0 / (max_squared_sum + 4.0 * alpha + int(fit_intercept))
+                step_size_log = 4.0 / (
+                    max_squared_sum + 4.0 * alpha + int(fit_intercept)
+                )
 
             step_size_sqr_ = get_auto_step_size(
                 max_squared_sum_,
@@ -879,7 +902,10 @@ def test_step_size_alpha_error():
     y = [1, -1]
     fit_intercept = False
     alpha = 1.0
-    msg = re.escape("Current sag implementation does not handle the case step_size * alpha_scaled == 1")
+    msg = re.escape(
+        "Current sag implementation does not handle the case"
+        " step_size * alpha_scaled == 1"
+    )
 
     clf1 = LogisticRegression(solver="sag", C=1.0 / alpha, fit_intercept=fit_intercept)
     with pytest.raises(ZeroDivisionError, match=msg):
@@ -904,14 +930,18 @@ def test_multinomial_loss():
 
     # compute loss and gradient like in multinomial SAG
     dataset, _ = make_dataset(X, y, sample_weights, random_state=42)
-    loss_1, grad_1 = _multinomial_grad_loss_all_samples(dataset, weights, intercept, n_samples, n_features, n_classes)
+    loss_1, grad_1 = _multinomial_grad_loss_all_samples(
+        dataset, weights, intercept, n_samples, n_features, n_classes
+    )
     # compute loss and gradient like in multinomial LogisticRegression
     loss = LinearModelLoss(
         base_loss=HalfMultinomialLoss(n_classes=n_classes),
         fit_intercept=True,
     )
     weights_intercept = np.vstack((weights, intercept)).T
-    loss_2, grad_2 = loss.loss_gradient(weights_intercept, X, y, l2_reg_strength=0.0, sample_weight=sample_weights)
+    loss_2, grad_2 = loss.loss_gradient(
+        weights_intercept, X, y, l2_reg_strength=0.0, sample_weight=sample_weights
+    )
     grad_2 = grad_2[:, :-1].T
 
     # comparison
@@ -943,7 +973,9 @@ def test_multinomial_loss_ground_truth():
         fit_intercept=True,
     )
     weights_intercept = np.vstack((weights, intercept)).T
-    loss_2, grad_2 = loss.loss_gradient(weights_intercept, X, y, l2_reg_strength=0.0, sample_weight=sample_weights)
+    loss_2, grad_2 = loss.loss_gradient(
+        weights_intercept, X, y, l2_reg_strength=0.0, sample_weight=sample_weights
+    )
     grad_2 = grad_2[:, :-1].T
 
     assert_almost_equal(loss_1, loss_2)
@@ -951,7 +983,9 @@ def test_multinomial_loss_ground_truth():
 
     # ground truth
     loss_gt = 11.680360354325961
-    grad_gt = np.array([[-0.557487, -1.619151, +2.176638], [-0.903942, +5.258745, -4.354803]])
+    grad_gt = np.array(
+        [[-0.557487, -1.619151, +2.176638], [-0.903942, +5.258745, -4.354803]]
+    )
     assert_almost_equal(loss_1, loss_gt)
     assert_array_almost_equal(grad_1, grad_gt)
 

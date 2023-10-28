@@ -1,7 +1,7 @@
 import numpy as np
 
-from ..utils import check_matplotlib_support
 from . import learning_curve
+from ..utils import check_matplotlib_support
 
 
 class LearningCurveDisplay:
@@ -157,11 +157,15 @@ class LearningCurveDisplay:
 
         if std_display_style not in ("errorbar", "fill_between", None):
             raise ValueError(
-                f"Unknown std_display_style: {std_display_style}. Should be one of 'errorbar', 'fill_between', or None."
+                f"Unknown std_display_style: {std_display_style}. Should be one of"
+                " 'errorbar', 'fill_between', or None."
             )
 
         if score_type not in ("test", "train", "both"):
-            raise ValueError(f"Unknown score_type: {score_type}. Should be one of 'test', 'train', or 'both'.")
+            raise ValueError(
+                f"Unknown score_type: {score_type}. Should be one of 'test', "
+                "'train', or 'both'."
+            )
 
         if score_type == "train":
             scores = {"Training metric": train_scores}

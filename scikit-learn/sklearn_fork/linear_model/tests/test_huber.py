@@ -3,16 +3,27 @@
 
 import numpy as np
 from scipy import optimize, sparse
+
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+
 from sklearn_fork.datasets import make_regression
-from sklearn_fork.linear_model import HuberRegressor, LinearRegression, Ridge, SGDRegressor
+from sklearn_fork.linear_model import (
+    HuberRegressor,
+    LinearRegression,
+    SGDRegressor,
+    Ridge,
+)
 from sklearn_fork.linear_model._huber import _huber_loss_and_gradient
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_almost_equal, assert_array_equal
 
 
 def make_regression_with_outliers(n_samples=50, n_features=20):
     rng = np.random.RandomState(0)
     # Generate data with outliers by replacing 10% of the samples with noise.
-    X, y = make_regression(n_samples=n_samples, n_features=n_features, random_state=0, noise=0.05)
+    X, y = make_regression(
+        n_samples=n_samples, n_features=n_features, random_state=0, noise=0.05
+    )
 
     # Replace 10% of the sample with noise.
     num_noise = int(0.1 * n_samples)
@@ -57,7 +68,9 @@ def test_huber_gradient():
         for n_features in [X.shape[1] + 1, X.shape[1] + 2]:
             w = rng.randn(n_features)
             w[-1] = np.abs(w[-1])
-            grad_same = optimize.check_grad(loss_func, grad_func, w, X, y, 0.01, 0.1, sample_weight)
+            grad_same = optimize.check_grad(
+                loss_func, grad_func, w, X, y, 0.01, 0.1, sample_weight
+            )
             assert_almost_equal(grad_same, 1e-6, 4)
 
 

@@ -69,7 +69,9 @@ _ = plt.title("Raw air samples measurements from the Mauna Loa Observatory")
 co2_data = co2_data.resample("M").mean().dropna(axis="index", how="any")
 co2_data.plot()
 plt.ylabel("Monthly average of CO$_2$ concentration (ppm)")
-_ = plt.title("Monthly average of air samples measurements\nfrom the Mauna Loa Observatory")
+_ = plt.title(
+    "Monthly average of air samples measurements\nfrom the Mauna Loa Observatory"
+)
 
 # %%
 # The idea in this example will be to predict the CO2 concentration in function
@@ -111,7 +113,9 @@ long_term_trend_kernel = 50.0**2 * RBF(length_scale=50.0)
 from sklearn_fork.gaussian_process.kernels import ExpSineSquared
 
 seasonal_kernel = (
-    2.0**2 * RBF(length_scale=100.0) * ExpSineSquared(length_scale=1.0, periodicity=1.0, periodicity_bounds="fixed")
+    2.0**2
+    * RBF(length_scale=100.0)
+    * ExpSineSquared(length_scale=1.0, periodicity=1.0, periodicity_bounds="fixed")
 )
 
 # %%
@@ -132,11 +136,15 @@ irregularities_kernel = 0.5**2 * RationalQuadratic(length_scale=1.0, alpha=1.0)
 # further free parameters.
 from sklearn_fork.gaussian_process.kernels import WhiteKernel
 
-noise_kernel = 0.1**2 * RBF(length_scale=0.1) + WhiteKernel(noise_level=0.1**2, noise_level_bounds=(1e-5, 1e5))
+noise_kernel = 0.1**2 * RBF(length_scale=0.1) + WhiteKernel(
+    noise_level=0.1**2, noise_level_bounds=(1e-5, 1e5)
+)
 
 # %%
 # Thus, our final kernel is an addition of all previous kernel.
-co2_kernel = long_term_trend_kernel + seasonal_kernel + irregularities_kernel + noise_kernel
+co2_kernel = (
+    long_term_trend_kernel + seasonal_kernel + irregularities_kernel + noise_kernel
+)
 co2_kernel
 
 # %%
@@ -164,7 +172,6 @@ gaussian_process.fit(X, y - y_mean)
 # Thus, we create synthetic data from 1958 to the current month. In addition,
 # we need to add the subtracted mean computed during training.
 import datetime
-
 import numpy as np
 
 today = datetime.datetime.now()
@@ -186,7 +193,9 @@ plt.fill_between(
 plt.legend()
 plt.xlabel("Year")
 plt.ylabel("Monthly average of CO$_2$ concentration (ppm)")
-_ = plt.title("Monthly average of air samples measurements\nfrom the Mauna Loa Observatory")
+_ = plt.title(
+    "Monthly average of air samples measurements\nfrom the Mauna Loa Observatory"
+)
 
 # %%
 # Our fitted model is capable to fit previous data properly and extrapolate to

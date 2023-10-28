@@ -1,43 +1,46 @@
 """
 The :mod:`sklearn_fork.utils` module includes various utilities.
 """
+from collections.abc import Sequence
+from contextlib import contextmanager
+from itertools import compress
+from itertools import islice
 import math
 import numbers
 import platform
 import struct
 import timeit
-import warnings
-from collections.abc import Sequence
-from contextlib import contextmanager, suppress
-from itertools import compress, islice
+from contextlib import suppress
 
+import warnings
 import numpy as np
 from scipy.sparse import issparse
 
-from .. import get_config
-from ..exceptions import DataConversionWarning
-from . import _joblib
-from ._bunch import Bunch
-from ._estimator_html_repr import estimator_html_repr
-from ._param_validation import Interval, validate_params
+from .murmurhash import murmurhash3_32
 from .class_weight import compute_class_weight, compute_sample_weight
+from . import _joblib
+from ..exceptions import DataConversionWarning
 from .deprecation import deprecated
 from .discovery import all_estimators
 from .fixes import parse_version, threadpool_info
-from .murmurhash import murmurhash3_32
+from ._estimator_html_repr import estimator_html_repr
 from .validation import (
-    _is_arraylike_not_scalar,
     as_float_array,
     assert_all_finite,
+    check_random_state,
+    column_or_1d,
     check_array,
     check_consistent_length,
-    check_random_state,
-    check_scalar,
-    check_symmetric,
     check_X_y,
-    column_or_1d,
     indexable,
+    check_symmetric,
+    check_scalar,
+    _is_arraylike_not_scalar,
 )
+from .. import get_config
+from ._bunch import Bunch
+from ._param_validation import validate_params, Interval
+
 
 # Do not deprecate parallel_backend and register_parallel_backend as they are
 # needed to tune `scikit-learn` behavior and have different effect if called
@@ -102,7 +105,10 @@ def _in_unstable_openblas_configuration():
         if openblas_version is None or openblas_architecture is None:
             # Cannot be sure that OpenBLAS is good enough. Assume unstable:
             return True
-        if openblas_architecture == "neoversen1" and parse_version(openblas_version) < openblas_arm64_stable_version:
+        if (
+            openblas_architecture == "neoversen1"
+            and parse_version(openblas_version) < openblas_arm64_stable_version
+        ):
             # See discussions in https://github.com/numpy/numpy/issues/19411
             return True
     return False
@@ -248,7 +254,9 @@ def _determine_key_type(key, accept_slice=True):
             raise ValueError(err_msg)
     if isinstance(key, slice):
         if not accept_slice:
-            raise TypeError("Only array-like or scalar are supported. A Python slice was given.")
+            raise TypeError(
+                "Only array-like or scalar are supported. A Python slice was given."
+            )
         if key.start is None and key.stop is None:
             return None
         key_start_type = _determine_key_type(key.start)
@@ -321,7 +329,8 @@ def _safe_indexing(X, indices, *, axis=0):
 
     if axis not in (0, 1):
         raise ValueError(
-            "'axis' should be either 0 (to index rows) or 1 (to index  column). Got {} instead.".format(axis)
+            "'axis' should be either 0 (to index rows) or 1 (to index "
+            " column). Got {} instead.".format(axis)
         )
 
     indices_dtype = _determine_key_type(indices)
@@ -337,7 +346,10 @@ def _safe_indexing(X, indices, *, axis=0):
         )
 
     if axis == 1 and indices_dtype == "str" and not hasattr(X, "loc"):
-        raise ValueError("Specifying the columns using strings is only supported for pandas DataFrames")
+        raise ValueError(
+            "Specifying the columns using strings is only supported for "
+            "pandas DataFrames"
+        )
 
     if hasattr(X, "iloc"):
         return _pandas_indexing(X, indices, indices_dtype, axis=axis)
@@ -367,7 +379,9 @@ def _safe_assign(X, values, *, row_indexer=None, column_indexer=None):
         columns are selected.
     """
     row_indexer = slice(None, None, None) if row_indexer is None else row_indexer
-    column_indexer = slice(None, None, None) if column_indexer is None else column_indexer
+    column_indexer = (
+        slice(None, None, None) if column_indexer is None else column_indexer
+    )
 
     if hasattr(X, "iloc"):  # pandas dataframe
         with warnings.catch_warnings():
@@ -400,13 +414,20 @@ def _get_column_indices(X, key):
         try:
             idx = _safe_indexing(np.arange(n_columns), key)
         except IndexError as e:
-            raise ValueError("all features must be in [0, {}] or [-{}, 0]".format(n_columns - 1, n_columns)) from e
+            raise ValueError(
+                "all features must be in [0, {}] or [-{}, 0]".format(
+                    n_columns - 1, n_columns
+                )
+            ) from e
         return np.atleast_1d(idx).tolist()
     elif key_dtype == "str":
         try:
             all_columns = X.columns
         except AttributeError:
-            raise ValueError("Specifying the columns using strings is only supported for pandas DataFrames")
+            raise ValueError(
+                "Specifying the columns using strings is only "
+                "supported for pandas DataFrames"
+            )
         if isinstance(key, str):
             columns = [key]
         elif isinstance(key, slice):
@@ -427,7 +448,9 @@ def _get_column_indices(X, key):
             for col in columns:
                 col_idx = all_columns.get_loc(col)
                 if not isinstance(col_idx, numbers.Integral):
-                    raise ValueError(f"Selected columns, {columns}, are not unique in dataframe")
+                    raise ValueError(
+                        f"Selected columns, {columns}, are not unique in dataframe"
+                    )
                 column_indices.append(col_idx)
 
         except KeyError as e:
@@ -548,7 +571,8 @@ def resample(*arrays, replace=True, n_samples=None, random_state=None, stratify=
         max_n_samples = n_samples
     elif (max_n_samples > n_samples) and (not replace):
         raise ValueError(
-            "Cannot sample %d out of arrays with dim %d when replace is False" % (max_n_samples, n_samples)
+            "Cannot sample %d out of arrays with dim %d when replace is False"
+            % (max_n_samples, n_samples)
         )
 
     check_consistent_length(*arrays)
@@ -575,7 +599,9 @@ def resample(*arrays, replace=True, n_samples=None, random_state=None, stratify=
 
         # Find the sorted list of instances for each class:
         # (np.unique above performs a sort, so code is O(n logn) already)
-        class_indices = np.split(np.argsort(y_indices, kind="mergesort"), np.cumsum(class_counts)[:-1])
+        class_indices = np.split(
+            np.argsort(y_indices, kind="mergesort"), np.cumsum(class_counts)[:-1]
+        )
 
         n_i = _approximate_mode(class_counts, max_n_samples, random_state)
 
@@ -663,7 +689,9 @@ def shuffle(*arrays, random_state=None, n_samples=None):
       >>> shuffle(y, n_samples=2, random_state=0)
       array([0, 1])
     """
-    return resample(*arrays, replace=False, n_samples=n_samples, random_state=random_state)
+    return resample(
+        *arrays, replace=False, n_samples=n_samples, random_state=random_state
+    )
 
 
 def safe_sqr(X, *, copy=True):
@@ -990,7 +1018,8 @@ def get_chunk_n_rows(row_bytes, *, max_n_rows=None, working_memory=None):
         chunk_n_rows = min(chunk_n_rows, max_n_rows)
     if chunk_n_rows < 1:
         warnings.warn(
-            "Could not adhere to working_memory config. Currently %.0fMiB, %.0fMiB required."
+            "Could not adhere to working_memory config. "
+            "Currently %.0fMiB, %.0fMiB required."
             % (working_memory, np.ceil(row_bytes * 2**-20))
         )
         chunk_n_rows = 1
@@ -1139,7 +1168,8 @@ def check_matplotlib_support(caller_name):
         import matplotlib  # noqa
     except ImportError as e:
         raise ImportError(
-            "{} requires matplotlib. You can install matplotlib with `pip install matplotlib`".format(caller_name)
+            "{} requires matplotlib. You can install matplotlib with "
+            "`pip install matplotlib`".format(caller_name)
         ) from e
 
 

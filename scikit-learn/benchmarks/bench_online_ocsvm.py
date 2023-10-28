@@ -15,19 +15,21 @@ use a kernel approximation prior to the application of :class:`SGDOneClassSVM`.
 """
 
 from time import time
-
-import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
+
 from scipy.interpolate import interp1d
-from sklearn_fork.datasets import fetch_covtype, fetch_kddcup99
-from sklearn_fork.kernel_approximation import Nystroem
-from sklearn_fork.linear_model import SGDOneClassSVM
-from sklearn_fork.metrics import auc, roc_curve
-from sklearn_fork.pipeline import make_pipeline
+
+from sklearn_fork.metrics import roc_curve, auc
+from sklearn_fork.datasets import fetch_kddcup99, fetch_covtype
 from sklearn_fork.preprocessing import LabelBinarizer, StandardScaler
-from sklearn_fork.svm import OneClassSVM
+from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.utils import shuffle
+from sklearn_fork.kernel_approximation import Nystroem
+from sklearn_fork.svm import OneClassSVM
+from sklearn_fork.linear_model import SGDOneClassSVM
+
+import matplotlib.pyplot as plt
+import matplotlib
 
 font = {"weight": "normal", "size": 15}
 
@@ -67,7 +69,9 @@ for dat, dataset_name in enumerate(datasets):
 
     # Loading datasets
     if dataset_name in ["http", "smtp", "SA", "SF"]:
-        dataset = fetch_kddcup99(subset=dataset_name, shuffle=False, percent10=False, random_state=88)
+        dataset = fetch_kddcup99(
+            subset=dataset_name, shuffle=False, percent10=False, random_state=88
+        )
         X = dataset.data
         y = dataset.target
 

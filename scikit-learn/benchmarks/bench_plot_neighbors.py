@@ -3,10 +3,11 @@ Plot the scaling of the nearest neighbors algorithms with k, D, and N
 """
 from time import time
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from matplotlib import ticker
-from sklearn_fork import datasets, neighbors
+
+from sklearn_fork import neighbors, datasets
 
 
 def get_data(N, D, dataset="dense"):
@@ -44,7 +45,9 @@ def barplot_neighbors(
         print("N = %i (%i out of %i)" % (NN, i + 1, len(Nrange)))
         X = get_data(NN, D, dataset)
         for algorithm in algorithms:
-            nbrs = neighbors.NearestNeighbors(n_neighbors=min(NN, k), algorithm=algorithm, leaf_size=leaf_size)
+            nbrs = neighbors.NearestNeighbors(
+                n_neighbors=min(NN, k), algorithm=algorithm, leaf_size=leaf_size
+            )
             t0 = time()
             nbrs.fit(X)
             t1 = time()
@@ -63,7 +66,9 @@ def barplot_neighbors(
         print("D = %i (%i out of %i)" % (DD, i + 1, len(Drange)))
         X = get_data(N, DD, dataset)
         for algorithm in algorithms:
-            nbrs = neighbors.NearestNeighbors(n_neighbors=k, algorithm=algorithm, leaf_size=leaf_size)
+            nbrs = neighbors.NearestNeighbors(
+                n_neighbors=k, algorithm=algorithm, leaf_size=leaf_size
+            )
             t0 = time()
             nbrs.fit(X)
             t1 = time()
@@ -83,7 +88,9 @@ def barplot_neighbors(
     for i, kk in enumerate(krange):
         print("k = %i (%i out of %i)" % (kk, i + 1, len(krange)))
         for algorithm in algorithms:
-            nbrs = neighbors.NearestNeighbors(n_neighbors=kk, algorithm=algorithm, leaf_size=leaf_size)
+            nbrs = neighbors.NearestNeighbors(
+                n_neighbors=kk, algorithm=algorithm, leaf_size=leaf_size
+            )
             t0 = time()
             nbrs.fit(X)
             t1 = time()
@@ -106,7 +113,9 @@ def barplot_neighbors(
         tick_vals = []
         tick_labels = []
 
-        bottom = 10 ** np.min([min(np.floor(np.log10(build_time[alg]))) for alg in algorithms])
+        bottom = 10 ** np.min(
+            [min(np.floor(np.log10(build_time[alg]))) for alg in algorithms]
+        )
 
         for i, alg in enumerate(algorithms):
             xvals = 0.1 + i * (1 + len(vals)) + np.arange(len(vals))

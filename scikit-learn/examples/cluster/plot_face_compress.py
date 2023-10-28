@@ -76,8 +76,12 @@ _ = fig.suptitle("Original image of a raccoon face")
 from sklearn_fork.preprocessing import KBinsDiscretizer
 
 n_bins = 8
-encoder = KBinsDiscretizer(n_bins=n_bins, encode="ordinal", strategy="uniform", random_state=0)
-compressed_raccoon_uniform = encoder.fit_transform(raccoon_face.reshape(-1, 1)).reshape(raccoon_face.shape)
+encoder = KBinsDiscretizer(
+    n_bins=n_bins, encode="ordinal", strategy="uniform", random_state=0
+)
+compressed_raccoon_uniform = encoder.fit_transform(raccoon_face.reshape(-1, 1)).reshape(
+    raccoon_face.shape
+)
 
 fig, ax = plt.subplots(ncols=2, figsize=(12, 4))
 ax[0].imshow(compressed_raccoon_uniform, cmap=plt.cm.gray)
@@ -117,8 +121,12 @@ for center in bin_center:
 # amount of counts. We can instead use a clustering strategy such as k-means to
 # find a more optimal mapping.
 
-encoder = KBinsDiscretizer(n_bins=n_bins, encode="ordinal", strategy="kmeans", random_state=0)
-compressed_raccoon_kmeans = encoder.fit_transform(raccoon_face.reshape(-1, 1)).reshape(raccoon_face.shape)
+encoder = KBinsDiscretizer(
+    n_bins=n_bins, encode="ordinal", strategy="kmeans", random_state=0
+)
+compressed_raccoon_kmeans = encoder.fit_transform(raccoon_face.reshape(-1, 1)).reshape(
+    raccoon_face.shape
+)
 
 fig, ax = plt.subplots(ncols=2, figsize=(12, 4))
 ax[0].imshow(compressed_raccoon_kmeans, cmap=plt.cm.gray)

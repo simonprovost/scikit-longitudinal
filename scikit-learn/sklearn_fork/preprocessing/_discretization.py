@@ -4,23 +4,21 @@
 # License: BSD
 
 
-import warnings
 from numbers import Integral
-
 import numpy as np
+import warnings
+
+from . import OneHotEncoder
 
 from ..base import BaseEstimator, TransformerMixin
-from ..utils import _safe_indexing
-from ..utils._param_validation import Hidden, Interval, Options, StrOptions
+from ..utils._param_validation import Hidden, Interval, StrOptions, Options
+from ..utils.validation import check_array
+from ..utils.validation import check_is_fitted
+from ..utils.validation import check_random_state
+from ..utils.validation import _check_feature_names_in
+from ..utils.validation import _check_sample_weight
 from ..utils.stats import _weighted_percentile
-from ..utils.validation import (
-    _check_feature_names_in,
-    _check_sample_weight,
-    check_array,
-    check_is_fitted,
-    check_random_state,
-)
-from . import OneHotEncoder
+from ..utils import _safe_indexing
 
 
 class KBinsDiscretizer(TransformerMixin, BaseEstimator):
@@ -235,7 +233,9 @@ class KBinsDiscretizer(TransformerMixin, BaseEstimator):
             else:
                 rng = check_random_state(self.random_state)
                 if n_samples > self.subsample:
-                    subsample_idx = rng.choice(n_samples, size=self.subsample, replace=False)
+                    subsample_idx = rng.choice(
+                        n_samples, size=self.subsample, replace=False
+                    )
                     X = _safe_indexing(X, subsample_idx)
         elif self.strategy != "quantile" and isinstance(self.subsample, Integral):
             raise ValueError(
@@ -262,7 +262,9 @@ class KBinsDiscretizer(TransformerMixin, BaseEstimator):
             col_min, col_max = column.min(), column.max()
 
             if col_min == col_max:
-                warnings.warn("Feature %d is constant and will be replaced with 0." % jj)
+                warnings.warn(
+                    "Feature %d is constant and will be replaced with 0." % jj
+                )
                 n_bins[jj] = 1
                 bin_edges[jj] = np.array([-np.inf, np.inf])
                 continue
@@ -276,7 +278,10 @@ class KBinsDiscretizer(TransformerMixin, BaseEstimator):
                     bin_edges[jj] = np.asarray(np.percentile(column, quantiles))
                 else:
                     bin_edges[jj] = np.asarray(
-                        [_weighted_percentile(column, sample_weight, q) for q in quantiles],
+                        [
+                            _weighted_percentile(column, sample_weight, q)
+                            for q in quantiles
+                        ],
                         dtype=np.float64,
                     )
             elif self.strategy == "kmeans":
@@ -288,7 +293,9 @@ class KBinsDiscretizer(TransformerMixin, BaseEstimator):
 
                 # 1D k-means procedure
                 km = KMeans(n_clusters=n_bins[jj], init=init, n_init=1)
-                centers = km.fit(column[:, None], sample_weight=sample_weight).cluster_centers_[:, 0]
+                centers = km.fit(
+                    column[:, None], sample_weight=sample_weight
+                ).cluster_centers_[:, 0]
                 # Must sort, centers may be unsorted even with sorted init
                 centers.sort()
                 bin_edges[jj] = (centers[1:] + centers[:-1]) * 0.5
@@ -340,7 +347,9 @@ class KBinsDiscretizer(TransformerMixin, BaseEstimator):
             raise ValueError(
                 "{} received an invalid number "
                 "of bins at indices {}. Number of bins "
-                "must be at least 2, and must be an int.".format(KBinsDiscretizer.__name__, indices)
+                "must be at least 2, and must be an int.".format(
+                    KBinsDiscretizer.__name__, indices
+                )
             )
         return n_bins
 
@@ -409,7 +418,9 @@ class KBinsDiscretizer(TransformerMixin, BaseEstimator):
         n_features = self.n_bins_.shape[0]
         if Xinv.shape[1] != n_features:
             raise ValueError(
-                "Incorrect number of features. Expecting {}, received {}.".format(n_features, Xinv.shape[1])
+                "Incorrect number of features. Expecting {}, received {}.".format(
+                    n_features, Xinv.shape[1]
+                )
             )
 
         for jj in range(n_features):

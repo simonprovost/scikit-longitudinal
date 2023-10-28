@@ -10,15 +10,14 @@ Here are implemented estimators that are resistant to outliers.
 
 import warnings
 from numbers import Integral, Real
-
 import numpy as np
 from scipy import linalg
 from scipy.stats import chi2
 
-from ..utils import check_array, check_random_state
-from ..utils._param_validation import Interval
+from . import empirical_covariance, EmpiricalCovariance
 from ..utils.extmath import fast_logdet
-from . import EmpiricalCovariance, empirical_covariance
+from ..utils import check_random_state, check_array
+from ..utils._param_validation import Interval
 
 
 # Minimum Covariance Determinant
@@ -176,8 +175,8 @@ def _c_step(
         # c_step procedure converged
         if verbose:
             print(
-                "Optimal couple (location, covariance) found before ending iterations (%d left)"
-                % (remaining_iterations)
+                "Optimal couple (location, covariance) found before"
+                " ending iterations (%d left)" % (remaining_iterations)
             )
         results = location, covariance, det, support, dist
     elif det > previous_det:
@@ -186,7 +185,8 @@ def _c_step(
             "Determinant has increased; this should not happen: "
             "log(det) > log(previous_det) (%.15f > %.15f). "
             "You may want to try with a higher value of "
-            "support_fraction (current value: %.3f)." % (det, previous_det, n_support / n_samples),
+            "support_fraction (current value: %.3f)."
+            % (det, previous_det, n_support / n_samples),
             RuntimeWarning,
         )
         results = (
@@ -305,7 +305,8 @@ def select_candidates(
         n_trials = estimates_list[0].shape[0]
     else:
         raise TypeError(
-            "Invalid 'n_trials' parameter, expected tuple or  integer, got %s (%s)" % (n_trials, type(n_trials))
+            "Invalid 'n_trials' parameter, expected tuple or  integer, got %s (%s)"
+            % (n_trials, type(n_trials))
         )
 
     # compute `n_trials` location and shape estimates candidates in the subset
@@ -338,7 +339,9 @@ def select_candidates(
                     random_state=random_state,
                 )
             )
-    all_locs_sub, all_covs_sub, all_dets_sub, all_supports_sub, all_ds_sub = zip(*all_estimates)
+    all_locs_sub, all_covs_sub, all_dets_sub, all_supports_sub, all_ds_sub = zip(
+        *all_estimates
+    )
     # find the `n_best` best results among the `n_trials` ones
     index_best = np.argsort(all_dets_sub)[:select]
     best_locations = np.asarray(all_locs_sub)[index_best]
@@ -440,7 +443,10 @@ def fast_mcd(
             diff = X_sorted[n_support:] - X_sorted[: (n_samples - n_support)]
             halves_start = np.where(diff == np.min(diff))[0]
             # take the middle points' mean to get the robust location estimate
-            location = 0.5 * (X_sorted[n_support + halves_start] + X_sorted[halves_start]).mean()
+            location = (
+                0.5
+                * (X_sorted[n_support + halves_start] + X_sorted[halves_start]).mean()
+            )
             support = np.zeros(n_samples, dtype=bool)
             X_centered = X - location
             support[np.argsort(np.abs(X_centered), 0)[:n_support]] = True
@@ -736,7 +742,9 @@ class MinCovDet(EmpiricalCovariance):
         n_samples, n_features = X.shape
         # check that the empirical covariance is full rank
         if (linalg.svdvals(np.dot(X.T, X)) > 1e-8).sum() != n_features:
-            warnings.warn("The covariance matrix associated to your dataset is not full rank")
+            warnings.warn(
+                "The covariance matrix associated to your dataset is not full rank"
+            )
         # compute and store raw estimates
         raw_location, raw_covariance, raw_support, raw_dist = fast_mcd(
             X,
@@ -746,7 +754,9 @@ class MinCovDet(EmpiricalCovariance):
         )
         if self.assume_centered:
             raw_location = np.zeros(n_features)
-            raw_covariance = self._nonrobust_covariance(X[raw_support], assume_centered=True)
+            raw_covariance = self._nonrobust_covariance(
+                X[raw_support], assume_centered=True
+            )
             # get precision matrix in an optimized way
             precision = linalg.pinvh(raw_covariance)
             raw_dist = np.sum(np.dot(X, precision) * X, 1)
@@ -795,7 +805,8 @@ class MinCovDet(EmpiricalCovariance):
         n_support = np.sum(self.support_)
         if n_support < n_samples and np.allclose(self.raw_covariance_, 0):
             raise ValueError(
-                "The covariance matrix of the support data is equal to 0, try to increase support_fraction"
+                "The covariance matrix of the support data "
+                "is equal to 0, try to increase support_fraction"
             )
         correction = np.median(self.dist_) / chi2(data.shape[1]).isf(0.5)
         covariance_corrected = self.raw_covariance_ * correction
@@ -842,7 +853,9 @@ class MinCovDet(EmpiricalCovariance):
             location_reweighted = np.zeros(n_features)
         else:
             location_reweighted = data[mask].mean(0)
-        covariance_reweighted = self._nonrobust_covariance(data[mask], assume_centered=self.assume_centered)
+        covariance_reweighted = self._nonrobust_covariance(
+            data[mask], assume_centered=self.assume_centered
+        )
         support_reweighted = np.zeros(n_samples, dtype=bool)
         support_reweighted[mask] = True
         self._set_covariance(covariance_reweighted)

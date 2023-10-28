@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 
-from ...utils.validation import check_array, check_consistent_length
+from ...utils.validation import check_consistent_length, check_array
 
 __all__ = ["consensus_score"]
 
@@ -37,7 +37,10 @@ def _pairwise_similarity(a, b, similarity):
     n_a = a_rows.shape[0]
     n_b = b_rows.shape[0]
     result = np.array(
-        [[similarity(a_rows[i], a_cols[i], b_rows[j], b_cols[j]) for j in range(n_b)] for i in range(n_a)]
+        [
+            [similarity(a_rows[i], a_cols[i], b_rows[j], b_cols[j]) for j in range(n_b)]
+            for i in range(n_a)
+        ]
     )
     return result
 

@@ -1,9 +1,10 @@
-import numpy as np
 import pytest
+import numpy as np
 from numpy.testing import assert_allclose
+
 from sklearn_fork.ensemble._hist_gradient_boosting._bitset import (
-    in_bitset_memoryview,
     set_bitset_memoryview,
+    in_bitset_memoryview,
     set_raw_bitset_from_binned_bitset,
 )
 from sklearn_fork.ensemble._hist_gradient_boosting.common import X_DTYPE
@@ -43,7 +44,9 @@ def test_set_get_bitset(values_to_insert, expected_bitset):
         ([3, 33, 50, 52], [1, 3], [0, 2**1 + 2**20]),
     ],
 )
-def test_raw_bitset_from_binned_bitset(raw_categories, binned_cat_to_insert, expected_raw_bitset):
+def test_raw_bitset_from_binned_bitset(
+    raw_categories, binned_cat_to_insert, expected_raw_bitset
+):
     binned_bitset = np.zeros(2, dtype=np.uint32)
     raw_bitset = np.zeros(2, dtype=np.uint32)
     raw_categories = np.asarray(raw_categories, dtype=X_DTYPE)

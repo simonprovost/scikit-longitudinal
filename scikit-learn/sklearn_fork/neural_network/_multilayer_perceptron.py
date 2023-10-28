@@ -6,28 +6,39 @@
 #          Jiyuan Qian
 # License: BSD 3 clause
 
-import warnings
-from abc import ABCMeta, abstractmethod
-from itertools import chain
 from numbers import Integral, Real
-
 import numpy as np
+
+from abc import ABCMeta, abstractmethod
+import warnings
+from itertools import chain
+
 import scipy.optimize
 
-from ..base import BaseEstimator, ClassifierMixin, RegressorMixin, is_classifier
-from ..exceptions import ConvergenceWarning
+from ..base import (
+    BaseEstimator,
+    ClassifierMixin,
+    RegressorMixin,
+)
+from ..base import is_classifier
+from ._base import ACTIVATIONS, DERIVATIVES, LOSS_FUNCTIONS
+from ._stochastic_optimizers import SGDOptimizer, AdamOptimizer
 from ..metrics import accuracy_score, r2_score
 from ..model_selection import train_test_split
 from ..preprocessing import LabelBinarizer
-from ..utils import _safe_indexing, check_random_state, column_or_1d, gen_batches, shuffle
-from ..utils._param_validation import Interval, Options, StrOptions
+from ..utils import gen_batches, check_random_state
+from ..utils import shuffle
+from ..utils import _safe_indexing
+from ..utils import column_or_1d
+from ..exceptions import ConvergenceWarning
 from ..utils.extmath import safe_sparse_dot
-from ..utils.metaestimators import available_if
-from ..utils.multiclass import _check_partial_fit_first_call, type_of_target, unique_labels
-from ..utils.optimize import _check_optimize_result
 from ..utils.validation import check_is_fitted
-from ._base import ACTIVATIONS, DERIVATIVES, LOSS_FUNCTIONS
-from ._stochastic_optimizers import AdamOptimizer, SGDOptimizer
+from ..utils.multiclass import _check_partial_fit_first_call, unique_labels
+from ..utils.multiclass import type_of_target
+from ..utils.optimize import _check_optimize_result
+from ..utils.metaestimators import available_if
+from ..utils._param_validation import StrOptions, Options, Interval
+
 
 _STOCHASTIC_SOLVERS = ["sgd", "adam"]
 
@@ -205,7 +216,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
 
         return activation
 
-    def _compute_loss_grad(self, layer, n_samples, activations, deltas, coef_grads, intercept_grads):
+    def _compute_loss_grad(
+        self, layer, n_samples, activations, deltas, coef_grads, intercept_grads
+    ):
         """Compute the gradient of loss with respect to coefs and intercept for
         specified layer.
 
@@ -217,7 +230,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
 
         intercept_grads[layer] = np.mean(deltas[layer], 0)
 
-    def _loss_grad_lbfgs(self, packed_coef_inter, X, y, activations, deltas, coef_grads, intercept_grads):
+    def _loss_grad_lbfgs(
+        self, packed_coef_inter, X, y, activations, deltas, coef_grads, intercept_grads
+    ):
         """Compute the MLP loss function and its corresponding derivatives
         with respect to the different parameters given in the initialization.
 
@@ -259,7 +274,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
         grad : array-like, shape (number of nodes of all layers,)
         """
         self._unpack(packed_coef_inter)
-        loss, coef_grads, intercept_grads = self._backprop(X, y, activations, deltas, coef_grads, intercept_grads)
+        loss, coef_grads, intercept_grads = self._backprop(
+            X, y, activations, deltas, coef_grads, intercept_grads
+        )
         grad = _pack(coef_grads, intercept_grads)
         return loss, grad
 
@@ -326,7 +343,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
         deltas[last] = activations[-1] - y
 
         # Compute gradient for the last layer
-        self._compute_loss_grad(last, n_samples, activations, deltas, coef_grads, intercept_grads)
+        self._compute_loss_grad(
+            last, n_samples, activations, deltas, coef_grads, intercept_grads
+        )
 
         inplace_derivative = DERIVATIVES[self.activation]
         # Iterate over the hidden layers
@@ -334,7 +353,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
             deltas[i - 1] = safe_sparse_dot(deltas[i], self.coefs_[i].T)
             inplace_derivative(activations[i], deltas[i - 1])
 
-            self._compute_loss_grad(i - 1, n_samples, activations, deltas, coef_grads, intercept_grads)
+            self._compute_loss_grad(
+                i - 1, n_samples, activations, deltas, coef_grads, intercept_grads
+            )
 
         return loss, coef_grads, intercept_grads
 
@@ -363,7 +384,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
         self.intercepts_ = []
 
         for i in range(self.n_layers_ - 1):
-            coef_init, intercept_init = self._init_coef(layer_units[i], layer_units[i + 1], dtype)
+            coef_init, intercept_init = self._init_coef(
+                layer_units[i], layer_units[i + 1], dtype
+            )
             self.coefs_.append(coef_init)
             self.intercepts_.append(intercept_init)
 
@@ -388,7 +411,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
         init_bound = np.sqrt(factor / (fan_in + fan_out))
 
         # Generate weights and bias:
-        coef_init = self._random_state.uniform(-init_bound, init_bound, (fan_in, fan_out))
+        coef_init = self._random_state.uniform(
+            -init_bound, init_bound, (fan_in, fan_out)
+        )
         intercept_init = self._random_state.uniform(-init_bound, init_bound, fan_out)
         coef_init = coef_init.astype(dtype, copy=False)
         intercept_init = intercept_init.astype(dtype, copy=False)
@@ -402,8 +427,12 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
         hidden_layer_sizes = list(hidden_layer_sizes)
 
         if np.any(np.array(hidden_layer_sizes) <= 0):
-            raise ValueError("hidden_layer_sizes must be > 0, got %s." % hidden_layer_sizes)
-        first_pass = not hasattr(self, "coefs_") or (not self.warm_start and not incremental)
+            raise ValueError(
+                "hidden_layer_sizes must be > 0, got %s." % hidden_layer_sizes
+            )
+        first_pass = not hasattr(self, "coefs_") or (
+            not self.warm_start and not incremental
+        )
 
         X, y = self._validate_input(X, y, incremental, reset=first_pass)
 
@@ -433,7 +462,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
             for n_fan_in_, n_fan_out_ in zip(layer_units[:-1], layer_units[1:])
         ]
 
-        intercept_grads = [np.empty(n_fan_out_, dtype=X.dtype) for n_fan_out_ in layer_units[1:]]
+        intercept_grads = [
+            np.empty(n_fan_out_, dtype=X.dtype) for n_fan_out_ in layer_units[1:]
+        ]
 
         # Run the Stochastic optimization solver
         if self.solver in _STOCHASTIC_SOLVERS:
@@ -450,7 +481,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
 
         # Run the LBFGS solver
         elif self.solver == "lbfgs":
-            self._fit_lbfgs(X, y, activations, deltas, coef_grads, intercept_grads, layer_units)
+            self._fit_lbfgs(
+                X, y, activations, deltas, coef_grads, intercept_grads, layer_units
+            )
 
         # validate parameter weights
         weights = chain(self.coefs_, self.intercepts_)
@@ -462,7 +495,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
 
         return self
 
-    def _fit_lbfgs(self, X, y, activations, deltas, coef_grads, intercept_grads, layer_units):
+    def _fit_lbfgs(
+        self, X, y, activations, deltas, coef_grads, intercept_grads, layer_units
+    ):
         # Store meta information for the parameters
         self._coef_indptr = []
         self._intercept_indptr = []
@@ -566,7 +601,10 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
             batch_size = min(200, n_samples)
         else:
             if self.batch_size > n_samples:
-                warnings.warn("Got `batch_size` less than 1 or larger than sample size. It is going to be clipped")
+                warnings.warn(
+                    "Got `batch_size` less than 1 or larger than "
+                    "sample size. It is going to be clipped"
+                )
             batch_size = np.clip(self.batch_size, 1, n_samples)
 
         try:
@@ -596,7 +634,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
                         coef_grads,
                         intercept_grads,
                     )
-                    accumulated_loss += batch_loss * (batch_slice.stop - batch_slice.start)
+                    accumulated_loss += batch_loss * (
+                        batch_slice.stop - batch_slice.start
+                    )
 
                     # update weights
                     grads = coef_grads + intercept_grads
@@ -621,14 +661,16 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
                     # not better than last `n_iter_no_change` iterations by tol
                     # stop or decrease learning rate
                     if early_stopping:
-                        msg = "Validation score did not improve more than tol=%f for %d consecutive epochs." % (
-                            self.tol,
-                            self.n_iter_no_change,
+                        msg = (
+                            "Validation score did not improve more than "
+                            "tol=%f for %d consecutive epochs."
+                            % (self.tol, self.n_iter_no_change)
                         )
                     else:
-                        msg = "Training loss did not improve more than tol=%f for %d consecutive epochs." % (
-                            self.tol,
-                            self.n_iter_no_change,
+                        msg = (
+                            "Training loss did not improve more than tol=%f"
+                            " for %d consecutive epochs."
+                            % (self.tol, self.n_iter_no_change)
                         )
 
                     is_stopping = self._optimizer.trigger_stopping(msg, self.verbose)
@@ -709,7 +751,9 @@ class BaseMultilayerPerceptron(BaseEstimator, metaclass=ABCMeta):
     def _check_solver(self):
         if self.solver not in _STOCHASTIC_SOLVERS:
             raise AttributeError(
-                "partial_fit is only available for stochastic optimizers. %s is not stochastic." % self.solver
+                "partial_fit is only available for stochastic"
+                " optimizers. %s is not stochastic."
+                % self.solver
             )
         return True
 
@@ -1086,7 +1130,8 @@ class MLPClassifier(ClassifierMixin, BaseMultilayerPerceptron):
                     )
             elif len(np.setdiff1d(classes, self.classes_, assume_unique=True)):
                 raise ValueError(
-                    f"`y` has classes not in `self.classes_`. `self.classes_` has {self.classes_}. 'y' has {classes}."
+                    "`y` has classes not in `self.classes_`. "
+                    f"`self.classes_` has {self.classes_}. 'y' has {classes}."
                 )
 
         # This downcast to bool is to prevent upcasting when working with

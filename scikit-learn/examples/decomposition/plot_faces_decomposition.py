@@ -21,10 +21,12 @@ matrix decomposition (dimension reduction) methods from the module
 
 import logging
 
-import matplotlib.pyplot as plt
 from numpy.random import RandomState
-from sklearn_fork import cluster, decomposition
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import fetch_olivetti_faces
+from sklearn_fork import cluster
+from sklearn_fork import decomposition
 
 rng = RandomState(0)
 
@@ -107,9 +109,13 @@ plot_gallery("Faces from dataset", faces_centered[:n_components])
 #     that cannot be displayed as an image.
 
 # %%
-pca_estimator = decomposition.PCA(n_components=n_components, svd_solver="randomized", whiten=True)
+pca_estimator = decomposition.PCA(
+    n_components=n_components, svd_solver="randomized", whiten=True
+)
 pca_estimator.fit(faces_centered)
-plot_gallery("Eigenfaces - PCA using randomized SVD", pca_estimator.components_[:n_components])
+plot_gallery(
+    "Eigenfaces - PCA using randomized SVD", pca_estimator.components_[:n_components]
+)
 
 # %%
 # Non-negative components - NMF
@@ -129,9 +135,13 @@ plot_gallery("Non-negative components - NMF", nmf_estimator.components_[:n_compo
 # subcomponents that are maximally independent.
 
 # %%
-ica_estimator = decomposition.FastICA(n_components=n_components, max_iter=400, whiten="arbitrary-variance", tol=15e-5)
+ica_estimator = decomposition.FastICA(
+    n_components=n_components, max_iter=400, whiten="arbitrary-variance", tol=15e-5
+)
 ica_estimator.fit(faces_centered)
-plot_gallery("Independent components - FastICA", ica_estimator.components_[:n_components])
+plot_gallery(
+    "Independent components - FastICA", ica_estimator.components_[:n_components]
+)
 
 # %%
 # Sparse components - MiniBatchSparsePCA

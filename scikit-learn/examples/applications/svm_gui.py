@@ -30,13 +30,13 @@ except ImportError:
     from matplotlib.backends.backend_tkagg import (
         NavigationToolbar2TkAgg as NavigationToolbar2Tk,
     )
+from matplotlib.figure import Figure
+from matplotlib.contour import ContourSet
 
 import sys
+import numpy as np
 import tkinter as Tk
 
-import numpy as np
-from matplotlib.contour import ContourSet
-from matplotlib.figure import Figure
 from sklearn_fork import svm
 from sklearn_fork.datasets import dump_svmlight_file
 
@@ -251,10 +251,18 @@ class View:
             levels = [-1.0, 0.0, 1.0]
             linestyles = ["dashed", "solid", "dashed"]
             colors = "k"
-            self.contours.append(self.ax.contour(X1, X2, Z, levels, colors=colors, linestyles=linestyles))
+            self.contours.append(
+                self.ax.contour(X1, X2, Z, levels, colors=colors, linestyles=linestyles)
+            )
         elif type == 1:
-            self.contours.append(self.ax.contourf(X1, X2, Z, 10, cmap=matplotlib.cm.bone, origin="lower", alpha=0.85))
-            self.contours.append(self.ax.contour(X1, X2, Z, [0.0], colors="k", linestyles=["solid"]))
+            self.contours.append(
+                self.ax.contourf(
+                    X1, X2, Z, 10, cmap=matplotlib.cm.bone, origin="lower", alpha=0.85
+                )
+            )
+            self.contours.append(
+                self.ax.contour(X1, X2, Z, [0.0], colors="k", linestyles=["solid"])
+            )
         else:
             raise ValueError("surface type unknown")
 
@@ -337,7 +345,9 @@ class ControllBar:
         train_button = Tk.Button(fm, text="Fit", width=5, command=controller.fit)
         train_button.pack()
         fm.pack(side=Tk.LEFT)
-        Tk.Button(fm, text="Clear", width=5, command=controller.clear_data).pack(side=Tk.LEFT)
+        Tk.Button(fm, text="Clear", width=5, command=controller.clear_data).pack(
+            side=Tk.LEFT
+        )
 
 
 def get_parser():

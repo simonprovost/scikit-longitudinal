@@ -21,18 +21,24 @@ Statistics and Probability Letters, 33 (1997) 291-297.
 # Authors: Peter Prettenhofer
 # License: BSD 3 clause
 
-import logging
-import tarfile
-from os import makedirs, remove
 from os.path import exists
+from os import makedirs, remove
+import tarfile
+
+import numpy as np
+import logging
 
 import joblib
-import numpy as np
 
+from . import get_data_home
+from ._base import _convert_data_dataframe
+from ._base import _fetch_remote
+from ._base import _pkl_filepath
+from ._base import RemoteFileMetadata
+from ._base import load_descr
 from ..utils import Bunch
 from ..utils._param_validation import validate_params
-from . import get_data_home
-from ._base import RemoteFileMetadata, _convert_data_dataframe, _fetch_remote, _pkl_filepath, load_descr
+
 
 # The original data can be found at:
 # https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.tgz
@@ -53,7 +59,9 @@ logger = logging.getLogger(__name__)
         "as_frame": ["boolean"],
     }
 )
-def fetch_california_housing(*, data_home=None, download_if_missing=True, return_X_y=False, as_frame=False):
+def fetch_california_housing(
+    *, data_home=None, download_if_missing=True, return_X_y=False, as_frame=False
+):
     """Load the California housing dataset (regression).
 
     ==============   ==============
@@ -132,12 +140,16 @@ def fetch_california_housing(*, data_home=None, download_if_missing=True, return
         if not download_if_missing:
             raise IOError("Data not found and `download_if_missing` is False")
 
-        logger.info("Downloading Cal. housing from {} to {}".format(ARCHIVE.url, data_home))
+        logger.info(
+            "Downloading Cal. housing from {} to {}".format(ARCHIVE.url, data_home)
+        )
 
         archive_path = _fetch_remote(ARCHIVE, dirname=data_home)
 
         with tarfile.open(mode="r:gz", name=archive_path) as f:
-            cal_housing = np.loadtxt(f.extractfile("CaliforniaHousing/cal_housing.data"), delimiter=",")
+            cal_housing = np.loadtxt(
+                f.extractfile("CaliforniaHousing/cal_housing.data"), delimiter=","
+            )
             # Columns are not in the same order compared to the previous
             # URL resource on lib.stat.cmu.edu
             columns_index = [8, 7, 2, 3, 4, 5, 6, 1, 0]
@@ -184,7 +196,9 @@ def fetch_california_housing(*, data_home=None, download_if_missing=True, return
         "MedHouseVal",
     ]
     if as_frame:
-        frame, X, y = _convert_data_dataframe("fetch_california_housing", data, target, feature_names, target_names)
+        frame, X, y = _convert_data_dataframe(
+            "fetch_california_housing", data, target, feature_names, target_names
+        )
 
     if return_X_y:
         return X, y

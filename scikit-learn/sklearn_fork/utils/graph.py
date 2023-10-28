@@ -152,6 +152,9 @@ def _fix_connected_components(
                 graph[idx_i[ii], idx_j[jj]] = D[ii, jj]
                 graph[idx_j[jj], idx_i[ii]] = D[ii, jj]
             else:
-                raise ValueError("Unknown mode=%r, should be one of ['connectivity', 'distance']." % mode)
+                raise ValueError(
+                    "Unknown mode=%r, should be one of ['connectivity', 'distance']."
+                    % mode
+                )
 
     return graph

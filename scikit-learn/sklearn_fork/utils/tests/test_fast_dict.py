@@ -1,7 +1,8 @@
 """ Test fast_dict.
 """
 import numpy as np
-from numpy.testing import assert_allclose, assert_array_equal
+from numpy.testing import assert_array_equal, assert_allclose
+
 from sklearn_fork.utils._fast_dict import IntFloatDict, argmin
 
 

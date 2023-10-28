@@ -7,10 +7,15 @@ from math import log
 
 import numpy as np
 import pytest
-from sklearn_fork import datasets
-from sklearn_fork.linear_model import ARDRegression, BayesianRidge, Ridge
+
+
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_less
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_almost_equal, assert_array_less
+from sklearn_fork.linear_model import BayesianRidge, ARDRegression
+from sklearn_fork.linear_model import Ridge
+from sklearn_fork import datasets
 from sklearn_fork.utils.extmath import fast_logdet
 
 diabetes = datasets.load_diabetes()
@@ -58,7 +63,9 @@ def test_bayesian_ridge_score_values():
     score += alpha_1 * log(alpha_) - alpha_2 * alpha_
     M = 1.0 / alpha_ * np.eye(n_samples) + 1.0 / lambda_ * np.dot(X, X.T)
     M_inv_dot_y = np.linalg.solve(M, y)
-    score += -0.5 * (fast_logdet(M) + np.dot(y.T, M_inv_dot_y) + n_samples * log(2 * np.pi))
+    score += -0.5 * (
+        fast_logdet(M) + np.dot(y.T, M_inv_dot_y) + n_samples * log(2 * np.pi)
+    )
 
     # compute score with BayesianRidge
     clf = BayesianRidge(
@@ -97,7 +104,9 @@ def test_bayesian_sample_weights():
     # A Ridge regression model using an alpha value equal to the ratio of
     # lambda_ and alpha_ from the Bayesian Ridge model must be identical
     br_model = BayesianRidge(compute_score=True).fit(X, y, sample_weight=w)
-    rr_model = Ridge(alpha=br_model.lambda_ / br_model.alpha_).fit(X, y, sample_weight=w)
+    rr_model = Ridge(alpha=br_model.lambda_ / br_model.alpha_).fit(
+        X, y, sample_weight=w
+    )
     assert_array_almost_equal(rr_model.coef_, br_model.coef_)
     assert_almost_equal(rr_model.intercept_, br_model.intercept_)
 
@@ -289,7 +298,9 @@ def test_dtype_correctness(Estimator):
 @pytest.mark.parametrize("Estimator", [BayesianRidge, ARDRegression])
 def test_bayesian_ridge_ard_n_iter_deprecated(Estimator):
     """Check the deprecation warning of `n_iter`."""
-    depr_msg = "'n_iter' was renamed to 'max_iter' in version 1.3 and will be removed in 1.5"
+    depr_msg = (
+        "'n_iter' was renamed to 'max_iter' in version 1.3 and will be removed in 1.5"
+    )
     X, y = diabetes.data, diabetes.target
     model = Estimator(n_iter=5)
 

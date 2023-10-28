@@ -17,8 +17,8 @@ give us much regarding `y` when compared to just feature 1.
 # %%
 # First we load the diabetes dataset.
 
-import numpy as np
 from sklearn_fork import datasets
+import numpy as np
 
 X, y = datasets.load_diabetes(return_X_y=True)
 indices = (0, 1)
@@ -55,7 +55,9 @@ def plot_figs(fig_num, elev, azim, X_train, clf):
     ax.plot_surface(
         np.array([[-0.1, -0.1], [0.15, 0.15]]),
         np.array([[-0.1, 0.15], [-0.1, 0.15]]),
-        clf.predict(np.array([[-0.1, -0.1, 0.15, 0.15], [-0.1, 0.15, -0.1, 0.15]]).T).reshape((2, 2)),
+        clf.predict(
+            np.array([[-0.1, -0.1, 0.15, 0.15], [-0.1, 0.15, -0.1, 0.15]]).T
+        ).reshape((2, 2)),
         alpha=0.5,
     )
     ax.set_xlabel("X_1")

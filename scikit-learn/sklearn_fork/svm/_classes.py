@@ -2,13 +2,13 @@ from numbers import Integral, Real
 
 import numpy as np
 
-from ..base import BaseEstimator, OutlierMixin, RegressorMixin
-from ..linear_model._base import LinearClassifierMixin, LinearModel, SparseCoefMixin
+from ._base import _fit_liblinear, BaseSVC, BaseLibSVM
+from ..base import BaseEstimator, RegressorMixin, OutlierMixin
+from ..linear_model._base import LinearClassifierMixin, SparseCoefMixin, LinearModel
 from ..utils import deprecated
-from ..utils._param_validation import Interval, StrOptions
-from ..utils.multiclass import check_classification_targets
 from ..utils.validation import _num_samples
-from ._base import BaseLibSVM, BaseSVC, _fit_liblinear
+from ..utils.multiclass import check_classification_targets
+from ..utils._param_validation import Interval, StrOptions
 
 
 class LinearSVC(LinearClassifierMixin, SparseCoefMixin, BaseEstimator):
@@ -305,7 +305,9 @@ class LinearSVC(LinearClassifierMixin, SparseCoefMixin, BaseEstimator):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             }
         }
 
@@ -542,7 +544,9 @@ class LinearSVR(RegressorMixin, LinearModel):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             }
         }
 
@@ -814,7 +818,9 @@ class SVC(BaseSVC):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             }
         }
 
@@ -1079,10 +1085,16 @@ class NuSVC(BaseSVC):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_methods_subset_invariance": "fails for the decision_function method",
+                "check_methods_subset_invariance": (
+                    "fails for the decision_function method"
+                ),
                 "check_class_weight_classifiers": "class_weight is ignored.",
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
-                "check_classifiers_one_label_sample_weights": "specified nu is infeasible for the fit.",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
+                "check_classifiers_one_label_sample_weights": (
+                    "specified nu is infeasible for the fit."
+                ),
             }
         }
 
@@ -1284,7 +1296,10 @@ class SVR(RegressorMixin, BaseLibSVM):
         )
 
     # TODO(1.4): Remove
-    @deprecated("Attribute `class_weight_` was deprecated in version 1.2 and will be removed in 1.4.")  # type: ignore
+    @deprecated(  # type: ignore
+        "Attribute `class_weight_` was deprecated in version 1.2 and will be removed in"
+        " 1.4."
+    )
     @property
     def class_weight_(self):
         return np.empty(0)
@@ -1292,7 +1307,9 @@ class SVR(RegressorMixin, BaseLibSVM):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             }
         }
 
@@ -1487,7 +1504,10 @@ class NuSVR(RegressorMixin, BaseLibSVM):
         )
 
     # TODO(1.4): Remove
-    @deprecated("Attribute `class_weight_` was deprecated in version 1.2 and will be removed in 1.4.")  # type: ignore
+    @deprecated(  # type: ignore
+        "Attribute `class_weight_` was deprecated in version 1.2 and will be removed in"
+        " 1.4."
+    )
     @property
     def class_weight_(self):
         return np.empty(0)
@@ -1495,7 +1515,9 @@ class NuSVR(RegressorMixin, BaseLibSVM):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             }
         }
 
@@ -1679,7 +1701,10 @@ class OneClassSVM(OutlierMixin, BaseLibSVM):
         )
 
     # TODO(1.4): Remove
-    @deprecated("Attribute `class_weight_` was deprecated in version 1.2 and will be removed in 1.4.")  # type: ignore
+    @deprecated(  # type: ignore
+        "Attribute `class_weight_` was deprecated in version 1.2 and will be removed in"
+        " 1.4."
+    )
     @property
     def class_weight_(self):
         return np.empty(0)
@@ -1769,6 +1794,8 @@ class OneClassSVM(OutlierMixin, BaseLibSVM):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             }
         }

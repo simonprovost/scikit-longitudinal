@@ -3,8 +3,10 @@ or if specifically requested via environment variable
 (e.g. for CI jobs)."""
 
 import numpy as np
-from sklearn_fork.datasets.tests.test_common import check_return_X_y
+
 from sklearn_fork.utils import Bunch
+from sklearn_fork.datasets.tests.test_common import check_return_X_y
+
 from sklearn_fork.utils._testing import assert_array_equal
 
 

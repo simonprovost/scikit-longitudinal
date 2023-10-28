@@ -34,6 +34,7 @@ by Thomas P. Minka is also compared.
 # ---------------
 
 import numpy as np
+
 from scipy import linalg
 
 n_samples, n_features, rank = 500, 25, 5
@@ -54,9 +55,11 @@ X_hetero = X + rng.randn(n_samples, n_features) * sigmas
 # --------------
 
 import matplotlib.pyplot as plt
-from sklearn_fork.covariance import LedoitWolf, ShrunkCovariance
+
 from sklearn_fork.decomposition import PCA, FactorAnalysis
-from sklearn_fork.model_selection import GridSearchCV, cross_val_score
+from sklearn_fork.covariance import ShrunkCovariance, LedoitWolf
+from sklearn_fork.model_selection import cross_val_score
+from sklearn_fork.model_selection import GridSearchCV
 
 n_components = np.arange(0, n_features, 5)  # options for n_components
 

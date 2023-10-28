@@ -38,9 +38,11 @@ memory usage and prediction latency.
 
 import time
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork import datasets, ensemble
+import matplotlib.pyplot as plt
+
+from sklearn_fork import ensemble
+from sklearn_fork import datasets
 from sklearn_fork.model_selection import train_test_split
 
 data_list = [
@@ -60,7 +62,9 @@ time_gbes = []
 n_estimators = 200
 
 for X, y in data_list:
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=0
+    )
 
     # We specify that if the scores don't improve by at least 0.01 for the last
     # 10 stages, stop fitting additional stages
@@ -97,8 +101,12 @@ index = index[0:n]
 
 plt.figure(figsize=(9, 5))
 
-bar1 = plt.bar(index, score_gb, bar_width, label="Without early stopping", color="crimson")
-bar2 = plt.bar(index + bar_width, score_gbes, bar_width, label="With early stopping", color="coral")
+bar1 = plt.bar(
+    index, score_gb, bar_width, label="Without early stopping", color="crimson"
+)
+bar2 = plt.bar(
+    index + bar_width, score_gbes, bar_width, label="With early stopping", color="coral"
+)
 
 plt.xticks(index + bar_width, names)
 plt.yticks(np.arange(0, 1.3, 0.1))
@@ -137,8 +145,12 @@ plt.show()
 
 plt.figure(figsize=(9, 5))
 
-bar1 = plt.bar(index, time_gb, bar_width, label="Without early stopping", color="crimson")
-bar2 = plt.bar(index + bar_width, time_gbes, bar_width, label="With early stopping", color="coral")
+bar1 = plt.bar(
+    index, time_gb, bar_width, label="Without early stopping", color="crimson"
+)
+bar2 = plt.bar(
+    index + bar_width, time_gbes, bar_width, label="With early stopping", color="coral"
+)
 
 max_y = np.amax(np.maximum(time_gb, time_gbes))
 

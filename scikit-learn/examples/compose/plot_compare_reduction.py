@@ -28,15 +28,15 @@ fitting of a transformer is costly.
 # Illustration of ``Pipeline`` and ``GridSearchCV``
 ###############################################################################
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork.datasets import load_digits
-from sklearn_fork.decomposition import NMF, PCA
-from sklearn_fork.feature_selection import SelectKBest, mutual_info_classif
 from sklearn_fork.model_selection import GridSearchCV
 from sklearn_fork.pipeline import Pipeline
-from sklearn_fork.preprocessing import MinMaxScaler
 from sklearn_fork.svm import LinearSVC
+from sklearn_fork.decomposition import PCA, NMF
+from sklearn_fork.feature_selection import SelectKBest, mutual_info_classif
+from sklearn_fork.preprocessing import MinMaxScaler
 
 X, y = load_digits(return_X_y=True)
 
@@ -77,7 +77,9 @@ mean_scores = mean_scores.reshape(len(C_OPTIONS), -1, len(N_FEATURES_OPTIONS))
 # select score for best C
 mean_scores = mean_scores.max(axis=0)
 # create a dataframe to ease plotting
-mean_scores = pd.DataFrame(mean_scores.T, index=N_FEATURES_OPTIONS, columns=reducer_labels)
+mean_scores = pd.DataFrame(
+    mean_scores.T, index=N_FEATURES_OPTIONS, columns=reducer_labels
+)
 
 ax = mean_scores.plot.bar()
 ax.set_title("Comparing feature reduction techniques")
@@ -101,9 +103,8 @@ plt.show()
 #     cache. Hence, use the ``memory`` constructor parameter when the fitting
 #     of a transformer is costly.
 
-from shutil import rmtree
-
 from joblib import Memory
+from shutil import rmtree
 
 # Create a temporary folder to store the transformers of the pipeline
 location = "cachedir"

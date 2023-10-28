@@ -1,20 +1,24 @@
 """Testing for Spectral Clustering methods"""
-import pickle
 import re
 
 import numpy as np
-import pytest
 from scipy import sparse
 from scipy.linalg import LinAlgError
+
+import pytest
+
+import pickle
+
+from sklearn_fork.utils import check_random_state
+from sklearn_fork.utils._testing import assert_array_equal
+
 from sklearn_fork.cluster import SpectralClustering, spectral_clustering
-from sklearn_fork.cluster._spectral import cluster_qr, discretize
-from sklearn_fork.datasets import make_blobs
+from sklearn_fork.cluster._spectral import discretize, cluster_qr
 from sklearn_fork.feature_extraction import img_to_graph
 from sklearn_fork.metrics import adjusted_rand_score
 from sklearn_fork.metrics.pairwise import kernel_metrics, rbf_kernel
 from sklearn_fork.neighbors import NearestNeighbors
-from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.datasets import make_blobs
 
 try:
     from pyamg import smoothed_aggregation_solver  # noqa
@@ -71,7 +75,9 @@ def test_spectral_clustering(eigen_solver, assign_labels):
 
 @pytest.mark.parametrize("assign_labels", ("kmeans", "discretize", "cluster_qr"))
 def test_spectral_clustering_sparse(assign_labels):
-    X, y = make_blobs(n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01)
+    X, y = make_blobs(
+        n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01
+    )
 
     S = rbf_kernel(X, gamma=1)
     S = np.maximum(S - 1e-4, 0)
@@ -92,7 +98,9 @@ def test_spectral_clustering_sparse(assign_labels):
 
 def test_precomputed_nearest_neighbors_filtering():
     # Test precomputed graph filtering when containing too many neighbors
-    X, y = make_blobs(n_samples=200, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01)
+    X, y = make_blobs(
+        n_samples=200, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01
+    )
 
     n_neighbors = 2
     results = []
@@ -118,7 +126,9 @@ def test_affinities():
     # Note: in the following, random_state has been selected to have
     # a dataset that yields a stable eigen decomposition both when built
     # on OSX and Linux
-    X, y = make_blobs(n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01)
+    X, y = make_blobs(
+        n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01
+    )
     # nearest neighbors affinity
     sp = SpectralClustering(n_clusters=2, affinity="nearest_neighbors", random_state=0)
     with pytest.warns(UserWarning, match="not fully connected"):
@@ -197,18 +207,26 @@ def test_discretize(n_samples):
             (np.ones(n_samples), (np.arange(n_samples), y_true)),
             shape=(n_samples, n_class + 1),
         )
-        y_true_noisy = y_indicator.toarray() + 0.1 * random_state.randn(n_samples, n_class + 1)
+        y_true_noisy = y_indicator.toarray() + 0.1 * random_state.randn(
+            n_samples, n_class + 1
+        )
         y_pred = discretize(y_true_noisy, random_state=random_state)
         assert adjusted_rand_score(y_true, y_pred) > 0.8
 
 
 # TODO: Remove when pyamg does replaces sp.rand call with np.random.rand
 # https://github.com/scikit-learn/scikit-learn/issues/15913
-@pytest.mark.filterwarnings("ignore:scipy.rand is deprecated:DeprecationWarning:pyamg.*")
+@pytest.mark.filterwarnings(
+    "ignore:scipy.rand is deprecated:DeprecationWarning:pyamg.*"
+)
 # TODO: Remove when pyamg removes the use of np.float
-@pytest.mark.filterwarnings("ignore:`np.float` is a deprecated alias:DeprecationWarning:pyamg.*")
+@pytest.mark.filterwarnings(
+    "ignore:`np.float` is a deprecated alias:DeprecationWarning:pyamg.*"
+)
 # TODO: Remove when pyamg removes the use of pinv2
-@pytest.mark.filterwarnings("ignore:scipy.linalg.pinv2 is deprecated:DeprecationWarning:pyamg.*")
+@pytest.mark.filterwarnings(
+    "ignore:scipy.linalg.pinv2 is deprecated:DeprecationWarning:pyamg.*"
+)
 def test_spectral_clustering_with_arpack_amg_solvers():
     # Test that spectral_clustering is the same for arpack and amg solver
     # Based on toy example from plot_segmentation_toy.py
@@ -229,12 +247,16 @@ def test_spectral_clustering_with_arpack_amg_solvers():
     graph = img_to_graph(img, mask=mask)
     graph.data = np.exp(-graph.data / graph.data.std())
 
-    labels_arpack = spectral_clustering(graph, n_clusters=2, eigen_solver="arpack", random_state=0)
+    labels_arpack = spectral_clustering(
+        graph, n_clusters=2, eigen_solver="arpack", random_state=0
+    )
 
     assert len(np.unique(labels_arpack)) == 2
 
     if amg_loaded:
-        labels_amg = spectral_clustering(graph, n_clusters=2, eigen_solver="amg", random_state=0)
+        labels_amg = spectral_clustering(
+            graph, n_clusters=2, eigen_solver="amg", random_state=0
+        )
         assert adjusted_rand_score(labels_arpack, labels_amg) == 1
     else:
         with pytest.raises(ValueError):
@@ -244,24 +266,32 @@ def test_spectral_clustering_with_arpack_amg_solvers():
 def test_n_components():
     # Test that after adding n_components, result is different and
     # n_components = n_clusters by default
-    X, y = make_blobs(n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01)
+    X, y = make_blobs(
+        n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01
+    )
     sp = SpectralClustering(n_clusters=2, random_state=0)
     labels = sp.fit(X).labels_
     # set n_components = n_cluster and test if result is the same
-    labels_same_ncomp = SpectralClustering(n_clusters=2, n_components=2, random_state=0).fit(X).labels_
+    labels_same_ncomp = (
+        SpectralClustering(n_clusters=2, n_components=2, random_state=0).fit(X).labels_
+    )
     # test that n_components=n_clusters by default
     assert_array_equal(labels, labels_same_ncomp)
 
     # test that n_components affect result
     # n_clusters=8 by default, and set n_components=2
-    labels_diff_ncomp = SpectralClustering(n_components=2, random_state=0).fit(X).labels_
+    labels_diff_ncomp = (
+        SpectralClustering(n_components=2, random_state=0).fit(X).labels_
+    )
     assert not np.array_equal(labels, labels_diff_ncomp)
 
 
 @pytest.mark.parametrize("assign_labels", ("kmeans", "discretize", "cluster_qr"))
 def test_verbose(assign_labels, capsys):
     # Check verbose mode of KMeans for better coverage.
-    X, y = make_blobs(n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01)
+    X, y = make_blobs(
+        n_samples=20, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01
+    )
 
     SpectralClustering(n_clusters=2, random_state=42, verbose=1).fit(X)
 

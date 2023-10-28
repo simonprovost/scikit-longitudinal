@@ -1,47 +1,53 @@
-import warnings
-from itertools import product
-
 import numpy as np
-import pytest
 import scipy.sparse as sp
 from scipy import linalg
-from sklearn_fork import datasets
-from sklearn_fork.datasets import (
-    make_classification,
-    make_low_rank_matrix,
-    make_multilabel_classification,
-    make_regression,
-)
-from sklearn_fork.exceptions import ConvergenceWarning
-from sklearn_fork.linear_model import (
-    LinearRegression,
-    Ridge,
-    RidgeClassifier,
-    RidgeClassifierCV,
-    RidgeCV,
-    ridge_regression,
-)
-from sklearn_fork.linear_model._ridge import (
-    _check_gcv_mode,
-    _RidgeGCV,
-    _solve_cholesky,
-    _solve_cholesky_kernel,
-    _solve_lbfgs,
-    _solve_svd,
-    _X_CenterStackOp,
-)
-from sklearn_fork.metrics import get_scorer, make_scorer, mean_squared_error
-from sklearn_fork.model_selection import GridSearchCV, GroupKFold, KFold, LeaveOneOut, cross_val_predict
-from sklearn_fork.preprocessing import minmax_scale
-from sklearn_fork.utils import _IS_32BIT, check_random_state
-from sklearn_fork.utils._testing import (
-    assert_allclose,
-    assert_almost_equal,
-    assert_array_almost_equal,
-    assert_array_equal,
-    ignore_warnings,
-)
+from itertools import product
+
+import pytest
+import warnings
+
+from sklearn_fork.utils import _IS_32BIT
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import ignore_warnings
 from sklearn_fork.utils.estimator_checks import check_sample_weights_invariance
+
+from sklearn_fork.exceptions import ConvergenceWarning
+
+from sklearn_fork import datasets
+from sklearn_fork.metrics import mean_squared_error
+from sklearn_fork.metrics import make_scorer
+from sklearn_fork.metrics import get_scorer
+
+from sklearn_fork.linear_model import LinearRegression
+from sklearn_fork.linear_model import ridge_regression
+from sklearn_fork.linear_model import Ridge
+from sklearn_fork.linear_model._ridge import _RidgeGCV
+from sklearn_fork.linear_model import RidgeCV
+from sklearn_fork.linear_model import RidgeClassifier
+from sklearn_fork.linear_model import RidgeClassifierCV
+from sklearn_fork.linear_model._ridge import _solve_cholesky
+from sklearn_fork.linear_model._ridge import _solve_cholesky_kernel
+from sklearn_fork.linear_model._ridge import _solve_svd
+from sklearn_fork.linear_model._ridge import _solve_lbfgs
+from sklearn_fork.linear_model._ridge import _check_gcv_mode
+from sklearn_fork.linear_model._ridge import _X_CenterStackOp
+from sklearn_fork.datasets import make_low_rank_matrix
+from sklearn_fork.datasets import make_regression
+from sklearn_fork.datasets import make_classification
+from sklearn_fork.datasets import make_multilabel_classification
+
+from sklearn_fork.model_selection import GridSearchCV
+from sklearn_fork.model_selection import KFold
+from sklearn_fork.model_selection import GroupKFold
+from sklearn_fork.model_selection import cross_val_predict
+from sklearn_fork.model_selection import LeaveOneOut
+
+from sklearn_fork.preprocessing import minmax_scale
+from sklearn_fork.utils import check_random_state
+
 
 SOLVERS = ("svd", "sparse_cg", "cholesky", "lsqr", "sag", "saga")
 SPARSE_SOLVERS_WITH_INTERCEPT = ("sparse_cg", "sag")
@@ -114,7 +120,9 @@ def ols_ridge_dataset(global_random_seed, request):
         n_samples, n_features = 4, 12
     k = min(n_samples, n_features)
     rng = np.random.RandomState(global_random_seed)
-    X = make_low_rank_matrix(n_samples=n_samples, n_features=n_features, effective_rank=k, random_state=rng)
+    X = make_low_rank_matrix(
+        n_samples=n_samples, n_features=n_features, effective_rank=k, random_state=rng
+    )
     X[:, -1] = 1  # last columns acts as intercept
     U, s, Vt = linalg.svd(X)
     assert np.all(s > 1e-3)  # to be sure
@@ -192,7 +200,9 @@ def test_ridge_regression(solver, fit_intercept, ols_ridge_dataset, global_rando
 
 @pytest.mark.parametrize("solver", SOLVERS)
 @pytest.mark.parametrize("fit_intercept", [True, False])
-def test_ridge_regression_hstacked_X(solver, fit_intercept, ols_ridge_dataset, global_random_seed):
+def test_ridge_regression_hstacked_X(
+    solver, fit_intercept, ols_ridge_dataset, global_random_seed
+):
     """Test that Ridge converges for all solvers to correct solution on hstacked data.
 
     We work with a simple constructed data set with known solution.
@@ -230,7 +240,9 @@ def test_ridge_regression_hstacked_X(solver, fit_intercept, ols_ridge_dataset, g
 
 @pytest.mark.parametrize("solver", SOLVERS)
 @pytest.mark.parametrize("fit_intercept", [True, False])
-def test_ridge_regression_vstacked_X(solver, fit_intercept, ols_ridge_dataset, global_random_seed):
+def test_ridge_regression_vstacked_X(
+    solver, fit_intercept, ols_ridge_dataset, global_random_seed
+):
     """Test that Ridge converges for all solvers to correct solution on vstacked data.
 
     We work with a simple constructed data set with known solution.
@@ -270,7 +282,9 @@ def test_ridge_regression_vstacked_X(solver, fit_intercept, ols_ridge_dataset, g
 
 @pytest.mark.parametrize("solver", SOLVERS)
 @pytest.mark.parametrize("fit_intercept", [True, False])
-def test_ridge_regression_unpenalized(solver, fit_intercept, ols_ridge_dataset, global_random_seed):
+def test_ridge_regression_unpenalized(
+    solver, fit_intercept, ols_ridge_dataset, global_random_seed
+):
     """Test that unpenalized Ridge = OLS converges for all solvers to correct solution.
 
     We work with a simple constructed data set with known solution.
@@ -312,7 +326,9 @@ def test_ridge_regression_unpenalized(solver, fit_intercept, ols_ridge_dataset, 
         assert_allclose(model.predict(X), y)
         assert_allclose(X @ coef + intercept, y)
         # But it is not the minimum norm solution. (This should be equal.)
-        assert np.linalg.norm(np.r_[model.intercept_, model.coef_]) > np.linalg.norm(np.r_[intercept, coef])
+        assert np.linalg.norm(np.r_[model.intercept_, model.coef_]) > np.linalg.norm(
+            np.r_[intercept, coef]
+        )
 
         pytest.xfail(reason="Ridge does not provide the minimum norm solution.")
         assert model.intercept_ == pytest.approx(intercept)
@@ -321,7 +337,9 @@ def test_ridge_regression_unpenalized(solver, fit_intercept, ols_ridge_dataset, 
 
 @pytest.mark.parametrize("solver", SOLVERS)
 @pytest.mark.parametrize("fit_intercept", [True, False])
-def test_ridge_regression_unpenalized_hstacked_X(solver, fit_intercept, ols_ridge_dataset, global_random_seed):
+def test_ridge_regression_unpenalized_hstacked_X(
+    solver, fit_intercept, ols_ridge_dataset, global_random_seed
+):
     """Test that unpenalized Ridge = OLS converges for all solvers to correct solution.
 
     We work with a simple constructed data set with known solution.
@@ -363,7 +381,9 @@ def test_ridge_regression_unpenalized_hstacked_X(solver, fit_intercept, ols_ridg
         # a solution to X w = y ....
         assert_allclose(model.predict(X), y)
         # But it is not the minimum norm solution. (This should be equal.)
-        assert np.linalg.norm(np.r_[model.intercept_, model.coef_]) > np.linalg.norm(np.r_[intercept, coef, coef])
+        assert np.linalg.norm(np.r_[model.intercept_, model.coef_]) > np.linalg.norm(
+            np.r_[intercept, coef, coef]
+        )
 
         pytest.xfail(reason="Ridge does not provide the minimum norm solution.")
         assert model.intercept_ == pytest.approx(intercept)
@@ -372,7 +392,9 @@ def test_ridge_regression_unpenalized_hstacked_X(solver, fit_intercept, ols_ridg
 
 @pytest.mark.parametrize("solver", SOLVERS)
 @pytest.mark.parametrize("fit_intercept", [True, False])
-def test_ridge_regression_unpenalized_vstacked_X(solver, fit_intercept, ols_ridge_dataset, global_random_seed):
+def test_ridge_regression_unpenalized_vstacked_X(
+    solver, fit_intercept, ols_ridge_dataset, global_random_seed
+):
     """Test that unpenalized Ridge = OLS converges for all solvers to correct solution.
 
     We work with a simple constructed data set with known solution.
@@ -414,7 +436,9 @@ def test_ridge_regression_unpenalized_vstacked_X(solver, fit_intercept, ols_ridg
         # a solution to X w = y ....
         assert_allclose(model.predict(X), y)
         # But it is not the minimum norm solution. (This should be equal.)
-        assert np.linalg.norm(np.r_[model.intercept_, model.coef_]) > np.linalg.norm(np.r_[intercept, coef])
+        assert np.linalg.norm(np.r_[model.intercept_, model.coef_]) > np.linalg.norm(
+            np.r_[intercept, coef]
+        )
 
         pytest.xfail(reason="Ridge does not provide the minimum norm solution.")
         assert model.intercept_ == pytest.approx(intercept)
@@ -425,7 +449,9 @@ def test_ridge_regression_unpenalized_vstacked_X(solver, fit_intercept, ols_ridg
 @pytest.mark.parametrize("fit_intercept", [True, False])
 @pytest.mark.parametrize("sparseX", [True, False])
 @pytest.mark.parametrize("alpha", [1.0, 1e-2])
-def test_ridge_regression_sample_weights(solver, fit_intercept, sparseX, alpha, ols_ridge_dataset, global_random_seed):
+def test_ridge_regression_sample_weights(
+    solver, fit_intercept, sparseX, alpha, ols_ridge_dataset, global_random_seed
+):
     """Test that Ridge with sample weights gives correct results.
 
     We use the following trick:
@@ -483,7 +509,9 @@ def test_ridge_regression_convergence_fail():
     X = rng.randn(5, 10)
     warning_message = r"sparse_cg did not converge after" r" [0-9]+ iterations."
     with pytest.warns(ConvergenceWarning, match=warning_message):
-        ridge_regression(X, y, alpha=1.0, solver="sparse_cg", tol=0.0, max_iter=None, verbose=1)
+        ridge_regression(
+            X, y, alpha=1.0, solver="sparse_cg", tol=0.0, max_iter=None, verbose=1
+        )
 
 
 def test_ridge_shapes_type():
@@ -567,7 +595,10 @@ def test_ridge_individual_penalties():
     penalties = np.arange(n_targets)
 
     coef_cholesky = np.array(
-        [Ridge(alpha=alpha, solver="cholesky").fit(X, target).coef_ for alpha, target in zip(penalties, y.T)]
+        [
+            Ridge(alpha=alpha, solver="cholesky").fit(X, target).coef_
+            for alpha, target in zip(penalties, y.T)
+        ]
     )
 
     coefs_indiv_pen = [
@@ -666,7 +697,9 @@ def _make_sparse_offset_regression(
     if n_features == 1:
         c = np.asarray([c])
     X += X_offset
-    mask = np.random.RandomState(random_state).binomial(1, proportion_nonzero, X.shape) > 0
+    mask = (
+        np.random.RandomState(random_state).binomial(1, proportion_nonzero, X.shape) > 0
+    )
     removed_X = X.copy()
     X[~mask] = 0.0
     removed_X[mask] = 0.0
@@ -697,7 +730,9 @@ def _make_sparse_offset_regression(
     [(20, "float32", 0.1), (40, "float32", 1.0), (20, "float64", 0.2)],
 )
 @pytest.mark.parametrize("seed", np.arange(3))
-def test_solver_consistency(solver, proportion_nonzero, n_samples, dtype, sparse_X, seed):
+def test_solver_consistency(
+    solver, proportion_nonzero, n_samples, dtype, sparse_X, seed
+):
     alpha = 1.0
     noise = 50.0 if proportion_nonzero > 0.9 else 500.0
     X, y = _make_sparse_offset_regression(
@@ -740,7 +775,9 @@ def test_solver_consistency(solver, proportion_nonzero, n_samples, dtype, sparse
         ((11, 3), 150.0),
     ],
 )
-def test_ridge_gcv_vs_ridge_loo_cv(gcv_mode, X_constructor, X_shape, y_shape, fit_intercept, noise):
+def test_ridge_gcv_vs_ridge_loo_cv(
+    gcv_mode, X_constructor, X_shape, y_shape, fit_intercept, noise
+):
     n_samples, n_features = X_shape
     n_targets = y_shape[-1] if len(y_shape) == 2 else 1
     X, y = _make_sparse_offset_regression(
@@ -793,7 +830,9 @@ def test_ridge_loo_cv_asym_scoring():
     )
 
     alphas = [1e-3, 0.1, 1.0, 10.0, 1e3]
-    loo_ridge = RidgeCV(cv=n_samples, fit_intercept=True, alphas=alphas, scoring=scoring)
+    loo_ridge = RidgeCV(
+        cv=n_samples, fit_intercept=True, alphas=alphas, scoring=scoring
+    )
 
     gcv_ridge = RidgeCV(fit_intercept=True, alphas=alphas, scoring=scoring)
 
@@ -817,7 +856,9 @@ def test_ridge_loo_cv_asym_scoring():
         ((11, 3), False, 30.0),
     ],
 )
-def test_ridge_gcv_sample_weights(gcv_mode, X_constructor, fit_intercept, n_features, y_shape, noise):
+def test_ridge_gcv_sample_weights(
+    gcv_mode, X_constructor, fit_intercept, n_features, y_shape, noise
+):
     alphas = [1e-3, 0.1, 1.0, 10.0, 1e3]
     rng = np.random.RandomState(0)
     n_targets = y_shape[-1] if len(y_shape) == 2 else 1
@@ -851,7 +892,9 @@ def test_ridge_gcv_sample_weights(gcv_mode, X_constructor, fit_intercept, n_feat
     splits = cv.split(X_tiled, y_tiled, groups=indices)
     predictions = cross_val_predict(ridge_reg, X_tiled, y_tiled, cv=splits)
     kfold_errors = (y_tiled - predictions) ** 2
-    kfold_errors = [np.sum(kfold_errors[indices == i], axis=0) for i in np.arange(X.shape[0])]
+    kfold_errors = [
+        np.sum(kfold_errors[indices == i], axis=0) for i in np.arange(X.shape[0])
+    ]
     kfold_errors = np.asarray(kfold_errors)
 
     X_gcv = X_constructor(X)
@@ -883,7 +926,9 @@ def test_ridge_gcv_sample_weights(gcv_mode, X_constructor, fit_intercept, n_feat
         ("svd", "svd", "svd"),
     ],
 )
-def test_check_gcv_mode_choice(sparse, mode, mode_n_greater_than_p, mode_p_greater_than_n):
+def test_check_gcv_mode_choice(
+    sparse, mode, mode_n_greater_than_p, mode_p_greater_than_n
+):
     X, _ = make_regression(n_samples=5, n_features=2)
     if sparse:
         X = sp.csr_matrix(X)
@@ -1017,10 +1062,14 @@ def test_ridge_cv_individual_penalties():
 
     # The resulting regression weights should incorporate the different
     # alpha values.
-    assert_array_almost_equal(Ridge(alpha=ridge_cv.alpha_).fit(X, y).coef_, ridge_cv.coef_)
+    assert_array_almost_equal(
+        Ridge(alpha=ridge_cv.alpha_).fit(X, y).coef_, ridge_cv.coef_
+    )
 
     # Test shape of alpha_ and cv_values_
-    ridge_cv = RidgeCV(alphas=alphas, alpha_per_target=True, store_cv_values=True).fit(X, y)
+    ridge_cv = RidgeCV(alphas=alphas, alpha_per_target=True, store_cv_values=True).fit(
+        X, y
+    )
     assert ridge_cv.alpha_.shape == (n_targets,)
     assert ridge_cv.best_score_.shape == (n_targets,)
     assert ridge_cv.cv_values_.shape == (n_samples, len(alphas), n_targets)
@@ -1032,7 +1081,9 @@ def test_ridge_cv_individual_penalties():
     assert ridge_cv.cv_values_.shape == (n_samples, n_targets, 1)
 
     # Test edge case of there being only one target
-    ridge_cv = RidgeCV(alphas=alphas, alpha_per_target=True, store_cv_values=True).fit(X, y[:, 0])
+    ridge_cv = RidgeCV(alphas=alphas, alpha_per_target=True, store_cv_values=True).fit(
+        X, y[:, 0]
+    )
     assert np.isscalar(ridge_cv.alpha_)
     assert np.isscalar(ridge_cv.best_score_)
     assert ridge_cv.cv_values_.shape == (n_samples, len(alphas))
@@ -1040,7 +1091,9 @@ def test_ridge_cv_individual_penalties():
     # Try with a custom scoring function
     ridge_cv = RidgeCV(alphas=alphas, alpha_per_target=True, scoring="r2").fit(X, y)
     assert_array_equal(optimal_alphas, ridge_cv.alpha_)
-    assert_array_almost_equal(Ridge(alpha=ridge_cv.alpha_).fit(X, y).coef_, ridge_cv.coef_)
+    assert_array_almost_equal(
+        Ridge(alpha=ridge_cv.alpha_).fit(X, y).coef_, ridge_cv.coef_
+    )
 
     # Using a custom CV object should throw an error in combination with
     # alpha_per_target=True
@@ -1235,7 +1288,9 @@ def test_class_weights_cv():
     assert_array_equal(reg.predict([[-0.2, 2]]), np.array([-1]))
 
 
-@pytest.mark.parametrize("scoring", [None, "neg_mean_squared_error", _mean_squared_error_callable])
+@pytest.mark.parametrize(
+    "scoring", [None, "neg_mean_squared_error", _mean_squared_error_callable]
+)
 def test_ridgecv_store_cv_values(scoring):
     rng = np.random.RandomState(42)
 
@@ -1276,7 +1331,9 @@ def test_ridge_classifier_cv_store_cv_values(scoring):
 
     scoring_ = make_scorer(scoring) if callable(scoring) else scoring
 
-    r = RidgeClassifierCV(alphas=alphas, cv=None, store_cv_values=True, scoring=scoring_)
+    r = RidgeClassifierCV(
+        alphas=alphas, cv=None, store_cv_values=True, scoring=scoring_
+    )
 
     # with len(y.shape) == 1
     n_targets = 1
@@ -1284,7 +1341,9 @@ def test_ridge_classifier_cv_store_cv_values(scoring):
     assert r.cv_values_.shape == (n_samples, n_targets, n_alphas)
 
     # with len(y.shape) == 2
-    y = np.array([[1, 1, 1, -1, -1], [1, -1, 1, -1, 1], [-1, -1, 1, -1, -1]]).transpose()
+    y = np.array(
+        [[1, 1, 1, -1, -1], [1, -1, 1, -1, 1], [-1, -1, 1, -1, -1]]
+    ).transpose()
     n_targets = y.shape[1]
     r.fit(x, y)
     assert r.cv_values_.shape == (n_samples, n_targets, n_alphas)
@@ -1303,7 +1362,9 @@ def test_ridgecv_alphas_conversion(Estimator):
     X = rng.randn(n_samples, n_features)
 
     ridge_est = Estimator(alphas=alphas)
-    assert ridge_est.alphas is alphas, f"`alphas` was mutated in `{Estimator.__name__}.__init__`"
+    assert (
+        ridge_est.alphas is alphas
+    ), f"`alphas` was mutated in `{Estimator.__name__}.__init__`"
 
     ridge_est.fit(X, y)
     assert_array_equal(ridge_est.alphas, np.asarray(alphas))
@@ -1465,7 +1526,10 @@ def test_raises_value_error_if_solver_not_supported():
     wrong_solver = "This is not a solver (MagritteSolveCV QuantumBitcoin)"
 
     exception = ValueError
-    message = "Known solvers are 'sparse_cg', 'cholesky', 'svd' 'lsqr', 'sag' or 'saga'. Got %s." % wrong_solver
+    message = (
+        "Known solvers are 'sparse_cg', 'cholesky', 'svd'"
+        " 'lsqr', 'sag' or 'saga'. Got %s." % wrong_solver
+    )
 
     def func():
         X = np.eye(3)
@@ -1515,7 +1579,9 @@ def test_ridge_fit_intercept_sparse(solver, with_sample_weight, global_random_se
     test_ridge_fit_intercept_sparse_error
     """
     positive = solver == "lbfgs"
-    X, y = _make_sparse_offset_regression(n_features=20, random_state=global_random_seed, positive=positive)
+    X, y = _make_sparse_offset_regression(
+        n_features=20, random_state=global_random_seed, positive=positive
+    )
 
     sample_weight = None
     if with_sample_weight:
@@ -1549,7 +1615,9 @@ def test_ridge_fit_intercept_sparse_error(solver):
 
 @pytest.mark.parametrize("with_sample_weight", [True, False])
 def test_ridge_fit_intercept_sparse_sag(with_sample_weight, global_random_seed):
-    X, y = _make_sparse_offset_regression(n_features=5, n_samples=20, random_state=global_random_seed, X_offset=5.0)
+    X, y = _make_sparse_offset_regression(
+        n_features=5, n_samples=20, random_state=global_random_seed, X_offset=5.0
+    )
     if with_sample_weight:
         rng = np.random.RandomState(global_random_seed)
         sample_weight = 1.0 + rng.uniform(size=X.shape[0])
@@ -1557,7 +1625,9 @@ def test_ridge_fit_intercept_sparse_sag(with_sample_weight, global_random_seed):
         sample_weight = None
     X_csr = sp.csr_matrix(X)
 
-    params = dict(alpha=1.0, solver="sag", fit_intercept=True, tol=1e-10, max_iter=100000)
+    params = dict(
+        alpha=1.0, solver="sag", fit_intercept=True, tol=1e-10, max_iter=100000
+    )
     dense_ridge = Ridge(**params)
     sparse_ridge = Ridge(**params)
     dense_ridge.fit(X, y, sample_weight=sample_weight)
@@ -1573,8 +1643,12 @@ def test_ridge_fit_intercept_sparse_sag(with_sample_weight, global_random_seed):
 @pytest.mark.parametrize("return_intercept", [False, True])
 @pytest.mark.parametrize("sample_weight", [None, np.ones(1000)])
 @pytest.mark.parametrize("arr_type", [np.array, sp.csr_matrix])
-@pytest.mark.parametrize("solver", ["auto", "sparse_cg", "cholesky", "lsqr", "sag", "saga", "lbfgs"])
-def test_ridge_regression_check_arguments_validity(return_intercept, sample_weight, arr_type, solver):
+@pytest.mark.parametrize(
+    "solver", ["auto", "sparse_cg", "cholesky", "lsqr", "sag", "saga", "lbfgs"]
+)
+def test_ridge_regression_check_arguments_validity(
+    return_intercept, sample_weight, arr_type, solver
+):
     """check if all combinations of arguments give valid estimations"""
 
     # test excludes 'svd' solver because it raises exception for sparse inputs
@@ -1627,7 +1701,9 @@ def test_ridge_regression_check_arguments_validity(return_intercept, sample_weig
         assert_allclose(out, true_coefs, rtol=0, atol=atol)
 
 
-@pytest.mark.parametrize("solver", ["svd", "sparse_cg", "cholesky", "lsqr", "sag", "saga", "lbfgs"])
+@pytest.mark.parametrize(
+    "solver", ["svd", "sparse_cg", "cholesky", "lsqr", "sag", "saga", "lbfgs"]
+)
 def test_dtype_match(solver):
     rng = np.random.RandomState(0)
     alpha = 1.0
@@ -1641,12 +1717,16 @@ def test_dtype_match(solver):
 
     tol = 2 * np.finfo(np.float32).resolution
     # Check type consistency 32bits
-    ridge_32 = Ridge(alpha=alpha, solver=solver, max_iter=500, tol=tol, positive=positive)
+    ridge_32 = Ridge(
+        alpha=alpha, solver=solver, max_iter=500, tol=tol, positive=positive
+    )
     ridge_32.fit(X_32, y_32)
     coef_32 = ridge_32.coef_
 
     # Check type consistency 64 bits
-    ridge_64 = Ridge(alpha=alpha, solver=solver, max_iter=500, tol=tol, positive=positive)
+    ridge_64 = Ridge(
+        alpha=alpha, solver=solver, max_iter=500, tol=tol, positive=positive
+    )
     ridge_64.fit(X_64, y_64)
     coef_64 = ridge_64.coef_
 
@@ -1688,7 +1768,9 @@ def test_dtype_match_cholesky():
     assert_almost_equal(ridge_32.coef_, ridge_64.coef_, decimal=5)
 
 
-@pytest.mark.parametrize("solver", ["svd", "cholesky", "lsqr", "sparse_cg", "sag", "saga", "lbfgs"])
+@pytest.mark.parametrize(
+    "solver", ["svd", "cholesky", "lsqr", "sparse_cg", "sag", "saga", "lbfgs"]
+)
 @pytest.mark.parametrize("seed", range(1))
 def test_ridge_regression_dtype_stability(solver, seed):
     random_state = np.random.RandomState(seed)
@@ -1767,7 +1849,9 @@ def test_ridge_positive_regression_test(solver, fit_intercept, alpha):
     else:
         y = X.dot(coef)
 
-    model = Ridge(alpha=alpha, positive=True, solver=solver, fit_intercept=fit_intercept)
+    model = Ridge(
+        alpha=alpha, positive=True, solver=solver, fit_intercept=fit_intercept
+    )
     model.fit(X, y)
     assert np.all(model.coef_ >= 0)
 
@@ -1792,12 +1876,16 @@ def test_ridge_ground_truth_positive_test(fit_intercept, alpha):
 
     results = []
     for positive in [True, False]:
-        model = Ridge(alpha=alpha, positive=positive, fit_intercept=fit_intercept, tol=1e-10)
+        model = Ridge(
+            alpha=alpha, positive=positive, fit_intercept=fit_intercept, tol=1e-10
+        )
         results.append(model.fit(X, y).coef_)
     assert_allclose(*results, atol=1e-6, rtol=0)
 
 
-@pytest.mark.parametrize("solver", ["svd", "cholesky", "lsqr", "sparse_cg", "sag", "saga"])
+@pytest.mark.parametrize(
+    "solver", ["svd", "cholesky", "lsqr", "sparse_cg", "sag", "saga"]
+)
 def test_ridge_positive_error_test(solver):
     """Test input validation for positive argument in Ridge."""
     alpha = 0.1
@@ -1810,7 +1898,9 @@ def test_ridge_positive_error_test(solver):
         model.fit(X, y)
 
     with pytest.raises(ValueError, match="only 'lbfgs' solver can be used"):
-        _, _ = ridge_regression(X, y, alpha, positive=True, solver=solver, return_intercept=False)
+        _, _ = ridge_regression(
+            X, y, alpha, positive=True, solver=solver, return_intercept=False
+        )
 
 
 @pytest.mark.parametrize("alpha", [1e-3, 1e-2, 0.1, 1.0])
@@ -1828,7 +1918,9 @@ def test_positive_ridge_loss(alpha):
         else:
             coef = model.coef_
 
-        return 0.5 * np.sum((y - X @ coef - intercept) ** 2) + 0.5 * alpha * np.sum(coef**2)
+        return 0.5 * np.sum((y - X @ coef - intercept) ** 2) + 0.5 * alpha * np.sum(
+            coef**2
+        )
 
     model = Ridge(alpha=alpha).fit(X, y)
     model_positive = Ridge(alpha=alpha, positive=True).fit(X, y)
@@ -1883,7 +1975,9 @@ def test_lbfgs_solver_error():
         model.fit(X, y)
 
 
-@pytest.mark.parametrize("solver", ["cholesky", "lsqr", "sparse_cg", "svd", "sag", "saga", "lbfgs"])
+@pytest.mark.parametrize(
+    "solver", ["cholesky", "lsqr", "sparse_cg", "svd", "sag", "saga", "lbfgs"]
+)
 def test_ridge_sample_weight_invariance(solver):
     """Test that Ridge fulfils sample weight invariance.
 

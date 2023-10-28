@@ -7,20 +7,16 @@
 # License: BSD
 
 import numpy as np
-
 cimport numpy as cnp
 
 cnp.import_array()  # required in order to use C-API
 
-from libc.math cimport asin, cos, exp, fabs, pow, sin, sqrt
+from libc.math cimport fabs, sqrt, exp, pow, cos, sin, asin
 
 from scipy.sparse import csr_matrix, issparse
-
-from ..utils._typedefs cimport float32_t, float64_t, int32_t, intp_t
-
+from ..utils._typedefs cimport float64_t, float32_t, int32_t, intp_t
 from ..utils import check_array
 from ..utils.fixes import parse_version, sp_base_version
-
 
 cdef inline double fmax(double a, double b) noexcept nogil:
     return max(a, b)

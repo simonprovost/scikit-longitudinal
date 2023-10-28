@@ -2,26 +2,28 @@ import warnings
 
 import numpy as np
 import pytest
-from numpy.testing import assert_allclose, assert_array_almost_equal, assert_array_equal
-from sklearn_fork.metrics.cluster import (
-    adjusted_mutual_info_score,
-    adjusted_rand_score,
-    completeness_score,
-    contingency_matrix,
-    entropy,
-    expected_mutual_information,
-    fowlkes_mallows_score,
-    homogeneity_completeness_v_measure,
-    homogeneity_score,
-    mutual_info_score,
-    normalized_mutual_info_score,
-    pair_confusion_matrix,
-    rand_score,
-    v_measure_score,
-)
-from sklearn_fork.metrics.cluster._supervised import _generalized_average, check_clusterings
+
+from sklearn_fork.metrics.cluster import adjusted_mutual_info_score
+from sklearn_fork.metrics.cluster import adjusted_rand_score
+from sklearn_fork.metrics.cluster import rand_score
+from sklearn_fork.metrics.cluster import completeness_score
+from sklearn_fork.metrics.cluster import contingency_matrix
+from sklearn_fork.metrics.cluster import pair_confusion_matrix
+from sklearn_fork.metrics.cluster import entropy
+from sklearn_fork.metrics.cluster import expected_mutual_information
+from sklearn_fork.metrics.cluster import fowlkes_mallows_score
+from sklearn_fork.metrics.cluster import homogeneity_completeness_v_measure
+from sklearn_fork.metrics.cluster import homogeneity_score
+from sklearn_fork.metrics.cluster import mutual_info_score
+from sklearn_fork.metrics.cluster import normalized_mutual_info_score
+from sklearn_fork.metrics.cluster import v_measure_score
+from sklearn_fork.metrics.cluster._supervised import _generalized_average
+from sklearn_fork.metrics.cluster._supervised import check_clusterings
+
 from sklearn_fork.utils import assert_all_finite
 from sklearn_fork.utils._testing import assert_almost_equal
+from numpy.testing import assert_array_equal, assert_array_almost_equal, assert_allclose
+
 
 score_funcs = [
     adjusted_rand_score,
@@ -36,7 +38,9 @@ score_funcs = [
 
 def test_error_messages_on_wrong_input():
     for score_func in score_funcs:
-        expected = r"Found input variables with inconsistent numbers " r"of samples: \[2, 3\]"
+        expected = (
+            r"Found input variables with inconsistent numbers " r"of samples: \[2, 3\]"
+        )
         with pytest.raises(ValueError, match=expected):
             score_func([0, 1], [1, 1, 1])
 
@@ -77,11 +81,21 @@ def test_perfect_matches():
         for mean in means:
             assert score_func([], [], average_method=mean) == pytest.approx(1.0)
             assert score_func([0], [1], average_method=mean) == pytest.approx(1.0)
-            assert score_func([0, 0, 0], [0, 0, 0], average_method=mean) == pytest.approx(1.0)
-            assert score_func([0, 1, 0], [42, 7, 42], average_method=mean) == pytest.approx(1.0)
-            assert score_func([0.0, 1.0, 0.0], [42.0, 7.0, 42.0], average_method=mean) == pytest.approx(1.0)
-            assert score_func([0.0, 1.0, 2.0], [42.0, 7.0, 2.0], average_method=mean) == pytest.approx(1.0)
-            assert score_func([0, 1, 2], [42, 7, 2], average_method=mean) == pytest.approx(1.0)
+            assert score_func(
+                [0, 0, 0], [0, 0, 0], average_method=mean
+            ) == pytest.approx(1.0)
+            assert score_func(
+                [0, 1, 0], [42, 7, 42], average_method=mean
+            ) == pytest.approx(1.0)
+            assert score_func(
+                [0.0, 1.0, 0.0], [42.0, 7.0, 42.0], average_method=mean
+            ) == pytest.approx(1.0)
+            assert score_func(
+                [0.0, 1.0, 2.0], [42.0, 7.0, 2.0], average_method=mean
+            ) == pytest.approx(1.0)
+            assert score_func(
+                [0, 1, 2], [42, 7, 2], average_method=mean
+            ) == pytest.approx(1.0)
 
 
 def test_homogeneous_but_not_complete_labeling():
@@ -117,7 +131,9 @@ def test_beta_parameter():
     c_test = 0.42
     v_test = (1 + beta_test) * h_test * c_test / (beta_test * h_test + c_test)
 
-    h, c, v = homogeneity_completeness_v_measure([0, 0, 0, 1, 1, 1], [0, 1, 0, 1, 2, 2], beta=beta_test)
+    h, c, v = homogeneity_completeness_v_measure(
+        [0, 0, 0, 1, 1, 1], [0, 1, 0, 1, 2, 2], beta=beta_test
+    )
     assert_almost_equal(h, h_test, 2)
     assert_almost_equal(c, c_test, 2)
     assert_almost_equal(v, v_test, 2)
@@ -167,7 +183,9 @@ def test_adjustment_for_chance():
     n_samples = 100
     n_runs = 10
 
-    scores = uniform_labelings_scores(adjusted_rand_score, n_samples, n_clusters_range, n_runs)
+    scores = uniform_labelings_scores(
+        adjusted_rand_score, n_samples, n_clusters_range, n_runs
+    )
 
     max_abs_scores = np.abs(scores).max(axis=1)
     assert_array_almost_equal(max_abs_scores, [0.02, 0.03, 0.03, 0.02], 2)
@@ -212,7 +230,13 @@ def test_expected_mutual_info_overflow():
 
 def test_int_overflow_mutual_info_fowlkes_mallows_score():
     # Test overflow in mutual_info_classif and fowlkes_mallows_score
-    x = np.array([1] * (52632 + 2529) + [2] * (14660 + 793) + [3] * (3271 + 204) + [4] * (814 + 39) + [5] * (316 + 20))
+    x = np.array(
+        [1] * (52632 + 2529)
+        + [2] * (14660 + 793)
+        + [3] * (3271 + 204)
+        + [4] * (814 + 39)
+        + [5] * (316 + 20)
+    )
     y = np.array(
         [0] * 52632
         + [1] * 2529
@@ -266,8 +290,12 @@ def test_exactly_zero_info_score():
         assert adjusted_mutual_info_score(labels_a, labels_b) == pytest.approx(0.0)
         assert normalized_mutual_info_score(labels_a, labels_b) == pytest.approx(0.0)
         for method in ["min", "geometric", "arithmetic", "max"]:
-            assert adjusted_mutual_info_score(labels_a, labels_b, average_method=method) == pytest.approx(0.0)
-            assert normalized_mutual_info_score(labels_a, labels_b, average_method=method) == pytest.approx(0.0)
+            assert adjusted_mutual_info_score(
+                labels_a, labels_b, average_method=method
+            ) == pytest.approx(0.0)
+            assert normalized_mutual_info_score(
+                labels_a, labels_b, average_method=method
+            ) == pytest.approx(0.0)
 
 
 def test_v_measure_and_mutual_information(seed=36):
@@ -280,7 +308,9 @@ def test_v_measure_and_mutual_information(seed=36):
         )
         assert_almost_equal(
             v_measure_score(labels_a, labels_b),
-            2.0 * mutual_info_score(labels_a, labels_b) / (entropy(labels_a) + entropy(labels_b)),
+            2.0
+            * mutual_info_score(labels_a, labels_b)
+            / (entropy(labels_a) + entropy(labels_b)),
             0,
         )
         avg = "arithmetic"

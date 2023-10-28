@@ -19,21 +19,24 @@ features (words) may appear in each batch.
 # License: BSD 3 clause
 
 import itertools
+from pathlib import Path
+from hashlib import sha256
 import re
-import sys
 import tarfile
 import time
-from hashlib import sha256
-from html.parser import HTMLParser
-from pathlib import Path
-from urllib.request import urlretrieve
+import sys
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from matplotlib import rcParams
+
+from html.parser import HTMLParser
+from urllib.request import urlretrieve
 from sklearn_fork.datasets import get_data_home
 from sklearn_fork.feature_extraction.text import HashingVectorizer
-from sklearn_fork.linear_model import PassiveAggressiveClassifier, Perceptron, SGDClassifier
+from sklearn_fork.linear_model import SGDClassifier
+from sklearn_fork.linear_model import PassiveAggressiveClassifier
+from sklearn_fork.linear_model import Perceptron
 from sklearn_fork.naive_bayes import MultinomialNB
 
 
@@ -99,7 +102,9 @@ class ReutersParser(HTMLParser):
 
     def end_reuters(self):
         self.body = re.sub(r"\s+", r" ", self.body)
-        self.docs.append({"title": self.title, "body": self.body, "topics": self.topics})
+        self.docs.append(
+            {"title": self.title, "body": self.body, "topics": self.topics}
+        )
         self._reset()
 
     def start_title(self, attributes):
@@ -140,7 +145,10 @@ def stream_reuters_documents(data_path=None):
 
     """
 
-    DOWNLOAD_URL = "http://archive.ics.uci.edu/ml/machine-learning-databases/reuters21578-mld/reuters21578.tar.gz"
+    DOWNLOAD_URL = (
+        "http://archive.ics.uci.edu/ml/machine-learning-databases/"
+        "reuters21578-mld/reuters21578.tar.gz"
+    )
     ARCHIVE_SHA256 = "3bae43c9b14e387f76a61b6d82bf98a4fb5d3ef99ef7e7075ff2ccbcf59f9d30"
     ARCHIVE_FILENAME = "reuters21578.tar.gz"
 
@@ -185,7 +193,9 @@ def stream_reuters_documents(data_path=None):
 # Create the vectorizer and limit the number of features to a reasonable
 # maximum
 
-vectorizer = HashingVectorizer(decode_error="ignore", n_features=2**18, alternate_sign=False)
+vectorizer = HashingVectorizer(
+    decode_error="ignore", n_features=2**18, alternate_sign=False
+)
 
 
 # Iterator over parsed Reuters SGML files.

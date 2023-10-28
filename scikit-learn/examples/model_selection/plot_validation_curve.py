@@ -15,9 +15,10 @@ is good but the validation score is poor.
 
 import matplotlib.pyplot as plt
 import numpy as np
+
 from sklearn_fork.datasets import load_digits
-from sklearn_fork.model_selection import validation_curve
 from sklearn_fork.svm import SVC
+from sklearn_fork.model_selection import validation_curve
 
 X, y = load_digits(return_X_y=True)
 subset_mask = np.isin(y, [1, 2])  # binary classification: 1 vs 2
@@ -43,7 +44,9 @@ plt.xlabel(r"$\gamma$")
 plt.ylabel("Score")
 plt.ylim(0.0, 1.1)
 lw = 2
-plt.semilogx(param_range, train_scores_mean, label="Training score", color="darkorange", lw=lw)
+plt.semilogx(
+    param_range, train_scores_mean, label="Training score", color="darkorange", lw=lw
+)
 plt.fill_between(
     param_range,
     train_scores_mean - train_scores_std,
@@ -52,7 +55,9 @@ plt.fill_between(
     color="darkorange",
     lw=lw,
 )
-plt.semilogx(param_range, test_scores_mean, label="Cross-validation score", color="navy", lw=lw)
+plt.semilogx(
+    param_range, test_scores_mean, label="Cross-validation score", color="navy", lw=lw
+)
 plt.fill_between(
     param_range,
     test_scores_mean - test_scores_std,

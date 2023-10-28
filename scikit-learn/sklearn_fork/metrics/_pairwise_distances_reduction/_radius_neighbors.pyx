@@ -3,26 +3,22 @@
 # Changes must be made there.
 
 cimport numpy as cnp
-
+import numpy as np
 import warnings
 
-import numpy as np
-
+from libcpp.memory cimport shared_ptr, make_shared
+from libcpp.vector cimport vector
 from cython cimport final
 from cython.operator cimport dereference as deref
 from cython.parallel cimport parallel, prange
-from libcpp.memory cimport make_shared, shared_ptr
-from libcpp.vector cimport vector
 
 from ...utils._sorting cimport simultaneous_sort
-from ...utils._typedefs cimport float64_t, intp_t
+from ...utils._typedefs cimport intp_t, float64_t
 from ...utils._vector_sentinel cimport vector_to_nd_array
 
 from numbers import Real
-
 from scipy.sparse import issparse
-
-from ...utils import _in_unstable_openblas_configuration, check_array, check_scalar
+from ...utils import check_array, check_scalar, _in_unstable_openblas_configuration
 from ...utils.fixes import threadpool_limits
 
 cnp.import_array()
@@ -50,8 +46,13 @@ cdef cnp.ndarray[object, ndim=1] coerce_vectors_to_nd_arrays(
 
 #####################
 
-from ._base cimport BaseDistancesReduction64, _sqeuclidean_row_norms64
+from ._base cimport (
+    BaseDistancesReduction64,
+    _sqeuclidean_row_norms64
+)
+
 from ._datasets_pair cimport DatasetsPair64
+
 from ._middle_term_computer cimport MiddleTermComputer64
 
 
@@ -516,8 +517,13 @@ cdef class EuclideanRadiusNeighbors64(RadiusNeighbors64):
                     deref(self.neigh_distances_chunks[thread_num])[i + X_start].push_back(sqeuclidean_dist_i_j)
                     deref(self.neigh_indices_chunks[thread_num])[i + X_start].push_back(j + Y_start)
 
-from ._base cimport BaseDistancesReduction32, _sqeuclidean_row_norms32
+from ._base cimport (
+    BaseDistancesReduction32,
+    _sqeuclidean_row_norms32
+)
+
 from ._datasets_pair cimport DatasetsPair32
+
 from ._middle_term_computer cimport MiddleTermComputer32
 
 

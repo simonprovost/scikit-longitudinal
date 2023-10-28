@@ -2,11 +2,15 @@ import numpy as np
 import pytest
 from numpy.testing import assert_allclose
 from scipy import sparse
+
 from sklearn_fork.datasets import make_blobs
 from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.tree import DecisionTreeClassifier
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_almost_equal
-from sklearn_fork.utils.class_weight import compute_class_weight, compute_sample_weight
+
+from sklearn_fork.utils.class_weight import compute_class_weight
+from sklearn_fork.utils.class_weight import compute_sample_weight
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_almost_equal
 
 
 def test_compute_class_weight():
@@ -29,7 +33,9 @@ def test_compute_class_weight_not_present():
         compute_class_weight("balanced", classes=classes, y=y)
     # Fix exception in error message formatting when missing label is a string
     # https://github.com/scikit-learn/scikit-learn/issues/8312
-    with pytest.raises(ValueError, match=r"The classes, \[0, 1, 2, 3\], are not in class_weight"):
+    with pytest.raises(
+        ValueError, match=r"The classes, \[0, 1, 2, 3\], are not in class_weight"
+    ):
         compute_class_weight({"label_not_present": 1.0}, classes=classes, y=y)
     # Raise error when y has items not in classes
     classes = np.arange(2)
@@ -168,7 +174,9 @@ def test_compute_sample_weight():
     # Test with unbalanced classes
     y = np.asarray([1, 1, 1, 2, 2, 2, 3])
     sample_weight = compute_sample_weight("balanced", y)
-    expected_balanced = np.array([0.7777, 0.7777, 0.7777, 0.7777, 0.7777, 0.7777, 2.3333])
+    expected_balanced = np.array(
+        [0.7777, 0.7777, 0.7777, 0.7777, 0.7777, 0.7777, 2.3333]
+    )
     assert_array_almost_equal(sample_weight, expected_balanced, decimal=4)
 
     # Test with `None` weights

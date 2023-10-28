@@ -1,8 +1,10 @@
 import numpy as np
 import pytest
+
 from sklearn_fork import config_context
 from sklearn_fork.impute import KNNImputer
-from sklearn_fork.metrics.pairwise import nan_euclidean_distances, pairwise_distances
+from sklearn_fork.metrics.pairwise import nan_euclidean_distances
+from sklearn_fork.metrics.pairwise import pairwise_distances
 from sklearn_fork.neighbors import KNeighborsRegressor
 from sklearn_fork.utils._testing import assert_allclose
 
@@ -144,7 +146,9 @@ def test_knn_imputer_zero_nan_imputes_the_same(na):
     imputer_nan = KNNImputer(missing_values=na, n_neighbors=2, weights="uniform")
 
     assert_allclose(imputer_zero.fit_transform(X_zero), X_imputed)
-    assert_allclose(imputer_zero.fit_transform(X_zero), imputer_nan.fit_transform(X_nan))
+    assert_allclose(
+        imputer_zero.fit_transform(X_zero), imputer_nan.fit_transform(X_nan)
+    )
 
 
 @pytest.mark.parametrize("na", [np.nan, -1])
@@ -253,7 +257,9 @@ def test_knn_imputer_weight_uniform(na):
     X = np.array([[0, 0], [na, 2], [4, 3], [5, 6], [7, 7], [9, 8], [11, 10]])
 
     # Test with "uniform" weight (or unweighted)
-    X_imputed_uniform = np.array([[0, 0], [5, 2], [4, 3], [5, 6], [7, 7], [9, 8], [11, 10]])
+    X_imputed_uniform = np.array(
+        [[0, 0], [5, 2], [4, 3], [5, 6], [7, 7], [9, 8], [11, 10]]
+    )
 
     imputer = KNNImputer(weights="uniform", missing_values=na)
     assert_allclose(imputer.fit_transform(X), X_imputed_uniform)
@@ -289,10 +295,14 @@ def test_knn_imputer_weight_distance(na):
     weights = 1 / dist[:, X_neighbors_idx].ravel()
     manual_imputed_value = np.average(X[X_neighbors_idx, 0], weights=weights)
 
-    X_imputed_distance1 = np.array([[0, 0], [manual_imputed_value, 2], [4, 3], [5, 6], [7, 7], [9, 8], [11, 10]])
+    X_imputed_distance1 = np.array(
+        [[0, 0], [manual_imputed_value, 2], [4, 3], [5, 6], [7, 7], [9, 8], [11, 10]]
+    )
 
     # NearestNeighbor calculation
-    X_imputed_distance2 = np.array([[0, 0], [knn_imputed_value, 2], [4, 3], [5, 6], [7, 7], [9, 8], [11, 10]])
+    X_imputed_distance2 = np.array(
+        [[0, 0], [knn_imputed_value, 2], [4, 3], [5, 6], [7, 7], [9, 8], [11, 10]]
+    )
 
     imputer = KNNImputer(weights="distance", missing_values=na)
     assert_allclose(imputer.fit_transform(X), X_imputed_distance1)
@@ -385,7 +395,9 @@ def test_knn_imputer_weight_distance(na):
         ]
     )
 
-    dist = pairwise_distances(X, metric="nan_euclidean", squared=False, missing_values=na)
+    dist = pairwise_distances(
+        X, metric="nan_euclidean", squared=False, missing_values=na
+    )
 
     # Calculate weights
     r0c3_w = 1.0 / dist[0, 2:-1]
@@ -428,7 +440,9 @@ def test_knn_imputer_callable_metric():
 
     X_0_3 = (9 + 9) / 2
     X_3_0 = (6 + 4) / 2
-    X_imputed = np.array([[4, 3, 3, X_0_3], [6, 9, 6, 9], [4, 8, 6, 9], [X_3_0, 9, 11, 10.0]])
+    X_imputed = np.array(
+        [[4, 3, 3, X_0_3], [6, 9, 6, 9], [4, 8, 6, 9], [X_3_0, 9, 11, 10.0]]
+    )
 
     imputer = KNNImputer(n_neighbors=2, metric=custom_callable)
     assert_allclose(imputer.fit_transform(X), X_imputed)
@@ -509,7 +523,9 @@ def test_knn_imputer_drops_all_nan_features(na):
 def test_knn_imputer_distance_weighted_not_enough_neighbors(na, working_memory):
     X = np.array([[3, na], [2, na], [na, 4], [5, 6], [6, 8], [na, 5]])
 
-    dist = pairwise_distances(X, metric="nan_euclidean", squared=False, missing_values=na)
+    dist = pairwise_distances(
+        X, metric="nan_euclidean", squared=False, missing_values=na
+    )
 
     X_01 = np.average(X[3:5, 1], weights=1 / dist[0, 3:5])
     X_11 = np.average(X[3:5, 1], weights=1 / dist[1, 3:5])

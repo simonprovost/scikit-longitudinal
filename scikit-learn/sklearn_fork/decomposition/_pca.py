@@ -15,17 +15,19 @@ from numbers import Integral, Real
 
 import numpy as np
 from scipy import linalg
+from scipy.special import gammaln
 from scipy.sparse import issparse
 from scipy.sparse.linalg import svds
-from scipy.special import gammaln
 
+from ._base import _BasePCA
 from ..utils import check_random_state
 from ..utils._arpack import _init_arpack_v0
-from ..utils._param_validation import Interval, RealNotInt, StrOptions
 from ..utils.deprecation import deprecated
-from ..utils.extmath import fast_logdet, randomized_svd, stable_cumsum, svd_flip
+from ..utils.extmath import fast_logdet, randomized_svd, svd_flip
+from ..utils.extmath import stable_cumsum
 from ..utils.validation import check_is_fitted
-from ._base import _BasePCA
+from ..utils._param_validation import Interval, StrOptions
+from ..utils._param_validation import RealNotInt
 
 
 def _assess_dimension(spectrum, rank, n_samples):
@@ -74,7 +76,10 @@ def _assess_dimension(spectrum, rank, n_samples):
 
     pu = -rank * log(2.0)
     for i in range(1, rank + 1):
-        pu += gammaln((n_features - i + 1) / 2.0) - log(np.pi) * (n_features - i + 1) / 2.0
+        pu += (
+            gammaln((n_features - i + 1) / 2.0)
+            - log(np.pi) * (n_features - i + 1) / 2.0
+        )
 
     pl = np.sum(np.log(spectrum[:rank]))
     pl = -pl * n_samples / 2.0
@@ -90,7 +95,9 @@ def _assess_dimension(spectrum, rank, n_samples):
     spectrum_[rank:n_features] = v
     for i in range(rank):
         for j in range(i + 1, len(spectrum)):
-            pa += log((spectrum[i] - spectrum[j]) * (1.0 / spectrum_[j] - 1.0 / spectrum_[i])) + log(n_samples)
+            pa += log(
+                (spectrum[i] - spectrum[j]) * (1.0 / spectrum_[j] - 1.0 / spectrum_[i])
+            ) + log(n_samples)
 
     ll = pu + pl + pv + pp - pa / 2.0 - rank * log(n_samples) / 2.0
 
@@ -471,9 +478,14 @@ class PCA(_BasePCA):
         # Raise an error for sparse input.
         # This is more informative than the generic one raised by check_array.
         if issparse(X):
-            raise TypeError("PCA does not support sparse input. See TruncatedSVD for a possible alternative.")
+            raise TypeError(
+                "PCA does not support sparse input. See "
+                "TruncatedSVD for a possible alternative."
+            )
 
-        X = self._validate_data(X, dtype=[np.float64, np.float32], ensure_2d=True, copy=self.copy)
+        X = self._validate_data(
+            X, dtype=[np.float64, np.float32], ensure_2d=True, copy=self.copy
+        )
 
         # Handle n_components==None
         if self.n_components is None:
@@ -508,11 +520,14 @@ class PCA(_BasePCA):
 
         if n_components == "mle":
             if n_samples < n_features:
-                raise ValueError("n_components='mle' is only supported if n_samples >= n_features")
+                raise ValueError(
+                    "n_components='mle' is only supported if n_samples >= n_features"
+                )
         elif not 0 <= n_components <= min(n_samples, n_features):
             raise ValueError(
-                "n_components=%r must be between 0 and min(n_samples, n_features)=%r with svd_solver='full'"
-                % (n_components, min(n_samples, n_features))
+                "n_components=%r must be between 0 and "
+                "min(n_samples, n_features)=%r with "
+                "svd_solver='full'" % (n_components, min(n_samples, n_features))
             )
 
         # Center data
@@ -565,15 +580,22 @@ class PCA(_BasePCA):
         n_samples, n_features = X.shape
 
         if isinstance(n_components, str):
-            raise ValueError("n_components=%r cannot be a string with svd_solver='%s'" % (n_components, svd_solver))
+            raise ValueError(
+                "n_components=%r cannot be a string with svd_solver='%s'"
+                % (n_components, svd_solver)
+            )
         elif not 1 <= n_components <= min(n_samples, n_features):
             raise ValueError(
-                "n_components=%r must be between 1 and min(n_samples, n_features)=%r with svd_solver='%s'"
+                "n_components=%r must be between 1 and "
+                "min(n_samples, n_features)=%r with "
+                "svd_solver='%s'"
                 % (n_components, min(n_samples, n_features), svd_solver)
             )
         elif svd_solver == "arpack" and n_components == min(n_samples, n_features):
             raise ValueError(
-                "n_components=%r must be strictly less than min(n_samples, n_features)=%r with svd_solver='%s'"
+                "n_components=%r must be strictly less than "
+                "min(n_samples, n_features)=%r with "
+                "svd_solver='%s'"
                 % (n_components, min(n_samples, n_features), svd_solver)
             )
 

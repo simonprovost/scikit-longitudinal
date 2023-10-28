@@ -2,7 +2,9 @@ import numbers
 
 import numpy as np
 
-from ...utils import _safe_indexing, check_matplotlib_support, check_random_state
+from ...utils import check_matplotlib_support
+from ...utils import check_random_state
+from ...utils import _safe_indexing
 
 
 class PredictionErrorDisplay:
@@ -122,7 +124,10 @@ class PredictionErrorDisplay:
 
         expected_kind = ("actual_vs_predicted", "residual_vs_predicted")
         if kind not in expected_kind:
-            raise ValueError(f"`kind` must be one of {', '.join(expected_kind)}. Got {kind!r} instead.")
+            raise ValueError(
+                f"`kind` must be one of {', '.join(expected_kind)}. "
+                f"Got {kind!r} instead."
+            )
 
         import matplotlib.pyplot as plt
 
@@ -143,7 +148,9 @@ class PredictionErrorDisplay:
         if kind == "actual_vs_predicted":
             max_value = max(np.max(self.y_true), np.max(self.y_pred))
             min_value = min(np.min(self.y_true), np.min(self.y_pred))
-            self.line_ = ax.plot([min_value, max_value], [min_value, max_value], **line_kwargs)[0]
+            self.line_ = ax.plot(
+                [min_value, max_value], [min_value, max_value], **line_kwargs
+            )[0]
 
             x_data, y_data = self.y_pred, self.y_true
             xlabel, ylabel = "Predicted values", "Actual values"
@@ -160,7 +167,9 @@ class PredictionErrorDisplay:
                 [0, 0],
                 **line_kwargs,
             )[0]
-            self.scatter_ = ax.scatter(self.y_pred, self.y_true - self.y_pred, **scatter_kwargs)
+            self.scatter_ = ax.scatter(
+                self.y_pred, self.y_true - self.y_pred, **scatter_kwargs
+            )
             xlabel, ylabel = "Predicted values", "Residuals (actual - predicted)"
 
         ax.set(xlabel=xlabel, ylabel=ylabel)
@@ -368,10 +377,15 @@ class PredictionErrorDisplay:
         n_samples = len(y_true)
         if isinstance(subsample, numbers.Integral):
             if subsample <= 0:
-                raise ValueError(f"When an integer, subsample={subsample} should be positive.")
+                raise ValueError(
+                    f"When an integer, subsample={subsample} should be positive."
+                )
         elif isinstance(subsample, numbers.Real):
             if subsample <= 0 or subsample >= 1:
-                raise ValueError(f"When a floating-point, subsample={subsample} should be in the (0, 1) range.")
+                raise ValueError(
+                    f"When a floating-point, subsample={subsample} should"
+                    " be in the (0, 1) range."
+                )
             subsample = int(n_samples * subsample)
 
         if subsample is not None and subsample < n_samples:

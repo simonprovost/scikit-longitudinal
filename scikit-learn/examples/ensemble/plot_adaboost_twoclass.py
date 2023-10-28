@@ -21,21 +21,29 @@ with a decision score above some value.
 #
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.datasets import make_gaussian_quantiles
+import matplotlib.pyplot as plt
+
 from sklearn_fork.ensemble import AdaBoostClassifier
-from sklearn_fork.inspection import DecisionBoundaryDisplay
 from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork.datasets import make_gaussian_quantiles
+from sklearn_fork.inspection import DecisionBoundaryDisplay
+
 
 # Construct dataset
-X1, y1 = make_gaussian_quantiles(cov=2.0, n_samples=200, n_features=2, n_classes=2, random_state=1)
-X2, y2 = make_gaussian_quantiles(mean=(3, 3), cov=1.5, n_samples=300, n_features=2, n_classes=2, random_state=1)
+X1, y1 = make_gaussian_quantiles(
+    cov=2.0, n_samples=200, n_features=2, n_classes=2, random_state=1
+)
+X2, y2 = make_gaussian_quantiles(
+    mean=(3, 3), cov=1.5, n_samples=300, n_features=2, n_classes=2, random_state=1
+)
 X = np.concatenate((X1, X2))
 y = np.concatenate((y1, -y2 + 1))
 
 # Create and fit an AdaBoosted decision tree
-bdt = AdaBoostClassifier(DecisionTreeClassifier(max_depth=1), algorithm="SAMME", n_estimators=200)
+bdt = AdaBoostClassifier(
+    DecisionTreeClassifier(max_depth=1), algorithm="SAMME", n_estimators=200
+)
 
 bdt.fit(X, y)
 

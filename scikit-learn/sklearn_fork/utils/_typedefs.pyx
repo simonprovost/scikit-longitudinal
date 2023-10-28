@@ -5,6 +5,7 @@
 
 import numpy as np
 
+
 ctypedef fused testing_type_t:
     uint8_t
     intp_t

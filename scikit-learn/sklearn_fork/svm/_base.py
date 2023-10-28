@@ -5,27 +5,27 @@ from numbers import Integral, Real
 import numpy as np
 import scipy.sparse as sp
 
-from ..base import BaseEstimator, ClassifierMixin
-from ..exceptions import ConvergenceWarning, NotFittedError
-from ..preprocessing import LabelEncoder
-from ..utils import check_array, check_random_state, column_or_1d, compute_class_weight
-from ..utils._param_validation import Interval, StrOptions
-from ..utils.extmath import safe_sparse_dot
-from ..utils.metaestimators import available_if
-from ..utils.multiclass import _ovr_decision_function, check_classification_targets
-from ..utils.validation import (
-    _check_large_sparse,
-    _check_sample_weight,
-    _num_samples,
-    check_consistent_length,
-    check_is_fitted,
-)
-
 # mypy error: error: Module 'sklearn_fork.svm' has no attribute '_libsvm'
 # (and same for other imports)
-from . import _liblinear as liblinear  # type: ignore
 from . import _libsvm as libsvm  # type: ignore
+from . import _liblinear as liblinear  # type: ignore
 from . import _libsvm_sparse as libsvm_sparse  # type: ignore
+from ..base import BaseEstimator, ClassifierMixin
+from ..preprocessing import LabelEncoder
+from ..utils.multiclass import _ovr_decision_function
+from ..utils import check_array, check_random_state
+from ..utils import column_or_1d
+from ..utils import compute_class_weight
+from ..utils.metaestimators import available_if
+from ..utils.extmath import safe_sparse_dot
+from ..utils.validation import check_is_fitted, _check_large_sparse
+from ..utils.validation import _num_samples
+from ..utils.validation import _check_sample_weight, check_consistent_length
+from ..utils.multiclass import check_classification_targets
+from ..utils._param_validation import Interval, StrOptions
+from ..exceptions import ConvergenceWarning
+from ..exceptions import NotFittedError
+
 
 LIBSVM_IMPL = ["c_svc", "nu_svc", "one_class", "epsilon_svr", "nu_svr"]
 
@@ -119,7 +119,9 @@ class BaseLibSVM(BaseEstimator, metaclass=ABCMeta):
         random_state,
     ):
         if self._impl not in LIBSVM_IMPL:
-            raise ValueError("impl should be one of %s, %s was given" % (LIBSVM_IMPL, self._impl))
+            raise ValueError(
+                "impl should be one of %s, %s was given" % (LIBSVM_IMPL, self._impl)
+            )
 
         self.kernel = kernel
         self.degree = degree
@@ -197,19 +199,23 @@ class BaseLibSVM(BaseEstimator, metaclass=ABCMeta):
 
         y = self._validate_targets(y)
 
-        sample_weight = np.asarray([] if sample_weight is None else sample_weight, dtype=np.float64)
+        sample_weight = np.asarray(
+            [] if sample_weight is None else sample_weight, dtype=np.float64
+        )
         solver_type = LIBSVM_IMPL.index(self._impl)
 
         # input validation
         n_samples = _num_samples(X)
         if solver_type != 2 and n_samples != y.shape[0]:
             raise ValueError(
-                "X and y have incompatible shapes.\n" + "X has %s samples, but y has %s." % (n_samples, y.shape[0])
+                "X and y have incompatible shapes.\n"
+                + "X has %s samples, but y has %s." % (n_samples, y.shape[0])
             )
 
         if self.kernel == "precomputed" and n_samples != X.shape[1]:
             raise ValueError(
-                "Precomputed matrix must be a square matrix. Input is a {}x{} matrix.".format(X.shape[0], X.shape[1])
+                "Precomputed matrix must be a square matrix."
+                " Input is a {}x{} matrix.".format(X.shape[0], X.shape[1])
             )
 
         if sample_weight.shape[0] > 0 and sample_weight.shape[0] != n_samples:
@@ -217,7 +223,8 @@ class BaseLibSVM(BaseEstimator, metaclass=ABCMeta):
                 "sample_weight and X have incompatible shapes: "
                 "%r vs %r\n"
                 "Note: Sparse matrices cannot be indexed w/"
-                "boolean masks (use `indices=True` in CV)." % (sample_weight.shape, X.shape)
+                "boolean masks (use `indices=True` in CV)."
+                % (sample_weight.shape, X.shape)
             )
 
         kernel = "precomputed" if callable(self.kernel) else self.kernel
@@ -399,8 +406,12 @@ class BaseLibSVM(BaseEstimator, metaclass=ABCMeta):
         if not n_SV:
             self.dual_coef_ = sp.csr_matrix([])
         else:
-            dual_coef_indptr = np.arange(0, dual_coef_indices.size + 1, dual_coef_indices.size / n_class)
-            self.dual_coef_ = sp.csr_matrix((dual_coef_data, dual_coef_indices, dual_coef_indptr), (n_class, n_SV))
+            dual_coef_indptr = np.arange(
+                0, dual_coef_indices.size + 1, dual_coef_indices.size / n_class
+            )
+            self.dual_coef_ = sp.csr_matrix(
+                (dual_coef_data, dual_coef_indices, dual_coef_indptr), (n_class, n_SV)
+            )
 
     def predict(self, X):
         """Perform regression on samples in X.
@@ -432,7 +443,8 @@ class BaseLibSVM(BaseEstimator, metaclass=ABCMeta):
             kernel = "precomputed"
             if X.shape[1] != self.shape_fit_[0]:
                 raise ValueError(
-                    "X.shape[1] = %d should be equal to %d, the number of samples at training time"
+                    "X.shape[1] = %d should be equal to %d, "
+                    "the number of samples at training time"
                     % (X.shape[1], self.shape_fit_[0])
                 )
 
@@ -612,19 +624,25 @@ class BaseLibSVM(BaseEstimator, metaclass=ABCMeta):
             X.sort_indices()
 
         if sp.issparse(X) and not self._sparse and not callable(self.kernel):
-            raise ValueError("cannot use sparse input in %r trained on dense data" % type(self).__name__)
+            raise ValueError(
+                "cannot use sparse input in %r trained on dense data"
+                % type(self).__name__
+            )
 
         if self.kernel == "precomputed":
             if X.shape[1] != self.shape_fit_[0]:
                 raise ValueError(
-                    "X.shape[1] = %d should be equal to %d, the number of samples at training time"
+                    "X.shape[1] = %d should be equal to %d, "
+                    "the number of samples at training time"
                     % (X.shape[1], self.shape_fit_[0])
                 )
         # Fixes https://nvd.nist.gov/vuln/detail/CVE-2020-28975
         # Check that _n_support is consistent with support_vectors
         sv = self.support_vectors_
         if not self._sparse and sv.size > 0 and self.n_support_.sum() != sv.shape[0]:
-            raise ValueError(f"The internal representation of {self.__class__.__name__} was altered")
+            raise ValueError(
+                f"The internal representation of {self.__class__.__name__} was altered"
+            )
         return X
 
     @property
@@ -727,7 +745,10 @@ class BaseSVC(ClassifierMixin, BaseLibSVM, metaclass=ABCMeta):
         cls, y = np.unique(y_, return_inverse=True)
         self.class_weight_ = compute_class_weight(self.class_weight, classes=cls, y=y_)
         if len(cls) < 2:
-            raise ValueError("The number of classes has to be greater than one; got %d class" % len(cls))
+            raise ValueError(
+                "The number of classes has to be greater than one; got %d class"
+                % len(cls)
+            )
 
         self.classes_ = cls
 
@@ -784,9 +805,15 @@ class BaseSVC(ClassifierMixin, BaseLibSVM, metaclass=ABCMeta):
         """
         check_is_fitted(self)
         if self.break_ties and self.decision_function_shape == "ovo":
-            raise ValueError("break_ties must be False when decision_function_shape is 'ovo'")
+            raise ValueError(
+                "break_ties must be False when decision_function_shape is 'ovo'"
+            )
 
-        if self.break_ties and self.decision_function_shape == "ovr" and len(self.classes_) > 2:
+        if (
+            self.break_ties
+            and self.decision_function_shape == "ovr"
+            and len(self.classes_) > 2
+        ):
             y = np.argmax(self.decision_function(X), axis=1)
         else:
             y = super().predict(X)
@@ -798,7 +825,9 @@ class BaseSVC(ClassifierMixin, BaseLibSVM, metaclass=ABCMeta):
     # estimators.
     def _check_proba(self):
         if not self.probability:
-            raise AttributeError("predict_proba is not available when  probability=False")
+            raise AttributeError(
+                "predict_proba is not available when  probability=False"
+            )
         if self._impl not in ("c_svc", "nu_svc"):
             raise AttributeError("predict_proba only implemented for SVC and NuSVC")
         return True
@@ -832,8 +861,12 @@ class BaseSVC(ClassifierMixin, BaseLibSVM, metaclass=ABCMeta):
         """
         X = self._validate_for_predict(X)
         if self.probA_.size == 0 or self.probB_.size == 0:
-            raise NotFittedError("predict_proba is not available when fitted with probability=False")
-        pred_proba = self._sparse_predict_proba if self._sparse else self._dense_predict_proba
+            raise NotFittedError(
+                "predict_proba is not available when fitted with probability=False"
+            )
+        pred_proba = (
+            self._sparse_predict_proba if self._sparse else self._dense_predict_proba
+        )
         return pred_proba(X)
 
     @available_if(_check_proba)
@@ -935,7 +968,9 @@ class BaseSVC(ClassifierMixin, BaseLibSVM, metaclass=ABCMeta):
             coef = safe_sparse_dot(self.dual_coef_, self.support_vectors_)
         else:
             # 1vs1 classifier
-            coef = _one_vs_one_coef(self.dual_coef_, self._n_support, self.support_vectors_)
+            coef = _one_vs_one_coef(
+                self.dual_coef_, self._n_support, self.support_vectors_
+            )
             if sp.issparse(coef[0]):
                 coef = sp.vstack(coef).tocsr()
             else:
@@ -1000,7 +1035,9 @@ def _get_liblinear_solver_type(multi_class, penalty, loss, dual):
     if multi_class == "crammer_singer":
         return _solver_type_dict[multi_class]
     elif multi_class != "ovr":
-        raise ValueError("`multi_class` must be one of `ovr`, `crammer_singer`, got %r" % multi_class)
+        raise ValueError(
+            "`multi_class` must be one of `ovr`, `crammer_singer`, got %r" % multi_class
+        )
 
     _solver_pen = _solver_type_dict.get(loss, None)
     if _solver_pen is None:
@@ -1008,14 +1045,16 @@ def _get_liblinear_solver_type(multi_class, penalty, loss, dual):
     else:
         _solver_dual = _solver_pen.get(penalty, None)
         if _solver_dual is None:
-            error_string = "The combination of penalty='%s' and loss='%s' is not supported" % (penalty, loss)
+            error_string = (
+                "The combination of penalty='%s' and loss='%s' is not supported"
+                % (penalty, loss)
+            )
         else:
             solver_num = _solver_dual.get(dual, None)
             if solver_num is None:
-                error_string = "The combination of penalty='%s' and loss='%s' are not supported when dual=%s" % (
-                    penalty,
-                    loss,
-                    dual,
+                error_string = (
+                    "The combination of penalty='%s' and "
+                    "loss='%s' are not supported when dual=%s" % (penalty, loss, dual)
                 )
             else:
                 return solver_num
@@ -1139,7 +1178,9 @@ def _fit_liblinear(
         classes_ = enc.classes_
         if len(classes_) < 2:
             raise ValueError(
-                "This solver needs samples of at least 2 classes in the data, but the data contains only one class: %r"
+                "This solver needs samples of at least 2 classes"
+                " in the data, but the data contains only one"
+                " class: %r"
                 % classes_[0]
             )
 

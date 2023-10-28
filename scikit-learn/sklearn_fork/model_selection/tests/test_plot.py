@@ -1,9 +1,12 @@
 import pytest
+
 from sklearn_fork.datasets import load_iris
-from sklearn_fork.model_selection import LearningCurveDisplay, learning_curve
 from sklearn_fork.tree import DecisionTreeClassifier
 from sklearn_fork.utils import shuffle
 from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
+
+from sklearn_fork.model_selection import learning_curve
+from sklearn_fork.model_selection import LearningCurveDisplay
 
 
 @pytest.fixture
@@ -18,14 +21,18 @@ def data():
         ({"score_type": "invalid"}, ValueError, "Unknown score_type:"),
     ],
 )
-def test_learning_curve_display_parameters_validation(pyplot, data, params, err_type, err_msg):
+def test_learning_curve_display_parameters_validation(
+    pyplot, data, params, err_type, err_msg
+):
     """Check that we raise a proper error when passing invalid parameters."""
     X, y = data
     estimator = DecisionTreeClassifier(random_state=0)
 
     train_sizes = [0.3, 0.6, 0.9]
     with pytest.raises(err_type, match=err_msg):
-        LearningCurveDisplay.from_estimator(estimator, X, y, train_sizes=train_sizes, **params)
+        LearningCurveDisplay.from_estimator(
+            estimator, X, y, train_sizes=train_sizes, **params
+        )
 
 
 def test_learning_curve_display_default_usage(pyplot, data):
@@ -34,7 +41,9 @@ def test_learning_curve_display_default_usage(pyplot, data):
     estimator = DecisionTreeClassifier(random_state=0)
 
     train_sizes = [0.3, 0.6, 0.9]
-    display = LearningCurveDisplay.from_estimator(estimator, X, y, train_sizes=train_sizes)
+    display = LearningCurveDisplay.from_estimator(
+        estimator, X, y, train_sizes=train_sizes
+    )
 
     import matplotlib as mpl
 
@@ -56,7 +65,9 @@ def test_learning_curve_display_default_usage(pyplot, data):
     _, legend_labels = display.ax_.get_legend_handles_labels()
     assert legend_labels == ["Testing metric"]
 
-    train_sizes_abs, train_scores, test_scores = learning_curve(estimator, X, y, train_sizes=train_sizes)
+    train_sizes_abs, train_scores, test_scores = learning_curve(
+        estimator, X, y, train_sizes=train_sizes
+    )
 
     assert_array_equal(display.train_sizes, train_sizes_abs)
     assert_allclose(display.train_scores, train_scores)
@@ -85,7 +96,9 @@ def test_learning_curve_display_negate_score(pyplot, data):
     assert display.ax_.get_ylabel() == "Score"
 
     negate_score = True
-    display = LearningCurveDisplay.from_estimator(estimator, X, y, train_sizes=train_sizes, negate_score=negate_score)
+    display = LearningCurveDisplay.from_estimator(
+        estimator, X, y, train_sizes=train_sizes, negate_score=negate_score
+    )
 
     negative_scores = display.lines_[0].get_data()[1]
     assert (negative_scores <= 0).all()
@@ -106,21 +119,27 @@ def test_learning_curve_display_negate_score(pyplot, data):
     assert (display.lines_[0].get_data()[1] < 0).all()
 
 
-@pytest.mark.parametrize("score_name, ylabel", [(None, "Score"), ("Accuracy", "Accuracy")])
+@pytest.mark.parametrize(
+    "score_name, ylabel", [(None, "Score"), ("Accuracy", "Accuracy")]
+)
 def test_learning_curve_display_score_name(pyplot, data, score_name, ylabel):
     """Check that we can overwrite the default score name shown on the y-axis."""
     X, y = data
     estimator = DecisionTreeClassifier(random_state=0)
 
     train_sizes = [0.3, 0.6, 0.9]
-    display = LearningCurveDisplay.from_estimator(estimator, X, y, train_sizes=train_sizes, score_name=score_name)
+    display = LearningCurveDisplay.from_estimator(
+        estimator, X, y, train_sizes=train_sizes, score_name=score_name
+    )
 
     assert display.ax_.get_ylabel() == ylabel
     X, y = data
     estimator = DecisionTreeClassifier(max_depth=1, random_state=0)
 
     train_sizes = [0.3, 0.6, 0.9]
-    display = LearningCurveDisplay.from_estimator(estimator, X, y, train_sizes=train_sizes, score_name=score_name)
+    display = LearningCurveDisplay.from_estimator(
+        estimator, X, y, train_sizes=train_sizes, score_name=score_name
+    )
 
     assert display.score_name == ylabel
 
@@ -132,7 +151,9 @@ def test_learning_curve_display_score_type(pyplot, data, std_display_style):
     estimator = DecisionTreeClassifier(random_state=0)
 
     train_sizes = [0.3, 0.6, 0.9]
-    train_sizes_abs, train_scores, test_scores = learning_curve(estimator, X, y, train_sizes=train_sizes)
+    train_sizes_abs, train_scores, test_scores = learning_curve(
+        estimator, X, y, train_sizes=train_sizes
+    )
 
     score_type = "train"
     display = LearningCurveDisplay.from_estimator(
@@ -220,12 +241,16 @@ def test_learning_curve_display_log_scale(pyplot, data):
     estimator = DecisionTreeClassifier(random_state=0)
 
     train_sizes = [0.3, 0.6, 0.9]
-    display = LearningCurveDisplay.from_estimator(estimator, X, y, train_sizes=train_sizes, log_scale=True)
+    display = LearningCurveDisplay.from_estimator(
+        estimator, X, y, train_sizes=train_sizes, log_scale=True
+    )
 
     assert display.ax_.get_xscale() == "log"
     assert display.ax_.get_yscale() == "linear"
 
-    display = LearningCurveDisplay.from_estimator(estimator, X, y, train_sizes=train_sizes, log_scale=False)
+    display = LearningCurveDisplay.from_estimator(
+        estimator, X, y, train_sizes=train_sizes, log_scale=False
+    )
 
     assert display.ax_.get_xscale() == "linear"
     assert display.ax_.get_yscale() == "linear"

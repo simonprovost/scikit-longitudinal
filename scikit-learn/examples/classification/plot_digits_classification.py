@@ -15,7 +15,7 @@ hand-written digits, from 0-9.
 import matplotlib.pyplot as plt
 
 # Import datasets, classifiers and performance metrics
-from sklearn_fork import datasets, metrics, svm
+from sklearn_fork import datasets, svm, metrics
 from sklearn_fork.model_selection import train_test_split
 
 ###############################################################################
@@ -63,7 +63,9 @@ data = digits.images.reshape((n_samples, -1))
 clf = svm.SVC(gamma=0.001)
 
 # Split data into 50% train and 50% test subsets
-X_train, X_test, y_train, y_test = train_test_split(data, digits.target, test_size=0.5, shuffle=False)
+X_train, X_test, y_train, y_test = train_test_split(
+    data, digits.target, test_size=0.5, shuffle=False
+)
 
 # Learn the digits on the train subset
 clf.fit(X_train, y_train)
@@ -86,7 +88,10 @@ for ax, image, prediction in zip(axes, X_test, predicted):
 # :func:`~sklearn_fork.metrics.classification_report` builds a text report showing
 # the main classification metrics.
 
-print(f"Classification report for classifier {clf}:\n{metrics.classification_report(y_test, predicted)}\n")
+print(
+    f"Classification report for classifier {clf}:\n"
+    f"{metrics.classification_report(y_test, predicted)}\n"
+)
 
 ###############################################################################
 # We can also plot a :ref:`confusion matrix <confusion_matrix>` of the
@@ -117,4 +122,7 @@ for gt in range(len(cm)):
         y_true += [gt] * cm[gt][pred]
         y_pred += [pred] * cm[gt][pred]
 
-print(f"Classification report rebuilt from confusion matrix:\n{metrics.classification_report(y_true, y_pred)}\n")
+print(
+    "Classification report rebuilt from confusion matrix:\n"
+    f"{metrics.classification_report(y_true, y_pred)}\n"
+)

@@ -24,7 +24,6 @@ that are linked tend to fluctuate in relation to each other during a day.
 # `alphavantage.co <https://www.alphavantage.co/>`_.
 
 import sys
-
 import numpy as np
 import pandas as pd
 
@@ -94,7 +93,10 @@ quotes = []
 
 for symbol in symbols:
     print("Fetching quote history for %r" % symbol, file=sys.stderr)
-    url = "https://raw.githubusercontent.com/scikit-learn/examples-data/master/financial-data/{}.csv"
+    url = (
+        "https://raw.githubusercontent.com/scikit-learn/examples-data/"
+        "master/financial-data/{}.csv"
+    )
     quotes.append(pd.read_csv(url.format(symbol)))
 
 close_prices = np.vstack([q["close"] for q in quotes])
@@ -166,7 +168,9 @@ for i in range(n_labels + 1):
 
 from sklearn_fork import manifold
 
-node_position_model = manifold.LocallyLinearEmbedding(n_components=2, eigen_solver="dense", n_neighbors=6)
+node_position_model = manifold.LocallyLinearEmbedding(
+    n_components=2, eigen_solver="dense", n_neighbors=6
+)
 
 embedding = node_position_model.fit_transform(X.T).T
 
@@ -203,15 +207,21 @@ partial_correlations *= d[:, np.newaxis]
 non_zero = np.abs(np.triu(partial_correlations, k=1)) > 0.02
 
 # Plot the nodes using the coordinates of our embedding
-plt.scatter(embedding[0], embedding[1], s=100 * d**2, c=labels, cmap=plt.cm.nipy_spectral)
+plt.scatter(
+    embedding[0], embedding[1], s=100 * d**2, c=labels, cmap=plt.cm.nipy_spectral
+)
 
 # Plot the edges
 start_idx, end_idx = np.where(non_zero)
 # a sequence of (*line0*, *line1*, *line2*), where::
 #            linen = (x0, y0), (x1, y1), ... (xm, ym)
-segments = [[embedding[:, start], embedding[:, stop]] for start, stop in zip(start_idx, end_idx)]
+segments = [
+    [embedding[:, start], embedding[:, stop]] for start, stop in zip(start_idx, end_idx)
+]
 values = np.abs(partial_correlations[non_zero])
-lc = LineCollection(segments, zorder=0, cmap=plt.cm.hot_r, norm=plt.Normalize(0, 0.7 * values.max()))
+lc = LineCollection(
+    segments, zorder=0, cmap=plt.cm.hot_r, norm=plt.Normalize(0, 0.7 * values.max())
+)
 lc.set_array(values)
 lc.set_linewidths(15 * values)
 ax.add_collection(lc)

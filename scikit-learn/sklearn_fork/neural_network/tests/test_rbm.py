@@ -1,13 +1,18 @@
-import re
 import sys
-from io import StringIO
+import re
+import pytest
 
 import numpy as np
-import pytest
 from scipy.sparse import csc_matrix, csr_matrix, lil_matrix
+from sklearn_fork.utils._testing import (
+    assert_almost_equal,
+    assert_array_equal,
+    assert_allclose,
+)
+
 from sklearn_fork.datasets import load_digits
+from io import StringIO
 from sklearn_fork.neural_network import BernoulliRBM
-from sklearn_fork.utils._testing import assert_allclose, assert_almost_equal, assert_array_equal
 from sklearn_fork.utils.validation import assert_all_finite
 
 Xdigits, _ = load_digits(return_X_y=True)
@@ -18,7 +23,9 @@ Xdigits /= Xdigits.max()
 def test_fit():
     X = Xdigits.copy()
 
-    rbm = BernoulliRBM(n_components=64, learning_rate=0.1, batch_size=10, n_iter=7, random_state=9)
+    rbm = BernoulliRBM(
+        n_components=64, learning_rate=0.1, batch_size=10, n_iter=7, random_state=9
+    )
     rbm.fit(X)
 
     assert_almost_equal(rbm.score_samples(X).mean(), -21.0, decimal=0)
@@ -29,7 +36,9 @@ def test_fit():
 
 def test_partial_fit():
     X = Xdigits.copy()
-    rbm = BernoulliRBM(n_components=64, learning_rate=0.1, batch_size=20, random_state=9)
+    rbm = BernoulliRBM(
+        n_components=64, learning_rate=0.1, batch_size=20, random_state=9
+    )
     n_samples = X.shape[0]
     n_batches = int(np.ceil(float(n_samples) / rbm.batch_size))
     batch_slices = np.array_split(X, n_batches)
@@ -64,13 +73,19 @@ def test_small_sparse_partial_fit():
         X_sparse = sparse(Xdigits[:100])
         X = Xdigits[:100].copy()
 
-        rbm1 = BernoulliRBM(n_components=64, learning_rate=0.1, batch_size=10, random_state=9)
-        rbm2 = BernoulliRBM(n_components=64, learning_rate=0.1, batch_size=10, random_state=9)
+        rbm1 = BernoulliRBM(
+            n_components=64, learning_rate=0.1, batch_size=10, random_state=9
+        )
+        rbm2 = BernoulliRBM(
+            n_components=64, learning_rate=0.1, batch_size=10, random_state=9
+        )
 
         rbm1.partial_fit(X_sparse)
         rbm2.partial_fit(X)
 
-        assert_almost_equal(rbm1.score_samples(X).mean(), rbm2.score_samples(X).mean(), decimal=0)
+        assert_almost_equal(
+            rbm1.score_samples(X).mean(), rbm2.score_samples(X).mean(), decimal=0
+        )
 
 
 def test_sample_hiddens():
@@ -95,7 +110,9 @@ def test_fit_gibbs():
     rbm1 = BernoulliRBM(n_components=2, batch_size=2, n_iter=42, random_state=rng)
     # you need that much iters
     rbm1.fit(X)
-    assert_almost_equal(rbm1.components_, np.array([[0.02649814], [0.02009084]]), decimal=4)
+    assert_almost_equal(
+        rbm1.components_, np.array([[0.02649814], [0.02009084]]), decimal=4
+    )
     assert_almost_equal(rbm1.gibbs(X), X)
 
     # Gibbs on the RBM hidden layer should be able to recreate [[0], [1]] from
@@ -104,7 +121,9 @@ def test_fit_gibbs():
     X = csc_matrix([[0.0], [1.0]])
     rbm2 = BernoulliRBM(n_components=2, batch_size=2, n_iter=42, random_state=rng)
     rbm2.fit(X)
-    assert_almost_equal(rbm2.components_, np.array([[0.02649814], [0.02009084]]), decimal=4)
+    assert_almost_equal(
+        rbm2.components_, np.array([[0.02649814], [0.02009084]]), decimal=4
+    )
     assert_almost_equal(rbm2.gibbs(X), X.toarray())
     assert_almost_equal(rbm1.components_, rbm2.components_)
 
@@ -162,13 +181,17 @@ def test_sparse_and_verbose():
     from scipy.sparse import csc_matrix
 
     X = csc_matrix([[0.0], [1.0]])
-    rbm = BernoulliRBM(n_components=2, batch_size=2, n_iter=1, random_state=42, verbose=True)
+    rbm = BernoulliRBM(
+        n_components=2, batch_size=2, n_iter=1, random_state=42, verbose=True
+    )
     try:
         rbm.fit(X)
         s = sys.stdout.getvalue()
         # make sure output is sound
         assert re.match(
-            r"\[BernoulliRBM\] Iteration 1," r" pseudo-likelihood = -?(\d)+(\.\d+)?," r" time = (\d|\.)+s",
+            r"\[BernoulliRBM\] Iteration 1,"
+            r" pseudo-likelihood = -?(\d)+(\.\d+)?,"
+            r" time = (\d|\.)+s",
             s,
         )
     finally:
@@ -185,7 +208,9 @@ def test_transformer_dtypes_casting(dtype_in, dtype_out):
     Xt = rbm.fit_transform(X)
 
     # dtype_in and dtype_out should be consistent
-    assert Xt.dtype == dtype_out, "transform dtype: {} - original dtype: {}".format(Xt.dtype, X.dtype)
+    assert Xt.dtype == dtype_out, "transform dtype: {} - original dtype: {}".format(
+        Xt.dtype, X.dtype
+    )
 
 
 def test_convergence_dtype_consistency():
@@ -201,8 +226,12 @@ def test_convergence_dtype_consistency():
 
     # results and attributes should be close enough in 32 bit and 64 bit
     assert_allclose(Xt_64, Xt_32, rtol=1e-06, atol=0)
-    assert_allclose(rbm_64.intercept_hidden_, rbm_32.intercept_hidden_, rtol=1e-06, atol=0)
-    assert_allclose(rbm_64.intercept_visible_, rbm_32.intercept_visible_, rtol=1e-05, atol=0)
+    assert_allclose(
+        rbm_64.intercept_hidden_, rbm_32.intercept_hidden_, rtol=1e-06, atol=0
+    )
+    assert_allclose(
+        rbm_64.intercept_visible_, rbm_32.intercept_visible_, rtol=1e-05, atol=0
+    )
     assert_allclose(rbm_64.components_, rbm_32.components_, rtol=1e-03, atol=0)
     assert_allclose(rbm_64.h_samples_, rbm_32.h_samples_)
 

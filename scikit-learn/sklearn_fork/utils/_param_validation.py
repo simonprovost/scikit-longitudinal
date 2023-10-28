@@ -1,15 +1,18 @@
+from abc import ABC
+from abc import abstractmethod
+from collections.abc import Iterable
 import functools
 import math
+from inspect import signature
+from numbers import Integral
+from numbers import Real
 import operator
 import re
 import warnings
-from abc import ABC, abstractmethod
-from collections.abc import Iterable
-from inspect import signature
-from numbers import Integral, Real
 
 import numpy as np
-from scipy.sparse import csr_matrix, issparse
+from scipy.sparse import issparse
+from scipy.sparse import csr_matrix
 
 from .validation import _is_arraylike_not_scalar
 
@@ -79,15 +82,21 @@ def validate_parameter_constraints(parameter_constraints, params, caller_name):
 
             # Ignore constraints that we don't want to expose in the error message,
             # i.e. options that are for internal purpose or not officially supported.
-            constraints = [constraint for constraint in constraints if not constraint.hidden]
+            constraints = [
+                constraint for constraint in constraints if not constraint.hidden
+            ]
 
             if len(constraints) == 1:
                 constraints_str = f"{constraints[0]}"
             else:
-                constraints_str = f"{', '.join([str(c) for c in constraints[:-1]])} or {constraints[-1]}"
+                constraints_str = (
+                    f"{', '.join([str(c) for c in constraints[:-1]])} or"
+                    f" {constraints[-1]}"
+                )
 
             raise InvalidParameterError(
-                f"The {param_name!r} parameter of {caller_name} must be {constraints_str}. Got {param_val!r} instead."
+                f"The {param_name!r} parameter of {caller_name} must be"
+                f" {constraints_str}. Got {param_val!r} instead."
             )
 
 
@@ -116,7 +125,9 @@ def make_constraint(constraint):
         return _NoneConstraint()
     if isinstance(constraint, type):
         return _InstancesOf(constraint)
-    if isinstance(constraint, (Interval, StrOptions, Options, HasMethods, MissingValues)):
+    if isinstance(
+        constraint, (Interval, StrOptions, Options, HasMethods, MissingValues)
+    ):
         return constraint
     if isinstance(constraint, str) and constraint == "boolean":
         return _Booleans()
@@ -164,11 +175,17 @@ def validate_params(parameter_constraints):
             params.apply_defaults()
 
             # ignore self/cls and positional/keyword markers
-            to_ignore = [p.name for p in func_sig.parameters.values() if p.kind in (p.VAR_POSITIONAL, p.VAR_KEYWORD)]
+            to_ignore = [
+                p.name
+                for p in func_sig.parameters.values()
+                if p.kind in (p.VAR_POSITIONAL, p.VAR_KEYWORD)
+            ]
             to_ignore += ["self", "cls"]
             params = {k: v for k, v in params.arguments.items() if k not in to_ignore}
 
-            validate_parameter_constraints(parameter_constraints, params, caller_name=func.__qualname__)
+            validate_parameter_constraints(
+                parameter_constraints, params, caller_name=func.__qualname__
+            )
 
             try:
                 return func(*args, **kwargs)
@@ -330,7 +347,9 @@ class Options(_Constraint):
         return option_str
 
     def __str__(self):
-        options_str = f"{', '.join([self._mark_if_deprecated(o) for o in self.options])}"
+        options_str = (
+            f"{', '.join([self._mark_if_deprecated(o) for o in self.options])}"
+        )
         return f"a {_type_name(self.type)} among {{{options_str}}}"
 
 
@@ -399,11 +418,15 @@ class Interval(_Constraint):
     def _check_params(self):
         if self.type not in (Integral, Real, RealNotInt):
             raise ValueError(
-                f"type must be either numbers.Integral, numbers.Real or RealNotInt. Got {self.type} instead."
+                "type must be either numbers.Integral, numbers.Real or RealNotInt."
+                f" Got {self.type} instead."
             )
 
         if self.closed not in ("left", "right", "both", "neither"):
-            raise ValueError(f"closed must be either 'left', 'right', 'both' or 'neither'. Got {self.closed} instead.")
+            raise ValueError(
+                "closed must be either 'left', 'right', 'both' or 'neither'. "
+                f"Got {self.closed} instead."
+            )
 
         if self.type is Integral:
             suffix = "for an interval over the integers."
@@ -412,9 +435,13 @@ class Interval(_Constraint):
             if self.right is not None and not isinstance(self.right, Integral):
                 raise TypeError(f"Expecting right to be an int {suffix}")
             if self.left is None and self.closed in ("left", "both"):
-                raise ValueError(f"left can't be None when closed == {self.closed} {suffix}")
+                raise ValueError(
+                    f"left can't be None when closed == {self.closed} {suffix}"
+                )
             if self.right is None and self.closed in ("right", "both"):
-                raise ValueError(f"right can't be None when closed == {self.closed} {suffix}")
+                raise ValueError(
+                    f"right can't be None when closed == {self.closed} {suffix}"
+                )
         else:
             if self.left is not None and not isinstance(self.left, Real):
                 raise TypeError("Expecting left to be a real number.")
@@ -422,7 +449,10 @@ class Interval(_Constraint):
                 raise TypeError("Expecting right to be a real number.")
 
         if self.right is not None and self.left is not None and self.right <= self.left:
-            raise ValueError(f"right can't be less than left. Got left={self.left} and right={self.right}")
+            raise ValueError(
+                f"right can't be less than left. Got left={self.left} and "
+                f"right={self.right}"
+            )
 
     def __contains__(self, val):
         if np.isnan(val):
@@ -459,7 +489,10 @@ class Interval(_Constraint):
         if not self.type == Integral and isinstance(self.right, Real):
             right_bound = float(right_bound)
 
-        return f"{type_str} in the range {left_bracket}{left_bound}, {right_bound}{right_bracket}"
+        return (
+            f"{type_str} in the range "
+            f"{left_bracket}{left_bound}, {right_bound}{right_bracket}"
+        )
 
 
 class _ArrayLikes(_Constraint):
@@ -511,7 +544,10 @@ class _RandomStates(_Constraint):
         return any(c.is_satisfied_by(val) for c in self._constraints)
 
     def __str__(self):
-        return f"{', '.join([str(c) for c in self._constraints[:-1]])} or {self._constraints[-1]}"
+        return (
+            f"{', '.join([str(c) for c in self._constraints[:-1]])} or"
+            f" {self._constraints[-1]}"
+        )
 
 
 class _Booleans(_Constraint):
@@ -543,7 +579,10 @@ class _Booleans(_Constraint):
         return any(c.is_satisfied_by(val) for c in self._constraints)
 
     def __str__(self):
-        return f"{', '.join([str(c) for c in self._constraints[:-1]])} or {self._constraints[-1]}"
+        return (
+            f"{', '.join([str(c) for c in self._constraints[:-1]])} or"
+            f" {self._constraints[-1]}"
+        )
 
 
 class _VerboseHelper(_Constraint):
@@ -565,7 +604,10 @@ class _VerboseHelper(_Constraint):
         return any(c.is_satisfied_by(val) for c in self._constraints)
 
     def __str__(self):
-        return f"{', '.join([str(c) for c in self._constraints[:-1]])} or {self._constraints[-1]}"
+        return (
+            f"{', '.join([str(c) for c in self._constraints[:-1]])} or"
+            f" {self._constraints[-1]}"
+        )
 
 
 class MissingValues(_Constraint):
@@ -607,7 +649,10 @@ class MissingValues(_Constraint):
         return any(c.is_satisfied_by(val) for c in self._constraints)
 
     def __str__(self):
-        return f"{', '.join([str(c) for c in self._constraints[:-1]])} or {self._constraints[-1]}"
+        return (
+            f"{', '.join([str(c) for c in self._constraints[:-1]])} or"
+            f" {self._constraints[-1]}"
+        )
 
 
 class HasMethods(_Constraint):
@@ -636,7 +681,10 @@ class HasMethods(_Constraint):
         if len(self.methods) == 1:
             methods = f"{self.methods[0]!r}"
         else:
-            methods = f"{', '.join([repr(m) for m in self.methods[:-1]])} and {self.methods[-1]!r}"
+            methods = (
+                f"{', '.join([repr(m) for m in self.methods[:-1]])} and"
+                f" {self.methods[-1]!r}"
+            )
         return f"an object implementing {methods}"
 
 
@@ -675,7 +723,10 @@ class _CVObjects(_Constraint):
         return any(c.is_satisfied_by(val) for c in self._constraints)
 
     def __str__(self):
-        return f"{', '.join([str(c) for c in self._constraints[:-1]])} or {self._constraints[-1]}"
+        return (
+            f"{', '.join([str(c) for c in self._constraints[:-1]])} or"
+            f" {self._constraints[-1]}"
+        )
 
 
 class Hidden:
@@ -807,7 +858,9 @@ def generate_valid_param(constraint):
         return "missing"
 
     if isinstance(constraint, HasMethods):
-        return type("ValidHasMethods", (), {m: lambda self: None for m in constraint.methods})()
+        return type(
+            "ValidHasMethods", (), {m: lambda self: None for m in constraint.methods}
+        )()
 
     if isinstance(constraint, _IterablesNotString):
         return [1, 2, 3]

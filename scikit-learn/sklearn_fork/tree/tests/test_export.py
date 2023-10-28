@@ -1,16 +1,18 @@
 """
 Testing for export functions of decision trees (sklearn_fork.tree.export).
 """
-from io import StringIO
 from re import finditer, search
 from textwrap import dedent
 
-import pytest
 from numpy.random import RandomState
+import pytest
+
 from sklearn_fork.base import is_classifier
+from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn_fork.ensemble import GradientBoostingClassifier
+from sklearn_fork.tree import export_graphviz, plot_tree, export_text
+from io import StringIO
 from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz, export_text, plot_tree
 
 # toy sample
 X = [[-2, -1], [-1, -1], [-1, -2], [1, 1], [1, 2], [2, 1]]
@@ -22,7 +24,9 @@ y_degraded = [1, 1, 1, 1, 1, 1]
 
 def test_graphviz_toy():
     # Check correctness of export_graphviz
-    clf = DecisionTreeClassifier(max_depth=3, min_samples_split=2, criterion="gini", random_state=2)
+    clf = DecisionTreeClassifier(
+        max_depth=3, min_samples_split=2, criterion="gini", random_state=2
+    )
     clf.fit(X, y)
 
     # Test export code
@@ -45,7 +49,9 @@ def test_graphviz_toy():
     assert contents1 == contents2
 
     # Test with feature_names
-    contents1 = export_graphviz(clf, feature_names=["feature0", "feature1"], out_file=None)
+    contents1 = export_graphviz(
+        clf, feature_names=["feature0", "feature1"], out_file=None
+    )
     contents2 = (
         "digraph Tree {\n"
         'node [shape=box, fontname="helvetica"] ;\n'
@@ -133,7 +139,9 @@ def test_graphviz_toy():
     assert contents1 == contents2
 
     # Test max_depth with plot_options
-    contents1 = export_graphviz(clf, max_depth=0, filled=True, out_file=None, node_ids=True)
+    contents1 = export_graphviz(
+        clf, max_depth=0, filled=True, out_file=None, node_ids=True
+    )
     contents2 = (
         "digraph Tree {\n"
         'node [shape=box, style="filled", color="black", '
@@ -151,7 +159,9 @@ def test_graphviz_toy():
     assert contents1 == contents2
 
     # Test multi-output with weighted samples
-    clf = DecisionTreeClassifier(max_depth=2, min_samples_split=2, criterion="gini", random_state=2)
+    clf = DecisionTreeClassifier(
+        max_depth=2, min_samples_split=2, criterion="gini", random_state=2
+    )
     clf = clf.fit(X, y2, sample_weight=w)
 
     contents1 = export_graphviz(clf, filled=True, impurity=False, out_file=None)
@@ -184,7 +194,9 @@ def test_graphviz_toy():
     assert contents1 == contents2
 
     # Test regression output with plot_options
-    clf = DecisionTreeRegressor(max_depth=3, min_samples_split=2, criterion="squared_error", random_state=2)
+    clf = DecisionTreeRegressor(
+        max_depth=3, min_samples_split=2, criterion="squared_error", random_state=2
+    )
     clf.fit(X, y)
 
     contents1 = export_graphviz(
@@ -298,13 +310,17 @@ def test_precision():
         (rng_reg.random_sample((5, 2)), rng_clf.random_sample((1000, 4))),
         (rng_reg.random_sample((5,)), rng_clf.randint(2, size=(1000,))),
         (
-            DecisionTreeRegressor(criterion="friedman_mse", random_state=0, max_depth=1),
+            DecisionTreeRegressor(
+                criterion="friedman_mse", random_state=0, max_depth=1
+            ),
             DecisionTreeClassifier(max_depth=1, random_state=0),
         ),
     ):
         clf.fit(X, y)
         for precision in (4, 3):
-            dot_data = export_graphviz(clf, out_file=None, precision=precision, proportion=True)
+            dot_data = export_graphviz(
+                clf, out_file=None, precision=precision, proportion=True
+            )
 
             # With the current random state, the impurity and the threshold
             # will have the number of precision set in the export_graphviz
@@ -431,20 +447,28 @@ def test_export_text():
     |   |--- value: [1.0, 1.0]
     """).lstrip()
     assert export_text(reg, decimals=1, feature_names=["first"]) == expected_report
-    assert export_text(reg, decimals=1, show_weights=True, feature_names=["first"]) == expected_report
+    assert (
+        export_text(reg, decimals=1, show_weights=True, feature_names=["first"])
+        == expected_report
+    )
 
 
 def test_plot_tree_entropy(pyplot):
     # mostly smoke tests
     # Check correctness of export_graphviz for criterion = entropy
-    clf = DecisionTreeClassifier(max_depth=3, min_samples_split=2, criterion="entropy", random_state=2)
+    clf = DecisionTreeClassifier(
+        max_depth=3, min_samples_split=2, criterion="entropy", random_state=2
+    )
     clf.fit(X, y)
 
     # Test export code
     feature_names = ["first feat", "sepal_width"]
     nodes = plot_tree(clf, feature_names=feature_names)
     assert len(nodes) == 3
-    assert nodes[0].get_text() == "first feat <= 0.0\nentropy = 1.0\nsamples = 6\nvalue = [3, 3]"
+    assert (
+        nodes[0].get_text()
+        == "first feat <= 0.0\nentropy = 1.0\nsamples = 6\nvalue = [3, 3]"
+    )
     assert nodes[1].get_text() == "entropy = 0.0\nsamples = 3\nvalue = [3, 0]"
     assert nodes[2].get_text() == "entropy = 0.0\nsamples = 3\nvalue = [0, 3]"
 
@@ -452,14 +476,19 @@ def test_plot_tree_entropy(pyplot):
 def test_plot_tree_gini(pyplot):
     # mostly smoke tests
     # Check correctness of export_graphviz for criterion = gini
-    clf = DecisionTreeClassifier(max_depth=3, min_samples_split=2, criterion="gini", random_state=2)
+    clf = DecisionTreeClassifier(
+        max_depth=3, min_samples_split=2, criterion="gini", random_state=2
+    )
     clf.fit(X, y)
 
     # Test export code
     feature_names = ["first feat", "sepal_width"]
     nodes = plot_tree(clf, feature_names=feature_names)
     assert len(nodes) == 3
-    assert nodes[0].get_text() == "first feat <= 0.0\ngini = 0.5\nsamples = 6\nvalue = [3, 3]"
+    assert (
+        nodes[0].get_text()
+        == "first feat <= 0.0\ngini = 0.5\nsamples = 6\nvalue = [3, 3]"
+    )
     assert nodes[1].get_text() == "gini = 0.0\nsamples = 3\nvalue = [3, 0]"
     assert nodes[2].get_text() == "gini = 0.0\nsamples = 3\nvalue = [0, 3]"
 

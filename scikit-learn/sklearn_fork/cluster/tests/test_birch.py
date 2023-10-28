@@ -2,15 +2,19 @@
 Tests for the birch clustering algorithm.
 """
 
+from scipy import sparse
 import numpy as np
 import pytest
-from scipy import sparse
-from sklearn_fork.cluster import AgglomerativeClustering, Birch
+
 from sklearn_fork.cluster.tests.common import generate_clustered_data
+from sklearn_fork.cluster import Birch
+from sklearn_fork.cluster import AgglomerativeClustering
 from sklearn_fork.datasets import make_blobs
 from sklearn_fork.exceptions import ConvergenceWarning
 from sklearn_fork.metrics import pairwise_distances_argmin, v_measure_score
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
+
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_allclose
 
 
 def test_n_samples_leaves_roots(global_random_seed, global_dtype):
@@ -20,7 +24,9 @@ def test_n_samples_leaves_roots(global_random_seed, global_dtype):
     brc = Birch()
     brc.fit(X)
     n_samples_root = sum([sc.n_samples_ for sc in brc.root_.subclusters_])
-    n_samples_leaves = sum([sc.n_samples_ for leaf in brc._get_leaves() for sc in leaf.subclusters_])
+    n_samples_leaves = sum(
+        [sc.n_samples_ for leaf in brc._get_leaves() for sc in leaf.subclusters_]
+    )
     assert n_samples_leaves == X.shape[0]
     assert n_samples_root == X.shape[0]
 
@@ -61,7 +67,9 @@ def test_birch_predict(global_random_seed, global_dtype):
 
     assert_array_equal(brc.labels_, brc.predict(X_shuffle))
     centroids = brc.subcluster_centers_
-    nearest_centroid = brc.subcluster_labels_[pairwise_distances_argmin(X_shuffle, centroids)]
+    nearest_centroid = brc.subcluster_labels_[
+        pairwise_distances_argmin(X_shuffle, centroids)
+    ]
     assert_allclose(v_measure_score(nearest_centroid, brc.labels_), 1.0)
 
 
@@ -193,7 +201,9 @@ def test_transform_match_across_dtypes(global_random_seed):
 
 
 def test_subcluster_dtype(global_dtype):
-    X = make_blobs(n_samples=80, n_features=4, random_state=0)[0].astype(global_dtype, copy=False)
+    X = make_blobs(n_samples=80, n_features=4, random_state=0)[0].astype(
+        global_dtype, copy=False
+    )
     brc = Birch(n_clusters=4)
     assert brc.fit(X).subcluster_centers_.dtype == global_dtype
 

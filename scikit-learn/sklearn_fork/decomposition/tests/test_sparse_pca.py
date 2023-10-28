@@ -2,13 +2,17 @@
 # License: BSD 3 clause
 
 import sys
+import pytest
 
 import numpy as np
-import pytest
 from numpy.testing import assert_array_equal
-from sklearn_fork.decomposition import PCA, MiniBatchSparsePCA, SparsePCA
+
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import if_safe_multiprocessing_with_blas
+
+from sklearn_fork.decomposition import SparsePCA, MiniBatchSparsePCA, PCA
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import assert_allclose, assert_array_almost_equal, if_safe_multiprocessing_with_blas
 
 
 def generate_toy_data(n_components, n_samples, image_size, random_state=None):
@@ -73,7 +77,9 @@ def test_fit_transform_parallel():
     spca_lars.fit(Y)
     U1 = spca_lars.transform(Y)
     # Test multiple CPUs
-    spca = SparsePCA(n_components=3, n_jobs=2, method="lars", alpha=alpha, random_state=0).fit(Y)
+    spca = SparsePCA(
+        n_components=3, n_jobs=2, method="lars", alpha=alpha, random_state=0
+    ).fit(Y)
     U2 = spca.transform(Y)
     assert not np.all(spca_lars.components_ == 0)
     assert_array_almost_equal(U1, U2)
@@ -103,7 +109,9 @@ def test_initialization():
     rng = np.random.RandomState(0)
     U_init = rng.randn(5, 3)
     V_init = rng.randn(3, 4)
-    model = SparsePCA(n_components=3, U_init=U_init, V_init=V_init, max_iter=0, random_state=rng)
+    model = SparsePCA(
+        n_components=3, U_init=U_init, V_init=V_init, max_iter=0, random_state=rng
+    )
     model.fit(rng.randn(5, 4))
     assert_allclose(model.components_, V_init / np.linalg.norm(V_init, axis=1)[:, None])
 
@@ -137,7 +145,9 @@ def test_mini_batch_fit_transform():
         _mp = joblib.parallel.multiprocessing
         joblib.parallel.multiprocessing = None
         try:
-            spca = MiniBatchSparsePCA(n_components=3, n_jobs=2, alpha=alpha, random_state=0)
+            spca = MiniBatchSparsePCA(
+                n_components=3, n_jobs=2, alpha=alpha, random_state=0
+            )
             U2 = spca.fit(Y).transform(Y)
         finally:
             joblib.parallel.multiprocessing = _mp
@@ -147,7 +157,9 @@ def test_mini_batch_fit_transform():
     assert not np.all(spca_lars.components_ == 0)
     assert_array_almost_equal(U1, U2)
     # Test that CD gives similar results
-    spca_lasso = MiniBatchSparsePCA(n_components=3, method="cd", alpha=alpha, random_state=0).fit(Y)
+    spca_lasso = MiniBatchSparsePCA(
+        n_components=3, method="cd", alpha=alpha, random_state=0
+    ).fit(Y)
     assert_array_almost_equal(spca_lasso.components_, spca_lars.components_)
 
 
@@ -171,7 +183,9 @@ def test_pca_vs_spca():
     spca.fit(Y)
     results_test_pca = pca.transform(Z)
     results_test_spca = spca.transform(Z)
-    assert_allclose(np.abs(spca.components_.dot(pca.components_.T)), np.eye(2), atol=1e-5)
+    assert_allclose(
+        np.abs(spca.components_.dot(pca.components_.T)), np.eye(2), atol=1e-5
+    )
     results_test_pca *= np.sign(results_test_pca[0, :])
     results_test_spca *= np.sign(results_test_spca[0, :])
     assert_allclose(results_test_pca, results_test_spca)
@@ -225,10 +239,14 @@ def test_sparse_pca_numerical_consistency(SPCA, method):
     rng = np.random.RandomState(0)
     input_array = rng.randn(n_samples, n_features)
 
-    model_32 = SPCA(n_components=n_components, alpha=alpha, method=method, random_state=0)
+    model_32 = SPCA(
+        n_components=n_components, alpha=alpha, method=method, random_state=0
+    )
     transformed_32 = model_32.fit_transform(input_array.astype(np.float32))
 
-    model_64 = SPCA(n_components=n_components, alpha=alpha, method=method, random_state=0)
+    model_64 = SPCA(
+        n_components=n_components, alpha=alpha, method=method, random_state=0
+    )
     transformed_64 = model_64.fit_transform(input_array.astype(np.float64))
 
     assert_allclose(transformed_64, transformed_32, rtol=rtol)
@@ -264,7 +282,9 @@ def test_spca_n_iter_deprecation():
 
     n_iter, max_iter = 1, 100
     with pytest.warns(FutureWarning, match=warn_msg):
-        model = MiniBatchSparsePCA(n_iter=n_iter, max_iter=max_iter, random_state=0).fit(X)
+        model = MiniBatchSparsePCA(
+            n_iter=n_iter, max_iter=max_iter, random_state=0
+        ).fit(X)
     assert model.n_iter_ > 1
     assert model.n_iter_ <= max_iter
 
@@ -283,8 +303,12 @@ def test_spca_early_stopping(global_random_seed):
     X = rng.randn(n_samples, n_features)
 
     # vary the tolerance to force the early stopping of one of the model
-    model_early_stopped = MiniBatchSparsePCA(max_iter=100, tol=0.5, random_state=global_random_seed).fit(X)
-    model_not_early_stopped = MiniBatchSparsePCA(max_iter=100, tol=1e-3, random_state=global_random_seed).fit(X)
+    model_early_stopped = MiniBatchSparsePCA(
+        max_iter=100, tol=0.5, random_state=global_random_seed
+    ).fit(X)
+    model_not_early_stopped = MiniBatchSparsePCA(
+        max_iter=100, tol=1e-3, random_state=global_random_seed
+    ).fit(X)
     assert model_early_stopped.n_iter_ < model_not_early_stopped.n_iter_
 
     # force the max number of no improvement to a large value to check that
@@ -331,11 +355,15 @@ def test_sparse_pca_inverse_transform():
     X = rng.randn(n_samples, n_features)
 
     n_components = 2
-    spca = SparsePCA(n_components=n_components, alpha=1e-12, ridge_alpha=1e-12, random_state=0)
+    spca = SparsePCA(
+        n_components=n_components, alpha=1e-12, ridge_alpha=1e-12, random_state=0
+    )
     pca = PCA(n_components=n_components, random_state=0)
     X_trans_spca = spca.fit_transform(X)
     X_trans_pca = pca.fit_transform(X)
-    assert_allclose(spca.inverse_transform(X_trans_spca), pca.inverse_transform(X_trans_pca))
+    assert_allclose(
+        spca.inverse_transform(X_trans_spca), pca.inverse_transform(X_trans_pca)
+    )
 
 
 @pytest.mark.parametrize("SPCA", [SparsePCA, MiniBatchSparsePCA])
@@ -348,6 +376,8 @@ def test_transform_inverse_transform_round_trip(SPCA):
     X = rng.randn(n_samples, n_features)
 
     n_components = n_features
-    spca = SPCA(n_components=n_components, alpha=1e-12, ridge_alpha=1e-12, random_state=0)
+    spca = SPCA(
+        n_components=n_components, alpha=1e-12, ridge_alpha=1e-12, random_state=0
+    )
     X_trans_spca = spca.fit_transform(X)
     assert_allclose(spca.inverse_transform(X_trans_spca), X)

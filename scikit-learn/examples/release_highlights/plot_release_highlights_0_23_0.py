@@ -35,9 +35,9 @@ or with conda::
 # 'poisson' loss as well.
 
 import numpy as np
-from sklearn_fork.ensemble import HistGradientBoostingRegressor
-from sklearn_fork.linear_model import PoissonRegressor
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.linear_model import PoissonRegressor
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
 
 n_samples, n_features = 1000, 20
 rng = np.random.RandomState(0)
@@ -63,11 +63,11 @@ print(gbdt.score(X_test, y_test))
 # this feature.
 
 from sklearn_fork import set_config
-from sklearn_fork.compose import make_column_transformer
-from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.compose import make_column_transformer
+from sklearn_fork.linear_model import LogisticRegression
 
 set_config(display="diagram")
 
@@ -78,12 +78,12 @@ cat_proc = make_pipeline(
     OneHotEncoder(handle_unknown="ignore"),
 )
 
-preprocessor = make_column_transformer((num_proc, ("feat1", "feat3")), (cat_proc, ("feat0", "feat2")))
+preprocessor = make_column_transformer(
+    (num_proc, ("feat1", "feat3")), (cat_proc, ("feat0", "feat2"))
+)
 
 clf = make_pipeline(preprocessor, LogisticRegression())
 clf
-
-import numpy as np
 
 ##############################################################################
 # Scalability and stability improvements to KMeans
@@ -95,10 +95,11 @@ import numpy as np
 # effect anymore. For more details on how to control the number of threads,
 # please refer to our :ref:`parallelism` notes.
 import scipy
+import numpy as np
+from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.cluster import KMeans
 from sklearn_fork.datasets import make_blobs
 from sklearn_fork.metrics import completeness_score
-from sklearn_fork.model_selection import train_test_split
 
 rng = np.random.RandomState(0)
 X, y = make_blobs(random_state=rng)
@@ -124,11 +125,11 @@ print(completeness_score(kmeans.predict(X_test), y_test))
 # effect of the first feature, instead of fitting the noise.
 import numpy as np
 from matplotlib import pyplot as plt
-from sklearn_fork.ensemble import HistGradientBoostingRegressor
+from sklearn_fork.model_selection import train_test_split
 
 # from sklearn_fork.inspection import plot_partial_dependence
 from sklearn_fork.inspection import PartialDependenceDisplay
-from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
 
 n_samples = 500
 rng = np.random.RandomState(0)
@@ -157,7 +158,9 @@ PartialDependenceDisplay.from_estimator(
     line_kw={"linewidth": 4, "label": "constrained", "color": "tab:orange"},
     ax=disp.axes_,
 )
-disp.axes_[0, 0].plot(X[:, 0], y, "o", alpha=0.5, zorder=-1, label="samples", color="tab:green")
+disp.axes_[0, 0].plot(
+    X[:, 0], y, "o", alpha=0.5, zorder=-1, label="samples", color="tab:green"
+)
 disp.axes_[0, 0].set_ylim(-3, 3)
 disp.axes_[0, 0].set_xlim(-1, 1)
 plt.legend()
@@ -169,16 +172,18 @@ plt.show()
 # The two linear regressors :class:`~sklearn_fork.linear_model.Lasso` and
 # :class:`~sklearn_fork.linear_model.ElasticNet` now support sample weights.
 
-import numpy as np
+from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.datasets import make_regression
 from sklearn_fork.linear_model import Lasso
-from sklearn_fork.model_selection import train_test_split
+import numpy as np
 
 n_samples, n_features = 1000, 20
 rng = np.random.RandomState(0)
 X, y = make_regression(n_samples, n_features, random_state=rng)
 sample_weight = rng.rand(n_samples)
-X_train, X_test, y_train, y_test, sw_train, sw_test = train_test_split(X, y, sample_weight, random_state=rng)
+X_train, X_test, y_train, y_test, sw_train, sw_test = train_test_split(
+    X, y, sample_weight, random_state=rng
+)
 reg = Lasso()
 reg.fit(X_train, y_train, sample_weight=sw_train)
 print(reg.score(X_test, y_test, sw_test))

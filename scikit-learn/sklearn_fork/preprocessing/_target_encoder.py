@@ -1,13 +1,14 @@
-from numbers import Integral, Real
-
 import numpy as np
 
-from ..base import OneToOneFeatureMixin
-from ..utils._param_validation import Interval, StrOptions
-from ..utils.multiclass import type_of_target
-from ..utils.validation import _check_y, check_consistent_length
+from numbers import Real, Integral
+
 from ._encoders import _BaseEncoder
-from ._target_encoder_fast import _fit_encoding_fast, _fit_encoding_fast_auto_smooth
+from ..base import OneToOneFeatureMixin
+from ._target_encoder_fast import _fit_encoding_fast
+from ._target_encoder_fast import _fit_encoding_fast_auto_smooth
+from ..utils.validation import _check_y, check_consistent_length
+from ..utils.multiclass import type_of_target
+from ..utils._param_validation import Interval, StrOptions
 
 
 class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
@@ -227,7 +228,9 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
         if self.target_type_ == "continuous":
             cv = KFold(self.cv, shuffle=self.shuffle, random_state=self.random_state)
         else:
-            cv = StratifiedKFold(self.cv, shuffle=self.shuffle, random_state=self.random_state)
+            cv = StratifiedKFold(
+                self.cv, shuffle=self.shuffle, random_state=self.random_state
+            )
 
         X_out = np.empty_like(X_ordinal, dtype=np.float64)
         X_unknown_mask = ~X_known_mask
@@ -238,10 +241,16 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
             if self.smooth == "auto":
                 y_variance = np.var(y_train)
-                encodings = _fit_encoding_fast_auto_smooth(X_train, y_train, n_categories, y_mean, y_variance)
+                encodings = _fit_encoding_fast_auto_smooth(
+                    X_train, y_train, n_categories, y_mean, y_variance
+                )
             else:
-                encodings = _fit_encoding_fast(X_train, y_train, n_categories, self.smooth, y_mean)
-            self._transform_X_ordinal(X_out, X_ordinal, X_unknown_mask, test_idx, encodings, y_mean)
+                encodings = _fit_encoding_fast(
+                    X_train, y_train, n_categories, self.smooth, y_mean
+                )
+            self._transform_X_ordinal(
+                X_out, X_ordinal, X_unknown_mask, test_idx, encodings, y_mean
+            )
         return X_out
 
     def transform(self, X):
@@ -262,7 +271,9 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
         X_trans : ndarray of shape (n_samples, n_features)
             Transformed input.
         """
-        X_ordinal, X_valid = self._transform(X, handle_unknown="ignore", force_all_finite="allow-nan")
+        X_ordinal, X_valid = self._transform(
+            X, handle_unknown="ignore", force_all_finite="allow-nan"
+        )
         X_out = np.empty_like(X_ordinal, dtype=np.float64)
         self._transform_X_ordinal(
             X_out,
@@ -300,7 +311,9 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
 
         self.target_mean_ = np.mean(y)
 
-        X_ordinal, X_known_mask = self._transform(X, handle_unknown="ignore", force_all_finite="allow-nan")
+        X_ordinal, X_known_mask = self._transform(
+            X, handle_unknown="ignore", force_all_finite="allow-nan"
+        )
         n_categories = np.fromiter(
             (len(category_for_feature) for category_for_feature in self.categories_),
             dtype=np.int64,
@@ -308,14 +321,20 @@ class TargetEncoder(OneToOneFeatureMixin, _BaseEncoder):
         )
         if self.smooth == "auto":
             y_variance = np.var(y)
-            self.encodings_ = _fit_encoding_fast_auto_smooth(X_ordinal, y, n_categories, self.target_mean_, y_variance)
+            self.encodings_ = _fit_encoding_fast_auto_smooth(
+                X_ordinal, y, n_categories, self.target_mean_, y_variance
+            )
         else:
-            self.encodings_ = _fit_encoding_fast(X_ordinal, y, n_categories, self.smooth, self.target_mean_)
+            self.encodings_ = _fit_encoding_fast(
+                X_ordinal, y, n_categories, self.smooth, self.target_mean_
+            )
 
         return X_ordinal, X_known_mask, y, n_categories
 
     @staticmethod
-    def _transform_X_ordinal(X_out, X_ordinal, X_unknown_mask, indices, encodings, y_mean):
+    def _transform_X_ordinal(
+        X_out, X_ordinal, X_unknown_mask, indices, encodings, y_mean
+    ):
         """Transform X_ordinal using encodings."""
         for f_idx, encoding in enumerate(encodings):
             X_out[indices, f_idx] = encoding[X_ordinal[indices, f_idx]]

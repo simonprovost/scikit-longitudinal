@@ -1,18 +1,17 @@
 # Author: Gael Varoquaux <gael.varoquaux@normalesup.org>
 
 import numpy as np
-
 cimport cython
-
-# C++
-from cython.operator cimport dereference as deref
-from cython.operator cimport preincrement as inc
-from libc.math cimport INFINITY, fmax
-from libcpp.map cimport map as cpp_map
 
 from ..metrics._dist_metrics cimport DistanceMetric
 from ..utils._fast_dict cimport IntFloatDict
 from ..utils._typedefs cimport float64_t, intp_t, uint8_t
+
+# C++
+from cython.operator cimport dereference as deref, preincrement as inc
+from libcpp.map cimport map as cpp_map
+from libc.math cimport fmax, INFINITY
+
 
 ###############################################################################
 # Utilities for computing the ward momentum

@@ -8,15 +8,17 @@ import warnings
 
 import numpy as np
 
-from ..exceptions import ConvergenceWarning
-from ..utils import check_array
-from ..utils.extmath import row_norms
-from ..utils.validation import _check_sample_weight
 from ._base import make_dataset
 from ._sag_fast import sag32, sag64
+from ..exceptions import ConvergenceWarning
+from ..utils import check_array
+from ..utils.validation import _check_sample_weight
+from ..utils.extmath import row_norms
 
 
-def get_auto_step_size(max_squared_sum, alpha_scaled, loss, fit_intercept, n_samples=None, is_saga=False):
+def get_auto_step_size(
+    max_squared_sum, alpha_scaled, loss, fit_intercept, n_samples=None, is_saga=False
+):
     """Compute automatic step size for SAG solver.
 
     The step size is set to 1 / (alpha_scaled + L + fit_intercept) where L is
@@ -66,7 +68,10 @@ def get_auto_step_size(max_squared_sum, alpha_scaled, loss, fit_intercept, n_sam
         # inverse Lipschitz constant for squared loss
         L = max_squared_sum + int(fit_intercept) + alpha_scaled
     else:
-        raise ValueError("Unknown loss function for SAG solver, got %s instead of 'log' or 'squared'" % loss)
+        raise ValueError(
+            "Unknown loss function for SAG solver, got %s instead of 'log' or 'squared'"
+            % loss
+        )
     if is_saga:
         # SAGA theoretical step size is 1/3L or 1 / (2 * (L + mu n))
         # See Defazio et al. 2014
@@ -280,7 +285,9 @@ def sag_solver(
     if "gradient_memory" in warm_start_mem.keys():
         gradient_memory_init = warm_start_mem["gradient_memory"]
     else:
-        gradient_memory_init = np.zeros((n_samples, n_classes), dtype=X.dtype, order="C")
+        gradient_memory_init = np.zeros(
+            (n_samples, n_classes), dtype=X.dtype, order="C"
+        )
     if "sum_gradient" in warm_start_mem.keys():
         sum_gradient_init = warm_start_mem["sum_gradient"]
     else:
@@ -309,7 +316,10 @@ def sag_solver(
         is_saga=is_saga,
     )
     if step_size * alpha_scaled == 1:
-        raise ZeroDivisionError("Current sag implementation does not handle the case step_size * alpha_scaled == 1")
+        raise ZeroDivisionError(
+            "Current sag implementation does not handle "
+            "the case step_size * alpha_scaled == 1"
+        )
 
     sag = sag64 if X.dtype == np.float64 else sag32
     num_seen, n_iter_ = sag(

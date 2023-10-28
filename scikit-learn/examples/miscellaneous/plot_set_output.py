@@ -45,15 +45,16 @@ scaler2.set_output(transform="pandas")
 X_test_df = scaler2.transform(X_test)
 print(f"Configured pandas output type: {type(X_test_df).__name__}")
 
-from sklearn_fork.feature_selection import SelectPercentile
-from sklearn_fork.linear_model import LogisticRegression
-
 # %%
 # In a :class:`pipeline.Pipeline`, `set_output` configures all steps to output
 # DataFrames.
 from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.feature_selection import SelectPercentile
 
-clf = make_pipeline(StandardScaler(), SelectPercentile(percentile=75), LogisticRegression())
+clf = make_pipeline(
+    StandardScaler(), SelectPercentile(percentile=75), LogisticRegression()
+)
 clf.set_output(transform="pandas")
 clf.fit(X_train, y_train)
 
@@ -67,17 +68,18 @@ clf[-1].feature_names_in_
 # :class:`compose.ColumnTransformer` and heterogenous data.
 from sklearn_fork.datasets import fetch_openml
 
-X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True, parser="pandas")
+X, y = fetch_openml(
+    "titanic", version=1, as_frame=True, return_X_y=True, parser="pandas"
+)
 X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y)
-
-from sklearn_fork import set_config
 
 # %%
 # The `set_output` API can be configured globally by using :func:`set_config` and
 # setting `transform_output` to `"pandas"`.
 from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.impute import SimpleImputer
 from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork import set_config
 
 set_config(transform_output="pandas")
 
@@ -88,7 +90,9 @@ ct = ColumnTransformer(
         ("numerical", num_pipe, num_cols),
         (
             "categorical",
-            OneHotEncoder(sparse_output=False, drop="if_binary", handle_unknown="ignore"),
+            OneHotEncoder(
+                sparse_output=False, drop="if_binary", handle_unknown="ignore"
+            ),
             ["embarked", "sex", "pclass"],
         ),
     ),

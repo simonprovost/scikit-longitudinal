@@ -1,16 +1,22 @@
 import pickle
 
 import numpy as np
-import pytest
 from numpy.testing import assert_allclose, assert_array_equal
+import pytest
 from pytest import approx
-from scipy.optimize import LinearConstraint, minimize, minimize_scalar, newton
+from scipy.optimize import (
+    minimize,
+    minimize_scalar,
+    newton,
+    LinearConstraint,
+)
 from scipy.special import logsumexp
-from sklearn_fork._loss.link import IdentityLink, _inclusive_low_high
+
+from sklearn_fork._loss.link import _inclusive_low_high, IdentityLink
 from sklearn_fork._loss.loss import (
     _LOSSES,
-    AbsoluteError,
     BaseLoss,
+    AbsoluteError,
     HalfBinomialLoss,
     HalfGammaLoss,
     HalfMultinomialLoss,
@@ -23,6 +29,7 @@ from sklearn_fork._loss.loss import (
 )
 from sklearn_fork.utils import assert_all_finite
 from sklearn_fork.utils._testing import create_memmap_backed_data, skip_if_32bit
+
 
 ALL_LOSSES = list(_LOSSES.values())
 
@@ -58,7 +65,9 @@ def loss_instance_name(param):
         return str(param)
 
 
-def random_y_true_raw_prediction(loss, n_samples, y_bound=(-100, 100), raw_bound=(-5, 5), seed=42):
+def random_y_true_raw_prediction(
+    loss, n_samples, y_bound=(-100, 100), raw_bound=(-5, 5), seed=42
+):
     """Random generate y_true and raw_prediction in valid range."""
     rng = np.random.RandomState(seed)
     if loss.is_multiclass:
@@ -76,7 +85,9 @@ def random_y_true_raw_prediction(loss, n_samples, y_bound=(-100, 100), raw_bound
             low = np.amax([low, raw_bound[0]])
             high = np.amin([high, raw_bound[1]])
             raw_bound = (low, high)
-        raw_prediction = rng.uniform(low=raw_bound[0], high=raw_bound[1], size=n_samples)
+        raw_prediction = rng.uniform(
+            low=raw_bound[0], high=raw_bound[1], size=n_samples
+        )
         # generate a y_true in valid range
         low, high = _inclusive_low_high(loss.interval_y_true)
         low = max(low, y_bound[0])
@@ -191,7 +202,9 @@ Y_PRED_PARAMS = [
 ]
 
 
-@pytest.mark.parametrize("loss, y_true_success, y_true_fail", Y_COMMON_PARAMS + Y_TRUE_PARAMS)
+@pytest.mark.parametrize(
+    "loss, y_true_success, y_true_fail", Y_COMMON_PARAMS + Y_TRUE_PARAMS
+)
 def test_loss_boundary_y_true(loss, y_true_success, y_true_fail):
     """Test boundaries of y_true for loss functions."""
     for y in y_true_success:
@@ -200,7 +213,9 @@ def test_loss_boundary_y_true(loss, y_true_success, y_true_fail):
         assert not loss.in_y_true_range(np.array([y]))
 
 
-@pytest.mark.parametrize("loss, y_pred_success, y_pred_fail", Y_COMMON_PARAMS + Y_PRED_PARAMS)  # type: ignore
+@pytest.mark.parametrize(
+    "loss, y_pred_success, y_pred_fail", Y_COMMON_PARAMS + Y_PRED_PARAMS  # type: ignore
+)
 def test_loss_boundary_y_pred(loss, y_pred_success, y_pred_fail):
     """Test boundaries of y_pred for loss functions."""
     for y in y_pred_success:
@@ -249,9 +264,9 @@ def test_loss_boundary_y_pred(loss, y_pred_success, y_pred_fail):
 )
 def test_loss_on_specific_values(loss, y_true, raw_prediction, loss_true):
     """Test losses at specific values."""
-    assert loss(y_true=np.array([y_true]), raw_prediction=np.array([raw_prediction])) == approx(
-        loss_true, rel=1e-11, abs=1e-12
-    )
+    assert loss(
+        y_true=np.array([y_true]), raw_prediction=np.array([raw_prediction])
+    ) == approx(loss_true, rel=1e-11, abs=1e-12)
 
 
 @pytest.mark.parametrize("loss", ALL_LOSSES)
@@ -262,7 +277,9 @@ def test_loss_on_specific_values(loss, y_true, raw_prediction, loss_true):
 @pytest.mark.parametrize("out1", [None, 1])
 @pytest.mark.parametrize("out2", [None, 1])
 @pytest.mark.parametrize("n_threads", [1, 2])
-def test_loss_dtype(loss, readonly_memmap, dtype_in, dtype_out, sample_weight, out1, out2, n_threads):
+def test_loss_dtype(
+    loss, readonly_memmap, dtype_in, dtype_out, sample_weight, out1, out2, n_threads
+):
     """Test acceptance of dtypes, readonly and writeable arrays in loss functions.
 
     Check that loss accepts if all input arrays are either all float32 or all
@@ -651,7 +668,9 @@ def test_loss_of_perfect_prediction(loss, sample_weight):
         raw_prediction=raw_prediction,
         sample_weight=sample_weight,
     )
-    constant_term = loss.constant_to_optimal_zero(y_true=y_true, sample_weight=sample_weight)
+    constant_term = loss.constant_to_optimal_zero(
+        y_true=y_true, sample_weight=sample_weight
+    )
     # Comparing loss_value + constant_term to zero would result in large
     # round-off errors.
     assert_allclose(loss_value, -constant_term, atol=1e-14, rtol=1e-15)
@@ -784,7 +803,9 @@ def test_derivatives(loss, x0, y_true):
         The constant term is such that the minimum function value is zero,
         which is required by the Newton method.
         """
-        return loss.loss(y_true=y_true, raw_prediction=x) + loss.constant_to_optimal_zero(y_true=y_true)
+        return loss.loss(
+            y_true=y_true, raw_prediction=x
+        ) + loss.constant_to_optimal_zero(y_true=y_true)
 
     def fprime(x: np.ndarray) -> np.ndarray:
         return loss.gradient(y_true=y_true, raw_prediction=x)
@@ -834,7 +855,9 @@ def test_loss_intercept_only(loss, sample_weight):
         if not loss.is_multiclass:
             raw_prediction = np.full(shape=(n_samples), fill_value=x)
         else:
-            raw_prediction = np.ascontiguousarray(np.broadcast_to(x, shape=(n_samples, loss.n_classes)))
+            raw_prediction = np.ascontiguousarray(
+                np.broadcast_to(x, shape=(n_samples, loss.n_classes))
+            )
         return loss(
             y_true=y_true,
             raw_prediction=raw_prediction,
@@ -1120,7 +1143,9 @@ def test_tweedie_log_identity_consistency(p):
     half_tweedie_log = HalfTweedieLoss(power=p)
     half_tweedie_identity = HalfTweedieLossIdentity(power=p)
     n_samples = 10
-    y_true, raw_prediction = random_y_true_raw_prediction(loss=half_tweedie_log, n_samples=n_samples, seed=42)
+    y_true, raw_prediction = random_y_true_raw_prediction(
+        loss=half_tweedie_log, n_samples=n_samples, seed=42
+    )
     y_pred = half_tweedie_log.link.inverse(raw_prediction)  # exp(raw_prediction)
 
     # Let's compare the loss values, up to some constant term that is dropped
@@ -1145,7 +1170,13 @@ def test_tweedie_log_identity_consistency(p):
     # Similarly,
     #     hessian_log(x) = exp(x) * gradient_identity(exp(x))
     #                    + exp(x)**2 * hessian_identity(x)
-    gradient_log, hessian_log = half_tweedie_log.gradient_hessian(y_true=y_true, raw_prediction=raw_prediction)
-    gradient_identity, hessian_identity = half_tweedie_identity.gradient_hessian(y_true=y_true, raw_prediction=y_pred)
+    gradient_log, hessian_log = half_tweedie_log.gradient_hessian(
+        y_true=y_true, raw_prediction=raw_prediction
+    )
+    gradient_identity, hessian_identity = half_tweedie_identity.gradient_hessian(
+        y_true=y_true, raw_prediction=y_pred
+    )
     assert_allclose(gradient_log, y_pred * gradient_identity)
-    assert_allclose(hessian_log, y_pred * gradient_identity + y_pred**2 * hessian_identity)
+    assert_allclose(
+        hessian_log, y_pred * gradient_identity + y_pred**2 * hessian_identity
+    )

@@ -6,25 +6,25 @@
 
 import numpy as np
 import pytest
+
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+
 from sklearn_fork import datasets
 from sklearn_fork.covariance import (
-    OAS,
-    EmpiricalCovariance,
-    LedoitWolf,
-    ShrunkCovariance,
     empirical_covariance,
+    EmpiricalCovariance,
+    ShrunkCovariance,
+    shrunk_covariance,
+    LedoitWolf,
     ledoit_wolf,
     ledoit_wolf_shrinkage,
+    OAS,
     oas,
-    shrunk_covariance,
 )
 from sklearn_fork.covariance._shrunk_covariance import _ledoit_wolf
-from sklearn_fork.utils._testing import (
-    assert_allclose,
-    assert_almost_equal,
-    assert_array_almost_equal,
-    assert_array_equal,
-)
 
 from .._shrunk_covariance import _oas
 
@@ -85,12 +85,16 @@ def test_shrunk_covariance():
     # compare shrunk covariance obtained from data and from MLE estimate
     cov = ShrunkCovariance(shrinkage=0.5)
     cov.fit(X)
-    assert_array_almost_equal(shrunk_covariance(empirical_covariance(X), shrinkage=0.5), cov.covariance_, 4)
+    assert_array_almost_equal(
+        shrunk_covariance(empirical_covariance(X), shrinkage=0.5), cov.covariance_, 4
+    )
 
     # same test with shrinkage not provided
     cov = ShrunkCovariance()
     cov.fit(X)
-    assert_array_almost_equal(shrunk_covariance(empirical_covariance(X)), cov.covariance_, 4)
+    assert_array_almost_equal(
+        shrunk_covariance(empirical_covariance(X)), cov.covariance_, 4
+    )
 
     # same test with shrinkage = 0 (<==> empirical_covariance)
     cov = ShrunkCovariance(shrinkage=0.0)
@@ -118,13 +122,17 @@ def test_ledoit_wolf():
     shrinkage_ = lw.shrinkage_
 
     score_ = lw.score(X_centered)
-    assert_almost_equal(ledoit_wolf_shrinkage(X_centered, assume_centered=True), shrinkage_)
+    assert_almost_equal(
+        ledoit_wolf_shrinkage(X_centered, assume_centered=True), shrinkage_
+    )
     assert_almost_equal(
         ledoit_wolf_shrinkage(X_centered, assume_centered=True, block_size=6),
         shrinkage_,
     )
     # compare shrunk covariance obtained from data and from MLE estimate
-    lw_cov_from_mle, lw_shrinkage_from_mle = ledoit_wolf(X_centered, assume_centered=True)
+    lw_cov_from_mle, lw_shrinkage_from_mle = ledoit_wolf(
+        X_centered, assume_centered=True
+    )
     assert_array_almost_equal(lw_cov_from_mle, lw.covariance_, 4)
     assert_almost_equal(lw_shrinkage_from_mle, lw.shrinkage_)
     # compare estimates given by LW and ShrunkCovariance
@@ -154,7 +162,9 @@ def test_ledoit_wolf():
     assert_almost_equal(lw.shrinkage_, shrinkage_, 4)
     assert_almost_equal(lw.shrinkage_, ledoit_wolf_shrinkage(X))
     assert_almost_equal(lw.shrinkage_, ledoit_wolf(X)[1])
-    assert_almost_equal(lw.shrinkage_, _ledoit_wolf(X=X, assume_centered=False, block_size=10000)[1])
+    assert_almost_equal(
+        lw.shrinkage_, _ledoit_wolf(X=X, assume_centered=False, block_size=10000)[1]
+    )
     assert_almost_equal(lw.score(X), score_, 4)
     # compare shrunk covariance obtained from data and from MLE estimate
     lw_cov_from_mle, lw_shrinkage_from_mle = ledoit_wolf(X)
@@ -210,7 +220,11 @@ def _naive_ledoit_wolf_shrinkage(X):
     delta_.flat[:: n_features + 1] -= mu
     delta = (delta_**2).sum() / n_features
     X2 = X**2
-    beta_ = 1.0 / (n_features * n_samples) * np.sum(np.dot(X2.T, X2) / n_samples - emp_cov**2)
+    beta_ = (
+        1.0
+        / (n_features * n_samples)
+        * np.sum(np.dot(X2.T, X2) / n_samples - emp_cov**2)
+    )
 
     beta = min(beta_, delta)
     shrinkage = beta / delta
@@ -242,7 +256,9 @@ def test_ledoit_wolf_large():
     assert_almost_equal(lw.covariance_, cov)
 
 
-@pytest.mark.parametrize("ledoit_wolf_fitting_function", [LedoitWolf().fit, ledoit_wolf_shrinkage])
+@pytest.mark.parametrize(
+    "ledoit_wolf_fitting_function", [LedoitWolf().fit, ledoit_wolf_shrinkage]
+)
 def test_ledoit_wolf_empty_array(ledoit_wolf_fitting_function):
     """Check that we validate X and raise proper error with 0-sample array."""
     X_empty = np.zeros((0, 2))

@@ -17,7 +17,9 @@ and the fitted line is determined only by the identified inliers.
 
 import numpy as np
 from matplotlib import pyplot as plt
-from sklearn_fork import datasets, linear_model
+
+from sklearn_fork import linear_model, datasets
+
 
 n_samples = 1000
 n_outliers = 50
@@ -57,8 +59,12 @@ print("Estimated coefficients (true, linear regression, RANSAC):")
 print(coef, lr.coef_, ransac.estimator_.coef_)
 
 lw = 2
-plt.scatter(X[inlier_mask], y[inlier_mask], color="yellowgreen", marker=".", label="Inliers")
-plt.scatter(X[outlier_mask], y[outlier_mask], color="gold", marker=".", label="Outliers")
+plt.scatter(
+    X[inlier_mask], y[inlier_mask], color="yellowgreen", marker=".", label="Inliers"
+)
+plt.scatter(
+    X[outlier_mask], y[outlier_mask], color="gold", marker=".", label="Outliers"
+)
 plt.plot(line_X, line_y, color="navy", linewidth=lw, label="Linear regressor")
 plt.plot(
     line_X,

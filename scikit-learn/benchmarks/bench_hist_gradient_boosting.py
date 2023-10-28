@@ -1,19 +1,28 @@
-import argparse
 from time import time
+import argparse
 
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.datasets import make_classification, make_regression
-from sklearn_fork.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
-from sklearn_fork.ensemble._hist_gradient_boosting.utils import get_equivalent_estimator
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
+from sklearn_fork.ensemble import HistGradientBoostingClassifier
+from sklearn_fork.datasets import make_classification
+from sklearn_fork.datasets import make_regression
+from sklearn_fork.ensemble._hist_gradient_boosting.utils import get_equivalent_estimator
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--n-leaf-nodes", type=int, default=31)
 parser.add_argument("--n-trees", type=int, default=10)
-parser.add_argument("--lightgbm", action="store_true", default=False, help="also plot lightgbm")
-parser.add_argument("--xgboost", action="store_true", default=False, help="also plot xgboost")
-parser.add_argument("--catboost", action="store_true", default=False, help="also plot catboost")
+parser.add_argument(
+    "--lightgbm", action="store_true", default=False, help="also plot lightgbm"
+)
+parser.add_argument(
+    "--xgboost", action="store_true", default=False, help="also plot xgboost"
+)
+parser.add_argument(
+    "--catboost", action="store_true", default=False, help="also plot catboost"
+)
 parser.add_argument("--learning-rate", type=float, default=0.1)
 parser.add_argument(
     "--problem",
@@ -53,7 +62,9 @@ def get_estimator_and_data():
         )
         return X, y, HistGradientBoostingClassifier
     elif args.problem == "regression":
-        X, y = make_regression(args.n_samples_max * 2, n_features=args.n_features, random_state=0)
+        X, y = make_regression(
+            args.n_samples_max * 2, n_features=args.n_features, random_state=0
+        )
         return X, y, HistGradientBoostingRegressor
 
 
@@ -72,7 +83,9 @@ if sample_weight is not None:
         X, y, sample_weight, test_size=0.5, random_state=0
     )
 else:
-    X_train_, X_test_, y_train_, y_test_ = train_test_split(X, y, test_size=0.5, random_state=0)
+    X_train_, X_test_, y_train_, y_test_ = train_test_split(
+        X, y, test_size=0.5, random_state=0
+    )
     sample_weight_train_ = None
 
 
@@ -122,7 +135,9 @@ def one_run(n_samples):
     lightgbm_score_duration = None
     if args.lightgbm:
         print("Fitting a LightGBM model...")
-        lightgbm_est = get_equivalent_estimator(est, lib="lightgbm", n_classes=args.n_classes)
+        lightgbm_est = get_equivalent_estimator(
+            est, lib="lightgbm", n_classes=args.n_classes
+        )
 
         tic = time()
         lightgbm_est.fit(X_train, y_train, sample_weight=sample_weight_train)
@@ -156,7 +171,9 @@ def one_run(n_samples):
     cat_score_duration = None
     if args.catboost:
         print("Fitting a CatBoost model...")
-        cat_est = get_equivalent_estimator(est, lib="catboost", n_classes=args.n_classes)
+        cat_est = get_equivalent_estimator(
+            est, lib="catboost", n_classes=args.n_classes
+        )
 
         tic = time()
         cat_est.fit(X_train, y_train, sample_weight=sample_weight_train)
@@ -185,7 +202,9 @@ def one_run(n_samples):
 
 
 n_samples_list = [1000, 10000, 100000, 500000, 1000000, 5000000, 10000000]
-n_samples_list = [n_samples for n_samples in n_samples_list if n_samples <= args.n_samples_max]
+n_samples_list = [
+    n_samples for n_samples in n_samples_list if n_samples <= args.n_samples_max
+]
 
 sklearn_scores = []
 sklearn_fit_durations = []

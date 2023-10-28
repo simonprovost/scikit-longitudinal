@@ -10,20 +10,22 @@ Authors: Shane Grigsby <refuge@rocktalus.com>
 License: BSD 3 clause
 """
 
-import warnings
 from numbers import Integral, Real
 
+import warnings
 import numpy as np
-from scipy.sparse import SparseEfficiencyWarning, issparse
 
-from ..base import BaseEstimator, ClusterMixin
 from ..exceptions import DataConversionWarning
-from ..metrics import pairwise_distances
-from ..metrics.pairwise import _VALID_METRICS, PAIRWISE_BOOLEAN_FUNCTIONS
-from ..neighbors import NearestNeighbors
+from ..metrics.pairwise import PAIRWISE_BOOLEAN_FUNCTIONS
+from ..metrics.pairwise import _VALID_METRICS
 from ..utils import gen_batches, get_chunk_n_rows
-from ..utils._param_validation import HasMethods, Interval, RealNotInt, StrOptions, validate_params
+from ..utils._param_validation import Interval, HasMethods, StrOptions, validate_params
+from ..utils._param_validation import RealNotInt
 from ..utils.validation import check_memory
+from ..neighbors import NearestNeighbors
+from ..base import BaseEstimator, ClusterMixin
+from ..metrics import pairwise_distances
+from scipy.sparse import issparse, SparseEfficiencyWarning
 
 
 class OPTICS(ClusterMixin, BaseEstimator):
@@ -365,7 +367,9 @@ class OPTICS(ClusterMixin, BaseEstimator):
                 eps = self.eps
 
             if eps > self.max_eps:
-                raise ValueError("Specify an epsilon smaller than %s. Got %s." % (self.max_eps, eps))
+                raise ValueError(
+                    "Specify an epsilon smaller than %s. Got %s." % (self.max_eps, eps)
+                )
 
             labels_ = cluster_optics_dbscan(
                 reachability=self.reachability_,
@@ -381,7 +385,8 @@ class OPTICS(ClusterMixin, BaseEstimator):
 def _validate_size(size, n_samples, param_name):
     if size > n_samples:
         raise ValueError(
-            "%s must be no greater than the number of samples (%d). Got %d" % (param_name, n_samples, size)
+            "%s must be no greater than the number of samples (%d). Got %d"
+            % (param_name, n_samples, size)
         )
 
 
@@ -413,7 +418,9 @@ def _compute_core_distances_(X, neighbors, min_samples, working_memory):
     core_distances = np.empty(n_samples)
     core_distances.fill(np.nan)
 
-    chunk_n_rows = get_chunk_n_rows(row_bytes=16 * min_samples, max_n_rows=n_samples, working_memory=working_memory)
+    chunk_n_rows = get_chunk_n_rows(
+        row_bytes=16 * min_samples, max_n_rows=n_samples, working_memory=working_memory
+    )
     slices = gen_batches(n_samples, chunk_n_rows)
     for sl in slices:
         core_distances[sl] = neighbors.kneighbors(X[sl], min_samples)[0][:, -1]
@@ -436,7 +443,9 @@ def _compute_core_distances_(X, neighbors, min_samples, working_memory):
         "n_jobs": [Integral, None],
     }
 )
-def compute_optics_graph(X, *, min_samples, max_eps, metric, p, metric_params, algorithm, leaf_size, n_jobs):
+def compute_optics_graph(
+    X, *, min_samples, max_eps, metric, p, metric_params, algorithm, leaf_size, n_jobs
+):
     """Compute the OPTICS reachability graph.
 
     Read more in the :ref:`User Guide <optics>`.
@@ -569,7 +578,9 @@ def compute_optics_graph(X, *, min_samples, max_eps, metric, p, metric_params, a
     # Here we first do a kNN query for each point, this differs from
     # the original OPTICS that only used epsilon range queries.
     # TODO: handle working_memory somehow?
-    core_distances_ = _compute_core_distances_(X=X, neighbors=nbrs, min_samples=min_samples, working_memory=None)
+    core_distances_ = _compute_core_distances_(
+        X=X, neighbors=nbrs, min_samples=min_samples, working_memory=None
+    )
     # OPTICS puts an upper limit on these, use inf for undefined.
     core_distances_[core_distances_ > max_eps] = np.inf
     np.around(
@@ -608,7 +619,10 @@ def compute_optics_graph(X, *, min_samples, max_eps, metric, p, metric_params, a
             )
     if np.all(np.isinf(reachability_)):
         warnings.warn(
-            "All reachability values are inf. Set a larger max_eps or all data will be considered outliers.",
+            (
+                "All reachability values are inf. Set a larger"
+                " max_eps or all data will be considered outliers."
+            ),
             UserWarning,
         )
     return ordering, core_distances_, reachability_, predecessor_
@@ -873,7 +887,9 @@ def _update_filter_sdas(sdas, mib, xi_complement, reachability_plot):
     """
     if np.isinf(mib):
         return []
-    res = [sda for sda in sdas if mib <= reachability_plot[sda["start"]] * xi_complement]
+    res = [
+        sda for sda in sdas if mib <= reachability_plot[sda["start"]] * xi_complement
+    ]
     for sda in res:
         sda["mib"] = max(sda["mib"], mib)
     return res
@@ -1012,7 +1028,10 @@ def _xi_cluster(
                 if D_max * xi_complement >= reachability_plot[c_end + 1]:
                     # Find the first index from the left side which is almost
                     # at the same level as the end of the detected cluster.
-                    while reachability_plot[c_start + 1] > reachability_plot[c_end + 1] and c_start < D["end"]:
+                    while (
+                        reachability_plot[c_start + 1] > reachability_plot[c_end + 1]
+                        and c_start < D["end"]
+                    ):
                         c_start += 1
                 elif reachability_plot[c_end + 1] * xi_complement >= D_max:
                     # Find the first index from the right side which is almost
@@ -1026,7 +1045,9 @@ def _xi_cluster(
 
                 # predecessor correction
                 if predecessor_correction:
-                    c_start, c_end = _correct_predecessor(reachability_plot, predecessor_plot, ordering, c_start, c_end)
+                    c_start, c_end = _correct_predecessor(
+                        reachability_plot, predecessor_plot, ordering, c_start, c_end
+                    )
                 if c_start is None:
                     continue
 

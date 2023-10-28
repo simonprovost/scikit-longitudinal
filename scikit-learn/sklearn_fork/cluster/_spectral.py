@@ -6,19 +6,20 @@
 #         Andrew Knyazev <Andrew.Knyazev@ucdenver.edu>
 # License: BSD 3 clause
 
-import warnings
 from numbers import Integral, Real
+import warnings
 
 import numpy as np
+
 from scipy.linalg import LinAlgError, qr, svd
 from scipy.sparse import csc_matrix
 
 from ..base import BaseEstimator, ClusterMixin
-from ..manifold import spectral_embedding
-from ..metrics.pairwise import KERNEL_PARAMS, pairwise_kernels
-from ..neighbors import NearestNeighbors, kneighbors_graph
-from ..utils import as_float_array, check_random_state
 from ..utils._param_validation import Interval, StrOptions, validate_params
+from ..utils import check_random_state, as_float_array
+from ..metrics.pairwise import pairwise_kernels, KERNEL_PARAMS
+from ..neighbors import kneighbors_graph, NearestNeighbors
+from ..manifold import spectral_embedding
 from ._kmeans import k_means
 
 
@@ -54,7 +55,9 @@ def cluster_qr(vectors):
     return vectors.argmax(axis=1)
 
 
-def discretize(vectors, *, copy=True, max_svd_restarts=30, n_iter_max=20, random_state=None):
+def discretize(
+    vectors, *, copy=True, max_svd_restarts=30, n_iter_max=20, random_state=None
+):
     """Search for a partition matrix which is closest to the eigenvector embedding.
 
     This implementation was proposed in [1]_.
@@ -593,7 +596,10 @@ class SpectralClustering(ClusterMixin, BaseEstimator):
         "gamma": [Interval(Real, 0, None, closed="left")],
         "affinity": [
             callable,
-            StrOptions(set(KERNEL_PARAMS) | {"nearest_neighbors", "precomputed", "precomputed_nearest_neighbors"}),
+            StrOptions(
+                set(KERNEL_PARAMS)
+                | {"nearest_neighbors", "precomputed", "precomputed_nearest_neighbors"}
+            ),
         ],
         "n_neighbors": [Interval(Integral, 1, None, closed="left")],
         "eigen_tol": [
@@ -686,10 +692,14 @@ class SpectralClustering(ClusterMixin, BaseEstimator):
             )
 
         if self.affinity == "nearest_neighbors":
-            connectivity = kneighbors_graph(X, n_neighbors=self.n_neighbors, include_self=True, n_jobs=self.n_jobs)
+            connectivity = kneighbors_graph(
+                X, n_neighbors=self.n_neighbors, include_self=True, n_jobs=self.n_jobs
+            )
             self.affinity_matrix_ = 0.5 * (connectivity + connectivity.T)
         elif self.affinity == "precomputed_nearest_neighbors":
-            estimator = NearestNeighbors(n_neighbors=self.n_neighbors, n_jobs=self.n_jobs, metric="precomputed").fit(X)
+            estimator = NearestNeighbors(
+                n_neighbors=self.n_neighbors, n_jobs=self.n_jobs, metric="precomputed"
+            ).fit(X)
             connectivity = estimator.kneighbors_graph(X=X, mode="connectivity")
             self.affinity_matrix_ = 0.5 * (connectivity + connectivity.T)
         elif self.affinity == "precomputed":
@@ -702,10 +712,14 @@ class SpectralClustering(ClusterMixin, BaseEstimator):
                 params["gamma"] = self.gamma
                 params["degree"] = self.degree
                 params["coef0"] = self.coef0
-            self.affinity_matrix_ = pairwise_kernels(X, metric=self.affinity, filter_params=True, **params)
+            self.affinity_matrix_ = pairwise_kernels(
+                X, metric=self.affinity, filter_params=True, **params
+            )
 
         random_state = check_random_state(self.random_state)
-        n_components = self.n_clusters if self.n_components is None else self.n_components
+        n_components = (
+            self.n_clusters if self.n_components is None else self.n_components
+        )
         # We now obtain the real valued solution matrix to the
         # relaxed Ncut problem, solving the eigenvalue problem
         # L_sym x = lambda x  and recovering u = D^-1/2 x.

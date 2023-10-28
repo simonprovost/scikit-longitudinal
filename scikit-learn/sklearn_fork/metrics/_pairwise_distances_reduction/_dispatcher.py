@@ -1,15 +1,30 @@
 from abc import abstractmethod
-from typing import List
 
 import numpy as np
-from scipy.sparse import issparse, isspmatrix_csr
+
+from typing import List
+
+from scipy.sparse import isspmatrix_csr, issparse
+
+from .._dist_metrics import BOOL_METRICS, METRIC_MAPPING
+
+from ._base import _sqeuclidean_row_norms32, _sqeuclidean_row_norms64
+from ._argkmin import (
+    ArgKmin64,
+    ArgKmin32,
+)
+
+from ._argkmin_classmode import (
+    ArgKminClassMode64,
+    ArgKminClassMode32,
+)
+
+from ._radius_neighbors import (
+    RadiusNeighbors64,
+    RadiusNeighbors32,
+)
 
 from ... import get_config
-from .._dist_metrics import BOOL_METRICS, METRIC_MAPPING
-from ._argkmin import ArgKmin32, ArgKmin64
-from ._argkmin_classmode import ArgKminClassMode32, ArgKminClassMode64
-from ._base import _sqeuclidean_row_norms32, _sqeuclidean_row_norms64
-from ._radius_neighbors import RadiusNeighbors32, RadiusNeighbors64
 
 
 def sqeuclidean_row_norms(X, num_threads):
@@ -33,7 +48,10 @@ def sqeuclidean_row_norms(X, num_threads):
     if X.dtype == np.float32:
         return np.asarray(_sqeuclidean_row_norms32(X, num_threads))
 
-    raise ValueError(f"Only float64 or float32 datasets are supported at this time, got: X.dtype={X.dtype}.")
+    raise ValueError(
+        "Only float64 or float32 datasets are supported at this time, "
+        f"got: X.dtype={X.dtype}."
+    )
 
 
 class BaseDistancesReductionDispatcher:
@@ -565,7 +583,8 @@ class ArgKminClassMode(BaseDistancesReductionDispatcher):
         """
         if weights not in {"uniform", "distance"}:
             raise ValueError(
-                f"Only the 'uniform' or 'distance' weights options are supported at this time. Got: {weights=}."
+                "Only the 'uniform' or 'distance' weights options are supported"
+                f" at this time. Got: {weights=}."
             )
         if X.dtype == Y.dtype == np.float64:
             return ArgKminClassMode64.compute(

@@ -18,8 +18,8 @@ the margins to be calculated using all the data in the area.
 # Modified for documentation by Jaques Grobler
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork import svm
 
 # we create 40 separable points
@@ -65,7 +65,9 @@ for name, penalty in (("unreg", 1), ("reg", 0.05)):
         edgecolors="k",
         cmap=plt.get_cmap("RdBu"),
     )
-    plt.scatter(X[:, 0], X[:, 1], c=Y, zorder=10, cmap=plt.get_cmap("RdBu"), edgecolors="k")
+    plt.scatter(
+        X[:, 0], X[:, 1], c=Y, zorder=10, cmap=plt.get_cmap("RdBu"), edgecolors="k"
+    )
 
     plt.axis("tight")
     x_min = -4.8

@@ -1,16 +1,17 @@
-import numpy as np
 import pytest
 import scipy
+import numpy as np
 from numpy.testing import assert_array_equal
-from sklearn_fork.cluster import KMeans
-from sklearn_fork.datasets import make_blobs, make_classification, make_regression
-from sklearn_fork.ensemble import HistGradientBoostingRegressor
-from sklearn_fork.feature_selection import SequentialFeatureSelector
-from sklearn_fork.linear_model import LinearRegression
-from sklearn_fork.model_selection import LeaveOneGroupOut, cross_val_score
-from sklearn_fork.neighbors import KNeighborsClassifier
-from sklearn_fork.pipeline import make_pipeline
+
 from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.feature_selection import SequentialFeatureSelector
+from sklearn_fork.datasets import make_regression, make_blobs, make_classification
+from sklearn_fork.linear_model import LinearRegression
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
+from sklearn_fork.model_selection import cross_val_score, LeaveOneGroupOut
+from sklearn_fork.cluster import KMeans
+from sklearn_fork.neighbors import KNeighborsClassifier
 
 
 def test_bad_n_features_to_select():
@@ -191,7 +192,9 @@ def test_sparse_support():
 
     X, y = make_regression(n_features=10)
     X = scipy.sparse.csr_matrix(X)
-    sfs = SequentialFeatureSelector(LinearRegression(), n_features_to_select="auto", cv=2)
+    sfs = SequentialFeatureSelector(
+        LinearRegression(), n_features_to_select="auto", cv=2
+    )
     sfs.fit(X, y)
     sfs.transform(X)
 
@@ -204,13 +207,17 @@ def test_nan_support():
     X, y = make_regression(n_samples, n_features, random_state=0)
     nan_mask = rng.randint(0, 2, size=(n_samples, n_features), dtype=bool)
     X[nan_mask] = np.nan
-    sfs = SequentialFeatureSelector(HistGradientBoostingRegressor(), n_features_to_select="auto", cv=2)
+    sfs = SequentialFeatureSelector(
+        HistGradientBoostingRegressor(), n_features_to_select="auto", cv=2
+    )
     sfs.fit(X, y)
     sfs.transform(X)
 
     with pytest.raises(ValueError, match="Input X contains NaN"):
         # LinearRegression does not support nans
-        SequentialFeatureSelector(LinearRegression(), n_features_to_select="auto", cv=2).fit(X, y)
+        SequentialFeatureSelector(
+            LinearRegression(), n_features_to_select="auto", cv=2
+        ).fit(X, y)
 
 
 def test_pipeline_support():
@@ -227,7 +234,9 @@ def test_pipeline_support():
     sfs.transform(X)
 
     # SFS in pipeline
-    sfs = SequentialFeatureSelector(LinearRegression(), n_features_to_select="auto", cv=2)
+    sfs = SequentialFeatureSelector(
+        LinearRegression(), n_features_to_select="auto", cv=2
+    )
     pipe = make_pipeline(StandardScaler(), sfs)
     pipe.fit(X, y)
     pipe.transform(X)

@@ -39,7 +39,7 @@ Y = np.dot(X, coef.T) + rng.randn(n_samples, n_tasks)
 # Fit models
 # ----------
 
-from sklearn_fork.linear_model import Lasso, MultiTaskLasso
+from sklearn_fork.linear_model import MultiTaskLasso, Lasso
 
 coef_lasso_ = np.array([Lasso(alpha=0.5).fit(X, y).coef_ for y in Y.T])
 coef_multi_task_lasso_ = MultiTaskLasso(alpha=1.0).fit(X, Y).coef_
@@ -67,7 +67,9 @@ feature_to_plot = 0
 plt.figure()
 lw = 2
 plt.plot(coef[:, feature_to_plot], color="seagreen", linewidth=lw, label="Ground truth")
-plt.plot(coef_lasso_[:, feature_to_plot], color="cornflowerblue", linewidth=lw, label="Lasso")
+plt.plot(
+    coef_lasso_[:, feature_to_plot], color="cornflowerblue", linewidth=lw, label="Lasso"
+)
 plt.plot(
     coef_multi_task_lasso_[:, feature_to_plot],
     color="gold",

@@ -4,21 +4,23 @@
 #         Sylvain Marie <sylvain.marie@schneider-electric.com>
 # License: BSD 3 clause
 
-from numbers import Integral, Real
-
 import numpy as np
+from numbers import Integral, Real
 from scipy import linalg
 from scipy.sparse.linalg import eigsh
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from ..exceptions import NotFittedError
-from ..metrics.pairwise import pairwise_kernels
-from ..preprocessing import KernelCenterer
 from ..utils._arpack import _init_arpack_v0
-from ..utils._param_validation import Interval, StrOptions
-from ..utils.extmath import _randomized_eigsh, svd_flip
 from ..utils.fixes import _eigh
-from ..utils.validation import _check_psd_eigenvalues, check_is_fitted
+from ..utils.extmath import svd_flip, _randomized_eigsh
+from ..utils.validation import (
+    check_is_fitted,
+    _check_psd_eigenvalues,
+)
+from ..utils._param_validation import Interval, StrOptions
+from ..exceptions import NotFittedError
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
+from ..preprocessing import KernelCenterer
+from ..metrics.pairwise import pairwise_kernels
 
 
 class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
@@ -299,7 +301,9 @@ class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
             params = self.kernel_params or {}
         else:
             params = {"gamma": self.gamma, "degree": self.degree, "coef0": self.coef0}
-        return pairwise_kernels(X, Y, metric=self.kernel, filter_params=True, n_jobs=self.n_jobs, **params)
+        return pairwise_kernels(
+            X, Y, metric=self.kernel, filter_params=True, n_jobs=self.n_jobs, **params
+        )
 
     def _fit_transform(self, K):
         """Fit's using kernel K"""
@@ -341,10 +345,14 @@ class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
             )
 
         # make sure that the eigenvalues are ok and fix numerical issues
-        self.eigenvalues_ = _check_psd_eigenvalues(self.eigenvalues_, enable_warnings=False)
+        self.eigenvalues_ = _check_psd_eigenvalues(
+            self.eigenvalues_, enable_warnings=False
+        )
 
         # flip eigenvectors' sign to enforce deterministic output
-        self.eigenvectors_, _ = svd_flip(self.eigenvectors_, np.zeros_like(self.eigenvectors_).T)
+        self.eigenvectors_, _ = svd_flip(
+            self.eigenvectors_, np.zeros_like(self.eigenvectors_).T
+        )
 
         # sort eigenvectors in descending order
         indices = self.eigenvalues_.argsort()[::-1]
@@ -379,7 +387,9 @@ class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
 
     def _fit_inverse_transform(self, X_transformed, X):
         if hasattr(X, "tocsr"):
-            raise NotImplementedError("Inverse transform not implemented for sparse matrices!")
+            raise NotImplementedError(
+                "Inverse transform not implemented for sparse matrices!"
+            )
 
         n_samples = X_transformed.shape[0]
         K = self._get_kernel(X_transformed)
@@ -476,7 +486,9 @@ class KernelPCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
         # scale eigenvectors (properly account for null-space for dot product)
         non_zeros = np.flatnonzero(self.eigenvalues_)
         scaled_alphas = np.zeros_like(self.eigenvectors_)
-        scaled_alphas[:, non_zeros] = self.eigenvectors_[:, non_zeros] / np.sqrt(self.eigenvalues_[non_zeros])
+        scaled_alphas[:, non_zeros] = self.eigenvectors_[:, non_zeros] / np.sqrt(
+            self.eigenvalues_[non_zeros]
+        )
 
         # Project with a scalar product between K and the scaled eigenvectors
         return np.dot(K, scaled_alphas)

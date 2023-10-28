@@ -104,9 +104,8 @@ print(f"{len(dataset.data)} documents - {true_k} categories")
 # For more reference, see :ref:`clustering_evaluation`.
 
 from collections import defaultdict
-from time import time
-
 from sklearn_fork import metrics
+from time import time
 
 evaluations = []
 evaluations_std = []
@@ -125,8 +124,12 @@ def fit_and_evaluate(km, X, name=None, n_runs=5):
         scores["Homogeneity"].append(metrics.homogeneity_score(labels, km.labels_))
         scores["Completeness"].append(metrics.completeness_score(labels, km.labels_))
         scores["V-measure"].append(metrics.v_measure_score(labels, km.labels_))
-        scores["Adjusted Rand-Index"].append(metrics.adjusted_rand_score(labels, km.labels_))
-        scores["Silhouette Coefficient"].append(metrics.silhouette_score(X, km.labels_, sample_size=2000))
+        scores["Adjusted Rand-Index"].append(
+            metrics.adjusted_rand_score(labels, km.labels_)
+        )
+        scores["Silhouette Coefficient"].append(
+            metrics.silhouette_score(X, km.labels_, sample_size=2000)
+        )
     train_times = np.asarray(train_times)
 
     print(f"clustering done in {train_times.mean():.2f} ± {train_times.std():.2f} s ")
@@ -229,7 +232,10 @@ for seed in range(5):
     cluster_ids, cluster_sizes = np.unique(kmeans.labels_, return_counts=True)
     print(f"Number of elements asigned to each cluster: {cluster_sizes}")
 print()
-print(f"True number of documents in each category according to the class labels: {category_sizes}")
+print(
+    "True number of documents in each category according to the class labels: "
+    f"{category_sizes}"
+)
 
 # %%
 # To avoid this problem, one possibility is to increase the number of runs with
@@ -270,6 +276,7 @@ fit_and_evaluate(kmeans, X_tfidf, name="KMeans\non tf-idf vectors")
 from sklearn_fork.decomposition import TruncatedSVD
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import Normalizer
+
 
 lsa = make_pipeline(TruncatedSVD(n_components=100), Normalizer(copy=False))
 t0 = time()
@@ -346,7 +353,8 @@ for i in range(true_k):
 # case we also add LSA to the pipeline to reduce the dimension and sparcity of
 # the hashed vector space.
 
-from sklearn_fork.feature_extraction.text import HashingVectorizer, TfidfTransformer
+from sklearn_fork.feature_extraction.text import HashingVectorizer
+from sklearn_fork.feature_extraction.text import TfidfTransformer
 
 lsa_vectorizer = make_pipeline(
     HashingVectorizer(stop_words="english", n_features=50_000),
@@ -386,8 +394,8 @@ fit_and_evaluate(
 # Clustering evaluation summary
 # ==============================
 
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
 
 fig, (ax0, ax1) = plt.subplots(ncols=2, figsize=(16, 6), sharey=True)
 

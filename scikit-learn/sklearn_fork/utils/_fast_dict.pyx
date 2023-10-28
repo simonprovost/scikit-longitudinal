@@ -6,15 +6,14 @@ integers, and values float.
 # License: BSD
 
 # C++
-
-from cython.operator cimport dereference as deref
-from cython.operator cimport preincrement as inc
-from libcpp.map cimport map as cpp_map
+from cython.operator cimport dereference as deref, preincrement as inc
 from libcpp.utility cimport pair
+from libcpp.map cimport map as cpp_map
 
 import numpy as np
 
 from ._typedefs cimport float64_t, intp_t
+
 
 ###############################################################################
 # An object to be used in Python

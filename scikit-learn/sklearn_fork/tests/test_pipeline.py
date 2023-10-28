@@ -1,42 +1,44 @@
 """
 Test the pipeline module.
 """
-import itertools
-import re
+from tempfile import mkdtemp
 import shutil
 import time
-from tempfile import mkdtemp
+import re
+import itertools
 
-import joblib
-import numpy as np
 import pytest
+import numpy as np
 from scipy import sparse
-from sklearn_fork.base import BaseEstimator, TransformerMixin, clone, is_classifier
-from sklearn_fork.cluster import KMeans
-from sklearn_fork.datasets import load_iris
-from sklearn_fork.decomposition import PCA, TruncatedSVD
-from sklearn_fork.dummy import DummyRegressor
-from sklearn_fork.ensemble import HistGradientBoostingClassifier
-from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.feature_extraction.text import CountVectorizer
-from sklearn_fork.feature_selection import SelectKBest, f_classif
-from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.linear_model import Lasso, LinearRegression, LogisticRegression
-from sklearn_fork.metrics import accuracy_score, r2_score
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.neighbors import LocalOutlierFactor
-from sklearn_fork.pipeline import FeatureUnion, Pipeline, make_pipeline, make_union
-from sklearn_fork.preprocessing import StandardScaler
-from sklearn_fork.svm import SVC
+import joblib
+
 from sklearn_fork.utils._testing import (
+    assert_allclose,
+    assert_array_equal,
+    assert_array_almost_equal,
     MinimalClassifier,
     MinimalRegressor,
     MinimalTransformer,
-    assert_allclose,
-    assert_array_almost_equal,
-    assert_array_equal,
 )
+from sklearn_fork.exceptions import NotFittedError
+from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.utils.validation import check_is_fitted
+from sklearn_fork.base import clone, is_classifier, BaseEstimator, TransformerMixin
+from sklearn_fork.pipeline import Pipeline, FeatureUnion, make_pipeline, make_union
+from sklearn_fork.svm import SVC
+from sklearn_fork.neighbors import LocalOutlierFactor
+from sklearn_fork.linear_model import LogisticRegression, Lasso
+from sklearn_fork.linear_model import LinearRegression
+from sklearn_fork.metrics import accuracy_score, r2_score
+from sklearn_fork.cluster import KMeans
+from sklearn_fork.feature_selection import SelectKBest, f_classif
+from sklearn_fork.dummy import DummyRegressor
+from sklearn_fork.decomposition import PCA, TruncatedSVD
+from sklearn_fork.datasets import load_iris
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.feature_extraction.text import CountVectorizer
+from sklearn_fork.ensemble import HistGradientBoostingClassifier
+from sklearn_fork.impute import SimpleImputer
 
 iris = load_iris()
 
@@ -172,7 +174,11 @@ def test_pipeline_invalid_parameters():
 
     # Check that we can't fit pipelines with objects without fit
     # method
-    msg = "Last step of Pipeline should implement fit or be the string 'passthrough'.*NoFit.*"
+    msg = (
+        "Last step of Pipeline should implement fit "
+        "or be the string 'passthrough'"
+        ".*NoFit.*"
+    )
     pipeline = Pipeline([("clf", NoFit())])
     with pytest.raises(TypeError, match=msg):
         pipeline.fit([[1]], [1])
@@ -180,7 +186,9 @@ def test_pipeline_invalid_parameters():
     # Smoke test with only an estimator
     clf = NoTrans()
     pipe = Pipeline([("svc", clf)])
-    assert pipe.get_params(deep=True) == dict(svc__a=None, svc__b=None, svc=clf, **pipe.get_params(deep=False))
+    assert pipe.get_params(deep=True) == dict(
+        svc__a=None, svc__b=None, svc=clf, **pipe.get_params(deep=False)
+    )
 
     # Check that params are set
     pipe.set_params(svc__a=0.1)
@@ -212,7 +220,10 @@ def test_pipeline_invalid_parameters():
     repr(pipe)
 
     # Check that params are not set when naming them wrong
-    msg = re.escape("Invalid parameter 'C' for estimator SelectKBest(). Valid parameters are: ['k', 'score_func'].")
+    msg = re.escape(
+        "Invalid parameter 'C' for estimator SelectKBest(). Valid parameters are: ['k',"
+        " 'score_func']."
+    )
     with pytest.raises(ValueError, match=msg):
         pipe.set_params(anova__C=0.1)
 
@@ -444,13 +455,17 @@ def test_fit_predict_with_intermediate_fit_params():
     # tests that Pipeline passes fit_params to intermediate steps
     # when fit_predict is invoked
     pipe = Pipeline([("transf", TransfFitParams()), ("clf", FitParamT())])
-    pipe.fit_predict(X=None, y=None, transf__should_get_this=True, clf__should_succeed=True)
+    pipe.fit_predict(
+        X=None, y=None, transf__should_get_this=True, clf__should_succeed=True
+    )
     assert pipe.named_steps["transf"].fit_params["should_get_this"]
     assert pipe.named_steps["clf"].successful
     assert "should_succeed" not in pipe.named_steps["transf"].fit_params
 
 
-@pytest.mark.parametrize("method_name", ["predict", "predict_proba", "predict_log_proba"])
+@pytest.mark.parametrize(
+    "method_name", ["predict", "predict_proba", "predict_log_proba"]
+)
 def test_predict_methods_with_predict_params(method_name):
     # tests that Pipeline passes predict_* to the final estimator
     # when predict_* is invoked
@@ -539,7 +554,9 @@ def test_make_union_kwargs():
     assert 3 == fu.n_jobs
 
     # invalid keyword parameters should raise an error message
-    msg = re.escape("make_union() got an unexpected keyword argument 'transformer_weights'")
+    msg = re.escape(
+        "make_union() got an unexpected keyword argument 'transformer_weights'"
+    )
     with pytest.raises(TypeError, match=msg):
         make_union(pca, mock, transformer_weights={"pca": 10, "Transf": 1})
 
@@ -576,7 +593,9 @@ def test_pipeline_fit_transform():
     assert_array_almost_equal(X_trans, X_trans2)
 
 
-@pytest.mark.parametrize("start, end", [(0, 1), (0, 2), (1, 2), (1, 3), (None, 1), (1, None), (None, None)])
+@pytest.mark.parametrize(
+    "start, end", [(0, 1), (0, 2), (1, 2), (1, 3), (None, 1), (1, None), (None, None)]
+)
 def test_pipeline_slice(start, end):
     pipe = Pipeline(
         [("transf1", Transf()), ("transf2", Transf()), ("clf", FitParamT())],
@@ -589,7 +608,10 @@ def test_pipeline_slice(start, end):
     # Test steps
     assert pipe_slice.steps == pipe.steps[start:end]
     # Test named_steps attribute
-    assert list(pipe_slice.named_steps.items()) == list(pipe.named_steps.items())[start:end]
+    assert (
+        list(pipe_slice.named_steps.items())
+        == list(pipe.named_steps.items())[start:end]
+    )
     # Test the rest of the parameters
     pipe_params = pipe.get_params(deep=False)
     pipe_slice_params = pipe_slice.get_params(deep=False)
@@ -642,7 +664,9 @@ def test_set_pipeline_steps():
 
     # With invalid data
     pipeline.set_params(steps=[("junk", ())])
-    msg = re.escape("Last step of Pipeline should implement fit or be the string 'passthrough'.")
+    msg = re.escape(
+        "Last step of Pipeline should implement fit or be the string 'passthrough'."
+    )
     with pytest.raises(TypeError, match=msg):
         pipeline.fit([[1]], [1])
 
@@ -675,7 +699,9 @@ def test_pipeline_correctly_adjusts_steps(passthrough):
     mult3 = Mult(mult=3)
     mult5 = Mult(mult=5)
 
-    pipeline = Pipeline([("m2", mult2), ("bad", passthrough), ("m3", mult3), ("m5", mult5)])
+    pipeline = Pipeline(
+        [("m2", mult2), ("bad", passthrough), ("m3", mult3), ("m5", mult5)]
+    )
 
     pipeline.fit(X, y)
     expected_names = ["m2", "bad", "m3", "m5"]
@@ -810,11 +836,15 @@ def test_feature_union_weights():
     pca = PCA(n_components=2, svd_solver="randomized", random_state=0)
     select = SelectKBest(k=1)
     # test using fit followed by transform
-    fs = FeatureUnion([("pca", pca), ("select", select)], transformer_weights={"pca": 10})
+    fs = FeatureUnion(
+        [("pca", pca), ("select", select)], transformer_weights={"pca": 10}
+    )
     fs.fit(X, y)
     X_transformed = fs.transform(X)
     # test using fit_transform
-    fs = FeatureUnion([("pca", pca), ("select", select)], transformer_weights={"pca": 10})
+    fs = FeatureUnion(
+        [("pca", pca), ("select", select)], transformer_weights={"pca": 10}
+    )
     X_fit_transformed = fs.fit_transform(X, y)
     # test it works with transformers missing fit_transform
     fs = FeatureUnion(
@@ -889,7 +919,9 @@ def test_feature_union_feature_names():
 
     ft = FeatureUnion([("tr1", Transf())]).fit([[1]])
 
-    msg = re.escape("Transformer tr1 (type Transf) does not provide get_feature_names_out")
+    msg = re.escape(
+        "Transformer tr1 (type Transf) does not provide get_feature_names_out"
+    )
     with pytest.raises(AttributeError, match=msg):
         ft.get_feature_names_out()
 
@@ -999,7 +1031,9 @@ def test_set_feature_union_passthrough():
     ft.set_params(m3="passthrough")
     assert_array_equal([[1, 1]], ft.fit(X).transform(X))
     assert_array_equal([[1, 1]], ft.fit_transform(X))
-    assert_array_equal(["m2__myfeat", "m3__myfeat"], ft.get_feature_names_out(["myfeat"]))
+    assert_array_equal(
+        ["m2__myfeat", "m3__myfeat"], ft.get_feature_names_out(["myfeat"])
+    )
 
     # check we can change back
     ft.set_params(m3=mult3)
@@ -1173,7 +1207,9 @@ def test_pipeline_memory():
         assert_array_equal(pipe.predict_proba(X), cached_pipe.predict_proba(X))
         assert_array_equal(pipe.predict_log_proba(X), cached_pipe.predict_log_proba(X))
         assert_array_equal(pipe.score(X, y), cached_pipe.score(X, y))
-        assert_array_equal(pipe.named_steps["transf"].means_, cached_pipe.named_steps["transf"].means_)
+        assert_array_equal(
+            pipe.named_steps["transf"].means_, cached_pipe.named_steps["transf"].means_
+        )
         assert not hasattr(transf, "means_")
         # Check that we are reading the cache while fitting
         # a second time
@@ -1183,19 +1219,25 @@ def test_pipeline_memory():
         assert_array_equal(pipe.predict_proba(X), cached_pipe.predict_proba(X))
         assert_array_equal(pipe.predict_log_proba(X), cached_pipe.predict_log_proba(X))
         assert_array_equal(pipe.score(X, y), cached_pipe.score(X, y))
-        assert_array_equal(pipe.named_steps["transf"].means_, cached_pipe.named_steps["transf"].means_)
+        assert_array_equal(
+            pipe.named_steps["transf"].means_, cached_pipe.named_steps["transf"].means_
+        )
         assert ts == cached_pipe.named_steps["transf"].timestamp_
         # Create a new pipeline with cloned estimators
         # Check that even changing the name step does not affect the cache hit
         clf_2 = SVC(probability=True, random_state=0)
         transf_2 = DummyTransf()
-        cached_pipe_2 = Pipeline([("transf_2", transf_2), ("svc", clf_2)], memory=memory)
+        cached_pipe_2 = Pipeline(
+            [("transf_2", transf_2), ("svc", clf_2)], memory=memory
+        )
         cached_pipe_2.fit(X, y)
 
         # Check that cached_pipe and pipe yield identical results
         assert_array_equal(pipe.predict(X), cached_pipe_2.predict(X))
         assert_array_equal(pipe.predict_proba(X), cached_pipe_2.predict_proba(X))
-        assert_array_equal(pipe.predict_log_proba(X), cached_pipe_2.predict_log_proba(X))
+        assert_array_equal(
+            pipe.predict_log_proba(X), cached_pipe_2.predict_log_proba(X)
+        )
         assert_array_equal(pipe.score(X, y), cached_pipe_2.score(X, y))
         assert_array_equal(
             pipe.named_steps["transf"].means_,
@@ -1241,7 +1283,9 @@ def test_features_names_passthrough():
     )
     iris = load_iris()
     pipe.fit(iris.data, iris.target)
-    assert_array_equal(pipe[:-1].get_feature_names_out(iris.feature_names), iris.feature_names)
+    assert_array_equal(
+        pipe[:-1].get_feature_names_out(iris.feature_names), iris.feature_names
+    )
 
 
 def test_feature_names_count_vectorizer():
@@ -1273,7 +1317,9 @@ def test_pipeline_feature_names_out_error_without_definition():
 
 def test_pipeline_param_error():
     clf = make_pipeline(LogisticRegression())
-    with pytest.raises(ValueError, match="Pipeline.fit does not accept the sample_weight parameter"):
+    with pytest.raises(
+        ValueError, match="Pipeline.fit does not accept the sample_weight parameter"
+    ):
         clf.fit([[0], [0]], [0, 1], sample_weight=[1, 1])
 
 
@@ -1332,7 +1378,11 @@ parameter_grid_test_verbose = (
         ["fit", "fit_transform", "fit_predict"],
     )
     if hasattr(est, method)
-    and not (method == "fit_transform" and hasattr(est, "steps") and isinstance(est.steps[-1][1], FitParamT))
+    and not (
+        method == "fit_transform"
+        and hasattr(est, "steps")
+        and isinstance(est.steps[-1][1], FitParamT)
+    )
 )
 
 
@@ -1437,7 +1487,10 @@ def test_feature_union_warns_unknown_transformer_weight():
     transformer_list = [("transf", Transf())]
     # Transformer weights dictionary with incorrect name
     weights = {"transformer": 1}
-    expected_msg = 'Attempting to weight transformer "transformer", but it is not present in transformer_list.'
+    expected_msg = (
+        'Attempting to weight transformer "transformer", '
+        "but it is not present in transformer_list."
+    )
     union = FeatureUnion(transformer_list, transformer_weights=weights)
     with pytest.raises(ValueError, match=expected_msg):
         union.fit(X, y)
@@ -1462,7 +1515,9 @@ def test_search_cv_using_minimal_compatible_estimator(Predictor):
     rng = np.random.RandomState(0)
     X, y = rng.randn(25, 2), np.array([0] * 5 + [1] * 20)
 
-    model = Pipeline([("transformer", MinimalTransformer()), ("predictor", Predictor())])
+    model = Pipeline(
+        [("transformer", MinimalTransformer()), ("predictor", Predictor())]
+    )
     model.fit(X, y)
 
     y_pred = model.predict(X)

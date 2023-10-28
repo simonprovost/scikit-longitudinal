@@ -1,26 +1,31 @@
 import warnings
 
-import numpy as np
 import pytest
+import numpy as np
+
 from scipy import sparse
-from sklearn_fork.base import clone
+
 from sklearn_fork.datasets import load_iris
 from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.preprocessing import (
-    MaxAbsScaler,
-    MinMaxScaler,
-    PowerTransformer,
-    QuantileTransformer,
-    RobustScaler,
-    StandardScaler,
-    maxabs_scale,
-    minmax_scale,
-    power_transform,
-    quantile_transform,
-    robust_scale,
-    scale,
-)
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
+
+from sklearn_fork.base import clone
+
+from sklearn_fork.preprocessing import maxabs_scale
+from sklearn_fork.preprocessing import minmax_scale
+from sklearn_fork.preprocessing import scale
+from sklearn_fork.preprocessing import power_transform
+from sklearn_fork.preprocessing import quantile_transform
+from sklearn_fork.preprocessing import robust_scale
+
+from sklearn_fork.preprocessing import MaxAbsScaler
+from sklearn_fork.preprocessing import MinMaxScaler
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.preprocessing import PowerTransformer
+from sklearn_fork.preprocessing import QuantileTransformer
+from sklearn_fork.preprocessing import RobustScaler
+
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_allclose
 
 iris = load_iris()
 
@@ -44,12 +49,16 @@ def _get_valid_samples_by_column(X, col):
         (RobustScaler(with_centering=False), robust_scale, True, False, []),
     ],
 )
-def test_missing_value_handling(est, func, support_sparse, strictly_positive, omit_kwargs):
+def test_missing_value_handling(
+    est, func, support_sparse, strictly_positive, omit_kwargs
+):
     # check that the preprocessing method let pass nan
     rng = np.random.RandomState(42)
     X = iris.data.copy()
     n_missing = 50
-    X[rng.randint(X.shape[0], size=n_missing), rng.randint(X.shape[1], size=n_missing)] = np.nan
+    X[
+        rng.randint(X.shape[0], size=n_missing), rng.randint(X.shape[1], size=n_missing)
+    ] = np.nan
     if strictly_positive:
         X += np.nanmin(X) + 0.1
     X_train, X_test = train_test_split(X, random_state=1)

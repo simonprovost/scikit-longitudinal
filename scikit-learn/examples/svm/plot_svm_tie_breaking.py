@@ -17,10 +17,10 @@ create a non-convex decision boundary in that area.
 # Code source: Andreas Mueller, Adrin Jalali
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.datasets import make_blobs
+import matplotlib.pyplot as plt
 from sklearn_fork.svm import SVC
+from sklearn_fork.datasets import make_blobs
 
 X, y = make_blobs(random_state=27)
 
@@ -28,7 +28,9 @@ fig, sub = plt.subplots(2, 1, figsize=(5, 8))
 titles = ("break_ties = False", "break_ties = True")
 
 for break_ties, title, ax in zip((False, True), titles, sub.flatten()):
-    svm = SVC(kernel="linear", C=1, break_ties=break_ties, decision_function_shape="ovr").fit(X, y)
+    svm = SVC(
+        kernel="linear", C=1, break_ties=break_ties, decision_function_shape="ovr"
+    ).fit(X, y)
 
     xlim = [X[:, 0].min(), X[:, 0].max()]
     ylim = [X[:, 1].min(), X[:, 1].max()]

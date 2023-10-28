@@ -41,10 +41,10 @@ policyholders.
 #          Olivier Grisel <olivier.grisel@ensta.org>
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn_fork.datasets import fetch_openml
+
 
 ##############################################################################
 # The French Motor Third-Party Liability Claims dataset
@@ -53,6 +53,7 @@ from sklearn_fork.datasets import fetch_openml
 # Let's load the motor claim dataset from OpenML:
 # https://www.openml.org/d/41214
 
+from sklearn_fork.datasets import fetch_openml
 
 
 df = fetch_openml(data_id=41214, as_frame=True, parser="pandas").frame
@@ -70,7 +71,9 @@ df
 
 df["Frequency"] = df["ClaimNb"] / df["Exposure"]
 
-print("Average Frequency = {}".format(np.average(df["Frequency"], weights=df["Exposure"])))
+print(
+    "Average Frequency = {}".format(np.average(df["Frequency"], weights=df["Exposure"]))
+)
 
 print(
     "Fraction of exposure with zero claims = {0:.1%}".format(
@@ -94,11 +97,15 @@ _ = df["Frequency"].hist(bins=30, log=True, ax=ax2)
 # In order to fit linear models with those predictors it is therefore
 # necessary to perform standard feature transformations as follows:
 
-from sklearn_fork.compose import ColumnTransformer
 from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import FunctionTransformer, KBinsDiscretizer, OneHotEncoder, StandardScaler
+from sklearn_fork.preprocessing import FunctionTransformer, OneHotEncoder
+from sklearn_fork.preprocessing import StandardScaler, KBinsDiscretizer
+from sklearn_fork.compose import ColumnTransformer
 
-log_scale_transformer = make_pipeline(FunctionTransformer(np.log, validate=False), StandardScaler())
+
+log_scale_transformer = make_pipeline(
+    FunctionTransformer(np.log, validate=False), StandardScaler()
+)
 
 linear_model_preprocessor = ColumnTransformer(
     [
@@ -132,8 +139,8 @@ linear_model_preprocessor = ColumnTransformer(
 # the training sample.
 
 from sklearn_fork.dummy import DummyRegressor
-from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.pipeline import Pipeline
+from sklearn_fork.model_selection import train_test_split
 
 df_train, df_test = train_test_split(df, test_size=0.33, random_state=0)
 
@@ -149,15 +156,27 @@ dummy = Pipeline(
 # Let's compute the performance of this constant prediction baseline with 3
 # different regression metrics:
 
-from sklearn_fork.metrics import mean_absolute_error, mean_poisson_deviance, mean_squared_error
+from sklearn_fork.metrics import mean_squared_error
+from sklearn_fork.metrics import mean_absolute_error
+from sklearn_fork.metrics import mean_poisson_deviance
 
 
 def score_estimator(estimator, df_test):
     """Score an estimator on the test set."""
     y_pred = estimator.predict(df_test)
 
-    print("MSE: %.3f" % mean_squared_error(df_test["Frequency"], y_pred, sample_weight=df_test["Exposure"]))
-    print("MAE: %.3f" % mean_absolute_error(df_test["Frequency"], y_pred, sample_weight=df_test["Exposure"]))
+    print(
+        "MSE: %.3f"
+        % mean_squared_error(
+            df_test["Frequency"], y_pred, sample_weight=df_test["Exposure"]
+        )
+    )
+    print(
+        "MAE: %.3f"
+        % mean_absolute_error(
+            df_test["Frequency"], y_pred, sample_weight=df_test["Exposure"]
+        )
+    )
 
     # Ignore non-positive predictions, as they are invalid for
     # the Poisson deviance.
@@ -193,6 +212,7 @@ score_estimator(dummy, df_test)
 # on such a large dataset.
 
 from sklearn_fork.linear_model import Ridge
+
 
 ridge_glm = Pipeline(
     [
@@ -234,7 +254,9 @@ poisson_glm = Pipeline(
         ("regressor", PoissonRegressor(alpha=1e-12, solver="newton-cholesky")),
     ]
 )
-poisson_glm.fit(df_train, df_train["Frequency"], regressor__sample_weight=df_train["Exposure"])
+poisson_glm.fit(
+    df_train, df_train["Frequency"], regressor__sample_weight=df_train["Exposure"]
+)
 
 print("PoissonRegressor evaluation:")
 score_estimator(poisson_glm, df_test)
@@ -263,6 +285,7 @@ score_estimator(poisson_glm, df_test)
 from sklearn_fork.ensemble import HistGradientBoostingRegressor
 from sklearn_fork.preprocessing import OrdinalEncoder
 
+
 tree_preprocessor = ColumnTransformer(
     [
         (
@@ -283,7 +306,9 @@ poisson_gbrt = Pipeline(
         ),
     ]
 )
-poisson_gbrt.fit(df_train, df_train["Frequency"], regressor__sample_weight=df_train["Exposure"])
+poisson_gbrt.fit(
+    df_train, df_train["Frequency"], regressor__sample_weight=df_train["Exposure"]
+)
 
 print("Poisson Gradient Boosted Trees evaluation:")
 score_estimator(poisson_gbrt, df_test)
@@ -316,7 +341,9 @@ for row_idx, label, df in zip(range(2), ["train", "test"], [df_train, df_test]):
     for idx, model in enumerate([ridge_glm, poisson_glm, poisson_gbrt]):
         y_pred = model.predict(df)
 
-        pd.Series(y_pred).hist(bins=np.linspace(-1, 4, n_bins), ax=axes[row_idx, idx + 1])
+        pd.Series(y_pred).hist(
+            bins=np.linspace(-1, 4, n_bins), ax=axes[row_idx, idx + 1]
+        )
         axes[row_idx, idx + 1].set(
             title=model[-1].__class__.__name__,
             yscale="log",
@@ -409,7 +436,9 @@ for axi, model in zip(ax.ravel(), [ridge_glm, poisson_glm, poisson_gbrt, dummy])
     y_pred = model.predict(df_test)
     y_true = df_test["Frequency"].values
     exposure = df_test["Exposure"].values
-    q, y_true_seg, y_pred_seg = _mean_frequency_by_risk_group(y_true, y_pred, sample_weight=exposure, n_bins=10)
+    q, y_true_seg, y_pred_seg = _mean_frequency_by_risk_group(
+        y_true, y_pred, sample_weight=exposure, n_bins=10
+    )
 
     # Name of the model after the estimator used in the last step of the
     # pipeline.
@@ -482,13 +511,17 @@ fig, ax = plt.subplots(figsize=(8, 8))
 
 for model in [dummy, ridge_glm, poisson_glm, poisson_gbrt]:
     y_pred = model.predict(df_test)
-    cum_exposure, cum_claims = lorenz_curve(df_test["Frequency"], y_pred, df_test["Exposure"])
+    cum_exposure, cum_claims = lorenz_curve(
+        df_test["Frequency"], y_pred, df_test["Exposure"]
+    )
     gini = 1 - 2 * auc(cum_exposure, cum_claims)
     label = "{} (Gini: {:.2f})".format(model[-1], gini)
     ax.plot(cum_exposure, cum_claims, linestyle="-", label=label)
 
 # Oracle model: y_pred == y_test
-cum_exposure, cum_claims = lorenz_curve(df_test["Frequency"], df_test["Frequency"], df_test["Exposure"])
+cum_exposure, cum_claims = lorenz_curve(
+    df_test["Frequency"], df_test["Frequency"], df_test["Exposure"]
+)
 gini = 1 - 2 * auc(cum_exposure, cum_claims)
 label = "Oracle (Gini: {:.2f})".format(gini)
 ax.plot(cum_exposure, cum_claims, linestyle="-.", color="gray", label=label)

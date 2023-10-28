@@ -8,9 +8,12 @@ import itertools
 
 import numpy as np
 import pytest
-from sklearn_fork import datasets
-from sklearn_fork.covariance import MinCovDet, empirical_covariance, fast_mcd
+
 from sklearn_fork.utils._testing import assert_array_almost_equal
+
+from sklearn_fork import datasets
+from sklearn_fork.covariance import empirical_covariance, MinCovDet
+from sklearn_fork.covariance import fast_mcd
 
 X = datasets.load_iris().data
 X_1d = X[:, 0]
@@ -52,7 +55,9 @@ def test_mcd_class_on_invalid_input():
         mcd.fit(X)
 
 
-def launch_mcd_on_dataset(n_samples, n_features, n_outliers, tol_loc, tol_cov, tol_support, seed):
+def launch_mcd_on_dataset(
+    n_samples, n_features, n_outliers, tol_loc, tol_cov, tol_support, seed
+):
     rand_gen = np.random.RandomState(seed)
     data = rand_gen.randn(n_samples, n_features)
     # add some outliers
@@ -125,7 +130,10 @@ def test_mcd_support_covariance_is_zero():
     X_1 = X_1.reshape(-1, 1)
     X_2 = np.array([0.5, 0.3, 0.3, 0.3, 0.957, 0.3, 0.3, 0.3, 0.4285, 0.3])
     X_2 = X_2.reshape(-1, 1)
-    msg = "The covariance matrix of the support data is equal to 0, try to increase support_fraction"
+    msg = (
+        "The covariance matrix of the support data is equal to 0, try to "
+        "increase support_fraction"
+    )
     for X in [X_1, X_2]:
         with pytest.raises(ValueError, match=msg):
             MinCovDet().fit(X)

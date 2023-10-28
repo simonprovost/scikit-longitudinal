@@ -6,18 +6,19 @@ Random projection benchmark
 Benchmarks for random projections.
 
 """
-import collections
 import gc
-import optparse
 import sys
+import optparse
 from datetime import datetime
+import collections
 
 import numpy as np
 import scipy.sparse as sp
+
 from sklearn_fork import clone
 from sklearn_fork.random_projection import (
-    GaussianRandomProjection,
     SparseRandomProjection,
+    GaussianRandomProjection,
     johnson_lindenstrauss_min_dim,
 )
 
@@ -148,7 +149,9 @@ if __name__ == "__main__":
         "--density",
         dest="density",
         default=1 / 3,
-        help="Density used by the sparse random projection. ('auto' or float (0.0, 1.0]",
+        help=(
+            "Density used by the sparse random projection. ('auto' or float (0.0, 1.0]"
+        ),
     )
 
     op.add_option(
@@ -197,7 +200,10 @@ if __name__ == "__main__":
     print("n_samples \t= %s" % opts.n_samples)
     print("n_features \t= %s" % opts.n_features)
     if opts.n_components == "auto":
-        print("n_components \t= %s (auto)" % johnson_lindenstrauss_min_dim(n_samples=opts.n_samples, eps=opts.eps))
+        print(
+            "n_components \t= %s (auto)"
+            % johnson_lindenstrauss_min_dim(n_samples=opts.n_samples, eps=opts.eps)
+        )
     else:
         print("n_components \t= %s" % opts.n_components)
     print("n_elements \t= %s" % (opts.n_features * opts.n_samples))
@@ -216,7 +222,9 @@ if __name__ == "__main__":
         "n_components": opts.n_components,
         "random_state": opts.random_seed,
     }
-    transformers["GaussianRandomProjection"] = GaussianRandomProjection(**gaussian_matrix_params)
+    transformers["GaussianRandomProjection"] = GaussianRandomProjection(
+        **gaussian_matrix_params
+    )
 
     ###########################################################################
     # Set SparseRandomProjection input
@@ -227,7 +235,9 @@ if __name__ == "__main__":
         "eps": opts.eps,
     }
 
-    transformers["SparseRandomProjection"] = SparseRandomProjection(**sparse_matrix_params)
+    transformers["SparseRandomProjection"] = SparseRandomProjection(
+        **sparse_matrix_params
+    )
 
     ###########################################################################
     # Perform benchmark
@@ -249,7 +259,9 @@ if __name__ == "__main__":
 
         for iteration in range(opts.n_times):
             print("\titer %s..." % iteration, end="")
-            time_to_fit, time_to_transform = bench_scikit_transformer(X_dense, transformers[name])
+            time_to_fit, time_to_transform = bench_scikit_transformer(
+                X_dense, transformers[name]
+            )
             time_fit[name].append(time_to_fit)
             time_transform[name].append(time_to_transform)
             print("done")
@@ -278,7 +290,10 @@ if __name__ == "__main__":
     print("===========================")
     print("Results are averaged over %s repetition(s)." % opts.n_times)
     print("")
-    print("%s | %s | %s" % ("Transformer".ljust(30), "fit".center(12), "transform".center(12)))
+    print(
+        "%s | %s | %s"
+        % ("Transformer".ljust(30), "fit".center(12), "transform".center(12))
+    )
     print(31 * "-" + ("|" + "-" * 14) * 2)
 
     for name in sorted(selected_transformers):

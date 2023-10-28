@@ -9,7 +9,6 @@ from dataclasses import dataclass
 import numpy as np
 from scipy.special import expit, logit
 from scipy.stats import gmean
-
 from ..utils.extmath import softmax
 
 
@@ -23,7 +22,9 @@ class Interval:
     def __post_init__(self):
         """Check that low <= high"""
         if self.low > self.high:
-            raise ValueError(f"One must have low <= high; got low={self.low}, high={self.high}.")
+            raise ValueError(
+                f"One must have low <= high; got low={self.low}, high={self.high}."
+            )
 
     def includes(self, x):
         """Test whether all values of x are in interval range.

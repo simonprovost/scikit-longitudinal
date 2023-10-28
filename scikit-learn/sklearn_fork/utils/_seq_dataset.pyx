@@ -5,9 +5,8 @@
 """Dataset abstractions for sequential data access."""
 
 cimport cython
-cimport numpy as cnp
 from libc.limits cimport INT_MAX
-
+cimport numpy as cnp
 import numpy as np
 
 cnp.import_array()
@@ -640,3 +639,4 @@ cdef class CSRDataset32(SequentialDataset32):
         x_ind_ptr[0] = self.X_indices_ptr + offset
         nnz[0] = self.X_indptr_ptr[sample_idx + 1] - offset
         sample_weight[0] = self.sample_weight_data[sample_idx]
+

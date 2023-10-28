@@ -45,24 +45,27 @@ The same task has been used in a number of papers including:
 #         Arnaud Joly <arnaud.v.joly@gmail.com>
 # License: BSD 3 clause
 
-import argparse
 import os
 from time import time
-
+import argparse
 import numpy as np
 from joblib import Memory
+
 from sklearn_fork.datasets import fetch_covtype, get_data_home
-from sklearn_fork.ensemble import ExtraTreesClassifier, GradientBoostingClassifier, RandomForestClassifier
-from sklearn_fork.linear_model import LogisticRegression, SGDClassifier
-from sklearn_fork.metrics import zero_one_loss
-from sklearn_fork.naive_bayes import GaussianNB
 from sklearn_fork.svm import LinearSVC
+from sklearn_fork.linear_model import SGDClassifier, LogisticRegression
+from sklearn_fork.naive_bayes import GaussianNB
 from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork.ensemble import RandomForestClassifier, ExtraTreesClassifier
+from sklearn_fork.ensemble import GradientBoostingClassifier
+from sklearn_fork.metrics import zero_one_loss
 from sklearn_fork.utils import check_array
 
 # Memoize the data extraction and memory map the resulting
 # train / test splits in readonly mode
-memory = Memory(os.path.join(get_data_home(), "covertype_benchmark_data"), mmap_mode="r")
+memory = Memory(
+    os.path.join(get_data_home(), "covertype_benchmark_data"), mmap_mode="r"
+)
 
 
 @memory.cache
@@ -71,7 +74,9 @@ def load_data(dtype=np.float32, order="C", random_state=13):
     ######################################################################
     # Load dataset
     print("Loading dataset...")
-    data = fetch_covtype(download_if_missing=True, shuffle=True, random_state=random_state)
+    data = fetch_covtype(
+        download_if_missing=True, shuffle=True, random_state=random_state
+    )
     X = check_array(data["data"], dtype=dtype, order=order)
     y = (data["target"] != 1).astype(int)
 
@@ -120,7 +125,10 @@ if __name__ == "__main__":
         nargs="?",
         default=1,
         type=int,
-        help="Number of concurrently running workers for models that support parallelism.",
+        help=(
+            "Number of concurrently running workers for "
+            "models that support parallelism."
+        ),
     )
     parser.add_argument(
         "--order",
@@ -141,7 +149,9 @@ if __name__ == "__main__":
 
     print(__doc__)
 
-    X_train, X_test, y_train, y_test = load_data(order=args["order"], random_state=args["random_seed"])
+    X_train, X_test, y_train, y_test = load_data(
+        order=args["order"], random_state=args["random_seed"]
+    )
 
     print("")
     print("Dataset statistics:")
@@ -179,7 +189,13 @@ if __name__ == "__main__":
         estimator = ESTIMATORS[name]
         estimator_params = estimator.get_params()
 
-        estimator.set_params(**{p: args["random_seed"] for p in estimator_params if p.endswith("random_state")})
+        estimator.set_params(
+            **{
+                p: args["random_seed"]
+                for p in estimator_params
+                if p.endswith("random_state")
+            }
+        )
 
         if "n_jobs" in estimator_params:
             estimator.set_params(n_jobs=args["n_jobs"])

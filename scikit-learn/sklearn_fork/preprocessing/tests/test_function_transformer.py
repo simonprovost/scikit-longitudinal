@@ -1,12 +1,17 @@
 import warnings
 
-import numpy as np
 import pytest
+import numpy as np
 from scipy import sparse
-from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import FunctionTransformer
 from sklearn_fork.utils import _safe_indexing
-from sklearn_fork.utils._testing import _convert_container, assert_allclose_dense_sparse, assert_array_equal
+
+from sklearn_fork.preprocessing import FunctionTransformer
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.utils._testing import (
+    assert_array_equal,
+    assert_allclose_dense_sparse,
+    _convert_container,
+)
 
 
 def _make_func(args_store, kwargs_store, func=lambda X, *a, **k: X):
@@ -32,9 +37,13 @@ def test_delegate_to_func():
     )
 
     # The function should only have received X.
-    assert args_store == [X], "Incorrect positional arguments passed to func: {args}".format(args=args_store)
+    assert args_store == [
+        X
+    ], "Incorrect positional arguments passed to func: {args}".format(args=args_store)
 
-    assert not kwargs_store, "Unexpected keyword arguments passed to func: {args}".format(args=kwargs_store)
+    assert (
+        not kwargs_store
+    ), "Unexpected keyword arguments passed to func: {args}".format(args=kwargs_store)
 
     # reset the argument stores.
     args_store[:] = []
@@ -43,12 +52,18 @@ def test_delegate_to_func():
         _make_func(args_store, kwargs_store),
     ).transform(X)
 
-    assert_array_equal(transformed, X, err_msg="transform should have returned X unchanged")
+    assert_array_equal(
+        transformed, X, err_msg="transform should have returned X unchanged"
+    )
 
     # The function should have received X
-    assert args_store == [X], "Incorrect positional arguments passed to func: {args}".format(args=args_store)
+    assert args_store == [
+        X
+    ], "Incorrect positional arguments passed to func: {args}".format(args=args_store)
 
-    assert not kwargs_store, "Unexpected keyword arguments passed to func: {args}".format(args=kwargs_store)
+    assert (
+        not kwargs_store
+    ), "Unexpected keyword arguments passed to func: {args}".format(args=kwargs_store)
 
 
 def test_np_log():
@@ -148,11 +163,15 @@ def test_check_inverse():
 
     # check that we don't check inverse when one of the func or inverse is not
     # provided.
-    trans = FunctionTransformer(func=np.expm1, inverse_func=None, check_inverse=True, validate=True)
+    trans = FunctionTransformer(
+        func=np.expm1, inverse_func=None, check_inverse=True, validate=True
+    )
     with warnings.catch_warnings():
         warnings.simplefilter("error", UserWarning)
         trans.fit(X_dense)
-    trans = FunctionTransformer(func=None, inverse_func=np.expm1, check_inverse=True, validate=True)
+    trans = FunctionTransformer(
+        func=None, inverse_func=np.expm1, check_inverse=True, validate=True
+    )
     with warnings.catch_warnings():
         warnings.simplefilter("error", UserWarning)
         trans.fit(X_dense)
@@ -177,7 +196,9 @@ def test_function_transformer_raise_error_with_mixed_dtype(X_type):
     data = _convert_container(data, X_type, columns_name=["value"], dtype=dtype)
 
     def func(X):
-        return np.array([mapping[_safe_indexing(X, i)] for i in range(X.size)], dtype=object)
+        return np.array(
+            [mapping[_safe_indexing(X, i)] for i in range(X.size)], dtype=object
+        )
 
     def inverse_func(X):
         return _convert_container(
@@ -187,7 +208,9 @@ def test_function_transformer_raise_error_with_mixed_dtype(X_type):
             dtype=dtype,
         )
 
-    transformer = FunctionTransformer(func=func, inverse_func=inverse_func, validate=False, check_inverse=True)
+    transformer = FunctionTransformer(
+        func=func, inverse_func=inverse_func, validate=False, check_inverse=True
+    )
 
     msg = "'check_inverse' is only supported when all the elements in `X` is numerical."
     with pytest.raises(ValueError, match=msg):
@@ -199,7 +222,9 @@ def test_function_transformer_support_all_nummerical_dataframes_check_inverse_Tr
     pd = pytest.importorskip("pandas")
 
     df = pd.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
-    transformer = FunctionTransformer(func=lambda x: x + 2, inverse_func=lambda x: x - 2, check_inverse=True)
+    transformer = FunctionTransformer(
+        func=lambda x: x + 2, inverse_func=lambda x: x - 2, check_inverse=True
+    )
 
     # Does not raise an error
     df_out = transformer.fit_transform(df)
@@ -212,7 +237,9 @@ def test_function_transformer_with_dataframe_and_check_inverse_True():
     Non-regresion test for gh-25261.
     """
     pd = pytest.importorskip("pandas")
-    transformer = FunctionTransformer(func=lambda x: x, inverse_func=lambda x: x, check_inverse=True)
+    transformer = FunctionTransformer(
+        func=lambda x: x, inverse_func=lambda x: x, check_inverse=True
+    )
 
     df_mixed = pd.DataFrame({"a": [1, 2, 3], "b": ["a", "b", "c"]})
     msg = "'check_inverse' is only supported when all the elements in `X` is numerical."
@@ -296,12 +323,16 @@ def test_function_transformer_with_dataframe_and_check_inverse_True():
     ],
 )
 @pytest.mark.parametrize("validate", [True, False])
-def test_function_transformer_get_feature_names_out(X, feature_names_out, input_features, expected, validate):
+def test_function_transformer_get_feature_names_out(
+    X, feature_names_out, input_features, expected, validate
+):
     if isinstance(X, dict):
         pd = pytest.importorskip("pandas")
         X = pd.DataFrame(X)
 
-    transformer = FunctionTransformer(feature_names_out=feature_names_out, validate=validate)
+    transformer = FunctionTransformer(
+        feature_names_out=feature_names_out, validate=validate
+    )
     transformer.fit_transform(X)
     names = transformer.get_feature_names_out(input_features)
     assert isinstance(names, np.ndarray)
@@ -386,7 +417,9 @@ def test_function_transformer_validate_inverse():
     ],
 )
 @pytest.mark.parametrize("in_pipeline", [True, False])
-def test_get_feature_names_out_dataframe_with_string_data(feature_names_out, expected, in_pipeline):
+def test_get_feature_names_out_dataframe_with_string_data(
+    feature_names_out, expected, in_pipeline
+):
     """Check that get_feature_names_out works with DataFrames with string data."""
     pd = pytest.importorskip("pandas")
     X = pd.DataFrame({"pet": ["dog", "cat"], "color": ["red", "green"]})

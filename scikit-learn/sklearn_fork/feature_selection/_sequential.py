@@ -1,18 +1,20 @@
 """
 Sequential feature selection
 """
-import warnings
 from numbers import Integral, Real
 
 import numpy as np
 
+import warnings
+
+from ._base import SelectorMixin
 from ..base import BaseEstimator, MetaEstimatorMixin, clone, is_classifier
-from ..metrics import get_scorer_names
-from ..model_selection import check_cv, cross_val_score
-from ..utils._param_validation import HasMethods, Hidden, Interval, RealNotInt, StrOptions
+from ..utils._param_validation import HasMethods, Hidden, Interval, StrOptions
+from ..utils._param_validation import RealNotInt
 from ..utils._tags import _safe_tags
 from ..utils.validation import check_is_fitted
-from ._base import SelectorMixin
+from ..model_selection import cross_val_score, check_cv
+from ..metrics import get_scorer_names
 
 
 class SequentialFeatureSelector(SelectorMixin, MetaEstimatorMixin, BaseEstimator):
@@ -275,7 +277,9 @@ class SequentialFeatureSelector(SelectorMixin, MetaEstimatorMixin, BaseEstimator
         old_score = -np.inf
         is_auto_select = self.tol is not None and self.n_features_to_select == "auto"
         for _ in range(n_iterations):
-            new_feature_idx, new_score = self._get_best_new_feature_score(cloned_estimator, X, y, cv, current_mask)
+            new_feature_idx, new_score = self._get_best_new_feature_score(
+                cloned_estimator, X, y, cv, current_mask
+            )
             if is_auto_select and ((new_score - old_score) < self.tol):
                 break
 

@@ -16,17 +16,19 @@ The plots represent the distribution of the prediction latency as a boxplot.
 # Authors: Eustache Diemert <eustache@diemert.fr>
 # License: BSD 3 clause
 
-import gc
-import time
 from collections import defaultdict
 
-import matplotlib.pyplot as plt
+import time
+import gc
 import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.datasets import make_regression
 from sklearn_fork.ensemble import RandomForestRegressor
-from sklearn_fork.linear_model import Ridge, SGDRegressor
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.linear_model import Ridge
+from sklearn_fork.linear_model import SGDRegressor
 from sklearn_fork.svm import SVR
 from sklearn_fork.utils import shuffle
 
@@ -105,7 +107,9 @@ def generate_dataset(n_train, n_test, n_features, noise=0.1, verbose=False):
     if verbose:
         print("generating dataset...")
 
-    X, y, coef = make_regression(n_samples=n_train + n_test, n_features=n_features, noise=noise, coef=True)
+    X, y, coef = make_regression(
+        n_samples=n_train + n_test, n_features=n_features, noise=noise, coef=True
+    )
 
     random_seed = 13
     X_train, X_test, y_train, y_test = train_test_split(
@@ -162,7 +166,8 @@ def boxplot_runtimes(runtimes, pred_type, configuration):
 
     ax1.set_axisbelow(True)
     ax1.set_title(
-        "Prediction Time per Instance - %s, %d feats." % (pred_type.capitalize(), configuration["n_features"])
+        "Prediction Time per Instance - %s, %d feats."
+        % (pred_type.capitalize(), configuration["n_features"])
     )
     ax1.set_ylabel("Prediction Time (us)")
 
@@ -183,7 +188,9 @@ def benchmark(configuration):
         a, b = benchmark_estimator(estimator_conf["instance"], X_test)
         stats[estimator_conf["name"]] = {"atomic": a, "bulk": b}
 
-    cls_names = [estimator_conf["name"] for estimator_conf in configuration["estimators"]]
+    cls_names = [
+        estimator_conf["name"] for estimator_conf in configuration["estimators"]
+    ]
     runtimes = [1e6 * stats[clf_name]["atomic"] for clf_name in cls_names]
     boxplot_runtimes(runtimes, "atomic", configuration)
     runtimes = [1e6 * stats[clf_name]["bulk"] for clf_name in cls_names]
@@ -270,14 +277,20 @@ def plot_benchmark_throughput(throughputs, configuration):
         )
         for estimator_conf in configuration["estimators"]
     ]
-    cls_values = [throughputs[estimator_conf["name"]] for estimator_conf in configuration["estimators"]]
+    cls_values = [
+        throughputs[estimator_conf["name"]]
+        for estimator_conf in configuration["estimators"]
+    ]
     plt.bar(range(len(throughputs)), cls_values, width=0.5, color=colors)
     ax.set_xticks(np.linspace(0.25, len(throughputs) - 0.75, len(throughputs)))
     ax.set_xticklabels(cls_infos, fontsize=10)
     ymax = max(cls_values) * 1.2
     ax.set_ylim((0, ymax))
     ax.set_ylabel("Throughput (predictions/sec)")
-    ax.set_title("Prediction Throughput for different estimators (%d features)" % configuration["n_features"])
+    ax.set_title(
+        "Prediction Throughput for different estimators (%d features)"
+        % configuration["n_features"]
+    )
     plt.show()
 
 
@@ -292,7 +305,9 @@ configuration = {
     "estimators": [
         {
             "name": "Linear Model",
-            "instance": SGDRegressor(penalty="elasticnet", alpha=0.01, l1_ratio=0.25, tol=1e-4),
+            "instance": SGDRegressor(
+                penalty="elasticnet", alpha=0.01, l1_ratio=0.25, tol=1e-4
+            ),
             "complexity_label": "non-zero coefficients",
             "complexity_computer": lambda clf: np.count_nonzero(clf.coef_),
         },

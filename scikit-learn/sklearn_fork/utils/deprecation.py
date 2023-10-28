@@ -1,5 +1,6 @@
-import functools
 import warnings
+import functools
+
 
 __all__ = ["deprecated"]
 
@@ -109,5 +110,7 @@ def _is_deprecated(func):
     closures = getattr(func, "__closure__", [])
     if closures is None:
         closures = []
-    is_deprecated = "deprecated" in "".join([c.cell_contents for c in closures if isinstance(c.cell_contents, str)])
+    is_deprecated = "deprecated" in "".join(
+        [c.cell_contents for c in closures if isinstance(c.cell_contents, str)]
+    )
     return is_deprecated

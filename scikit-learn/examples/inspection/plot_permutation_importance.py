@@ -43,7 +43,9 @@ import numpy as np
 from sklearn_fork.datasets import fetch_openml
 from sklearn_fork.model_selection import train_test_split
 
-X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True, parser="pandas")
+X, y = fetch_openml(
+    "titanic", version=1, as_frame=True, return_X_y=True, parser="pandas"
+)
 rng = np.random.RandomState(seed=42)
 X["random_cat"] = rng.randint(3, size=X.shape[0])
 X["random_num"] = rng.randn(X.shape[0])
@@ -53,8 +55,6 @@ numerical_columns = ["age", "sibsp", "parch", "fare", "random_num"]
 
 X = X[categorical_columns + numerical_columns]
 X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=42)
-
-from sklearn_fork.compose import ColumnTransformer
 
 # %%
 # We define a predictive model based on a random forest. Therefore, we will make
@@ -66,10 +66,13 @@ from sklearn_fork.compose import ColumnTransformer
 #   numerical features using a mean strategy.
 from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.compose import ColumnTransformer
 from sklearn_fork.pipeline import Pipeline
 from sklearn_fork.preprocessing import OrdinalEncoder
 
-categorical_encoder = OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1, encoded_missing_value=-1)
+categorical_encoder = OrdinalEncoder(
+    handle_unknown="use_encoded_value", unknown_value=-1, encoded_missing_value=-1
+)
 numerical_pipe = SimpleImputer(strategy="mean")
 
 preprocessing = ColumnTransformer(
@@ -139,7 +142,9 @@ import pandas as pd
 
 feature_names = rf[:-1].get_feature_names_out()
 
-mdi_importances = pd.Series(rf[-1].feature_importances_, index=feature_names).sort_values(ascending=True)
+mdi_importances = pd.Series(
+    rf[-1].feature_importances_, index=feature_names
+).sort_values(ascending=True)
 
 # %%
 ax = mdi_importances.plot.barh()
@@ -157,7 +162,9 @@ ax.figure.tight_layout()
 # expected.
 from sklearn_fork.inspection import permutation_importance
 
-result = permutation_importance(rf, X_test, y_test, n_repeats=10, random_state=42, n_jobs=2)
+result = permutation_importance(
+    rf, X_test, y_test, n_repeats=10, random_state=42, n_jobs=2
+)
 
 sorted_importances_idx = result.importances_mean.argsort()
 importances = pd.DataFrame(
@@ -176,7 +183,9 @@ ax.figure.tight_layout()
 # higher importance ranking than when computed on the test set. The difference
 # between those two plots is a confirmation that the RF model has enough
 # capacity to use that random numerical and categorical features to overfit.
-result = permutation_importance(rf, X_train, y_train, n_repeats=10, random_state=42, n_jobs=2)
+result = permutation_importance(
+    rf, X_train, y_train, n_repeats=10, random_state=42, n_jobs=2
+)
 
 sorted_importances_idx = result.importances_mean.argsort()
 importances = pd.DataFrame(
@@ -202,8 +211,12 @@ print(f"RF train accuracy: {rf.score(X_train, y_train):.3f}")
 print(f"RF test accuracy: {rf.score(X_test, y_test):.3f}")
 
 # %%
-train_result = permutation_importance(rf, X_train, y_train, n_repeats=10, random_state=42, n_jobs=2)
-test_results = permutation_importance(rf, X_test, y_test, n_repeats=10, random_state=42, n_jobs=2)
+train_result = permutation_importance(
+    rf, X_train, y_train, n_repeats=10, random_state=42, n_jobs=2
+)
+test_results = permutation_importance(
+    rf, X_test, y_test, n_repeats=10, random_state=42, n_jobs=2
+)
 sorted_importances_idx = train_result.importances_mean.argsort()
 
 # %%

@@ -11,7 +11,7 @@ It will plot the decision boundaries for each class.
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.colors import ListedColormap
-from sklearn_fork import datasets, neighbors
+from sklearn_fork import neighbors, datasets
 from sklearn_fork.inspection import DecisionBoundaryDisplay
 
 n_neighbors = 15
@@ -55,6 +55,8 @@ for weights in ["uniform", "distance"]:
         alpha=1.0,
         edgecolor="black",
     )
-    plt.title("3-Class classification (k = %i, weights = '%s')" % (n_neighbors, weights))
+    plt.title(
+        "3-Class classification (k = %i, weights = '%s')" % (n_neighbors, weights)
+    )
 
 plt.show()

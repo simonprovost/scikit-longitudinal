@@ -14,11 +14,11 @@ from numbers import Integral, Real
 import numpy as np
 from scipy import sparse
 
-from ..base import BaseEstimator, ClusterMixin
 from ..metrics.pairwise import _VALID_METRICS
-from ..neighbors import NearestNeighbors
-from ..utils._param_validation import Interval, StrOptions
+from ..base import BaseEstimator, ClusterMixin
 from ..utils.validation import _check_sample_weight
+from ..utils._param_validation import Interval, StrOptions
+from ..neighbors import NearestNeighbors
 from ._dbscan_inner import dbscan_inner
 
 
@@ -396,7 +396,9 @@ class DBSCAN(ClusterMixin, BaseEstimator):
         if sample_weight is None:
             n_neighbors = np.array([len(neighbors) for neighbors in neighborhoods])
         else:
-            n_neighbors = np.array([np.sum(sample_weight[neighbors]) for neighbors in neighborhoods])
+            n_neighbors = np.array(
+                [np.sum(sample_weight[neighbors]) for neighbors in neighborhoods]
+            )
 
         # Initially, all samples are noise.
         labels = np.full(X.shape[0], -1, dtype=np.intp)

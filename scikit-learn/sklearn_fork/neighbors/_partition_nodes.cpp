@@ -816,7 +816,7 @@ static CYTHON_INLINE float __PYX_NAN() {
             node_indices + n_points,
             index_comparator);
     }
-
+    
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -1339,8 +1339,8 @@ static PyObject *__pyx_n_s_test;
 /* Late includes */
 
 /* "sklearn_fork/neighbors/_partition_nodes.pyx":65
- *
- *
+ * 
+ * 
  * cdef int partition_node_indices(             # <<<<<<<<<<<<<<
  *         float64_t *data,
  *         intp_t *node_indices,
@@ -1377,8 +1377,8 @@ static int __pyx_f_12sklearn_fork_9neighbors_16_partition_nodes_partition_node_i
   goto __pyx_L0;
 
   /* "sklearn_fork/neighbors/_partition_nodes.pyx":65
- *
- *
+ * 
+ * 
  * cdef int partition_node_indices(             # <<<<<<<<<<<<<<
  *         float64_t *data,
  *         intp_t *node_indices,

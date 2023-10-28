@@ -30,23 +30,26 @@ Example of output :
 #         Arnaud Joly <arnaud.v.joly@gmail.com>
 # License: BSD 3 clause
 
-import argparse
 import os
 from time import time
-
+import argparse
 import numpy as np
 from joblib import Memory
-from sklearn_fork.datasets import fetch_openml, get_data_home
+
+from sklearn_fork.datasets import fetch_openml
+from sklearn_fork.datasets import get_data_home
+from sklearn_fork.ensemble import ExtraTreesClassifier
+from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.dummy import DummyClassifier
-from sklearn_fork.ensemble import ExtraTreesClassifier, RandomForestClassifier
-from sklearn_fork.kernel_approximation import Nystroem, RBFSampler
-from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.kernel_approximation import Nystroem
+from sklearn_fork.kernel_approximation import RBFSampler
 from sklearn_fork.metrics import zero_one_loss
-from sklearn_fork.neural_network import MLPClassifier
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.svm import LinearSVC
 from sklearn_fork.tree import DecisionTreeClassifier
 from sklearn_fork.utils import check_array
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.neural_network import MLPClassifier
 
 # Memoize the data extraction and memory map the resulting
 # train / test splits in readonly mode
@@ -82,8 +85,12 @@ ESTIMATORS = {
     "CART": DecisionTreeClassifier(),
     "ExtraTrees": ExtraTreesClassifier(),
     "RandomForest": RandomForestClassifier(),
-    "Nystroem-SVM": make_pipeline(Nystroem(gamma=0.015, n_components=1000), LinearSVC(C=100)),
-    "SampledRBF-SVM": make_pipeline(RBFSampler(gamma=0.015, n_components=1000), LinearSVC(C=100)),
+    "Nystroem-SVM": make_pipeline(
+        Nystroem(gamma=0.015, n_components=1000), LinearSVC(C=100)
+    ),
+    "SampledRBF-SVM": make_pipeline(
+        RBFSampler(gamma=0.015, n_components=1000), LinearSVC(C=100)
+    ),
     "LogisticRegression-SAG": LogisticRegression(solver="sag", tol=1e-1, C=1e4),
     "LogisticRegression-SAGA": LogisticRegression(solver="saga", tol=1e-1, C=1e4),
     "MultilayerPerceptron": MLPClassifier(
@@ -125,7 +132,10 @@ if __name__ == "__main__":
         nargs="?",
         default=1,
         type=int,
-        help="Number of concurrently running workers for models that support parallelism.",
+        help=(
+            "Number of concurrently running workers for "
+            "models that support parallelism."
+        ),
     )
     parser.add_argument(
         "--order",
@@ -180,7 +190,13 @@ if __name__ == "__main__":
         estimator = ESTIMATORS[name]
         estimator_params = estimator.get_params()
 
-        estimator.set_params(**{p: args["random_seed"] for p in estimator_params if p.endswith("random_state")})
+        estimator.set_params(
+            **{
+                p: args["random_seed"]
+                for p in estimator_params
+                if p.endswith("random_state")
+            }
+        )
 
         if "n_jobs" in estimator_params:
             estimator.set_params(n_jobs=args["n_jobs"])
@@ -200,7 +216,11 @@ if __name__ == "__main__":
     print()
     print("Classification performance:")
     print("===========================")
-    print("{0: <24} {1: >10} {2: >11} {3: >12}".format("Classifier  ", "train-time", "test-time", "error-rate"))
+    print(
+        "{0: <24} {1: >10} {2: >11} {3: >12}".format(
+            "Classifier  ", "train-time", "test-time", "error-rate"
+        )
+    )
     print("-" * 60)
     for name in sorted(args["classifiers"], key=error.get):
         print(

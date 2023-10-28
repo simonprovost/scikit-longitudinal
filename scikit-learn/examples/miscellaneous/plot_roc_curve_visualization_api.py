@@ -15,11 +15,11 @@ how to use the visualization API by comparing ROC curves.
 # First, we load the wine dataset and convert it to a binary classification
 # problem. Then, we train a support vector classifier on a training dataset.
 import matplotlib.pyplot as plt
-from sklearn_fork.datasets import load_wine
+from sklearn_fork.svm import SVC
 from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.metrics import RocCurveDisplay
+from sklearn_fork.datasets import load_wine
 from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.svm import SVC
 
 X, y = load_wine(return_X_y=True)
 y = y == 2

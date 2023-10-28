@@ -4,10 +4,10 @@ Small collection of auxiliary functions that operate on arrays
 """
 
 from cython cimport floating
-from libc.float cimport DBL_MAX, FLT_MAX
 from libc.math cimport fabs
+from libc.float cimport DBL_MAX, FLT_MAX
 
-from ._cython_blas cimport _copy, _rot, _rotg
+from ._cython_blas cimport _copy, _rotg, _rot
 
 
 def min_pos(const floating[:] X):

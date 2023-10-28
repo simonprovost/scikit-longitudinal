@@ -5,34 +5,35 @@
 #
 # License: BSD 3 clause
 
-import numbers
 import sys
 import warnings
+import numbers
 from abc import ABC, abstractmethod
 from functools import partial
 from numbers import Integral, Real
 
 import numpy as np
-from joblib import effective_n_jobs
 from scipy import sparse
+from joblib import effective_n_jobs
 
-from ..base import MultiOutputMixin, RegressorMixin
-from ..model_selection import check_cv
+from ._base import LinearModel, _pre_fit
+from ..base import RegressorMixin, MultiOutputMixin
+from ._base import _preprocess_data
 from ..utils import check_array, check_scalar
+from ..utils.validation import check_random_state
 from ..utils._param_validation import Interval, StrOptions
+from ..model_selection import check_cv
 from ..utils.extmath import safe_sparse_dot
-from ..utils.parallel import Parallel, delayed
 from ..utils.validation import (
     _check_sample_weight,
     check_consistent_length,
     check_is_fitted,
-    check_random_state,
     column_or_1d,
 )
+from ..utils.parallel import delayed, Parallel
 
 # mypy error: Module 'sklearn_fork.linear_model' has no attribute '_cd_fast'
 from . import _cd_fast as cd_fast  # type: ignore
-from ._base import LinearModel, _pre_fit, _preprocess_data
 
 
 def _set_order(X, y, order="C"):
@@ -60,7 +61,9 @@ def _set_order(X, y, order="C"):
         Target values with guaranteed order.
     """
     if order not in [None, "C", "F"]:
-        raise ValueError("Unknown value for order. Got {} instead of None, 'C' or 'F'.".format(order))
+        raise ValueError(
+            "Unknown value for order. Got {} instead of None, 'C' or 'F'.".format(order)
+        )
     sparse_X = sparse.issparse(X)
     sparse_y = sparse.issparse(y)
     if order is not None:
@@ -137,7 +140,9 @@ def _alpha_grid(
     if Xy is None:
         X_sparse = sparse.isspmatrix(X)
         sparse_center = X_sparse and fit_intercept
-        X = check_array(X, accept_sparse="csc", copy=(copy_X and fit_intercept and not X_sparse))
+        X = check_array(
+            X, accept_sparse="csc", copy=(copy_X and fit_intercept and not X_sparse)
+        )
         if not X_sparse:
             # X can be touched inplace thanks to the above line
             X, y, _, _, _ = _preprocess_data(X, y, fit_intercept, copy=False)
@@ -505,7 +510,9 @@ def enet_path(
         )
         if Xy is not None:
             # Xy should be a 1d contiguous array or a 2D C ordered array
-            Xy = check_array(Xy, dtype=X.dtype.type, order="C", copy=False, ensure_2d=False)
+            Xy = check_array(
+                Xy, dtype=X.dtype.type, order="C", copy=False, ensure_2d=False
+            )
 
     n_samples, n_features = X.shape
 
@@ -597,7 +604,9 @@ def enet_path(
                 positive=positive,
             )
         elif multi_output:
-            model = cd_fast.enet_coordinate_descent_multi_task(coef_, l1_reg, l2_reg, X, y, max_iter, tol, rng, random)
+            model = cd_fast.enet_coordinate_descent_multi_task(
+                coef_, l1_reg, l2_reg, X, y, max_iter, tol, rng, random
+            )
         elif isinstance(precompute, np.ndarray):
             # We expect precompute to be already Fortran ordered when bypassing
             # checks
@@ -617,9 +626,14 @@ def enet_path(
                 positive,
             )
         elif precompute is False:
-            model = cd_fast.enet_coordinate_descent(coef_, l1_reg, l2_reg, X, y, max_iter, tol, rng, random, positive)
+            model = cd_fast.enet_coordinate_descent(
+                coef_, l1_reg, l2_reg, X, y, max_iter, tol, rng, random, positive
+            )
         else:
-            raise ValueError("Precompute should be one of True, False, 'auto' or array-like. Got %r" % precompute)
+            raise ValueError(
+                "Precompute should be one of True, False, 'auto' or array-like. Got %r"
+                % precompute
+            )
         coef_, dual_gap_, eps_, n_iter_ = model
         coefs[..., i] = coef_
         # we correct the scale of the returned dual gap, as the objective
@@ -900,7 +914,9 @@ class ElasticNet(MultiOutputMixin, RegressorMixin, LinearModel):
                 multi_output=True,
                 y_numeric=True,
             )
-            y = check_array(y, order="F", copy=False, dtype=X.dtype.type, ensure_2d=False)
+            y = check_array(
+                y, order="F", copy=False, dtype=X.dtype.type, ensure_2d=False
+            )
 
         n_samples, n_features = X.shape
         alpha = self.alpha
@@ -1495,7 +1511,9 @@ class LinearModelCV(MultiOutputMixin, LinearModel, ABC):
         # lot of duplication of memory
         copy_X = self.copy_X and self.fit_intercept
 
-        check_y_params = dict(copy=False, dtype=[np.float64, np.float32], ensure_2d=False)
+        check_y_params = dict(
+            copy=False, dtype=[np.float64, np.float32], ensure_2d=False
+        )
         if isinstance(X, np.ndarray) or sparse.isspmatrix(X):
             # Keep a reference to X
             reference_to_old_X = X
@@ -1507,10 +1525,16 @@ class LinearModelCV(MultiOutputMixin, LinearModel, ABC):
             # We can't pass multi_output=True because that would allow y to be
             # csr. We also want to allow y to be 64 or 32 but check_X_y only
             # allows to convert for 64.
-            check_X_params = dict(accept_sparse="csc", dtype=[np.float64, np.float32], copy=False)
-            X, y = self._validate_data(X, y, validate_separately=(check_X_params, check_y_params))
+            check_X_params = dict(
+                accept_sparse="csc", dtype=[np.float64, np.float32], copy=False
+            )
+            X, y = self._validate_data(
+                X, y, validate_separately=(check_X_params, check_y_params)
+            )
             if sparse.isspmatrix(X):
-                if hasattr(reference_to_old_X, "data") and not np.may_share_memory(reference_to_old_X.data, X.data):
+                if hasattr(reference_to_old_X, "data") and not np.may_share_memory(
+                    reference_to_old_X.data, X.data
+                ):
                     # X is a sparse matrix and has been copied
                     copy_X = False
             elif not np.may_share_memory(reference_to_old_X, X):
@@ -1528,20 +1552,26 @@ class LinearModelCV(MultiOutputMixin, LinearModel, ABC):
                 order="F",
                 copy=copy_X,
             )
-            X, y = self._validate_data(X, y, validate_separately=(check_X_params, check_y_params))
+            X, y = self._validate_data(
+                X, y, validate_separately=(check_X_params, check_y_params)
+            )
             copy_X = False
 
         check_consistent_length(X, y)
 
         if not self._is_multitask():
             if y.ndim > 1 and y.shape[1] > 1:
-                raise ValueError("For multi-task outputs, use MultiTask%s" % self.__class__.__name__)
+                raise ValueError(
+                    "For multi-task outputs, use MultiTask%s" % self.__class__.__name__
+                )
             y = column_or_1d(y, warn=True)
         else:
             if sparse.isspmatrix(X):
                 raise TypeError("X should be dense but a sparse matrix waspassed")
             elif y.ndim == 1:
-                raise ValueError("For mono-task outputs, use %sCV" % self.__class__.__name__[9:])
+                raise ValueError(
+                    "For mono-task outputs, use %sCV" % self.__class__.__name__[9:]
+                )
 
         if isinstance(sample_weight, numbers.Number):
             sample_weight = None
@@ -1662,7 +1692,11 @@ class LinearModelCV(MultiOutputMixin, LinearModel, ABC):
             self.alphas_ = np.asarray(alphas[0])
 
         # Refit the model with the parameters selected
-        common_params = {name: value for name, value in self.get_params().items() if name in model.get_params()}
+        common_params = {
+            name: value
+            for name, value in self.get_params().items()
+            if name in model.get_params()
+        }
         model.set_params(**common_params)
         model.alpha = best_alpha
         model.l1_ratio = best_l1_ratio
@@ -1690,7 +1724,9 @@ class LinearModelCV(MultiOutputMixin, LinearModel, ABC):
         # currently we can only mark a whole test as xfail.
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             }
         }
 
@@ -2341,7 +2377,9 @@ class MultiTaskElasticNet(Lasso):
             copy=self.copy_X and self.fit_intercept,
         )
         check_y_params = dict(ensure_2d=False, order="F")
-        X, y = self._validate_data(X, y, validate_separately=(check_X_params, check_y_params))
+        X, y = self._validate_data(
+            X, y, validate_separately=(check_X_params, check_y_params)
+        )
         check_consistent_length(X, y)
         y = y.astype(X.dtype)
 
@@ -2355,10 +2393,14 @@ class MultiTaskElasticNet(Lasso):
         n_samples, n_features = X.shape
         n_targets = y.shape[1]
 
-        X, y, X_offset, y_offset, X_scale = _preprocess_data(X, y, self.fit_intercept, copy=False)
+        X, y, X_offset, y_offset, X_scale = _preprocess_data(
+            X, y, self.fit_intercept, copy=False
+        )
 
         if not self.warm_start or not hasattr(self, "coef_"):
-            self.coef_ = np.zeros((n_targets, n_features), dtype=X.dtype.type, order="F")
+            self.coef_ = np.zeros(
+                (n_targets, n_features), dtype=X.dtype.type, order="F"
+            )
 
         l1_reg = self.alpha * self.l1_ratio * n_samples
         l2_reg = self.alpha * (1.0 - self.l1_ratio) * n_samples

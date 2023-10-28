@@ -6,19 +6,27 @@ Testing for Isolation Forest algorithm (sklearn_fork.ensemble.iforest).
 #          Alexandre Gramfort <alexandre.gramfort@telecom-paristech.fr>
 # License: BSD 3 clause
 
+import pytest
 import warnings
-from unittest.mock import Mock, patch
 
 import numpy as np
-import pytest
-from scipy.sparse import csc_matrix, csr_matrix
-from sklearn_fork.datasets import load_diabetes, load_iris, make_classification
+
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import ignore_warnings
+from sklearn_fork.utils._testing import assert_allclose
+
+from sklearn_fork.model_selection import ParameterGrid
 from sklearn_fork.ensemble import IsolationForest
 from sklearn_fork.ensemble._iforest import _average_path_length
-from sklearn_fork.metrics import roc_auc_score
-from sklearn_fork.model_selection import ParameterGrid, train_test_split
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.datasets import load_diabetes, load_iris, make_classification
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import assert_allclose, assert_array_almost_equal, assert_array_equal, ignore_warnings
+from sklearn_fork.metrics import roc_auc_score
+
+from scipy.sparse import csc_matrix, csr_matrix
+from unittest.mock import Mock, patch
+
 
 # load iris & diabetes dataset
 iris = load_iris()
@@ -30,11 +38,15 @@ def test_iforest(global_random_seed):
     X_train = np.array([[0, 1], [1, 2]])
     X_test = np.array([[2, 1], [1, 1]])
 
-    grid = ParameterGrid({"n_estimators": [3], "max_samples": [0.5, 1.0, 3], "bootstrap": [True, False]})
+    grid = ParameterGrid(
+        {"n_estimators": [3], "max_samples": [0.5, 1.0, 3], "bootstrap": [True, False]}
+    )
 
     with ignore_warnings():
         for params in grid:
-            IsolationForest(random_state=global_random_seed, **params).fit(X_train).predict(X_test)
+            IsolationForest(random_state=global_random_seed, **params).fit(
+                X_train
+            ).predict(X_test)
 
 
 def test_iforest_sparse(global_random_seed):
@@ -49,13 +61,15 @@ def test_iforest_sparse(global_random_seed):
 
         for params in grid:
             # Trained on sparse format
-            sparse_classifier = IsolationForest(n_estimators=10, random_state=global_random_seed, **params).fit(
-                X_train_sparse
-            )
+            sparse_classifier = IsolationForest(
+                n_estimators=10, random_state=global_random_seed, **params
+            ).fit(X_train_sparse)
             sparse_results = sparse_classifier.predict(X_test_sparse)
 
             # Trained on dense format
-            dense_classifier = IsolationForest(n_estimators=10, random_state=global_random_seed, **params).fit(X_train)
+            dense_classifier = IsolationForest(
+                n_estimators=10, random_state=global_random_seed, **params
+            ).fit(X_train)
             dense_results = dense_classifier.predict(X_test)
 
             assert_array_equal(sparse_results, dense_results)
@@ -175,7 +189,9 @@ def test_max_samples_consistency():
 def test_iforest_subsampled_features():
     # It tests non-regression for #5732 which failed at predict.
     rng = check_random_state(0)
-    X_train, X_test, y_train, y_test = train_test_split(diabetes.data[:50], diabetes.target[:50], random_state=rng)
+    X_train, X_test, y_train, y_test = train_test_split(
+        diabetes.data[:50], diabetes.target[:50], random_state=rng
+    )
     clf = IsolationForest(max_features=0.8)
     clf.fit(X_train, y_train)
     clf.predict(X_test)
@@ -213,7 +229,9 @@ def test_score_samples():
         clf2.score_samples([[2.0, 2.0]]),
         clf2.decision_function([[2.0, 2.0]]) + clf2.offset_,
     )
-    assert_array_equal(clf1.score_samples([[2.0, 2.0]]), clf2.score_samples([[2.0, 2.0]]))
+    assert_array_equal(
+        clf1.score_samples([[2.0, 2.0]]), clf2.score_samples([[2.0, 2.0]])
+    )
 
 
 def test_iforest_warm_start():
@@ -223,7 +241,9 @@ def test_iforest_warm_start():
     X = rng.randn(20, 2)
 
     # fit first 10 trees
-    clf = IsolationForest(n_estimators=10, max_samples=20, random_state=rng, warm_start=True)
+    clf = IsolationForest(
+        n_estimators=10, max_samples=20, random_state=rng, warm_start=True
+    )
     clf.fit(X)
     # remember the 1st tree
     tree_1 = clf.estimators_[0]
@@ -242,7 +262,9 @@ def test_iforest_warm_start():
     side_effect=Mock(**{"return_value": 3}),
 )
 @pytest.mark.parametrize("contamination, n_predict_calls", [(0.25, 3), ("auto", 2)])
-def test_iforest_chunks_works1(mocked_get_chunk, contamination, n_predict_calls, global_random_seed):
+def test_iforest_chunks_works1(
+    mocked_get_chunk, contamination, n_predict_calls, global_random_seed
+):
     test_iforest_works(contamination, global_random_seed)
     assert mocked_get_chunk.call_count == n_predict_calls
 
@@ -253,7 +275,9 @@ def test_iforest_chunks_works1(mocked_get_chunk, contamination, n_predict_calls,
     side_effect=Mock(**{"return_value": 10}),
 )
 @pytest.mark.parametrize("contamination, n_predict_calls", [(0.25, 3), ("auto", 2)])
-def test_iforest_chunks_works2(mocked_get_chunk, contamination, n_predict_calls, global_random_seed):
+def test_iforest_chunks_works2(
+    mocked_get_chunk, contamination, n_predict_calls, global_random_seed
+):
     test_iforest_works(contamination, global_random_seed)
     assert mocked_get_chunk.call_count == n_predict_calls
 

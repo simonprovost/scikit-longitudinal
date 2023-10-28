@@ -1,10 +1,10 @@
+from sklearn_fork.utils import all_estimators
+from sklearn_fork.utils.estimator_checks import _construct_instance
+from sklearn_fork.utils._testing import SkipTest
+from docutils import nodes
 from contextlib import suppress
 
-from docutils import nodes
 from docutils.parsers.rst import Directive
-from sklearn_fork.utils import all_estimators
-from sklearn_fork.utils._testing import SkipTest
-from sklearn_fork.utils.estimator_checks import _construct_instance
 
 
 class AllowNanEstimators(Directive):
@@ -26,7 +26,9 @@ class AllowNanEstimators(Directive):
                 class_url = f"./generated/{module_name}.{class_title}.html"
                 item = nodes.list_item()
                 para = nodes.paragraph()
-                para += nodes.reference(class_title, text=class_title, internal=False, refuri=class_url)
+                para += nodes.reference(
+                    class_title, text=class_title, internal=False, refuri=class_url
+                )
                 exists = True
                 item += para
                 lst += item

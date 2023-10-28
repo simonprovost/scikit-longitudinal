@@ -30,15 +30,14 @@ that of representing a flat map of the Earth, as with
 # License: BSD 3 clause
 
 from time import time
-
-import matplotlib.pyplot as plt
-
-# Unused but required import for doing 3d projections with matplotlib < 3.2
-import mpl_toolkits.mplot3d  # noqa: F401
 import numpy as np
+import matplotlib.pyplot as plt
 from matplotlib.ticker import NullFormatter
 from sklearn_fork import manifold
 from sklearn_fork.utils import check_random_state
+
+# Unused but required import for doing 3d projections with matplotlib < 3.2
+import mpl_toolkits.mplot3d  # noqa: F401
 
 # Variables for manifold learning.
 n_neighbors = 10
@@ -60,7 +59,9 @@ x, y, z = (
 
 # Plot our dataset.
 fig = plt.figure(figsize=(15, 8))
-plt.suptitle("Manifold Learning with %i points, %i neighbors" % (1000, n_neighbors), fontsize=14)
+plt.suptitle(
+    "Manifold Learning with %i points, %i neighbors" % (1000, n_neighbors), fontsize=14
+)
 
 ax = fig.add_subplot(251, projection="3d")
 ax.scatter(x, y, z, c=p[indices], cmap=plt.cm.rainbow)
@@ -75,7 +76,9 @@ labels = ["LLE", "LTSA", "Hessian LLE", "Modified LLE"]
 for i, method in enumerate(methods):
     t0 = time()
     trans_data = (
-        manifold.LocallyLinearEmbedding(n_neighbors=n_neighbors, n_components=2, method=method)
+        manifold.LocallyLinearEmbedding(
+            n_neighbors=n_neighbors, n_components=2, method=method
+        )
         .fit_transform(sphere_data)
         .T
     )
@@ -91,7 +94,11 @@ for i, method in enumerate(methods):
 
 # Perform Isomap Manifold learning.
 t0 = time()
-trans_data = manifold.Isomap(n_neighbors=n_neighbors, n_components=2).fit_transform(sphere_data).T
+trans_data = (
+    manifold.Isomap(n_neighbors=n_neighbors, n_components=2)
+    .fit_transform(sphere_data)
+    .T
+)
 t1 = time()
 print("%s: %.2g sec" % ("ISO", t1 - t0))
 

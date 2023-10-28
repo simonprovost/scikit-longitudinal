@@ -14,8 +14,8 @@ deformation of the decision boundary very visible.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork import svm
 
 
@@ -63,7 +63,9 @@ clf_weights = svm.SVC(gamma=1)
 clf_weights.fit(X, y, sample_weight=sample_weight_last_ten)
 
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
-plot_decision_function(clf_no_weights, sample_weight_constant, axes[0], "Constant weights")
+plot_decision_function(
+    clf_no_weights, sample_weight_constant, axes[0], "Constant weights"
+)
 plot_decision_function(clf_weights, sample_weight_last_ten, axes[1], "Modified weights")
 
 plt.show()

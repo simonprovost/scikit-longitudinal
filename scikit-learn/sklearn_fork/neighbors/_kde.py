@@ -12,11 +12,12 @@ from scipy.special import gammainc
 from ..base import BaseEstimator
 from ..neighbors._base import VALID_METRICS
 from ..utils import check_random_state
+from ..utils.validation import _check_sample_weight, check_is_fitted
 from ..utils._param_validation import Interval, StrOptions
 from ..utils.extmath import row_norms
-from ..utils.validation import _check_sample_weight, check_is_fitted
 from ._ball_tree import BallTree
 from ._kd_tree import KDTree
+
 
 VALID_KERNELS = [
     "gaussian",
@@ -133,7 +134,11 @@ class KernelDensity(BaseEstimator):
         ],
         "algorithm": [StrOptions(set(TREE_DICT.keys()) | {"auto"})],
         "kernel": [StrOptions(set(VALID_KERNELS))],
-        "metric": [StrOptions(set(itertools.chain(*[VALID_METRICS[alg] for alg in TREE_DICT.keys()])))],
+        "metric": [
+            StrOptions(
+                set(itertools.chain(*[VALID_METRICS[alg] for alg in TREE_DICT.keys()]))
+            )
+        ],
         "atol": [Interval(Real, 0, None, closed="left")],
         "rtol": [Interval(Real, 0, None, closed="left")],
         "breadth_first": ["boolean"],
@@ -175,7 +180,9 @@ class KernelDensity(BaseEstimator):
                 return "ball_tree"
         else:  # kd_tree or ball_tree
             if metric not in TREE_DICT[algorithm].valid_metrics():
-                raise ValueError("invalid metric for {0}: '{1}'".format(TREE_DICT[algorithm], metric))
+                raise ValueError(
+                    "invalid metric for {0}: '{1}'".format(TREE_DICT[algorithm], metric)
+                )
             return algorithm
 
     def fit(self, X, y=None, sample_weight=None):
@@ -209,14 +216,18 @@ class KernelDensity(BaseEstimator):
             if self.bandwidth == "scott":
                 self.bandwidth_ = X.shape[0] ** (-1 / (X.shape[1] + 4))
             elif self.bandwidth == "silverman":
-                self.bandwidth_ = (X.shape[0] * (X.shape[1] + 2) / 4) ** (-1 / (X.shape[1] + 4))
+                self.bandwidth_ = (X.shape[0] * (X.shape[1] + 2) / 4) ** (
+                    -1 / (X.shape[1] + 4)
+                )
         else:
             self.bandwidth_ = self.bandwidth
 
         X = self._validate_data(X, order="C", dtype=np.float64)
 
         if sample_weight is not None:
-            sample_weight = _check_sample_weight(sample_weight, X, dtype=np.float64, only_non_negative=True)
+            sample_weight = _check_sample_weight(
+                sample_weight, X, dtype=np.float64, only_non_negative=True
+            )
 
         kwargs = self.metric_params
         if kwargs is None:
@@ -336,12 +347,18 @@ class KernelDensity(BaseEstimator):
             dim = data.shape[1]
             X = rng.normal(size=(n_samples, dim))
             s_sq = row_norms(X, squared=True)
-            correction = gammainc(0.5 * dim, 0.5 * s_sq) ** (1.0 / dim) * self.bandwidth_ / np.sqrt(s_sq)
+            correction = (
+                gammainc(0.5 * dim, 0.5 * s_sq) ** (1.0 / dim)
+                * self.bandwidth_
+                / np.sqrt(s_sq)
+            )
             return data[i] + X * correction[:, np.newaxis]
 
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "sample_weight must have positive values",
+                "check_sample_weights_invariance": (
+                    "sample_weight must have positive values"
+                ),
             }
         }

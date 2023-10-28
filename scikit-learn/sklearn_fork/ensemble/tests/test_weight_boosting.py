@@ -1,22 +1,33 @@
 """Testing for the boost module (sklearn_fork.ensemble.boost)."""
 
-import re
-
 import numpy as np
 import pytest
-from scipy.sparse import coo_matrix, csc_matrix, csr_matrix, dok_matrix, lil_matrix
-from sklearn_fork import datasets
-from sklearn_fork.base import BaseEstimator, clone
+import re
+
+from scipy.sparse import csc_matrix
+from scipy.sparse import csr_matrix
+from scipy.sparse import coo_matrix
+from scipy.sparse import dok_matrix
+from scipy.sparse import lil_matrix
+
+from sklearn_fork.utils._testing import assert_array_equal, assert_array_less
+from sklearn_fork.utils._testing import assert_array_almost_equal
+
+from sklearn_fork.base import BaseEstimator
+from sklearn_fork.base import clone
 from sklearn_fork.dummy import DummyClassifier, DummyRegressor
-from sklearn_fork.ensemble import AdaBoostClassifier, AdaBoostRegressor
-from sklearn_fork.ensemble._weight_boosting import _samme_proba
 from sklearn_fork.linear_model import LinearRegression
-from sklearn_fork.model_selection import GridSearchCV, train_test_split
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.model_selection import GridSearchCV
+from sklearn_fork.ensemble import AdaBoostClassifier
+from sklearn_fork.ensemble import AdaBoostRegressor
+from sklearn_fork.ensemble._weight_boosting import _samme_proba
 from sklearn_fork.svm import SVC, SVR
 from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn_fork.utils import shuffle
 from sklearn_fork.utils._mocking import NoSampleWeightWrapper
-from sklearn_fork.utils._testing import assert_array_almost_equal, assert_array_equal, assert_array_less
+from sklearn_fork import datasets
+
 
 # Common random state
 rng = np.random.RandomState(0)
@@ -36,14 +47,18 @@ iris.data, iris.target = shuffle(iris.data, iris.target, random_state=rng)
 
 # Load the diabetes dataset and randomly permute it
 diabetes = datasets.load_diabetes()
-diabetes.data, diabetes.target = shuffle(diabetes.data, diabetes.target, random_state=rng)
+diabetes.data, diabetes.target = shuffle(
+    diabetes.data, diabetes.target, random_state=rng
+)
 
 
 def test_samme_proba():
     # Test the `_samme_proba` helper function.
 
     # Define some example (bad) `predict_proba` output.
-    probs = np.array([[1, 1e-6, 0], [0.19, 0.6, 0.2], [-999, 0.51, 0.5], [1e-6, 1, 1e-9]])
+    probs = np.array(
+        [[1, 1e-6, 0], [0.19, 0.6, 0.2], [-999, 0.51, 0.5], [1e-6, 1, 1e-9]]
+    )
     probs /= np.abs(probs.sum(axis=1))[:, np.newaxis]
 
     # _samme_proba calls estimator.predict_proba.
@@ -116,7 +131,9 @@ def test_iris():
         # Check we used multiple estimators
         assert len(clf.estimators_) > 1
         # Check for distinct random states (see issue #7408)
-        assert len(set(est.random_state for est in clf.estimators_)) == len(clf.estimators_)
+        assert len(set(est.random_state for est in clf.estimators_)) == len(
+            clf.estimators_
+        )
 
     # Somewhat hacky regression test: prior to
     # ae7adc880d624615a34bafdb1d75ef67051b8200,
@@ -154,7 +171,9 @@ def test_staged_predict(algorithm):
     proba = clf.predict_proba(iris.data)
     staged_probas = [p for p in clf.staged_predict_proba(iris.data)]
     score = clf.score(iris.data, iris.target, sample_weight=iris_weights)
-    staged_scores = [s for s in clf.staged_score(iris.data, iris.target, sample_weight=iris_weights)]
+    staged_scores = [
+        s for s in clf.staged_score(iris.data, iris.target, sample_weight=iris_weights)
+    ]
 
     assert len(staged_predictions) == 10
     assert_array_almost_equal(predictions, staged_predictions[-1])
@@ -170,7 +189,12 @@ def test_staged_predict(algorithm):
     predictions = clf.predict(diabetes.data)
     staged_predictions = [p for p in clf.staged_predict(diabetes.data)]
     score = clf.score(diabetes.data, diabetes.target, sample_weight=diabetes_weights)
-    staged_scores = [s for s in clf.staged_score(diabetes.data, diabetes.target, sample_weight=diabetes_weights)]
+    staged_scores = [
+        s
+        for s in clf.staged_score(
+            diabetes.data, diabetes.target, sample_weight=diabetes_weights
+        )
+    ]
 
     assert len(staged_predictions) == 10
     assert_array_almost_equal(predictions, staged_predictions[-1])
@@ -302,7 +326,9 @@ def test_sparse_classification():
             self.data_type_ = type(X)
             return self
 
-    X, y = datasets.make_multilabel_classification(n_classes=1, n_samples=15, n_features=5, random_state=42)
+    X, y = datasets.make_multilabel_classification(
+        n_classes=1, n_samples=15, n_features=5, random_state=42
+    )
     # Flatten y to a 1d array
     y = np.ravel(y)
 
@@ -393,7 +419,9 @@ def test_sparse_regression():
             self.data_type_ = type(X)
             return self
 
-    X, y = datasets.make_regression(n_samples=15, n_features=50, n_targets=1, random_state=42)
+    X, y = datasets.make_regression(
+        n_samples=15, n_features=50, n_targets=1, random_state=42
+    )
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 
@@ -402,12 +430,14 @@ def test_sparse_regression():
         X_test_sparse = sparse_format(X_test)
 
         # Trained on sparse format
-        sparse_classifier = AdaBoostRegressor(estimator=CustomSVR(), random_state=1).fit(X_train_sparse, y_train)
+        sparse_classifier = AdaBoostRegressor(
+            estimator=CustomSVR(), random_state=1
+        ).fit(X_train_sparse, y_train)
 
         # Trained on dense format
-        dense_classifier = dense_results = AdaBoostRegressor(estimator=CustomSVR(), random_state=1).fit(
-            X_train, y_train
-        )
+        dense_classifier = dense_results = AdaBoostRegressor(
+            estimator=CustomSVR(), random_state=1
+        ).fit(X_train, y_train)
 
         # predict
         sparse_results = sparse_classifier.predict(X_test_sparse)
@@ -488,7 +518,9 @@ def test_adaboostregressor_sample_weight():
     y[-1] = 10000
 
     # random_state=0 ensure that the underlying bootstrap will use the outlier
-    regr_no_outlier = AdaBoostRegressor(estimator=LinearRegression(), n_estimators=1, random_state=0)
+    regr_no_outlier = AdaBoostRegressor(
+        estimator=LinearRegression(), n_estimators=1, random_state=0
+    )
     regr_with_weight = clone(regr_no_outlier)
     regr_with_outlier = clone(regr_no_outlier)
 
@@ -516,11 +548,15 @@ def test_adaboost_consistent_predict(algorithm):
     # check that predict_proba and predict give consistent results
     # regression test for:
     # https://github.com/scikit-learn/scikit-learn/issues/14084
-    X_train, X_test, y_train, y_test = train_test_split(*datasets.load_digits(return_X_y=True), random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        *datasets.load_digits(return_X_y=True), random_state=42
+    )
     model = AdaBoostClassifier(algorithm=algorithm, random_state=42)
     model.fit(X_train, y_train)
 
-    assert_array_equal(np.argmax(model.predict_proba(X_test), axis=1), model.predict(X_test))
+    assert_array_equal(
+        np.argmax(model.predict_proba(X_test), axis=1), model.predict(X_test)
+    )
 
 
 @pytest.mark.parametrize(
@@ -569,7 +605,10 @@ def test_base_estimator_argument_deprecated(AdaBoost, Estimator):
     y = np.array([1, 0])
     model = AdaBoost(base_estimator=Estimator())
 
-    warn_msg = "`base_estimator` was renamed to `estimator` in version 1.2 and will be removed in 1.4."
+    warn_msg = (
+        "`base_estimator` was renamed to `estimator` in version 1.2 and "
+        "will be removed in 1.4."
+    )
     with pytest.warns(FutureWarning, match=warn_msg):
         model.fit(X, y)
 

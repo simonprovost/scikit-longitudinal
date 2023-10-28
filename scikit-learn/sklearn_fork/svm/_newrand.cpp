@@ -2187,15 +2187,15 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 /* #### Code section: module_code ### */
 
 /* "sklearn_fork/svm/_newrand.pyx":8
- *
- *
+ * 
+ * 
  * def set_seed_wrap(unsigned int custom_seed):             # <<<<<<<<<<<<<<
  *     set_seed(custom_seed)
- *
+ * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_12sklearn_fork_3svm_8_newrand_1set_seed_wrap(PyObject *__pyx_self,
+static PyObject *__pyx_pw_12sklearn_fork_3svm_8_newrand_1set_seed_wrap(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2203,7 +2203,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
 static PyMethodDef __pyx_mdef_12sklearn_fork_3svm_8_newrand_1set_seed_wrap = {"set_seed_wrap", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_12sklearn_fork_3svm_8_newrand_1set_seed_wrap, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_12sklearn_fork_3svm_8_newrand_1set_seed_wrap(PyObject *__pyx_self,
+static PyObject *__pyx_pw_12sklearn_fork_3svm_8_newrand_1set_seed_wrap(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2296,20 +2296,20 @@ static PyObject *__pyx_pf_12sklearn_fork_3svm_8_newrand_set_seed_wrap(CYTHON_UNU
   __Pyx_RefNannySetupContext("set_seed_wrap", 1);
 
   /* "sklearn_fork/svm/_newrand.pyx":9
- *
+ * 
  * def set_seed_wrap(unsigned int custom_seed):
  *     set_seed(custom_seed)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   set_seed(__pyx_v_custom_seed);
 
   /* "sklearn_fork/svm/_newrand.pyx":8
- *
- *
+ * 
+ * 
  * def set_seed_wrap(unsigned int custom_seed):             # <<<<<<<<<<<<<<
  *     set_seed(custom_seed)
- *
+ * 
  */
 
   /* function exit code */
@@ -2320,14 +2320,14 @@ static PyObject *__pyx_pf_12sklearn_fork_3svm_8_newrand_set_seed_wrap(CYTHON_UNU
 }
 
 /* "sklearn_fork/svm/_newrand.pyx":12
- *
- *
+ * 
+ * 
  * def bounded_rand_int_wrap(unsigned int range_):             # <<<<<<<<<<<<<<
  *     return bounded_rand_int(range_)
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_12sklearn_fork_3svm_8_newrand_3bounded_rand_int_wrap(PyObject *__pyx_self,
+static PyObject *__pyx_pw_12sklearn_fork_3svm_8_newrand_3bounded_rand_int_wrap(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2335,7 +2335,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
 static PyMethodDef __pyx_mdef_12sklearn_fork_3svm_8_newrand_3bounded_rand_int_wrap = {"bounded_rand_int_wrap", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_12sklearn_fork_3svm_8_newrand_3bounded_rand_int_wrap, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_12sklearn_fork_3svm_8_newrand_3bounded_rand_int_wrap(PyObject *__pyx_self,
+static PyObject *__pyx_pw_12sklearn_fork_3svm_8_newrand_3bounded_rand_int_wrap(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2432,7 +2432,7 @@ static PyObject *__pyx_pf_12sklearn_fork_3svm_8_newrand_2bounded_rand_int_wrap(C
   __Pyx_RefNannySetupContext("bounded_rand_int_wrap", 1);
 
   /* "sklearn_fork/svm/_newrand.pyx":13
- *
+ * 
  * def bounded_rand_int_wrap(unsigned int range_):
  *     return bounded_rand_int(range_)             # <<<<<<<<<<<<<<
  */
@@ -2444,8 +2444,8 @@ static PyObject *__pyx_pf_12sklearn_fork_3svm_8_newrand_2bounded_rand_int_wrap(C
   goto __pyx_L0;
 
   /* "sklearn_fork/svm/_newrand.pyx":12
- *
- *
+ * 
+ * 
  * def bounded_rand_int_wrap(unsigned int range_):             # <<<<<<<<<<<<<<
  *     return bounded_rand_int(range_)
  */
@@ -2505,11 +2505,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "sklearn_fork/svm/_newrand.pyx":8
- *
- *
+ * 
+ * 
  * def set_seed_wrap(unsigned int custom_seed):             # <<<<<<<<<<<<<<
  *     set_seed(custom_seed)
- *
+ * 
  */
   __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_custom_seed); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
@@ -2517,8 +2517,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sklearn_fork_svm__newrand_pyx, __pyx_n_s_set_seed_wrap, 8, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 8, __pyx_L1_error)
 
   /* "sklearn_fork/svm/_newrand.pyx":12
- *
- *
+ * 
+ * 
  * def bounded_rand_int_wrap(unsigned int range_):             # <<<<<<<<<<<<<<
  *     return bounded_rand_int(range_)
  */
@@ -2892,11 +2892,11 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "sklearn_fork/svm/_newrand.pyx":8
- *
- *
+ * 
+ * 
  * def set_seed_wrap(unsigned int custom_seed):             # <<<<<<<<<<<<<<
  *     set_seed(custom_seed)
- *
+ * 
  */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_12sklearn_fork_3svm_8_newrand_1set_seed_wrap, 0, __pyx_n_s_set_seed_wrap, NULL, __pyx_n_s_sklearn_fork_svm__newrand, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -2904,8 +2904,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sklearn_fork/svm/_newrand.pyx":12
- *
- *
+ * 
+ * 
  * def bounded_rand_int_wrap(unsigned int range_):             # <<<<<<<<<<<<<<
  *     return bounded_rand_int(range_)
  */
@@ -2916,7 +2916,7 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn_fork/svm/_newrand.pyx":1
  * """Wrapper for newrand.h"""             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef extern from "newrand.h":
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)

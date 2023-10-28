@@ -7,19 +7,20 @@
 #          Multi-output support by Arnaud Joly <a.joly@ulg.ac.be>
 #
 # License: BSD 3 clause (C) INRIA, University of Amsterdam
-import warnings
 from numbers import Integral
 
 import numpy as np
-from sklearn_fork.neighbors._base import _check_precomputed
+from ..utils.fixes import _mode
+from ..utils.extmath import weighted_mode
+from ..utils.validation import _is_arraylike, _num_samples, check_is_fitted
 
+import warnings
+from ._base import _get_weights
+from ._base import NeighborsBase, KNeighborsMixin, RadiusNeighborsMixin
 from ..base import ClassifierMixin
 from ..metrics._pairwise_distances_reduction import ArgKminClassMode
 from ..utils._param_validation import StrOptions
-from ..utils.extmath import weighted_mode
-from ..utils.fixes import _mode
-from ..utils.validation import _is_arraylike, _num_samples, check_is_fitted
-from ._base import KNeighborsMixin, NeighborsBase, RadiusNeighborsMixin, _get_weights
+from sklearn_fork.neighbors._base import _check_precomputed
 
 
 def _adjusted_metric(metric, metric_kwargs, p=None):
@@ -175,7 +176,9 @@ class KNeighborsClassifier(KNeighborsMixin, ClassifierMixin, NeighborsBase):
 
     _parameter_constraints: dict = {**NeighborsBase._parameter_constraints}
     _parameter_constraints.pop("radius")
-    _parameter_constraints.update({"weights": [StrOptions({"uniform", "distance"}), callable, None]})
+    _parameter_constraints.update(
+        {"weights": [StrOptions({"uniform", "distance"}), callable, None]}
+    )
 
     def __init__(
         self,
@@ -238,11 +241,16 @@ class KNeighborsClassifier(KNeighborsMixin, ClassifierMixin, NeighborsBase):
         """
         check_is_fitted(self, "_fit_method")
         if self.weights == "uniform":
-            if self._fit_method == "brute" and ArgKminClassMode.is_usable_for(X, self._fit_X, self.metric):
+            if self._fit_method == "brute" and ArgKminClassMode.is_usable_for(
+                X, self._fit_X, self.metric
+            ):
                 probabilities = self.predict_proba(X)
                 if self.outputs_2d_:
                     return np.stack(
-                        [self.classes_[idx][np.argmax(probas, axis=1)] for idx, probas in enumerate(probabilities)],
+                        [
+                            self.classes_[idx][np.argmax(probas, axis=1)]
+                            for idx, probas in enumerate(probabilities)
+                        ],
                         axis=1,
                     )
                 return self.classes_[np.argmax(probabilities, axis=1)]
@@ -298,7 +306,9 @@ class KNeighborsClassifier(KNeighborsMixin, ClassifierMixin, NeighborsBase):
         if self.weights == "uniform":
             # TODO: systematize this mapping of metric for
             # PairwiseDistancesReductions.
-            metric, metric_kwargs = _adjusted_metric(metric=self.metric, metric_kwargs=self.metric_params, p=self.p)
+            metric, metric_kwargs = _adjusted_metric(
+                metric=self.metric, metric_kwargs=self.metric_params, p=self.p
+            )
             if (
                 self._fit_method == "brute"
                 and ArgKminClassMode.is_usable_for(X, self._fit_X, metric)
@@ -308,7 +318,9 @@ class KNeighborsClassifier(KNeighborsMixin, ClassifierMixin, NeighborsBase):
                 if self.metric == "precomputed":
                     X = _check_precomputed(X)
                 else:
-                    X = self._validate_data(X, accept_sparse="csr", reset=False, order="C")
+                    X = self._validate_data(
+                        X, accept_sparse="csr", reset=False, order="C"
+                    )
 
                 probabilities = ArgKminClassMode.compute(
                     X,
@@ -599,12 +611,14 @@ class RadiusNeighborsClassifier(RadiusNeighborsMixin, ClassifierMixin, Neighbors
                 outlier_label_.append(classes_k[label_count.argmax()])
 
         else:
-            if _is_arraylike(self.outlier_label) and not isinstance(self.outlier_label, str):
+            if _is_arraylike(self.outlier_label) and not isinstance(
+                self.outlier_label, str
+            ):
                 if len(self.outlier_label) != len(classes_):
                     raise ValueError(
-                        "The length of outlier_label: {} is inconsistent with the output length: {}".format(
-                            self.outlier_label, len(classes_)
-                        )
+                        "The length of outlier_label: {} is "
+                        "inconsistent with the output "
+                        "length: {}".format(self.outlier_label, len(classes_))
                     )
                 outlier_label_ = self.outlier_label
             else:
@@ -614,12 +628,16 @@ class RadiusNeighborsClassifier(RadiusNeighborsMixin, ClassifierMixin, Neighbors
                 if _is_arraylike(label) and not isinstance(label, str):
                     # ensure the outlier label for each output is a scalar.
                     raise TypeError(
-                        "The outlier_label of classes {} is supposed to be a scalar, got {}.".format(classes, label)
+                        "The outlier_label of classes {} is "
+                        "supposed to be a scalar, got "
+                        "{}.".format(classes, label)
                     )
                 if np.append(classes, label).dtype != classes.dtype:
                     # ensure the dtype of outlier label is consistent with y.
                     raise TypeError(
-                        "The dtype of outlier_label {} is inconsistent with classes {} in y.".format(label, classes)
+                        "The dtype of outlier_label {} is "
+                        "inconsistent with classes {} in "
+                        "y.".format(label, classes)
                     )
 
         self.outlier_label_ = outlier_label_
@@ -726,7 +744,9 @@ class RadiusNeighborsClassifier(RadiusNeighborsMixin, ClassifierMixin, Neighbors
                     proba_inl[i, :] = np.bincount(idx, minlength=classes_k.size)
             else:
                 for i, idx in enumerate(pred_labels[inliers]):
-                    proba_inl[i, :] = np.bincount(idx, weights[i], minlength=classes_k.size)
+                    proba_inl[i, :] = np.bincount(
+                        idx, weights[i], minlength=classes_k.size
+                    )
             proba_k[inliers, :] = proba_inl
 
             if outliers.size > 0:

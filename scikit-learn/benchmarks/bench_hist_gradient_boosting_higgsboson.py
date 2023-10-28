@@ -1,16 +1,17 @@
-import argparse
+from urllib.request import urlretrieve
 import os
 from gzip import GzipFile
 from time import time
-from urllib.request import urlretrieve
+import argparse
 
 import numpy as np
 import pandas as pd
 from joblib import Memory
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.metrics import accuracy_score, roc_auc_score
 from sklearn_fork.ensemble import HistGradientBoostingClassifier
 from sklearn_fork.ensemble._hist_gradient_boosting.utils import get_equivalent_estimator
-from sklearn_fork.metrics import accuracy_score, roc_auc_score
-from sklearn_fork.model_selection import train_test_split
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--n-leaf-nodes", type=int, default=31)
@@ -77,7 +78,9 @@ def predict(est, data_test, target_test):
 df = load_data()
 target = df.values[:, 0]
 data = np.ascontiguousarray(df.values[:, 1:])
-data_train, data_test, target_train, target_test = train_test_split(data, target, test_size=0.2, random_state=0)
+data_train, data_test, target_train, target_test = train_test_split(
+    data, target, test_size=0.2, random_state=0
+)
 n_classes = len(np.unique(target))
 
 if subsample is not None:

@@ -23,12 +23,13 @@ model with their true labels.
 # Authors: Clay Woolam <clay@woolam.org>
 # License: BSD
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy import stats
+
 from sklearn_fork import datasets
-from sklearn_fork.metrics import classification_report, confusion_matrix
 from sklearn_fork.semi_supervised import LabelSpreading
+from sklearn_fork.metrics import classification_report, confusion_matrix
 
 digits = datasets.load_digits()
 rng = np.random.RandomState(0)
@@ -77,7 +78,9 @@ for i in range(max_iterations):
 
     # select up to 5 digit examples that the classifier is most uncertain about
     uncertainty_index = np.argsort(pred_entropies)[::-1]
-    uncertainty_index = uncertainty_index[np.in1d(uncertainty_index, unlabeled_indices)][:5]
+    uncertainty_index = uncertainty_index[
+        np.in1d(uncertainty_index, unlabeled_indices)
+    ][:5]
 
     # keep track of indices that we get labels for
     delete_indices = np.array([], dtype=int)
@@ -98,7 +101,8 @@ for i in range(max_iterations):
             sub = f.add_subplot(5, 5, index + 1 + (5 * i))
             sub.imshow(image, cmap=plt.cm.gray_r, interpolation="none")
             sub.set_title(
-                "predict: %i\ntrue: %i" % (lp_model.transduction_[image_index], y[image_index]),
+                "predict: %i\ntrue: %i"
+                % (lp_model.transduction_[image_index], y[image_index]),
                 size=10,
             )
             sub.axis("off")
@@ -111,7 +115,10 @@ for i in range(max_iterations):
     n_labeled_points += len(uncertainty_index)
 
 f.suptitle(
-    "Active learning with Label Propagation.\nRows show 5 most uncertain labels to learn with the next model.",
+    (
+        "Active learning with Label Propagation.\nRows show 5 most "
+        "uncertain labels to learn with the next model."
+    ),
     y=1.15,
 )
 plt.subplots_adjust(left=0.2, bottom=0.03, right=0.9, top=0.9, wspace=0.2, hspace=0.85)

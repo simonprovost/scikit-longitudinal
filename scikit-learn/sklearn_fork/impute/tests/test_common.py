@@ -1,9 +1,17 @@
-import numpy as np
 import pytest
+
+import numpy as np
 from scipy import sparse
+
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import assert_allclose_dense_sparse
+from sklearn_fork.utils._testing import assert_array_equal
+
 from sklearn_fork.experimental import enable_iterative_imputer  # noqa
-from sklearn_fork.impute import IterativeImputer, KNNImputer, SimpleImputer
-from sklearn_fork.utils._testing import assert_allclose, assert_allclose_dense_sparse, assert_array_equal
+
+from sklearn_fork.impute import IterativeImputer
+from sklearn_fork.impute import KNNImputer
+from sklearn_fork.impute import SimpleImputer
 
 
 def imputers():
@@ -61,7 +69,9 @@ def test_imputers_add_indicator(marker, imputer):
 # ConvergenceWarning will be raised by the IterativeImputer
 @pytest.mark.filterwarnings("ignore::sklearn_fork.exceptions.ConvergenceWarning")
 @pytest.mark.parametrize("marker", [np.nan, -1])
-@pytest.mark.parametrize("imputer", sparse_imputers(), ids=lambda x: x.__class__.__name__)
+@pytest.mark.parametrize(
+    "imputer", sparse_imputers(), ids=lambda x: x.__class__.__name__
+)
 def test_imputers_add_indicator_sparse(imputer, marker):
     X = sparse.csr_matrix(
         [
@@ -164,7 +174,9 @@ def test_imputers_feature_names_out_pandas(imputer, add_indicator):
 def test_keep_empty_features(imputer, keep_empty_features):
     """Check that the imputer keeps features with only missing values."""
     X = np.array([[np.nan, 1], [np.nan, 2], [np.nan, 3]])
-    imputer = imputer.set_params(add_indicator=False, keep_empty_features=keep_empty_features)
+    imputer = imputer.set_params(
+        add_indicator=False, keep_empty_features=keep_empty_features
+    )
 
     for method in ["fit_transform", "transform"]:
         X_imputed = getattr(imputer, method)(X)

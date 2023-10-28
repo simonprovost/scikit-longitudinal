@@ -1,34 +1,41 @@
-import re
-
-import numpy as np
 import pytest
+import numpy as np
 import scipy.sparse as sp
 from joblib import cpu_count
+import re
+
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
 from sklearn_fork import datasets
-from sklearn_fork.base import ClassifierMixin, clone
-from sklearn_fork.datasets import load_linnerud, make_classification, make_multilabel_classification, make_regression
-from sklearn_fork.dummy import DummyClassifier, DummyRegressor
-from sklearn_fork.ensemble import GradientBoostingRegressor, RandomForestClassifier, StackingRegressor
+from sklearn_fork.base import clone
+from sklearn_fork.datasets import make_classification
+from sklearn_fork.datasets import load_linnerud
+from sklearn_fork.datasets import make_multilabel_classification
+from sklearn_fork.datasets import make_regression
+from sklearn_fork.ensemble import GradientBoostingRegressor, RandomForestClassifier
 from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.linear_model import (
-    Lasso,
-    LinearRegression,
-    LogisticRegression,
-    OrthogonalMatchingPursuit,
-    Ridge,
-    SGDClassifier,
-    SGDRegressor,
-)
+from sklearn_fork.linear_model import Lasso
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.linear_model import OrthogonalMatchingPursuit
+from sklearn_fork.linear_model import Ridge
+from sklearn_fork.linear_model import SGDClassifier
+from sklearn_fork.linear_model import SGDRegressor
+from sklearn_fork.linear_model import LinearRegression
 from sklearn_fork.metrics import jaccard_score, mean_squared_error
-from sklearn_fork.model_selection import GridSearchCV, train_test_split
 from sklearn_fork.multiclass import OneVsRestClassifier
-from sklearn_fork.multioutput import ClassifierChain, MultiOutputClassifier, MultiOutputRegressor, RegressorChain
-from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.multioutput import ClassifierChain, RegressorChain
+from sklearn_fork.multioutput import MultiOutputClassifier
+from sklearn_fork.multioutput import MultiOutputRegressor
 from sklearn_fork.svm import LinearSVC
 from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork.base import ClassifierMixin
 from sklearn_fork.utils import shuffle
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_almost_equal, assert_array_equal
+from sklearn_fork.model_selection import GridSearchCV, train_test_split
+from sklearn_fork.dummy import DummyRegressor, DummyClassifier
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.ensemble import StackingRegressor
 
 
 def test_multi_target_regression():
@@ -250,7 +257,9 @@ def test_multi_output_classification_partial_fit():
     for i in range(3):
         # create a clone with the same state
         sgd_linear_clf = clone(sgd_linear_clf)
-        sgd_linear_clf.partial_fit(X[:half_index], y[:half_index, i], classes=classes[i])
+        sgd_linear_clf.partial_fit(
+            X[:half_index], y[:half_index, i], classes=classes[i]
+        )
         assert_array_equal(sgd_linear_clf.predict(X), first_predictions[:, i])
         sgd_linear_clf.partial_fit(X[half_index:], y[half_index:, i])
         assert_array_equal(sgd_linear_clf.predict(X), second_predictions[:, i])
@@ -326,7 +335,9 @@ def test_multiclass_multioutput_estimator_predict_proba():
 
     Y = np.concatenate([y1, y2], axis=1)
 
-    clf = MultiOutputClassifier(LogisticRegression(solver="liblinear", random_state=seed))
+    clf = MultiOutputClassifier(
+        LogisticRegression(solver="liblinear", random_state=seed)
+    )
 
     clf.fit(X, Y)
 
@@ -449,7 +460,9 @@ def generate_multilabel_dataset_with_correlations():
     # Generate a multilabel data set from a multiclass dataset as a way of
     # by representing the integer number of the original class using a binary
     # encoding.
-    X, y = make_classification(n_samples=1000, n_features=100, n_classes=16, n_informative=10, random_state=0)
+    X, y = make_classification(
+        n_samples=1000, n_features=100, n_classes=16, n_informative=10, random_state=0
+    )
 
     Y_multi = np.array([[int(yyy) for yyy in format(yy, "#06b")[2:]] for yy in y])
     return X, Y_multi
@@ -505,7 +518,9 @@ def test_classifier_chain_vs_independent_models():
     chain.fit(X_train, Y_train)
     Y_pred_chain = chain.predict(X_test)
 
-    assert jaccard_score(Y_test, Y_pred_chain, average="samples") > jaccard_score(Y_test, Y_pred_ovr, average="samples")
+    assert jaccard_score(Y_test, Y_pred_chain, average="samples") > jaccard_score(
+        Y_test, Y_pred_ovr, average="samples"
+    )
 
 
 def test_base_chain_fit_and_predict():
@@ -516,7 +531,9 @@ def test_base_chain_fit_and_predict():
         chain.fit(X, Y)
         Y_pred = chain.predict(X)
         assert Y_pred.shape == Y.shape
-        assert [c.coef_.size for c in chain.estimators_] == list(range(X.shape[1], X.shape[1] + Y.shape[1]))
+        assert [c.coef_.size for c in chain.estimators_] == list(
+            range(X.shape[1], X.shape[1] + Y.shape[1])
+        )
 
     Y_prob = chains[1].predict_proba(X)
     Y_binary = Y_prob >= 0.5
@@ -695,7 +712,9 @@ def test_classifier_chain_tuple_invalid_order():
 
 
 def test_classifier_chain_verbose(capsys):
-    X, y = make_multilabel_classification(n_samples=100, n_features=5, n_classes=3, n_labels=3, random_state=0)
+    X, y = make_multilabel_classification(
+        n_samples=100, n_features=5, n_classes=3, n_labels=3, random_state=0
+    )
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 
     pattern = (

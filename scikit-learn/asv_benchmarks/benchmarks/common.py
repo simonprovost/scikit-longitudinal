@@ -1,11 +1,11 @@
-import itertools
-import json
 import os
-import pickle
+import json
 import timeit
+import pickle
+import itertools
 from abc import ABC, abstractmethod
-from multiprocessing import cpu_count
 from pathlib import Path
+from multiprocessing import cpu_count
 
 import numpy as np
 
@@ -61,7 +61,12 @@ def get_estimator_path(benchmark, directory, params, save=False):
     path = Path(__file__).resolve().parent / "cache"
     path = (path / "estimators" / directory) if save else (path / "tmp")
 
-    filename = benchmark.__class__.__name__ + "_estimator_" + "_".join(list(map(str, params))) + ".pkl"
+    filename = (
+        benchmark.__class__.__name__
+        + "_estimator_"
+        + "_".join(list(map(str, params)))
+        + ".pkl"
+    )
 
     return path / filename
 
@@ -120,10 +125,12 @@ class Estimator(ABC):
         """Return the dataset for a combination of parameters"""
         # The datasets are cached using joblib.Memory so it's fast and can be
         # called for each repeat
+        pass
 
     @abstractmethod
     def make_estimator(self, params):
         """Return an instance of the estimator for a combination of parameters"""
+        pass
 
     def skip(self, params):
         """Return True if the benchmark should be skipped for these params"""
@@ -146,7 +153,9 @@ class Estimator(ABC):
 
             estimator.fit(X, y)
 
-            est_path = get_estimator_path(self, Benchmark.save_dir, params, Benchmark.save_estimators)
+            est_path = get_estimator_path(
+                self, Benchmark.save_dir, params, Benchmark.save_estimators
+            )
             with est_path.open(mode="wb") as f:
                 pickle.dump(estimator, f)
 
@@ -160,7 +169,9 @@ class Estimator(ABC):
 
         self.X, self.X_val, self.y, self.y_val = self.make_data(params)
 
-        est_path = get_estimator_path(self, Benchmark.save_dir, params, Benchmark.save_estimators)
+        est_path = get_estimator_path(
+            self, Benchmark.save_dir, params, Benchmark.save_estimators
+        )
         with est_path.open(mode="rb") as f:
             self.estimator = pickle.load(f)
 

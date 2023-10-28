@@ -1,8 +1,8 @@
-import html
 from contextlib import closing
-from inspect import isclass
 from io import StringIO
+from inspect import isclass
 from string import Template
+import html
 
 from .. import config_context
 
@@ -51,7 +51,9 @@ class _VisualBlock:
         Only active when kind != 'single'.
     """
 
-    def __init__(self, kind, estimators, *, names=None, name_details=None, dash_wrapped=True):
+    def __init__(
+        self, kind, estimators, *, names=None, name_details=None, dash_wrapped=True
+    ):
         self.kind = kind
         self.estimators = estimators
         self.dash_wrapped = dash_wrapped
@@ -113,7 +115,9 @@ def _get_visual_block(estimator):
             )
 
     if isinstance(estimator, str):
-        return _VisualBlock("single", estimator, names=estimator, name_details=estimator)
+        return _VisualBlock(
+            "single", estimator, names=estimator, name_details=estimator
+        )
     elif estimator is None:
         return _VisualBlock("single", estimator, names="None", name_details="None")
 
@@ -140,7 +144,9 @@ def _get_visual_block(estimator):
     )
 
 
-def _write_estimator_html(out, estimator, estimator_label, estimator_label_details, first_call=False):
+def _write_estimator_html(
+    out, estimator, estimator_label, estimator_label_details, first_call=False
+):
     """Write estimator to html in serial, parallel, or by itself (single)."""
     if first_call:
         est_block = _get_visual_block(estimator)

@@ -2,14 +2,16 @@
 decision trees.
 """
 
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta
+from abc import abstractmethod
 
 import numpy as np
 from scipy.special import expit, logsumexp
 
-from ..dummy import DummyClassifier, DummyRegressor
 from ..tree._tree import TREE_LEAF
 from ..utils.stats import _weighted_percentile
+from ..dummy import DummyClassifier
+from ..dummy import DummyRegressor
 
 
 class LossFunction(metaclass=ABCMeta):
@@ -128,7 +130,9 @@ class LossFunction(metaclass=ABCMeta):
             )
 
         # update predictions (both in-bag and out-of-bag)
-        raw_predictions[:, k] += learning_rate * tree.value[:, 0, 0].take(terminal_regions, axis=0)
+        raw_predictions[:, k] += learning_rate * tree.value[:, 0, 0].take(
+            terminal_regions, axis=0
+        )
 
     @abstractmethod
     def _update_terminal_region(
@@ -163,6 +167,7 @@ class LossFunction(metaclass=ABCMeta):
             for multiclass classification. ``raw_predictions`` is casted
             into float64.
         """
+        pass
 
 
 class RegressionLossFunction(LossFunction, metaclass=ABCMeta):
@@ -180,7 +185,10 @@ class RegressionLossFunction(LossFunction, metaclass=ABCMeta):
             The init estimator to check.
         """
         if not (hasattr(estimator, "fit") and hasattr(estimator, "predict")):
-            raise ValueError("The init parameter must be a valid estimator and support both fit and predict.")
+            raise ValueError(
+                "The init parameter must be a valid estimator and "
+                "support both fit and predict."
+            )
 
     def get_init_raw_predictions(self, X, estimator):
         predictions = estimator.predict(X)
@@ -217,7 +225,11 @@ class LeastSquaresError(RegressionLossFunction):
         if sample_weight is None:
             return np.mean((y - raw_predictions.ravel()) ** 2)
         else:
-            return 1 / sample_weight.sum() * np.sum(sample_weight * ((y - raw_predictions.ravel()) ** 2))
+            return (
+                1
+                / sample_weight.sum()
+                * np.sum(sample_weight * ((y - raw_predictions.ravel()) ** 2))
+            )
 
     def negative_gradient(self, y, raw_predictions, **kargs):
         """Compute half of the negative gradient.
@@ -318,7 +330,11 @@ class LeastAbsoluteError(RegressionLossFunction):
         if sample_weight is None:
             return np.abs(y - raw_predictions.ravel()).mean()
         else:
-            return 1 / sample_weight.sum() * np.sum(sample_weight * np.abs(y - raw_predictions.ravel()))
+            return (
+                1
+                / sample_weight.sum()
+                * np.sum(sample_weight * np.abs(y - raw_predictions.ravel()))
+            )
 
     def negative_gradient(self, y, raw_predictions, **kargs):
         """Compute the negative gradient.
@@ -351,8 +367,12 @@ class LeastAbsoluteError(RegressionLossFunction):
         """LAD updates terminal regions to median estimates."""
         terminal_region = np.where(terminal_regions == leaf)[0]
         sample_weight = sample_weight.take(terminal_region, axis=0)
-        diff = y.take(terminal_region, axis=0) - raw_predictions.take(terminal_region, axis=0)
-        tree.value[leaf, 0, 0] = _weighted_percentile(diff, sample_weight, percentile=50)
+        diff = y.take(terminal_region, axis=0) - raw_predictions.take(
+            terminal_region, axis=0
+        )
+        tree.value[leaf, 0, 0] = _weighted_percentile(
+            diff, sample_weight, percentile=50
+        )
 
 
 class HuberLossFunction(RegressionLossFunction):
@@ -401,7 +421,9 @@ class HuberLossFunction(RegressionLossFunction):
             if sample_weight is None:
                 gamma = np.percentile(np.abs(diff), self.alpha * 100)
             else:
-                gamma = _weighted_percentile(np.abs(diff), sample_weight, self.alpha * 100)
+                gamma = _weighted_percentile(
+                    np.abs(diff), sample_weight, self.alpha * 100
+                )
 
         gamma_mask = np.abs(diff) <= gamma
         if sample_weight is None:
@@ -410,7 +432,11 @@ class HuberLossFunction(RegressionLossFunction):
             loss = (sq_loss + lin_loss) / y.shape[0]
         else:
             sq_loss = np.sum(0.5 * sample_weight[gamma_mask] * diff[gamma_mask] ** 2)
-            lin_loss = np.sum(gamma * sample_weight[~gamma_mask] * (np.abs(diff[~gamma_mask]) - gamma / 2))
+            lin_loss = np.sum(
+                gamma
+                * sample_weight[~gamma_mask]
+                * (np.abs(diff[~gamma_mask]) - gamma / 2)
+            )
             loss = (sq_loss + lin_loss) / sample_weight.sum()
         return loss
 
@@ -456,7 +482,9 @@ class HuberLossFunction(RegressionLossFunction):
         terminal_region = np.where(terminal_regions == leaf)[0]
         sample_weight = sample_weight.take(terminal_region, axis=0)
         gamma = self.gamma
-        diff = y.take(terminal_region, axis=0) - raw_predictions.take(terminal_region, axis=0)
+        diff = y.take(terminal_region, axis=0) - raw_predictions.take(
+            terminal_region, axis=0
+        )
         median = _weighted_percentile(diff, sample_weight, percentile=50)
         diff_minus_median = diff - median
         tree.value[leaf, 0] = median + np.mean(
@@ -505,7 +533,9 @@ class QuantileLossFunction(RegressionLossFunction):
 
         mask = y > raw_predictions
         if sample_weight is None:
-            loss = (alpha * diff[mask].sum() - (1 - alpha) * diff[~mask].sum()) / y.shape[0]
+            loss = (
+                alpha * diff[mask].sum() - (1 - alpha) * diff[~mask].sum()
+            ) / y.shape[0]
         else:
             loss = (
                 alpha * np.sum(sample_weight[mask] * diff[mask])
@@ -542,7 +572,9 @@ class QuantileLossFunction(RegressionLossFunction):
         sample_weight,
     ):
         terminal_region = np.where(terminal_regions == leaf)[0]
-        diff = y.take(terminal_region, axis=0) - raw_predictions.take(terminal_region, axis=0)
+        diff = y.take(terminal_region, axis=0) - raw_predictions.take(
+            terminal_region, axis=0
+        )
         sample_weight = sample_weight.take(terminal_region, axis=0)
 
         val = _weighted_percentile(diff, sample_weight, self.percentile)
@@ -593,7 +625,10 @@ class ClassificationLossFunction(LossFunction, metaclass=ABCMeta):
             The init estimator to check.
         """
         if not (hasattr(estimator, "fit") and hasattr(estimator, "predict_proba")):
-            raise ValueError("The init parameter must be a valid estimator and support both fit and predict_proba.")
+            raise ValueError(
+                "The init parameter must be a valid estimator "
+                "and support both fit and predict_proba."
+            )
 
 
 class BinomialDeviance(ClassificationLossFunction):
@@ -610,7 +645,11 @@ class BinomialDeviance(ClassificationLossFunction):
 
     def __init__(self, n_classes):
         if n_classes != 2:
-            raise ValueError("{0:s} requires 2 classes; got {1:d} class(es)".format(self.__class__.__name__, n_classes))
+            raise ValueError(
+                "{0:s} requires 2 classes; got {1:d} class(es)".format(
+                    self.__class__.__name__, n_classes
+                )
+            )
         # we only need to fit one tree for binary clf.
         super().__init__(n_classes=1)
 
@@ -637,12 +676,17 @@ class BinomialDeviance(ClassificationLossFunction):
         # logaddexp(0, v) == log(1.0 + exp(v))
         raw_predictions = raw_predictions.ravel()
         if sample_weight is None:
-            return -2 * np.mean((y * raw_predictions) - np.logaddexp(0, raw_predictions))
+            return -2 * np.mean(
+                (y * raw_predictions) - np.logaddexp(0, raw_predictions)
+            )
         else:
             return (
                 -2
                 / sample_weight.sum()
-                * np.sum(sample_weight * ((y * raw_predictions) - np.logaddexp(0, raw_predictions)))
+                * np.sum(
+                    sample_weight
+                    * ((y * raw_predictions) - np.logaddexp(0, raw_predictions))
+                )
             )
 
     def negative_gradient(self, y, raw_predictions, **kargs):
@@ -728,7 +772,9 @@ class MultinomialDeviance(ClassificationLossFunction):
 
     def __init__(self, n_classes):
         if n_classes < 3:
-            raise ValueError("{0:s} requires more than 2 classes.".format(self.__class__.__name__))
+            raise ValueError(
+                "{0:s} requires more than 2 classes.".format(self.__class__.__name__)
+            )
         super().__init__(n_classes)
 
     def init_estimator(self):
@@ -774,7 +820,9 @@ class MultinomialDeviance(ClassificationLossFunction):
         k : int, default=0
             The index of the class.
         """
-        return y - np.nan_to_num(np.exp(raw_predictions[:, k] - logsumexp(raw_predictions, axis=1)))
+        return y - np.nan_to_num(
+            np.exp(raw_predictions[:, k] - logsumexp(raw_predictions, axis=1))
+        )
 
     def _update_terminal_region(
         self,
@@ -805,7 +853,11 @@ class MultinomialDeviance(ClassificationLossFunction):
             tree.value[leaf, 0, 0] = numerator / denominator
 
     def _raw_prediction_to_proba(self, raw_predictions):
-        return np.nan_to_num(np.exp(raw_predictions - (logsumexp(raw_predictions, axis=1)[:, np.newaxis])))
+        return np.nan_to_num(
+            np.exp(
+                raw_predictions - (logsumexp(raw_predictions, axis=1)[:, np.newaxis])
+            )
+        )
 
     def _raw_prediction_to_decision(self, raw_predictions):
         proba = self._raw_prediction_to_proba(raw_predictions)
@@ -836,7 +888,11 @@ class ExponentialLoss(ClassificationLossFunction):
 
     def __init__(self, n_classes):
         if n_classes != 2:
-            raise ValueError("{0:s} requires 2 classes; got {1:d} class(es)".format(self.__class__.__name__, n_classes))
+            raise ValueError(
+                "{0:s} requires 2 classes; got {1:d} class(es)".format(
+                    self.__class__.__name__, n_classes
+                )
+            )
         # we only need to fit one tree for binary clf.
         super().__init__(n_classes=1)
 
@@ -862,7 +918,11 @@ class ExponentialLoss(ClassificationLossFunction):
         if sample_weight is None:
             return np.mean(np.exp(-(2.0 * y - 1.0) * raw_predictions))
         else:
-            return 1.0 / sample_weight.sum() * np.sum(sample_weight * np.exp(-(2 * y - 1) * raw_predictions))
+            return (
+                1.0
+                / sample_weight.sum()
+                * np.sum(sample_weight * np.exp(-(2 * y - 1) * raw_predictions))
+            )
 
     def negative_gradient(self, y, raw_predictions, **kargs):
         """Compute the residual (= negative gradient).

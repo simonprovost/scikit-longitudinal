@@ -1,9 +1,12 @@
-import numpy as np
 import pytest
-from sklearn_fork.impute._base import _BaseImputer
-from sklearn_fork.impute._iterative import _assign_where
+
+import numpy as np
+
 from sklearn_fork.utils._mask import _get_mask
 from sklearn_fork.utils._testing import _convert_container, assert_allclose
+
+from sklearn_fork.impute._base import _BaseImputer
+from sklearn_fork.impute._iterative import _assign_where
 
 
 @pytest.fixture
@@ -61,7 +64,9 @@ def test_base_imputer_not_fit(data):
 
 def test_base_imputer_not_transform(data):
     imputer = NoTransformIndicatorImputer(add_indicator=True)
-    err_msg = "Call _fit_indicator and _transform_indicator in the imputer implementation"
+    err_msg = (
+        "Call _fit_indicator and _transform_indicator in the imputer implementation"
+    )
     with pytest.raises(ValueError, match=err_msg):
         imputer.fit(data).transform(data)
     with pytest.raises(ValueError, match=err_msg):

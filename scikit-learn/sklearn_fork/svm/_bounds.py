@@ -7,9 +7,9 @@ from numbers import Real
 import numpy as np
 
 from ..preprocessing import LabelBinarizer
-from ..utils._param_validation import Interval, StrOptions, validate_params
+from ..utils.validation import check_consistent_length, check_array
 from ..utils.extmath import safe_sparse_dot
-from ..utils.validation import check_array, check_consistent_length
+from ..utils._param_validation import StrOptions, Interval, validate_params
 
 
 @validate_params(
@@ -69,11 +69,16 @@ def l1_min_c(X, y, *, loss="squared_hinge", fit_intercept=True, intercept_scalin
     # maximum absolute value over classes and features
     den = np.max(np.abs(safe_sparse_dot(Y, X)))
     if fit_intercept:
-        bias = np.full((np.size(y), 1), intercept_scaling, dtype=np.array(intercept_scaling).dtype)
+        bias = np.full(
+            (np.size(y), 1), intercept_scaling, dtype=np.array(intercept_scaling).dtype
+        )
         den = max(den, abs(np.dot(Y, bias)).max())
 
     if den == 0.0:
-        raise ValueError("Ill-posed l1_min_c calculation: l1 will always select zero coefficients for this data")
+        raise ValueError(
+            "Ill-posed l1_min_c calculation: l1 will always "
+            "select zero coefficients for this data"
+        )
     if loss == "squared_hinge":
         return 0.5 / den
     else:  # loss == 'log':

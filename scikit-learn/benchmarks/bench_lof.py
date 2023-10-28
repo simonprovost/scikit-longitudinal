@@ -18,12 +18,11 @@ is only caused by the random selection of anomalies in the SA dataset.
 """
 
 from time import time
-
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.datasets import fetch_covtype, fetch_kddcup99, fetch_openml
-from sklearn_fork.metrics import auc, roc_curve
+import matplotlib.pyplot as plt
 from sklearn_fork.neighbors import LocalOutlierFactor
+from sklearn_fork.metrics import roc_curve, auc
+from sklearn_fork.datasets import fetch_kddcup99, fetch_covtype, fetch_openml
 from sklearn_fork.preprocessing import LabelBinarizer
 
 print(__doc__)
@@ -38,7 +37,9 @@ for dataset_name in datasets:
     # loading and vectorization
     print("loading data")
     if dataset_name in ["http", "smtp", "SA", "SF"]:
-        dataset = fetch_kddcup99(subset=dataset_name, percent10=True, random_state=random_state)
+        dataset = fetch_kddcup99(
+            subset=dataset_name, percent10=True, random_state=random_state
+        )
         X = dataset.data
         y = dataset.target
 
@@ -97,7 +98,8 @@ for dataset_name in datasets:
         fpr,
         tpr,
         lw=1,
-        label="ROC for %s (area = %0.3f, train-time: %0.2fs)" % (dataset_name, AUC, fit_time),
+        label="ROC for %s (area = %0.3f, train-time: %0.2fs)"
+        % (dataset_name, AUC, fit_time),
     )
 
 plt.xlim([-0.05, 1.05])

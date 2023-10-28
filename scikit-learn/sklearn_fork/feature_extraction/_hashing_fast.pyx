@@ -1,15 +1,14 @@
 # Author: Lars Buitinck
 # License: BSD 3 clause
 
-cimport numpy as cnp
 from libc.stdlib cimport abs
 from libcpp.vector cimport vector
 
+cimport numpy as cnp
 import numpy as np
-
 from ..utils._typedefs cimport int32_t, int64_t
-from ..utils._vector_sentinel cimport vector_to_nd_array
 from ..utils.murmurhash cimport murmurhash3_bytes_s32
+from ..utils._vector_sentinel cimport vector_to_nd_array
 
 cnp.import_array()
 

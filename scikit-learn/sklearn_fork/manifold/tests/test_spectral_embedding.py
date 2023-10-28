@@ -1,20 +1,25 @@
 from unittest.mock import Mock
+import pytest
 
 import numpy as np
-import pytest
+
 from scipy import sparse
-from scipy.linalg import eigh
 from scipy.sparse import csgraph
+from scipy.linalg import eigh
 from scipy.sparse.linalg import eigsh
+
+from sklearn_fork.manifold import SpectralEmbedding, _spectral_embedding
+from sklearn_fork.manifold._spectral_embedding import _graph_is_connected
+from sklearn_fork.manifold._spectral_embedding import _graph_connected_component
+from sklearn_fork.manifold import spectral_embedding
+from sklearn_fork.metrics.pairwise import rbf_kernel
+from sklearn_fork.metrics import normalized_mutual_info_score, pairwise_distances
+from sklearn_fork.neighbors import NearestNeighbors
 from sklearn_fork.cluster import KMeans
 from sklearn_fork.datasets import make_blobs
-from sklearn_fork.manifold import SpectralEmbedding, _spectral_embedding, spectral_embedding
-from sklearn_fork.manifold._spectral_embedding import _graph_connected_component, _graph_is_connected
-from sklearn_fork.metrics import normalized_mutual_info_score, pairwise_distances
-from sklearn_fork.metrics.pairwise import rbf_kernel
-from sklearn_fork.neighbors import NearestNeighbors
-from sklearn_fork.utils._testing import assert_array_almost_equal, assert_array_equal
 from sklearn_fork.utils.extmath import _deterministic_vector_sign_flip
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
 from sklearn_fork.utils.fixes import lobpcg
 
 try:
@@ -23,7 +28,9 @@ try:
     pyamg_available = True
 except ImportError:
     pyamg_available = False
-skip_if_no_pyamg = pytest.mark.skipif(not pyamg_available, reason="PyAMG is required for the tests in this function.")
+skip_if_no_pyamg = pytest.mark.skipif(
+    not pyamg_available, reason="PyAMG is required for the tests in this function."
+)
 
 # non centered, sparse centers to check the
 centers = np.array(
@@ -35,7 +42,9 @@ centers = np.array(
 )
 n_samples = 1000
 n_clusters, n_features = centers.shape
-S, true_labels = make_blobs(n_samples=n_samples, centers=centers, cluster_std=1.0, random_state=42)
+S, true_labels = make_blobs(
+    n_samples=n_samples, centers=centers, cluster_std=1.0, random_state=42
+)
 
 
 def _assert_equal_with_sign_flipping(A, B, tol=0.0):
@@ -43,7 +52,10 @@ def _assert_equal_with_sign_flipping(A, B, tol=0.0):
     each columns"""
     tol_squared = tol**2
     for A_col, B_col in zip(A.T, B.T):
-        assert np.max((A_col - B_col) ** 2) <= tol_squared or np.max((A_col + B_col) ** 2) <= tol_squared
+        assert (
+            np.max((A_col - B_col) ** 2) <= tol_squared
+            or np.max((A_col + B_col) ** 2) <= tol_squared
+        )
 
 
 def test_sparse_graph_connected_component():
@@ -104,9 +116,13 @@ def test_spectral_embedding_two_components(eigen_solver, dtype, seed=0):
     n_sample = 100
     affinity = np.zeros(shape=[n_sample * 2, n_sample * 2])
     # first component
-    affinity[0:n_sample, 0:n_sample] = np.abs(random_state.randn(n_sample, n_sample)) + 2
+    affinity[0:n_sample, 0:n_sample] = (
+        np.abs(random_state.randn(n_sample, n_sample)) + 2
+    )
     # second component
-    affinity[n_sample::, n_sample::] = np.abs(random_state.randn(n_sample, n_sample)) + 2
+    affinity[n_sample::, n_sample::] = (
+        np.abs(random_state.randn(n_sample, n_sample)) + 2
+    )
 
     # Test of internal _graph_connected_component before connection
     component = _graph_connected_component(affinity, 0)
@@ -218,12 +234,20 @@ def test_spectral_embedding_callable_affinity(X, seed=36):
 
 # TODO: Remove when pyamg does replaces sp.rand call with np.random.rand
 # https://github.com/scikit-learn/scikit-learn/issues/15913
-@pytest.mark.filterwarnings("ignore:scipy.rand is deprecated:DeprecationWarning:pyamg.*")
+@pytest.mark.filterwarnings(
+    "ignore:scipy.rand is deprecated:DeprecationWarning:pyamg.*"
+)
 # TODO: Remove when pyamg removes the use of np.float
-@pytest.mark.filterwarnings("ignore:`np.float` is a deprecated alias:DeprecationWarning:pyamg.*")
+@pytest.mark.filterwarnings(
+    "ignore:`np.float` is a deprecated alias:DeprecationWarning:pyamg.*"
+)
 # TODO: Remove when pyamg removes the use of pinv2
-@pytest.mark.filterwarnings("ignore:scipy.linalg.pinv2 is deprecated:DeprecationWarning:pyamg.*")
-@pytest.mark.skipif(not pyamg_available, reason="PyAMG is required for the tests in this function.")
+@pytest.mark.filterwarnings(
+    "ignore:scipy.linalg.pinv2 is deprecated:DeprecationWarning:pyamg.*"
+)
+@pytest.mark.skipif(
+    not pyamg_available, reason="PyAMG is required for the tests in this function."
+)
 @pytest.mark.parametrize("dtype", (np.float32, np.float64))
 def test_spectral_embedding_amg_solver(dtype, seed=36):
     se_amg = SpectralEmbedding(
@@ -251,7 +275,9 @@ def test_spectral_embedding_amg_solver(dtype, seed=36):
     col = [1, 2, 2, 3, 4, 5, 5]
     val = [100, 100, 100, 1, 100, 100, 100]
 
-    affinity = sparse.coo_matrix((val + val, (row + col, col + row)), shape=(6, 6)).toarray()
+    affinity = sparse.coo_matrix(
+        (val + val, (row + col, col + row)), shape=(6, 6)
+    ).toarray()
     se_amg.affinity = "precomputed"
     se_arpack.affinity = "precomputed"
     embed_amg = se_amg.fit_transform(affinity.astype(dtype))
@@ -262,12 +288,20 @@ def test_spectral_embedding_amg_solver(dtype, seed=36):
 # TODO: Remove filterwarnings when pyamg does replaces sp.rand call with
 # np.random.rand:
 # https://github.com/scikit-learn/scikit-learn/issues/15913
-@pytest.mark.filterwarnings("ignore:scipy.rand is deprecated:DeprecationWarning:pyamg.*")
+@pytest.mark.filterwarnings(
+    "ignore:scipy.rand is deprecated:DeprecationWarning:pyamg.*"
+)
 # TODO: Remove when pyamg removes the use of np.float
-@pytest.mark.filterwarnings("ignore:`np.float` is a deprecated alias:DeprecationWarning:pyamg.*")
+@pytest.mark.filterwarnings(
+    "ignore:`np.float` is a deprecated alias:DeprecationWarning:pyamg.*"
+)
 # TODO: Remove when pyamg removes the use of pinv2
-@pytest.mark.filterwarnings("ignore:scipy.linalg.pinv2 is deprecated:DeprecationWarning:pyamg.*")
-@pytest.mark.skipif(not pyamg_available, reason="PyAMG is required for the tests in this function.")
+@pytest.mark.filterwarnings(
+    "ignore:scipy.linalg.pinv2 is deprecated:DeprecationWarning:pyamg.*"
+)
+@pytest.mark.skipif(
+    not pyamg_available, reason="PyAMG is required for the tests in this function."
+)
 @pytest.mark.parametrize("dtype", (np.float32, np.float64))
 def test_spectral_embedding_amg_solver_failure(dtype, seed=36):
     # Non-regression test for amg solver failure (issue #13393 on github)
@@ -276,11 +310,15 @@ def test_spectral_embedding_amg_solver_failure(dtype, seed=36):
     X = X.astype(dtype)
     upper = sparse.triu(X) - sparse.diags(X.diagonal())
     sym_matrix = upper + upper.T
-    embedding = spectral_embedding(sym_matrix, n_components=10, eigen_solver="amg", random_state=0)
+    embedding = spectral_embedding(
+        sym_matrix, n_components=10, eigen_solver="amg", random_state=0
+    )
 
     # Check that the learned embedding is stable w.r.t. random solver init:
     for i in range(3):
-        new_embedding = spectral_embedding(sym_matrix, n_components=10, eigen_solver="amg", random_state=i + 1)
+        new_embedding = spectral_embedding(
+            sym_matrix, n_components=10, eigen_solver="amg", random_state=i + 1
+        )
         _assert_equal_with_sign_flipping(embedding, new_embedding, tol=0.05)
 
 
@@ -288,7 +326,9 @@ def test_spectral_embedding_amg_solver_failure(dtype, seed=36):
 def test_pipeline_spectral_clustering(seed=36):
     # Test using pipeline to do spectral clustering
     random_state = np.random.RandomState(seed)
-    se_rbf = SpectralEmbedding(n_components=n_clusters, affinity="rbf", random_state=random_state)
+    se_rbf = SpectralEmbedding(
+        n_components=n_clusters, affinity="rbf", random_state=random_state
+    )
     se_knn = SpectralEmbedding(
         n_components=n_clusters,
         affinity="nearest_neighbors",
@@ -298,7 +338,9 @@ def test_pipeline_spectral_clustering(seed=36):
     for se in [se_rbf, se_knn]:
         km = KMeans(n_clusters=n_clusters, random_state=random_state, n_init=10)
         km.fit(se.fit_transform(S))
-        assert_array_almost_equal(normalized_mutual_info_score(km.labels_, true_labels), 1.0, 2)
+        assert_array_almost_equal(
+            normalized_mutual_info_score(km.labels_, true_labels), 1.0, 2
+        )
 
 
 def test_connectivity(seed=36):
@@ -346,7 +388,9 @@ def test_spectral_embedding_unnormalized():
     data = random_state.randn(10, 30)
     sims = rbf_kernel(data)
     n_components = 8
-    embedding_1 = spectral_embedding(sims, norm_laplacian=False, n_components=n_components, drop_first=False)
+    embedding_1 = spectral_embedding(
+        sims, norm_laplacian=False, n_components=n_components, drop_first=False
+    )
 
     # Verify using manual computation with dense eigh
     laplacian, dd = csgraph.laplacian(sims, normed=False, return_diag=True)
@@ -397,7 +441,9 @@ def test_spectral_embedding_preserves_dtype(eigen_solver, dtype):
     implements only `fit_transform`.
     """
     X = S.astype(dtype)
-    se = SpectralEmbedding(n_components=2, affinity="rbf", eigen_solver=eigen_solver, random_state=0)
+    se = SpectralEmbedding(
+        n_components=2, affinity="rbf", eigen_solver=eigen_solver, random_state=0
+    )
     X_trans = se.fit_transform(X)
 
     assert X_trans.dtype == dtype
@@ -425,7 +471,9 @@ def test_spectral_eigen_tol_auto(monkeypatch, solver):
     """Test that `eigen_tol="auto"` is resolved correctly"""
     if solver == "amg" and not pyamg_available:
         pytest.skip("PyAMG is not available.")
-    X, _ = make_blobs(n_samples=200, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01)
+    X, _ = make_blobs(
+        n_samples=200, random_state=0, centers=[[1, 1], [-1, -1]], cluster_std=0.01
+    )
     D = pairwise_distances(X)  # Distance matrix
     S = np.max(D) - D  # Similarity matrix
 

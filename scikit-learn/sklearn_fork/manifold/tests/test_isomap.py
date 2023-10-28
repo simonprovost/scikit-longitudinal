@@ -1,13 +1,21 @@
-import math
 from itertools import product
-
 import numpy as np
+import math
 import pytest
-from scipy.sparse import rand as sparse_rand
-from sklearn_fork import clone, datasets, manifold, neighbors, pipeline, preprocessing
+
+from sklearn_fork import datasets, clone
+from sklearn_fork import manifold
+from sklearn_fork import neighbors
+from sklearn_fork import pipeline
+from sklearn_fork import preprocessing
 from sklearn_fork.datasets import make_blobs
 from sklearn_fork.metrics.pairwise import pairwise_distances
-from sklearn_fork.utils._testing import assert_allclose, assert_allclose_dense_sparse, assert_array_equal
+from sklearn_fork.utils._testing import (
+    assert_allclose,
+    assert_allclose_dense_sparse,
+    assert_array_equal,
+)
+from scipy.sparse import rand as sparse_rand
 
 eigen_solvers = ["auto", "dense", "arpack"]
 path_methods = ["auto", "FW", "D"]
@@ -28,7 +36,9 @@ def create_sample_data(dtype, n_pts=25, add_noise=False):
 @pytest.mark.parametrize("n_neighbors, radius", [(24, None), (None, np.inf)])
 @pytest.mark.parametrize("eigen_solver", eigen_solvers)
 @pytest.mark.parametrize("path_method", path_methods)
-def test_isomap_simple_grid(global_dtype, n_neighbors, radius, eigen_solver, path_method):
+def test_isomap_simple_grid(
+    global_dtype, n_neighbors, radius, eigen_solver, path_method
+):
     # Isomap should preserve distances when all neighbors are used
     n_pts = 25
     X = create_sample_data(global_dtype, n_pts=n_pts, add_noise=False)
@@ -51,7 +61,9 @@ def test_isomap_simple_grid(global_dtype, n_neighbors, radius, eigen_solver, pat
     if n_neighbors is not None:
         G_iso = neighbors.kneighbors_graph(clf.embedding_, n_neighbors, mode="distance")
     else:
-        G_iso = neighbors.radius_neighbors_graph(clf.embedding_, radius, mode="distance")
+        G_iso = neighbors.radius_neighbors_graph(
+            clf.embedding_, radius, mode="distance"
+        )
     atol = 1e-5 if global_dtype == np.float32 else 0
     assert_allclose_dense_sparse(G, G_iso, atol=atol)
 
@@ -59,7 +71,9 @@ def test_isomap_simple_grid(global_dtype, n_neighbors, radius, eigen_solver, pat
 @pytest.mark.parametrize("n_neighbors, radius", [(24, None), (None, np.inf)])
 @pytest.mark.parametrize("eigen_solver", eigen_solvers)
 @pytest.mark.parametrize("path_method", path_methods)
-def test_isomap_reconstruction_error(global_dtype, n_neighbors, radius, eigen_solver, path_method):
+def test_isomap_reconstruction_error(
+    global_dtype, n_neighbors, radius, eigen_solver, path_method
+):
     if global_dtype is np.float32:
         pytest.skip(
             "Skipping test due to numerical instabilities on float32 data"
@@ -91,7 +105,9 @@ def test_isomap_reconstruction_error(global_dtype, n_neighbors, radius, eigen_so
     if n_neighbors is not None:
         G_iso = neighbors.kneighbors_graph(clf.embedding_, n_neighbors, mode="distance")
     else:
-        G_iso = neighbors.radius_neighbors_graph(clf.embedding_, radius, mode="distance")
+        G_iso = neighbors.radius_neighbors_graph(
+            clf.embedding_, radius, mode="distance"
+        )
     G_iso = G_iso.toarray()
     K_iso = centerer.fit_transform(-0.5 * G_iso**2)
 
@@ -113,7 +129,9 @@ def test_transform(global_dtype, n_neighbors, radius):
     X = X.astype(global_dtype, copy=False)
 
     # Compute isomap embedding
-    iso = manifold.Isomap(n_components=n_components, n_neighbors=n_neighbors, radius=radius)
+    iso = manifold.Isomap(
+        n_components=n_components, n_neighbors=n_neighbors, radius=radius
+    )
     X_iso = iso.fit_transform(X)
 
     # Re-embed a noisy version of the points
@@ -156,10 +174,14 @@ def test_pipeline_with_nearest_neighbors_transformer(global_dtype):
 
     # compare the chained version and the compact version
     est_chain = pipeline.make_pipeline(
-        neighbors.KNeighborsTransformer(n_neighbors=n_neighbors, algorithm=algorithm, mode="distance"),
+        neighbors.KNeighborsTransformer(
+            n_neighbors=n_neighbors, algorithm=algorithm, mode="distance"
+        ),
         manifold.Isomap(n_neighbors=n_neighbors, metric="precomputed"),
     )
-    est_compact = manifold.Isomap(n_neighbors=n_neighbors, neighbors_algorithm=algorithm)
+    est_compact = manifold.Isomap(
+        n_neighbors=n_neighbors, neighbors_algorithm=algorithm
+    )
 
     Xt_chain = est_chain.fit_transform(X)
     Xt_compact = est_compact.fit_transform(X)

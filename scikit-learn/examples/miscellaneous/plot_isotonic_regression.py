@@ -23,11 +23,12 @@ target values are computed by the isotonic non-parametric fit.
 #         Alexandre Gramfort <alexandre.gramfort@inria.fr>
 # License: BSD
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
-from sklearn_fork.isotonic import IsotonicRegression
+
 from sklearn_fork.linear_model import LinearRegression
+from sklearn_fork.isotonic import IsotonicRegression
 from sklearn_fork.utils import check_random_state
 
 n = 100

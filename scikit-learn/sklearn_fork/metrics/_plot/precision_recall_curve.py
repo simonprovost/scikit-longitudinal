@@ -1,5 +1,6 @@
+from .. import average_precision_score
+from .. import precision_recall_curve
 from ...utils._plotting import _BinaryClassifierCurveDisplayMixin
-from .. import average_precision_score, precision_recall_curve
 
 
 class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
@@ -148,7 +149,9 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
         line_kwargs.update(**kwargs)
 
         (self.line_,) = self.ax_.plot(self.recall, self.precision, **line_kwargs)
-        info_pos_label = f" (Positive label: {self.pos_label})" if self.pos_label is not None else ""
+        info_pos_label = (
+            f" (Positive label: {self.pos_label})" if self.pos_label is not None else ""
+        )
 
         xlabel = "Recall" + info_pos_label
         ylabel = "Precision" + info_pos_label
@@ -374,7 +377,9 @@ class PrecisionRecallDisplay(_BinaryClassifierCurveDisplayMixin):
             sample_weight=sample_weight,
             drop_intermediate=drop_intermediate,
         )
-        average_precision = average_precision_score(y_true, y_pred, pos_label=pos_label, sample_weight=sample_weight)
+        average_precision = average_precision_score(
+            y_true, y_pred, pos_label=pos_label, sample_weight=sample_weight
+        )
 
         viz = PrecisionRecallDisplay(
             precision=precision,

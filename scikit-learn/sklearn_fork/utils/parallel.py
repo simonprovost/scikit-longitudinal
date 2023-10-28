@@ -59,7 +59,8 @@ class Parallel(joblib.Parallel):
         # pre_dispatch and n_jobs.
         config = get_config()
         iterable_with_config = (
-            (_with_config(delayed_func, config), args, kwargs) for delayed_func, args, kwargs in iterable
+            (_with_config(delayed_func, config), args, kwargs)
+            for delayed_func, args, kwargs in iterable
         )
         return super().__call__(iterable_with_config)
 

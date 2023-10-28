@@ -4,24 +4,30 @@ Testing Recursive feature elimination
 
 from operator import attrgetter
 
-import numpy as np
 import pytest
-from numpy.testing import assert_allclose, assert_array_almost_equal, assert_array_equal
+import numpy as np
+from numpy.testing import assert_array_almost_equal, assert_array_equal, assert_allclose
 from scipy import sparse
+
 from sklearn_fork.base import BaseEstimator, ClassifierMixin
-from sklearn_fork.compose import TransformedTargetRegressor
-from sklearn_fork.cross_decomposition import CCA, PLSCanonical, PLSRegression
-from sklearn_fork.datasets import load_iris, make_friedman1
-from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.cross_decomposition import PLSCanonical, PLSRegression, CCA
 from sklearn_fork.feature_selection import RFE, RFECV
+from sklearn_fork.datasets import load_iris, make_friedman1
+from sklearn_fork.metrics import zero_one_loss
+from sklearn_fork.svm import SVC, SVR, LinearSVR
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import get_scorer, make_scorer, zero_one_loss
-from sklearn_fork.model_selection import GroupKFold, cross_val_score
+from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.model_selection import cross_val_score
+from sklearn_fork.model_selection import GroupKFold
+from sklearn_fork.compose import TransformedTargetRegressor
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
-from sklearn_fork.svm import SVC, SVR, LinearSVR
+
 from sklearn_fork.utils import check_random_state
 from sklearn_fork.utils._testing import ignore_warnings
+
+from sklearn_fork.metrics import make_scorer
+from sklearn_fork.metrics import get_scorer
 
 
 class MockClassifier:
@@ -272,8 +278,8 @@ def test_rfecv_mockclassifier():
 
 def test_rfecv_verbose_output():
     # Check verbose=1 is producing an output.
-    import sys
     from io import StringIO
+    import sys
 
     sys.stdout = StringIO()
 
@@ -326,7 +332,9 @@ def test_rfe_estimator_tags():
 
 def test_rfe_min_step(global_random_seed):
     n_features = 10
-    X, y = make_friedman1(n_samples=50, n_features=n_features, random_state=global_random_seed)
+    X, y = make_friedman1(
+        n_samples=50, n_features=n_features, random_state=global_random_seed
+    )
     n_samples, n_features = X.shape
     estimator = SVR(kernel="linear")
 
@@ -367,7 +375,9 @@ def test_number_of_subsets_of_features(global_random_seed):
     n_features_list = [11, 11]
     n_features_to_select_list = [3, 3]
     step_list = [2, 3]
-    for n_features, n_features_to_select, step in zip(n_features_list, n_features_to_select_list, step_list):
+    for n_features, n_features_to_select, step in zip(
+        n_features_list, n_features_to_select_list, step_list
+    ):
         generator = check_random_state(global_random_seed)
         X = generator.normal(size=(100, n_features))
         y = generator.rand(100).round()
@@ -401,8 +411,12 @@ def test_number_of_subsets_of_features(global_random_seed):
         rfecv.fit(X, y)
 
         for key in rfecv.cv_results_.keys():
-            assert len(rfecv.cv_results_[key]) == formula1(n_features, n_features_to_select, step)
-            assert len(rfecv.cv_results_[key]) == formula2(n_features, n_features_to_select, step)
+            assert len(rfecv.cv_results_[key]) == formula1(
+                n_features, n_features_to_select, step
+            )
+            assert len(rfecv.cv_results_[key]) == formula2(
+                n_features, n_features_to_select, step
+            )
 
 
 def test_rfe_cv_n_jobs(global_random_seed):
@@ -444,7 +458,9 @@ def test_rfe_cv_groups():
     assert est_groups.n_features_ > 0
 
 
-@pytest.mark.parametrize("importance_getter", [attrgetter("regressor_.coef_"), "regressor_.coef_"])
+@pytest.mark.parametrize(
+    "importance_getter", [attrgetter("regressor_.coef_"), "regressor_.coef_"]
+)
 @pytest.mark.parametrize("selector, expected_n_features", [(RFE, 5), (RFECV, 4)])
 def test_rfe_wrapped_estimator(importance_getter, selector, expected_n_features):
     # Non-regression test for
@@ -452,7 +468,9 @@ def test_rfe_wrapped_estimator(importance_getter, selector, expected_n_features)
     X, y = make_friedman1(n_samples=50, n_features=10, random_state=0)
     estimator = LinearSVR(random_state=0)
 
-    log_estimator = TransformedTargetRegressor(regressor=estimator, func=np.log, inverse_func=np.exp)
+    log_estimator = TransformedTargetRegressor(
+        regressor=estimator, func=np.log, inverse_func=np.exp
+    )
 
     selector = selector(log_estimator, importance_getter=importance_getter)
     sel = selector.fit(X, y)
@@ -471,7 +489,9 @@ def test_rfe_wrapped_estimator(importance_getter, selector, expected_n_features)
 def test_rfe_importance_getter_validation(importance_getter, err_type, Selector):
     X, y = make_friedman1(n_samples=50, n_features=10, random_state=42)
     estimator = LinearSVR()
-    log_estimator = TransformedTargetRegressor(regressor=estimator, func=np.log, inverse_func=np.exp)
+    log_estimator = TransformedTargetRegressor(
+        regressor=estimator, func=np.log, inverse_func=np.exp
+    )
 
     with pytest.raises(err_type):
         model = Selector(log_estimator, importance_getter=importance_getter)

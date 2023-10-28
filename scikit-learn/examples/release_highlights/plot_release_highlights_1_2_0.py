@@ -31,9 +31,9 @@ or with conda::
 # (some examples) <https://youtu.be/5bCg8VfX2x8>`__.
 
 import numpy as np
-from sklearn_fork.compose import ColumnTransformer
 from sklearn_fork.datasets import load_iris
-from sklearn_fork.preprocessing import KBinsDiscretizer, StandardScaler
+from sklearn_fork.preprocessing import StandardScaler, KBinsDiscretizer
+from sklearn_fork.compose import ColumnTransformer
 
 X, y = load_iris(as_frame=True, return_X_y=True)
 sepal_cols = ["sepal length (cm)", "sepal width (cm)"]
@@ -63,7 +63,9 @@ from sklearn_fork.ensemble import HistGradientBoostingRegressor
 
 X, y = load_diabetes(return_X_y=True, as_frame=True)
 
-hist_no_interact = HistGradientBoostingRegressor(interaction_cst=[[i] for i in range(X.shape[1])], random_state=0)
+hist_no_interact = HistGradientBoostingRegressor(
+    interaction_cst=[[i] for i in range(X.shape[1])], random_state=0
+)
 hist_no_interact.fit(X, y)
 
 # %%
@@ -75,15 +77,21 @@ import matplotlib.pyplot as plt
 from sklearn_fork.metrics import PredictionErrorDisplay
 
 fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(12, 5))
-_ = PredictionErrorDisplay.from_estimator(hist_no_interact, X, y, kind="actual_vs_predicted", ax=axs[0])
-_ = PredictionErrorDisplay.from_estimator(hist_no_interact, X, y, kind="residual_vs_predicted", ax=axs[1])
+_ = PredictionErrorDisplay.from_estimator(
+    hist_no_interact, X, y, kind="actual_vs_predicted", ax=axs[0]
+)
+_ = PredictionErrorDisplay.from_estimator(
+    hist_no_interact, X, y, kind="residual_vs_predicted", ax=axs[1]
+)
 
 # %%
 # :class:`~model_selection.LearningCurveDisplay` is now available to plot
 # results from :func:`~model_selection.learning_curve`.
 from sklearn_fork.model_selection import LearningCurveDisplay
 
-_ = LearningCurveDisplay.from_estimator(hist_no_interact, X, y, cv=5, n_jobs=2, train_sizes=np.linspace(0.1, 1, 5))
+_ = LearningCurveDisplay.from_estimator(
+    hist_no_interact, X, y, cv=5, n_jobs=2, train_sizes=np.linspace(0.1, 1, 5)
+)
 
 # %%
 # :class:`~inspection.PartialDependenceDisplay` exposes a new parameter
@@ -91,13 +99,14 @@ _ = LearningCurveDisplay.from_estimator(hist_no_interact, X, y, cv=5, n_jobs=2, 
 # using bar plots and heatmaps.
 from sklearn_fork.datasets import fetch_openml
 
-X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True, parser="pandas")
+X, y = fetch_openml(
+    "titanic", version=1, as_frame=True, return_X_y=True, parser="pandas"
+)
 X = X.select_dtypes(["number", "category"]).drop(columns=["body"])
-
-from sklearn_fork.pipeline import make_pipeline
 
 # %%
 from sklearn_fork.preprocessing import OrdinalEncoder
+from sklearn_fork.pipeline import make_pipeline
 
 categorical_features = ["pclass", "sex", "embarked"]
 model = make_pipeline(
@@ -127,7 +136,9 @@ _ = PartialDependenceDisplay.from_estimator(
 # more memory and CPU efficient. In v1.4, the default will change to
 # `parser="auto"` which will automatically use the `"pandas"` parser for dense
 # data and `"liac-arff"` for sparse data.
-X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True, parser="pandas")
+X, y = fetch_openml(
+    "titanic", version=1, as_frame=True, return_X_y=True, parser="pandas"
+)
 X.head()
 
 # %%

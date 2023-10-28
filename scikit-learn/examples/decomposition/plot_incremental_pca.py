@@ -22,8 +22,9 @@ incremental approaches.
 # Authors: Kyle Kastner
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import load_iris
 from sklearn_fork.decomposition import PCA, IncrementalPCA
 

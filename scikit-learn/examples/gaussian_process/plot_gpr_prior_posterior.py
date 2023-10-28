@@ -198,7 +198,9 @@ print(
 # ..................
 from sklearn_fork.gaussian_process.kernels import ConstantKernel, DotProduct
 
-kernel = ConstantKernel(0.1, (0.01, 10.0)) * (DotProduct(sigma_0=1.0, sigma_0_bounds=(0.1, 10.0)) ** 2)
+kernel = ConstantKernel(0.1, (0.01, 10.0)) * (
+    DotProduct(sigma_0=1.0, sigma_0_bounds=(0.1, 10.0)) ** 2
+)
 gpr = GaussianProcessRegressor(kernel=kernel, random_state=0)
 
 fig, axs = plt.subplots(nrows=2, sharex=True, sharey=True, figsize=(10, 8))

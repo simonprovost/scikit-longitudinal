@@ -1,6 +1,10 @@
 import pytest
+
 from sklearn_fork.base import BaseEstimator
-from sklearn_fork.utils._tags import _DEFAULT_TAGS, _safe_tags
+from sklearn_fork.utils._tags import (
+    _DEFAULT_TAGS,
+    _safe_tags,
+)
 
 
 class NoTagsEstimator:

@@ -14,11 +14,12 @@ The coefficients can be forced to be positive.
 # License: BSD 3 clause
 
 from itertools import cycle
-
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn_fork.linear_model import lasso_path, enet_path
 from sklearn_fork import datasets
-from sklearn_fork.linear_model import enet_path, lasso_path
+
 
 X, y = datasets.load_diabetes(return_X_y=True)
 
@@ -33,12 +34,16 @@ print("Computing regularization path using the lasso...")
 alphas_lasso, coefs_lasso, _ = lasso_path(X, y, eps=eps)
 
 print("Computing regularization path using the positive lasso...")
-alphas_positive_lasso, coefs_positive_lasso, _ = lasso_path(X, y, eps=eps, positive=True)
+alphas_positive_lasso, coefs_positive_lasso, _ = lasso_path(
+    X, y, eps=eps, positive=True
+)
 print("Computing regularization path using the elastic net...")
 alphas_enet, coefs_enet, _ = enet_path(X, y, eps=eps, l1_ratio=0.8)
 
 print("Computing regularization path using the positive elastic net...")
-alphas_positive_enet, coefs_positive_enet, _ = enet_path(X, y, eps=eps, l1_ratio=0.8, positive=True)
+alphas_positive_enet, coefs_positive_enet, _ = enet_path(
+    X, y, eps=eps, l1_ratio=0.8, positive=True
+)
 
 # Display results
 

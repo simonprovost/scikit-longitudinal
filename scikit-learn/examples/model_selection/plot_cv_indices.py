@@ -12,19 +12,19 @@ for comparison.
 
 """
 
-import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.patches import Patch
 from sklearn_fork.model_selection import (
-    GroupKFold,
-    GroupShuffleSplit,
+    TimeSeriesSplit,
     KFold,
     ShuffleSplit,
-    StratifiedGroupKFold,
     StratifiedKFold,
+    GroupShuffleSplit,
+    GroupKFold,
     StratifiedShuffleSplit,
-    TimeSeriesSplit,
+    StratifiedGroupKFold,
 )
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
 
 rng = np.random.RandomState(1338)
 cmap_data = plt.cm.Paired
@@ -119,9 +119,13 @@ def plot_cv_indices(cv, X, y, group, ax, n_splits, lw=10):
         )
 
     # Plot the data classes and groups at the end
-    ax.scatter(range(len(X)), [ii + 1.5] * len(X), c=y, marker="_", lw=lw, cmap=cmap_data)
+    ax.scatter(
+        range(len(X)), [ii + 1.5] * len(X), c=y, marker="_", lw=lw, cmap=cmap_data
+    )
 
-    ax.scatter(range(len(X)), [ii + 2.5] * len(X), c=group, marker="_", lw=lw, cmap=cmap_data)
+    ax.scatter(
+        range(len(X)), [ii + 2.5] * len(X), c=group, marker="_", lw=lw, cmap=cmap_data
+    )
 
     # Formatting
     yticklabels = list(range(n_splits)) + ["class", "group"]

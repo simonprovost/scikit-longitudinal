@@ -4,21 +4,24 @@ from inspect import signature
 
 import numpy as np
 import pytest
-from sklearn_fork.base import BaseEstimator, is_regressor
+
+from sklearn_fork.base import BaseEstimator
+from sklearn_fork.base import is_regressor
 from sklearn_fork.datasets import make_classification
-from sklearn_fork.ensemble import BaggingClassifier
-from sklearn_fork.exceptions import NotFittedError
+from sklearn_fork.utils import all_estimators
+from sklearn_fork.utils.estimator_checks import _enforce_estimator_tags_X
+from sklearn_fork.utils.estimator_checks import _enforce_estimator_tags_y
+from sklearn_fork.utils.validation import check_is_fitted
+from sklearn_fork.utils._testing import set_random_state
+from sklearn_fork.pipeline import Pipeline, make_pipeline
+from sklearn_fork.model_selection import GridSearchCV, RandomizedSearchCV
 from sklearn_fork.feature_extraction.text import TfidfVectorizer
 from sklearn_fork.feature_selection import RFE, RFECV
-from sklearn_fork.linear_model import LogisticRegression, Ridge
-from sklearn_fork.model_selection import GridSearchCV, RandomizedSearchCV
-from sklearn_fork.pipeline import Pipeline, make_pipeline
-from sklearn_fork.preprocessing import MaxAbsScaler, StandardScaler
+from sklearn_fork.ensemble import BaggingClassifier
+from sklearn_fork.exceptions import NotFittedError
 from sklearn_fork.semi_supervised import SelfTrainingClassifier
-from sklearn_fork.utils import all_estimators
-from sklearn_fork.utils._testing import set_random_state
-from sklearn_fork.utils.estimator_checks import _enforce_estimator_tags_X, _enforce_estimator_tags_y
-from sklearn_fork.utils.validation import check_is_fitted
+from sklearn_fork.linear_model import Ridge, LogisticRegression
+from sklearn_fork.preprocessing import StandardScaler, MaxAbsScaler
 
 
 class DelegatorData:
@@ -44,7 +47,9 @@ DELEGATING_METAESTIMATORS = [
     ),
     DelegatorData(
         "RandomizedSearchCV",
-        lambda est: RandomizedSearchCV(est, param_distributions={"param": [5]}, cv=2, n_iter=1),
+        lambda est: RandomizedSearchCV(
+            est, param_distributions={"param": [5]}, cv=2, n_iter=1
+        ),
         skip_methods=["score"],
     ),
     DelegatorData("RFE", RFE, skip_methods=["transform", "inverse_transform"]),
@@ -128,7 +133,11 @@ def test_metaestimator_delegation():
             self._check_fit()
             return 1.0
 
-    methods = [k for k in SubEstimator.__dict__.keys() if not k.startswith("_") and not k.startswith("fit")]
+    methods = [
+        k
+        for k in SubEstimator.__dict__.keys()
+        if not k.startswith("_") and not k.startswith("fit")
+    ]
     methods.sort()
 
     for delegator_data in DELEGATING_METAESTIMATORS:
@@ -138,14 +147,18 @@ def test_metaestimator_delegation():
             if method in delegator_data.skip_methods:
                 continue
             assert hasattr(delegate, method)
-            assert hasattr(delegator, method), "%s does not have method %r when its delegate does" % (
+            assert hasattr(
+                delegator, method
+            ), "%s does not have method %r when its delegate does" % (
                 delegator_data.name,
                 method,
             )
             # delegation before fit raises a NotFittedError
             if method == "score":
                 with pytest.raises(NotFittedError):
-                    getattr(delegator, method)(delegator_data.fit_args[0], delegator_data.fit_args[1])
+                    getattr(delegator, method)(
+                        delegator_data.fit_args[0], delegator_data.fit_args[1]
+                    )
             else:
                 with pytest.raises(NotFittedError):
                     getattr(delegator, method)(delegator_data.fit_args[0])
@@ -156,7 +169,9 @@ def test_metaestimator_delegation():
                 continue
             # smoke test delegation
             if method == "score":
-                getattr(delegator, method)(delegator_data.fit_args[0], delegator_data.fit_args[1])
+                getattr(delegator, method)(
+                    delegator_data.fit_args[0], delegator_data.fit_args[1]
+                )
             else:
                 getattr(delegator, method)(delegator_data.fit_args[0])
 
@@ -166,7 +181,9 @@ def test_metaestimator_delegation():
             delegate = SubEstimator(hidden_method=method)
             delegator = delegator_data.construct(delegate)
             assert not hasattr(delegate, method)
-            assert not hasattr(delegator, method), "%s has method %r when its delegate does not" % (
+            assert not hasattr(
+                delegator, method
+            ), "%s has method %r when its delegate does not" % (
                 delegator_data.name,
                 method,
             )
@@ -258,7 +275,9 @@ def _get_meta_estimator_id(estimator):
     return estimator.__class__.__name__
 
 
-@pytest.mark.parametrize("estimator", DATA_VALIDATION_META_ESTIMATORS, ids=_get_meta_estimator_id)
+@pytest.mark.parametrize(
+    "estimator", DATA_VALIDATION_META_ESTIMATORS, ids=_get_meta_estimator_id
+)
 def test_meta_estimators_delegate_data_validation(estimator):
     # Check that meta-estimators delegate data validation to the inner
     # estimator(s).

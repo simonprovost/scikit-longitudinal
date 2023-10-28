@@ -4,16 +4,14 @@
 
 from cython cimport floating, integral
 from cython.parallel cimport parallel, prange
+from libcpp.map cimport map as cpp_map, pair as cpp_pair
 from libc.stdlib cimport free
-from libcpp.map cimport map as cpp_map
-from libcpp.map cimport pair as cpp_pair
 
-from ...utils._typedefs cimport float64_t, intp_t
+from ...utils._typedefs cimport intp_t, float64_t
 
 import numpy as np
 from scipy.sparse import issparse
 from sklearn_fork.utils.fixes import threadpool_limits
-
 
 cpdef enum WeightingStrategy:
     uniform = 0
@@ -23,7 +21,6 @@ cpdef enum WeightingStrategy:
     callable = 2
 from ._argkmin cimport ArgKmin32
 from ._datasets_pair cimport DatasetsPair32
-
 
 cdef class ArgKminClassMode32(ArgKmin32):
     """
@@ -191,7 +188,6 @@ cdef class ArgKminClassMode32(ArgKmin32):
         return
 from ._argkmin cimport ArgKmin64
 from ._datasets_pair cimport DatasetsPair64
-
 
 cdef class ArgKminClassMode64(ArgKmin64):
     """

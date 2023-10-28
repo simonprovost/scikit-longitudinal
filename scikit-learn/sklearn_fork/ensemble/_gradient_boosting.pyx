@@ -6,18 +6,20 @@ from libc.stdlib cimport free
 from libc.string cimport memset
 
 import numpy as np
-
 cimport numpy as cnp
-
 cnp.import_array()
 
 from scipy.sparse import issparse
 
-from ..tree._tree cimport DTYPE_t, INT32_t, Node, SIZE_t, Tree
+from ..tree._tree cimport Node
+from ..tree._tree cimport Tree
+from ..tree._tree cimport DTYPE_t
+from ..tree._tree cimport SIZE_t
+from ..tree._tree cimport INT32_t
 from ..tree._utils cimport safe_realloc
 
-# no namespace lookup for numpy dtype and array creation
 
+# no namespace lookup for numpy dtype and array creation
 from numpy import zeros as np_zeros
 
 

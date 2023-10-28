@@ -11,7 +11,14 @@ from numbers import Integral, Real
 import numpy as np
 import scipy.optimize
 
-from ..._loss.loss import HalfGammaLoss, HalfPoissonLoss, HalfSquaredError, HalfTweedieLoss, HalfTweedieLossIdentity
+from ._newton_solver import NewtonCholeskySolver, NewtonSolver
+from ..._loss.loss import (
+    HalfGammaLoss,
+    HalfPoissonLoss,
+    HalfSquaredError,
+    HalfTweedieLoss,
+    HalfTweedieLossIdentity,
+)
 from ...base import BaseEstimator, RegressorMixin
 from ...utils import check_array
 from ...utils._openmp_helpers import _openmp_effective_n_threads
@@ -19,7 +26,6 @@ from ...utils._param_validation import Hidden, Interval, StrOptions
 from ...utils.optimize import _check_optimize_result
 from ...utils.validation import _check_sample_weight, check_is_fitted
 from .._linear_loss import LinearModelLoss
-from ._newton_solver import NewtonCholeskySolver, NewtonSolver
 
 
 class _GeneralizedLinearRegressor(RegressorMixin, BaseEstimator):
@@ -217,7 +223,8 @@ class _GeneralizedLinearRegressor(RegressorMixin, BaseEstimator):
 
         if not linear_loss.base_loss.in_y_true_range(y):
             raise ValueError(
-                f"Some value(s) of y are out of the valid range of the loss {self._base_loss.__class__.__name__!r}."
+                "Some value(s) of y are out of the valid range of the loss"
+                f" {self._base_loss.__class__.__name__!r}."
             )
 
         # TODO: if alpha=0 check that X is not rank deficient
@@ -244,7 +251,9 @@ class _GeneralizedLinearRegressor(RegressorMixin, BaseEstimator):
         else:
             coef = linear_loss.init_zero_coef(X, dtype=loss_dtype)
             if self.fit_intercept:
-                coef[-1] = linear_loss.base_loss.link.link(np.average(y, weights=sample_weight))
+                coef[-1] = linear_loss.base_loss.link.link(
+                    np.average(y, weights=sample_weight)
+                )
 
         l2_reg_strength = self.alpha
         n_threads = _openmp_effective_n_threads()
@@ -402,7 +411,10 @@ class _GeneralizedLinearRegressor(RegressorMixin, BaseEstimator):
         base_loss = self._base_loss
 
         if not base_loss.in_y_true_range(y):
-            raise ValueError(f"Some value(s) of y are out of the valid range of the loss {base_loss.__name__}.")
+            raise ValueError(
+                "Some value(s) of y are out of the valid range of the loss"
+                f" {base_loss.__name__}."
+            )
 
         # Note that constant_to_optimal_zero is already multiplied by sample_weight.
         constant = np.mean(base_loss.constant_to_optimal_zero(y_true=y))
@@ -549,7 +561,9 @@ class PoissonRegressor(_GeneralizedLinearRegressor):
     array([10.676..., 21.875...])
     """
 
-    _parameter_constraints: dict = {**_GeneralizedLinearRegressor._parameter_constraints}
+    _parameter_constraints: dict = {
+        **_GeneralizedLinearRegressor._parameter_constraints
+    }
 
     def __init__(
         self,
@@ -679,7 +693,9 @@ class GammaRegressor(_GeneralizedLinearRegressor):
     array([19.483..., 35.795...])
     """
 
-    _parameter_constraints: dict = {**_GeneralizedLinearRegressor._parameter_constraints}
+    _parameter_constraints: dict = {
+        **_GeneralizedLinearRegressor._parameter_constraints
+    }
 
     def __init__(
         self,

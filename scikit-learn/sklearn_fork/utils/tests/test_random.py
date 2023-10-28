@@ -1,10 +1,11 @@
 import numpy as np
 import pytest
 import scipy.sparse as sp
-from numpy.testing import assert_array_almost_equal
 from scipy.special import comb
-from sklearn_fork.utils._random import _our_rand_r_py
+from numpy.testing import assert_array_almost_equal
+
 from sklearn_fork.utils.random import _random_choice_csc, sample_without_replacement
+from sklearn_fork.utils._random import _our_rand_r_py
 
 
 ###############################################################################
@@ -20,8 +21,12 @@ def test_sample_without_replacement_algorithms():
 
     for m in methods:
 
-        def sample_without_replacement_method(n_population, n_samples, random_state=None):
-            return sample_without_replacement(n_population, n_samples, method=m, random_state=random_state)
+        def sample_without_replacement_method(
+            n_population, n_samples, random_state=None
+        ):
+            return sample_without_replacement(
+                n_population, n_samples, method=m, random_state=random_state
+            )
 
         check_edge_case_of_sample_int(sample_without_replacement_method)
         check_sample_int(sample_without_replacement_method)
@@ -88,12 +93,17 @@ def check_sample_int_distribution(sample_without_replacement):
 
         output = {}
         for i in range(n_trials):
-            output[frozenset(sample_without_replacement(n_population, n_samples))] = None
+            output[frozenset(sample_without_replacement(n_population, n_samples))] = (
+                None
+            )
 
             if len(output) == n_expected:
                 break
         else:
-            raise AssertionError("number of combinations != number of expected (%s != %s)" % (len(output), n_expected))
+            raise AssertionError(
+                "number of combinations != number of expected (%s != %s)"
+                % (len(output), n_expected)
+            )
 
 
 def test_random_choice_csc(n_samples=10000, random_state=24):
@@ -112,7 +122,9 @@ def test_random_choice_csc(n_samples=10000, random_state=24):
     classes = [[0, 1], [1, 2]]  # test for array-like support
     class_probabilities = [np.array([0.5, 0.5]), np.array([0, 1 / 2, 1 / 2])]
 
-    got = _random_choice_csc(n_samples=n_samples, classes=classes, random_state=random_state)
+    got = _random_choice_csc(
+        n_samples=n_samples, classes=classes, random_state=random_state
+    )
     assert sp.issparse(got)
 
     for k in range(len(classes)):
@@ -127,14 +139,21 @@ def test_random_choice_csc(n_samples=10000, random_state=24):
     assert sp.issparse(got)
 
     for k in range(len(classes)):
-        p = np.bincount(got.getcol(k).toarray().ravel(), minlength=len(class_probabilities[k])) / n_samples
+        p = (
+            np.bincount(
+                got.getcol(k).toarray().ravel(), minlength=len(class_probabilities[k])
+            )
+            / n_samples
+        )
         assert_array_almost_equal(class_probabilities[k], p, decimal=1)
 
     # One class target data
     classes = [[1], [0]]  # test for array-like support
     class_probabilities = [np.array([0.0, 1.0]), np.array([1.0])]
 
-    got = _random_choice_csc(n_samples=n_samples, classes=classes, random_state=random_state)
+    got = _random_choice_csc(
+        n_samples=n_samples, classes=classes, random_state=random_state
+    )
     assert sp.issparse(got)
 
     for k in range(len(classes)):

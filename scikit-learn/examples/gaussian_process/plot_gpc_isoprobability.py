@@ -15,11 +15,12 @@ the predicted probabilities.
 # License: BSD 3 clause
 
 import numpy as np
-from matplotlib import cm
+
 from matplotlib import pyplot as plt
+from matplotlib import cm
+
 from sklearn_fork.gaussian_process import GaussianProcessClassifier
-from sklearn_fork.gaussian_process.kernels import ConstantKernel as C
-from sklearn_fork.gaussian_process.kernels import DotProduct
+from sklearn_fork.gaussian_process.kernels import DotProduct, ConstantKernel as C
 
 # A few constants
 lim = 8

@@ -1,36 +1,35 @@
 from numbers import Integral, Real
 
 import numpy as np
-import pytest
 from scipy.sparse import csr_matrix
+import pytest
+
 from sklearn_fork.base import BaseEstimator
 from sklearn_fork.model_selection import LeaveOneOut
 from sklearn_fork.utils import deprecated
-from sklearn_fork.utils._param_validation import (
-    HasMethods,
-    Hidden,
-    Interval,
-    InvalidParameterError,
-    MissingValues,
-    Options,
-    RealNotInt,
-    StrOptions,
-    _ArrayLikes,
-    _Booleans,
-    _Callables,
-    _CVObjects,
-    _InstancesOf,
-    _IterablesNotString,
-    _NoneConstraint,
-    _PandasNAConstraint,
-    _RandomStates,
-    _SparseMatrices,
-    _VerboseHelper,
-    generate_invalid_param_val,
-    generate_valid_param,
-    make_constraint,
-    validate_params,
-)
+from sklearn_fork.utils._param_validation import Hidden
+from sklearn_fork.utils._param_validation import Interval
+from sklearn_fork.utils._param_validation import Options
+from sklearn_fork.utils._param_validation import StrOptions
+from sklearn_fork.utils._param_validation import _ArrayLikes
+from sklearn_fork.utils._param_validation import _Booleans
+from sklearn_fork.utils._param_validation import _Callables
+from sklearn_fork.utils._param_validation import _CVObjects
+from sklearn_fork.utils._param_validation import _InstancesOf
+from sklearn_fork.utils._param_validation import MissingValues
+from sklearn_fork.utils._param_validation import _PandasNAConstraint
+from sklearn_fork.utils._param_validation import _IterablesNotString
+from sklearn_fork.utils._param_validation import _NoneConstraint
+from sklearn_fork.utils._param_validation import _RandomStates
+from sklearn_fork.utils._param_validation import _SparseMatrices
+from sklearn_fork.utils._param_validation import _VerboseHelper
+from sklearn_fork.utils._param_validation import HasMethods
+from sklearn_fork.utils._param_validation import make_constraint
+from sklearn_fork.utils._param_validation import generate_invalid_param_val
+from sklearn_fork.utils._param_validation import generate_valid_param
+from sklearn_fork.utils._param_validation import validate_params
+from sklearn_fork.utils._param_validation import InvalidParameterError
+from sklearn_fork.utils._param_validation import RealNotInt
 
 
 # Some helpers for the tests
@@ -430,23 +429,35 @@ def test_make_constraint_unknown():
 
 def test_validate_params():
     """Check that validate_params works no matter how the arguments are passed"""
-    with pytest.raises(InvalidParameterError, match="The 'a' parameter of _func must be"):
+    with pytest.raises(
+        InvalidParameterError, match="The 'a' parameter of _func must be"
+    ):
         _func("wrong", c=1)
 
-    with pytest.raises(InvalidParameterError, match="The 'b' parameter of _func must be"):
+    with pytest.raises(
+        InvalidParameterError, match="The 'b' parameter of _func must be"
+    ):
         _func(*[1, "wrong"], c=1)
 
-    with pytest.raises(InvalidParameterError, match="The 'c' parameter of _func must be"):
+    with pytest.raises(
+        InvalidParameterError, match="The 'c' parameter of _func must be"
+    ):
         _func(1, **{"c": "wrong"})
 
-    with pytest.raises(InvalidParameterError, match="The 'd' parameter of _func must be"):
+    with pytest.raises(
+        InvalidParameterError, match="The 'd' parameter of _func must be"
+    ):
         _func(1, c=1, d="wrong")
 
     # check in the presence of extra positional and keyword args
-    with pytest.raises(InvalidParameterError, match="The 'b' parameter of _func must be"):
+    with pytest.raises(
+        InvalidParameterError, match="The 'b' parameter of _func must be"
+    ):
         _func(0, *["wrong", 2, 3], c=4, **{"e": 5})
 
-    with pytest.raises(InvalidParameterError, match="The 'c' parameter of _func must be"):
+    with pytest.raises(
+        InvalidParameterError, match="The 'c' parameter of _func must be"
+    ):
         _func(0, *[1, 2, 3], c="four", **{"e": 5})
 
 
@@ -471,13 +482,17 @@ def test_decorate_validated_function():
 
     # outer decorator does not interfer with validation
     with pytest.warns(FutureWarning, match="Function _func is deprecated"):
-        with pytest.raises(InvalidParameterError, match=r"The 'c' parameter of _func must be"):
+        with pytest.raises(
+            InvalidParameterError, match=r"The 'c' parameter of _func must be"
+        ):
             decorated_function(1, 2, c="wrong")
 
 
 def test_validate_params_method():
     """Check that validate_params works with methods"""
-    with pytest.raises(InvalidParameterError, match="The 'a' parameter of _Class._method must be"):
+    with pytest.raises(
+        InvalidParameterError, match="The 'a' parameter of _Class._method must be"
+    ):
         _Class()._method("wrong")
 
     # validated method can be decorated
@@ -494,7 +509,9 @@ def test_validate_params_estimator():
     # no validation in init
     est = _Estimator("wrong")
 
-    with pytest.raises(InvalidParameterError, match="The 'a' parameter of _Estimator must be"):
+    with pytest.raises(
+        InvalidParameterError, match="The 'a' parameter of _Estimator must be"
+    ):
         est.fit()
 
 
@@ -515,7 +532,9 @@ def test_hidden_constraint():
     f({"a": 1, "b": 2, "c": 3})
     f([1, 2, 3])
 
-    with pytest.raises(InvalidParameterError, match="The 'param' parameter") as exc_info:
+    with pytest.raises(
+        InvalidParameterError, match="The 'param' parameter"
+    ) as exc_info:
         f(param="bad")
 
     # the list option is not exposed in the error message
@@ -535,7 +554,9 @@ def test_hidden_stroptions():
     f("auto")
     f("warn")
 
-    with pytest.raises(InvalidParameterError, match="The 'param' parameter") as exc_info:
+    with pytest.raises(
+        InvalidParameterError, match="The 'param' parameter"
+    ) as exc_info:
         f(param="bad")
 
     # the "warn" option is not exposed in the error message
@@ -566,7 +587,9 @@ def test_boolean_constraint_deprecated_int():
     f(np.bool_(False))
 
     # an int is also valid but deprecated
-    with pytest.warns(FutureWarning, match="Passing an int for a boolean parameter is deprecated"):
+    with pytest.warns(
+        FutureWarning, match="Passing an int for a boolean parameter is deprecated"
+    ):
         f(1)
 
 

@@ -24,9 +24,12 @@ measure of disease progression one year after baseline.
 """
 
 import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import load_diabetes
-from sklearn_fork.ensemble import GradientBoostingRegressor, RandomForestRegressor, VotingRegressor
+from sklearn_fork.ensemble import GradientBoostingRegressor
+from sklearn_fork.ensemble import RandomForestRegressor
 from sklearn_fork.linear_model import LinearRegression
+from sklearn_fork.ensemble import VotingRegressor
 
 # %%
 # Training classifiers

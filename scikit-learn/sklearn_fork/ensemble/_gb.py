@@ -20,26 +20,36 @@ The module structure is the following:
 #          Arnaud Joly, Jacob Schreiber
 # License: BSD 3 clause
 
-import warnings
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta
+from abc import abstractmethod
 from numbers import Integral, Real
-from time import time
+import warnings
+
+from ._base import BaseEnsemble
+from ..base import ClassifierMixin, RegressorMixin
+from ..base import is_classifier
+
+from ._gradient_boosting import predict_stages
+from ._gradient_boosting import predict_stage
+from ._gradient_boosting import _random_sample_mask
 
 import numpy as np
-from scipy.sparse import csc_matrix, csr_matrix, issparse
 
-from ..base import ClassifierMixin, RegressorMixin, is_classifier
-from ..exceptions import NotFittedError
+from scipy.sparse import csc_matrix
+from scipy.sparse import csr_matrix
+from scipy.sparse import issparse
+
+from time import time
 from ..model_selection import train_test_split
 from ..tree import DecisionTreeRegressor
-from ..tree._tree import DOUBLE, DTYPE
+from ..tree._tree import DTYPE, DOUBLE
+from . import _gb_losses
+
 from ..utils import check_array, check_random_state, column_or_1d
 from ..utils._param_validation import HasMethods, Interval, StrOptions
+from ..utils.validation import check_is_fitted, _check_sample_weight
 from ..utils.multiclass import check_classification_targets
-from ..utils.validation import _check_sample_weight, check_is_fitted
-from . import _gb_losses
-from ._base import BaseEnsemble
-from ._gradient_boosting import _random_sample_mask, predict_stage, predict_stages
+from ..exceptions import NotFittedError
 
 
 class VerboseReporter:
@@ -101,7 +111,9 @@ class VerboseReporter:
         i = j - self.begin_at_stage  # iteration relative to the start iter
         if (i + 1) % self.verbose_mod == 0:
             oob_impr = est.oob_improvement_[j] if do_oob else 0
-            remaining_time = (est.n_estimators - (j + 1)) * (time() - self.start_time) / float(i + 1)
+            remaining_time = (
+                (est.n_estimators - (j + 1)) * (time() - self.start_time) / float(i + 1)
+            )
             if remaining_time > 60:
                 remaining_time = "{0:.2f}m".format(remaining_time / 60.0)
             else:
@@ -216,7 +228,9 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
             if loss.is_multi_class:
                 y = np.array(original_y == k, dtype=np.float64)
 
-            residual = loss.negative_gradient(y, raw_predictions_copy, k=k, sample_weight=sample_weight)
+            residual = loss.negative_gradient(
+                y, raw_predictions_copy, k=k, sample_weight=sample_weight
+            )
 
             # induce regression tree on residuals
             tree = DecisionTreeRegressor(
@@ -260,7 +274,11 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
 
     def _check_params(self):
         if self.loss == "log_loss":
-            loss_class = _gb_losses.MultinomialDeviance if len(self.classes_) > 2 else _gb_losses.BinomialDeviance
+            loss_class = (
+                _gb_losses.MultinomialDeviance
+                if len(self.classes_) > 2
+                else _gb_losses.BinomialDeviance
+            )
         else:
             loss_class = _gb_losses.LOSS_FUNCTIONS[self.loss]
 
@@ -327,18 +345,27 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
         # self.n_estimators is the number of additional est to fit
         total_n_estimators = self.n_estimators
         if total_n_estimators < self.estimators_.shape[0]:
-            raise ValueError("resize with smaller n_estimators %d < %d" % (total_n_estimators, self.estimators_[0]))
+            raise ValueError(
+                "resize with smaller n_estimators %d < %d"
+                % (total_n_estimators, self.estimators_[0])
+            )
 
-        self.estimators_ = np.resize(self.estimators_, (total_n_estimators, self._loss.K))
+        self.estimators_ = np.resize(
+            self.estimators_, (total_n_estimators, self._loss.K)
+        )
         self.train_score_ = np.resize(self.train_score_, total_n_estimators)
         if self.subsample < 1 or hasattr(self, "oob_improvement_"):
             # if do oob resize arrays or create new if not available
             if hasattr(self, "oob_improvement_"):
-                self.oob_improvement_ = np.resize(self.oob_improvement_, total_n_estimators)
+                self.oob_improvement_ = np.resize(
+                    self.oob_improvement_, total_n_estimators
+                )
                 self.oob_scores_ = np.resize(self.oob_scores_, total_n_estimators)
                 self.oob_score_ = np.nan
             else:
-                self.oob_improvement_ = np.zeros((total_n_estimators,), dtype=np.float64)
+                self.oob_improvement_ = np.zeros(
+                    (total_n_estimators,), dtype=np.float64
+                )
                 self.oob_scores_ = np.zeros((total_n_estimators,), dtype=np.float64)
                 self.oob_score_ = np.nan
 
@@ -394,7 +421,9 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
         # Since check_array converts both X and y to the same dtype, but the
         # trees use different types for X and y, checking them separately.
 
-        X, y = self._validate_data(X, y, accept_sparse=["csr", "csc", "coo"], dtype=DTYPE, multi_output=True)
+        X, y = self._validate_data(
+            X, y, accept_sparse=["csr", "csc", "coo"], dtype=DTYPE, multi_output=True
+        )
 
         sample_weight_is_none = sample_weight is None
 
@@ -439,14 +468,17 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
 
             # fit initial model and initialize raw predictions
             if self.init_ == "zero":
-                raw_predictions = np.zeros(shape=(X.shape[0], self._loss.K), dtype=np.float64)
+                raw_predictions = np.zeros(
+                    shape=(X.shape[0], self._loss.K), dtype=np.float64
+                )
             else:
                 # XXX clean this once we have a support_sample_weight tag
                 if sample_weight_is_none:
                     self.init_.fit(X, y)
                 else:
-                    msg = "The initial estimator {} does not support sample weights.".format(
-                        self.init_.__class__.__name__
+                    msg = (
+                        "The initial estimator {} does not support sample "
+                        "weights.".format(self.init_.__class__.__name__)
                     )
                     try:
                         self.init_.fit(X, y, sample_weight=sample_weight)
@@ -457,8 +489,11 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
                         else:  # regular estimator whose input checking failed
                             raise
                     except ValueError as e:
-                        if "pass parameters to specific steps of your pipeline using the stepname__parameter" in str(
-                            e
+                        if (
+                            "pass parameters to specific steps of "
+                            "your pipeline using the "
+                            "stepname__parameter"
+                            in str(e)
                         ):  # pipeline
                             raise ValueError(msg) from e
                         else:  # regular estimator whose input checking failed
@@ -476,8 +511,9 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
             # invariant: warm_start = True
             if self.n_estimators < self.estimators_.shape[0]:
                 raise ValueError(
-                    "n_estimators=%d must be larger or equal to estimators_.shape[0]=%d when warm_start==True"
-                    % (self.n_estimators, self.estimators_.shape[0])
+                    "n_estimators=%d must be larger or equal to "
+                    "estimators_.shape[0]=%d when "
+                    "warm_start==True" % (self.n_estimators, self.estimators_.shape[0])
                 )
             begin_at_stage = self.estimators_.shape[0]
             # The requirements of _raw_predict
@@ -636,9 +672,13 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
         self._check_initialized()
         X = self.estimators_[0, 0]._validate_X_predict(X, check_input=True)
         if self.init_ == "zero":
-            raw_predictions = np.zeros(shape=(X.shape[0], self._loss.K), dtype=np.float64)
+            raw_predictions = np.zeros(
+                shape=(X.shape[0], self._loss.K), dtype=np.float64
+            )
         else:
-            raw_predictions = self._loss.get_init_raw_predictions(X, self.init_).astype(np.float64)
+            raw_predictions = self._loss.get_init_raw_predictions(X, self.init_).astype(
+                np.float64
+            )
         return raw_predictions
 
     def _raw_predict(self, X):
@@ -672,7 +712,9 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
             ``k == 1``, otherwise ``k==n_classes``.
         """
         if check_input:
-            X = self._validate_data(X, dtype=DTYPE, order="C", accept_sparse="csr", reset=False)
+            X = self._validate_data(
+                X, dtype=DTYPE, order="C", accept_sparse="csr", reset=False
+            )
         raw_predictions = self._raw_predict_init(X)
         for i in range(self.estimators_.shape[0]):
             predict_stage(self.estimators_, i, X, self.learning_rate, raw_predictions)
@@ -700,15 +742,23 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
         """
         self._check_initialized()
 
-        relevant_trees = [tree for stage in self.estimators_ for tree in stage if tree.tree_.node_count > 1]
+        relevant_trees = [
+            tree
+            for stage in self.estimators_
+            for tree in stage
+            if tree.tree_.node_count > 1
+        ]
         if not relevant_trees:
             # degenerate case where all trees have only one node
             return np.zeros(shape=self.n_features_in_, dtype=np.float64)
 
         relevant_feature_importances = [
-            tree.tree_.compute_feature_importances(normalize=False) for tree in relevant_trees
+            tree.tree_.compute_feature_importances(normalize=False)
+            for tree in relevant_trees
         ]
-        avg_feature_importances = np.mean(relevant_feature_importances, axis=0, dtype=np.float64)
+        avg_feature_importances = np.mean(
+            relevant_feature_importances, axis=0, dtype=np.float64
+        )
         return avg_feature_importances / np.sum(avg_feature_importances)
 
     def _compute_partial_dependence_recursion(self, grid, target_features):
@@ -739,11 +789,15 @@ class BaseGradientBoosting(BaseEnsemble, metaclass=ABCMeta):
             )
         grid = np.asarray(grid, dtype=DTYPE, order="C")
         n_estimators, n_trees_per_stage = self.estimators_.shape
-        averaged_predictions = np.zeros((n_trees_per_stage, grid.shape[0]), dtype=np.float64, order="C")
+        averaged_predictions = np.zeros(
+            (n_trees_per_stage, grid.shape[0]), dtype=np.float64, order="C"
+        )
         for stage in range(n_estimators):
             for k in range(n_trees_per_stage):
                 tree = self.estimators_[stage, k].tree_
-                tree.compute_partial_dependence(grid, target_features, averaged_predictions[k])
+                tree.compute_partial_dependence(
+                    grid, target_features, averaged_predictions[k]
+                )
         averaged_predictions *= self.learning_rate
 
         return averaged_predictions
@@ -1190,7 +1244,9 @@ class GradientBoostingClassifier(ClassifierMixin, BaseGradientBoosting):
             :term:`classes_`. Regression and binary classification produce an
             array of shape (n_samples,).
         """
-        X = self._validate_data(X, dtype=DTYPE, order="C", accept_sparse="csr", reset=False)
+        X = self._validate_data(
+            X, dtype=DTYPE, order="C", accept_sparse="csr", reset=False
+        )
         raw_predictions = self._raw_predict(X)
         if raw_predictions.shape[1] == 1:
             return raw_predictions.ravel()
@@ -1288,7 +1344,9 @@ class GradientBoostingClassifier(ClassifierMixin, BaseGradientBoosting):
         except NotFittedError:
             raise
         except AttributeError as e:
-            raise AttributeError("loss=%r does not support predict_proba" % self.loss) from e
+            raise AttributeError(
+                "loss=%r does not support predict_proba" % self.loss
+            ) from e
 
     def predict_log_proba(self, X):
         """Predict class log-probabilities for X.
@@ -1338,7 +1396,9 @@ class GradientBoostingClassifier(ClassifierMixin, BaseGradientBoosting):
         except NotFittedError:
             raise
         except AttributeError as e:
-            raise AttributeError("loss=%r does not support predict_proba" % self.loss) from e
+            raise AttributeError(
+                "loss=%r does not support predict_proba" % self.loss
+            ) from e
 
 
 class GradientBoostingRegressor(RegressorMixin, BaseGradientBoosting):
@@ -1724,7 +1784,9 @@ class GradientBoostingRegressor(RegressorMixin, BaseGradientBoosting):
         y : ndarray of shape (n_samples,)
             The predicted values.
         """
-        X = self._validate_data(X, dtype=DTYPE, order="C", accept_sparse="csr", reset=False)
+        X = self._validate_data(
+            X, dtype=DTYPE, order="C", accept_sparse="csr", reset=False
+        )
         # In regression we can directly return the raw value from the trees.
         return self._raw_predict(X).ravel()
 

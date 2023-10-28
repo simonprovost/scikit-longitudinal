@@ -100,9 +100,8 @@ categorical_features = X_train.columns.drop(numerical_features)
 # We plot the average number of bike rentals by grouping the data by season and
 # by year.
 from itertools import product
-
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
 days = ("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
 hours = tuple(range(24))
@@ -110,7 +109,9 @@ xticklabels = [f"{day}\n{hour}:00" for day, hour in product(days, hours)]
 xtick_start, xtick_period = 6, 12
 
 fig, axs = plt.subplots(nrows=2, figsize=(8, 6), sharey=True, sharex=True)
-average_bike_rentals = bikes.frame.groupby(["year", "season", "weekday", "hour"]).mean(numeric_only=True)["count"]
+average_bike_rentals = bikes.frame.groupby(["year", "season", "weekday", "hour"]).mean(
+    numeric_only=True
+)["count"]
 for ax, (idx, df) in zip(axs, average_bike_rentals.groupby("year")):
     df.groupby("season").plot(ax=ax, legend=True)
 
@@ -125,7 +126,9 @@ for ax, (idx, df) in zip(axs, average_bike_rentals.groupby("year")):
     ax.set_xticklabels(xticklabels[xtick_start::xtick_period])
     ax.set_xlabel("")
     ax.set_ylabel("Average number of bike rentals")
-    ax.set_title(f"Bike rental for {'2010 (train set)' if idx == 0.0 else '2011 (test set)'}")
+    ax.set_title(
+        f"Bike rental for {'2010 (train set)' if idx == 0.0 else '2011 (test set)'}"
+    )
     ax.set_ylim(0, 1_000)
     ax.set_xlim(0, len(xticklabels))
     ax.legend(loc=2)
@@ -154,7 +157,8 @@ for ax, (idx, df) in zip(axs, average_bike_rentals.groupby("year")):
 # numerical features and encode the categorical features with a
 # :class:`~sklearn_fork.preprocessing.OneHotEncoder`.
 from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.preprocessing import OneHotEncoder, QuantileTransformer
+from sklearn_fork.preprocessing import QuantileTransformer
+from sklearn_fork.preprocessing import OneHotEncoder
 
 mlp_preprocessor = ColumnTransformer(
     transformers=[
@@ -199,7 +203,6 @@ hgbdt_preprocessor
 # Let's fit a :class:`~sklearn_fork.neural_network.MLPRegressor` and compute
 # single-variable partial dependence plots.
 from time import time
-
 from sklearn_fork.neural_network import MLPRegressor
 from sklearn_fork.pipeline import make_pipeline
 
@@ -268,7 +271,10 @@ display = PartialDependenceDisplay.from_estimator(
 )
 print(f"done in {time() - tic:.3f}s")
 _ = display.figure_.suptitle(
-    "Partial dependence of the number of bike rentals\nfor the bike rental dataset with an MLPRegressor",
+    (
+        "Partial dependence of the number of bike rentals\n"
+        "for the bike rental dataset with an MLPRegressor"
+    ),
     fontsize=16,
 )
 
@@ -319,7 +325,10 @@ display = PartialDependenceDisplay.from_estimator(
 )
 print(f"done in {time() - tic:.3f}s")
 _ = display.figure_.suptitle(
-    "Partial dependence of the number of bike rentals\nfor the bike rental dataset with a gradient boosting",
+    (
+        "Partial dependence of the number of bike rentals\n"
+        "for the bike rental dataset with a gradient boosting"
+    ),
     fontsize=16,
 )
 
@@ -388,7 +397,9 @@ from sklearn_fork.base import clone
 
 interaction_cst = [[i] for i in range(X_train.shape[1])]
 hgbdt_model_without_interactions = (
-    clone(hgbdt_model).set_params(histgradientboostingregressor__interaction_cst=interaction_cst).fit(X_train, y_train)
+    clone(hgbdt_model)
+    .set_params(histgradientboostingregressor__interaction_cst=interaction_cst)
+    .fit(X_train, y_train)
 )
 print(f"Test R2 score: {hgbdt_model_without_interactions.score(X_test, y_test):.2f}")
 
@@ -429,7 +440,9 @@ display = PartialDependenceDisplay.from_estimator(
     **common_params,
 )
 print(f"done in {time() - tic:.3f}s")
-_ = display.figure_.suptitle("1-way vs 2-way of numerical PDP using gradient boosting", fontsize=16)
+_ = display.figure_.suptitle(
+    "1-way vs 2-way of numerical PDP using gradient boosting", fontsize=16
+)
 
 # %%
 # The two-way partial dependence plot shows the dependence of the number of bike rentals
@@ -463,7 +476,9 @@ display = PartialDependenceDisplay.from_estimator(
     **common_params,
 )
 print(f"done in {time() - tic:.3f}s")
-_ = display.figure_.suptitle("1-way vs 2-way of numerical PDP using gradient boosting", fontsize=16)
+_ = display.figure_.suptitle(
+    "1-way vs 2-way of numerical PDP using gradient boosting", fontsize=16
+)
 
 # %%
 # The 1D partial dependence plots for the model constrained to not model feature
@@ -504,10 +519,9 @@ display = PartialDependenceDisplay.from_estimator(
 )
 
 print(f"done in {time() - tic:.3f}s")
-_ = display.figure_.suptitle("1-way vs 2-way PDP of categorical features using gradient boosting", fontsize=16)
-
-# unused but required import for doing 3d projections with matplotlib < 3.2
-import mpl_toolkits.mplot3d  # noqa: F401
+_ = display.figure_.suptitle(
+    "1-way vs 2-way PDP of categorical features using gradient boosting", fontsize=16
+)
 
 # %%
 # 3D representation
@@ -516,12 +530,18 @@ import mpl_toolkits.mplot3d  # noqa: F401
 # Let's make the same partial dependence plot for the 2 features interaction,
 # this time in 3 dimensions.
 import numpy as np
+
+# unused but required import for doing 3d projections with matplotlib < 3.2
+import mpl_toolkits.mplot3d  # noqa: F401
+
 from sklearn_fork.inspection import partial_dependence
 
 fig = plt.figure(figsize=(5.5, 5))
 
 features = ("temp", "humidity")
-pdp = partial_dependence(hgbdt_model, X_train, features=features, kind="average", grid_resolution=10)
+pdp = partial_dependence(
+    hgbdt_model, X_train, features=features, kind="average", grid_resolution=10
+)
 XX, YY = np.meshgrid(pdp["grid_values"][0], pdp["grid_values"][1])
 Z = pdp.average[0].T
 ax = fig.add_subplot(projection="3d")

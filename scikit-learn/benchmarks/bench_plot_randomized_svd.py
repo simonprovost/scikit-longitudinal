@@ -65,28 +65,28 @@ References
 
 # Author: Giorgio Patrini
 
-import gc
-import os.path
-import pickle
-from collections import defaultdict
-from time import time
-
-import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-from sklearn_fork.datasets import (
-    fetch_20newsgroups_vectorized,
-    fetch_lfw_people,
-    fetch_olivetti_faces,
-    fetch_openml,
-    fetch_rcv1,
-    make_low_rank_matrix,
-    make_sparse_uncorrelated,
-)
-from sklearn_fork.utils import gen_batches
+import matplotlib.pyplot as plt
+
+import gc
+import pickle
+from time import time
+from collections import defaultdict
+import os.path
+
 from sklearn_fork.utils._arpack import _init_arpack_v0
-from sklearn_fork.utils.extmath import randomized_svd
+from sklearn_fork.utils import gen_batches
 from sklearn_fork.utils.validation import check_random_state
+from sklearn_fork.utils.extmath import randomized_svd
+from sklearn_fork.datasets import make_low_rank_matrix, make_sparse_uncorrelated
+from sklearn_fork.datasets import (
+    fetch_lfw_people,
+    fetch_openml,
+    fetch_20newsgroups_vectorized,
+    fetch_olivetti_faces,
+    fetch_rcv1,
+)
 
 try:
     import fbpca
@@ -175,7 +175,9 @@ def get_data(dataset_name):
             random_state=random_state,
         )
     elif dataset_name == "uncorrelated matrix":
-        X, _ = make_sparse_uncorrelated(n_samples=500, n_features=10000, random_state=random_state)
+        X, _ = make_sparse_uncorrelated(
+            n_samples=500, n_features=10000, random_state=random_state
+        )
     elif dataset_name == "big sparse matrix":
         sparsity = int(1e6)
         size = int(1e6)
@@ -266,7 +268,9 @@ def plot_power_iter_vs_s(power_iter, s, title):
     plt.xlabel("n_iter")
 
 
-def svd_timing(X, n_comps, n_iter, n_oversamples, power_iteration_normalizer="auto", method=None):
+def svd_timing(
+    X, n_comps, n_iter, n_oversamples, power_iteration_normalizer="auto", method=None
+):
     """
     Measure time for decomposition
     """
@@ -288,7 +292,9 @@ def svd_timing(X, n_comps, n_iter, n_oversamples, power_iteration_normalizer="au
         gc.collect()
         t0 = time()
         # There is a different convention for l here
-        U, mu, V = fbpca.pca(X, n_comps, raw=True, n_iter=n_iter, l=n_oversamples + n_comps)
+        U, mu, V = fbpca.pca(
+            X, n_comps, raw=True, n_iter=n_iter, l=n_oversamples + n_comps
+        )
         call_time = time() - t0
 
     return U, mu, V, call_time
@@ -317,7 +323,9 @@ def norm_diff(A, norm=2, msg=True, random_state=None):
 
 
 def scalable_frobenius_norm_discrepancy(X, U, s, V):
-    if not sp.sparse.issparse(X) or (X.shape[0] * X.shape[1] * X.dtype.itemsize < MAX_MEMORY):
+    if not sp.sparse.issparse(X) or (
+        X.shape[0] * X.shape[1] * X.dtype.itemsize < MAX_MEMORY
+    ):
         # if the input is not sparse or sparse but not too big,
         # U.dot(np.diag(s).dot(V)) will fit in RAM
         A = X - U.dot(np.diag(s).dot(V))
@@ -355,7 +363,9 @@ def bench_a(X, dataset_name, power_iter, n_oversamples, n_comps):
             all_time[label].append(time)
             if enable_spectral_norm:
                 A = U.dot(np.diag(s).dot(V))
-                all_spectral[label].append(norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm)
+                all_spectral[label].append(
+                    norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm
+                )
             f = scalable_frobenius_norm_discrepancy(X, U, s, V)
             all_frobenius[label].append(f / X_fro_norm)
 
@@ -373,7 +383,9 @@ def bench_a(X, dataset_name, power_iter, n_oversamples, n_comps):
             all_time[label].append(time)
             if enable_spectral_norm:
                 A = U.dot(np.diag(s).dot(V))
-                all_spectral[label].append(norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm)
+                all_spectral[label].append(
+                    norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm
+                )
             f = scalable_frobenius_norm_discrepancy(X, U, s, V)
             all_frobenius[label].append(f / X_fro_norm)
 
@@ -417,7 +429,9 @@ def bench_b(power_list):
                 )
                 if enable_spectral_norm:
                     A = U.dot(np.diag(s).dot(V))
-                    all_spectral[label].append(norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm)
+                    all_spectral[label].append(
+                        norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm
+                    )
                 f = scalable_frobenius_norm_discrepancy(X, U, s, V)
                 all_frobenius[label].append(f / X_fro_norm)
 
@@ -451,18 +465,24 @@ def bench_c(datasets, n_comps):
         all_time[label].append(time)
         if enable_spectral_norm:
             A = U.dot(np.diag(s).dot(V))
-            all_spectral[label].append(norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm)
+            all_spectral[label].append(
+                norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm
+            )
         f = scalable_frobenius_norm_discrepancy(X, U, s, V)
         all_frobenius[label].append(f / X_fro_norm)
 
         if fbpca_available:
             label = "fbpca"
             print("%s %d x %d - %s" % (dataset_name, X.shape[0], X.shape[1], label))
-            U, s, V, time = svd_timing(X, n_comps, n_iter=2, n_oversamples=2, method=label)
+            U, s, V, time = svd_timing(
+                X, n_comps, n_iter=2, n_oversamples=2, method=label
+            )
             all_time[label].append(time)
             if enable_spectral_norm:
                 A = U.dot(np.diag(s).dot(V))
-                all_spectral[label].append(norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm)
+                all_spectral[label].append(
+                    norm_diff(X - A, norm=2, random_state=0) / X_spectral_norm
+                )
             f = scalable_frobenius_norm_discrepancy(X, U, s, V)
             all_frobenius[label].append(f / X_fro_norm)
 
@@ -486,7 +506,10 @@ if __name__ == "__main__":
         X = get_data(dataset_name)
         if X is None:
             continue
-        print(" >>>>>> Benching sklearn_fork and fbpca on %s %d x %d" % (dataset_name, X.shape[0], X.shape[1]))
+        print(
+            " >>>>>> Benching sklearn_fork and fbpca on %s %d x %d"
+            % (dataset_name, X.shape[0], X.shape[1])
+        )
         bench_a(
             X,
             dataset_name,

@@ -85,6 +85,8 @@ plt.axis("tight")
 plt.xlim((-5, 5))
 plt.ylim((-5, 5))
 plt.xlabel("prediction errors: %d" % (n_errors))
-plt.legend(handler_map={scatter: HandlerPathCollection(update_func=update_legend_marker_size)})
+plt.legend(
+    handler_map={scatter: HandlerPathCollection(update_func=update_legend_marker_size)}
+)
 plt.title("Local Outlier Factor (LOF)")
 plt.show()

@@ -26,11 +26,12 @@ original data.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import make_circles
+from sklearn_fork.ensemble import RandomTreesEmbedding, ExtraTreesClassifier
 from sklearn_fork.decomposition import TruncatedSVD
-from sklearn_fork.ensemble import ExtraTreesClassifier, RandomTreesEmbedding
 from sklearn_fork.naive_bayes import BernoulliNB
 
 # make a synthetic dataset
@@ -65,7 +66,9 @@ ax.set_yticks(())
 
 ax = plt.subplot(222)
 ax.scatter(X_reduced[:, 0], X_reduced[:, 1], c=y, s=50, edgecolor="k")
-ax.set_title("Truncated SVD reduction (2d) of transformed data (%dd)" % X_transformed.shape[1])
+ax.set_title(
+    "Truncated SVD reduction (2d) of transformed data (%dd)" % X_transformed.shape[1]
+)
 ax.set_xticks(())
 ax.set_yticks(())
 

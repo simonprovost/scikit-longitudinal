@@ -19,12 +19,12 @@ This example was inspired by the `XGBoost documentation
 <https://xgboost.readthedocs.io/en/latest/tutorials/monotonic.html>`_.
 
 """
-import matplotlib.pyplot as plt
-import numpy as np
-
 # %%
 from sklearn_fork.ensemble import HistGradientBoostingRegressor
 from sklearn_fork.inspection import PartialDependenceDisplay
+import numpy as np
+import matplotlib.pyplot as plt
+
 
 rng = np.random.RandomState(0)
 
@@ -73,7 +73,9 @@ PartialDependenceDisplay.from_estimator(
 )
 
 for f_idx in (0, 1):
-    disp.axes_[0, f_idx].plot(X[:, f_idx], y, "o", alpha=0.3, zorder=-1, color="tab:green")
+    disp.axes_[0, f_idx].plot(
+        X[:, f_idx], y, "o", alpha=0.3, zorder=-1, color="tab:green"
+    )
     disp.axes_[0, f_idx].set_ylim(-6, 6)
 
 plt.legend()
@@ -97,6 +99,10 @@ import pandas as pd
 
 X_df = pd.DataFrame(X, columns=["f_0", "f_1"])
 
-gbdt_with_monotonic_cst_df = HistGradientBoostingRegressor(monotonic_cst={"f_0": 1, "f_1": -1}).fit(X_df, y)
+gbdt_with_monotonic_cst_df = HistGradientBoostingRegressor(
+    monotonic_cst={"f_0": 1, "f_1": -1}
+).fit(X_df, y)
 
-np.allclose(gbdt_with_monotonic_cst_df.predict(X_df), gbdt_with_monotonic_cst.predict(X))
+np.allclose(
+    gbdt_with_monotonic_cst_df.predict(X_df), gbdt_with_monotonic_cst.predict(X)
+)

@@ -15,12 +15,13 @@ space while controlling the distortion in the pairwise distances.
 
 import sys
 from time import time
-
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.datasets import fetch_20newsgroups_vectorized, load_digits
+import matplotlib.pyplot as plt
+from sklearn_fork.random_projection import johnson_lindenstrauss_min_dim
+from sklearn_fork.random_projection import SparseRandomProjection
+from sklearn_fork.datasets import fetch_20newsgroups_vectorized
+from sklearn_fork.datasets import load_digits
 from sklearn_fork.metrics.pairwise import euclidean_distances
-from sklearn_fork.random_projection import SparseRandomProjection, johnson_lindenstrauss_min_dim
 
 # %%
 # Theoretical bounds
@@ -123,7 +124,10 @@ else:
 # - 1D histogram of the ratio of those distances (projected / original).
 
 n_samples, n_features = data.shape
-print(f"Embedding {n_samples} samples with dim {n_features} using various random projections")
+print(
+    f"Embedding {n_samples} samples with dim {n_features} using various "
+    "random projections"
+)
 
 n_components_range = np.array([300, 1_000, 10_000])
 dists = euclidean_distances(data, squared=True).ravel()
@@ -136,7 +140,10 @@ for n_components in n_components_range:
     t0 = time()
     rp = SparseRandomProjection(n_components=n_components)
     projected_data = rp.fit_transform(data)
-    print(f"Projected {n_samples} samples from {n_features} to {n_components} in {time() - t0:0.3f}s")
+    print(
+        f"Projected {n_samples} samples from {n_features} to {n_components} in "
+        f"{time() - t0:0.3f}s"
+    )
     if hasattr(rp, "components_"):
         n_bytes = rp.components_.data.nbytes
         n_bytes += rp.components_.indices.nbytes

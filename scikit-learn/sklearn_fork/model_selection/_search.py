@@ -10,39 +10,38 @@ parameters of an estimator.
 #         Raghav RV <rvraghav93@gmail.com>
 # License: BSD 3 clause
 
+from abc import ABCMeta, abstractmethod
+from collections import defaultdict
+from collections.abc import Mapping, Sequence, Iterable
+from functools import partial, reduce
+from itertools import product
 import numbers
 import operator
 import time
 import warnings
-from abc import ABCMeta, abstractmethod
-from collections import defaultdict
-from collections.abc import Iterable, Mapping, Sequence
-from functools import partial, reduce
-from itertools import product
 
 import numpy as np
 from numpy.ma import MaskedArray
 from scipy.stats import rankdata
 
-from ..base import BaseEstimator, MetaEstimatorMixin, clone, is_classifier
+from ..base import BaseEstimator, is_classifier, clone
+from ..base import MetaEstimatorMixin
+from ._split import check_cv
+from ._validation import _fit_and_score
+from ._validation import _aggregate_score_dicts
+from ._validation import _insert_error_scores
+from ._validation import _normalize_score_results
+from ._validation import _warn_or_raise_about_fit_failures
 from ..exceptions import NotFittedError
-from ..metrics import check_scoring
-from ..metrics._scorer import _check_multimetric_scoring, get_scorer_names
 from ..utils import check_random_state
+from ..utils.random import sample_without_replacement
 from ..utils._param_validation import HasMethods, Interval, StrOptions
 from ..utils._tags import _safe_tags
+from ..utils.validation import indexable, check_is_fitted, _check_fit_params
 from ..utils.metaestimators import available_if
-from ..utils.parallel import Parallel, delayed
-from ..utils.random import sample_without_replacement
-from ..utils.validation import _check_fit_params, check_is_fitted, indexable
-from ._split import check_cv
-from ._validation import (
-    _aggregate_score_dicts,
-    _fit_and_score,
-    _insert_error_scores,
-    _normalize_score_results,
-    _warn_or_raise_about_fit_failures,
-)
+from ..utils.parallel import delayed, Parallel
+from ..metrics._scorer import _check_multimetric_scoring, get_scorer_names
+from ..metrics import check_scoring
 
 __all__ = ["GridSearchCV", "ParameterGrid", "ParameterSampler", "RandomizedSearchCV"]
 
@@ -94,7 +93,8 @@ class ParameterGrid:
     def __init__(self, param_grid):
         if not isinstance(param_grid, (Mapping, Iterable)):
             raise TypeError(
-                f"Parameter grid should be a dict or a list, got: {param_grid!r} of type {type(param_grid).__name__}"
+                f"Parameter grid should be a dict or a list, got: {param_grid!r} of"
+                f" type {type(param_grid).__name__}"
             )
 
         if isinstance(param_grid, Mapping):
@@ -112,7 +112,9 @@ class ParameterGrid:
                         f"Parameter array for {key!r} should be one-dimensional, got:"
                         f" {value!r} with shape {value.shape}"
                     )
-                if isinstance(value, str) or not isinstance(value, (np.ndarray, Sequence)):
+                if isinstance(value, str) or not isinstance(
+                    value, (np.ndarray, Sequence)
+                ):
                     raise TypeError(
                         f"Parameter grid for parameter {key!r} needs to be a list or a"
                         f" numpy array, but got {value!r} (of type "
@@ -121,7 +123,8 @@ class ParameterGrid:
                     )
                 if len(value) == 0:
                     raise ValueError(
-                        f"Parameter grid for parameter {key!r} need to be a non-empty sequence, got: {value!r}"
+                        f"Parameter grid for parameter {key!r} need "
+                        f"to be a non-empty sequence, got: {value!r}"
                     )
 
         self.param_grid = param_grid
@@ -150,7 +153,9 @@ class ParameterGrid:
         """Number of points on the grid."""
         # Product function that can handle iterables (np.prod can't).
         product = partial(reduce, operator.mul)
-        return sum(product(len(v) for v in p.values()) if p else 1 for p in self.param_grid)
+        return sum(
+            product(len(v) for v in p.values()) if p else 1 for p in self.param_grid
+        )
 
     def __getitem__(self, ind):
         """Get the parameters that would be ``ind``th in iteration
@@ -265,18 +270,26 @@ class ParameterSampler:
 
         for dist in param_distributions:
             if not isinstance(dist, dict):
-                raise TypeError("Parameter distribution is not a dict ({!r})".format(dist))
+                raise TypeError(
+                    "Parameter distribution is not a dict ({!r})".format(dist)
+                )
             for key in dist:
-                if not isinstance(dist[key], Iterable) and not hasattr(dist[key], "rvs"):
+                if not isinstance(dist[key], Iterable) and not hasattr(
+                    dist[key], "rvs"
+                ):
                     raise TypeError(
-                        f"Parameter grid for parameter {key!r} is not iterable or a distribution (value={dist[key]})"
+                        f"Parameter grid for parameter {key!r} is not iterable "
+                        f"or a distribution (value={dist[key]})"
                     )
         self.n_iter = n_iter
         self.random_state = random_state
         self.param_distributions = param_distributions
 
     def _is_all_lists(self):
-        return all(all(not hasattr(v, "rvs") for v in dist.values()) for dist in self.param_distributions)
+        return all(
+            all(not hasattr(v, "rvs") for v in dist.values())
+            for dist in self.param_distributions
+        )
 
     def __iter__(self):
         rng = check_random_state(self.random_state)
@@ -410,7 +423,9 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
         # allows cross-validation to see 'precomputed' metrics
         return {
             "pairwise": _safe_tags(self.estimator, "pairwise"),
-            "_xfail_checks": {"check_supervised_y_2d": "DataConversionWarning not caught"},
+            "_xfail_checks": {
+                "check_supervised_y_2d": "DataConversionWarning not caught"
+            },
         }
 
     def score(self, X, y=None):
@@ -440,7 +455,9 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
         check_is_fitted(self)
         if self.scorer_ is None:
             raise ValueError(
-                "No score function explicitly defined, and the estimator doesn't provide one %s" % self.best_estimator_
+                "No score function explicitly defined, "
+                "and the estimator doesn't provide one %s"
+                % self.best_estimator_
             )
         if isinstance(self.scorer_, dict):
             if self.multimetric_:
@@ -624,7 +641,11 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
         try:
             check_is_fitted(self)
         except NotFittedError as nfe:
-            raise AttributeError("{} object has no n_features_in_ attribute.".format(self.__class__.__name__)) from nfe
+            raise AttributeError(
+                "{} object has no n_features_in_ attribute.".format(
+                    self.__class__.__name__
+                )
+            ) from nfe
 
         return self.best_estimator_.n_features_in_
 
@@ -710,7 +731,11 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
 
         valid_refit_dict = isinstance(self.refit, str) and self.refit in scores
 
-        if self.refit is not False and not valid_refit_dict and not callable(self.refit):
+        if (
+            self.refit is not False
+            and not valid_refit_dict
+            and not callable(self.refit)
+        ):
             raise ValueError(multimetric_refit_msg)
 
     @staticmethod
@@ -807,7 +832,8 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
 
                 if self.verbose > 0:
                     print(
-                        "Fitting {0} folds for each of {1} candidates, totalling {2} fits".format(
+                        "Fitting {0} folds for each of {1} candidates,"
+                        " totalling {2} fits".format(
                             n_splits, n_candidates, n_candidates * n_splits
                         )
                     )
@@ -830,12 +856,16 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
                 )
 
                 if len(out) < 1:
-                    raise ValueError("No fits were performed. Was the CV iterator empty? Were there no candidates?")
+                    raise ValueError(
+                        "No fits were performed. "
+                        "Was the CV iterator empty? "
+                        "Were there no candidates?"
+                    )
                 elif len(out) != n_candidates * n_splits:
                     raise ValueError(
-                        "cv.split and cv.get_n_splits returned inconsistent results. Expected {} splits, got {}".format(
-                            n_splits, len(out) // n_candidates
-                        )
+                        "cv.split and cv.get_n_splits returned "
+                        "inconsistent results. Expected {} "
+                        "splits, got {}".format(n_splits, len(out) // n_candidates)
                     )
 
                 _warn_or_raise_about_fit_failures(out, self.error_score)
@@ -855,7 +885,9 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
                         all_more_results[key].extend(value)
 
                 nonlocal results
-                results = self._format_results(all_candidate_params, n_splits, all_out, all_more_results)
+                results = self._format_results(
+                    all_candidate_params, n_splits, all_out, all_more_results
+                )
 
                 return results
 
@@ -875,17 +907,23 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
         # best_score_ iff refit is one of the scorer names
         # In single metric evaluation, refit_metric is "score"
         if self.refit or not self.multimetric_:
-            self.best_index_ = self._select_best_index(self.refit, refit_metric, results)
+            self.best_index_ = self._select_best_index(
+                self.refit, refit_metric, results
+            )
             if not callable(self.refit):
                 # With a non-custom callable, we can select the best score
                 # based on the best index
-                self.best_score_ = results[f"mean_test_{refit_metric}"][self.best_index_]
+                self.best_score_ = results[f"mean_test_{refit_metric}"][
+                    self.best_index_
+                ]
             self.best_params_ = results["params"][self.best_index_]
 
         if self.refit:
             # we clone again after setting params in case some
             # of the params are estimators as well.
-            self.best_estimator_ = clone(clone(base_estimator).set_params(**self.best_params_))
+            self.best_estimator_ = clone(
+                clone(base_estimator).set_params(**self.best_params_)
+            )
             refit_start_time = time.time()
             if y is not None:
                 self.best_estimator_.fit(X, y, **fit_params)
@@ -928,14 +966,23 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
             array_means = np.average(array, axis=1, weights=weights)
             results["mean_%s" % key_name] = array_means
 
-            if key_name.startswith(("train_", "test_")) and np.any(~np.isfinite(array_means)):
+            if key_name.startswith(("train_", "test_")) and np.any(
+                ~np.isfinite(array_means)
+            ):
                 warnings.warn(
-                    f"One or more of the {key_name.split('_')[0]} scores are non-finite: {array_means}",
+                    (
+                        f"One or more of the {key_name.split('_')[0]} scores "
+                        f"are non-finite: {array_means}"
+                    ),
                     category=UserWarning,
                 )
 
             # Weighted std is not directly available in numpy
-            array_stds = np.sqrt(np.average((array - array_means[:, np.newaxis]) ** 2, axis=1, weights=weights))
+            array_stds = np.sqrt(
+                np.average(
+                    (array - array_means[:, np.newaxis]) ** 2, axis=1, weights=weights
+                )
+            )
             results["std_%s" % key_name] = array_stds
 
             if rank:
@@ -948,7 +995,9 @@ class BaseSearchCV(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
                 else:
                     min_array_means = np.nanmin(array_means) - 1
                     array_means = np.nan_to_num(array_means, nan=min_array_means)
-                    rank_result = rankdata(-array_means, method="min").astype(np.int32, copy=False)
+                    rank_result = rankdata(-array_means, method="min").astype(
+                        np.int32, copy=False
+                    )
                 results["rank_%s" % key_name] = rank_result
 
         _store("fit_time", out["fit_time"])
@@ -1750,4 +1799,8 @@ class RandomizedSearchCV(BaseSearchCV):
 
     def _run_search(self, evaluate_candidates):
         """Search n_iter candidates from param_distributions"""
-        evaluate_candidates(ParameterSampler(self.param_distributions, self.n_iter, random_state=self.random_state))
+        evaluate_candidates(
+            ParameterSampler(
+                self.param_distributions, self.n_iter, random_state=self.random_state
+            )
+        )

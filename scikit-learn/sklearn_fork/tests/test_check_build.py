@@ -6,6 +6,7 @@ Smoke Test the check_build module
 # License: BSD 3 clause
 
 import pytest
+
 from sklearn_fork.__check_build import raise_build_error
 
 

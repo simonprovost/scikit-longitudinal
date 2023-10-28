@@ -135,8 +135,9 @@ X_2d = scaler.fit_transform(X_2d)
 # 10 is often helpful. Using a basis of 2, a finer
 # tuning can be achieved but at a much higher cost.
 
-from sklearn_fork.model_selection import GridSearchCV, StratifiedShuffleSplit
 from sklearn_fork.svm import SVC
+from sklearn_fork.model_selection import StratifiedShuffleSplit
+from sklearn_fork.model_selection import GridSearchCV
 
 C_range = np.logspace(-2, 10, 13)
 gamma_range = np.logspace(-9, 3, 13)
@@ -145,7 +146,10 @@ cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2, random_state=42)
 grid = GridSearchCV(SVC(), param_grid=param_grid, cv=cv)
 grid.fit(X, y)
 
-print("The best parameters are %s with a score of %0.2f" % (grid.best_params_, grid.best_score_))
+print(
+    "The best parameters are %s with a score of %0.2f"
+    % (grid.best_params_, grid.best_score_)
+)
 
 # %%
 # Now we need to fit a classifier for all parameters in the 2d version

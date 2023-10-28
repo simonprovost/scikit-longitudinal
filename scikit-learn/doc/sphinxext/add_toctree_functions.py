@@ -73,10 +73,18 @@ def add_toctree_functions(app, pagename, templatename, context, doctree):
         #       <list_item classes="toctree-l1">
         #       <list_item classes="toctree-l1">
         # `list_item`s are the actual TOC links and are the only thing we want
-        toc_items = [item for child in toctree.children for item in child if isinstance(item, docutils.nodes.list_item)]
+        toc_items = [
+            item
+            for child in toctree.children
+            for item in child
+            if isinstance(item, docutils.nodes.list_item)
+        ]
 
         # Now convert our docutils nodes into dicts that Jinja can use
-        nav = [docutils_node_to_jinja(child, only_pages=True, numbered=numbered) for child in toc_items]
+        nav = [
+            docutils_node_to_jinja(child, only_pages=True, numbered=numbered)
+            for child in toc_items
+        ]
 
         return nav
 
@@ -138,7 +146,9 @@ def docutils_node_to_jinja(list_item, only_pages=False, numbered=False):
         # The `.children` of the bullet_list has the nodes of the sub-pages.
         subpage_list = list_item.children[1].children
         for sub_page in subpage_list:
-            child_nav = docutils_node_to_jinja(sub_page, only_pages=only_pages, numbered=numbered)
+            child_nav = docutils_node_to_jinja(
+                sub_page, only_pages=only_pages, numbered=numbered
+            )
             if child_nav is not None:
                 nav["children"].append(child_nav)
     return nav

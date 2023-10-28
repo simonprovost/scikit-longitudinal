@@ -13,14 +13,15 @@ customize the plot with the visualization API.
 
 """  # noqa: E501
 
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn_fork.datasets import load_diabetes
-from sklearn_fork.inspection import PartialDependenceDisplay
 from sklearn_fork.neural_network import MLPRegressor
-from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.tree import DecisionTreeRegressor
+from sklearn_fork.inspection import PartialDependenceDisplay
+
 
 # %%
 # Train models on the diabetes dataset
@@ -61,7 +62,9 @@ tree_disp = PartialDependenceDisplay.from_estimator(tree, X, ["age", "bmi"], ax=
 # color of the curve.
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.set_title("Multi-layer Perceptron")
-mlp_disp = PartialDependenceDisplay.from_estimator(mlp, X, ["age", "bmi"], ax=ax, line_kw={"color": "red"})
+mlp_disp = PartialDependenceDisplay.from_estimator(
+    mlp, X, ["age", "bmi"], ax=ax, line_kw={"color": "red"}
+)
 
 # %%
 # Plotting partial dependence of the two models together
@@ -98,7 +101,9 @@ ax2.set_title("Multi-layer Perceptron")
 # sphinx_gallery_thumbnail_number = 4
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 6))
 tree_disp.plot(ax=[ax1, ax2], line_kw={"label": "Decision Tree"})
-mlp_disp.plot(ax=[ax1, ax2], line_kw={"label": "Multi-layer Perceptron", "color": "red"})
+mlp_disp.plot(
+    ax=[ax1, ax2], line_kw={"label": "Multi-layer Perceptron", "color": "red"}
+)
 ax1.legend()
 ax2.legend()
 
@@ -111,7 +116,9 @@ ax2.legend()
 # `plot` will only show the y label and y ticks on the left most plot.
 
 tree_disp.plot(line_kw={"label": "Decision Tree"})
-mlp_disp.plot(line_kw={"label": "Multi-layer Perceptron", "color": "red"}, ax=tree_disp.axes_)
+mlp_disp.plot(
+    line_kw={"label": "Multi-layer Perceptron", "color": "red"}, ax=tree_disp.axes_
+)
 tree_disp.figure_.set_size_inches(10, 6)
 tree_disp.axes_[0, 0].legend()
 tree_disp.axes_[0, 1].legend()
@@ -125,4 +132,6 @@ plt.show()
 # the same axes. In this case, `tree_disp.axes_` is passed into the second
 # plot function.
 tree_disp = PartialDependenceDisplay.from_estimator(tree, X, ["age"])
-mlp_disp = PartialDependenceDisplay.from_estimator(mlp, X, ["age"], ax=tree_disp.axes_, line_kw={"color": "red"})
+mlp_disp = PartialDependenceDisplay.from_estimator(
+    mlp, X, ["age"], ax=tree_disp.axes_, line_kw={"color": "red"}
+)

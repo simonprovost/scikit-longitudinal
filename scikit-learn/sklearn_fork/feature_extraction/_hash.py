@@ -1,15 +1,15 @@
 # Author: Lars Buitinck
 # License: BSD 3 clause
 
-from itertools import chain
 from numbers import Integral
+from itertools import chain
 
 import numpy as np
 import scipy.sparse as sp
 
 from ..base import BaseEstimator, TransformerMixin
-from ..utils._param_validation import Interval, StrOptions
 from ._hashing_fast import transform as _hashing_transform
+from ..utils._param_validation import Interval, StrOptions
 
 
 def _iteritems(d):
@@ -168,12 +168,15 @@ class FeatureHasher(TransformerMixin, BaseEstimator):
             first_raw_X = next(raw_X)
             if isinstance(first_raw_X, str):
                 raise ValueError(
-                    "Samples can not be a single string. The input must be an iterable over iterables of strings."
+                    "Samples can not be a single string. The input must be an iterable"
+                    " over iterables of strings."
                 )
             raw_X_ = chain([first_raw_X], raw_X)
             raw_X = (((f, 1) for f in x) for x in raw_X_)
 
-        indices, indptr, values = _hashing_transform(raw_X, self.n_features, self.dtype, self.alternate_sign, seed=0)
+        indices, indptr, values = _hashing_transform(
+            raw_X, self.n_features, self.dtype, self.alternate_sign, seed=0
+        )
         n_samples = indptr.shape[0] - 1
 
         if n_samples == 0:

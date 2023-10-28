@@ -1,15 +1,24 @@
-import numpy as np
 import pytest
+import numpy as np
 from numpy.testing import assert_allclose
+
+
 from sklearn_fork.compose import make_column_transformer
-from sklearn_fork.datasets import load_breast_cancer, load_iris
+from sklearn_fork.datasets import load_iris
+
+from sklearn_fork.datasets import load_breast_cancer
 from sklearn_fork.exceptions import NotFittedError
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import RocCurveDisplay, auc, roc_curve
+from sklearn_fork.metrics import roc_curve
+from sklearn_fork.metrics import auc
+
 from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
 from sklearn_fork.utils import shuffle
+
+
+from sklearn_fork.metrics import RocCurveDisplay
 
 
 @pytest.fixture(scope="module")
@@ -189,7 +198,9 @@ def test_roc_curve_chance_level_line(
     [
         LogisticRegression(),
         make_pipeline(StandardScaler(), LogisticRegression()),
-        make_pipeline(make_column_transformer((StandardScaler(), [0, 1])), LogisticRegression()),
+        make_pipeline(
+            make_column_transformer((StandardScaler(), [0, 1])), LogisticRegression()
+        ),
     ],
 )
 @pytest.mark.parametrize("constructor_name", ["from_estimator", "from_predictions"])
@@ -222,11 +233,15 @@ def test_roc_curve_display_complex_pipeline(pyplot, data_binary, clf, constructo
         (0.8, "my_est2", "my_est2 (AUC = 0.80)"),
     ],
 )
-def test_roc_curve_display_default_labels(pyplot, roc_auc, estimator_name, expected_label):
+def test_roc_curve_display_default_labels(
+    pyplot, roc_auc, estimator_name, expected_label
+):
     """Check the default labels used in the display."""
     fpr = np.array([0, 0.5, 1])
     tpr = np.array([0, 0.5, 1])
-    disp = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name=estimator_name).plot()
+    disp = RocCurveDisplay(
+        fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name=estimator_name
+    ).plot()
     assert disp.line_.get_label() == expected_label
 
 

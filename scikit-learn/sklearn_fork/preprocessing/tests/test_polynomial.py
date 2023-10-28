@@ -1,13 +1,18 @@
 import numpy as np
 import pytest
-from numpy.testing import assert_allclose, assert_array_equal
 from scipy import sparse
-from scipy.interpolate import BSpline
 from scipy.sparse import random as sparse_random
+from sklearn_fork.utils._testing import assert_array_almost_equal
+
+from numpy.testing import assert_allclose, assert_array_equal
+from scipy.interpolate import BSpline
 from sklearn_fork.linear_model import LinearRegression
 from sklearn_fork.pipeline import Pipeline
-from sklearn_fork.preprocessing import KBinsDiscretizer, PolynomialFeatures, SplineTransformer
-from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.preprocessing import (
+    KBinsDiscretizer,
+    PolynomialFeatures,
+    SplineTransformer,
+)
 
 
 @pytest.mark.parametrize("est", (PolynomialFeatures, SplineTransformer))
@@ -28,7 +33,9 @@ def test_spline_transformer_integer_knots(extrapolation):
     """Test that SplineTransformer accepts integer value knot positions."""
     X = np.arange(20).reshape(10, 2)
     knots = [[0, 1], [1, 2], [5, 5], [11, 10], [12, 11]]
-    _ = SplineTransformer(degree=3, knots=knots, extrapolation=extrapolation).fit_transform(X)
+    _ = SplineTransformer(
+        degree=3, knots=knots, extrapolation=extrapolation
+    ).fit_transform(X)
 
 
 def test_spline_transformer_feature_names():
@@ -161,7 +168,9 @@ def test_spline_transformer_linear_regression(bias, intercept):
         ),
     ],
 )
-def test_spline_transformer_get_base_knot_positions(knots, n_knots, sample_weight, expected_knots):
+def test_spline_transformer_get_base_knot_positions(
+    knots, n_knots, sample_weight, expected_knots
+):
     # Check the behaviour to find the positions of the knots with and without
     # `sample_weight`
     X = np.array([[0, 2], [0, 2], [2, 2], [3, 3], [4, 6], [5, 8], [6, 14]])
@@ -209,7 +218,9 @@ def test_spline_transformer_periodic_spline_backport():
     degree = 2
 
     # Use periodic extrapolation backport in SplineTransformer
-    transformer = SplineTransformer(degree=degree, extrapolation="periodic", knots=[[-1.0], [0.0], [1.0]])
+    transformer = SplineTransformer(
+        degree=degree, extrapolation="periodic", knots=[[-1.0], [0.0], [1.0]]
+    )
     Xt = transformer.fit_transform(X)
 
     # Use periodic extrapolation in BSpline
@@ -327,7 +338,9 @@ def test_spline_transformer_extrapolation(bias, intercept, degree):
     assert_allclose(pipe.predict([[-10], [5]]), [-10, 5])
 
     # 'error'
-    splt = SplineTransformer(n_knots=4, degree=degree, include_bias=bias, extrapolation="error")
+    splt = SplineTransformer(
+        n_knots=4, degree=degree, include_bias=bias, extrapolation="error"
+    )
     splt.fit(X)
     with pytest.raises(ValueError):
         splt.transform([[-10]])
@@ -342,7 +355,9 @@ def test_spline_transformer_kbindiscretizer():
     n_bins = 5
     n_knots = n_bins + 1
 
-    splt = SplineTransformer(n_knots=n_knots, degree=0, knots="quantile", include_bias=True)
+    splt = SplineTransformer(
+        n_knots=n_knots, degree=0, knots="quantile", include_bias=True
+    )
     splines = splt.fit_transform(X)
 
     kbd = KBinsDiscretizer(n_bins=n_bins, encode="onehot-dense", strategy="quantile")
@@ -418,7 +433,9 @@ def test_polynomial_features_one_feature(
     X, P = single_feature_degree3
     if sparse_X:
         X = sparse_X(X)
-    tf = PolynomialFeatures(degree=degree, include_bias=include_bias, interaction_only=interaction_only).fit(X)
+    tf = PolynomialFeatures(
+        degree=degree, include_bias=include_bias, interaction_only=interaction_only
+    ).fit(X)
     out = tf.transform(X)
     if sparse_X:
         out = out.toarray()
@@ -490,7 +507,9 @@ def test_polynomial_features_two_features(
     X, P = two_features_degree3
     if sparse_X:
         X = sparse_X(X)
-    tf = PolynomialFeatures(degree=degree, include_bias=include_bias, interaction_only=interaction_only).fit(X)
+    tf = PolynomialFeatures(
+        degree=degree, include_bias=include_bias, interaction_only=interaction_only
+    ).fit(X)
     out = tf.transform(X)
     if sparse_X:
         out = out.toarray()
@@ -562,7 +581,9 @@ def test_polynomial_feature_names():
     )
     assert len(feature_names) == poly.transform(X).shape[1]
 
-    poly = PolynomialFeatures(degree=(3, 3), include_bias=True, interaction_only=True).fit(X)
+    poly = PolynomialFeatures(
+        degree=(3, 3), include_bias=True, interaction_only=True
+    ).fit(X)
     feature_names = poly.get_feature_names_out(["a", "b", "c"])
     assert_array_equal(["1", "a b c"], feature_names)
     assert len(feature_names) == poly.transform(X).shape[1]
@@ -591,7 +612,9 @@ def test_polynomial_features_csc_X(deg, include_bias, interaction_only, dtype):
     X = rng.randint(0, 2, (100, 2))
     X_csc = sparse.csc_matrix(X)
 
-    est = PolynomialFeatures(deg, include_bias=include_bias, interaction_only=interaction_only)
+    est = PolynomialFeatures(
+        deg, include_bias=include_bias, interaction_only=interaction_only
+    )
     Xt_csc = est.fit_transform(X_csc.astype(dtype))
     Xt_dense = est.fit_transform(X.astype(dtype))
 
@@ -616,7 +639,9 @@ def test_polynomial_features_csr_X(deg, include_bias, interaction_only, dtype):
     X = rng.randint(0, 2, (100, 2))
     X_csr = sparse.csr_matrix(X)
 
-    est = PolynomialFeatures(deg, include_bias=include_bias, interaction_only=interaction_only)
+    est = PolynomialFeatures(
+        deg, include_bias=include_bias, interaction_only=interaction_only
+    )
     Xt_csr = est.fit_transform(X_csr.astype(dtype))
     Xt_dense = est.fit_transform(X.astype(dtype, copy=False))
 
@@ -626,7 +651,9 @@ def test_polynomial_features_csr_X(deg, include_bias, interaction_only, dtype):
 
 
 @pytest.mark.parametrize("n_features", [1, 4, 5])
-@pytest.mark.parametrize("min_degree, max_degree", [(0, 1), (0, 2), (1, 3), (0, 4), (3, 4)])
+@pytest.mark.parametrize(
+    "min_degree, max_degree", [(0, 1), (0, 2), (1, 3), (0, 4), (3, 4)]
+)
 @pytest.mark.parametrize("interaction_only", [True, False])
 @pytest.mark.parametrize("include_bias", [True, False])
 def test_num_combinations(
@@ -671,7 +698,9 @@ def test_polynomial_features_csr_X_floats(deg, include_bias, interaction_only, d
     X_csr = sparse_random(1000, 10, 0.5, random_state=0).tocsr()
     X = X_csr.toarray()
 
-    est = PolynomialFeatures(deg, include_bias=include_bias, interaction_only=interaction_only)
+    est = PolynomialFeatures(
+        deg, include_bias=include_bias, interaction_only=interaction_only
+    )
     Xt_csr = est.fit_transform(X_csr.astype(dtype))
     Xt_dense = est.fit_transform(X.astype(dtype))
 
@@ -721,7 +750,9 @@ def test_polynomial_features_csr_X_degree_4(include_bias, interaction_only):
     X_csr = sparse_random(1000, 10, 0.5, random_state=0).tocsr()
     X = X_csr.toarray()
 
-    est = PolynomialFeatures(4, include_bias=include_bias, interaction_only=interaction_only)
+    est = PolynomialFeatures(
+        4, include_bias=include_bias, interaction_only=interaction_only
+    )
     Xt_csr = est.fit_transform(X_csr)
     Xt_dense = est.fit_transform(X)
 
@@ -764,7 +795,10 @@ def test_polynomial_features_behaviour_on_zero_degree():
     """
     X = np.ones((10, 2))
     poly = PolynomialFeatures(degree=0, include_bias=False)
-    err_msg = "Setting degree to zero and include_bias to False would result in an empty output array."
+    err_msg = (
+        "Setting degree to zero and include_bias to False would result in"
+        " an empty output array."
+    )
     with pytest.raises(ValueError, match=err_msg):
         poly.fit_transform(X)
 

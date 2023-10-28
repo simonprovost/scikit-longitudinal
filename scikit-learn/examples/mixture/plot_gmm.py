@@ -26,10 +26,11 @@ regularization properties of the inference algorithm.
 
 import itertools
 
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy import linalg
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+
 from sklearn_fork import mixture
 
 color_iter = itertools.cycle(["navy", "c", "cornflowerblue", "gold", "darkorange"])

@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from sklearn_fork.tree._reingold_tilford import Tree, buchheim
+from sklearn_fork.tree._reingold_tilford import buchheim, Tree
 
 simple_tree = Tree("", 0, Tree("", 1), Tree("", 2))
 
@@ -28,7 +28,9 @@ def test_buchheim(tree, n_nodes):
         if len(draw_tree.children):
             # these trees are always binary
             # parents are centered above children
-            assert draw_tree.x == (draw_tree.children[0].x + draw_tree.children[1].x) / 2
+            assert (
+                draw_tree.x == (draw_tree.children[0].x + draw_tree.children[1].x) / 2
+            )
         return res
 
     layout = buchheim(tree)

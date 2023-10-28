@@ -14,9 +14,10 @@ import warnings
 
 import numpy as np
 
+from ._base import _get_weights
+from ._base import NeighborsBase, KNeighborsMixin, RadiusNeighborsMixin
 from ..base import RegressorMixin
 from ..utils._param_validation import StrOptions
-from ._base import KNeighborsMixin, NeighborsBase, RadiusNeighborsMixin, _get_weights
 
 
 class KNeighborsRegressor(KNeighborsMixin, RegressorMixin, NeighborsBase):
@@ -469,19 +470,29 @@ class RadiusNeighborsRegressor(RadiusNeighborsMixin, RegressorMixin, NeighborsBa
 
         if weights is None:
             y_pred = np.array(
-                [np.mean(_y[ind, :], axis=0) if len(ind) else empty_obs for (i, ind) in enumerate(neigh_ind)]
+                [
+                    np.mean(_y[ind, :], axis=0) if len(ind) else empty_obs
+                    for (i, ind) in enumerate(neigh_ind)
+                ]
             )
 
         else:
             y_pred = np.array(
                 [
-                    (np.average(_y[ind, :], axis=0, weights=weights[i]) if len(ind) else empty_obs)
+                    (
+                        np.average(_y[ind, :], axis=0, weights=weights[i])
+                        if len(ind)
+                        else empty_obs
+                    )
                     for (i, ind) in enumerate(neigh_ind)
                 ]
             )
 
         if np.any(np.isnan(y_pred)):
-            empty_warning_msg = "One or more samples have no neighbors within specified radius; predicting NaN."
+            empty_warning_msg = (
+                "One or more samples have no neighbors "
+                "within specified radius; predicting NaN."
+            )
             warnings.warn(empty_warning_msg)
 
         if self._y.ndim == 1:

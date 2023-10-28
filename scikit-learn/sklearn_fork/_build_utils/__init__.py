@@ -5,23 +5,24 @@ Utilities useful during the build.
 # license: BSD
 
 
-import contextlib
 import os
-
 import sklearn_fork
+import contextlib
 
+from .pre_build_helpers import basic_check_build
+from .openmp_helpers import check_openmp_support
 from .._min_dependencies import CYTHON_MIN_VERSION
 from ..externals._packaging.version import parse
-from .openmp_helpers import check_openmp_support
-from .pre_build_helpers import basic_check_build
+
 
 DEFAULT_ROOT = "sklearn_fork"
 
 
 def _check_cython_version():
-    message = ("Please install Cython with a version >= {0} in order to build a scikit-learn from source.").format(
-        CYTHON_MIN_VERSION
-    )
+    message = (
+        "Please install Cython with a version >= {0} in order "
+        "to build a scikit-learn from source."
+    ).format(CYTHON_MIN_VERSION)
     try:
         import Cython
     except ModuleNotFoundError as e:
@@ -29,7 +30,9 @@ def _check_cython_version():
         raise ModuleNotFoundError(message) from e
 
     if parse(Cython.__version__) < parse(CYTHON_MIN_VERSION):
-        message += " The current version of Cython is {} installed in {}.".format(Cython.__version__, Cython.__path__)
+        message += " The current version of Cython is {} installed in {}.".format(
+            Cython.__version__, Cython.__path__
+        )
         raise ValueError(message)
 
 
@@ -61,7 +64,9 @@ def cythonize_extensions(extension):
         n_jobs = joblib.cpu_count()
 
     # Additional checks for Cython
-    cython_enable_debug_directives = os.environ.get("SKLEARN_ENABLE_DEBUG_CYTHON_DIRECTIVES", "0") != "0"
+    cython_enable_debug_directives = (
+        os.environ.get("SKLEARN_ENABLE_DEBUG_CYTHON_DIRECTIVES", "0") != "0"
+    )
 
     compiler_directives = {
         "language_level": 3,
@@ -88,7 +93,10 @@ def gen_from_templates(templates):
         outfile = template.replace(".tp", "")
 
         # if the template is not updated, no need to output the cython file
-        if not (os.path.exists(outfile) and os.stat(template).st_mtime < os.stat(outfile).st_mtime):
+        if not (
+            os.path.exists(outfile)
+            and os.stat(template).st_mtime < os.stat(outfile).st_mtime
+        ):
             with open(template, "r") as f:
                 tmpl = f.read()
 

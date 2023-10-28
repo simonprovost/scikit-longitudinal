@@ -36,9 +36,6 @@ X, y = load_diabetes(return_X_y=True, as_frame=True)
 n_samples = X.shape[0]
 X.head()
 
-from sklearn_fork.linear_model import LassoLarsIC
-from sklearn_fork.pipeline import make_pipeline
-
 # %%
 # Scikit-learn provides an estimator called
 # :class:`~sklearn_fork.linear_model.LinearLarsIC` that uses either Akaike's
@@ -49,6 +46,8 @@ from sklearn_fork.pipeline import make_pipeline
 # In the following, we are going to fit two models to compare the values
 # reported by AIC and BIC.
 from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.linear_model import LassoLarsIC
+from sklearn_fork.pipeline import make_pipeline
 
 lasso_lars_ic = make_pipeline(StandardScaler(), LassoLarsIC(criterion="aic")).fit(X, y)
 
@@ -73,7 +72,9 @@ aic_criterion = zou_et_al_criterion_rescaling(
     lasso_lars_ic[-1].noise_variance_,
 )
 
-index_alpha_path_aic = np.flatnonzero(lasso_lars_ic[-1].alphas_ == lasso_lars_ic[-1].alpha_)[0]
+index_alpha_path_aic = np.flatnonzero(
+    lasso_lars_ic[-1].alphas_ == lasso_lars_ic[-1].alpha_
+)[0]
 
 # %%
 lasso_lars_ic.set_params(lassolarsic__criterion="bic").fit(X, y)
@@ -84,7 +85,9 @@ bic_criterion = zou_et_al_criterion_rescaling(
     lasso_lars_ic[-1].noise_variance_,
 )
 
-index_alpha_path_bic = np.flatnonzero(lasso_lars_ic[-1].alphas_ == lasso_lars_ic[-1].alpha_)[0]
+index_alpha_path_bic = np.flatnonzero(
+    lasso_lars_ic[-1].alphas_ == lasso_lars_ic[-1].alpha_
+)[0]
 
 # %%
 # Now that we collected the AIC and BIC, we can as well check that the minima

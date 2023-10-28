@@ -1,30 +1,36 @@
 from math import ceil
 
 import numpy as np
-import pytest
 from numpy.testing import assert_array_equal
-from sklearn_fork.datasets import load_iris, make_blobs
+import pytest
+
 from sklearn_fork.ensemble import StackingClassifier
 from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.metrics import accuracy_score
-from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.neighbors import KNeighborsClassifier
-from sklearn_fork.semi_supervised import SelfTrainingClassifier
 from sklearn_fork.svm import SVC
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.datasets import load_iris, make_blobs
+from sklearn_fork.metrics import accuracy_score
+
+from sklearn_fork.semi_supervised import SelfTrainingClassifier
 
 # Author: Oliver Rausch <rauscho@ethz.ch>
 # License: BSD 3 clause
 
 # load the iris dataset and randomly permute it
 iris = load_iris()
-X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, random_state=0
+)
 
 n_labeled_samples = 50
 
 y_train_missing_labels = y_train.copy()
 y_train_missing_labels[n_labeled_samples:] = -1
 mapping = {0: "A", 1: "B", 2: "C", -1: "-1"}
-y_train_missing_strings = np.vectorize(mapping.get)(y_train_missing_labels).astype(object)
+y_train_missing_strings = np.vectorize(mapping.get)(y_train_missing_labels).astype(
+    object
+)
 y_train_missing_strings[y_train_missing_labels == -1] = -1
 
 
@@ -47,12 +53,16 @@ def test_classification(base_estimator, selection_crit):
     # Also test for multioutput classification
     threshold = 0.75
     max_iter = 10
-    st = SelfTrainingClassifier(base_estimator, max_iter=max_iter, threshold=threshold, criterion=selection_crit)
+    st = SelfTrainingClassifier(
+        base_estimator, max_iter=max_iter, threshold=threshold, criterion=selection_crit
+    )
     st.fit(X_train, y_train_missing_labels)
     pred = st.predict(X_test)
     proba = st.predict_proba(X_test)
 
-    st_string = SelfTrainingClassifier(base_estimator, max_iter=max_iter, criterion=selection_crit, threshold=threshold)
+    st_string = SelfTrainingClassifier(
+        base_estimator, max_iter=max_iter, criterion=selection_crit, threshold=threshold
+    )
     st_string.fit(X_train, y_train_missing_strings)
     pred_string = st_string.predict(X_test)
     proba_string = st_string.predict_proba(X_test)

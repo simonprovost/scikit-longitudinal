@@ -35,7 +35,9 @@ from sklearn_fork.datasets import make_blobs
 
 np.random.seed(0)
 
-X, y = make_blobs(n_samples=2000, n_features=2, centers=3, random_state=42, cluster_std=5.0)
+X, y = make_blobs(
+    n_samples=2000, n_features=2, centers=3, random_state=42, cluster_std=5.0
+)
 X_train, y_train = X[:600], y[:600]
 X_valid, y_valid = X[600:1000], y[600:1000]
 X_train_valid, y_train_valid = X[:1000], y[:1000]
@@ -232,7 +234,10 @@ p = p[p[:, 2] >= 0]
 # Use the three class-wise calibrators to compute calibrated probabilities
 calibrated_classifier = cal_clf.calibrated_classifiers_[0]
 prediction = np.vstack(
-    [calibrator.predict(this_p) for calibrator, this_p in zip(calibrated_classifier.calibrators, p.T)]
+    [
+        calibrator.predict(this_p)
+        for calibrator, this_p in zip(calibrated_classifier.calibrators, p.T)
+    ]
 ).T
 
 # Re-normalize the calibrated predictions to make sure they stay inside the

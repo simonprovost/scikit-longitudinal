@@ -25,9 +25,11 @@ analogous to the random splits in Random Forests
 #
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork import datasets, ensemble
+import matplotlib.pyplot as plt
+
+from sklearn_fork import ensemble
+from sklearn_fork import datasets
 from sklearn_fork.metrics import log_loss
 from sklearn_fork.model_selection import train_test_split
 

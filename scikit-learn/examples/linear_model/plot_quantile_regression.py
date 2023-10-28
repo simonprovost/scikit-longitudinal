@@ -62,7 +62,9 @@ axs[1, 1].hist(y_true_mean - y_pareto, edgecolor="black")
 
 axs[0, 0].set_title("Dataset with heteroscedastic Normal distributed targets")
 axs[0, 1].set_title("Dataset with asymmetric Pareto distributed target")
-axs[1, 0].set_title("Residuals distribution for heteroscedastic Normal distributed targets")
+axs[1, 0].set_title(
+    "Residuals distribution for heteroscedastic Normal distributed targets"
+)
 axs[1, 1].set_title("Residuals distribution for asymmetric Pareto distributed target")
 axs[0, 0].legend()
 axs[0, 1].legend()
@@ -109,7 +111,7 @@ _ = axs[1, 1].set_xlabel("Residuals")
 #
 # We will use the quantiles at 5% and 95% to find the outliers in the training
 # sample beyond the central 90% interval.
-from sklearn_fork.utils.fixes import parse_version, sp_version
+from sklearn_fork.utils.fixes import sp_version, parse_version
 
 # This is line is to avoid incompatibility if older SciPy version.
 # You should use `solver="highs"` with recent version of SciPy.
@@ -127,9 +129,13 @@ for quantile in quantiles:
     predictions[quantile] = y_pred
 
     if quantile == min(quantiles):
-        out_bounds_predictions = np.logical_or(out_bounds_predictions, y_pred >= y_normal)
+        out_bounds_predictions = np.logical_or(
+            out_bounds_predictions, y_pred >= y_normal
+        )
     elif quantile == max(quantiles):
-        out_bounds_predictions = np.logical_or(out_bounds_predictions, y_pred <= y_normal)
+        out_bounds_predictions = np.logical_or(
+            out_bounds_predictions, y_pred <= y_normal
+        )
 
 # %%
 # Now, we can plot the three linear models and the distinguished samples that
@@ -185,9 +191,13 @@ for quantile in quantiles:
     predictions[quantile] = y_pred
 
     if quantile == min(quantiles):
-        out_bounds_predictions = np.logical_or(out_bounds_predictions, y_pred >= y_pareto)
+        out_bounds_predictions = np.logical_or(
+            out_bounds_predictions, y_pred >= y_pareto
+        )
     elif quantile == max(quantiles):
-        out_bounds_predictions = np.logical_or(out_bounds_predictions, y_pred <= y_pareto)
+        out_bounds_predictions = np.logical_or(
+            out_bounds_predictions, y_pred <= y_pareto
+        )
 
 # %%
 plt.plot(X, y_true_mean, color="black", linestyle="dashed", label="True mean")
@@ -243,7 +253,8 @@ _ = plt.title("Quantiles of asymmetric Pareto distributed target")
 # distributed target to make it more interesting as mean and median are not
 # equal.
 from sklearn_fork.linear_model import LinearRegression
-from sklearn_fork.metrics import mean_absolute_error, mean_squared_error
+from sklearn_fork.metrics import mean_absolute_error
+from sklearn_fork.metrics import mean_squared_error
 
 linear_regression = LinearRegression()
 quantile_regression = QuantileRegressor(quantile=0.5, alpha=0, solver=solver)

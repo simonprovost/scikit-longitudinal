@@ -2,17 +2,19 @@
 # License: BSD 3 clause
 
 from copy import deepcopy
-from numbers import Integral, Real
 
 import numpy as np
+from numbers import Integral, Real
 
-from ..base import BaseEstimator, MetaEstimatorMixin, clone
-from ..exceptions import NotFittedError
-from ..utils._param_validation import HasMethods, Interval, Options
+from ._base import SelectorMixin
+from ._base import _get_feature_importances
+from ..base import BaseEstimator, clone, MetaEstimatorMixin
 from ..utils._tags import _safe_tags
+from ..utils.validation import check_is_fitted, check_scalar, _num_features
+from ..utils._param_validation import HasMethods, Interval, Options
+
+from ..exceptions import NotFittedError
 from ..utils.metaestimators import available_if
-from ..utils.validation import _num_features, check_is_fitted, check_scalar
-from ._base import SelectorMixin, _get_feature_importances
 
 
 def _calculate_threshold(estimator, importances, threshold):
@@ -55,7 +57,9 @@ def _calculate_threshold(estimator, importances, threshold):
             threshold = np.mean(importances)
 
         else:
-            raise ValueError("Expected threshold='mean' or threshold='median' got %s" % threshold)
+            raise ValueError(
+                "Expected threshold='mean' or threshold='median' got %s" % threshold
+            )
 
     else:
         threshold = float(threshold)
@@ -70,7 +74,9 @@ def _estimator_has(attr):
     check the unfitted estimator.
     """
     return lambda self: (
-        hasattr(self.estimator_, attr) if hasattr(self, "estimator_") else hasattr(self.estimator, attr)
+        hasattr(self.estimator_, attr)
+        if hasattr(self, "estimator_")
+        else hasattr(self.estimator, attr)
     )
 
 
@@ -262,16 +268,23 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
             try:
                 check_is_fitted(self.estimator)
             except NotFittedError as exc:
-                raise NotFittedError("When `prefit=True`, `estimator` is expected to be a fitted estimator.") from exc
+                raise NotFittedError(
+                    "When `prefit=True`, `estimator` is expected to be a fitted "
+                    "estimator."
+                ) from exc
         if callable(max_features):
             # This branch is executed when `transform` is called directly and thus
             # `max_features_` is not set and we fallback using `self.max_features`
             # that is not validated
             raise NotFittedError(
-                "When `prefit=True` and `max_features` is a callable, call `fit` before calling `transform`."
+                "When `prefit=True` and `max_features` is a callable, call `fit` "
+                "before calling `transform`."
             )
         elif max_features is not None and not isinstance(max_features, Integral):
-            raise ValueError(f"`max_features` must be an integer. Got `max_features={max_features}` instead.")
+            raise ValueError(
+                f"`max_features` must be an integer. Got `max_features={max_features}` "
+                "instead."
+            )
 
         scores = _get_feature_importances(
             estimator=estimator,
@@ -334,7 +347,10 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
             try:
                 check_is_fitted(self.estimator)
             except NotFittedError as exc:
-                raise NotFittedError("When `prefit=True`, `estimator` is expected to be a fitted estimator.") from exc
+                raise NotFittedError(
+                    "When `prefit=True`, `estimator` is expected to be a fitted "
+                    "estimator."
+                ) from exc
             self.estimator_ = deepcopy(self.estimator)
         else:
             self.estimator_ = clone(self.estimator)
@@ -391,7 +407,8 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
                     check_is_fitted(self.estimator)
                 except NotFittedError as exc:
                     raise NotFittedError(
-                        "When `prefit=True`, `estimator` is expected to be a fitted estimator."
+                        "When `prefit=True`, `estimator` is expected to be a fitted "
+                        "estimator."
                     ) from exc
                 self.estimator_ = deepcopy(self.estimator)
             return self
@@ -415,7 +432,11 @@ class SelectFromModel(MetaEstimatorMixin, SelectorMixin, BaseEstimator):
         try:
             check_is_fitted(self)
         except NotFittedError as nfe:
-            raise AttributeError("{} object has no n_features_in_ attribute.".format(self.__class__.__name__)) from nfe
+            raise AttributeError(
+                "{} object has no n_features_in_ attribute.".format(
+                    self.__class__.__name__
+                )
+            ) from nfe
 
         return self.estimator_.n_features_in_
 

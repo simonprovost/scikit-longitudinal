@@ -9,15 +9,14 @@ from libcpp.vector cimport vector
 
 from ...utils._cython_blas cimport _dot
 from ...utils._openmp_helpers cimport omp_get_thread_num
-from ...utils._typedefs cimport float32_t, float64_t, int32_t, intp_t
-
-from numbers import Integral
+from ...utils._typedefs cimport intp_t, float32_t, float64_t, int32_t
 
 import numpy as np
+
 from scipy.sparse import issparse
+from numbers import Integral
 from sklearn_fork import get_config
 from sklearn_fork.utils import check_scalar
-
 from ...utils._openmp_helpers import _openmp_effective_n_threads
 
 #####################

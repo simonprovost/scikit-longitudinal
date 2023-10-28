@@ -25,23 +25,23 @@ set.
 # Modified for documentation by Jaques Grobler
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-from sklearn_fork.datasets import make_circles, make_classification, make_moons
-from sklearn_fork.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn_fork.ensemble import AdaBoostClassifier, RandomForestClassifier
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.datasets import make_moons, make_circles, make_classification
+from sklearn_fork.neural_network import MLPClassifier
+from sklearn_fork.neighbors import KNeighborsClassifier
+from sklearn_fork.svm import SVC
 from sklearn_fork.gaussian_process import GaussianProcessClassifier
 from sklearn_fork.gaussian_process.kernels import RBF
-from sklearn_fork.inspection import DecisionBoundaryDisplay
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.naive_bayes import GaussianNB
-from sklearn_fork.neighbors import KNeighborsClassifier
-from sklearn_fork.neural_network import MLPClassifier
-from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import StandardScaler
-from sklearn_fork.svm import SVC
 from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn_fork.naive_bayes import GaussianNB
+from sklearn_fork.discriminant_analysis import QuadraticDiscriminantAnalysis
+from sklearn_fork.inspection import DecisionBoundaryDisplay
 
 names = [
     "Nearest Neighbors",
@@ -69,7 +69,9 @@ classifiers = [
     QuadraticDiscriminantAnalysis(),
 ]
 
-X, y = make_classification(n_features=2, n_redundant=0, n_informative=2, random_state=1, n_clusters_per_class=1)
+X, y = make_classification(
+    n_features=2, n_redundant=0, n_informative=2, random_state=1, n_clusters_per_class=1
+)
 rng = np.random.RandomState(2)
 X += 2 * rng.uniform(size=X.shape)
 linearly_separable = (X, y)
@@ -86,7 +88,9 @@ i = 1
 for ds_cnt, ds in enumerate(datasets):
     # preprocess dataset, split into training and test part
     X, y = ds
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.4, random_state=42
+    )
 
     x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
     y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
@@ -100,7 +104,9 @@ for ds_cnt, ds in enumerate(datasets):
     # Plot the training points
     ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright, edgecolors="k")
     # Plot the testing points
-    ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, alpha=0.6, edgecolors="k")
+    ax.scatter(
+        X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, alpha=0.6, edgecolors="k"
+    )
     ax.set_xlim(x_min, x_max)
     ax.set_ylim(y_min, y_max)
     ax.set_xticks(())
@@ -114,10 +120,14 @@ for ds_cnt, ds in enumerate(datasets):
         clf = make_pipeline(StandardScaler(), clf)
         clf.fit(X_train, y_train)
         score = clf.score(X_test, y_test)
-        DecisionBoundaryDisplay.from_estimator(clf, X, cmap=cm, alpha=0.8, ax=ax, eps=0.5)
+        DecisionBoundaryDisplay.from_estimator(
+            clf, X, cmap=cm, alpha=0.8, ax=ax, eps=0.5
+        )
 
         # Plot the training points
-        ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright, edgecolors="k")
+        ax.scatter(
+            X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright, edgecolors="k"
+        )
         # Plot the testing points
         ax.scatter(
             X_test[:, 0],

@@ -34,7 +34,9 @@ digits = datasets.load_digits()
 n_samples = len(digits.images)
 X = digits.images.reshape((n_samples, -1))
 y = digits.target == 8
-print(f"The number of images is {X.shape[0]} and each image contains {X.shape[1]} pixels")
+print(
+    f"The number of images is {X.shape[0]} and each image contains {X.shape[1]} pixels"
+)
 
 # %%
 # As presented in the introduction, the data will be split into a training
@@ -112,7 +114,9 @@ def refit_strategy(cv_results):
     print_dataframe(cv_results_)
 
     # Filter-out all results below the threshold
-    high_precision_cv_results = cv_results_[cv_results_["mean_test_precision"] > precision_threshold]
+    high_precision_cv_results = cv_results_[
+        cv_results_["mean_test_precision"] > precision_threshold
+    ]
 
     print(f"Models with a precision higher than {precision_threshold}:")
     print_dataframe(high_precision_cv_results)
@@ -146,7 +150,9 @@ def refit_strategy(cv_results):
     print_dataframe(high_recall_cv_results)
 
     # From the best candidates, select the fastest model to predict
-    fastest_top_recall_high_precision_index = high_recall_cv_results["mean_score_time"].idxmin()
+    fastest_top_recall_high_precision_index = high_recall_cv_results[
+        "mean_score_time"
+    ].idxmin()
 
     print(
         "\nThe selected final model is the fastest to predict out of the previously\n"
@@ -173,7 +179,9 @@ tuned_parameters = [
     {"kernel": ["linear"], "C": [1, 10, 100, 1000]},
 ]
 
-grid_search = GridSearchCV(SVC(), tuned_parameters, scoring=scores, refit=refit_strategy)
+grid_search = GridSearchCV(
+    SVC(), tuned_parameters, scoring=scores, refit=refit_strategy
+)
 grid_search.fit(X_train, y_train)
 
 # %%

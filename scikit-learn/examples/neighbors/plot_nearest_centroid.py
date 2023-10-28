@@ -8,12 +8,13 @@ It will plot the decision boundaries for each class.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from sklearn_fork import datasets
-from sklearn_fork.inspection import DecisionBoundaryDisplay
 from sklearn_fork.neighbors import NearestCentroid
+from sklearn_fork.inspection import DecisionBoundaryDisplay
+
 
 # import some data to play with
 iris = datasets.load_iris()
@@ -34,7 +35,9 @@ for shrinkage in [None, 0.2]:
     print(shrinkage, np.mean(y == y_pred))
 
     _, ax = plt.subplots()
-    DecisionBoundaryDisplay.from_estimator(clf, X, cmap=cmap_light, ax=ax, response_method="predict")
+    DecisionBoundaryDisplay.from_estimator(
+        clf, X, cmap=cmap_light, ax=ax, response_method="predict"
+    )
 
     # Plot also the training points
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold, edgecolor="k", s=20)

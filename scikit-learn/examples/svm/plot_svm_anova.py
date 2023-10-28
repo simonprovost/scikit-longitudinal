@@ -22,12 +22,11 @@ X, y = load_iris(return_X_y=True)
 rng = np.random.RandomState(0)
 X = np.hstack((X, 2 * rng.random((X.shape[0], 36))))
 
-from sklearn_fork.feature_selection import SelectPercentile, f_classif
-
 # %%
 # Create the pipeline
 # -------------------
 from sklearn_fork.pipeline import Pipeline
+from sklearn_fork.feature_selection import SelectPercentile, f_classif
 from sklearn_fork.preprocessing import StandardScaler
 from sklearn_fork.svm import SVC
 

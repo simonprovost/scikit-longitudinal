@@ -35,8 +35,9 @@ feature distinguishes a particular class.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import make_multilabel_classification as make_ml_clf
 
 COLORS = np.array(
@@ -69,7 +70,9 @@ def plot_2d(ax, n_labels=1, n_classes=3, length=50):
         random_state=RANDOM_SEED,
     )
 
-    ax.scatter(X[:, 0], X[:, 1], color=COLORS.take((Y * [1, 2, 4]).sum(axis=1)), marker=".")
+    ax.scatter(
+        X[:, 0], X[:, 1], color=COLORS.take((Y * [1, 2, 4]).sum(axis=1)), marker="."
+    )
     ax.scatter(
         p_w_c[0] * length,
         p_w_c[1] * length,

@@ -1,38 +1,39 @@
 import sys
 from io import StringIO
-
 import numpy as np
-import pytest
-import scipy.sparse as sp
 from numpy.testing import assert_allclose
-from scipy.optimize import check_grad
-from scipy.spatial.distance import pdist, squareform
+import scipy.sparse as sp
+import pytest
+
 from sklearn_fork import config_context
-from sklearn_fork.datasets import make_blobs
+from sklearn_fork.neighbors import NearestNeighbors
+from sklearn_fork.neighbors import kneighbors_graph
 from sklearn_fork.exceptions import EfficiencyWarning
+from sklearn_fork.utils._testing import ignore_warnings
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import skip_if_32bit
+from sklearn_fork.utils import check_random_state
+from sklearn_fork.manifold._t_sne import _joint_probabilities
+from sklearn_fork.manifold._t_sne import _joint_probabilities_nn
+from sklearn_fork.manifold._t_sne import _kl_divergence
+from sklearn_fork.manifold._t_sne import _kl_divergence_bh
+from sklearn_fork.manifold._t_sne import _gradient_descent
+from sklearn_fork.manifold._t_sne import trustworthiness
+from sklearn_fork.manifold import TSNE
 
 # mypy error: Module 'sklearn_fork.manifold' has no attribute '_barnes_hut_tsne'
 from sklearn_fork.manifold import _barnes_hut_tsne  # type: ignore
-from sklearn_fork.manifold import TSNE
-from sklearn_fork.manifold._t_sne import (
-    _gradient_descent,
-    _joint_probabilities,
-    _joint_probabilities_nn,
-    _kl_divergence,
-    _kl_divergence_bh,
-    trustworthiness,
-)
 from sklearn_fork.manifold._utils import _binary_search_perplexity
-from sklearn_fork.metrics.pairwise import cosine_distances, manhattan_distances, pairwise_distances
-from sklearn_fork.neighbors import NearestNeighbors, kneighbors_graph
-from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import (
-    assert_almost_equal,
-    assert_array_almost_equal,
-    assert_array_equal,
-    ignore_warnings,
-    skip_if_32bit,
-)
+from sklearn_fork.datasets import make_blobs
+from scipy.optimize import check_grad
+from scipy.spatial.distance import pdist
+from scipy.spatial.distance import squareform
+from sklearn_fork.metrics.pairwise import pairwise_distances
+from sklearn_fork.metrics.pairwise import manhattan_distances
+from sklearn_fork.metrics.pairwise import cosine_distances
+
 
 x = np.linspace(0, 1, 10)
 xx, yy = np.meshgrid(x, x)
@@ -138,7 +139,9 @@ def test_binary_search():
     desired_perplexity = 25.0
     P = _binary_search_perplexity(distances, desired_perplexity, verbose=0)
     P = np.maximum(P, np.finfo(np.double).eps)
-    mean_perplexity = np.mean([np.exp(-np.sum(P[i] * np.log(P[i]))) for i in range(P.shape[0])])
+    mean_perplexity = np.mean(
+        [np.exp(-np.sum(P[i] * np.log(P[i]))) for i in range(P.shape[0])]
+    )
     assert_almost_equal(mean_perplexity, desired_perplexity, decimal=3)
 
 
@@ -174,7 +177,12 @@ def test_binary_search_neighbors():
     P2 = _binary_search_perplexity(distances_nn, desired_perplexity, verbose=0)
 
     indptr = distance_graph.indptr
-    P1_nn = np.array([P1[k, distance_graph.indices[indptr[k] : indptr[k + 1]]] for k in range(n_samples)])
+    P1_nn = np.array(
+        [
+            P1[k, distance_graph.indices[indptr[k] : indptr[k + 1]]]
+            for k in range(n_samples)
+        ]
+    )
     assert_array_almost_equal(P1_nn, P2, decimal=4)
 
     # Test that the highest P_ij are the same when fewer neighbors are used
@@ -435,7 +443,9 @@ def test_sparse_precomputed_distance():
     assert sp.issparse(D_sparse)
     assert_almost_equal(D_sparse.A, D)
 
-    tsne = TSNE(metric="precomputed", random_state=0, init="random", learning_rate="auto")
+    tsne = TSNE(
+        metric="precomputed", random_state=0, init="random", learning_rate="auto"
+    )
     Xt_dense = tsne.fit_transform(D)
 
     for fmt in ["csr", "lil"]:
@@ -559,9 +569,13 @@ def test_answer_gradient_two_points():
     # These tests & answers have been checked against the reference
     # implementation by LvdM.
     pos_input = np.array([[1.0, 0.0], [0.0, 1.0]])
-    pos_output = np.array([[-4.961291e-05, -1.072243e-04], [9.259460e-05, 2.702024e-04]])
+    pos_output = np.array(
+        [[-4.961291e-05, -1.072243e-04], [9.259460e-05, 2.702024e-04]]
+    )
     neighbors = np.array([[1], [0]])
-    grad_output = np.array([[-2.37012478e-05, -6.29044398e-05], [2.37012478e-05, 6.29044398e-05]])
+    grad_output = np.array(
+        [[-2.37012478e-05, -6.29044398e-05], [2.37012478e-05, 6.29044398e-05]]
+    )
     _run_answer_test(pos_input, pos_output, neighbors, grad_output)
 
 
@@ -644,7 +658,9 @@ def _run_answer_test(
     neighbors = P.indices.astype(np.int64)
     indptr = P.indptr.astype(np.int64)
 
-    _barnes_hut_tsne.gradient(P.data, pos_output, neighbors, indptr, grad_bh, 0.5, 2, 1, skip_num_points=0)
+    _barnes_hut_tsne.gradient(
+        P.data, pos_output, neighbors, indptr, grad_bh, 0.5, 2, 1, skip_num_points=0
+    )
     assert_array_almost_equal(grad_bh, grad_output, decimal=4)
 
 
@@ -748,10 +764,16 @@ def test_barnes_hut_angle():
         distances = pairwise_distances(data)
         params = random_state.randn(n_samples, n_components)
         P = _joint_probabilities(distances, perplexity, verbose=0)
-        kl_exact, grad_exact = _kl_divergence(params, P, degrees_of_freedom, n_samples, n_components)
+        kl_exact, grad_exact = _kl_divergence(
+            params, P, degrees_of_freedom, n_samples, n_components
+        )
 
         n_neighbors = n_samples - 1
-        distances_csr = NearestNeighbors().fit(data).kneighbors_graph(n_neighbors=n_neighbors, mode="distance")
+        distances_csr = (
+            NearestNeighbors()
+            .fit(data)
+            .kneighbors_graph(n_neighbors=n_neighbors, mode="distance")
+        )
         P_bh = _joint_probabilities_nn(distances_csr, perplexity, verbose=0)
         kl_bh, grad_bh = _kl_divergence_bh(
             params,
@@ -835,7 +857,9 @@ def test_min_grad_norm():
 
     # Compute how often the gradient norm is smaller than min_grad_norm
     gradient_norm_values = np.array(gradient_norm_values)
-    n_smaller_gradient_norms = len(gradient_norm_values[gradient_norm_values <= min_grad_norm])
+    n_smaller_gradient_norms = len(
+        gradient_norm_values[gradient_norm_values <= min_grad_norm]
+    )
 
     # The gradient norm can be smaller than min_grad_norm at most once,
     # because in the moment it becomes smaller the optimization stops
@@ -846,7 +870,9 @@ def test_accessible_kl_divergence():
     # Ensures that the accessible kl_divergence matches the computed value
     random_state = check_random_state(0)
     X = random_state.randn(50, 2)
-    tsne = TSNE(n_iter_without_progress=2, verbose=2, random_state=0, method="exact", n_iter=500)
+    tsne = TSNE(
+        n_iter_without_progress=2, verbose=2, random_state=0, method="exact", n_iter=500
+    )
 
     old_stdout = sys.stdout
     sys.stdout = StringIO()
@@ -968,7 +994,11 @@ def test_gradient_bh_multithread_match_sequential():
     params = random_state.randn(n_samples, n_components)
 
     n_neighbors = n_samples - 1
-    distances_csr = NearestNeighbors().fit(data).kneighbors_graph(n_neighbors=n_neighbors, mode="distance")
+    distances_csr = (
+        NearestNeighbors()
+        .fit(data)
+        .kneighbors_graph(n_neighbors=n_neighbors, mode="distance")
+    )
     P_bh = _joint_probabilities_nn(distances_csr, perplexity, verbose=0)
     kl_sequential, grad_sequential = _kl_divergence_bh(
         params,
@@ -1098,9 +1128,13 @@ def test_tsne_with_mahalanobis_distance():
         tsne.fit_transform(X)
 
     precomputed_X = squareform(pdist(X, metric="mahalanobis"), checks=True)
-    X_trans_expected = TSNE(metric="precomputed", **default_params).fit_transform(precomputed_X)
+    X_trans_expected = TSNE(metric="precomputed", **default_params).fit_transform(
+        precomputed_X
+    )
 
-    X_trans = TSNE(metric="mahalanobis", metric_params={"V": np.cov(X.T)}, **default_params).fit_transform(X)
+    X_trans = TSNE(
+        metric="mahalanobis", metric_params={"V": np.cov(X.T)}, **default_params
+    ).fit_transform(X)
     assert_allclose(X_trans, X_trans_expected)
 
 
@@ -1123,7 +1157,10 @@ def test_tsne_deprecation_square_distances():
         random_state=0,
         square_distances=True,
     )
-    warn_msg = "The parameter `square_distances` has not effect and will be removed in version 1.3"
+    warn_msg = (
+        "The parameter `square_distances` has not effect and will be removed in"
+        " version 1.3"
+    )
     with pytest.warns(FutureWarning, match=warn_msg):
         X_trans_1 = tsne.fit_transform(X)
 

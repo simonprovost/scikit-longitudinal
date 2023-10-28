@@ -1,17 +1,23 @@
+import numpy as np
+import scipy.sparse as sp
+import pytest
 import warnings
 
-import numpy as np
-import pytest
-import scipy.sparse as sp
-from sklearn_fork.datasets import make_blobs, make_circles
+from sklearn_fork.utils._testing import (
+    assert_array_almost_equal,
+    assert_array_equal,
+    assert_allclose,
+)
+
 from sklearn_fork.decomposition import PCA, KernelPCA
+from sklearn_fork.datasets import make_circles
+from sklearn_fork.datasets import make_blobs
 from sklearn_fork.exceptions import NotFittedError
 from sklearn_fork.linear_model import Perceptron
-from sklearn_fork.metrics.pairwise import rbf_kernel
-from sklearn_fork.model_selection import GridSearchCV
 from sklearn_fork.pipeline import Pipeline
 from sklearn_fork.preprocessing import StandardScaler
-from sklearn_fork.utils._testing import assert_allclose, assert_array_almost_equal, assert_array_equal
+from sklearn_fork.model_selection import GridSearchCV
+from sklearn_fork.metrics.pairwise import rbf_kernel
 from sklearn_fork.utils.validation import _check_psd_eigenvalues
 
 
@@ -38,10 +44,14 @@ def test_kernel_pca():
             inv = not callable(kernel)
 
             # transform fit data
-            kpca = KernelPCA(4, kernel=kernel, eigen_solver=eigen_solver, fit_inverse_transform=inv)
+            kpca = KernelPCA(
+                4, kernel=kernel, eigen_solver=eigen_solver, fit_inverse_transform=inv
+            )
             X_fit_transformed = kpca.fit_transform(X_fit)
             X_fit_transformed2 = kpca.fit(X_fit).transform(X_fit)
-            assert_array_almost_equal(np.abs(X_fit_transformed), np.abs(X_fit_transformed2))
+            assert_array_almost_equal(
+                np.abs(X_fit_transformed), np.abs(X_fit_transformed2)
+            )
 
             # non-regression test: previously, gamma would be 0 by default,
             # forcing all eigenvalues to 0 under the poly kernel
@@ -63,7 +73,9 @@ def test_kernel_pca_invalid_parameters():
     Tests fitting inverse transform with a precomputed kernel raises a
     ValueError.
     """
-    estimator = KernelPCA(n_components=10, fit_inverse_transform=True, kernel="precomputed")
+    estimator = KernelPCA(
+        n_components=10, fit_inverse_transform=True, kernel="precomputed"
+    )
     err_ms = "Cannot fit_inverse_transform with a precomputed kernel"
     with pytest.raises(ValueError, match=err_ms):
         estimator.fit(np.random.randn(10, 10))
@@ -127,7 +139,9 @@ def test_kernel_pca_sparse():
             )
             X_fit_transformed = kpca.fit_transform(X_fit)
             X_fit_transformed2 = kpca.fit(X_fit).transform(X_fit)
-            assert_array_almost_equal(np.abs(X_fit_transformed), np.abs(X_fit_transformed2))
+            assert_array_almost_equal(
+                np.abs(X_fit_transformed), np.abs(X_fit_transformed2)
+            )
 
             # transform new data
             X_pred_transformed = kpca.transform(X_pred)
@@ -158,7 +172,11 @@ def test_kernel_pca_linear_kernel(solver, n_features):
     n_comps = 3 if solver == "arpack" else 4
     assert_array_almost_equal(
         np.abs(KernelPCA(n_comps, eigen_solver=solver).fit(X_fit).transform(X_pred)),
-        np.abs(PCA(n_comps, svd_solver=solver if solver != "dense" else "full").fit(X_fit).transform(X_pred)),
+        np.abs(
+            PCA(n_comps, svd_solver=solver if solver != "dense" else "full")
+            .fit(X_fit)
+            .transform(X_pred)
+        ),
     )
 
 
@@ -234,20 +252,28 @@ def test_kernel_pca_precomputed():
     X_pred = rng.random_sample((2, 4))
 
     for eigen_solver in ("dense", "arpack", "randomized"):
-        X_kpca = KernelPCA(4, eigen_solver=eigen_solver, random_state=0).fit(X_fit).transform(X_pred)
+        X_kpca = (
+            KernelPCA(4, eigen_solver=eigen_solver, random_state=0)
+            .fit(X_fit)
+            .transform(X_pred)
+        )
 
         X_kpca2 = (
-            KernelPCA(4, eigen_solver=eigen_solver, kernel="precomputed", random_state=0)
+            KernelPCA(
+                4, eigen_solver=eigen_solver, kernel="precomputed", random_state=0
+            )
             .fit(np.dot(X_fit, X_fit.T))
             .transform(np.dot(X_pred, X_fit.T))
         )
 
-        X_kpca_train = KernelPCA(4, eigen_solver=eigen_solver, kernel="precomputed", random_state=0).fit_transform(
-            np.dot(X_fit, X_fit.T)
-        )
+        X_kpca_train = KernelPCA(
+            4, eigen_solver=eigen_solver, kernel="precomputed", random_state=0
+        ).fit_transform(np.dot(X_fit, X_fit.T))
 
         X_kpca_train2 = (
-            KernelPCA(4, eigen_solver=eigen_solver, kernel="precomputed", random_state=0)
+            KernelPCA(
+                4, eigen_solver=eigen_solver, kernel="precomputed", random_state=0
+            )
             .fit(np.dot(X_fit, X_fit.T))
             .transform(np.dot(X_fit, X_fit.T))
         )
@@ -267,12 +293,16 @@ def test_kernel_pca_precomputed_non_symmetric(solver):
 
     # a non symmetric gram matrix
     K = [[1, 2], [3, 40]]
-    kpca = KernelPCA(kernel="precomputed", eigen_solver=solver, n_components=1, random_state=0)
+    kpca = KernelPCA(
+        kernel="precomputed", eigen_solver=solver, n_components=1, random_state=0
+    )
     kpca.fit(K)  # no error
 
     # same test with centered kernel
     Kc = [[9, -9], [-9, 9]]
-    kpca_c = KernelPCA(kernel="precomputed", eigen_solver=solver, n_components=1, random_state=0)
+    kpca_c = KernelPCA(
+        kernel="precomputed", eigen_solver=solver, n_components=1, random_state=0
+    )
     kpca_c.fit(Kc)
 
     # comparison between the non-centered and centered versions
@@ -329,7 +359,9 @@ def test_nested_circles():
     # Note that the gamma value is data dependent. If this test breaks
     # and the gamma value has to be updated, the Kernel PCA example will
     # have to be updated too.
-    kpca = KernelPCA(kernel="rbf", n_components=2, fit_inverse_transform=True, gamma=2.0)
+    kpca = KernelPCA(
+        kernel="rbf", n_components=2, fit_inverse_transform=True, gamma=2.0
+    )
     X_kpca = kpca.fit_transform(X)
 
     # The data is perfectly linearly separable in that space
@@ -396,7 +428,9 @@ def test_precomputed_kernel_not_psd(solver):
         #
         # At least we can ensure that we return an error instead of returning
         # the wrong eigenvalues
-        with pytest.raises(ValueError, match="There are significant negative eigenvalues"):
+        with pytest.raises(
+            ValueError, match="There are significant negative eigenvalues"
+        ):
             kpca.fit(K)
     else:
         # general case: make sure that it works
@@ -409,19 +443,33 @@ def test_kernel_pca_solvers_equivalence(n_components):
 
     # Generate random data
     n_train, n_test = 1_000, 100
-    X, _ = make_circles(n_samples=(n_train + n_test), factor=0.3, noise=0.05, random_state=0)
+    X, _ = make_circles(
+        n_samples=(n_train + n_test), factor=0.3, noise=0.05, random_state=0
+    )
     X_fit, X_pred = X[:n_train, :], X[n_train:, :]
 
     # reference (full)
-    ref_pred = KernelPCA(n_components, eigen_solver="dense", random_state=0).fit(X_fit).transform(X_pred)
+    ref_pred = (
+        KernelPCA(n_components, eigen_solver="dense", random_state=0)
+        .fit(X_fit)
+        .transform(X_pred)
+    )
 
     # arpack
-    a_pred = KernelPCA(n_components, eigen_solver="arpack", random_state=0).fit(X_fit).transform(X_pred)
+    a_pred = (
+        KernelPCA(n_components, eigen_solver="arpack", random_state=0)
+        .fit(X_fit)
+        .transform(X_pred)
+    )
     # check that the result is still correct despite the approx
     assert_array_almost_equal(np.abs(a_pred), np.abs(ref_pred))
 
     # randomized
-    r_pred = KernelPCA(n_components, eigen_solver="randomized", random_state=0).fit(X_fit).transform(X_pred)
+    r_pred = (
+        KernelPCA(n_components, eigen_solver="randomized", random_state=0)
+        .fit(X_fit)
+        .transform(X_pred)
+    )
     # check that the result is still correct despite the approximation
     assert_array_almost_equal(np.abs(r_pred), np.abs(ref_pred))
 
@@ -435,7 +483,9 @@ def test_kernel_pca_inverse_transform_reconstruction():
     """
     X, *_ = make_blobs(n_samples=100, n_features=4, random_state=0)
 
-    kpca = KernelPCA(n_components=20, kernel="rbf", fit_inverse_transform=True, alpha=1e-3)
+    kpca = KernelPCA(
+        n_components=20, kernel="rbf", fit_inverse_transform=True, alpha=1e-3
+    )
     X_trans = kpca.fit_transform(X)
     X_reconst = kpca.inverse_transform(X_trans)
     assert np.linalg.norm(X - X_reconst) / np.linalg.norm(X) < 1e-1
@@ -455,7 +505,9 @@ def test_32_64_decomposition_shape():
     Non regression test for
     https://github.com/scikit-learn/scikit-learn/issues/18146
     """
-    X, y = make_blobs(n_samples=30, centers=[[0, 0, 0], [1, 1, 1]], random_state=0, cluster_std=0.1)
+    X, y = make_blobs(
+        n_samples=30, centers=[[0, 0, 0], [1, 1, 1]], random_state=0, cluster_std=0.1
+    )
     X = StandardScaler().fit_transform(X)
     X -= X.min()
 

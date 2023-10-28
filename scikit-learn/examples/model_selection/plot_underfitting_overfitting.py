@@ -21,12 +21,12 @@ training data.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.linear_model import LinearRegression
-from sklearn_fork.model_selection import cross_val_score
+import matplotlib.pyplot as plt
 from sklearn_fork.pipeline import Pipeline
 from sklearn_fork.preprocessing import PolynomialFeatures
+from sklearn_fork.linear_model import LinearRegression
+from sklearn_fork.model_selection import cross_val_score
 
 
 def true_fun(X):
@@ -57,7 +57,9 @@ for i in range(len(degrees)):
     pipeline.fit(X[:, np.newaxis], y)
 
     # Evaluate the models using crossvalidation
-    scores = cross_val_score(pipeline, X[:, np.newaxis], y, scoring="neg_mean_squared_error", cv=10)
+    scores = cross_val_score(
+        pipeline, X[:, np.newaxis], y, scoring="neg_mean_squared_error", cv=10
+    )
 
     X_test = np.linspace(0, 1, 100)
     plt.plot(X_test, pipeline.predict(X_test[:, np.newaxis]), label="Model")
@@ -68,5 +70,9 @@ for i in range(len(degrees)):
     plt.xlim((0, 1))
     plt.ylim((-2, 2))
     plt.legend(loc="best")
-    plt.title("Degree {}\nMSE = {:.2e}(+/- {:.2e})".format(degrees[i], -scores.mean(), scores.std()))
+    plt.title(
+        "Degree {}\nMSE = {:.2e}(+/- {:.2e})".format(
+            degrees[i], -scores.mean(), scores.std()
+        )
+    )
 plt.show()

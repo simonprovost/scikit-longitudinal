@@ -3,19 +3,19 @@
 #          Nelle Varoquaux <nelle.varoquaux@gmail.com>
 # License: BSD 3 clause
 
-import math
-import warnings
-from numbers import Real
-
 import numpy as np
 from scipy import interpolate
 from scipy.stats import spearmanr
+from numbers import Real
+import warnings
+import math
 
-from ._isotonic import _inplace_contiguous_isotonic_regression, _make_unique
-from .base import BaseEstimator, RegressorMixin, TransformerMixin
+from .base import BaseEstimator, TransformerMixin, RegressorMixin
 from .utils import check_array, check_consistent_length
-from .utils._param_validation import Interval, StrOptions
 from .utils.validation import _check_sample_weight, check_is_fitted
+from .utils._param_validation import Interval, StrOptions
+from ._isotonic import _inplace_contiguous_isotonic_regression, _make_unique
+
 
 __all__ = ["check_increasing", "isotonic_regression", "IsotonicRegression"]
 
@@ -79,7 +79,9 @@ def check_increasing(x, y):
     return increasing_bool
 
 
-def isotonic_regression(y, *, sample_weight=None, y_min=None, y_max=None, increasing=True):
+def isotonic_regression(
+    y, *, sample_weight=None, y_min=None, y_max=None, increasing=True
+):
     """Solve the isotonic regression model.
 
     Read more in the :ref:`User Guide <isotonic>`.
@@ -241,7 +243,10 @@ class IsotonicRegression(RegressorMixin, TransformerMixin, BaseEstimator):
 
     def _check_input_data_shape(self, X):
         if not (X.ndim == 1 or (X.ndim == 2 and X.shape[1] == 1)):
-            msg = "Isotonic regression input X should be a 1d array or 2d array with 1 feature"
+            msg = (
+                "Isotonic regression input X should be a 1d array or "
+                "2d array with 1 feature"
+            )
             raise ValueError(msg)
 
     def _build_f(self, X, y):
@@ -252,7 +257,9 @@ class IsotonicRegression(RegressorMixin, TransformerMixin, BaseEstimator):
             # single y, constant prediction
             self.f_ = lambda x: y.repeat(x.shape)
         else:
-            self.f_ = interpolate.interp1d(X, y, kind="linear", bounds_error=bounds_error)
+            self.f_ = interpolate.interp1d(
+                X, y, kind="linear", bounds_error=bounds_error
+            )
 
     def _build_y(self, X, y, sample_weight, trim_duplicates=True):
         """Build the y_ IsotonicRegression."""
@@ -292,7 +299,9 @@ class IsotonicRegression(RegressorMixin, TransformerMixin, BaseEstimator):
             keep_data = np.ones((len(y),), dtype=bool)
             # Aside from the 1st and last point, remove points whose y values
             # are equal to both the point before and the point after it.
-            keep_data[1:-1] = np.logical_or(np.not_equal(y[1:-1], y[:-2]), np.not_equal(y[1:-1], y[2:]))
+            keep_data[1:-1] = np.logical_or(
+                np.not_equal(y[1:-1], y[:-2]), np.not_equal(y[1:-1], y[2:])
+            )
             return X[keep_data], y[keep_data]
         else:
             # The ability to turn off trim_duplicates is only used to it make
@@ -331,7 +340,9 @@ class IsotonicRegression(RegressorMixin, TransformerMixin, BaseEstimator):
         """
         self._validate_params()
         check_params = dict(accept_sparse=False, ensure_2d=False)
-        X = check_array(X, input_name="X", dtype=[np.float64, np.float32], **check_params)
+        X = check_array(
+            X, input_name="X", dtype=[np.float64, np.float32], **check_params
+        )
         y = check_array(y, input_name="y", dtype=X.dtype, **check_params)
         check_consistent_length(X, y, sample_weight)
 

@@ -14,26 +14,32 @@ Generalized Linear Models.
 #         Maria Telenczuk <https://github.com/maikia>
 # License: BSD 3 clause
 
+from abc import ABCMeta, abstractmethod
 import numbers
 import warnings
-from abc import ABCMeta, abstractmethod
-from numbers import Integral
 
 import numpy as np
 import scipy.sparse as sp
-from scipy import linalg, optimize, sparse
+from scipy import linalg
+from scipy import optimize
+from scipy import sparse
 from scipy.sparse.linalg import lsqr
 from scipy.special import expit
+from numbers import Integral
 
-from ..base import BaseEstimator, ClassifierMixin, MultiOutputMixin, RegressorMixin
+from ..base import BaseEstimator, ClassifierMixin, RegressorMixin, MultiOutputMixin
 from ..preprocessing._data import _is_constant_feature
-from ..utils import check_array, check_random_state
+from ..utils import check_array
+from ..utils.validation import FLOAT_DTYPES
+from ..utils import check_random_state
+from ..utils.extmath import safe_sparse_dot
+from ..utils.extmath import _incremental_mean_and_var
+from ..utils.sparsefuncs import mean_variance_axis, inplace_column_scale
 from ..utils._array_api import get_namespace
-from ..utils._seq_dataset import ArrayDataset32, ArrayDataset64, CSRDataset32, CSRDataset64
-from ..utils.extmath import _incremental_mean_and_var, safe_sparse_dot
-from ..utils.parallel import Parallel, delayed
-from ..utils.sparsefuncs import inplace_column_scale, mean_variance_axis
-from ..utils.validation import FLOAT_DTYPES, _check_sample_weight, check_is_fitted
+from ..utils._seq_dataset import ArrayDataset32, CSRDataset32
+from ..utils._seq_dataset import ArrayDataset64, CSRDataset64
+from ..utils.validation import check_is_fitted, _check_sample_weight
+from ..utils.parallel import delayed, Parallel
 
 # TODO: bayesian_ridge_regression and bayesian_regression_ard
 # should be squashed into its respective objects.
@@ -73,7 +79,9 @@ def _deprecate_normalize(normalize, estimator_name):
     """
 
     if normalize not in [True, False, "deprecated"]:
-        raise ValueError("Leave 'normalize' to its default value or set it to True or False")
+        raise ValueError(
+            "Leave 'normalize' to its default value or set it to True or False"
+        )
 
     if normalize == "deprecated":
         _normalize = False
@@ -99,7 +107,9 @@ def _deprecate_normalize(normalize, estimator_name):
 
     if normalize != "deprecated" and normalize:
         warnings.warn(
-            "'normalize' was deprecated in version 1.2 and will be removed in 1.4.\n" + pipeline_msg + alpha_msg,
+            "'normalize' was deprecated in version 1.2 and will be removed in 1.4.\n"
+            + pipeline_msg
+            + alpha_msg,
             FutureWarning,
         )
     elif not normalize:
@@ -313,7 +323,9 @@ def _rescale_data(X, y, sample_weight, inplace=False):
     sample_weight_sqrt = np.sqrt(sample_weight)
 
     if sp.issparse(X) or sp.issparse(y):
-        sw_matrix = sparse.dia_matrix((sample_weight_sqrt, 0), shape=(n_samples, n_samples))
+        sw_matrix = sparse.dia_matrix(
+            (sample_weight_sqrt, 0), shape=(n_samples, n_samples)
+        )
 
     if sp.issparse(X):
         X = safe_sparse_dot(sw_matrix, X)
@@ -660,11 +672,15 @@ class LinearRegression(MultiOutputMixin, RegressorMixin, LinearModel):
 
         accept_sparse = False if self.positive else ["csr", "csc", "coo"]
 
-        X, y = self._validate_data(X, y, accept_sparse=accept_sparse, y_numeric=True, multi_output=True)
+        X, y = self._validate_data(
+            X, y, accept_sparse=accept_sparse, y_numeric=True, multi_output=True
+        )
 
         has_sw = sample_weight is not None
         if has_sw:
-            sample_weight = _check_sample_weight(sample_weight, X, dtype=X.dtype, only_non_negative=True)
+            sample_weight = _check_sample_weight(
+                sample_weight, X, dtype=X.dtype, only_non_negative=True
+            )
 
         # Note that neither _rescale_data nor the rest of the fit method of
         # LinearRegression can benefit from in-place operations when X is a
@@ -683,14 +699,18 @@ class LinearRegression(MultiOutputMixin, RegressorMixin, LinearModel):
             # Sample weight can be implemented via a simple rescaling. Note
             # that we safely do inplace rescaling when _preprocess_data has
             # already made a copy if requested.
-            X, y, sample_weight_sqrt = _rescale_data(X, y, sample_weight, inplace=copy_X_in_preprocess_data)
+            X, y, sample_weight_sqrt = _rescale_data(
+                X, y, sample_weight, inplace=copy_X_in_preprocess_data
+            )
 
         if self.positive:
             if y.ndim < 2:
                 self.coef_ = optimize.nnls(X, y)[0]
             else:
                 # scipy.optimize.nnls cannot handle y with shape (M, K)
-                outs = Parallel(n_jobs=n_jobs_)(delayed(optimize.nnls)(X, y[:, j]) for j in range(y.shape[1]))
+                outs = Parallel(n_jobs=n_jobs_)(
+                    delayed(optimize.nnls)(X, y[:, j]) for j in range(y.shape[1])
+                )
                 self.coef_ = np.vstack([out[0] for out in outs])
         elif sp.issparse(X):
             X_offset_scale = X_offset / X_scale
@@ -711,13 +731,18 @@ class LinearRegression(MultiOutputMixin, RegressorMixin, LinearModel):
                 def rmatvec(b):
                     return X.T.dot(b) - X_offset_scale * b.sum()
 
-            X_centered = sparse.linalg.LinearOperator(shape=X.shape, matvec=matvec, rmatvec=rmatvec)
+            X_centered = sparse.linalg.LinearOperator(
+                shape=X.shape, matvec=matvec, rmatvec=rmatvec
+            )
 
             if y.ndim < 2:
                 self.coef_ = lsqr(X_centered, y)[0]
             else:
                 # sparse_lstsq cannot handle y with shape (M, K)
-                outs = Parallel(n_jobs=n_jobs_)(delayed(lsqr)(X_centered, y[:, j].ravel()) for j in range(y.shape[1]))
+                outs = Parallel(n_jobs=n_jobs_)(
+                    delayed(lsqr)(X_centered, y[:, j].ravel())
+                    for j in range(y.shape[1])
+                )
                 self.coef_ = np.vstack([out[0] for out in outs])
         else:
             self.coef_, _, self.rank_, self.singular_ = linalg.lstsq(X, y)
@@ -729,7 +754,9 @@ class LinearRegression(MultiOutputMixin, RegressorMixin, LinearModel):
         return self
 
 
-def _check_precomputed_gram_matrix(X, precompute, X_offset, X_scale, rtol=None, atol=1e-5):
+def _check_precomputed_gram_matrix(
+    X, precompute, X_offset, X_scale, rtol=None, atol=1e-5
+):
     """Computes a single element of the gram matrix and compares it to
     the corresponding element of the user supplied gram matrix.
 

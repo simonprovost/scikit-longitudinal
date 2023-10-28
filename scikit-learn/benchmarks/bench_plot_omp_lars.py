@@ -8,8 +8,9 @@ import sys
 from time import time
 
 import numpy as np
-from sklearn_fork.datasets import make_sparse_coded_signal
+
 from sklearn_fork.linear_model import lars_path, lars_path_gram, orthogonal_mp
+from sklearn_fork.datasets import make_sparse_coded_signal
 
 
 def compute_bench(samples_range, features_range):

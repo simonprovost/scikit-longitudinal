@@ -3,14 +3,14 @@
 #
 # License: BSD 3 clause
 
+import matplotlib.pyplot as plt
+from joblib import Memory
+import numpy as np
 import gc
 import time
 
-import matplotlib.pyplot as plt
-import numpy as np
-from joblib import Memory
-from sklearn_fork.datasets import fetch_rcv1
 from sklearn_fork.linear_model import LogisticRegression, SGDClassifier
+from sklearn_fork.datasets import fetch_rcv1
 from sklearn_fork.linear_model._sag import get_auto_step_size
 
 try:
@@ -81,7 +81,9 @@ def bench(clfs):
         for n_iter in iter_range:
             gc.collect()
 
-            train_loss, train_score, test_score, duration = bench_one(name, clf_type, clf_params, n_iter)
+            train_loss, train_score, test_score, duration = bench_one(
+                name, clf_type, clf_params, n_iter
+            )
 
             train_losses.append(train_loss)
             train_scores.append(train_score)
@@ -215,7 +217,9 @@ clfs = [
     ),
     (
         "LR-newton-cg",
-        LogisticRegression(C=C, tol=tol, solver="newton-cg", fit_intercept=fit_intercept),
+        LogisticRegression(
+            C=C, tol=tol, solver="newton-cg", fit_intercept=fit_intercept
+        ),
         newton_iter_range,
         [],
         [],
@@ -258,7 +262,9 @@ if lightning_clf is not None and not fit_intercept:
     clfs.append(
         (
             "Lightning-SVRG",
-            lightning_clf.SVRGClassifier(alpha=alpha, eta=step_size, tol=tol, loss="log"),
+            lightning_clf.SVRGClassifier(
+                alpha=alpha, eta=step_size, tol=tol, loss="log"
+            ),
             sag_iter_range,
             [],
             [],
@@ -269,7 +275,9 @@ if lightning_clf is not None and not fit_intercept:
     clfs.append(
         (
             "Lightning-SAG",
-            lightning_clf.SAGClassifier(alpha=alpha, eta=step_size, tol=tol, loss="log"),
+            lightning_clf.SAGClassifier(
+                alpha=alpha, eta=step_size, tol=tol, loss="log"
+            ),
             sag_iter_range,
             [],
             [],

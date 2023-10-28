@@ -7,26 +7,42 @@
 #
 # License: BSD 3 clause
 
-import warnings
-from functools import partial
-from inspect import signature
-from math import log
 from numbers import Integral, Real
+import warnings
+from inspect import signature
+from functools import partial
 
+from math import log
 import numpy as np
-from scipy.optimize import fmin_bfgs
-from scipy.special import expit, xlogy
 
-from .base import BaseEstimator, ClassifierMixin, MetaEstimatorMixin, RegressorMixin, clone
-from .isotonic import IsotonicRegression
-from .model_selection import check_cv, cross_val_predict
-from .preprocessing import LabelEncoder, label_binarize
-from .svm import LinearSVC
-from .utils import _safe_indexing, column_or_1d, indexable
-from .utils._param_validation import HasMethods, Hidden, Interval, StrOptions, validate_params
-from .utils._plotting import _BinaryClassifierCurveDisplayMixin
+from scipy.special import expit
+from scipy.special import xlogy
+from scipy.optimize import fmin_bfgs
+
+from .base import (
+    BaseEstimator,
+    ClassifierMixin,
+    RegressorMixin,
+    clone,
+    MetaEstimatorMixin,
+)
+from .preprocessing import label_binarize, LabelEncoder
+from .utils import (
+    column_or_1d,
+    indexable,
+    _safe_indexing,
+)
+
 from .utils.multiclass import check_classification_targets
-from .utils.parallel import Parallel, delayed
+from .utils.parallel import delayed, Parallel
+from .utils._param_validation import (
+    StrOptions,
+    HasMethods,
+    Hidden,
+    validate_params,
+    Interval,
+)
+from .utils._plotting import _BinaryClassifierCurveDisplayMixin
 from .utils.validation import (
     _check_fit_params,
     _check_pos_label_consistency,
@@ -35,6 +51,9 @@ from .utils.validation import (
     check_consistent_length,
     check_is_fitted,
 )
+from .isotonic import IsotonicRegression
+from .svm import LinearSVC
+from .model_selection import check_cv, cross_val_predict
 
 
 class CalibratedClassifierCV(ClassifierMixin, MetaEstimatorMixin, BaseEstimator):
@@ -301,7 +320,10 @@ class CalibratedClassifierCV(ClassifierMixin, MetaEstimatorMixin, BaseEstimator)
                     "`estimator` since `base_estimator` is deprecated."
                 )
             warnings.warn(
-                "`base_estimator` was renamed to `estimator` in version 1.2 and will be removed in 1.4.",
+                (
+                    "`base_estimator` was renamed to `estimator` in version 1.2 and "
+                    "will be removed in 1.4."
+                ),
                 FutureWarning,
             )
             estimator = self.base_estimator
@@ -361,7 +383,9 @@ class CalibratedClassifierCV(ClassifierMixin, MetaEstimatorMixin, BaseEstimator)
                 n_folds = self.cv.n_splits
             else:
                 n_folds = None
-            if n_folds and np.any([np.sum(y == class_) < n_folds for class_ in self.classes_]):
+            if n_folds and np.any(
+                [np.sum(y == class_) < n_folds for class_ in self.classes_]
+            ):
                 raise ValueError(
                     f"Requesting {n_folds}-fold "
                     "cross-validation but provided less than "
@@ -389,7 +413,11 @@ class CalibratedClassifierCV(ClassifierMixin, MetaEstimatorMixin, BaseEstimator)
             else:
                 this_estimator = clone(estimator)
                 _, method_name = _get_prediction_method(this_estimator)
-                fit_params = {"sample_weight": sample_weight} if sample_weight is not None and supports_sw else None
+                fit_params = (
+                    {"sample_weight": sample_weight}
+                    if sample_weight is not None and supports_sw
+                    else None
+                )
                 pred_method = partial(
                     cross_val_predict,
                     estimator=this_estimator,
@@ -400,7 +428,9 @@ class CalibratedClassifierCV(ClassifierMixin, MetaEstimatorMixin, BaseEstimator)
                     n_jobs=self.n_jobs,
                     fit_params=fit_params,
                 )
-                predictions = _compute_predictions(pred_method, method_name, X, n_classes)
+                predictions = _compute_predictions(
+                    pred_method, method_name, X, n_classes
+                )
 
                 if sample_weight is not None and supports_sw:
                     this_estimator.fit(X, y, sample_weight=sample_weight)
@@ -554,7 +584,9 @@ def _fit_classifier_calibrator_pair(
     predictions = _compute_predictions(pred_method, method_name, X_test, n_classes)
 
     sw_test = None if sample_weight is None else _safe_indexing(sample_weight, test)
-    calibrated_classifier = _fit_calibrator(estimator, predictions, y_test, classes, method, sample_weight=sw_test)
+    calibrated_classifier = _fit_calibrator(
+        estimator, predictions, y_test, classes, method, sample_weight=sw_test
+    )
     return calibrated_classifier
 
 
@@ -724,7 +756,9 @@ class _CalibratedClassifier:
         pos_class_indices = label_encoder.transform(self.estimator.classes_)
 
         proba = np.zeros((_num_samples(X), n_classes))
-        for class_idx, this_pred, calibrator in zip(pos_class_indices, predictions.T, self.calibrators):
+        for class_idx, this_pred, calibrator in zip(
+            pos_class_indices, predictions.T, self.calibrators
+        ):
             if n_classes == 2:
                 # When binary, `predictions` consists only of predictions for
                 # clf.classes_[1] but `pos_class_indices` = 0
@@ -740,7 +774,9 @@ class _CalibratedClassifier:
             # probability for a given sample, use the uniform distribution
             # instead.
             uniform_proba = np.full_like(proba, 1 / n_classes)
-            proba = np.divide(proba, denominator, out=uniform_proba, where=denominator != 0)
+            proba = np.divide(
+                proba, denominator, out=uniform_proba, where=denominator != 0
+            )
 
         # Deal with cases where the predicted probability minimally exceeds 1.0
         proba[(1.0 < proba) & (proba <= 1.0 + 1e-5)] = 1.0
@@ -964,7 +1000,9 @@ def calibration_curve(
 
     labels = np.unique(y_true)
     if len(labels) > 2:
-        raise ValueError(f"Only binary classification is supported. Provided labels {labels}.")
+        raise ValueError(
+            f"Only binary classification is supported. Provided labels {labels}."
+        )
     y_true = y_true == pos_label
 
     if strategy == "quantile":  # Determine bin edges by distribution of data
@@ -973,7 +1011,10 @@ def calibration_curve(
     elif strategy == "uniform":
         bins = np.linspace(0.0, 1.0, n_bins + 1)
     else:
-        raise ValueError("Invalid entry to 'strategy' input. Strategy must be either 'quantile' or 'uniform'.")
+        raise ValueError(
+            "Invalid entry to 'strategy' input. Strategy "
+            "must be either 'quantile' or 'uniform'."
+        )
 
     binids = np.searchsorted(bins[1:-1], y_prob)
 
@@ -1062,7 +1103,9 @@ class CalibrationDisplay(_BinaryClassifierCurveDisplayMixin):
     <...>
     """
 
-    def __init__(self, prob_true, prob_pred, y_prob, *, estimator_name=None, pos_label=None):
+    def __init__(
+        self, prob_true, prob_pred, y_prob, *, estimator_name=None, pos_label=None
+    ):
         self.prob_true = prob_true
         self.prob_pred = prob_pred
         self.y_prob = y_prob
@@ -1099,7 +1142,9 @@ class CalibrationDisplay(_BinaryClassifierCurveDisplayMixin):
         """
         self.ax_, self.figure_, name = self._validate_plot_params(ax=ax, name=name)
 
-        info_pos_label = f"(Positive class: {self.pos_label})" if self.pos_label is not None else ""
+        info_pos_label = (
+            f"(Positive class: {self.pos_label})" if self.pos_label is not None else ""
+        )
 
         line_kwargs = {}
         if name is not None:
@@ -1110,7 +1155,9 @@ class CalibrationDisplay(_BinaryClassifierCurveDisplayMixin):
         existing_ref_line = ref_line_label in self.ax_.get_legend_handles_labels()[1]
         if ref_line and not existing_ref_line:
             self.ax_.plot([0, 1], [0, 1], "k:", label=ref_line_label)
-        self.line_ = self.ax_.plot(self.prob_pred, self.prob_true, "s-", **line_kwargs)[0]
+        self.line_ = self.ax_.plot(self.prob_pred, self.prob_true, "s-", **line_kwargs)[
+            0
+        ]
 
         # We always have to show the legend for at least the reference line
         self.ax_.legend(loc="lower right")
@@ -1346,7 +1393,9 @@ class CalibrationDisplay(_BinaryClassifierCurveDisplayMixin):
             y_true, y_prob, sample_weight=None, pos_label=pos_label, name=name
         )
 
-        prob_true, prob_pred = calibration_curve(y_true, y_prob, n_bins=n_bins, strategy=strategy, pos_label=pos_label)
+        prob_true, prob_pred = calibration_curve(
+            y_true, y_prob, n_bins=n_bins, strategy=strategy, pos_label=pos_label
+        )
 
         disp = cls(
             prob_true=prob_true,

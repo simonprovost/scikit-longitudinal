@@ -1,5 +1,6 @@
+from libc.math cimport log, exp
+
 cimport numpy as cnp
-from libc.math cimport exp, log
 
 cnp.import_array()
 ctypedef cnp.float64_t DTYPE_t

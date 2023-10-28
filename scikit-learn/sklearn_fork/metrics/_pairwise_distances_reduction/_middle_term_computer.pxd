@@ -4,7 +4,7 @@
 
 from libcpp.vector cimport vector
 
-from ...utils._typedefs cimport float32_t, float64_t, int32_t, intp_t
+from ...utils._typedefs cimport float64_t, float32_t, int32_t, intp_t
 
 
 cdef void _middle_term_sparse_sparse_64(

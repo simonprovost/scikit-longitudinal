@@ -2,10 +2,15 @@ from functools import reduce
 
 import numpy as np
 
-from ...base import is_regressor
 from ...preprocessing import LabelEncoder
-from ...utils import _safe_indexing, check_matplotlib_support
-from ...utils.validation import _is_arraylike_not_scalar, _num_features, check_is_fitted
+from ...utils import check_matplotlib_support
+from ...utils import _safe_indexing
+from ...base import is_regressor
+from ...utils.validation import (
+    check_is_fitted,
+    _is_arraylike_not_scalar,
+    _num_features,
+)
 
 
 def _check_boundary_response_method(estimator, response_method):
@@ -34,7 +39,10 @@ def _check_boundary_response_method(estimator, response_method):
 
     if has_classes and len(estimator.classes_) > 2:
         if response_method not in {"auto", "predict"}:
-            msg = "Multiclass classifiers are only supported when response_method is 'predict' or 'auto'"
+            msg = (
+                "Multiclass classifiers are only supported when response_method is"
+                " 'predict' or 'auto'"
+            )
             raise ValueError(msg)
         methods_list = ["predict"]
     elif response_method == "auto":
@@ -46,7 +54,8 @@ def _check_boundary_response_method(estimator, response_method):
     prediction_method = reduce(lambda x, y: x or y, prediction_method)
     if prediction_method is None:
         raise ValueError(
-            f"{estimator.__class__.__name__} has none of the following attributes: {', '.join(methods_list)}."
+            f"{estimator.__class__.__name__} has none of the following attributes: "
+            f"{', '.join(methods_list)}."
         )
 
     return prediction_method
@@ -167,7 +176,9 @@ class DecisionBoundaryDisplay:
         import matplotlib.pyplot as plt  # noqa
 
         if plot_method not in ("contourf", "contour", "pcolormesh"):
-            raise ValueError("plot_method must be 'contourf', 'contour', or 'pcolormesh'")
+            raise ValueError(
+                "plot_method must be 'contourf', 'contour', or 'pcolormesh'"
+            )
 
         if ax is None:
             _, ax = plt.subplots()
@@ -291,19 +302,29 @@ class DecisionBoundaryDisplay:
         check_is_fitted(estimator)
 
         if not grid_resolution > 1:
-            raise ValueError(f"grid_resolution must be greater than 1. Got {grid_resolution} instead.")
+            raise ValueError(
+                "grid_resolution must be greater than 1. Got"
+                f" {grid_resolution} instead."
+            )
 
         if not eps >= 0:
-            raise ValueError(f"eps must be greater than or equal to 0. Got {eps} instead.")
+            raise ValueError(
+                f"eps must be greater than or equal to 0. Got {eps} instead."
+            )
 
         possible_plot_methods = ("contourf", "contour", "pcolormesh")
         if plot_method not in possible_plot_methods:
             available_methods = ", ".join(possible_plot_methods)
-            raise ValueError(f"plot_method must be one of {available_methods}. Got {plot_method} instead.")
+            raise ValueError(
+                f"plot_method must be one of {available_methods}. "
+                f"Got {plot_method} instead."
+            )
 
         num_features = _num_features(X)
         if num_features != 2:
-            raise ValueError(f"n_features must be equal to 2. Got {num_features} instead.")
+            raise ValueError(
+                f"n_features must be equal to 2. Got {num_features} instead."
+            )
 
         x0, x1 = _safe_indexing(X, 0, axis=1), _safe_indexing(X, 1, axis=1)
 

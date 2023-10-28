@@ -1,9 +1,8 @@
-from collections import Counter
 from contextlib import suppress
+from collections import Counter
 from typing import NamedTuple
 
 import numpy as np
-
 from . import is_scalar_nan
 
 
@@ -39,15 +38,21 @@ def _unique(values, *, return_inverse=False, return_counts=False):
         array. Only provided if `return_counts` is True.
     """
     if values.dtype == object:
-        return _unique_python(values, return_inverse=return_inverse, return_counts=return_counts)
+        return _unique_python(
+            values, return_inverse=return_inverse, return_counts=return_counts
+        )
     # numerical
-    return _unique_np(values, return_inverse=return_inverse, return_counts=return_counts)
+    return _unique_np(
+        values, return_inverse=return_inverse, return_counts=return_counts
+    )
 
 
 def _unique_np(values, return_inverse=False, return_counts=False):
     """Helper function to find unique values for numpy arrays that correctly
     accounts for nans. See `_unique` documentation for details."""
-    uniques = np.unique(values, return_inverse=return_inverse, return_counts=return_counts)
+    uniques = np.unique(
+        values, return_inverse=return_inverse, return_counts=return_counts
+    )
 
     inverse, counts = None, None
 
@@ -115,7 +120,9 @@ def _extract_missing(values):
     missing_values: MissingValues
         Object with missing value information.
     """
-    missing_values_set = {value for value in values if value is None or is_scalar_nan(value)}
+    missing_values_set = {
+        value for value in values if value is None or is_scalar_nan(value)
+    }
 
     if not missing_values_set:
         return values, MissingValues(nan=False, none=False)
@@ -168,7 +175,10 @@ def _unique_python(values, *, return_inverse, return_counts):
         uniques = np.array(uniques, dtype=values.dtype)
     except TypeError:
         types = sorted(t.__qualname__ for t in set(type(v) for v in values))
-        raise TypeError(f"Encoders require their input to be uniformly strings or numbers. Got {types}")
+        raise TypeError(
+            "Encoders require their input to be uniformly "
+            f"strings or numbers. Got {types}"
+        )
     ret = (uniques,)
 
     if return_inverse:

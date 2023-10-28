@@ -14,25 +14,41 @@ randomized trees. Single and multi-output problems are both handled.
 #
 # License: BSD 3 clause
 
-import copy
 import numbers
 import warnings
-from abc import ABCMeta, abstractmethod
+import copy
+from abc import ABCMeta
+from abc import abstractmethod
 from math import ceil
 from numbers import Integral, Real
 
 import numpy as np
 from scipy.sparse import issparse
 
-from ..base import BaseEstimator, ClassifierMixin, MultiOutputMixin, RegressorMixin, clone, is_classifier
-from ..utils import Bunch, check_random_state, compute_sample_weight
-from ..utils._param_validation import Hidden, Interval, RealNotInt, StrOptions
+from ..base import BaseEstimator
+from ..base import ClassifierMixin
+from ..base import clone
+from ..base import RegressorMixin
+from ..base import is_classifier
+from ..base import MultiOutputMixin
+from ..utils import Bunch
+from ..utils import check_random_state
+from ..utils.validation import _check_sample_weight
+from ..utils import compute_sample_weight
 from ..utils.multiclass import check_classification_targets
-from ..utils.validation import _check_sample_weight, check_is_fitted
-from . import _criterion, _splitter, _tree
+from ..utils.validation import check_is_fitted
+from ..utils._param_validation import Hidden, Interval, StrOptions
+from ..utils._param_validation import RealNotInt
+
 from ._criterion import BaseCriterion
 from ._splitter import BaseSplitter
-from ._tree import BestFirstTreeBuilder, DepthFirstTreeBuilder, Tree, _build_pruned_tree_ccp, ccp_pruning_path
+from ._splitter import LexicoRFSplitter
+from ._tree import DepthFirstTreeBuilder
+from ._tree import BestFirstTreeBuilder
+from ._tree import Tree
+from ._tree import _build_pruned_tree_ccp
+from ._tree import ccp_pruning_path
+from . import _tree, _splitter, _criterion
 
 __all__ = [
     "DecisionTreeClassifier",
@@ -62,11 +78,7 @@ CRITERIA_REG = {
 }
 
 
-DENSE_SPLITTERS = {
-    "best": _splitter.BestSplitter,
-    "random": _splitter.RandomSplitter,
-    "lexicoRF": _splitter.LexicoRFSplitter,
-}
+DENSE_SPLITTERS = {"best": _splitter.BestSplitter, "random": _splitter.RandomSplitter, "lexicoRF": _splitter.LexicoRFSplitter}
 SPARSE_SPLITTERS = {
     "best": _splitter.BestSparseSplitter,
     "random": _splitter.RandomSparseSplitter,
@@ -128,7 +140,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         class_weight=None,
         ccp_alpha=0.0,
         threshold_gain=0.15,
-        features_group=None,
+        features_group=None
     ):
         self.criterion = criterion
         self.splitter = splitter
@@ -181,20 +193,30 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
             check_X_params = dict(dtype=DTYPE, accept_sparse="csc")
             check_y_params = dict(ensure_2d=False, dtype=None)
             if y is not None or self._get_tags()["requires_y"]:
-                X, y = self._validate_data(X, y, validate_separately=(check_X_params, check_y_params))
+                X, y = self._validate_data(
+                    X, y, validate_separately=(check_X_params, check_y_params)
+                )
             else:
                 X = self._validate_data(X, **check_X_params)
             if issparse(X):
                 X.sort_indices()
 
                 if X.indices.dtype != np.intc or X.indptr.dtype != np.intc:
-                    raise ValueError("No support for np.int64 index based sparse matrices")
+                    raise ValueError(
+                        "No support for np.int64 index based sparse matrices"
+                    )
 
             if y is not None and self.criterion == "poisson":
                 if np.any(y < 0):
-                    raise ValueError("Some value(s) of y are negative which is not allowed for Poisson regression.")
+                    raise ValueError(
+                        "Some value(s) of y are negative which is"
+                        " not allowed for Poisson regression."
+                    )
                 if np.sum(y) <= 0:
-                    raise ValueError("Sum of y is not positive which is necessary for Poisson regression.")
+                    raise ValueError(
+                        "Sum of y is not positive which is "
+                        "necessary for Poisson regression."
+                    )
 
         # Determine output settings
         n_samples, self.n_features_in_ = X.shape
@@ -232,7 +254,9 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
                 y = y_encoded
 
                 if self.class_weight is not None:
-                    expanded_class_weight = compute_sample_weight(self.class_weight, y_original)
+                    expanded_class_weight = compute_sample_weight(
+                        self.class_weight, y_original
+                    )
 
                 self.n_classes_ = np.array(self.n_classes_, dtype=np.intp)
 
@@ -240,7 +264,10 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
                 y = np.ascontiguousarray(y, dtype=DOUBLE)
 
             if len(y) != n_samples:
-                raise ValueError("Number of labels=%d does not match number of samples=%d" % (len(y), n_samples))
+                raise ValueError(
+                    "Number of labels=%d does not match number of samples=%d"
+                    % (len(y), n_samples)
+                )
 
         # set decision-tree model parameters
         max_depth = np.iinfo(np.int32).max if self.max_depth is None else self.max_depth
@@ -370,7 +397,9 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         criterion = self.criterion
         if not isinstance(criterion, BaseCriterion):
             if is_classifier(self):
-                criterion = CRITERIA_CLF[self.criterion](self.n_outputs_, self.n_classes_)
+                criterion = CRITERIA_CLF[self.criterion](
+                    self.n_outputs_, self.n_classes_
+                )
             else:
                 criterion = CRITERIA_REG[self.criterion](self.n_outputs_, n_samples)
         else:
@@ -389,7 +418,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
                 min_weight_leaf,
                 random_state,
                 self.threshold_gain,
-                self.features_group,
+                self.features_group
             )
 
         if is_classifier(self):
@@ -439,7 +468,9 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         """Validate the training data on predict (probabilities)."""
         if check_input:
             X = self._validate_data(X, dtype=DTYPE, accept_sparse="csr", reset=False)
-            if issparse(X) and (X.indices.dtype != np.intc or X.indptr.dtype != np.intc):
+            if issparse(X) and (
+                X.indices.dtype != np.intc or X.indptr.dtype != np.intc
+            ):
                 raise ValueError("No support for np.int64 index based sparse matrices")
         else:
             # The number of features is checked regardless of `check_input`
@@ -483,7 +514,9 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
                 class_type = self.classes_[0].dtype
                 predictions = np.zeros((n_samples, self.n_outputs_), dtype=class_type)
                 for k in range(self.n_outputs_):
-                    predictions[:, k] = self.classes_[k].take(np.argmax(proba[:, k], axis=1), axis=0)
+                    predictions[:, k] = self.classes_[k].take(
+                        np.argmax(proba[:, k], axis=1), axis=0
+                    )
 
                 return predictions
 
@@ -1312,9 +1345,13 @@ class DecisionTreeRegressor(RegressorMixin, BaseDecisionTree):
             The value of the partial dependence function on each grid point.
         """
         grid = np.asarray(grid, dtype=DTYPE, order="C")
-        averaged_predictions = np.zeros(shape=grid.shape[0], dtype=np.float64, order="C")
+        averaged_predictions = np.zeros(
+            shape=grid.shape[0], dtype=np.float64, order="C"
+        )
 
-        self.tree_.compute_partial_dependence(grid, target_features, averaged_predictions)
+        self.tree_.compute_partial_dependence(
+            grid, target_features, averaged_predictions
+        )
         return averaged_predictions
 
 

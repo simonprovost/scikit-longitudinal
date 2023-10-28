@@ -37,18 +37,21 @@ For an example of using this dataset, see
 #
 # License: BSD 3 clause
 
-import logging
 from io import BytesIO
 from os import makedirs, remove
 from os.path import exists
 
-import joblib
+import logging
 import numpy as np
 
-from ..utils import Bunch
-from ..utils._param_validation import validate_params
+import joblib
+
 from . import get_data_home
-from ._base import RemoteFileMetadata, _fetch_remote, _pkl_filepath
+from ._base import _fetch_remote
+from ._base import RemoteFileMetadata
+from ..utils import Bunch
+from ._base import _pkl_filepath
+from ..utils._param_validation import validate_params
 
 # The original data can be found at:
 # https://biodiversityinformatics.amnh.org/open_source/maxent/samples.zip
@@ -237,7 +240,9 @@ def fetch_species_distributions(*, data_home=None, download_if_missing=True):
                     test = _load_csv(fhandle)
         remove(samples_path)
 
-        logger.info("Downloading coverage data from %s to %s" % (COVERAGES.url, data_home))
+        logger.info(
+            "Downloading coverage data from %s to %s" % (COVERAGES.url, data_home)
+        )
         coverages_path = _fetch_remote(COVERAGES, dirname=data_home)
         with np.load(coverages_path) as X:  # coverages.zip is a valid npz
             coverages = []

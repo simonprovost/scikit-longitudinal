@@ -16,8 +16,9 @@ is performed in order to stay on the same order of magnitude.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.decomposition import SparseCoder
 
 
@@ -51,7 +52,8 @@ n_components = resolution // subsampling
 D_fixed = ricker_matrix(width=width, resolution=resolution, n_components=n_components)
 D_multi = np.r_[
     tuple(
-        ricker_matrix(width=w, resolution=resolution, n_components=n_components // 5) for w in (10, 50, 100, 500, 1000)
+        ricker_matrix(width=w, resolution=resolution, n_components=n_components // 5)
+        for w in (10, 50, 100, 500, 1000)
     )
 ]
 
@@ -71,7 +73,9 @@ estimators = [
 lw = 2
 
 plt.figure(figsize=(13, 6))
-for subplot, (D, title) in enumerate(zip((D_fixed, D_multi), ("fixed width", "multiple widths"))):
+for subplot, (D, title) in enumerate(
+    zip((D_fixed, D_multi), ("fixed width", "multiple widths"))
+):
     plt.subplot(1, 2, subplot + 1)
     plt.title("Sparse coding against %s dictionary" % title)
     plt.plot(y, lw=lw, linestyle="--", label="Original signal")
@@ -95,7 +99,9 @@ for subplot, (D, title) in enumerate(zip((D_fixed, D_multi), ("fixed width", "mu
         )
 
     # Soft thresholding debiasing
-    coder = SparseCoder(dictionary=D, transform_algorithm="threshold", transform_alpha=20)
+    coder = SparseCoder(
+        dictionary=D, transform_algorithm="threshold", transform_alpha=20
+    )
     x = coder.transform(y.reshape(1, -1))
     _, idx = np.where(x != 0)
     x[0, idx], _, _, _ = np.linalg.lstsq(D[idx, :].T, y, rcond=None)
@@ -105,7 +111,8 @@ for subplot, (D, title) in enumerate(zip((D_fixed, D_multi), ("fixed width", "mu
         x,
         color="darkorange",
         lw=lw,
-        label="Thresholding w/ debiasing:\n%d nonzero coefs, %.2f error" % (len(idx), squared_error),
+        label="Thresholding w/ debiasing:\n%d nonzero coefs, %.2f error"
+        % (len(idx), squared_error),
     )
     plt.axis("tight")
     plt.legend(shadow=False, loc="best")

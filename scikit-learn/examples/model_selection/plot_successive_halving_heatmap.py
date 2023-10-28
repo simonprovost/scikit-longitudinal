@@ -13,10 +13,13 @@ from time import time
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn_fork import datasets
-from sklearn_fork.experimental import enable_halving_search_cv  # noqa
-from sklearn_fork.model_selection import GridSearchCV, HalvingGridSearchCV
+
 from sklearn_fork.svm import SVC
+from sklearn_fork import datasets
+from sklearn_fork.model_selection import GridSearchCV
+from sklearn_fork.experimental import enable_halving_search_cv  # noqa
+from sklearn_fork.model_selection import HalvingGridSearchCV
+
 
 # %%
 # We first define the parameter space for an :class:`~sklearn_fork.svm.SVC`
@@ -34,7 +37,9 @@ param_grid = {"gamma": gammas, "C": Cs}
 clf = SVC(random_state=rng)
 
 tic = time()
-gsh = HalvingGridSearchCV(estimator=clf, param_grid=param_grid, factor=2, random_state=rng)
+gsh = HalvingGridSearchCV(
+    estimator=clf, param_grid=param_grid, factor=2, random_state=rng
+)
 gsh.fit(X, y)
 gsh_time = time() - tic
 
@@ -50,7 +55,9 @@ gs_time = time() - tic
 def make_heatmap(ax, gs, is_sh=False, make_cbar=False):
     """Helper to make a heatmap."""
     results = pd.DataFrame(gs.cv_results_)
-    results[["param_C", "param_gamma"]] = results[["param_C", "param_gamma"]].astype(np.float64)
+    results[["param_C", "param_gamma"]] = results[["param_C", "param_gamma"]].astype(
+        np.float64
+    )
     if is_sh:
         # SH dataframe: get mean_test_score values for the highest iter
         scores_matrix = results.sort_values("iter").pivot_table(
@@ -60,7 +67,9 @@ def make_heatmap(ax, gs, is_sh=False, make_cbar=False):
             aggfunc="last",
         )
     else:
-        scores_matrix = results.pivot(index="param_gamma", columns="param_C", values="mean_test_score")
+        scores_matrix = results.pivot(
+            index="param_gamma", columns="param_C", values="mean_test_score"
+        )
 
     im = ax.imshow(scores_matrix)
 
@@ -76,7 +85,9 @@ def make_heatmap(ax, gs, is_sh=False, make_cbar=False):
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
 
     if is_sh:
-        iterations = results.pivot_table(index="param_gamma", columns="param_C", values="iter", aggfunc="max").values
+        iterations = results.pivot_table(
+            index="param_gamma", columns="param_C", values="iter", aggfunc="max"
+        ).values
         for i in range(len(gammas)):
             for j in range(len(Cs)):
                 ax.text(

@@ -9,6 +9,7 @@ from libcpp.map cimport map as cpp_map
 
 from ._typedefs cimport float64_t, intp_t
 
+
 ###############################################################################
 # An object to be used in Python
 

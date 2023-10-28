@@ -26,12 +26,13 @@ classifier when the averaged probability is calculated.
 from itertools import product
 
 import matplotlib.pyplot as plt
+
 from sklearn_fork import datasets
-from sklearn_fork.ensemble import VotingClassifier
-from sklearn_fork.inspection import DecisionBoundaryDisplay
+from sklearn_fork.tree import DecisionTreeClassifier
 from sklearn_fork.neighbors import KNeighborsClassifier
 from sklearn_fork.svm import SVC
-from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork.ensemble import VotingClassifier
+from sklearn_fork.inspection import DecisionBoundaryDisplay
 
 # Loading some example data
 iris = datasets.load_iris()
@@ -60,7 +61,9 @@ for idx, clf, tt in zip(
     [clf1, clf2, clf3, eclf],
     ["Decision Tree (depth=4)", "KNN (k=7)", "Kernel SVM", "Soft Voting"],
 ):
-    DecisionBoundaryDisplay.from_estimator(clf, X, alpha=0.4, ax=axarr[idx[0], idx[1]], response_method="predict")
+    DecisionBoundaryDisplay.from_estimator(
+        clf, X, alpha=0.4, ax=axarr[idx[0], idx[1]], response_method="predict"
+    )
     axarr[idx[0], idx[1]].scatter(X[:, 0], X[:, 1], c=y, s=20, edgecolor="k")
     axarr[idx[0], idx[1]].set_title(tt)
 

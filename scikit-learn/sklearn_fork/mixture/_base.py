@@ -6,19 +6,20 @@
 
 import warnings
 from abc import ABCMeta, abstractmethod
-from numbers import Integral, Real
 from time import time
+from numbers import Integral, Real
 
 import numpy as np
 from scipy.special import logsumexp
 
 from .. import cluster
-from ..base import BaseEstimator, DensityMixin
 from ..cluster import kmeans_plusplus
+from ..base import BaseEstimator
+from ..base import DensityMixin
 from ..exceptions import ConvergenceWarning
 from ..utils import check_random_state
-from ..utils._param_validation import Interval, StrOptions
 from ..utils.validation import check_is_fitted
+from ..utils._param_validation import Interval, StrOptions
 
 
 def _check_shape(param, param_shape, name):
@@ -35,7 +36,8 @@ def _check_shape(param, param_shape, name):
     param = np.array(param)
     if param.shape != param_shape:
         raise ValueError(
-            "The parameter '%s' should have the shape of %s, but got %s" % (name, param_shape, param.shape)
+            "The parameter '%s' should have the shape of %s, but got %s"
+            % (name, param_shape, param.shape)
         )
 
 
@@ -52,7 +54,9 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
         "reg_covar": [Interval(Real, 0.0, None, closed="left")],
         "max_iter": [Interval(Integral, 0, None, closed="left")],
         "n_init": [Interval(Integral, 1, None, closed="left")],
-        "init_params": [StrOptions({"kmeans", "random", "random_from_data", "k-means++"})],
+        "init_params": [
+            StrOptions({"kmeans", "random", "random_from_data", "k-means++"})
+        ],
         "random_state": ["random_state"],
         "warm_start": ["boolean"],
         "verbose": ["verbose"],
@@ -91,6 +95,7 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
         ----------
         X : array-like of shape  (n_samples, n_features)
         """
+        pass
 
     def _initialize_parameters(self, X, random_state):
         """Initialize the model parameters.
@@ -107,14 +112,22 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
 
         if self.init_params == "kmeans":
             resp = np.zeros((n_samples, self.n_components))
-            label = cluster.KMeans(n_clusters=self.n_components, n_init=1, random_state=random_state).fit(X).labels_
+            label = (
+                cluster.KMeans(
+                    n_clusters=self.n_components, n_init=1, random_state=random_state
+                )
+                .fit(X)
+                .labels_
+            )
             resp[np.arange(n_samples), label] = 1
         elif self.init_params == "random":
             resp = random_state.uniform(size=(n_samples, self.n_components))
             resp /= resp.sum(axis=1)[:, np.newaxis]
         elif self.init_params == "random_from_data":
             resp = np.zeros((n_samples, self.n_components))
-            indices = random_state.choice(n_samples, size=self.n_components, replace=False)
+            indices = random_state.choice(
+                n_samples, size=self.n_components, replace=False
+            )
             resp[indices, np.arange(self.n_components)] = 1
         elif self.init_params == "k-means++":
             resp = np.zeros((n_samples, self.n_components))
@@ -137,6 +150,7 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
 
         resp : array-like of shape (n_samples, n_components)
         """
+        pass
 
     def fit(self, X, y=None):
         """Estimate model parameters with the EM algorithm.
@@ -303,6 +317,7 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
             Logarithm of the posterior probabilities (or responsibilities) of
             the point of each sample in X.
         """
+        pass
 
     @abstractmethod
     def _get_parameters(self):
@@ -407,7 +422,8 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
 
         if n_samples < 1:
             raise ValueError(
-                "Invalid value for 'n_samples': %d . The sampling requires at least one sample." % (self.n_components)
+                "Invalid value for 'n_samples': %d . The sampling requires at "
+                "least one sample." % (self.n_components)
             )
 
         _, n_features = self.means_.shape
@@ -418,7 +434,9 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
             X = np.vstack(
                 [
                     rng.multivariate_normal(mean, covariance, int(sample))
-                    for (mean, covariance, sample) in zip(self.means_, self.covariances_, n_samples_comp)
+                    for (mean, covariance, sample) in zip(
+                        self.means_, self.covariances_, n_samples_comp
+                    )
                 ]
             )
         elif self.covariance_type == "tied":
@@ -431,12 +449,18 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
         else:
             X = np.vstack(
                 [
-                    mean + rng.standard_normal(size=(sample, n_features)) * np.sqrt(covariance)
-                    for (mean, covariance, sample) in zip(self.means_, self.covariances_, n_samples_comp)
+                    mean
+                    + rng.standard_normal(size=(sample, n_features))
+                    * np.sqrt(covariance)
+                    for (mean, covariance, sample) in zip(
+                        self.means_, self.covariances_, n_samples_comp
+                    )
                 ]
             )
 
-        y = np.concatenate([np.full(sample, j, dtype=int) for j, sample in enumerate(n_samples_comp)])
+        y = np.concatenate(
+            [np.full(sample, j, dtype=int) for j, sample in enumerate(n_samples_comp)]
+        )
 
         return (X, y)
 
@@ -461,6 +485,7 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
         -------
         log_weight : array, shape (n_components, )
         """
+        pass
 
     @abstractmethod
     def _estimate_log_prob(self, X):
@@ -476,6 +501,7 @@ class BaseMixture(DensityMixin, BaseEstimator, metaclass=ABCMeta):
         -------
         log_prob : array, shape (n_samples, n_component)
         """
+        pass
 
     def _estimate_log_prob_resp(self, X):
         """Estimate log probabilities and responsibilities for each sample.

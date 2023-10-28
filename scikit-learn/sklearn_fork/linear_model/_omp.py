@@ -7,18 +7,19 @@
 
 import warnings
 from math import sqrt
-from numbers import Integral, Real
 
+from numbers import Integral, Real
 import numpy as np
 from scipy import linalg
 from scipy.linalg.lapack import get_lapack_funcs
 
-from ..base import MultiOutputMixin, RegressorMixin
-from ..model_selection import check_cv
+from ._base import LinearModel, _pre_fit, _deprecate_normalize
+from ..base import RegressorMixin, MultiOutputMixin
 from ..utils import as_float_array, check_array
-from ..utils._param_validation import Hidden, Interval, StrOptions, validate_params
-from ..utils.parallel import Parallel, delayed
-from ._base import LinearModel, _deprecate_normalize, _pre_fit
+from ..utils.parallel import delayed, Parallel
+from ..utils._param_validation import Hidden, Interval, StrOptions
+from ..utils._param_validation import validate_params
+from ..model_selection import check_cv
 
 premature = (
     "Orthogonal matching pursuit ended prematurely due to linear"
@@ -125,7 +126,9 @@ def _cholesky_omp(X, y, n_nonzero_coefs, tol=None, copy_X=True, return_path=Fals
         n_active += 1
 
         # solves LL'x = X'y as a composition of two triangular systems
-        gamma, _ = potrs(L[:n_active, :n_active], alpha[:n_active], lower=True, overwrite_b=False)
+        gamma, _ = potrs(
+            L[:n_active, :n_active], alpha[:n_active], lower=True, overwrite_b=False
+        )
 
         if return_path:
             coefs[:n_active, n_active - 1] = gamma
@@ -257,7 +260,9 @@ def _gram_omp(
         Xy[n_active], Xy[lam] = Xy[lam], Xy[n_active]
         n_active += 1
         # solves LL'x = X'y as a composition of two triangular systems
-        gamma, _ = potrs(L[:n_active, :n_active], Xy[:n_active], lower=True, overwrite_b=False)
+        gamma, _ = potrs(
+            L[:n_active, :n_active], Xy[:n_active], lower=True, overwrite_b=False
+        )
         if return_path:
             coefs[:n_active, n_active - 1] = gamma
         beta = np.dot(Gram[:, :n_active], gamma)
@@ -389,7 +394,9 @@ def orthogonal_mp(
         # but at least one.
         n_nonzero_coefs = max(int(0.1 * X.shape[1]), 1)
     if tol is None and n_nonzero_coefs > X.shape[1]:
-        raise ValueError("The number of atoms cannot be more than the number of features")
+        raise ValueError(
+            "The number of atoms cannot be more than the number of features"
+        )
     if precompute == "auto":
         precompute = X.shape[0] > X.shape[1]
     if precompute:
@@ -418,7 +425,9 @@ def orthogonal_mp(
     n_iters = []
 
     for k in range(y.shape[1]):
-        out = _cholesky_omp(X, y[:, k], n_nonzero_coefs, tol, copy_X=copy_X, return_path=return_path)
+        out = _cholesky_omp(
+            X, y[:, k], n_nonzero_coefs, tol, copy_X=copy_X, return_path=return_path
+        )
         if return_path:
             _, idx, coefs, n_iter = out
             coef = coef[:, :, : len(idx)]
@@ -541,13 +550,18 @@ def orthogonal_mp_gram(
     if n_nonzero_coefs is None and tol is None:
         n_nonzero_coefs = int(0.1 * len(Gram))
     if tol is not None and norms_squared is None:
-        raise ValueError("Gram OMP needs the precomputed norms in order to evaluate the error sum of squares.")
+        raise ValueError(
+            "Gram OMP needs the precomputed norms in order "
+            "to evaluate the error sum of squares."
+        )
     if tol is not None and tol < 0:
         raise ValueError("Epsilon cannot be negative")
     if tol is None and n_nonzero_coefs <= 0:
         raise ValueError("The number of atoms must be positive")
     if tol is None and n_nonzero_coefs > len(Gram):
-        raise ValueError("The number of atoms cannot be more than the number of features")
+        raise ValueError(
+            "The number of atoms cannot be more than the number of features"
+        )
 
     if return_path:
         coef = np.zeros((len(Gram), Xy.shape[1], len(Gram)), dtype=Gram.dtype)
@@ -729,7 +743,9 @@ class OrthogonalMatchingPursuit(MultiOutputMixin, RegressorMixin, LinearModel):
         """
         self._validate_params()
 
-        _normalize = _deprecate_normalize(self.normalize, estimator_name=self.__class__.__name__)
+        _normalize = _deprecate_normalize(
+            self.normalize, estimator_name=self.__class__.__name__
+        )
 
         X, y = self._validate_data(X, y, multi_output=True, y_numeric=True)
         n_features = X.shape[1]
@@ -1044,12 +1060,18 @@ class OrthogonalMatchingPursuitCV(RegressorMixin, LinearModel):
         """
         self._validate_params()
 
-        _normalize = _deprecate_normalize(self.normalize, estimator_name=self.__class__.__name__)
+        _normalize = _deprecate_normalize(
+            self.normalize, estimator_name=self.__class__.__name__
+        )
 
         X, y = self._validate_data(X, y, y_numeric=True, ensure_min_features=2)
         X = as_float_array(X, copy=False, force_all_finite=False)
         cv = check_cv(self.cv, classifier=False)
-        max_iter = min(max(int(0.1 * X.shape[1]), 5), X.shape[1]) if not self.max_iter else self.max_iter
+        max_iter = (
+            min(max(int(0.1 * X.shape[1]), 5), X.shape[1])
+            if not self.max_iter
+            else self.max_iter
+        )
         cv_paths = Parallel(n_jobs=self.n_jobs, verbose=self.verbose)(
             delayed(_omp_path_residues)(
                 X[train],
@@ -1065,7 +1087,9 @@ class OrthogonalMatchingPursuitCV(RegressorMixin, LinearModel):
         )
 
         min_early_stop = min(fold.shape[0] for fold in cv_paths)
-        mse_folds = np.array([(fold[:min_early_stop] ** 2).mean(axis=1) for fold in cv_paths])
+        mse_folds = np.array(
+            [(fold[:min_early_stop] ** 2).mean(axis=1) for fold in cv_paths]
+        )
         best_n_nonzero_coefs = np.argmin(mse_folds.mean(axis=0)) + 1
         self.n_nonzero_coefs_ = best_n_nonzero_coefs
         omp = OrthogonalMatchingPursuit(

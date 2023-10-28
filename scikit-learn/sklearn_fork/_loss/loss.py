@@ -16,26 +16,31 @@ classification.
 # - Replace link module of GLMs.
 
 import numbers
-
 import numpy as np
 from scipy.special import xlogy
-
-from ..utils import check_scalar
-from ..utils.stats import _weighted_percentile
 from ._loss import (
-    CyAbsoluteError,
-    CyExponentialLoss,
-    CyHalfBinomialLoss,
-    CyHalfGammaLoss,
-    CyHalfMultinomialLoss,
-    CyHalfPoissonLoss,
     CyHalfSquaredError,
+    CyAbsoluteError,
+    CyPinballLoss,
+    CyHuberLoss,
+    CyHalfPoissonLoss,
+    CyHalfGammaLoss,
     CyHalfTweedieLoss,
     CyHalfTweedieLossIdentity,
-    CyHuberLoss,
-    CyPinballLoss,
+    CyHalfBinomialLoss,
+    CyHalfMultinomialLoss,
+    CyExponentialLoss,
 )
-from .link import HalfLogitLink, IdentityLink, Interval, LogitLink, LogLink, MultinomialLogit
+from .link import (
+    Interval,
+    IdentityLink,
+    LogLink,
+    LogitLink,
+    HalfLogitLink,
+    MultinomialLogit,
+)
+from ..utils import check_scalar
+from ..utils.stats import _weighted_percentile
 
 
 # Note: The shape of raw_prediction for multiclass classifications are
@@ -474,7 +479,10 @@ class BaseLoss:
             initialized to ``1``.
         """
         if dtype not in (np.float32, np.float64):
-            raise ValueError(f"Valid options for 'dtype' are np.float32 and np.float64. Got dtype={dtype} instead.")
+            raise ValueError(
+                "Valid options for 'dtype' are np.float32 and np.float64. "
+                f"Got dtype={dtype} instead."
+            )
 
         if self.is_multiclass:
             shape = (n_samples, self.n_classes)
@@ -609,7 +617,9 @@ class PinballLoss(BaseLoss):
         if sample_weight is None:
             return np.percentile(y_true, 100 * self.closs.quantile, axis=0)
         else:
-            return _weighted_percentile(y_true, sample_weight, 100 * self.closs.quantile)
+            return _weighted_percentile(
+                y_true, sample_weight, 100 * self.closs.quantile
+            )
 
 
 class HuberLoss(BaseLoss):
@@ -793,11 +803,17 @@ class HalfTweedieLoss(BaseLoss):
 
     def constant_to_optimal_zero(self, y_true, sample_weight=None):
         if self.closs.power == 0:
-            return HalfSquaredError().constant_to_optimal_zero(y_true=y_true, sample_weight=sample_weight)
+            return HalfSquaredError().constant_to_optimal_zero(
+                y_true=y_true, sample_weight=sample_weight
+            )
         elif self.closs.power == 1:
-            return HalfPoissonLoss().constant_to_optimal_zero(y_true=y_true, sample_weight=sample_weight)
+            return HalfPoissonLoss().constant_to_optimal_zero(
+                y_true=y_true, sample_weight=sample_weight
+            )
         elif self.closs.power == 2:
-            return HalfGammaLoss().constant_to_optimal_zero(y_true=y_true, sample_weight=sample_weight)
+            return HalfGammaLoss().constant_to_optimal_zero(
+                y_true=y_true, sample_weight=sample_weight
+            )
         else:
             p = self.closs.power
             term = np.power(np.maximum(y_true, 0), 2 - p) / (1 - p) / (2 - p)

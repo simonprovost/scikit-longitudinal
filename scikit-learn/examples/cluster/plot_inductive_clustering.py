@@ -32,6 +32,7 @@ from sklearn_fork.inspection import DecisionBoundaryDisplay
 from sklearn_fork.utils.metaestimators import available_if
 from sklearn_fork.utils.validation import check_is_fitted
 
+
 N_SAMPLES = 5000
 RANDOM_STATE = 42
 
@@ -97,7 +98,9 @@ plt.title("Ward Linkage")
 
 
 # Generate new samples and plot them along with the original dataset
-X_new, y_new = make_blobs(n_samples=10, centers=[(-7, -1), (-2, 4), (3, 6)], random_state=RANDOM_STATE)
+X_new, y_new = make_blobs(
+    n_samples=10, centers=[(-7, -1), (-2, 4), (3, 6)], random_state=RANDOM_STATE
+)
 
 plt.subplot(132)
 plot_scatter(X, cluster_labels)
@@ -118,7 +121,9 @@ plot_scatter(X, cluster_labels)
 plot_scatter(X_new, probable_clusters)
 
 # Plotting decision regions
-DecisionBoundaryDisplay.from_estimator(inductive_learner, X, response_method="predict", alpha=0.4, ax=ax)
+DecisionBoundaryDisplay.from_estimator(
+    inductive_learner, X, response_method="predict", alpha=0.4, ax=ax
+)
 plt.title("Classify unknown instances")
 
 plt.show()

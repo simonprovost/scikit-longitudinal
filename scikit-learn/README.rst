@@ -98,7 +98,7 @@ Installing scikit-learn-tree
 ============================
 
 Scikit-learn-tree is a maintained fork of scikit-learn, which extends the
-tree submodule in a few ways documented in `fork_changelog`_.
+tree submodule in a few ways documented in `fork_changelog`_. 
 
 We release versions of scikit-learn-tree in an analagous fashion to
 scikit-learn main. Due to maintenance resources, we only release on PyPi
@@ -109,7 +109,7 @@ There are different ways to install scikit-learn-tree:
   * Install the latest official release `install_fork_release`_. This
     is the best approach for most users. It will provide a stable version
     and pre-built packages are available for most platforms.
-
+    
   * Building the package from source `install_source`_. This is best for users who want the
     latest-and-greatest features and aren't afraid of running
     brand-new code. This is also needed for users who wish to contribute to the
@@ -177,7 +177,7 @@ It is used in packages exactly the same way and will support all features
 in the corresponding version of ``scikit-learn``. For example, if you
 are interested in features of ``scikit-learn`` in v1.2.2 for ``NearestNeighbors`` algorithm,
 then if ``scikit-learn-tree`` has a version release of v1.2.2, then it will have
-all those features.
+all those features. 
 
 The breaking API changes will be with respect to anything in the ``tree`` submodule,
 and related Forest ensemble models. See below for a detailed list of breaking changes.
@@ -222,7 +222,7 @@ change without warning.
 - stopping conditions for splitter: Currently, the ``Splitter.node_split`` function has various
   stopping conditions for the splitter based on hyperparameters. It is plausible that these conditions
   may be extended. For example, in causal trees, one may want the splitter to also account for
-  a minimal degree of heterogeneity (i.e. variance) in its children nodes.
+  a minimal degree of heterogeneity (i.e. variance) in its children nodes. 
 
 Python API:
 
@@ -284,4 +284,4 @@ that may, or may not eventually be PRed into ``scikit-learn``. For example,
 
 If you are developing tree models, we encourage you to take a look at that package, or
 if you have suggestions to make the tree submodule of our fork, ``scikit-learn-tree``
-more
+more 

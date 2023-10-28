@@ -2,24 +2,22 @@
 Testing for the gradient boosting loss functions and initial estimators.
 """
 from itertools import product
-
 import numpy as np
-import pytest
 from numpy.testing import assert_allclose
+import pytest
 from pytest import approx
-from sklearn_fork.ensemble._gb_losses import (
-    LOSS_FUNCTIONS,
-    BinomialDeviance,
-    ExponentialLoss,
-    HuberLossFunction,
-    LeastAbsoluteError,
-    LeastSquaresError,
-    MultinomialDeviance,
-    QuantileLossFunction,
-    RegressionLossFunction,
-)
-from sklearn_fork.metrics import mean_pinball_loss
+
 from sklearn_fork.utils import check_random_state
+from sklearn_fork.metrics import mean_pinball_loss
+from sklearn_fork.ensemble._gb_losses import RegressionLossFunction
+from sklearn_fork.ensemble._gb_losses import LeastSquaresError
+from sklearn_fork.ensemble._gb_losses import LeastAbsoluteError
+from sklearn_fork.ensemble._gb_losses import HuberLossFunction
+from sklearn_fork.ensemble._gb_losses import QuantileLossFunction
+from sklearn_fork.ensemble._gb_losses import BinomialDeviance
+from sklearn_fork.ensemble._gb_losses import MultinomialDeviance
+from sklearn_fork.ensemble._gb_losses import ExponentialLoss
+from sklearn_fork.ensemble._gb_losses import LOSS_FUNCTIONS
 
 
 def test_binomial_deviance():
@@ -317,7 +315,9 @@ def test_lad_equals_quantiles(global_random_seed, alpha):
     ql_weighted_loss = ql(y_true, raw_predictions, sample_weight=weights)
     if alpha == 0.5:
         assert lad_weighted_loss == approx(2 * ql_weighted_loss)
-    pbl_weighted_loss = mean_pinball_loss(y_true, raw_predictions, sample_weight=weights, alpha=alpha)
+    pbl_weighted_loss = mean_pinball_loss(
+        y_true, raw_predictions, sample_weight=weights, alpha=alpha
+    )
     assert pbl_weighted_loss == approx(ql_weighted_loss)
 
 

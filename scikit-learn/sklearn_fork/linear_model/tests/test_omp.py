@@ -1,20 +1,25 @@
 # Author: Vlad Niculae
 # License: BSD 3 clause
 
-import warnings
-
 import numpy as np
 import pytest
-from sklearn_fork.datasets import make_sparse_coded_signal
+import warnings
+
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import ignore_warnings
+
+
 from sklearn_fork.linear_model import (
-    LinearRegression,
-    OrthogonalMatchingPursuit,
-    OrthogonalMatchingPursuitCV,
     orthogonal_mp,
     orthogonal_mp_gram,
+    OrthogonalMatchingPursuit,
+    OrthogonalMatchingPursuitCV,
+    LinearRegression,
 )
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import assert_allclose, assert_array_almost_equal, assert_array_equal, ignore_warnings
+from sklearn_fork.datasets import make_sparse_coded_signal
 
 n_samples, n_features, n_nonzero_coefs, n_targets = 25, 35, 5, 3
 y, X, gamma = make_sparse_coded_signal(
@@ -34,8 +39,12 @@ G, Xy = np.dot(X.T, X), np.dot(X.T, y)
 
 
 # TODO(1.4): remove
-@pytest.mark.parametrize("OmpModel", [OrthogonalMatchingPursuit, OrthogonalMatchingPursuitCV])
-@pytest.mark.parametrize("normalize, n_warnings", [(True, 1), (False, 1), ("deprecated", 0)])
+@pytest.mark.parametrize(
+    "OmpModel", [OrthogonalMatchingPursuit, OrthogonalMatchingPursuitCV]
+)
+@pytest.mark.parametrize(
+    "normalize, n_warnings", [(True, 1), (False, 1), ("deprecated", 0)]
+)
 def test_assure_warning_when_normalize(OmpModel, normalize, n_warnings):
     # check that we issue a FutureWarning when normalize was set
     rng = check_random_state(0)
@@ -65,7 +74,10 @@ def test_correct_shapes_gram():
 
 def test_n_nonzero_coefs():
     assert np.count_nonzero(orthogonal_mp(X, y[:, 0], n_nonzero_coefs=5)) <= 5
-    assert np.count_nonzero(orthogonal_mp(X, y[:, 0], n_nonzero_coefs=5, precompute=True)) <= 5
+    assert (
+        np.count_nonzero(orthogonal_mp(X, y[:, 0], n_nonzero_coefs=5, precompute=True))
+        <= 5
+    )
 
 
 def test_tol():
@@ -84,11 +96,15 @@ def test_with_without_gram():
 
 
 def test_with_without_gram_tol():
-    assert_array_almost_equal(orthogonal_mp(X, y, tol=1.0), orthogonal_mp(X, y, tol=1.0, precompute=True))
+    assert_array_almost_equal(
+        orthogonal_mp(X, y, tol=1.0), orthogonal_mp(X, y, tol=1.0, precompute=True)
+    )
 
 
 def test_unreachable_accuracy():
-    assert_array_almost_equal(orthogonal_mp(X, y, tol=0), orthogonal_mp(X, y, n_nonzero_coefs=n_features))
+    assert_array_almost_equal(
+        orthogonal_mp(X, y, tol=0), orthogonal_mp(X, y, n_nonzero_coefs=n_features)
+    )
     warning_message = (
         "Orthogonal matching pursuit ended prematurely "
         "due to linear dependence in the dictionary. "
@@ -129,7 +145,9 @@ def test_orthogonal_mp_gram_readonly():
     G_readonly.setflags(write=False)
     Xy_readonly = Xy.copy()
     Xy_readonly.setflags(write=False)
-    gamma_gram = orthogonal_mp_gram(G_readonly, Xy_readonly[:, 0], n_nonzero_coefs=5, copy_Gram=False, copy_Xy=False)
+    gamma_gram = orthogonal_mp_gram(
+        G_readonly, Xy_readonly[:, 0], n_nonzero_coefs=5, copy_Gram=False, copy_Xy=False
+    )
     assert_array_equal(idx, np.flatnonzero(gamma_gram))
     assert_array_almost_equal(gamma[:, 0], gamma_gram, decimal=2)
 
@@ -227,11 +245,15 @@ def test_omp_return_path_prop_with_gram():
 def test_omp_cv():
     y_ = y[:, 0]
     gamma_ = gamma[:, 0]
-    ompcv = OrthogonalMatchingPursuitCV(normalize=True, fit_intercept=False, max_iter=10)
+    ompcv = OrthogonalMatchingPursuitCV(
+        normalize=True, fit_intercept=False, max_iter=10
+    )
     ompcv.fit(X, y_)
     assert ompcv.n_nonzero_coefs_ == n_nonzero_coefs
     assert_array_almost_equal(ompcv.coef_, gamma_)
-    omp = OrthogonalMatchingPursuit(normalize=True, fit_intercept=False, n_nonzero_coefs=ompcv.n_nonzero_coefs_)
+    omp = OrthogonalMatchingPursuit(
+        normalize=True, fit_intercept=False, n_nonzero_coefs=ompcv.n_nonzero_coefs_
+    )
     omp.fit(X, y_)
     assert_array_almost_equal(ompcv.coef_, omp.coef_)
 
@@ -255,12 +277,18 @@ def test_omp_reaches_least_squares():
 @pytest.mark.parametrize("data_type", (np.float32, np.float64))
 def test_omp_gram_dtype_match(data_type):
     # verify matching input data type and output data type
-    coef = orthogonal_mp_gram(G.astype(data_type), Xy.astype(data_type), n_nonzero_coefs=5)
+    coef = orthogonal_mp_gram(
+        G.astype(data_type), Xy.astype(data_type), n_nonzero_coefs=5
+    )
     assert coef.dtype == data_type
 
 
 def test_omp_gram_numerical_consistency():
     # verify numericaly consistency among np.float32 and np.float64
-    coef_32 = orthogonal_mp_gram(G.astype(np.float32), Xy.astype(np.float32), n_nonzero_coefs=5)
-    coef_64 = orthogonal_mp_gram(G.astype(np.float32), Xy.astype(np.float64), n_nonzero_coefs=5)
+    coef_32 = orthogonal_mp_gram(
+        G.astype(np.float32), Xy.astype(np.float32), n_nonzero_coefs=5
+    )
+    coef_64 = orthogonal_mp_gram(
+        G.astype(np.float32), Xy.astype(np.float64), n_nonzero_coefs=5
+    )
     assert_allclose(coef_32, coef_64)

@@ -6,27 +6,27 @@ Neighborhood Component Analysis
 #          John Chiotellis <ioannis.chiotellis@in.tum.de>
 # License: BSD 3 clause
 
+from warnings import warn
+from numbers import Integral, Real
+import numpy as np
 import sys
 import time
-from numbers import Integral, Real
-from warnings import warn
-
-import numpy as np
 from scipy.optimize import minimize
-
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from ..decomposition import PCA
-from ..exceptions import ConvergenceWarning
-from ..metrics import pairwise_distances
-from ..preprocessing import LabelEncoder
-from ..utils._param_validation import Interval, StrOptions
 from ..utils.extmath import softmax
+from ..metrics import pairwise_distances
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
+from ..preprocessing import LabelEncoder
+from ..decomposition import PCA
 from ..utils.multiclass import check_classification_targets
 from ..utils.random import check_random_state
-from ..utils.validation import check_array, check_is_fitted
+from ..utils.validation import check_is_fitted, check_array
+from ..utils._param_validation import Interval, StrOptions
+from ..exceptions import ConvergenceWarning
 
 
-class NeighborhoodComponentsAnalysis(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
+class NeighborhoodComponentsAnalysis(
+    ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
+):
     """Neighborhood Components Analysis.
 
     Neighborhood Component Analysis (NCA) is a machine learning algorithm for
@@ -247,7 +247,11 @@ class NeighborhoodComponentsAnalysis(ClassNamePrefixFeaturesOutMixin, Transforme
                 f"dimensionality ({X.shape[1]})!"
             )
         # If warm_start is enabled, check that the inputs are consistent
-        if self.warm_start and hasattr(self, "components_") and self.components_.shape[1] != X.shape[1]:
+        if (
+            self.warm_start
+            and hasattr(self, "components_")
+            and self.components_.shape[1] != X.shape[1]
+        ):
             raise ValueError(
                 f"The new inputs dimensionality ({X.shape[1]}) does not "
                 "match the input dimensionality of the "
@@ -323,7 +327,9 @@ class NeighborhoodComponentsAnalysis(ClassNamePrefixFeaturesOutMixin, Transforme
             # Warn the user if the algorithm did not converge
             if not opt_result.success:
                 warn(
-                    "[{}] NCA did not converge: {}".format(cls_name, opt_result.message),
+                    "[{}] NCA did not converge: {}".format(
+                        cls_name, opt_result.message
+                    ),
                     ConvergenceWarning,
                 )
 
@@ -395,11 +401,15 @@ class NeighborhoodComponentsAnalysis(ClassNamePrefixFeaturesOutMixin, Transforme
             if init == "identity":
                 transformation = np.eye(n_components, X.shape[1])
             elif init == "random":
-                transformation = self.random_state_.standard_normal(size=(n_components, X.shape[1]))
+                transformation = self.random_state_.standard_normal(
+                    size=(n_components, X.shape[1])
+                )
             elif init in {"pca", "lda"}:
                 init_time = time.time()
                 if init == "pca":
-                    pca = PCA(n_components=n_components, random_state=self.random_state_)
+                    pca = PCA(
+                        n_components=n_components, random_state=self.random_state_
+                    )
                     if self.verbose:
                         print("Finding principal components... ", end="")
                         sys.stdout.flush()
@@ -464,7 +474,11 @@ class NeighborhoodComponentsAnalysis(ClassNamePrefixFeaturesOutMixin, Transforme
                 header = header_fmt.format(*header_fields)
                 cls_name = self.__class__.__name__
                 print("[{}]".format(cls_name))
-                print("[{}] {}\n[{}] {}".format(cls_name, header, cls_name, "-" * len(header)))
+                print(
+                    "[{}] {}\n[{}] {}".format(
+                        cls_name, header, cls_name, "-" * len(header)
+                    )
+                )
 
         t_funcall = time.time()
 
@@ -492,7 +506,11 @@ class NeighborhoodComponentsAnalysis(ClassNamePrefixFeaturesOutMixin, Transforme
         if self.verbose:
             t_funcall = time.time() - t_funcall
             values_fmt = "[{}] {:>10} {:>20.6e} {:>10.2f}"
-            print(values_fmt.format(self.__class__.__name__, self.n_iter_, loss, t_funcall))
+            print(
+                values_fmt.format(
+                    self.__class__.__name__, self.n_iter_, loss, t_funcall
+                )
+            )
             sys.stdout.flush()
 
         return sign * loss, sign * gradient.ravel()

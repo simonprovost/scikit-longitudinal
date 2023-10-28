@@ -1943,8 +1943,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 /* #### Code section: module_code ### */
 
 /* "sklearn_fork/utils/_heap.pyx":6
- *
- *
+ * 
+ * 
  * cdef inline int heap_push(             # <<<<<<<<<<<<<<
  *     floating* values,
  *     intp_t* indices,
@@ -1959,11 +1959,11 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
   int __pyx_t_1;
 
   /* "sklearn_fork/utils/_heap.pyx":46
- *
+ * 
  *     # Check if val should be in heap
  *     if val >= values[0]:             # <<<<<<<<<<<<<<
  *         return 0
- *
+ * 
  */
   __pyx_t_1 = (__pyx_v_val >= (__pyx_v_values[0]));
   if (__pyx_t_1) {
@@ -1972,27 +1972,27 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *     # Check if val should be in heap
  *     if val >= values[0]:
  *         return 0             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Insert val at position zero
  */
     __pyx_r = 0;
     goto __pyx_L0;
 
     /* "sklearn_fork/utils/_heap.pyx":46
- *
+ * 
  *     # Check if val should be in heap
  *     if val >= values[0]:             # <<<<<<<<<<<<<<
  *         return 0
- *
+ * 
  */
   }
 
   /* "sklearn_fork/utils/_heap.pyx":50
- *
+ * 
  *     # Insert val at position zero
  *     values[0] = val             # <<<<<<<<<<<<<<
  *     indices[0] = val_idx
- *
+ * 
  */
   (__pyx_v_values[0]) = __pyx_v_val;
 
@@ -2000,13 +2000,13 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *     # Insert val at position zero
  *     values[0] = val
  *     indices[0] = val_idx             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Descend the heap, swapping values until the max heap criterion is met
  */
   (__pyx_v_indices[0]) = __pyx_v_val_idx;
 
   /* "sklearn_fork/utils/_heap.pyx":54
- *
+ * 
  *     # Descend the heap, swapping values until the max heap criterion is met
  *     current_idx = 0             # <<<<<<<<<<<<<<
  *     while True:
@@ -2028,7 +2028,7 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *     while True:
  *         left_child_idx = 2 * current_idx + 1             # <<<<<<<<<<<<<<
  *         right_child_idx = left_child_idx + 1
- *
+ * 
  */
     __pyx_v_left_child_idx = ((2 * __pyx_v_current_idx) + 1);
 
@@ -2036,14 +2036,14 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *     while True:
  *         left_child_idx = 2 * current_idx + 1
  *         right_child_idx = left_child_idx + 1             # <<<<<<<<<<<<<<
- *
+ * 
  *         if left_child_idx >= size:
  */
     __pyx_v_right_child_idx = (__pyx_v_left_child_idx + 1);
 
     /* "sklearn_fork/utils/_heap.pyx":59
  *         right_child_idx = left_child_idx + 1
- *
+ * 
  *         if left_child_idx >= size:             # <<<<<<<<<<<<<<
  *             break
  *         elif right_child_idx >= size:
@@ -2052,7 +2052,7 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
     if (__pyx_t_1) {
 
       /* "sklearn_fork/utils/_heap.pyx":60
- *
+ * 
  *         if left_child_idx >= size:
  *             break             # <<<<<<<<<<<<<<
  *         elif right_child_idx >= size:
@@ -2062,7 +2062,7 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
 
       /* "sklearn_fork/utils/_heap.pyx":59
  *         right_child_idx = left_child_idx + 1
- *
+ * 
  *         if left_child_idx >= size:             # <<<<<<<<<<<<<<
  *             break
  *         elif right_child_idx >= size:
@@ -2225,7 +2225,7 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *                 swap_idx = right_child_idx
  *             else:
  *                 break             # <<<<<<<<<<<<<<
- *
+ * 
  *         values[current_idx] = values[swap_idx]
  */
       /*else*/ {
@@ -2237,27 +2237,27 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
 
     /* "sklearn_fork/utils/_heap.pyx":77
  *                 break
- *
+ * 
  *         values[current_idx] = values[swap_idx]             # <<<<<<<<<<<<<<
  *         indices[current_idx] = indices[swap_idx]
- *
+ * 
  */
     (__pyx_v_values[__pyx_v_current_idx]) = (__pyx_v_values[__pyx_v_swap_idx]);
 
     /* "sklearn_fork/utils/_heap.pyx":78
- *
+ * 
  *         values[current_idx] = values[swap_idx]
  *         indices[current_idx] = indices[swap_idx]             # <<<<<<<<<<<<<<
- *
+ * 
  *         current_idx = swap_idx
  */
     (__pyx_v_indices[__pyx_v_current_idx]) = (__pyx_v_indices[__pyx_v_swap_idx]);
 
     /* "sklearn_fork/utils/_heap.pyx":80
  *         indices[current_idx] = indices[swap_idx]
- *
+ * 
  *         current_idx = swap_idx             # <<<<<<<<<<<<<<
- *
+ * 
  *     values[current_idx] = val
  */
     __pyx_v_current_idx = __pyx_v_swap_idx;
@@ -2266,33 +2266,33 @@ static CYTHON_INLINE int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
 
   /* "sklearn_fork/utils/_heap.pyx":82
  *         current_idx = swap_idx
- *
+ * 
  *     values[current_idx] = val             # <<<<<<<<<<<<<<
  *     indices[current_idx] = val_idx
- *
+ * 
  */
   (__pyx_v_values[__pyx_v_current_idx]) = __pyx_v_val;
 
   /* "sklearn_fork/utils/_heap.pyx":83
- *
+ * 
  *     values[current_idx] = val
  *     indices[current_idx] = val_idx             # <<<<<<<<<<<<<<
- *
+ * 
  *     return 0
  */
   (__pyx_v_indices[__pyx_v_current_idx]) = __pyx_v_val_idx;
 
   /* "sklearn_fork/utils/_heap.pyx":85
  *     indices[current_idx] = val_idx
- *
+ * 
  *     return 0             # <<<<<<<<<<<<<<
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_heap.pyx":6
- *
- *
+ * 
+ * 
  * cdef inline int heap_push(             # <<<<<<<<<<<<<<
  *     floating* values,
  *     intp_t* indices,
@@ -2312,11 +2312,11 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
   int __pyx_t_1;
 
   /* "sklearn_fork/utils/_heap.pyx":46
- *
+ * 
  *     # Check if val should be in heap
  *     if val >= values[0]:             # <<<<<<<<<<<<<<
  *         return 0
- *
+ * 
  */
   __pyx_t_1 = (__pyx_v_val >= (__pyx_v_values[0]));
   if (__pyx_t_1) {
@@ -2325,27 +2325,27 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *     # Check if val should be in heap
  *     if val >= values[0]:
  *         return 0             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Insert val at position zero
  */
     __pyx_r = 0;
     goto __pyx_L0;
 
     /* "sklearn_fork/utils/_heap.pyx":46
- *
+ * 
  *     # Check if val should be in heap
  *     if val >= values[0]:             # <<<<<<<<<<<<<<
  *         return 0
- *
+ * 
  */
   }
 
   /* "sklearn_fork/utils/_heap.pyx":50
- *
+ * 
  *     # Insert val at position zero
  *     values[0] = val             # <<<<<<<<<<<<<<
  *     indices[0] = val_idx
- *
+ * 
  */
   (__pyx_v_values[0]) = __pyx_v_val;
 
@@ -2353,13 +2353,13 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *     # Insert val at position zero
  *     values[0] = val
  *     indices[0] = val_idx             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Descend the heap, swapping values until the max heap criterion is met
  */
   (__pyx_v_indices[0]) = __pyx_v_val_idx;
 
   /* "sklearn_fork/utils/_heap.pyx":54
- *
+ * 
  *     # Descend the heap, swapping values until the max heap criterion is met
  *     current_idx = 0             # <<<<<<<<<<<<<<
  *     while True:
@@ -2381,7 +2381,7 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *     while True:
  *         left_child_idx = 2 * current_idx + 1             # <<<<<<<<<<<<<<
  *         right_child_idx = left_child_idx + 1
- *
+ * 
  */
     __pyx_v_left_child_idx = ((2 * __pyx_v_current_idx) + 1);
 
@@ -2389,14 +2389,14 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *     while True:
  *         left_child_idx = 2 * current_idx + 1
  *         right_child_idx = left_child_idx + 1             # <<<<<<<<<<<<<<
- *
+ * 
  *         if left_child_idx >= size:
  */
     __pyx_v_right_child_idx = (__pyx_v_left_child_idx + 1);
 
     /* "sklearn_fork/utils/_heap.pyx":59
  *         right_child_idx = left_child_idx + 1
- *
+ * 
  *         if left_child_idx >= size:             # <<<<<<<<<<<<<<
  *             break
  *         elif right_child_idx >= size:
@@ -2405,7 +2405,7 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
     if (__pyx_t_1) {
 
       /* "sklearn_fork/utils/_heap.pyx":60
- *
+ * 
  *         if left_child_idx >= size:
  *             break             # <<<<<<<<<<<<<<
  *         elif right_child_idx >= size:
@@ -2415,7 +2415,7 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
 
       /* "sklearn_fork/utils/_heap.pyx":59
  *         right_child_idx = left_child_idx + 1
- *
+ * 
  *         if left_child_idx >= size:             # <<<<<<<<<<<<<<
  *             break
  *         elif right_child_idx >= size:
@@ -2578,7 +2578,7 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
  *                 swap_idx = right_child_idx
  *             else:
  *                 break             # <<<<<<<<<<<<<<
- *
+ * 
  *         values[current_idx] = values[swap_idx]
  */
       /*else*/ {
@@ -2590,27 +2590,27 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
 
     /* "sklearn_fork/utils/_heap.pyx":77
  *                 break
- *
+ * 
  *         values[current_idx] = values[swap_idx]             # <<<<<<<<<<<<<<
  *         indices[current_idx] = indices[swap_idx]
- *
+ * 
  */
     (__pyx_v_values[__pyx_v_current_idx]) = (__pyx_v_values[__pyx_v_swap_idx]);
 
     /* "sklearn_fork/utils/_heap.pyx":78
- *
+ * 
  *         values[current_idx] = values[swap_idx]
  *         indices[current_idx] = indices[swap_idx]             # <<<<<<<<<<<<<<
- *
+ * 
  *         current_idx = swap_idx
  */
     (__pyx_v_indices[__pyx_v_current_idx]) = (__pyx_v_indices[__pyx_v_swap_idx]);
 
     /* "sklearn_fork/utils/_heap.pyx":80
  *         indices[current_idx] = indices[swap_idx]
- *
+ * 
  *         current_idx = swap_idx             # <<<<<<<<<<<<<<
- *
+ * 
  *     values[current_idx] = val
  */
     __pyx_v_current_idx = __pyx_v_swap_idx;
@@ -2619,33 +2619,33 @@ static CYTHON_INLINE int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_5_heap_heap_p
 
   /* "sklearn_fork/utils/_heap.pyx":82
  *         current_idx = swap_idx
- *
+ * 
  *     values[current_idx] = val             # <<<<<<<<<<<<<<
  *     indices[current_idx] = val_idx
- *
+ * 
  */
   (__pyx_v_values[__pyx_v_current_idx]) = __pyx_v_val;
 
   /* "sklearn_fork/utils/_heap.pyx":83
- *
+ * 
  *     values[current_idx] = val
  *     indices[current_idx] = val_idx             # <<<<<<<<<<<<<<
- *
+ * 
  *     return 0
  */
   (__pyx_v_indices[__pyx_v_current_idx]) = __pyx_v_val_idx;
 
   /* "sklearn_fork/utils/_heap.pyx":85
  *     indices[current_idx] = val_idx
- *
+ * 
  *     return 0             # <<<<<<<<<<<<<<
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_heap.pyx":6
- *
- *
+ * 
+ * 
  * cdef inline int heap_push(             # <<<<<<<<<<<<<<
  *     floating* values,
  *     intp_t* indices,
@@ -3062,7 +3062,7 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn_fork/utils/_heap.pyx":1
  * from cython cimport floating             # <<<<<<<<<<<<<<
- *
+ * 
  * from ._typedefs cimport intp_t
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)

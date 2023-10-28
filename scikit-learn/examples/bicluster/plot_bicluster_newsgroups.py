@@ -23,12 +23,14 @@ achieve a better V-measure than clusters found by MiniBatchKMeans.
 
 """
 
-import operator
 from collections import defaultdict
+import operator
 from time import time
 
 import numpy as np
-from sklearn_fork.cluster import MiniBatchKMeans, SpectralCoclustering
+
+from sklearn_fork.cluster import SpectralCoclustering
+from sklearn_fork.cluster import MiniBatchKMeans
 from sklearn_fork.datasets import fetch_20newsgroups
 from sklearn_fork.feature_extraction.text import TfidfVectorizer
 from sklearn_fork.metrics.cluster import v_measure_score
@@ -76,8 +78,12 @@ newsgroups = fetch_20newsgroups(categories=categories)
 y_true = newsgroups.target
 
 vectorizer = NumberNormalizingVectorizer(stop_words="english", min_df=5)
-cocluster = SpectralCoclustering(n_clusters=len(categories), svd_method="arpack", random_state=0)
-kmeans = MiniBatchKMeans(n_clusters=len(categories), batch_size=20000, random_state=0, n_init=3)
+cocluster = SpectralCoclustering(
+    n_clusters=len(categories), svd_method="arpack", random_state=0
+)
+kmeans = MiniBatchKMeans(
+    n_clusters=len(categories), batch_size=20000, random_state=0, n_init=3
+)
 
 print("Vectorizing...")
 X = vectorizer.fit_transform(newsgroups.data)
@@ -86,12 +92,20 @@ print("Coclustering...")
 start_time = time()
 cocluster.fit(X)
 y_cocluster = cocluster.row_labels_
-print("Done in {:.2f}s. V-measure: {:.4f}".format(time() - start_time, v_measure_score(y_cocluster, y_true)))
+print(
+    "Done in {:.2f}s. V-measure: {:.4f}".format(
+        time() - start_time, v_measure_score(y_cocluster, y_true)
+    )
+)
 
 print("MiniBatchKMeans...")
 start_time = time()
 y_kmeans = kmeans.fit_predict(X)
-print("Done in {:.2f}s. V-measure: {:.4f}".format(time() - start_time, v_measure_score(y_kmeans, y_true)))
+print(
+    "Done in {:.2f}s. V-measure: {:.4f}".format(
+        time() - start_time, v_measure_score(y_kmeans, y_true)
+    )
+)
 
 feature_names = vectorizer.get_feature_names_out()
 document_names = list(newsgroups.target_names[i] for i in newsgroups.target)
@@ -136,15 +150,23 @@ for idx, cluster in enumerate(best_idx):
     counter = defaultdict(int)
     for i in cluster_docs:
         counter[document_names[i]] += 1
-    cat_string = ", ".join("{:.0f}% {}".format(float(c) / n_rows * 100, name) for name, c in most_common(counter)[:3])
+    cat_string = ", ".join(
+        "{:.0f}% {}".format(float(c) / n_rows * 100, name)
+        for name, c in most_common(counter)[:3]
+    )
 
     # words
     out_of_cluster_docs = cocluster.row_labels_ != cluster
     out_of_cluster_docs = np.where(out_of_cluster_docs)[0]
     word_col = X[:, cluster_words]
-    word_scores = np.array(word_col[cluster_docs, :].sum(axis=0) - word_col[out_of_cluster_docs, :].sum(axis=0))
+    word_scores = np.array(
+        word_col[cluster_docs, :].sum(axis=0)
+        - word_col[out_of_cluster_docs, :].sum(axis=0)
+    )
     word_scores = word_scores.ravel()
-    important_words = list(feature_names[cluster_words[i]] for i in word_scores.argsort()[:-11:-1])
+    important_words = list(
+        feature_names[cluster_words[i]] for i in word_scores.argsort()[:-11:-1]
+    )
 
     print("bicluster {} : {} documents, {} words".format(idx, n_rows, n_cols))
     print("categories   : {}".format(cat_string))

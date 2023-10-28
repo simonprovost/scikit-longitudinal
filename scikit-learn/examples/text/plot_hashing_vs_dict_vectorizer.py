@@ -118,7 +118,6 @@ token_freqs("That is one example, but this is another one")
 # both of them receive dictionaries as input.
 
 from time import time
-
 from sklearn_fork.feature_extraction import DictVectorizer
 
 dict_count_vectorizers = defaultdict(list)
@@ -127,7 +126,9 @@ t0 = time()
 vectorizer = DictVectorizer()
 vectorizer.fit_transform(token_freqs(d) for d in raw_data)
 duration = time() - t0
-dict_count_vectorizers["vectorizer"].append(vectorizer.__class__.__name__ + "\non freq dicts")
+dict_count_vectorizers["vectorizer"].append(
+    vectorizer.__class__.__name__ + "\non freq dicts"
+)
 dict_count_vectorizers["speed"].append(data_size_mb / duration)
 print(f"done in {duration:.3f} s at {data_size_mb / duration:.1f} MB/s")
 print(f"Found {len(vectorizer.get_feature_names_out())} unique terms")
@@ -187,7 +188,9 @@ t0 = time()
 hasher = FeatureHasher(n_features=2**18)
 X = hasher.transform(token_freqs(d) for d in raw_data)
 duration = time() - t0
-dict_count_vectorizers["vectorizer"].append(hasher.__class__.__name__ + "\non freq dicts")
+dict_count_vectorizers["vectorizer"].append(
+    hasher.__class__.__name__ + "\non freq dicts"
+)
 dict_count_vectorizers["speed"].append(data_size_mb / duration)
 print(f"done in {duration:.3f} s at {data_size_mb / duration:.1f} MB/s")
 print(f"Found {n_nonzero_columns(X)} unique tokens")
@@ -227,7 +230,9 @@ t0 = time()
 hasher = FeatureHasher(n_features=2**18, input_type="string")
 X = hasher.transform(tokenize(d) for d in raw_data)
 duration = time() - t0
-dict_count_vectorizers["vectorizer"].append(hasher.__class__.__name__ + "\non raw tokens")
+dict_count_vectorizers["vectorizer"].append(
+    hasher.__class__.__name__ + "\non raw tokens"
+)
 dict_count_vectorizers["speed"].append(data_size_mb / duration)
 print(f"done in {duration:.3f} s at {data_size_mb / duration:.1f} MB/s")
 print(f"Found {n_nonzero_columns(X)} unique tokens")

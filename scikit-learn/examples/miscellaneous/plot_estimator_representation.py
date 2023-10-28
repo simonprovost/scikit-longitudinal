@@ -7,11 +7,12 @@ This example illustrates different ways estimators and pipelines can be
 displayed.
 """
 
-from sklearn_fork.compose import make_column_transformer
-from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.compose import make_column_transformer
+from sklearn_fork.linear_model import LogisticRegression
+
 
 # %%
 # Compact text representation
@@ -41,7 +42,9 @@ cat_proc = make_pipeline(
     OneHotEncoder(handle_unknown="ignore"),
 )
 
-preprocessor = make_column_transformer((num_proc, ("feat1", "feat3")), (cat_proc, ("feat0", "feat2")))
+preprocessor = make_column_transformer(
+    (num_proc, ("feat1", "feat3")), (cat_proc, ("feat0", "feat2"))
+)
 
 clf = make_pipeline(preprocessor, LogisticRegression())
 clf

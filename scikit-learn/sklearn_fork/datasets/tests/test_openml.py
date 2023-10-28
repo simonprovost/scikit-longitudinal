@@ -8,15 +8,28 @@ from io import BytesIO
 from urllib.error import HTTPError
 
 import numpy as np
-import pytest
 import scipy.sparse
+import pytest
+
 import sklearn_fork
 from sklearn_fork import config_context
-from sklearn_fork.datasets import fetch_openml as fetch_openml_orig
-from sklearn_fork.datasets._openml import _OPENML_PREFIX, _get_local_path, _open_openml_url, _retry_with_clean_cache
 from sklearn_fork.utils import Bunch, check_pandas_support
-from sklearn_fork.utils._testing import SkipTest, assert_allclose, assert_array_equal, fails_if_pypy
 from sklearn_fork.utils.fixes import _open_binary
+from sklearn_fork.utils._testing import (
+    SkipTest,
+    assert_allclose,
+    assert_array_equal,
+    fails_if_pypy,
+)
+
+from sklearn_fork.datasets import fetch_openml as fetch_openml_orig
+from sklearn_fork.datasets._openml import (
+    _OPENML_PREFIX,
+    _open_openml_url,
+    _get_local_path,
+    _retry_with_clean_cache,
+)
+
 
 OPENML_TEST_DATA_MODULE = "sklearn_fork.datasets.tests.data.openml"
 # if True, urlopen will be monkey patched to only use local files
@@ -71,7 +84,11 @@ def _monkey_patch_webbased_functions(context, data_id, gzip_response):
     data_module = OPENML_TEST_DATA_MODULE + "." + f"id_{data_id}"
 
     def _file_name(url, suffix):
-        output = re.sub(r"\W", "-", url[len("https://api.openml.org/") :]) + suffix + path_suffix
+        output = (
+            re.sub(r"\W", "-", url[len("https://api.openml.org/") :])
+            + suffix
+            + path_suffix
+        )
         # Shorten the filenames to have better compatibility with windows 10
         # and filenames > 260 characters
         return (
@@ -137,7 +154,9 @@ def _monkey_patch_webbased_functions(context, data_id, gzip_response):
             decoded_s = decompressed_f.read().decode("utf-8")
             json_data = json.loads(decoded_s)
         if "error" in json_data:
-            raise HTTPError(url=None, code=412, msg="Simulated mock error", hdrs=None, fp=None)
+            raise HTTPError(
+                url=None, code=412, msg="Simulated mock error", hdrs=None, fp=None
+            )
 
         with _open_binary(data_module, data_file_name) as f:
             if has_gzip_header:
@@ -369,7 +388,9 @@ def test_fetch_openml_consistency_parser(monkeypatch, data_id):
         else:
             return series
 
-    frame_liac_with_fixed_dtypes = frame_liac.apply(convert_numerical_and_categorical_dtypes)
+    frame_liac_with_fixed_dtypes = frame_liac.apply(
+        convert_numerical_and_categorical_dtypes
+    )
     pd.testing.assert_frame_equal(frame_liac_with_fixed_dtypes, frame_pandas)
 
 
@@ -416,7 +437,9 @@ def test_fetch_openml_iris_pandas(monkeypatch, parser):
     target_shape = (150,)
     frame_shape = (150, 5)
 
-    target_dtype = CategoricalDtype(["Iris-setosa", "Iris-versicolor", "Iris-virginica"])
+    target_dtype = CategoricalDtype(
+        ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+    )
     data_dtypes = [np.float64] * 4
     data_names = ["sepallength", "sepalwidth", "petallength", "petalwidth"]
     target_name = "class"
@@ -479,7 +502,9 @@ def test_fetch_openml_forcing_targets(monkeypatch, parser, target_column):
 
     pd.testing.assert_frame_equal(bunch_forcing_target.frame, bunch_default.frame)
     if isinstance(target_column, list):
-        pd.testing.assert_index_equal(bunch_forcing_target.target.columns, pd.Index(target_column))
+        pd.testing.assert_index_equal(
+            bunch_forcing_target.target.columns, pd.Index(target_column)
+        )
         assert bunch_forcing_target.data.shape == (150, 3)
     else:
         assert bunch_forcing_target.target.name == target_column
@@ -931,7 +956,9 @@ def test_fetch_openml_types_inference(
     )
     frame = bunch.frame
 
-    n_categories = len([dtype for dtype in frame.dtypes if isinstance(dtype, CategoricalDtype)])
+    n_categories = len(
+        [dtype for dtype in frame.dtypes if isinstance(dtype, CategoricalDtype)]
+    )
     n_floats = len([dtype for dtype in frame.dtypes if dtype.kind == "f"])
     n_ints = len([dtype for dtype in frame.dtypes if dtype.kind == "i"])
 
@@ -998,7 +1025,9 @@ def test_fetch_openml_requires_pandas_in_future(monkeypatch):
         check_pandas_support("test_fetch_openml_requires_pandas")
     except ImportError:
         _monkey_patch_webbased_functions(monkeypatch, data_id, True)
-        warn_msg = "From version 1.4, `parser='auto'` with `as_frame=False` will use pandas"
+        warn_msg = (
+            "From version 1.4, `parser='auto'` with `as_frame=False` will use pandas"
+        )
         with pytest.warns(FutureWarning, match=warn_msg):
             fetch_openml(data_id=data_id, **params)
     else:
@@ -1163,7 +1192,9 @@ def test_fetch_openml_inactive(monkeypatch, gzip_response, dataset_params):
     _monkey_patch_webbased_functions(monkeypatch, data_id, gzip_response)
     msg = "Version 1 of dataset glass2 is inactive,"
     with pytest.warns(UserWarning, match=msg):
-        glass2 = fetch_openml(cache=False, as_frame=False, parser="liac-arff", **dataset_params)
+        glass2 = fetch_openml(
+            cache=False, as_frame=False, parser="liac-arff", **dataset_params
+        )
     assert glass2.data.shape == (163, 9)
     assert glass2.details["id"] == "40675"
 
@@ -1183,7 +1214,10 @@ def test_fetch_openml_inactive(monkeypatch, gzip_response, dataset_params):
             40945,
             {"data_id": 40945, "as_frame": False},
             ValueError,
-            "STRING attributes are not supported for array representation. Try as_frame=True",
+            (
+                "STRING attributes are not supported for array representation. Try"
+                " as_frame=True"
+            ),
         ),
         (
             2,
@@ -1212,7 +1246,9 @@ def test_fetch_openml_inactive(monkeypatch, gzip_response, dataset_params):
     ],
 )
 @pytest.mark.parametrize("parser", ["liac-arff", "pandas"])
-def test_fetch_openml_error(monkeypatch, gzip_response, data_id, params, err_type, err_msg, parser):
+def test_fetch_openml_error(
+    monkeypatch, gzip_response, data_id, params, err_type, err_msg, parser
+):
     _monkey_patch_webbased_functions(monkeypatch, data_id, gzip_response)
     if params.get("as_frame", True) or parser == "pandas":
         pytest.importorskip("pandas")
@@ -1390,7 +1426,9 @@ def test_retry_with_clean_cache_http_error(tmpdir):
 
     @_retry_with_clean_cache(openml_path, cache_directory)
     def _load_data():
-        raise HTTPError(url=None, code=412, msg="Simulated mock error", hdrs=None, fp=None)
+        raise HTTPError(
+            url=None, code=412, msg="Simulated mock error", hdrs=None, fp=None
+        )
 
     error_msg = "Simulated mock error"
     with pytest.raises(HTTPError, match=error_msg):
@@ -1401,7 +1439,9 @@ def test_retry_with_clean_cache_http_error(tmpdir):
 def test_fetch_openml_cache(monkeypatch, gzip_response, tmpdir):
     def _mock_urlopen_raise(request, *args, **kwargs):
         raise ValueError(
-            "This mechanism intends to test correct cachehandling. As such, urlopen should never be accessed. URL: %s"
+            "This mechanism intends to test correct cache"
+            "handling. As such, urlopen should never be "
+            "accessed. URL: %s"
             % request.get_full_url()
         )
 
@@ -1481,7 +1521,9 @@ def test_fetch_openml_verify_checksum(monkeypatch, as_frame, cache, tmpdir, pars
 
     # validate failed checksum
     with pytest.raises(ValueError) as exc:
-        sklearn_fork.datasets.fetch_openml(data_id=data_id, cache=False, as_frame=as_frame, parser=parser)
+        sklearn_fork.datasets.fetch_openml(
+            data_id=data_id, cache=False, as_frame=as_frame, parser=parser
+        )
     # exception message should have file-path
     assert exc.match("1666876")
 
@@ -1490,14 +1532,17 @@ def test_open_openml_url_retry_on_network_error(monkeypatch):
     def _mock_urlopen_network_error(request, *args, **kwargs):
         raise HTTPError("", 404, "Simulated network error", None, None)
 
-    monkeypatch.setattr(sklearn_fork.datasets._openml, "urlopen", _mock_urlopen_network_error)
+    monkeypatch.setattr(
+        sklearn_fork.datasets._openml, "urlopen", _mock_urlopen_network_error
+    )
 
     invalid_openml_url = "invalid-url"
 
     with pytest.warns(
         UserWarning,
         match=re.escape(
-            f"A network error occurred while downloading {_OPENML_PREFIX + invalid_openml_url}. Retrying..."
+            "A network error occurred while downloading"
+            f" {_OPENML_PREFIX + invalid_openml_url}. Retrying..."
         ),
     ) as record:
         with pytest.raises(HTTPError, match="Simulated network error"):
@@ -1521,7 +1566,9 @@ def test_fetch_openml_with_ignored_feature(monkeypatch, gzip_response, parser):
     data_id = 62
     _monkey_patch_webbased_functions(monkeypatch, data_id, gzip_response)
 
-    dataset = sklearn_fork.datasets.fetch_openml(data_id=data_id, cache=False, as_frame=False, parser=parser)
+    dataset = sklearn_fork.datasets.fetch_openml(
+        data_id=data_id, cache=False, as_frame=False, parser=parser
+    )
     assert dataset is not None
     # The dataset has 17 features, including 1 ignored (animal),
     # so we assert that we don't have the ignored feature in the final Bunch
@@ -1548,8 +1595,12 @@ def test_fetch_openml_strip_quotes(monkeypatch):
 
     # similar behaviour should be observed when the column is not the target
     mice_pandas = fetch_openml(parser="pandas", target_column="NUMB_N", **common_params)
-    mice_liac_arff = fetch_openml(parser="liac-arff", target_column="NUMB_N", **common_params)
-    pd.testing.assert_series_equal(mice_pandas.frame["class"], mice_liac_arff.frame["class"])
+    mice_liac_arff = fetch_openml(
+        parser="liac-arff", target_column="NUMB_N", **common_params
+    )
+    pd.testing.assert_series_equal(
+        mice_pandas.frame["class"], mice_liac_arff.frame["class"]
+    )
     assert not mice_pandas.frame["class"].str.startswith("'").any()
     assert not mice_pandas.frame["class"].str.endswith("'").any()
 
@@ -1567,7 +1618,9 @@ def test_fetch_openml_leading_whitespace(monkeypatch):
     common_params = {"as_frame": True, "cache": False, "data_id": data_id}
     adult_pandas = fetch_openml(parser="pandas", **common_params)
     adult_liac_arff = fetch_openml(parser="liac-arff", **common_params)
-    pd.testing.assert_series_equal(adult_pandas.frame["class"], adult_liac_arff.frame["class"])
+    pd.testing.assert_series_equal(
+        adult_pandas.frame["class"], adult_liac_arff.frame["class"]
+    )
 
 
 def test_fetch_openml_quotechar_escapechar(monkeypatch):

@@ -33,7 +33,9 @@ dimensions.
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+
 import numpy as np
+
 from sklearn_fork import datasets
 from sklearn_fork.mixture import GaussianMixture
 from sklearn_fork.model_selection import StratifiedKFold
@@ -56,7 +58,9 @@ def make_ellipses(gmm, ax):
         angle = np.arctan2(u[1], u[0])
         angle = 180 * angle / np.pi  # convert to degrees
         v = 2.0 * np.sqrt(2.0) * np.sqrt(v)
-        ell = mpl.patches.Ellipse(gmm.means_[n, :2], v[0], v[1], angle=180 + angle, color=color)
+        ell = mpl.patches.Ellipse(
+            gmm.means_[n, :2], v[0], v[1], angle=180 + angle, color=color
+        )
         ell.set_clip_box(ax.bbox)
         ell.set_alpha(0.5)
         ax.add_artist(ell)
@@ -81,20 +85,26 @@ n_classes = len(np.unique(y_train))
 
 # Try GMMs using different types of covariances.
 estimators = {
-    cov_type: GaussianMixture(n_components=n_classes, covariance_type=cov_type, max_iter=20, random_state=0)
+    cov_type: GaussianMixture(
+        n_components=n_classes, covariance_type=cov_type, max_iter=20, random_state=0
+    )
     for cov_type in ["spherical", "diag", "tied", "full"]
 }
 
 n_estimators = len(estimators)
 
 plt.figure(figsize=(3 * n_estimators // 2, 6))
-plt.subplots_adjust(bottom=0.01, top=0.95, hspace=0.15, wspace=0.05, left=0.01, right=0.99)
+plt.subplots_adjust(
+    bottom=0.01, top=0.95, hspace=0.15, wspace=0.05, left=0.01, right=0.99
+)
 
 
 for index, (name, estimator) in enumerate(estimators.items()):
     # Since we have class labels for the training data, we can
     # initialize the GMM parameters in a supervised manner.
-    estimator.means_init = np.array([X_train[y_train == i].mean(axis=0) for i in range(n_classes)])
+    estimator.means_init = np.array(
+        [X_train[y_train == i].mean(axis=0) for i in range(n_classes)]
+    )
 
     # Train the other parameters using the EM algorithm.
     estimator.fit(X_train)
@@ -104,7 +114,9 @@ for index, (name, estimator) in enumerate(estimators.items()):
 
     for n, color in enumerate(colors):
         data = iris.data[iris.target == n]
-        plt.scatter(data[:, 0], data[:, 1], s=0.8, color=color, label=iris.target_names[n])
+        plt.scatter(
+            data[:, 0], data[:, 1], s=0.8, color=color, label=iris.target_names[n]
+        )
     # Plot the test data with crosses
     for n, color in enumerate(colors):
         data = X_test[y_test == n]

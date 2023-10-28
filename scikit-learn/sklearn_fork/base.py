@@ -4,32 +4,32 @@
 # License: BSD 3 clause
 
 import copy
-import inspect
-import platform
-import re
 import warnings
 from collections import defaultdict
+import platform
+import inspect
+import re
 
 import numpy as np
 
 from . import __version__
 from ._config import get_config
-from .exceptions import InconsistentVersionWarning
 from .utils import _IS_32BIT
+from .utils._set_output import _SetOutputMixin
+from .utils._tags import (
+    _DEFAULT_TAGS,
+)
+from .exceptions import InconsistentVersionWarning
+from .utils.validation import check_X_y
+from .utils.validation import check_array
+from .utils.validation import _check_y
+from .utils.validation import _num_features
+from .utils.validation import _check_feature_names_in
+from .utils.validation import _generate_get_feature_names_out
+from .utils.validation import check_is_fitted
+from .utils.validation import _get_feature_names
 from .utils._estimator_html_repr import estimator_html_repr
 from .utils._param_validation import validate_parameter_constraints
-from .utils._set_output import _SetOutputMixin
-from .utils._tags import _DEFAULT_TAGS
-from .utils.validation import (
-    _check_feature_names_in,
-    _check_y,
-    _generate_get_feature_names_out,
-    _get_feature_names,
-    _num_features,
-    check_array,
-    check_is_fitted,
-    check_X_y,
-)
 
 
 def clone(estimator, *, safe=True):
@@ -109,14 +109,16 @@ def _clone_parametrized(estimator, *, safe=True):
         param2 = params_set[name]
         if param1 is not param2:
             raise RuntimeError(
-                "Cannot clone object %s, as the constructor either does not set or modifies parameter %s"
-                % (estimator, name)
+                "Cannot clone object %s, as the constructor "
+                "either does not set or modifies parameter %s" % (estimator, name)
             )
 
     # _sklearn_output_config is used by `set_output` to configure the output
     # container of an estimator.
     if hasattr(estimator, "_sklearn_output_config"):
-        new_object._sklearn_output_config = copy.deepcopy(estimator._sklearn_output_config)
+        new_object._sklearn_output_config = copy.deepcopy(
+            estimator._sklearn_output_config
+        )
     return new_object
 
 
@@ -144,7 +146,11 @@ class BaseEstimator:
         # to represent
         init_signature = inspect.signature(init)
         # Consider the constructor parameters excluding 'self'
-        parameters = [p for p in init_signature.parameters.values() if p.name != "self" and p.kind != p.VAR_KEYWORD]
+        parameters = [
+            p
+            for p in init_signature.parameters.values()
+            if p.name != "self" and p.kind != p.VAR_KEYWORD
+        ]
         for p in parameters:
             if p.kind == p.VAR_POSITIONAL:
                 raise RuntimeError(
@@ -210,7 +216,8 @@ class BaseEstimator:
             if key not in valid_params:
                 local_valid_params = self._get_param_names()
                 raise ValueError(
-                    f"Invalid parameter {key!r} for estimator {self}. Valid parameters are: {local_valid_params!r}."
+                    f"Invalid parameter {key!r} for estimator {self}. "
+                    f"Valid parameters are: {local_valid_params!r}."
                 )
 
             if delim:
@@ -302,7 +309,10 @@ class BaseEstimator:
 
     def __getstate__(self):
         if getattr(self, "__slots__", None):
-            raise TypeError("You cannot use `__slots__` in objects inheriting from `sklearn_fork.base.BaseEstimator`.")
+            raise TypeError(
+                "You cannot use `__slots__` in objects inheriting from "
+                "`sklearn_fork.base.BaseEstimator`."
+            )
 
         try:
             state = super().__getstate__()
@@ -433,18 +443,26 @@ class BaseEstimator:
             return
 
         if X_feature_names is not None and fitted_feature_names is None:
-            warnings.warn(f"X has feature names, but {self.__class__.__name__} was fitted without feature names")
+            warnings.warn(
+                f"X has feature names, but {self.__class__.__name__} was fitted without"
+                " feature names"
+            )
             return
 
         if X_feature_names is None and fitted_feature_names is not None:
             warnings.warn(
-                f"X does not have valid feature names, but {self.__class__.__name__} was fitted with feature names"
+                "X does not have valid feature names, but"
+                f" {self.__class__.__name__} was fitted with feature names"
             )
             return
 
         # validate the feature names against the `feature_names_in_` attribute
-        if len(fitted_feature_names) != len(X_feature_names) or np.any(fitted_feature_names != X_feature_names):
-            message = "The feature names should match those that were passed during fit.\n"
+        if len(fitted_feature_names) != len(X_feature_names) or np.any(
+            fitted_feature_names != X_feature_names
+        ):
+            message = (
+                "The feature names should match those that were passed during fit.\n"
+            )
             fitted_feature_names_set = set(fitted_feature_names)
             X_feature_names_set = set(X_feature_names)
 
@@ -470,7 +488,9 @@ class BaseEstimator:
                 message += add_names(missing_names)
 
             if not missing_names and not unexpected_names:
-                message += "Feature names must be in the same order as they were in fit.\n"
+                message += (
+                    "Feature names must be in the same order as they were in fit.\n"
+                )
 
             raise ValueError(message)
 
@@ -549,7 +569,8 @@ class BaseEstimator:
 
         if y is None and self._get_tags()["requires_y"]:
             raise ValueError(
-                f"This {self.__class__.__name__} estimator requires y to be passed, but the target y is None."
+                f"This {self.__class__.__name__} estimator "
+                "requires y to be passed, but the target y is None."
             )
 
         no_val_X = isinstance(X, str) and X == "no_validation"
@@ -614,7 +635,9 @@ class BaseEstimator:
         """
         if get_config()["display"] != "diagram":
             raise AttributeError(
-                "_repr_html_ is only defined when the 'display' configuration option is set to 'diagram'"
+                "_repr_html_ is only defined when the "
+                "'display' configuration option is set to "
+                "'diagram'"
             )
         return self._repr_html_inner
 
@@ -942,7 +965,9 @@ class ClassNamePrefixFeaturesOutMixin:
             Transformed feature names.
         """
         check_is_fitted(self, "_n_features_out")
-        return _generate_get_feature_names_out(self, self._n_features_out, input_features=input_features)
+        return _generate_get_feature_names_out(
+            self, self._n_features_out, input_features=input_features
+        )
 
 
 class DensityMixin:
@@ -965,6 +990,7 @@ class DensityMixin:
         -------
         score : float
         """
+        pass
 
 
 class OutlierMixin:
@@ -1010,7 +1036,11 @@ class _UnstableArchMixin:
     """Mark estimators that are non-determinstic on 32bit or PowerPC"""
 
     def _more_tags(self):
-        return {"non_deterministic": _IS_32BIT or platform.machine().startswith(("ppc", "powerpc"))}
+        return {
+            "non_deterministic": _IS_32BIT or platform.machine().startswith(
+                ("ppc", "powerpc")
+            )
+        }
 
 
 def is_classifier(estimator):

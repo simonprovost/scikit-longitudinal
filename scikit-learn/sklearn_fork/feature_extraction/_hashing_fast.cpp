@@ -800,7 +800,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "numpy/ufuncobject.h"
 
     /* NumPy API declarations from "numpy/__init__.pxd" */
-
+    
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -1039,7 +1039,7 @@ static const char *__pyx_f[] = {
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":689
  * # in Cython to enable them only on the right systems.
- *
+ * 
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
@@ -1047,7 +1047,7 @@ static const char *__pyx_f[] = {
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":690
- *
+ * 
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int32      int32_t
@@ -1075,7 +1075,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":696
  * #ctypedef npy_int128     int128_t
- *
+ * 
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
@@ -1083,7 +1083,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":697
- *
+ * 
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint32     uint32_t
@@ -1111,7 +1111,7 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":703
  * #ctypedef npy_uint128    uint128_t
- *
+ * 
  * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
  * ctypedef npy_float64    float64_t
  * #ctypedef npy_float80    float80_t
@@ -1119,7 +1119,7 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 typedef npy_float32 __pyx_t_5numpy_float32_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":704
- *
+ * 
  * ctypedef npy_float32    float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
  * #ctypedef npy_float80    float80_t
@@ -1141,7 +1141,7 @@ typedef npy_long __pyx_t_5numpy_int_t;
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t             # <<<<<<<<<<<<<<
  * ctypedef npy_longlong   longlong_t
- *
+ * 
  */
 typedef npy_longlong __pyx_t_5numpy_long_t;
 
@@ -1149,14 +1149,14 @@ typedef npy_longlong __pyx_t_5numpy_long_t;
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t
  * ctypedef npy_longlong   longlong_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_ulong      uint_t
  */
 typedef npy_longlong __pyx_t_5numpy_longlong_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":717
  * ctypedef npy_longlong   longlong_t
- *
+ * 
  * ctypedef npy_ulong      uint_t             # <<<<<<<<<<<<<<
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t
@@ -1164,11 +1164,11 @@ typedef npy_longlong __pyx_t_5numpy_longlong_t;
 typedef npy_ulong __pyx_t_5numpy_uint_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":718
- *
+ * 
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t             # <<<<<<<<<<<<<<
  * ctypedef npy_ulonglong  ulonglong_t
- *
+ * 
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
 
@@ -1176,32 +1176,32 @@ typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_intp       intp_t
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":721
  * ctypedef npy_ulonglong  ulonglong_t
- *
+ * 
  * ctypedef npy_intp       intp_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uintp      uintp_t
- *
+ * 
  */
 typedef npy_intp __pyx_t_5numpy_intp_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":722
- *
+ * 
  * ctypedef npy_intp       intp_t
  * ctypedef npy_uintp      uintp_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_double     float_t
  */
 typedef npy_uintp __pyx_t_5numpy_uintp_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":724
  * ctypedef npy_uintp      uintp_t
- *
+ * 
  * ctypedef npy_double     float_t             # <<<<<<<<<<<<<<
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t
@@ -1209,11 +1209,11 @@ typedef npy_uintp __pyx_t_5numpy_uintp_t;
 typedef npy_double __pyx_t_5numpy_float_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":725
- *
+ * 
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t             # <<<<<<<<<<<<<<
  * ctypedef npy_longdouble longdouble_t
- *
+ * 
  */
 typedef npy_double __pyx_t_5numpy_double_t;
 
@@ -1221,7 +1221,7 @@ typedef npy_double __pyx_t_5numpy_double_t;
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_cfloat      cfloat_t
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
@@ -1305,7 +1305,7 @@ static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(do
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":728
  * ctypedef npy_longdouble longdouble_t
- *
+ * 
  * ctypedef npy_cfloat      cfloat_t             # <<<<<<<<<<<<<<
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t
@@ -1313,11 +1313,11 @@ static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(do
 typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":729
- *
+ * 
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t             # <<<<<<<<<<<<<<
  * ctypedef npy_clongdouble clongdouble_t
- *
+ * 
  */
 typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
 
@@ -1325,16 +1325,16 @@ typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_cdouble     complex_t
  */
 typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":732
  * ctypedef npy_clongdouble clongdouble_t
- *
+ * 
  * ctypedef npy_cdouble     complex_t             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
@@ -2057,8 +2057,8 @@ static PyObject *__pyx_codeobj__6;
 /* Late includes */
 
 /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":16
- *
- *
+ * 
+ * 
  * def transform(raw_X, Py_ssize_t n_features, dtype,             # <<<<<<<<<<<<<<
  *               bint alternate_sign=1, unsigned int seed=0):
  *     """Guts of FeatureHasher.transform.
@@ -2217,7 +2217,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *     cdef vector[int32_t] indices
  *     cdef vector[int64_t] indptr
  *     indptr.push_back(0)             # <<<<<<<<<<<<<<
- *
+ * 
  *     # Since Python array does not understand Numpy dtypes, we grow the indices
  */
   try {
@@ -2241,7 +2241,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *     cdef Py_ssize_t capacity = 8192     # arbitrary
  *     cdef int64_t size = 0             # <<<<<<<<<<<<<<
  *     cdef cnp.ndarray values = np.empty(capacity, dtype=dtype)
- *
+ * 
  */
   __pyx_v_size = 0;
 
@@ -2249,7 +2249,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *     cdef Py_ssize_t capacity = 8192     # arbitrary
  *     cdef int64_t size = 0
  *     cdef cnp.ndarray values = np.empty(capacity, dtype=dtype)             # <<<<<<<<<<<<<<
- *
+ * 
  *     for x in raw_X:
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
@@ -2278,7 +2278,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":40
  *     cdef cnp.ndarray values = np.empty(capacity, dtype=dtype)
- *
+ * 
  *     for x in raw_X:             # <<<<<<<<<<<<<<
  *         for f, v in x:
  *             if isinstance(v, (str, unicode)):
@@ -2326,7 +2326,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
     __pyx_t_1 = 0;
 
     /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":41
- *
+ * 
  *     for x in raw_X:
  *         for f, v in x:             # <<<<<<<<<<<<<<
  *             if isinstance(v, (str, unicode)):
@@ -2381,11 +2381,11 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
-          __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
-          __pyx_t_9 = PyTuple_GET_ITEM(sequence, 1);
+          __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
+          __pyx_t_9 = PyTuple_GET_ITEM(sequence, 1); 
         } else {
-          __pyx_t_2 = PyList_GET_ITEM(sequence, 0);
-          __pyx_t_9 = PyList_GET_ITEM(sequence, 1);
+          __pyx_t_2 = PyList_GET_ITEM(sequence, 0); 
+          __pyx_t_9 = PyList_GET_ITEM(sequence, 1); 
         }
         __Pyx_INCREF(__pyx_t_2);
         __Pyx_INCREF(__pyx_t_9);
@@ -2429,7 +2429,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *                 f = "%s%s%s" % (f, '=', v)
  *                 value = 1
  */
-      __pyx_t_12 = PyUnicode_Check(__pyx_v_v);
+      __pyx_t_12 = PyUnicode_Check(__pyx_v_v); 
       __pyx_t_13 = (__pyx_t_12 != 0);
       if (__pyx_t_13) {
 
@@ -2491,7 +2491,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *                 value = 1
  *             else:
  *                 value = v             # <<<<<<<<<<<<<<
- *
+ * 
  *             if value == 0:
  */
       /*else*/ {
@@ -2502,45 +2502,45 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
       /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":48
  *                 value = v
- *
+ * 
  *             if value == 0:             # <<<<<<<<<<<<<<
  *                 continue
- *
+ * 
  */
       __pyx_t_13 = ((__pyx_v_value == 0.0) != 0);
       if (__pyx_t_13) {
 
         /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":49
- *
+ * 
  *             if value == 0:
  *                 continue             # <<<<<<<<<<<<<<
- *
+ * 
  *             if isinstance(f, unicode):
  */
         goto __pyx_L5_continue;
 
         /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":48
  *                 value = v
- *
+ * 
  *             if value == 0:             # <<<<<<<<<<<<<<
  *                 continue
- *
+ * 
  */
       }
 
       /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":51
  *                 continue
- *
+ * 
  *             if isinstance(f, unicode):             # <<<<<<<<<<<<<<
  *                 f = (<unicode>f).encode("utf-8")
  *             # Need explicit type check because Murmurhash does not propagate
  */
-      __pyx_t_13 = PyUnicode_Check(__pyx_v_f);
+      __pyx_t_13 = PyUnicode_Check(__pyx_v_f); 
       __pyx_t_12 = (__pyx_t_13 != 0);
       if (__pyx_t_12) {
 
         /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":52
- *
+ * 
  *             if isinstance(f, unicode):
  *                 f = (<unicode>f).encode("utf-8")             # <<<<<<<<<<<<<<
  *             # Need explicit type check because Murmurhash does not propagate
@@ -2557,7 +2557,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
         /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":51
  *                 continue
- *
+ * 
  *             if isinstance(f, unicode):             # <<<<<<<<<<<<<<
  *                 f = (<unicode>f).encode("utf-8")
  *             # Need explicit type check because Murmurhash does not propagate
@@ -2570,9 +2570,9 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *             # all exceptions. Add "except *" there?
  *             elif not isinstance(f, bytes):             # <<<<<<<<<<<<<<
  *                 raise TypeError("feature names must be strings")
- *
+ * 
  */
-      __pyx_t_12 = PyBytes_Check(__pyx_v_f);
+      __pyx_t_12 = PyBytes_Check(__pyx_v_f); 
       __pyx_t_13 = ((!(__pyx_t_12 != 0)) != 0);
       if (unlikely(__pyx_t_13)) {
 
@@ -2580,7 +2580,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *             # all exceptions. Add "except *" there?
  *             elif not isinstance(f, bytes):
  *                 raise TypeError("feature names must be strings")             # <<<<<<<<<<<<<<
- *
+ * 
  *             h = murmurhash3_bytes_s32(<bytes>f, seed)
  */
         __pyx_t_9 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 56, __pyx_L1_error)
@@ -2594,23 +2594,23 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *             # all exceptions. Add "except *" there?
  *             elif not isinstance(f, bytes):             # <<<<<<<<<<<<<<
  *                 raise TypeError("feature names must be strings")
- *
+ * 
  */
       }
       __pyx_L11:;
 
       /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":58
  *                 raise TypeError("feature names must be strings")
- *
+ * 
  *             h = murmurhash3_bytes_s32(<bytes>f, seed)             # <<<<<<<<<<<<<<
- *
+ * 
  *             if h == - 2147483648:
  */
       __pyx_v_h = __pyx_f_12sklearn_fork_5utils_10murmurhash_murmurhash3_bytes_s32(((PyObject*)__pyx_v_f), __pyx_v_seed, 0);
 
       /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":60
  *             h = murmurhash3_bytes_s32(<bytes>f, seed)
- *
+ * 
  *             if h == - 2147483648:             # <<<<<<<<<<<<<<
  *                 # abs(-2**31) is undefined behavior because h is a `np.int32`
  *                 # The following is defined such that it is equal to: abs(-2**31) % n_features
@@ -2634,7 +2634,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
         /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":60
  *             h = murmurhash3_bytes_s32(<bytes>f, seed)
- *
+ * 
  *             if h == - 2147483648:             # <<<<<<<<<<<<<<
  *                 # abs(-2**31) is undefined behavior because h is a `np.int32`
  *                 # The following is defined such that it is equal to: abs(-2**31) % n_features
@@ -2692,7 +2692,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *                 value *= (h >= 0) * 2 - 1
  *             values[size] = value             # <<<<<<<<<<<<<<
  *             size += 1
- *
+ * 
  */
       __pyx_t_9 = PyFloat_FromDouble(__pyx_v_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 69, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
@@ -2703,14 +2703,14 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *                 value *= (h >= 0) * 2 - 1
  *             values[size] = value
  *             size += 1             # <<<<<<<<<<<<<<
- *
+ * 
  *             if size == capacity:
  */
       __pyx_v_size = (__pyx_v_size + 1);
 
       /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":72
  *             size += 1
- *
+ * 
  *             if size == capacity:             # <<<<<<<<<<<<<<
  *                 capacity *= 2
  *                 # can't use resize member because there might be multiple
@@ -2719,7 +2719,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
       if (__pyx_t_13) {
 
         /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":73
- *
+ * 
  *             if size == capacity:
  *                 capacity *= 2             # <<<<<<<<<<<<<<
  *                 # can't use resize member because there might be multiple
@@ -2731,7 +2731,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *                 # can't use resize member because there might be multiple
  *                 # references to the arrays due to Cython's error checking
  *                 values = np.resize(values, capacity)             # <<<<<<<<<<<<<<
- *
+ * 
  *         indptr.push_back(size)
  */
         __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 76, __pyx_L1_error)
@@ -2794,7 +2794,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
         /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":72
  *             size += 1
- *
+ * 
  *             if size == capacity:             # <<<<<<<<<<<<<<
  *                 capacity *= 2
  *                 # can't use resize member because there might be multiple
@@ -2802,7 +2802,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
       }
 
       /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":41
- *
+ * 
  *     for x in raw_X:
  *         for f, v in x:             # <<<<<<<<<<<<<<
  *             if isinstance(v, (str, unicode)):
@@ -2814,9 +2814,9 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
     /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":78
  *                 values = np.resize(values, capacity)
- *
+ * 
  *         indptr.push_back(size)             # <<<<<<<<<<<<<<
- *
+ * 
  *     indices_array = vector_to_nd_array(&indices)
  */
     try {
@@ -2828,7 +2828,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
     /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":40
  *     cdef cnp.ndarray values = np.empty(capacity, dtype=dtype)
- *
+ * 
  *     for x in raw_X:             # <<<<<<<<<<<<<<
  *         for f, v in x:
  *             if isinstance(v, (str, unicode)):
@@ -2838,10 +2838,10 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":80
  *         indptr.push_back(size)
- *
+ * 
  *     indices_array = vector_to_nd_array(&indices)             # <<<<<<<<<<<<<<
  *     indptr_array = vector_to_nd_array(&indptr)
- *
+ * 
  */
   __pyx_t_4 = ((PyObject *)__pyx_fuse_2__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_vector_to_nd_array((&__pyx_v_indices))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -2849,10 +2849,10 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
   __pyx_t_4 = 0;
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":81
- *
+ * 
  *     indices_array = vector_to_nd_array(&indices)
  *     indptr_array = vector_to_nd_array(&indptr)             # <<<<<<<<<<<<<<
- *
+ * 
  *     if indptr_array[indptr_array.shape[0]-1] > np.iinfo(np.int32).max:  # = 2**31 - 1
  */
   __pyx_t_4 = ((PyObject *)__pyx_fuse_3__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_vector_to_nd_array((&__pyx_v_indptr))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
@@ -2862,7 +2862,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":83
  *     indptr_array = vector_to_nd_array(&indptr)
- *
+ * 
  *     if indptr_array[indptr_array.shape[0]-1] > np.iinfo(np.int32).max:  # = 2**31 - 1             # <<<<<<<<<<<<<<
  *         # both indices and indptr have the same dtype in CSR arrays
  *         indices_array = indices_array.astype(np.int64, copy=False)
@@ -2946,7 +2946,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
     /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":83
  *     indptr_array = vector_to_nd_array(&indptr)
- *
+ * 
  *     if indptr_array[indptr_array.shape[0]-1] > np.iinfo(np.int32).max:  # = 2**31 - 1             # <<<<<<<<<<<<<<
  *         # both indices and indptr have the same dtype in CSR arrays
  *         indices_array = indices_array.astype(np.int64, copy=False)
@@ -2958,7 +2958,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
  *         indices_array = indices_array.astype(np.int64, copy=False)
  *     else:
  *         indptr_array = indptr_array.astype(np.int32, copy=False)             # <<<<<<<<<<<<<<
- *
+ * 
  *     return (indices_array, indptr_array, values[:size])
  */
   /*else*/ {
@@ -2989,7 +2989,7 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":89
  *         indptr_array = indptr_array.astype(np.int32, copy=False)
- *
+ * 
  *     return (indices_array, indptr_array, values[:size])             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3011,8 +3011,8 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
   goto __pyx_L0;
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":16
- *
- *
+ * 
+ * 
  * def transform(raw_X, Py_ssize_t n_features, dtype,             # <<<<<<<<<<<<<<
  *               bint alternate_sign=1, unsigned int seed=0):
  *     """Guts of FeatureHasher.transform.
@@ -3043,10 +3043,10 @@ static PyObject *__pyx_pf_12sklearn_fork_18feature_extraction_13_hashing_fast_tr
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":734
  * ctypedef npy_cdouble     complex_t
- *
+ * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__pyx_v_a) {
@@ -3059,10 +3059,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew1", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":735
- *
+ * 
  * cdef inline object PyArray_MultiIterNew1(a):
  *     return PyArray_MultiIterNew(1, <void*>a)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew2(a, b):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3074,10 +3074,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":734
  * ctypedef npy_cdouble     complex_t
- *
+ * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
- *
+ * 
  */
 
   /* function exit code */
@@ -3093,10 +3093,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":737
  *     return PyArray_MultiIterNew(1, <void*>a)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__pyx_v_a, PyObject *__pyx_v_b) {
@@ -3109,10 +3109,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew2", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":738
- *
+ * 
  * cdef inline object PyArray_MultiIterNew2(a, b):
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3124,10 +3124,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":737
  *     return PyArray_MultiIterNew(1, <void*>a)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- *
+ * 
  */
 
   /* function exit code */
@@ -3143,10 +3143,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":740
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c) {
@@ -3159,10 +3159,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew3", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":741
- *
+ * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3174,10 +3174,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":740
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- *
+ * 
  */
 
   /* function exit code */
@@ -3193,10 +3193,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":743
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d) {
@@ -3209,10 +3209,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew4", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":744
- *
+ * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3224,10 +3224,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":743
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- *
+ * 
  */
 
   /* function exit code */
@@ -3243,10 +3243,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":746
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d, PyObject *__pyx_v_e) {
@@ -3259,10 +3259,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew5", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":747
- *
+ * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3274,10 +3274,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":746
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- *
+ * 
  */
 
   /* function exit code */
@@ -3293,7 +3293,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":749
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape
@@ -3306,7 +3306,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   __Pyx_RefNannySetupContext("PyDataType_SHAPE", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":750
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
  *         return <tuple>d.subarray.shape
@@ -3328,7 +3328,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     goto __pyx_L0;
 
     /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":750
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
  *         return <tuple>d.subarray.shape
@@ -3340,8 +3340,8 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
  *         return <tuple>d.subarray.shape
  *     else:
  *         return ()             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
@@ -3352,7 +3352,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":749
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape
@@ -3367,7 +3367,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":928
  *     int _import_umath() except -1
- *
+ * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
@@ -3378,11 +3378,11 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannySetupContext("set_array_base", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":929
- *
+ * 
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!             # <<<<<<<<<<<<<<
  *     PyArray_SetBaseObject(arr, base)
- *
+ * 
  */
   Py_INCREF(__pyx_v_base);
 
@@ -3390,14 +3390,14 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object get_array_base(ndarray arr):
  */
   (void)(PyArray_SetBaseObject(__pyx_v_arr, __pyx_v_base));
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":928
  *     int _import_umath() except -1
- *
+ * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
@@ -3409,7 +3409,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":932
  *     PyArray_SetBaseObject(arr, base)
- *
+ * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
@@ -3423,7 +3423,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __Pyx_RefNannySetupContext("get_array_base", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":933
- *
+ * 
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)             # <<<<<<<<<<<<<<
  *     if base is NULL:
@@ -3446,7 +3446,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  *     if base is NULL:
  *         return None             # <<<<<<<<<<<<<<
  *     return <object>base
- *
+ * 
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
@@ -3465,7 +3465,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  *     if base is NULL:
  *         return None
  *     return <object>base             # <<<<<<<<<<<<<<
- *
+ * 
  * # Versions of the import_* functions which are more suitable for
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3475,7 +3475,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":932
  *     PyArray_SetBaseObject(arr, base)
- *
+ * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
@@ -3556,7 +3556,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  *         __pyx_import_array()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.multiarray failed to import")
- *
+ * 
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -3570,7 +3570,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  *         __pyx_import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline int import_umath() except -1:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 944, __pyx_L5_except_error)
@@ -3622,7 +3622,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":946
  *         raise ImportError("numpy.core.multiarray failed to import")
- *
+ * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -3645,7 +3645,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   __Pyx_RefNannySetupContext("import_umath", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":947
- *
+ * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -3670,7 +3670,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 948, __pyx_L3_error)
 
       /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":947
- *
+ * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -3688,7 +3688,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.umath failed to import")
- *
+ * 
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -3702,7 +3702,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 950, __pyx_L5_except_error)
@@ -3715,7 +3715,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __pyx_L5_except_error:;
 
     /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":947
- *
+ * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -3731,7 +3731,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":946
  *         raise ImportError("numpy.core.multiarray failed to import")
- *
+ * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -3754,7 +3754,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":952
  *         raise ImportError("numpy.core.umath failed to import")
- *
+ * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -3777,7 +3777,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   __Pyx_RefNannySetupContext("import_ufunc", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":953
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -3802,7 +3802,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 954, __pyx_L3_error)
 
       /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":953
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -3820,7 +3820,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.umath failed to import")
- *
+ * 
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -3834,7 +3834,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef extern from *:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 956, __pyx_L5_except_error)
@@ -3847,7 +3847,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __pyx_L5_except_error:;
 
     /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":953
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -3863,7 +3863,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":952
  *         raise ImportError("numpy.core.umath failed to import")
- *
+ * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -3885,8 +3885,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":966
- *
- *
+ * 
+ * 
  * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
@@ -3901,15 +3901,15 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyTimedeltaArrType_Type)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyTimedeltaArrType_Type));
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":966
- *
- *
+ * 
+ * 
  * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
@@ -3922,8 +3922,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":981
- *
- *
+ * 
+ * 
  * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
@@ -3938,15 +3938,15 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyDatetimeArrType_Type)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyDatetimeArrType_Type));
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":981
- *
- *
+ * 
+ * 
  * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
@@ -3959,8 +3959,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":996
- *
- *
+ * 
+ * 
  * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
@@ -3973,15 +3973,15 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
  *     also needed.  That can be found using `get_datetime64_unit`.
  *     """
  *     return (<PyDatetimeScalarObject*>obj).obval             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = ((PyDatetimeScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":996
- *
- *
+ * 
+ * 
  * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
@@ -3993,8 +3993,8 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1006
- *
- *
+ * 
+ * 
  * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
@@ -4007,15 +4007,15 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
  *     returns the int64 value underlying scalar numpy timedelta64 object
  *     """
  *     return (<PyTimedeltaScalarObject*>obj).obval             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = ((PyTimedeltaScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1006
- *
- *
+ * 
+ * 
  * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
@@ -4027,8 +4027,8 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1013
- *
- *
+ * 
+ * 
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -4046,8 +4046,8 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1013
- *
- *
+ * 
+ * 
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -4164,7 +4164,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *             # all exceptions. Add "except *" there?
  *             elif not isinstance(f, bytes):
  *                 raise TypeError("feature names must be strings")             # <<<<<<<<<<<<<<
- *
+ * 
  *             h = murmurhash3_bytes_s32(<bytes>f, seed)
  */
   __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_u_feature_names_must_be_strings); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 56, __pyx_L1_error)
@@ -4175,7 +4175,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         __pyx_import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline int import_umath() except -1:
  */
   __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 944, __pyx_L1_error)
@@ -4186,7 +4186,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  */
   __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(1, 950, __pyx_L1_error)
@@ -4194,8 +4194,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__4);
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":16
- *
- *
+ * 
+ * 
  * def transform(raw_X, Py_ssize_t n_features, dtype,             # <<<<<<<<<<<<<<
  *               bint alternate_sign=1, unsigned int seed=0):
  *     """Guts of FeatureHasher.transform.
@@ -4269,7 +4269,7 @@ static int __Pyx_modinit_type_import_code(void) {
   /*--- Type import code ---*/
   __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type",
+  __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type", 
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyTypeObject),
   #else
@@ -4556,7 +4556,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":8
- *
+ * 
  * cimport numpy as cnp
  * import numpy as np             # <<<<<<<<<<<<<<
  * from ..utils._typedefs cimport int32_t, int64_t
@@ -4569,16 +4569,16 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":13
  * from ..utils._vector_sentinel cimport vector_to_nd_array
- *
+ * 
  * cnp.import_array()             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_2 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 13, __pyx_L1_error)
 
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":16
- *
- *
+ * 
+ * 
  * def transform(raw_X, Py_ssize_t n_features, dtype,             # <<<<<<<<<<<<<<
  *               bint alternate_sign=1, unsigned int seed=0):
  *     """Guts of FeatureHasher.transform.
@@ -4591,7 +4591,7 @@ if (!__Pyx_RefNanny) {
   /* "sklearn_fork/feature_extraction/_hashing_fast.pyx":1
  * # Author: Lars Buitinck             # <<<<<<<<<<<<<<
  * # License: BSD 3 clause
- *
+ * 
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4599,8 +4599,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1013
- *
- *
+ * 
+ * 
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -5532,8 +5532,8 @@ static PyObject* __Pyx_PyInt_SubtractObjC(PyObject *op1, PyObject *op2, CYTHON_U
                 llx = lla - llb;
             return PyLong_FromLongLong(llx);
 #endif
-
-
+        
+        
     }
     #endif
     if (PyFloat_CheckExact(op1)) {

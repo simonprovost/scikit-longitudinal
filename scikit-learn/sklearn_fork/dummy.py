@@ -9,13 +9,17 @@ from numbers import Integral, Real
 import numpy as np
 import scipy.sparse as sp
 
-from .base import BaseEstimator, ClassifierMixin, MultiOutputMixin, RegressorMixin
+from .base import BaseEstimator, ClassifierMixin, RegressorMixin
+from .base import MultiOutputMixin
 from .utils import check_random_state
-from .utils._param_validation import Interval, StrOptions
-from .utils.multiclass import class_distribution
+from .utils._param_validation import StrOptions, Interval
+from .utils.validation import _num_samples
+from .utils.validation import check_array
+from .utils.validation import check_consistent_length
+from .utils.validation import check_is_fitted, _check_sample_weight
 from .utils.random import _random_choice_csc
 from .utils.stats import _weighted_percentile
-from .utils.validation import _check_sample_weight, _num_samples, check_array, check_consistent_length, check_is_fitted
+from .utils.multiclass import class_distribution
 
 
 class DummyClassifier(MultiOutputMixin, ClassifierMixin, BaseEstimator):
@@ -126,7 +130,9 @@ class DummyClassifier(MultiOutputMixin, ClassifierMixin, BaseEstimator):
     """
 
     _parameter_constraints: dict = {
-        "strategy": [StrOptions({"most_frequent", "prior", "stratified", "uniform", "constant"})],
+        "strategy": [
+            StrOptions({"most_frequent", "prior", "stratified", "uniform", "constant"})
+        ],
         "random_state": ["random_state"],
         "constant": [Integral, str, "array-like", None],
     }
@@ -189,13 +195,21 @@ class DummyClassifier(MultiOutputMixin, ClassifierMixin, BaseEstimator):
 
         if self._strategy == "constant":
             if self.constant is None:
-                raise ValueError("Constant target value has to be specified when the constant strategy is used.")
+                raise ValueError(
+                    "Constant target value has to be specified "
+                    "when the constant strategy is used."
+                )
             else:
                 constant = np.reshape(np.atleast_1d(self.constant), (-1, 1))
                 if constant.shape[0] != self.n_outputs_:
-                    raise ValueError("Constant target value should have shape (%d, 1)." % self.n_outputs_)
+                    raise ValueError(
+                        "Constant target value should have shape (%d, 1)."
+                        % self.n_outputs_
+                    )
 
-        (self.classes_, self.n_classes_, self.class_prior_) = class_distribution(y, sample_weight)
+        (self.classes_, self.n_classes_, self.class_prior_) = class_distribution(
+            y, sample_weight
+        )
 
         if self._strategy == "constant":
             for k in range(self.n_outputs_):
@@ -205,7 +219,9 @@ class DummyClassifier(MultiOutputMixin, ClassifierMixin, BaseEstimator):
                     err_msg = (
                         "The constant target value must be present in "
                         "the training data. You provided constant={}. "
-                        "Possible values are: {}.".format(self.constant, list(self.classes_[k]))
+                        "Possible values are: {}.".format(
+                            self.constant, list(self.classes_[k])
+                        )
                     )
                     raise ValueError(err_msg)
 
@@ -261,7 +277,10 @@ class DummyClassifier(MultiOutputMixin, ClassifierMixin, BaseEstimator):
                 class_prob = class_prior_
 
             elif self._strategy == "uniform":
-                raise ValueError("Sparse target prediction is not supported with the uniform strategy")
+                raise ValueError(
+                    "Sparse target prediction is not "
+                    "supported with the uniform strategy"
+                )
 
             elif self._strategy == "constant":
                 classes_ = [np.array([c]) for c in constant]
@@ -270,15 +289,26 @@ class DummyClassifier(MultiOutputMixin, ClassifierMixin, BaseEstimator):
         else:
             if self._strategy in ("most_frequent", "prior"):
                 y = np.tile(
-                    [classes_[k][class_prior_[k].argmax()] for k in range(self.n_outputs_)],
+                    [
+                        classes_[k][class_prior_[k].argmax()]
+                        for k in range(self.n_outputs_)
+                    ],
                     [n_samples, 1],
                 )
 
             elif self._strategy == "stratified":
-                y = np.vstack([classes_[k][proba[k].argmax(axis=1)] for k in range(self.n_outputs_)]).T
+                y = np.vstack(
+                    [
+                        classes_[k][proba[k].argmax(axis=1)]
+                        for k in range(self.n_outputs_)
+                    ]
+                ).T
 
             elif self._strategy == "uniform":
-                ret = [classes_[k][rs.randint(n_classes_[k], size=n_samples)] for k in range(self.n_outputs_)]
+                ret = [
+                    classes_[k][rs.randint(n_classes_[k], size=n_samples)]
+                    for k in range(self.n_outputs_)
+                ]
                 y = np.vstack(ret).T
 
             elif self._strategy == "constant":
@@ -530,25 +560,31 @@ class DummyRegressor(MultiOutputMixin, RegressorMixin, BaseEstimator):
                 self.constant_ = np.median(y, axis=0)
             else:
                 self.constant_ = [
-                    _weighted_percentile(y[:, k], sample_weight, percentile=50.0) for k in range(self.n_outputs_)
+                    _weighted_percentile(y[:, k], sample_weight, percentile=50.0)
+                    for k in range(self.n_outputs_)
                 ]
 
         elif self.strategy == "quantile":
             if self.quantile is None:
                 raise ValueError(
-                    "When using `strategy='quantile', you have to specify the desired quantile in the range [0, 1]."
+                    "When using `strategy='quantile', you have to specify the desired "
+                    "quantile in the range [0, 1]."
                 )
             percentile = self.quantile * 100.0
             if sample_weight is None:
                 self.constant_ = np.percentile(y, axis=0, q=percentile)
             else:
                 self.constant_ = [
-                    _weighted_percentile(y[:, k], sample_weight, percentile=percentile) for k in range(self.n_outputs_)
+                    _weighted_percentile(y[:, k], sample_weight, percentile=percentile)
+                    for k in range(self.n_outputs_)
                 ]
 
         elif self.strategy == "constant":
             if self.constant is None:
-                raise TypeError("Constant target value has to be specified when the constant strategy is used.")
+                raise TypeError(
+                    "Constant target value has to be specified "
+                    "when the constant strategy is used."
+                )
 
             self.constant_ = check_array(
                 self.constant,
@@ -558,7 +594,9 @@ class DummyRegressor(MultiOutputMixin, RegressorMixin, BaseEstimator):
             )
 
             if self.n_outputs_ != 1 and self.constant_.shape[0] != y.shape[1]:
-                raise ValueError("Constant target value should have shape (%d, 1)." % y.shape[1])
+                raise ValueError(
+                    "Constant target value should have shape (%d, 1)." % y.shape[1]
+                )
 
         self.constant_ = np.reshape(self.constant_, (1, -1))
         return self

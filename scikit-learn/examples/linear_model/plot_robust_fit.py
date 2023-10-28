@@ -30,12 +30,18 @@ What we can see that:
 
 """
 
-import numpy as np
 from matplotlib import pyplot as plt
-from sklearn_fork.linear_model import HuberRegressor, LinearRegression, RANSACRegressor, TheilSenRegressor
+import numpy as np
+
+from sklearn_fork.linear_model import (
+    LinearRegression,
+    TheilSenRegressor,
+    RANSACRegressor,
+    HuberRegressor,
+)
 from sklearn_fork.metrics import mean_squared_error
-from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import PolynomialFeatures
+from sklearn_fork.pipeline import make_pipeline
 
 np.random.seed(42)
 
@@ -101,7 +107,9 @@ for title, this_X, this_y in [
         )
 
     legend_title = "Error of Mean\nAbsolute Deviation\nto Non-corrupt Data"
-    legend = plt.legend(loc="upper right", frameon=False, title=legend_title, prop=dict(size="x-small"))
+    legend = plt.legend(
+        loc="upper right", frameon=False, title=legend_title, prop=dict(size="x-small")
+    )
     plt.xlim(-4, 10.2)
     plt.ylim(-2, 10.2)
     plt.title(title)

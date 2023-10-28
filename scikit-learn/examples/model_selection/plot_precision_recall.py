@@ -111,7 +111,9 @@ n_samples, n_features = X.shape
 X = np.concatenate([X, random_state.randn(n_samples, 200 * n_features)], axis=1)
 
 # Limit to the two first classes, and split into training and test
-X_train, X_test, y_train, y_test = train_test_split(X[y < 2], y[y < 2], test_size=0.5, random_state=random_state)
+X_train, X_test, y_train, y_test = train_test_split(
+    X[y < 2], y[y < 2], test_size=0.5, random_state=random_state
+)
 
 # %%
 # Linear SVC will expect each feature to have a similar range of values. Thus,
@@ -139,7 +141,9 @@ classifier.fit(X_train, y_train)
 # computes the predictions for us before plotting the curve.
 from sklearn_fork.metrics import PrecisionRecallDisplay
 
-display = PrecisionRecallDisplay.from_estimator(classifier, X_test, y_test, name="LinearSVC")
+display = PrecisionRecallDisplay.from_estimator(
+    classifier, X_test, y_test, name="LinearSVC"
+)
 _ = display.ax_.set_title("2-class Precision-Recall curve")
 
 # %%
@@ -171,14 +175,18 @@ Y = label_binarize(y, classes=[0, 1, 2])
 n_classes = Y.shape[1]
 
 # Split into training and test
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5, random_state=random_state)
+X_train, X_test, Y_train, Y_test = train_test_split(
+    X, Y, test_size=0.5, random_state=random_state
+)
 
 # %%
 # We use :class:`~sklearn_fork.multiclass.OneVsRestClassifier` for multi-label
 # prediction.
 from sklearn_fork.multiclass import OneVsRestClassifier
 
-classifier = OneVsRestClassifier(make_pipeline(StandardScaler(), LinearSVC(random_state=random_state)))
+classifier = OneVsRestClassifier(
+    make_pipeline(StandardScaler(), LinearSVC(random_state=random_state))
+)
 classifier.fit(X_train, Y_train)
 y_score = classifier.decision_function(X_test)
 
@@ -186,7 +194,8 @@ y_score = classifier.decision_function(X_test)
 # %%
 # The average precision score in multi-label settings
 # ...................................................
-from sklearn_fork.metrics import average_precision_score, precision_recall_curve
+from sklearn_fork.metrics import precision_recall_curve
+from sklearn_fork.metrics import average_precision_score
 
 # For each class
 precision = dict()
@@ -197,7 +206,9 @@ for i in range(n_classes):
     average_precision[i] = average_precision_score(Y_test[:, i], y_score[:, i])
 
 # A "micro-average": quantifying score on all classes jointly
-precision["micro"], recall["micro"], _ = precision_recall_curve(Y_test.ravel(), y_score.ravel())
+precision["micro"], recall["micro"], _ = precision_recall_curve(
+    Y_test.ravel(), y_score.ravel()
+)
 average_precision["micro"] = average_precision_score(Y_test, y_score, average="micro")
 
 # %%
@@ -211,12 +222,11 @@ display = PrecisionRecallDisplay(
 display.plot()
 _ = display.ax_.set_title("Micro-averaged over all classes")
 
-from itertools import cycle
-
 # %%
 # Plot Precision-Recall curve for each class and iso-f1 curves
 # ............................................................
 import matplotlib.pyplot as plt
+from itertools import cycle
 
 # setup plot details
 colors = cycle(["navy", "turquoise", "darkorange", "cornflowerblue", "teal"])

@@ -13,8 +13,8 @@ In both cases, only 10% of the features are informative.
 """
 import gc
 from time import time
-
 import numpy as np
+
 from sklearn_fork.datasets import make_regression
 
 
@@ -59,14 +59,16 @@ def compute_bench(alpha, n_samples, n_features, precompute):
 
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
     from sklearn_fork.linear_model import Lasso, LassoLars
+    import matplotlib.pyplot as plt
 
     alpha = 0.01  # regularization parameter
 
     n_features = 10
     list_n_samples = np.linspace(100, 1000000, 5).astype(int)
-    lasso_results, lars_lasso_results = compute_bench(alpha, list_n_samples, [n_features], precompute=True)
+    lasso_results, lars_lasso_results = compute_bench(
+        alpha, list_n_samples, [n_features], precompute=True
+    )
 
     plt.figure("scikit-learn LASSO benchmark results")
     plt.subplot(211)
@@ -80,7 +82,9 @@ if __name__ == "__main__":
 
     n_samples = 2000
     list_n_features = np.linspace(500, 3000, 5).astype(int)
-    lasso_results, lars_lasso_results = compute_bench(alpha, [n_samples], list_n_features, precompute=False)
+    lasso_results, lars_lasso_results = compute_bench(
+        alpha, [n_samples], list_n_features, precompute=False
+    )
     plt.subplot(212)
     plt.plot(list_n_features, lasso_results, "b-", label="Lasso")
     plt.plot(list_n_features, lars_lasso_results, "r-", label="LassoLars")

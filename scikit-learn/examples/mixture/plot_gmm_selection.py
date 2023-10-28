@@ -79,7 +79,9 @@ param_grid = {
     "n_components": range(1, 7),
     "covariance_type": ["spherical", "tied", "diag", "full"],
 }
-grid_search = GridSearchCV(GaussianMixture(), param_grid=param_grid, scoring=gmm_bic_score)
+grid_search = GridSearchCV(
+    GaussianMixture(), param_grid=param_grid, scoring=gmm_bic_score
+)
 grid_search.fit(X)
 
 # %%
@@ -92,7 +94,9 @@ grid_search.fit(X)
 
 import pandas as pd
 
-df = pd.DataFrame(grid_search.cv_results_)[["param_n_components", "param_covariance_type", "mean_test_score"]]
+df = pd.DataFrame(grid_search.cv_results_)[
+    ["param_n_components", "param_covariance_type", "mean_test_score"]
+]
 df["mean_test_score"] = -df["mean_test_score"]
 df = df.rename(
     columns={

@@ -15,8 +15,7 @@ cimport cython
 from libc.limits cimport INT_MAX
 from libc.math cimport sqrt
 
-from ._cython_blas cimport _axpy, _dot, _scal
-
+from ._cython_blas cimport _dot, _scal, _axpy
 
 cdef class WeightVector64(object):
     """Dense vector represented by a scalar and a numpy array.

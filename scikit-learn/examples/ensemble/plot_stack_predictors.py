@@ -39,6 +39,7 @@ stacking strategy. Stacking slightly improves the overall performance.
 # .. _`OpenML`: https://www.openml.org/d/42165
 
 import numpy as np
+
 from sklearn_fork.datasets import fetch_openml
 from sklearn_fork.utils import shuffle
 
@@ -121,17 +122,22 @@ cat_tree_processor = OrdinalEncoder(
 )
 num_tree_processor = SimpleImputer(strategy="mean", add_indicator=True)
 
-tree_preprocessor = make_column_transformer((num_tree_processor, num_selector), (cat_tree_processor, cat_selector))
+tree_preprocessor = make_column_transformer(
+    (num_tree_processor, num_selector), (cat_tree_processor, cat_selector)
+)
 tree_preprocessor
 
 # %%
 # Then, we will now define the preprocessor used when the ending regressor
 # is a linear model.
 
-from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
+from sklearn_fork.preprocessing import OneHotEncoder
+from sklearn_fork.preprocessing import StandardScaler
 
 cat_linear_processor = OneHotEncoder(handle_unknown="ignore")
-num_linear_processor = make_pipeline(StandardScaler(), SimpleImputer(strategy="mean", add_indicator=True))
+num_linear_processor = make_pipeline(
+    StandardScaler(), SimpleImputer(strategy="mean", add_indicator=True)
+)
 
 linear_preprocessor = make_column_transformer(
     (num_linear_processor, num_selector), (cat_linear_processor, cat_selector)
@@ -172,7 +178,9 @@ rf_pipeline
 # %%
 from sklearn_fork.ensemble import HistGradientBoostingRegressor
 
-gbdt_pipeline = make_pipeline(tree_preprocessor, HistGradientBoostingRegressor(random_state=0))
+gbdt_pipeline = make_pipeline(
+    tree_preprocessor, HistGradientBoostingRegressor(random_state=0)
+)
 gbdt_pipeline
 
 # %%
@@ -198,24 +206,30 @@ stacking_regressor
 
 
 import time
-
 import matplotlib.pyplot as plt
 from sklearn_fork.metrics import PredictionErrorDisplay
-from sklearn_fork.model_selection import cross_val_predict, cross_validate
+from sklearn_fork.model_selection import cross_validate, cross_val_predict
 
 fig, axs = plt.subplots(2, 2, figsize=(9, 7))
 axs = np.ravel(axs)
 
-for ax, (name, est) in zip(axs, estimators + [("Stacking Regressor", stacking_regressor)]):
+for ax, (name, est) in zip(
+    axs, estimators + [("Stacking Regressor", stacking_regressor)]
+):
     scorers = {"R2": "r2", "MAE": "neg_mean_absolute_error"}
 
     start_time = time.time()
-    scores = cross_validate(est, X, y, scoring=list(scorers.values()), n_jobs=-1, verbose=0)
+    scores = cross_validate(
+        est, X, y, scoring=list(scorers.values()), n_jobs=-1, verbose=0
+    )
     elapsed_time = time.time() - start_time
 
     y_pred = cross_val_predict(est, X, y, n_jobs=-1, verbose=0)
     scores = {
-        key: f"{np.abs(np.mean(scores[f'test_{value}'])):.2f} +- {np.std(scores[f'test_{value}']):.2f}"
+        key: (
+            f"{np.abs(np.mean(scores[f'test_{value}'])):.2f} +- "
+            f"{np.std(scores[f'test_{value}']):.2f}"
+        )
         for key, value in scorers.items()
     }
 

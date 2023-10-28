@@ -1,8 +1,11 @@
 import numpy as np
 import pytest
-from scipy.sparse import bsr_matrix, csc_matrix, csr_matrix
-from sklearn_fork.feature_selection import VarianceThreshold
+
 from sklearn_fork.utils._testing import assert_array_equal
+
+from scipy.sparse import bsr_matrix, csc_matrix, csr_matrix
+
+from sklearn_fork.feature_selection import VarianceThreshold
 
 data = [[0, 1, 2, 3, 4], [0, 2, 2, 3, 5], [1, 1, 2, 4, 0]]
 
@@ -31,7 +34,10 @@ def test_variance_threshold():
 
 @pytest.mark.skipif(
     np.var(data2) == 0,
-    reason="This test is not valid for this platform, as it relies on numerical instabilities.",
+    reason=(
+        "This test is not valid for this platform, "
+        "as it relies on numerical instabilities."
+    ),
 )
 def test_zero_variance_floating_point_error():
     # Test that VarianceThreshold(0.0).fit eliminates features that have

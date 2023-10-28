@@ -1,31 +1,35 @@
-import atexit
-import os
-import unittest
 import warnings
+import unittest
+import os
+import atexit
 
 import numpy as np
-import pytest
+
 from scipy import sparse
-from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn_fork.tree import DecisionTreeClassifier
-from sklearn_fork.utils._testing import (
-    TempMemmap,
-    _convert_container,
-    _delete_folder,
-    assert_allclose,
-    assert_allclose_dense_sparse,
-    assert_no_warnings,
-    assert_raise_message,
-    assert_raises,
-    assert_raises_regex,
-    check_docstring_parameters,
-    create_memmap_backed_data,
-    ignore_warnings,
-    raises,
-    set_random_state,
-)
+
+import pytest
+
 from sklearn_fork.utils.deprecation import deprecated
 from sklearn_fork.utils.metaestimators import available_if
+from sklearn_fork.utils._testing import (
+    assert_raises,
+    assert_no_warnings,
+    set_random_state,
+    assert_raise_message,
+    ignore_warnings,
+    check_docstring_parameters,
+    assert_allclose_dense_sparse,
+    assert_raises_regex,
+    TempMemmap,
+    create_memmap_backed_data,
+    _delete_folder,
+    _convert_container,
+    raises,
+    assert_allclose,
+)
+
+from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis
 
 
 def test_set_random_state():
@@ -120,7 +124,9 @@ def test_ignore_warning():
         ignore_warnings(_multiple_warning_function, category=FutureWarning)()
     with pytest.warns(DeprecationWarning):
         ignore_warnings(_multiple_warning_function, category=UserWarning)()
-    assert_no_warnings(ignore_warnings(_warning_function, category=(DeprecationWarning, UserWarning)))
+    assert_no_warnings(
+        ignore_warnings(_warning_function, category=(DeprecationWarning, UserWarning))
+    )
 
     # Check the decorator
     @ignore_warnings
@@ -355,6 +361,7 @@ class Klass:
         c : list
             Parameter c
         """
+        pass
 
 
 class MockEst:
@@ -471,8 +478,12 @@ def test_check_docstring_parameters():
             "+ ['a', 'b']",
         ],
         [
-            "In function: " + "sklearn_fork.utils.tests.test_testing.f_too_many_param_docstring",
-            "Parameters in function docstring have more items w.r.t. function signature, first extra item: c",
+            "In function: "
+            + "sklearn_fork.utils.tests.test_testing.f_too_many_param_docstring",
+            (
+                "Parameters in function docstring have more items w.r.t. function"
+                " signature, first extra item: c"
+            ),
             "Full diff:",
             "- ['a', 'b']",
             "+ ['a', 'b', 'c']",
@@ -480,20 +491,27 @@ def test_check_docstring_parameters():
         ],
         [
             "In function: sklearn_fork.utils.tests.test_testing.f_missing",
-            "Parameters in function docstring have less items w.r.t. function signature, first missing item: b",
+            (
+                "Parameters in function docstring have less items w.r.t. function"
+                " signature, first missing item: b"
+            ),
             "Full diff:",
             "- ['a', 'b']",
             "+ ['a']",
         ],
         [
             "In function: sklearn_fork.utils.tests.test_testing.Klass.f_missing",
-            "Parameters in function docstring have less items w.r.t. function signature, first missing item: X",
+            (
+                "Parameters in function docstring have less items w.r.t. function"
+                " signature, first missing item: X"
+            ),
             "Full diff:",
             "- ['X', 'y']",
             "+ []",
         ],
         [
-            "In function: " + f"sklearn_fork.utils.tests.test_testing.{mock_meta_name}.predict",
+            "In function: "
+            + f"sklearn_fork.utils.tests.test_testing.{mock_meta_name}.predict",
             (
                 "There's a parameter name mismatch in function docstring w.r.t."
                 " function signature, at index 0 diff: 'X' != 'y'"
@@ -505,20 +523,27 @@ def test_check_docstring_parameters():
             "?   ^",
         ],
         [
-            "In function: " + f"sklearn_fork.utils.tests.test_testing.{mock_meta_name}." + "predict_proba",
+            "In function: "
+            + f"sklearn_fork.utils.tests.test_testing.{mock_meta_name}."
+            + "predict_proba",
             "potentially wrong underline length... ",
             "Parameters ",
             "--------- in ",
         ],
         [
-            "In function: " + f"sklearn_fork.utils.tests.test_testing.{mock_meta_name}.score",
+            "In function: "
+            + f"sklearn_fork.utils.tests.test_testing.{mock_meta_name}.score",
             "potentially wrong underline length... ",
             "Parameters ",
             "--------- in ",
         ],
         [
-            "In function: " + f"sklearn_fork.utils.tests.test_testing.{mock_meta_name}.fit",
-            "Parameters in function docstring have less items w.r.t. function signature, first missing item: X",
+            "In function: "
+            + f"sklearn_fork.utils.tests.test_testing.{mock_meta_name}.fit",
+            (
+                "Parameters in function docstring have less items w.r.t. function"
+                " signature, first missing item: X"
+            ),
             "Full diff:",
             "- ['X', 'y']",
             "+ []",
@@ -589,7 +614,9 @@ def test_create_memmap_backed_data(monkeypatch, aligned):
     check_memmap(input_array, data)
     assert registration_counter.nb_calls == 1
 
-    data, folder = create_memmap_backed_data(input_array, return_folder=True, aligned=aligned)
+    data, folder = create_memmap_backed_data(
+        input_array, return_folder=True, aligned=aligned
+    )
     check_memmap(input_array, data)
     assert folder == os.path.dirname(data.filename)
     assert registration_counter.nb_calls == 2
@@ -607,7 +634,10 @@ def test_create_memmap_backed_data(monkeypatch, aligned):
 
     with pytest.raises(
         ValueError,
-        match="When creating aligned memmap-backed arrays, input must be a single array or a sequence of arrays",
+        match=(
+            "When creating aligned memmap-backed arrays, input must be a single array"
+            " or a sequence of arrays"
+        ),
     ):
         create_memmap_backed_data([input_array, "not-an-array"], aligned=True)
 
@@ -702,7 +732,9 @@ def test_raises():
     assert not cm.raised_and_matched
 
     # proper type but bad match
-    with pytest.raises(AssertionError, match="should contain one of the following patterns"):
+    with pytest.raises(
+        AssertionError, match="should contain one of the following patterns"
+    ):
         with raises(TypeError, match="hello") as cm:
             raise TypeError("Bad message")
     assert not cm.raised_and_matched

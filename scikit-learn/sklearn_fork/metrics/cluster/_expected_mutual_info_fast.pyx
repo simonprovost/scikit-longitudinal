@@ -3,10 +3,8 @@
 # License: BSD 3 clause
 
 from libc.math cimport exp, lgamma
-
-import numpy as np
 from scipy.special import gammaln
-
+import numpy as np
 cimport numpy as cnp
 
 

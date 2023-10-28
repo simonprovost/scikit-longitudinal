@@ -17,12 +17,12 @@ case a warning is raised when computing the ROC curve.
 """
 
 from time import time
-
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.datasets import fetch_covtype, fetch_kddcup99, fetch_openml
+import matplotlib.pyplot as plt
+
 from sklearn_fork.ensemble import IsolationForest
-from sklearn_fork.metrics import auc, roc_curve
+from sklearn_fork.metrics import roc_curve, auc
+from sklearn_fork.datasets import fetch_kddcup99, fetch_covtype, fetch_openml
 from sklearn_fork.preprocessing import LabelBinarizer
 from sklearn_fork.utils import shuffle as sh
 
@@ -56,7 +56,9 @@ for dat in datasets:
     print("====== %s ======" % dat)
     print("--- Fetching data...")
     if dat in ["http", "smtp", "SF", "SA"]:
-        dataset = fetch_kddcup99(subset=dat, shuffle=True, percent10=True, random_state=random_state)
+        dataset = fetch_kddcup99(
+            subset=dat, shuffle=True, percent10=True, random_state=random_state
+        )
         X = dataset.data
         y = dataset.target
 

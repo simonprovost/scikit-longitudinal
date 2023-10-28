@@ -34,14 +34,15 @@ or with conda::
 # :class:`~metrics.plot_confusion_matrix`. Read more about this new API in the
 # :ref:`User Guide <visualizations>`.
 
-import matplotlib.pyplot as plt
-from sklearn_fork.datasets import make_classification
-from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.svm import SVC
 
 # from sklearn_fork.metrics import plot_roc_curve
 from sklearn_fork.metrics import RocCurveDisplay
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.svm import SVC
+
+from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.datasets import make_classification
+import matplotlib.pyplot as plt
 
 X, y = make_classification(random_state=0)
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
@@ -78,12 +79,12 @@ plt.show()
 # Read more in the :ref:`User Guide <stacking>`.
 
 from sklearn_fork.datasets import load_iris
-from sklearn_fork.ensemble import StackingClassifier
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import StandardScaler
 from sklearn_fork.svm import LinearSVC
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.ensemble import StackingClassifier
+from sklearn_fork.model_selection import train_test_split
 
 X, y = load_iris(return_X_y=True)
 estimators = [
@@ -101,8 +102,8 @@ clf.fit(X_train, y_train).score(X_test, y_test)
 # The :func:`inspection.permutation_importance` can be used to get an
 # estimate of the importance of each feature, for any fitted estimator:
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork.datasets import make_classification
 from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.inspection import permutation_importance
@@ -115,7 +116,9 @@ result = permutation_importance(rf, X, y, n_repeats=10, random_state=0, n_jobs=2
 
 fig, ax = plt.subplots()
 sorted_idx = result.importances_mean.argsort()
-ax.boxplot(result.importances[sorted_idx].T, vert=False, labels=feature_names[sorted_idx])
+ax.boxplot(
+    result.importances[sorted_idx].T, vert=False, labels=feature_names[sorted_idx]
+)
 ax.set_title("Permutation Importance of each feature")
 ax.set_ylabel("Features")
 fig.tight_layout()
@@ -152,9 +155,8 @@ print(gbdt.predict(X))
 # See more details in the :ref:`User Guide <neighbors_transformer>`.
 
 from tempfile import TemporaryDirectory
-
-from sklearn_fork.manifold import Isomap
 from sklearn_fork.neighbors import KNeighborsTransformer
+from sklearn_fork.manifold import Isomap
 from sklearn_fork.pipeline import make_pipeline
 
 X, y = make_classification(random_state=0)
@@ -205,10 +207,18 @@ print(imputer.fit_transform(X))
 X, y = make_classification(random_state=0)
 
 rf = RandomForestClassifier(random_state=0, ccp_alpha=0).fit(X, y)
-print("Average number of nodes without pruning {:.1f}".format(np.mean([e.tree_.node_count for e in rf.estimators_])))
+print(
+    "Average number of nodes without pruning {:.1f}".format(
+        np.mean([e.tree_.node_count for e in rf.estimators_])
+    )
+)
 
 rf = RandomForestClassifier(random_state=0, ccp_alpha=0.05).fit(X, y)
-print("Average number of nodes with pruning {:.1f}".format(np.mean([e.tree_.node_count for e in rf.estimators_])))
+print(
+    "Average number of nodes with pruning {:.1f}".format(
+        np.mean([e.tree_.node_count for e in rf.estimators_])
+    )
+)
 
 # %%
 # Retrieve dataframes from OpenML
@@ -262,8 +272,8 @@ def test_sklearn_compatible_estimator(estimator, check):
 
 
 from sklearn_fork.datasets import make_classification
-from sklearn_fork.metrics import roc_auc_score
 from sklearn_fork.svm import SVC
+from sklearn_fork.metrics import roc_auc_score
 
 X, y = make_classification(n_classes=4, n_informative=16)
 clf = SVC(decision_function_shape="ovo", probability=True).fit(X, y)

@@ -1,7 +1,7 @@
-cimport numpy as cnp
 from libc.math cimport isnan
 from libcpp.vector cimport vector
 
+cimport numpy as cnp
 import numpy as np
 
 cnp.import_array()

@@ -17,14 +17,15 @@ from sklearn_fork.datasets import load_iris
 iris = load_iris()
 
 
-import matplotlib.pyplot as plt
-
 # %%
 # Display the decision functions of trees trained on all pairs of features.
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import load_iris
-from sklearn_fork.inspection import DecisionBoundaryDisplay
 from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn_fork.inspection import DecisionBoundaryDisplay
+
 
 # Parameters
 n_classes = 3

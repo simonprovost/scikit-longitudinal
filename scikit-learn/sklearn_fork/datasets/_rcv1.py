@@ -9,20 +9,25 @@ The dataset page is available at
 # License: BSD 3 clause
 
 import logging
-from gzip import GzipFile
-from os import makedirs, remove
-from os.path import exists, join
 
-import joblib
+from os import remove, makedirs
+from os.path import exists, join
+from gzip import GzipFile
+
 import numpy as np
 import scipy.sparse as sp
+import joblib
 
-from ..utils import Bunch
-from ..utils import shuffle as shuffle_
-from ..utils._param_validation import StrOptions, validate_params
 from . import get_data_home
-from ._base import RemoteFileMetadata, _fetch_remote, _pkl_filepath, load_descr
+from ._base import _pkl_filepath
+from ._base import _fetch_remote
+from ._base import RemoteFileMetadata
+from ._base import load_descr
 from ._svmlight_format_io import load_svmlight_files
+from ..utils import shuffle as shuffle_
+from ..utils import Bunch
+from ..utils._param_validation import validate_params, StrOptions
+
 
 # The original vectorized data can be found at:
 #    http://www.ai.mit.edu/projects/jmlr/papers/volume5/lewis04a/a13-vector-files/lyrl2004_vectors_test_pt0.dat.gz
@@ -206,7 +211,9 @@ def fetch_rcv1(
         sample_id = joblib.load(sample_id_path)
 
     # load target (y), categories, and sample_id_bis
-    if download_if_missing and (not exists(sample_topics_path) or not exists(topics_path)):
+    if download_if_missing and (
+        not exists(sample_topics_path) or not exists(topics_path)
+    ):
         logger.info("Downloading %s" % TOPICS_METADATA.url)
         topics_archive_path = _fetch_remote(TOPICS_METADATA, dirname=rcv1_dir)
 
@@ -268,7 +275,10 @@ def fetch_rcv1(
         y = y[N_TRAIN:, :]
         sample_id = sample_id[N_TRAIN:]
     else:
-        raise ValueError("Unknown subset parameter. Got '%s' instead of one of ('all', 'train', test')" % subset)
+        raise ValueError(
+            "Unknown subset parameter. Got '%s' instead of one"
+            " of ('all', 'train', test')" % subset
+        )
 
     if shuffle:
         X, y, sample_id = shuffle_(X, y, sample_id, random_state=random_state)
@@ -278,7 +288,9 @@ def fetch_rcv1(
     if return_X_y:
         return X, y
 
-    return Bunch(data=X, target=y, sample_id=sample_id, target_names=categories, DESCR=fdescr)
+    return Bunch(
+        data=X, target=y, sample_id=sample_id, target_names=categories, DESCR=fdescr
+    )
 
 
 def _inverse_permutation(p):

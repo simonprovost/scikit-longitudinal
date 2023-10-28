@@ -15,11 +15,11 @@ from numbers import Integral, Real
 import numpy as np
 from scipy import linalg
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
 from ..exceptions import ConvergenceWarning
-from ..utils import as_float_array, check_array, check_random_state
-from ..utils._param_validation import Hidden, Interval, StrOptions, validate_params
+from ..utils import check_array, as_float_array, check_random_state
 from ..utils.validation import check_is_fitted
+from ..utils._param_validation import Hidden, Interval, StrOptions, validate_params
 
 __all__ = ["fastica", "FastICA"]
 
@@ -121,7 +121,10 @@ def _ica_par(X, tol, g, fun_args, max_iter, w_init):
             break
     else:
         warnings.warn(
-            "FastICA did not converge. Consider increasing tolerance or the maximum number of iterations.",
+            (
+                "FastICA did not converge. Consider increasing "
+                "tolerance or the maximum number of iterations."
+            ),
             ConvergenceWarning,
         )
 
@@ -565,7 +568,9 @@ class FastICA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
             )
             self._whiten = "arbitrary-variance"
 
-        XT = self._validate_data(X, copy=self._whiten, dtype=[np.float64, np.float32], ensure_min_samples=2).T
+        XT = self._validate_data(
+            X, copy=self._whiten, dtype=[np.float64, np.float32], ensure_min_samples=2
+        ).T
         fun_args = {} if self.fun_args is None else self.fun_args
         random_state = check_random_state(self.random_state)
 
@@ -594,7 +599,9 @@ class FastICA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
             n_components = min(n_samples, n_features)
         if n_components > min(n_samples, n_features):
             n_components = min(n_samples, n_features)
-            warnings.warn("n_components is too large: it will be set to %s" % n_components)
+            warnings.warn(
+                "n_components is too large: it will be set to %s" % n_components
+            )
 
         if self._whiten:
             # Centering the features of X
@@ -636,13 +643,16 @@ class FastICA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
 
         w_init = self.w_init
         if w_init is None:
-            w_init = np.asarray(random_state.normal(size=(n_components, n_components)), dtype=X1.dtype)
+            w_init = np.asarray(
+                random_state.normal(size=(n_components, n_components)), dtype=X1.dtype
+            )
 
         else:
             w_init = np.asarray(w_init)
             if w_init.shape != (n_components, n_components):
                 raise ValueError(
-                    "w_init has invalid shape -- should be %(shape)s" % {"shape": (n_components, n_components)}
+                    "w_init has invalid shape -- should be %(shape)s"
+                    % {"shape": (n_components, n_components)}
                 )
 
         kwargs = {
@@ -752,7 +762,9 @@ class FastICA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
         """
         check_is_fitted(self)
 
-        X = self._validate_data(X, copy=(copy and self._whiten), dtype=[np.float64, np.float32], reset=False)
+        X = self._validate_data(
+            X, copy=(copy and self._whiten), dtype=[np.float64, np.float32], reset=False
+        )
         if self._whiten:
             X -= self.mean_
 

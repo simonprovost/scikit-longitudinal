@@ -25,15 +25,16 @@ to build this documentation on a regular basis.
 """
 
 import warnings
-
 import matplotlib.pyplot as plt
 from sklearn_fork.datasets import fetch_openml
 from sklearn_fork.exceptions import ConvergenceWarning
-from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.neural_network import MLPClassifier
+from sklearn_fork.model_selection import train_test_split
 
 # Load data from https://www.openml.org/d/554
-X, y = fetch_openml("mnist_784", version=1, return_X_y=True, as_frame=False, parser="pandas")
+X, y = fetch_openml(
+    "mnist_784", version=1, return_X_y=True, as_frame=False, parser="pandas"
+)
 X = X / 255.0
 
 # Split data into train partition and test partition
@@ -53,7 +54,9 @@ mlp = MLPClassifier(
 # our Continuous Integration infrastructure, so we catch the warning and
 # ignore it here
 with warnings.catch_warnings():
-    warnings.filterwarnings("ignore", category=ConvergenceWarning, module="sklearn_fork")
+    warnings.filterwarnings(
+        "ignore", category=ConvergenceWarning, module="sklearn_fork"
+    )
     mlp.fit(X_train, y_train)
 
 print("Training set score: %f" % mlp.score(X_train, y_train))

@@ -4,11 +4,10 @@ Wrapper for liblinear
 Author: fabian.pedregosa@inria.fr
 """
 
-import numpy as np
-
+import  numpy as np
 cimport numpy as cnp
 
-from ..utils._cython_blas cimport _axpy, _dot, _nrm2, _scal
+from ..utils._cython_blas cimport _dot, _axpy, _scal, _nrm2
 
 include "_liblinear.pxi"
 

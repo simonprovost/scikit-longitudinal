@@ -4,16 +4,17 @@
 #               2010 Fabian Pedregosa <fabian.pedregosa@inria.fr>
 # License: 3-clause BSD
 
-import importlib
+import sys
 import os
+from os.path import join
 import platform
 import shutil
-import sys
-import traceback
-from os.path import join
 
 from setuptools import Command, Extension, setup
 from setuptools.command.build_ext import build_ext
+
+import traceback
+import importlib
 
 try:
     import builtins
@@ -50,6 +51,7 @@ import sklearn_fork  # noqa
 import sklearn_fork._min_dependencies as min_deps  # noqa
 from sklearn_fork._build_utils import _check_cython_version  # noqa
 from sklearn_fork.externals._packaging.version import parse as parse_version  # noqa
+
 
 VERSION = sklearn_fork.__version__
 
@@ -159,7 +161,9 @@ def check_package_status(package, min_version):
     try:
         module = importlib.import_module(package)
         package_version = module.__version__
-        package_status["up_to_date"] = parse_version(package_version) >= parse_version(min_version)
+        package_status["up_to_date"] = parse_version(package_version) >= parse_version(
+            min_version
+        )
         package_status["version"] = package_version
     except ImportError:
         traceback.print_exc()
@@ -182,7 +186,9 @@ def check_package_status(package, min_version):
                 )
             )
         else:
-            raise ImportError("{} is not installed.\n{}{}".format(package, req_str, instructions))
+            raise ImportError(
+                "{} is not installed.\n{}{}".format(package, req_str, instructions)
+            )
 
 
 extension_config = {
@@ -458,8 +464,9 @@ def configure_extension_modules():
     if "sdist" in sys.argv or "--help" in sys.argv:
         return []
 
+    from sklearn_fork._build_utils import cythonize_extensions
+    from sklearn_fork._build_utils import gen_from_templates
     import numpy
-    from sklearn_fork._build_utils import cythonize_extensions, gen_from_templates
 
     is_pypy = platform.python_implementation() == "PyPy"
     np_include = numpy.get_include()
@@ -471,7 +478,9 @@ def configure_extension_modules():
         default_libraries = []
 
     default_extra_compile_args = []
-    build_with_debug_symbols = os.environ.get("SKLEARN_BUILD_ENABLE_DEBUG_SYMBOLS", "0") != "0"
+    build_with_debug_symbols = (
+        os.environ.get("SKLEARN_BUILD_ENABLE_DEBUG_SYMBOLS", "0") != "0"
+    )
     if os.name == "posix":
         if build_with_debug_symbols:
             default_extra_compile_args.append("-g")
@@ -517,14 +526,23 @@ def configure_extension_modules():
             name = ".".join(name_parts)
 
             # Make paths start from the root directory
-            include_dirs = [join(parent_dir, include_dir) for include_dir in extension.get("include_dirs", [])]
+            include_dirs = [
+                join(parent_dir, include_dir)
+                for include_dir in extension.get("include_dirs", [])
+            ]
             if extension.get("include_np", False):
                 include_dirs.append(np_include)
 
-            depends = [join(parent_dir, depend) for depend in extension.get("depends", [])]
+            depends = [
+                join(parent_dir, depend) for depend in extension.get("depends", [])
+            ]
 
-            extra_compile_args = extension.get("extra_compile_args", []) + default_extra_compile_args
-            optimization_level = extension.get("optimization_level", default_optimization_level)
+            extra_compile_args = (
+                extension.get("extra_compile_args", []) + default_extra_compile_args
+            )
+            optimization_level = extension.get(
+                "optimization_level", default_optimization_level
+            )
             if os.name == "posix":
                 extra_compile_args.append(f"-{optimization_level}")
             else:
@@ -588,15 +606,21 @@ def setup_package():
         install_requires=min_deps.tag_to_packages["install"],
         package_data={"": ["*.csv", "*.gz", "*.txt", "*.pxd", "*.rst", "*.jpg"]},
         zip_safe=False,  # the package can run out of an .egg file
-        extras_require={key: min_deps.tag_to_packages[key] for key in ["examples", "docs", "tests", "benchmark"]},
+        extras_require={
+            key: min_deps.tag_to_packages[key]
+            for key in ["examples", "docs", "tests", "benchmark"]
+        },
     )
 
     commands = [arg for arg in sys.argv[1:] if not arg.startswith("-")]
-    if not all(command in ("egg_info", "dist_info", "clean", "check") for command in commands):
+    if not all(
+        command in ("egg_info", "dist_info", "clean", "check") for command in commands
+    ):
         if sys.version_info < required_python_version:
             required_version = "%d.%d" % required_python_version
             raise RuntimeError(
-                "Scikit-learn requires Python %s or later. The current Python version is %s installed in %s."
+                "Scikit-learn requires Python %s or later. The current"
+                " Python version is %s installed in %s."
                 % (required_version, platform.python_version(), sys.executable)
             )
 

@@ -66,8 +66,9 @@ References
 # Author: Gilles Louppe <g.louppe@gmail.com>
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.ensemble import BaggingRegressor
 from sklearn_fork.tree import DecisionTreeRegressor
 
@@ -149,7 +150,8 @@ for n, (name, estimator) in enumerate(estimators):
     y_var = np.var(y_predict, axis=1)
 
     print(
-        "{0}: {1:.4f} (error) = {2:.4f} (bias^2)  + {3:.4f} (var) + {4:.4f} (noise)".format(
+        "{0}: {1:.4f} (error) = {2:.4f} (bias^2) "
+        " + {3:.4f} (var) + {4:.4f} (noise)".format(
             name, np.mean(y_error), np.mean(y_bias), np.mean(y_var), np.mean(y_noise)
         )
     )

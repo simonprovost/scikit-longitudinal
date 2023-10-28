@@ -1,15 +1,23 @@
 """Permutation importance for estimators."""
 import numbers
-
 import numpy as np
 
 from ..ensemble._bagging import _generate_indices
 from ..metrics import check_scoring, get_scorer_names
 from ..metrics._scorer import _check_multimetric_scoring, _MultimetricScorer
 from ..model_selection._validation import _aggregate_score_dicts
-from ..utils import Bunch, _safe_indexing, check_array, check_random_state
-from ..utils._param_validation import HasMethods, Integral, Interval, RealNotInt, StrOptions, validate_params
-from ..utils.parallel import Parallel, delayed
+from ..utils import Bunch, _safe_indexing
+from ..utils import check_random_state
+from ..utils import check_array
+from ..utils.parallel import delayed, Parallel
+from ..utils._param_validation import (
+    HasMethods,
+    Integral,
+    Interval,
+    RealNotInt,
+    StrOptions,
+    validate_params,
+)
 
 
 def _weights_scorer(scorer, estimator, X, y, sample_weight):

@@ -9,12 +9,12 @@ from scipy import sparse
 from scipy.optimize import linprog
 
 from ..base import BaseEstimator, RegressorMixin
+from ._base import LinearModel
 from ..exceptions import ConvergenceWarning
 from ..utils import _safe_indexing
-from ..utils._param_validation import Hidden, Interval, StrOptions
-from ..utils.fixes import parse_version, sp_version
 from ..utils.validation import _check_sample_weight
-from ._base import LinearModel
+from ..utils.fixes import sp_version, parse_version
+from ..utils._param_validation import Hidden, Interval, StrOptions
 
 
 class QuantileRegressor(LinearModel, RegressorMixin, BaseEstimator):
@@ -197,15 +197,23 @@ class QuantileRegressor(LinearModel, RegressorMixin, BaseEstimator):
             "highs-ipm",
             "highs",
         ) and sp_version < parse_version("1.6.0"):
-            raise ValueError(f"Solver {self.solver} is only available with scipy>=1.6.0, got {sp_version}")
+            raise ValueError(
+                f"Solver {self.solver} is only available "
+                f"with scipy>=1.6.0, got {sp_version}"
+            )
         else:
             solver = self.solver
 
         if solver == "interior-point" and sp_version >= parse_version("1.11.0"):
-            raise ValueError(f"Solver {solver} is not anymore available in SciPy >= 1.11.0.")
+            raise ValueError(
+                f"Solver {solver} is not anymore available in SciPy >= 1.11.0."
+            )
 
         if sparse.issparse(X) and solver not in ["highs", "highs-ds", "highs-ipm"]:
-            raise ValueError(f"Solver {self.solver} does not support sparse X. Use solver 'highs' for example.")
+            raise ValueError(
+                f"Solver {self.solver} does not support sparse X. "
+                "Use solver 'highs' for example."
+            )
         # make default solver more stable
         if self.solver_options is None and solver == "interior-point":
             solver_options = {"lstsq": True}
@@ -287,7 +295,8 @@ class QuantileRegressor(LinearModel, RegressorMixin, BaseEstimator):
                 4: "Numerical difficulties encountered.",
             }
             warnings.warn(
-                f"Linear programming for QuantileRegressor did not succeed.\nStatus is {result.status}: "
+                "Linear programming for QuantileRegressor did not succeed.\n"
+                f"Status is {result.status}: "
                 + failure.setdefault(result.status, "unknown reason")
                 + "\n"
                 + "Result message of linprog:\n"

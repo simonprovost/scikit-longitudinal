@@ -2,8 +2,10 @@
 # License: BSD 3 clause
 from numbers import Real
 
+from ._stochastic_gradient import BaseSGDClassifier
+from ._stochastic_gradient import BaseSGDRegressor
+from ._stochastic_gradient import DEFAULT_EPSILON
 from ..utils._param_validation import Interval, StrOptions
-from ._stochastic_gradient import DEFAULT_EPSILON, BaseSGDClassifier, BaseSGDRegressor
 
 
 class PassiveAggressiveClassifier(BaseSGDClassifier):

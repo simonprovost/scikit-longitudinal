@@ -22,12 +22,13 @@ other estimators.
 
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork import datasets
+
+from sklearn_fork.metrics import accuracy_score
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.svm import SVC
 from sklearn_fork.gaussian_process import GaussianProcessClassifier
 from sklearn_fork.gaussian_process.kernels import RBF
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import accuracy_score
-from sklearn_fork.svm import SVC
+from sklearn_fork import datasets
 
 iris = datasets.load_iris()
 X = iris.data[:, 0:2]  # we only take the first two features for visualization
@@ -40,11 +41,15 @@ kernel = 1.0 * RBF([1.0, 1.0])  # for GPC
 
 # Create different classifiers.
 classifiers = {
-    "L1 logistic": LogisticRegression(C=C, penalty="l1", solver="saga", multi_class="multinomial", max_iter=10000),
+    "L1 logistic": LogisticRegression(
+        C=C, penalty="l1", solver="saga", multi_class="multinomial", max_iter=10000
+    ),
     "L2 logistic (Multinomial)": LogisticRegression(
         C=C, penalty="l2", solver="saga", multi_class="multinomial", max_iter=10000
     ),
-    "L2 logistic (OvR)": LogisticRegression(C=C, penalty="l2", solver="saga", multi_class="ovr", max_iter=10000),
+    "L2 logistic (OvR)": LogisticRegression(
+        C=C, penalty="l2", solver="saga", multi_class="ovr", max_iter=10000
+    ),
     "Linear SVC": SVC(kernel="linear", C=C, probability=True, random_state=0),
     "GPC": GaussianProcessClassifier(kernel),
 }
@@ -74,7 +79,9 @@ for index, (name, classifier) in enumerate(classifiers.items()):
         plt.title("Class %d" % k)
         if k == 0:
             plt.ylabel(name)
-        imshow_handle = plt.imshow(probas[:, k].reshape((100, 100)), extent=(3, 9, 1, 5), origin="lower")
+        imshow_handle = plt.imshow(
+            probas[:, k].reshape((100, 100)), extent=(3, 9, 1, 5), origin="lower"
+        )
         plt.xticks(())
         plt.yticks(())
         idx = y_pred == k

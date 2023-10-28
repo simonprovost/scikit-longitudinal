@@ -12,11 +12,11 @@ are represented by the dashed lines.
 # Authors: Tom Dupre la Tour <tom.dupre-la-tour@m4x.org>
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork.datasets import make_blobs
-from sklearn_fork.inspection import DecisionBoundaryDisplay
 from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.inspection import DecisionBoundaryDisplay
 
 # make 3-class dataset for classification
 centers = [[-5, 0], [0, 1.5], [5, -1]]
@@ -25,13 +25,17 @@ transformation = [[0.4, 0.2], [-0.4, 1.2]]
 X = np.dot(X, transformation)
 
 for multi_class in ("multinomial", "ovr"):
-    clf = LogisticRegression(solver="sag", max_iter=100, random_state=42, multi_class=multi_class).fit(X, y)
+    clf = LogisticRegression(
+        solver="sag", max_iter=100, random_state=42, multi_class=multi_class
+    ).fit(X, y)
 
     # print the training scores
     print("training score : %.3f (%s)" % (clf.score(X, y), multi_class))
 
     _, ax = plt.subplots()
-    DecisionBoundaryDisplay.from_estimator(clf, X, response_method="predict", cmap=plt.cm.Paired, ax=ax)
+    DecisionBoundaryDisplay.from_estimator(
+        clf, X, response_method="predict", cmap=plt.cm.Paired, ax=ax
+    )
     plt.title("Decision surface of LogisticRegression (%s)" % multi_class)
     plt.axis("tight")
 
@@ -39,7 +43,9 @@ for multi_class in ("multinomial", "ovr"):
     colors = "bry"
     for i, color in zip(clf.classes_, colors):
         idx = np.where(y == i)
-        plt.scatter(X[idx, 0], X[idx, 1], c=color, cmap=plt.cm.Paired, edgecolor="black", s=20)
+        plt.scatter(
+            X[idx, 0], X[idx, 1], c=color, cmap=plt.cm.Paired, edgecolor="black", s=20
+        )
 
     # Plot the three one-against-all classifiers
     xmin, xmax = plt.xlim()

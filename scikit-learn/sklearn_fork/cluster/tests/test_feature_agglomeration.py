@@ -3,10 +3,11 @@ Tests for sklearn_fork.cluster._feature_agglomeration
 """
 # Authors: Sergul Aydore 2017
 import numpy as np
+
 from numpy.testing import assert_array_equal
 from sklearn_fork.cluster import FeatureAgglomeration
-from sklearn_fork.datasets import make_blobs
 from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.datasets import make_blobs
 
 
 def test_feature_agglomeration():
@@ -49,4 +50,6 @@ def test_feature_agglomeration_feature_names_out():
     n_clusters = agglo.n_clusters_
 
     names_out = agglo.get_feature_names_out()
-    assert_array_equal([f"featureagglomeration{i}" for i in range(n_clusters)], names_out)
+    assert_array_equal(
+        [f"featureagglomeration{i}" for i in range(n_clusters)], names_out
+    )

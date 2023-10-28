@@ -3,29 +3,33 @@
 # Author: Vlad Niculae, Gael Varoquaux, Alexandre Gramfort
 # License: BSD 3 clause
 
-import itertools
-import sys
 import time
-import warnings
-from math import ceil
+import sys
+import itertools
 from numbers import Integral, Real
+import warnings
+
+from math import ceil
 
 import numpy as np
-from joblib import effective_n_jobs
 from scipy import linalg
+from joblib import effective_n_jobs
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from ..linear_model import Lars, Lasso, LassoLars, orthogonal_mp_gram
-from ..utils import check_array, check_random_state, gen_batches, gen_even_slices
-from ..utils._param_validation import Hidden, Interval, StrOptions, validate_params
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
+from ..utils import check_array, check_random_state, gen_even_slices, gen_batches
+from ..utils._param_validation import Hidden, Interval, StrOptions
+from ..utils._param_validation import validate_params
 from ..utils.extmath import randomized_svd, row_norms, svd_flip
-from ..utils.parallel import Parallel, delayed
 from ..utils.validation import check_is_fitted
+from ..utils.parallel import delayed, Parallel
+from ..linear_model import Lasso, orthogonal_mp_gram, LassoLars, Lars
 
 
 def _check_positive_coding(method, positive):
     if positive and method in ["omp", "lars"]:
-        raise ValueError("Positive constraint not supported for '{}' coding method.".format(method))
+        raise ValueError(
+            "Positive constraint not supported for '{}' coding method.".format(method)
+        )
 
 
 def _sparse_encode_precomputed(
@@ -201,7 +205,9 @@ def _sparse_encode_precomputed(
         "dictionary": ["array-like"],
         "gram": ["array-like", None],
         "cov": ["array-like", None],
-        "algorithm": [StrOptions({"lasso_lars", "lasso_cd", "lars", "omp", "threshold"})],
+        "algorithm": [
+            StrOptions({"lasso_lars", "lasso_cd", "lars", "omp", "threshold"})
+        ],
         "n_nonzero_coefs": [Interval(Integral, 1, None, closed="left"), None],
         "alpha": [Interval(Real, 0, None, closed="left"), None],
         "copy_cov": ["boolean"],
@@ -332,7 +338,9 @@ def sparse_encode(
     """
     if check_input:
         if algorithm == "lasso_cd":
-            dictionary = check_array(dictionary, order="C", dtype=[np.float64, np.float32])
+            dictionary = check_array(
+                dictionary, order="C", dtype=[np.float64, np.float32]
+            )
             X = check_array(X, order="C", dtype=[np.float64, np.float32])
         else:
             dictionary = check_array(dictionary)
@@ -340,9 +348,8 @@ def sparse_encode(
 
     if dictionary.shape[1] != X.shape[1]:
         raise ValueError(
-            "Dictionary and X have different numbers of features:dictionary.shape: {} X.shape{}".format(
-                dictionary.shape, X.shape
-            )
+            "Dictionary and X have different numbers of features:"
+            "dictionary.shape: {} X.shape{}".format(dictionary.shape, X.shape)
         )
 
     _check_positive_coding(algorithm, positive)
@@ -561,7 +568,9 @@ def _dict_learning(
         dictionary = dictionary[:n_components, :]
     else:
         code = np.c_[code, np.zeros((len(code), n_components - r))]
-        dictionary = np.r_[dictionary, np.zeros((n_components - r, dictionary.shape[1]))]
+        dictionary = np.r_[
+            dictionary, np.zeros((n_components - r, dictionary.shape[1]))
+        ]
 
     # Fortran-order dict better suited for the sparse coding which is the
     # bottleneck of this algorithm.
@@ -583,7 +592,8 @@ def _dict_learning(
             sys.stdout.flush()
         elif verbose:
             print(
-                "Iteration % 3i (elapsed time: % 3is, % 4.1fmn, current cost % 7.3f)" % (ii, dt, dt / 60, current_cost)
+                "Iteration % 3i (elapsed time: % 3is, % 4.1fmn, current cost % 7.3f)"
+                % (ii, dt, dt / 60, current_cost)
             )
 
         # Update code
@@ -610,7 +620,9 @@ def _dict_learning(
         )
 
         # Cost function
-        current_cost = 0.5 * np.sum((X - code @ dictionary) ** 2) + alpha * np.sum(np.abs(code))
+        current_cost = 0.5 * np.sum((X - code @ dictionary) ** 2) + alpha * np.sum(
+            np.abs(code)
+        )
         errors.append(current_cost)
 
         if ii > 0:
@@ -634,7 +646,9 @@ def _dict_learning(
 
 def _check_warn_deprecated(param, name, default, additional_message=None):
     if param != "deprecated":
-        msg = f"'{name}' is deprecated in version 1.1 and will be removed in version 1.4."
+        msg = (
+            f"'{name}' is deprecated in version 1.1 and will be removed in version 1.4."
+        )
         if additional_message:
             msg += f" {additional_message}"
         warnings.warn(msg, FutureWarning)
@@ -900,7 +914,9 @@ def dict_learning_online(
     # TODO(1.4) remove the whole old behavior
     # Fallback to old behavior
 
-    n_iter = _check_warn_deprecated(n_iter, "n_iter", default=100, additional_message="Use 'max_iter' instead.")
+    n_iter = _check_warn_deprecated(
+        n_iter, "n_iter", default=100, additional_message="Use 'max_iter' instead."
+    )
 
     if n_components is None:
         n_components = X.shape[1]
@@ -942,7 +958,9 @@ def dict_learning_online(
     else:
         X_train = X
 
-    X_train = check_array(X_train, order="C", dtype=[np.float64, np.float32], copy=False)
+    X_train = check_array(
+        X_train, order="C", dtype=[np.float64, np.float32], copy=False
+    )
 
     # Fortran-order dict better suited for the sparse coding which is the
     # bottleneck of this algorithm.
@@ -972,7 +990,9 @@ def dict_learning_online(
             sys.stdout.flush()
         elif verbose:
             if verbose > 10 or ii % ceil(100.0 / verbose) == 0:
-                print("Iteration % 3i (elapsed time: % 3is, % 4.1fmn)" % (ii, dt, dt / 60))
+                print(
+                    "Iteration % 3i (elapsed time: % 3is, % 4.1fmn)" % (ii, dt, dt / 60)
+                )
 
         this_code = sparse_encode(
             this_X,
@@ -1695,7 +1715,9 @@ class DictionaryLearning(_BaseSparseCoding, BaseEstimator):
         "max_iter": [Interval(Integral, 0, None, closed="left")],
         "tol": [Interval(Real, 0, None, closed="left")],
         "fit_algorithm": [StrOptions({"lars", "cd"})],
-        "transform_algorithm": [StrOptions({"lasso_lars", "lasso_cd", "lars", "omp", "threshold"})],
+        "transform_algorithm": [
+            StrOptions({"lasso_lars", "lasso_cd", "lars", "omp", "threshold"})
+        ],
         "transform_n_nonzero_coefs": [Interval(Integral, 1, None, closed="left"), None],
         "transform_alpha": [Interval(Real, 0, None, closed="left"), None],
         "n_jobs": [Integral, None],
@@ -2069,7 +2091,9 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
         "batch_size": [Interval(Integral, 1, None, closed="left")],
         "shuffle": ["boolean"],
         "dict_init": [None, np.ndarray],
-        "transform_algorithm": [StrOptions({"lasso_lars", "lasso_cd", "lars", "omp", "threshold"})],
+        "transform_algorithm": [
+            StrOptions({"lasso_lars", "lasso_cd", "lars", "omp", "threshold"})
+        ],
         "transform_n_nonzero_coefs": [Interval(Integral, 1, None, closed="left"), None],
         "transform_alpha": [Interval(Real, 0, None, closed="left"), None],
         "verbose": ["verbose"],
@@ -2152,7 +2176,9 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
             dictionary = self.dict_init
         else:
             # Init V with SVD of X
-            _, S, dictionary = randomized_svd(X, self._n_components, random_state=random_state)
+            _, S, dictionary = randomized_svd(
+                X, self._n_components, random_state=random_state
+            )
             dictionary = S[:, np.newaxis] * dictionary
 
         if self._n_components <= len(dictionary):
@@ -2202,7 +2228,10 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
             verbose=self.verbose,
         )
 
-        batch_cost = (0.5 * ((X - code @ dictionary) ** 2).sum() + self.alpha * np.sum(np.abs(code))) / batch_size
+        batch_cost = (
+            0.5 * ((X - code @ dictionary) ** 2).sum()
+            + self.alpha * np.sum(np.abs(code))
+        ) / batch_size
 
         # Update inner stats
         self._update_inner_stats(X, code, batch_size, step)
@@ -2221,7 +2250,9 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
 
         return batch_cost
 
-    def _check_convergence(self, X, batch_cost, new_dict, old_dict, n_samples, step, n_steps):
+    def _check_convergence(
+        self, X, batch_cost, new_dict, old_dict, n_samples, step, n_steps
+    ):
         """Helper function to encapsulate the early stopping logic.
 
         Early stopping is based on two factors:
@@ -2254,7 +2285,10 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
             self._ewa_cost = self._ewa_cost * (1 - alpha) + batch_cost * alpha
 
         if self.verbose:
-            print(f"Minibatch step {step}/{n_steps}: mean batch cost: {batch_cost}, ewa cost: {self._ewa_cost}")
+            print(
+                f"Minibatch step {step}/{n_steps}: mean batch cost: "
+                f"{batch_cost}, ewa cost: {self._ewa_cost}"
+            )
 
         # Early stopping based on change of dictionary
         dict_diff = linalg.norm(new_dict - old_dict) / self._n_components
@@ -2271,9 +2305,15 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
         else:
             self._no_improvement += 1
 
-        if self.max_no_improvement is not None and self._no_improvement >= self.max_no_improvement:
+        if (
+            self.max_no_improvement is not None
+            and self._no_improvement >= self.max_no_improvement
+        ):
             if self.verbose:
-                print(f"Converged (lack of improvement in objective function) at step {step}/{n_steps}")
+                print(
+                    "Converged (lack of improvement in objective function) "
+                    f"at step {step}/{n_steps}"
+                )
             return True
 
         return False
@@ -2297,7 +2337,9 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
         """
         self._validate_params()
 
-        X = self._validate_data(X, dtype=[np.float64, np.float32], order="C", copy=False)
+        X = self._validate_data(
+            X, dtype=[np.float64, np.float32], order="C", copy=False
+        )
 
         self._check_params(X)
 
@@ -2330,7 +2372,9 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
             print("[dict_learning]")
 
         # Inner stats
-        self._A = np.zeros((self._n_components, self._n_components), dtype=X_train.dtype)
+        self._A = np.zeros(
+            (self._n_components, self._n_components), dtype=X_train.dtype
+        )
         self._B = np.zeros((n_features, self._n_components), dtype=X_train.dtype)
 
         if self.max_iter is not None:
@@ -2349,9 +2393,13 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
             for i, batch in zip(range(n_steps), batches):
                 X_batch = X_train[batch]
 
-                batch_cost = self._minibatch_step(X_batch, dictionary, self._random_state, i)
+                batch_cost = self._minibatch_step(
+                    X_batch, dictionary, self._random_state, i
+                )
 
-                if self._check_convergence(X_batch, batch_cost, dictionary, old_dict, n_samples, i, n_steps):
+                if self._check_convergence(
+                    X_batch, batch_cost, dictionary, old_dict, n_samples, i, n_steps
+                ):
                     break
 
                 # XXX callback param added for backward compat in #18975 but a common
@@ -2409,7 +2457,9 @@ class MiniBatchDictionaryLearning(_BaseSparseCoding, BaseEstimator):
         if not has_components:
             self._validate_params()
 
-        X = self._validate_data(X, dtype=[np.float64, np.float32], order="C", reset=not has_components)
+        X = self._validate_data(
+            X, dtype=[np.float64, np.float32], order="C", reset=not has_components
+        )
 
         if not has_components:
             # This instance has not been fitted yet (fit or partial_fit)

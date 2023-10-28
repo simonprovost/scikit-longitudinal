@@ -2,10 +2,10 @@
 # It is automatically generated from 'sklearn_fork/metrics/_pairwise_distances_reduction/_argkmin.pxd.tp'.
 # Changes must be made there.
 
-from ...utils._typedefs cimport float64_t, intp_t
+from ...utils._typedefs cimport intp_t, float64_t
+
 from ._base cimport BaseDistancesReduction64
 from ._middle_term_computer cimport MiddleTermComputer64
-
 
 cdef class ArgKmin64(BaseDistancesReduction64):
     """float64 implementation of the ArgKmin."""
@@ -32,7 +32,6 @@ cdef class EuclideanArgKmin64(ArgKmin64):
 
 from ._base cimport BaseDistancesReduction32
 from ._middle_term_computer cimport MiddleTermComputer32
-
 
 cdef class ArgKmin32(BaseDistancesReduction32):
     """float32 implementation of the ArgKmin."""

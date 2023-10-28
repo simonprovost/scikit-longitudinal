@@ -2,29 +2,34 @@
 estimator.
 """
 
-import operator
-import sys
-import time
-
 # Author: Gael Varoquaux <gael.varoquaux@normalesup.org>
 # License: BSD 3 clause
 # Copyright: INRIA
 import warnings
-from numbers import Integral, Real
+import operator
+import sys
+import time
 
+from numbers import Integral, Real
 import numpy as np
 from scipy import linalg
 
+from . import empirical_covariance, EmpiricalCovariance, log_likelihood
+
 from ..exceptions import ConvergenceWarning
+from ..utils.validation import (
+    _is_arraylike_not_scalar,
+    check_random_state,
+    check_scalar,
+)
+from ..utils.parallel import delayed, Parallel
+from ..utils._param_validation import Interval, StrOptions
+from ..utils._param_validation import validate_params
 
 # mypy error: Module 'sklearn_fork.linear_model' has no attribute '_cd_fast'
 from ..linear_model import _cd_fast as cd_fast  # type: ignore
 from ..linear_model import lars_path_gram
 from ..model_selection import check_cv, cross_val_score
-from ..utils._param_validation import Interval, StrOptions, validate_params
-from ..utils.parallel import Parallel, delayed
-from ..utils.validation import _is_arraylike_not_scalar, check_random_state, check_scalar
-from . import EmpiricalCovariance, empirical_covariance, log_likelihood
 
 
 # Helper functions to compute the objective and dual objective functions
@@ -120,7 +125,10 @@ def _graphical_lasso(
                 with np.errstate(**errors):
                     if mode == "cd":
                         # Use coordinate descent
-                        coefs = -(precision_[indices != idx, idx] / (precision_[idx, idx] + 1000 * eps))
+                        coefs = -(
+                            precision_[indices != idx, idx]
+                            / (precision_[idx, idx] + 1000 * eps)
+                        )
                         coefs, _, _, _ = cd_fast.enet_coordinate_descent_gram(
                             coefs,
                             alpha,
@@ -145,26 +153,37 @@ def _graphical_lasso(
                             return_path=False,
                         )
                 # Update the precision matrix
-                precision_[idx, idx] = 1.0 / (covariance_[idx, idx] - np.dot(covariance_[indices != idx, idx], coefs))
+                precision_[idx, idx] = 1.0 / (
+                    covariance_[idx, idx]
+                    - np.dot(covariance_[indices != idx, idx], coefs)
+                )
                 precision_[indices != idx, idx] = -precision_[idx, idx] * coefs
                 precision_[idx, indices != idx] = -precision_[idx, idx] * coefs
                 coefs = np.dot(sub_covariance, coefs)
                 covariance_[idx, indices != idx] = coefs
                 covariance_[indices != idx, idx] = coefs
             if not np.isfinite(precision_.sum()):
-                raise FloatingPointError("The system is too ill-conditioned for this solver")
+                raise FloatingPointError(
+                    "The system is too ill-conditioned for this solver"
+                )
             d_gap = _dual_gap(emp_cov, precision_, alpha)
             cost = _objective(emp_cov, precision_, alpha)
             if verbose:
-                print("[graphical_lasso] Iteration % 3i, cost % 3.2e, dual gap %.3e" % (i, cost, d_gap))
+                print(
+                    "[graphical_lasso] Iteration % 3i, cost % 3.2e, dual gap %.3e"
+                    % (i, cost, d_gap)
+                )
             costs.append((cost, d_gap))
             if np.abs(d_gap) < tol:
                 break
             if not np.isfinite(cost) and i > 0:
-                raise FloatingPointError("Non SPD result: the system is too ill-conditioned for this solver")
+                raise FloatingPointError(
+                    "Non SPD result: the system is too ill-conditioned for this solver"
+                )
         else:
             warnings.warn(
-                "graphical_lasso: did not converge after %i iteration: dual gap: %.3e" % (max_iter, d_gap),
+                "graphical_lasso: did not converge after %i iteration: dual gap: %.3e"
+                % (max_iter, d_gap),
                 ConvergenceWarning,
             )
     except FloatingPointError as e:
@@ -308,7 +327,10 @@ def graphical_lasso(
 
     if cov_init is not None:
         warnings.warn(
-            "The cov_init parameter is deprecated in 1.3 and will be removed in 1.5. It does not have any effect.",
+            (
+                "The cov_init parameter is deprecated in 1.3 and will be removed in "
+                "1.5. It does not have any effect."
+            ),
             FutureWarning,
         )
 
@@ -672,7 +694,10 @@ def graphical_lasso_path(
             sys.stderr.write(".")
         elif verbose > 1:
             if X_test is not None:
-                print("[graphical_lasso_path] alpha: %.2e, score: %.2e" % (alpha, this_score))
+                print(
+                    "[graphical_lasso_path] alpha: %.2e, score: %.2e"
+                    % (alpha, this_score)
+                )
             else:
                 print("[graphical_lasso_path] alpha: %.2e" % alpha)
     if X_test is not None:

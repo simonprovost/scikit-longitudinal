@@ -7,23 +7,26 @@ Base IO code for all datasets
 #               2010 Olivier Grisel <olivier.grisel@ensta.org>
 # License: BSD 3 clause
 import csv
-import gzip
 import hashlib
-import os
+import gzip
 import shutil
 from collections import namedtuple
-from numbers import Integral
+import os
 from os import environ, listdir, makedirs
 from os.path import expanduser, isdir, join, splitext
 from pathlib import Path
-from urllib.request import urlretrieve
+from numbers import Integral
+
+from ..preprocessing import scale
+from ..utils import Bunch
+from ..utils import check_random_state
+from ..utils import check_pandas_support
+from ..utils.fixes import _open_binary, _open_text, _read_text, _contents
+from ..utils._param_validation import validate_params, Interval, StrOptions
 
 import numpy as np
 
-from ..preprocessing import scale
-from ..utils import Bunch, check_pandas_support, check_random_state
-from ..utils._param_validation import Interval, StrOptions, validate_params
-from ..utils.fixes import _contents, _open_binary, _open_text, _read_text
+from urllib.request import urlretrieve
 
 DATA_MODULE = "sklearn_fork.datasets.data"
 DESCR_MODULE = "sklearn_fork.datasets.descr"
@@ -88,7 +91,9 @@ def clear_data_home(data_home=None):
     shutil.rmtree(data_home)
 
 
-def _convert_data_dataframe(caller_name, data, target, feature_names, target_names, sparse_data=False):
+def _convert_data_dataframe(
+    caller_name, data, target, feature_names, target_names, sparse_data=False
+):
     pd = check_pandas_support("{} with as_frame=True".format(caller_name))
     if not sparse_data:
         data_df = pd.DataFrame(data, columns=feature_names, copy=False)
@@ -234,7 +239,9 @@ def load_files(
     target_names = []
     filenames = []
 
-    folders = [f for f in sorted(listdir(container_path)) if isdir(join(container_path, f))]
+    folders = [
+        f for f in sorted(listdir(container_path)) if isdir(join(container_path, f))
+    ]
 
     if categories is not None:
         folders = [f for f in folders if f in categories]
@@ -247,7 +254,11 @@ def load_files(
         folder_path = join(container_path, folder)
         files = sorted(listdir(folder_path))
         if allowed_extensions is not None:
-            documents = [join(folder_path, file) for file in files if os.path.splitext(file)[1] in allowed_extensions]
+            documents = [
+                join(folder_path, file)
+                for file in files
+                if os.path.splitext(file)[1] in allowed_extensions
+            ]
         else:
             documents = [join(folder_path, file) for file in files]
         target.extend(len(documents) * [label])
@@ -278,7 +289,9 @@ def load_files(
             DESCR=description,
         )
 
-    return Bunch(filenames=filenames, target_names=target_names, target=target, DESCR=description)
+    return Bunch(
+        filenames=filenames, target_names=target_names, target=target, DESCR=description
+    )
 
 
 def load_csv_data(
@@ -521,7 +534,9 @@ def load_wine(*, return_X_y=False, as_frame=False):
     ['class_0', 'class_1', 'class_2']
     """
 
-    data, target, target_names, fdescr = load_csv_data(data_file_name="wine_data.csv", descr_file_name="wine_data.rst")
+    data, target, target_names, fdescr = load_csv_data(
+        data_file_name="wine_data.csv", descr_file_name="wine_data.rst"
+    )
 
     feature_names = [
         "alcohol",
@@ -544,7 +559,9 @@ def load_wine(*, return_X_y=False, as_frame=False):
         "target",
     ]
     if as_frame:
-        frame, data, target = _convert_data_dataframe("load_wine", data, target, feature_names, target_columns)
+        frame, data, target = _convert_data_dataframe(
+            "load_wine", data, target, feature_names, target_columns
+        )
 
     if return_X_y:
         return data, target
@@ -648,7 +665,9 @@ def load_iris(*, return_X_y=False, as_frame=False):
     ['setosa', 'versicolor', 'virginica']
     """
     data_file_name = "iris.csv"
-    data, target, target_names, fdescr = load_csv_data(data_file_name=data_file_name, descr_file_name="iris.rst")
+    data, target, target_names, fdescr = load_csv_data(
+        data_file_name=data_file_name, descr_file_name="iris.rst"
+    )
 
     feature_names = [
         "sepal length (cm)",
@@ -662,7 +681,9 @@ def load_iris(*, return_X_y=False, as_frame=False):
         "target",
     ]
     if as_frame:
-        frame, data, target = _convert_data_dataframe("load_iris", data, target, feature_names, target_columns)
+        frame, data, target = _convert_data_dataframe(
+            "load_iris", data, target, feature_names, target_columns
+        )
 
     if return_X_y:
         return data, target
@@ -810,7 +831,9 @@ def load_breast_cancer(*, return_X_y=False, as_frame=False):
         "target",
     ]
     if as_frame:
-        frame, data, target = _convert_data_dataframe("load_breast_cancer", data, target, feature_names, target_columns)
+        frame, data, target = _convert_data_dataframe(
+            "load_breast_cancer", data, target, feature_names, target_columns
+        )
 
     if return_X_y:
         return data, target
@@ -938,7 +961,11 @@ def load_digits(*, n_class=10, return_X_y=False, as_frame=False):
         flat_data, target = flat_data[idx], target[idx]
         images = images[idx]
 
-    feature_names = ["pixel_{}_{}".format(row_idx, col_idx) for row_idx in range(8) for col_idx in range(8)]
+    feature_names = [
+        "pixel_{}_{}".format(row_idx, col_idx)
+        for row_idx in range(8)
+        for col_idx in range(8)
+    ]
 
     frame = None
     target_columns = [
@@ -963,7 +990,9 @@ def load_digits(*, n_class=10, return_X_y=False, as_frame=False):
     )
 
 
-@validate_params({"return_X_y": ["boolean"], "as_frame": ["boolean"], "scaled": ["boolean"]})
+@validate_params(
+    {"return_X_y": ["boolean"], "as_frame": ["boolean"], "scaled": ["boolean"]}
+)
 def load_diabetes(*, return_X_y=False, as_frame=False, scaled=True):
     """Load and return the diabetes dataset (regression).
 
@@ -1056,7 +1085,9 @@ def load_diabetes(*, return_X_y=False, as_frame=False, scaled=True):
         "target",
     ]
     if as_frame:
-        frame, data, target = _convert_data_dataframe("load_diabetes", data, target, feature_names, target_columns)
+        frame, data, target = _convert_data_dataframe(
+            "load_diabetes", data, target, feature_names, target_columns
+        )
 
     if return_X_y:
         return data, target
@@ -1347,8 +1378,8 @@ def _fetch_remote(remote, dirname=None):
     checksum = _sha256(file_path)
     if remote.checksum != checksum:
         raise IOError(
-            "{} has an SHA256 checksum ({}) differing from expected ({}), file may be corrupted.".format(
-                file_path, checksum, remote.checksum
-            )
+            "{} has an SHA256 checksum ({}) "
+            "differing from expected ({}), "
+            "file may be corrupted.".format(file_path, checksum, remote.checksum)
         )
     return file_path

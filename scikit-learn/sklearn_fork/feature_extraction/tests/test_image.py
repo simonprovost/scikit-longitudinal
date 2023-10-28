@@ -3,16 +3,17 @@
 # License: BSD 3 clause
 
 import numpy as np
-import pytest
 from scipy import ndimage
 from scipy.sparse.csgraph import connected_components
+import pytest
+
 from sklearn_fork.feature_extraction.image import (
+    img_to_graph,
+    grid_to_graph,
+    extract_patches_2d,
+    reconstruct_from_patches_2d,
     PatchExtractor,
     _extract_patches,
-    extract_patches_2d,
-    grid_to_graph,
-    img_to_graph,
-    reconstruct_from_patches_2d,
 )
 
 
@@ -24,7 +25,9 @@ def test_img_to_graph():
     # Negative elements are the diagonal: the elements of the original
     # image. Positive elements are the values of the gradient, they
     # should all be equal on grad_x and grad_y
-    np.testing.assert_array_equal(grad_x.data[grad_x.data > 0], grad_y.data[grad_y.data > 0])
+    np.testing.assert_array_equal(
+        grad_x.data[grad_x.data > 0], grad_y.data[grad_y.data > 0]
+    )
 
 
 def test_img_to_graph_sparse():
@@ -234,13 +237,19 @@ def test_patch_extractor_max_patches(downsampled_face_collection):
 
     max_patches = 100
     expected_n_patches = len(faces) * max_patches
-    extr = PatchExtractor(patch_size=(p_h, p_w), max_patches=max_patches, random_state=0)
+    extr = PatchExtractor(
+        patch_size=(p_h, p_w), max_patches=max_patches, random_state=0
+    )
     patches = extr.transform(faces)
     assert patches.shape == (expected_n_patches, p_h, p_w)
 
     max_patches = 0.5
-    expected_n_patches = len(faces) * int((i_h - p_h + 1) * (i_w - p_w + 1) * max_patches)
-    extr = PatchExtractor(patch_size=(p_h, p_w), max_patches=max_patches, random_state=0)
+    expected_n_patches = len(faces) * int(
+        (i_h - p_h + 1) * (i_w - p_w + 1) * max_patches
+    )
+    extr = PatchExtractor(
+        patch_size=(p_h, p_w), max_patches=max_patches, random_state=0
+    )
     patches = extr.transform(faces)
     assert patches.shape == (expected_n_patches, p_h, p_w)
 
@@ -304,13 +313,19 @@ def test_extract_patches_strided():
         image_shapes, patch_sizes, patch_steps, expected_views, last_patches
     ):
         image = np.arange(np.prod(image_shape)).reshape(image_shape)
-        patches = _extract_patches(image, patch_shape=patch_size, extraction_step=patch_step)
+        patches = _extract_patches(
+            image, patch_shape=patch_size, extraction_step=patch_step
+        )
 
         ndim = len(image_shape)
 
         assert patches.shape[:ndim] == expected_view
-        last_patch_slices = tuple(slice(i, i + j, None) for i, j in zip(last_patch, patch_size))
-        assert (patches[(-1, None, None) * ndim] == image[last_patch_slices].squeeze()).all()
+        last_patch_slices = tuple(
+            slice(i, i + j, None) for i, j in zip(last_patch, patch_size)
+        )
+        assert (
+            patches[(-1, None, None) * ndim] == image[last_patch_slices].squeeze()
+        ).all()
 
 
 def test_extract_patches_square(downsampled_face):

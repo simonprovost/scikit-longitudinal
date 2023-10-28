@@ -3,13 +3,24 @@
 import numpy as np
 import pytest
 from scipy.sparse import csr_matrix, issparse
-from sklearn_fork.base import BaseEstimator, BiclusterMixin
-from sklearn_fork.cluster import SpectralBiclustering, SpectralCoclustering
-from sklearn_fork.cluster._bicluster import _bistochastic_normalize, _log_normalize, _scale_normalize
-from sklearn_fork.datasets import make_biclusters, make_checkerboard
-from sklearn_fork.metrics import consensus_score, v_measure_score
+
 from sklearn_fork.model_selection import ParameterGrid
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_almost_equal, assert_array_equal
+
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+
+from sklearn_fork.base import BaseEstimator, BiclusterMixin
+
+from sklearn_fork.cluster import SpectralCoclustering
+from sklearn_fork.cluster import SpectralBiclustering
+from sklearn_fork.cluster._bicluster import _scale_normalize
+from sklearn_fork.cluster._bicluster import _bistochastic_normalize
+from sklearn_fork.cluster._bicluster import _log_normalize
+
+from sklearn_fork.metrics import consensus_score, v_measure_score
+
+from sklearn_fork.datasets import make_biclusters, make_checkerboard
 
 
 class MockBiclustering(BiclusterMixin, BaseEstimator):
@@ -58,12 +69,16 @@ def test_spectral_coclustering(global_random_seed):
         "init": ["k-means++"],
         "n_init": [10],
     }
-    S, rows, cols = make_biclusters((30, 30), 3, noise=0.1, random_state=global_random_seed)
+    S, rows, cols = make_biclusters(
+        (30, 30), 3, noise=0.1, random_state=global_random_seed
+    )
     S -= S.min()  # needs to be nonnegative before making it sparse
     S = np.where(S < 1, 0, S)  # threshold some values
     for mat in (S, csr_matrix(S)):
         for kwargs in ParameterGrid(param_grid):
-            model = SpectralCoclustering(n_clusters=3, random_state=global_random_seed, **kwargs)
+            model = SpectralCoclustering(
+                n_clusters=3, random_state=global_random_seed, **kwargs
+            )
             model.fit(mat)
 
             assert model.rows_.shape == (3, 30)
@@ -76,7 +91,9 @@ def test_spectral_coclustering(global_random_seed):
 
 def test_spectral_biclustering(global_random_seed):
     # Test Kluger methods on a checkerboard dataset.
-    S, rows, cols = make_checkerboard((30, 30), 3, noise=0.5, random_state=global_random_seed)
+    S, rows, cols = make_checkerboard(
+        (30, 30), 3, noise=0.5, random_state=global_random_seed
+    )
 
     non_default_params = {
         "method": ["scale", "log"],
@@ -177,17 +194,25 @@ def test_project_and_cluster(global_random_seed):
 
 def test_perfect_checkerboard(global_random_seed):
     # XXX Previously failed on build bot (not reproducible)
-    model = SpectralBiclustering(3, svd_method="arpack", random_state=global_random_seed)
+    model = SpectralBiclustering(
+        3, svd_method="arpack", random_state=global_random_seed
+    )
 
-    S, rows, cols = make_checkerboard((30, 30), 3, noise=0, random_state=global_random_seed)
+    S, rows, cols = make_checkerboard(
+        (30, 30), 3, noise=0, random_state=global_random_seed
+    )
     model.fit(S)
     assert consensus_score(model.biclusters_, (rows, cols)) == 1
 
-    S, rows, cols = make_checkerboard((40, 30), 3, noise=0, random_state=global_random_seed)
+    S, rows, cols = make_checkerboard(
+        (40, 30), 3, noise=0, random_state=global_random_seed
+    )
     model.fit(S)
     assert consensus_score(model.biclusters_, (rows, cols)) == 1
 
-    S, rows, cols = make_checkerboard((30, 40), 3, noise=0, random_state=global_random_seed)
+    S, rows, cols = make_checkerboard(
+        (30, 40), 3, noise=0, random_state=global_random_seed
+    )
     model.fit(S)
     assert consensus_score(model.biclusters_, (rows, cols)) == 1
 

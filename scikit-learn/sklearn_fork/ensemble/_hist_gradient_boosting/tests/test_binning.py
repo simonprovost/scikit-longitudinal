@@ -1,14 +1,25 @@
 import numpy as np
+from numpy.testing import assert_array_equal, assert_allclose
 import pytest
-from numpy.testing import assert_allclose, assert_array_equal
-from sklearn_fork.ensemble._hist_gradient_boosting.binning import _BinMapper, _find_binning_thresholds, _map_to_bins
-from sklearn_fork.ensemble._hist_gradient_boosting.common import ALMOST_INF, X_BINNED_DTYPE, X_DTYPE
+
+from sklearn_fork.ensemble._hist_gradient_boosting.binning import (
+    _BinMapper,
+    _find_binning_thresholds,
+    _map_to_bins,
+)
+from sklearn_fork.ensemble._hist_gradient_boosting.common import X_DTYPE
+from sklearn_fork.ensemble._hist_gradient_boosting.common import X_BINNED_DTYPE
+from sklearn_fork.ensemble._hist_gradient_boosting.common import ALMOST_INF
 from sklearn_fork.utils._openmp_helpers import _openmp_effective_n_threads
 
 n_threads = _openmp_effective_n_threads()
 
 
-DATA = np.random.RandomState(42).normal(loc=[0, 10], scale=[1, 0.01], size=(int(1e6), 2)).astype(X_DTYPE)
+DATA = (
+    np.random.RandomState(42)
+    .normal(loc=[0, 10], scale=[1, 0.01], size=(int(1e6), 2))
+    .astype(X_DTYPE)
+)
 
 
 def test_find_binning_thresholds_regular_data():
@@ -37,18 +48,26 @@ def test_find_binning_thresholds_small_regular_data():
 
 
 def test_find_binning_thresholds_random_data():
-    bin_thresholds = [_find_binning_thresholds(DATA[:, i], max_bins=255) for i in range(2)]
+    bin_thresholds = [
+        _find_binning_thresholds(DATA[:, i], max_bins=255) for i in range(2)
+    ]
     for i in range(len(bin_thresholds)):
         assert bin_thresholds[i].shape == (254,)  # 255 - 1
         assert bin_thresholds[i].dtype == DATA.dtype
 
-    assert_allclose(bin_thresholds[0][[64, 128, 192]], np.array([-0.7, 0.0, 0.7]), atol=1e-1)
+    assert_allclose(
+        bin_thresholds[0][[64, 128, 192]], np.array([-0.7, 0.0, 0.7]), atol=1e-1
+    )
 
-    assert_allclose(bin_thresholds[1][[64, 128, 192]], np.array([9.99, 10.00, 10.01]), atol=1e-2)
+    assert_allclose(
+        bin_thresholds[1][[64, 128, 192]], np.array([9.99, 10.00, 10.01]), atol=1e-2
+    )
 
 
 def test_find_binning_thresholds_low_n_bins():
-    bin_thresholds = [_find_binning_thresholds(DATA[:, i], max_bins=128) for i in range(2)]
+    bin_thresholds = [
+        _find_binning_thresholds(DATA[:, i], max_bins=128) for i in range(2)
+    ]
     for i in range(len(bin_thresholds)):
         assert bin_thresholds[i].shape == (127,)  # 128 - 1
         assert bin_thresholds[i].dtype == DATA.dtype
@@ -56,7 +75,9 @@ def test_find_binning_thresholds_low_n_bins():
 
 @pytest.mark.parametrize("n_bins", (2, 257))
 def test_invalid_n_bins(n_bins):
-    err_msg = "n_bins={} should be no smaller than 3 and no larger than 256".format(n_bins)
+    err_msg = "n_bins={} should be no smaller than 3 and no larger than 256".format(
+        n_bins
+    )
     with pytest.raises(ValueError, match=err_msg):
         _BinMapper(n_bins=n_bins).fit(DATA)
 
@@ -70,7 +91,9 @@ def test_bin_mapper_n_features_transform():
 
 @pytest.mark.parametrize("max_bins", [16, 128, 255])
 def test_map_to_bins(max_bins):
-    bin_thresholds = [_find_binning_thresholds(DATA[:, i], max_bins=max_bins) for i in range(2)]
+    bin_thresholds = [
+        _find_binning_thresholds(DATA[:, i], max_bins=max_bins) for i in range(2)
+    ]
     binned = np.zeros_like(DATA, dtype=X_BINNED_DTYPE, order="F")
     is_categorical = np.zeros(2, dtype=np.uint8)
     last_bin_idx = max_bins
@@ -287,7 +310,10 @@ def test_missing_values_support(n_bins, n_bins_non_missing, X_trans_expected):
     assert_array_equal(mapper.n_bins_non_missing_, n_bins_non_missing)
 
     for feature_idx in range(X.shape[1]):
-        assert len(mapper.bin_thresholds_[feature_idx]) == n_bins_non_missing[feature_idx] - 1
+        assert (
+            len(mapper.bin_thresholds_[feature_idx])
+            == n_bins_non_missing[feature_idx] - 1
+        )
 
     assert mapper.missing_values_bin_idx_ == n_bins - 1
 
@@ -343,7 +369,9 @@ def test_categorical_feature(n_bins):
 
 def test_categorical_feature_negative_missing():
     """Make sure bin mapper treats negative categories as missing values."""
-    X = np.array([[4] * 500 + [1] * 3 + [5] * 10 + [-1] * 3 + [np.nan] * 4], dtype=X_DTYPE).T
+    X = np.array(
+        [[4] * 500 + [1] * 3 + [5] * 10 + [-1] * 3 + [np.nan] * 4], dtype=X_DTYPE
+    ).T
     bin_mapper = _BinMapper(
         n_bins=4,
         is_categorical=np.array([True]),
@@ -400,7 +428,9 @@ def test_categorical_with_numerical_features(n_bins):
 
 def test_make_known_categories_bitsets():
     # Check the output of make_known_categories_bitsets
-    X = np.array([[14, 2, 30], [30, 4, 70], [40, 10, 180], [40, 240, 180]], dtype=X_DTYPE)
+    X = np.array(
+        [[14, 2, 30], [30, 4, 70], [40, 10, 180], [40, 240, 180]], dtype=X_DTYPE
+    )
 
     bin_mapper = _BinMapper(
         n_bins=256,
@@ -450,6 +480,8 @@ def test_categorical_parameters(is_categorical, known_categories, match):
 
     X = np.array([[1, 2, 3]], dtype=X_DTYPE)
 
-    bin_mapper = _BinMapper(is_categorical=is_categorical, known_categories=known_categories)
+    bin_mapper = _BinMapper(
+        is_categorical=is_categorical, known_categories=known_categories
+    )
     with pytest.raises(ValueError, match=match):
         bin_mapper.fit(X)

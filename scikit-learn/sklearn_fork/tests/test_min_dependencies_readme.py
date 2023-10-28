@@ -2,8 +2,8 @@
 
 
 import os
-import platform
 import re
+import platform
 from pathlib import Path
 
 import pytest
@@ -21,7 +21,10 @@ def test_min_dependencies_readme():
         pytest.skip("PyPy does not always share the same minimum deps")
 
     pattern = re.compile(
-        r"(\.\. \|)" + r"(([A-Za-z]+\-?)+)" + r"(MinVersion\| replace::)" + r"( [0-9]+\.[0-9]+(\.[0-9]+)?)"
+        r"(\.\. \|)"
+        + r"(([A-Za-z]+\-?)+)"
+        + r"(MinVersion\| replace::)"
+        + r"( [0-9]+\.[0-9]+(\.[0-9]+)?)"
     )
 
     readme_path = Path(sklearn_fork.__path__[0]).parents[0]
