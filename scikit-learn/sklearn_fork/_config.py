@@ -1,15 +1,17 @@
 """Global configuration state and functions for management
 """
 import os
-import threading
 from contextlib import contextmanager as contextmanager
+import threading
 
 _global_config = {
     "assume_finite": bool(os.environ.get("SKLEARN_ASSUME_FINITE", False)),
     "working_memory": int(os.environ.get("SKLEARN_WORKING_MEMORY", 1024)),
     "print_changed_only": True,
     "display": "diagram",
-    "pairwise_dist_chunk_size": int(os.environ.get("SKLEARN_PAIRWISE_DIST_CHUNK_SIZE", 256)),
+    "pairwise_dist_chunk_size": int(
+        os.environ.get("SKLEARN_PAIRWISE_DIST_CHUNK_SIZE", 256)
+    ),
     "enable_cython_pairwise_dist": True,
     "array_api_dispatch": False,
     "transform_output": "default",

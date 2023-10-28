@@ -65,7 +65,9 @@ n_samples = 60
 n_features = 20
 
 prng = np.random.RandomState(1)
-prec = make_sparse_spd_matrix(n_features, alpha=0.98, smallest_coef=0.4, largest_coef=0.7, random_state=prng)
+prec = make_sparse_spd_matrix(
+    n_features, alpha=0.98, smallest_coef=0.4, largest_coef=0.7, random_state=prng
+)
 cov = linalg.inv(prec)
 d = np.sqrt(np.diag(cov))
 cov /= d
@@ -109,7 +111,9 @@ covs = [
 vmax = cov_.max()
 for i, (name, this_cov) in enumerate(covs):
     plt.subplot(2, 4, i + 1)
-    plt.imshow(this_cov, interpolation="nearest", vmin=-vmax, vmax=vmax, cmap=plt.cm.RdBu_r)
+    plt.imshow(
+        this_cov, interpolation="nearest", vmin=-vmax, vmax=vmax, cmap=plt.cm.RdBu_r
+    )
     plt.xticks(())
     plt.yticks(())
     plt.title("%s covariance" % name)

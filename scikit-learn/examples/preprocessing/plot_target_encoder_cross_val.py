@@ -14,8 +14,6 @@ model. In this example, we demonstrate the importance of the cross validation
 procedure to prevent overfitting.
 """
 
-import numpy as np
-
 # %%
 # Create Synthetic Dataset
 # ========================
@@ -24,6 +22,7 @@ import numpy as np
 # and an uninformative feature with high cardinality. First, we generate the informative
 # feature:
 from sklearn_fork.preprocessing import KBinsDiscretizer
+import numpy as np
 
 n_samples = 50_000
 
@@ -32,7 +31,9 @@ y = rng.randn(n_samples)
 noise = 0.5 * rng.randn(n_samples)
 n_categories = 100
 
-kbins = KBinsDiscretizer(n_bins=n_categories, encode="ordinal", strategy="uniform", random_state=rng)
+kbins = KBinsDiscretizer(
+    n_bins=n_categories, encode="ordinal", strategy="uniform", random_state=rng
+)
 X_informative = kbins.fit_transform((y + noise).reshape(-1, 1))
 
 # Remove the linear relationship between y and the bin index by permuting the values of
@@ -53,13 +54,14 @@ X_shuffled = rng.permutation(X_informative)
 # removed from machine learning dataset. In this example, we generate them to show how
 # :class:`TargetEncoder`'s default cross validation behavior mitigates the overfitting
 # issue automatically.
-X_near_unique_categories = rng.choice(int(0.9 * n_samples), size=n_samples, replace=True).reshape(-1, 1)
-
-import pandas as pd
+X_near_unique_categories = rng.choice(
+    int(0.9 * n_samples), size=n_samples, replace=True
+).reshape(-1, 1)
 
 # %%
 # Finally, we assemble the dataset and perform a train test split:
 from sklearn_fork.model_selection import train_test_split
+import pandas as pd
 
 X = pd.DataFrame(
     np.concatenate(
@@ -70,8 +72,6 @@ X = pd.DataFrame(
 )
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 
-import sklearn_fork
-
 # %%
 # Training a Ridge Regressor
 # ==========================
@@ -81,6 +81,7 @@ import sklearn_fork
 # raw features will have low performance, because the order of the informative
 # feature is not informative:
 from sklearn_fork.linear_model import Ridge
+import sklearn_fork
 
 # Configure transformers to always output DataFrames
 sklearn_fork.set_config(transform_output="pandas")
@@ -103,16 +104,17 @@ model_with_cv.fit(X_train, y_train)
 print("Model with CV on training set: ", model_with_cv.score(X_train, y_train))
 print("Model with CV on test set: ", model_with_cv.score(X_test, y_test))
 
-import matplotlib.pyplot as plt
-
 # %%
 # The coefficients of the linear model shows that most of the weight is on the
 # feature at column index 0, which is the informative feature
 import pandas as pd
+import matplotlib.pyplot as plt
 
 plt.rcParams["figure.constrained_layout.use"] = True
 
-coefs_cv = pd.Series(model_with_cv[-1].coef_, index=model_with_cv[-1].feature_names_in_).sort_values()
+coefs_cv = pd.Series(
+    model_with_cv[-1].coef_, index=model_with_cv[-1].feature_names_in_
+).sort_values()
 _ = coefs_cv.plot(kind="barh")
 
 # %%
@@ -135,12 +137,16 @@ print(
     "Model without CV on training set: ",
     model_no_cv.score(X_train_no_cv_encoding, y_train),
 )
-print("Model without CV on test set: ", model_no_cv.score(X_test_no_cv_encoding, y_test))
+print(
+    "Model without CV on test set: ", model_no_cv.score(X_test_no_cv_encoding, y_test)
+)
 
 # %%
 # The ridge model overfits, because it assigns more weight to the extremely high
 # cardinality feature relative to the informative feature.
-coefs_no_cv = pd.Series(model_no_cv.coef_, index=model_no_cv.feature_names_in_).sort_values()
+coefs_no_cv = pd.Series(
+    model_no_cv.coef_, index=model_no_cv.feature_names_in_
+).sort_values()
 _ = coefs_no_cv.plot(kind="barh")
 
 # %%

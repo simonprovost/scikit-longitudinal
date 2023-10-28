@@ -89,9 +89,9 @@ f, (ax0, ax1) = plt.subplots(1, 2, sharey=True)
 ridge_cv = RidgeCV().fit(X_train, y_train)
 y_pred_ridge = ridge_cv.predict(X_test)
 
-ridge_cv_with_trans_target = TransformedTargetRegressor(regressor=RidgeCV(), func=np.log1p, inverse_func=np.expm1).fit(
-    X_train, y_train
-)
+ridge_cv_with_trans_target = TransformedTargetRegressor(
+    regressor=RidgeCV(), func=np.log1p, inverse_func=np.expm1
+).fit(X_train, y_train)
 y_pred_ridge_with_trans_target = ridge_cv_with_trans_target.predict(X_test)
 
 PredictionErrorDisplay.from_predictions(
@@ -137,7 +137,9 @@ X = ames.data.select_dtypes(np.number)
 X = X.drop(columns=["LotFrontage", "GarageYrBlt", "MasVnrArea"])
 # Let the price be in k$
 y = ames.target / 1000
-y_trans = quantile_transform(y.to_frame(), n_quantiles=900, output_distribution="normal", copy=True).squeeze()
+y_trans = quantile_transform(
+    y.to_frame(), n_quantiles=900, output_distribution="normal", copy=True
+).squeeze()
 
 # %%
 # A :class:`~sklearn_fork.preprocessing.QuantileTransformer` is used to normalize

@@ -28,11 +28,10 @@ as well.
 
 """
 
-import matplotlib.pyplot as plt
-
 # Author: Jake Vanderplas <jakevdp@cs.washington.edu>
 #
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy.stats import norm
 from sklearn_fork.neighbors import KernelDensity
 
@@ -40,7 +39,9 @@ from sklearn_fork.neighbors import KernelDensity
 # Plot the progression of histograms to kernels
 np.random.seed(1)
 N = 20
-X = np.concatenate((np.random.normal(0, 1, int(0.3 * N)), np.random.normal(5, 1, int(0.7 * N))))[:, np.newaxis]
+X = np.concatenate(
+    (np.random.normal(0, 1, int(0.3 * N)), np.random.normal(5, 1, int(0.7 * N)))
+)[:, np.newaxis]
 X_plot = np.linspace(-5, 10, 1000)[:, np.newaxis]
 bins = np.linspace(-5, 10, 10)
 
@@ -98,7 +99,9 @@ def format_func(x, loc):
         return "%ih" % x
 
 
-for i, kernel in enumerate(["gaussian", "tophat", "epanechnikov", "exponential", "linear", "cosine"]):
+for i, kernel in enumerate(
+    ["gaussian", "tophat", "epanechnikov", "exponential", "linear", "cosine"]
+):
     axi = ax.ravel()[i]
     log_dens = KernelDensity(kernel=kernel).fit(X_src).score_samples(X_plot)
     axi.fill(X_plot[:, 0], np.exp(log_dens), "-k", fc="#AAAAFF")
@@ -117,7 +120,9 @@ ax[0, 1].set_title("Available Kernels")
 # Plot a 1D density example
 N = 100
 np.random.seed(1)
-X = np.concatenate((np.random.normal(0, 1, int(0.3 * N)), np.random.normal(5, 1, int(0.7 * N))))[:, np.newaxis]
+X = np.concatenate(
+    (np.random.normal(0, 1, int(0.3 * N)), np.random.normal(5, 1, int(0.7 * N)))
+)[:, np.newaxis]
 
 X_plot = np.linspace(-5, 10, 1000)[:, np.newaxis]
 

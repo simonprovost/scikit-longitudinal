@@ -5,18 +5,19 @@ Multi-dimensional Scaling (MDS).
 # author: Nelle Varoquaux <nelle.varoquaux@gmail.com>
 # License: BSD
 
-import warnings
 from numbers import Integral, Real
 
 import numpy as np
 from joblib import effective_n_jobs
 
+import warnings
+
 from ..base import BaseEstimator
-from ..isotonic import IsotonicRegression
 from ..metrics import euclidean_distances
-from ..utils import check_array, check_random_state, check_symmetric
-from ..utils._param_validation import Hidden, Interval, StrOptions
-from ..utils.parallel import Parallel, delayed
+from ..utils import check_random_state, check_array, check_symmetric
+from ..isotonic import IsotonicRegression
+from ..utils._param_validation import Interval, StrOptions, Hidden
+from ..utils.parallel import delayed, Parallel
 
 
 def _smacof_single(
@@ -116,7 +117,9 @@ def _smacof_single(
         # overrides the parameter p
         n_components = init.shape[1]
         if n_samples != init.shape[0]:
-            raise ValueError("init matrix should be of shape (%d, %d)" % (n_samples, n_components))
+            raise ValueError(
+                "init matrix should be of shape (%d, %d)" % (n_samples, n_components)
+            )
         X = init
 
     old_stress = None
@@ -137,7 +140,9 @@ def _smacof_single(
             disparities = dis_flat.copy()
             disparities[sim_flat != 0] = disparities_flat
             disparities = disparities.reshape((n_samples, n_samples))
-            disparities *= np.sqrt((n_samples * (n_samples - 1) / 2) / (disparities**2).sum())
+            disparities *= np.sqrt(
+                (n_samples * (n_samples - 1) / 2) / (disparities**2).sum()
+            )
 
         # Compute stress
         stress = ((dis.ravel() - disparities.ravel()) ** 2).sum() / 2
@@ -313,7 +318,8 @@ def smacof(
         init = np.asarray(init).copy()
         if not n_init == 1:
             warnings.warn(
-                "Explicit initial positions passed: performing only one init of the MDS instead of %d" % n_init
+                "Explicit initial positions passed: "
+                "performing only one init of the MDS instead of %d" % n_init
             )
             n_init = 1
 

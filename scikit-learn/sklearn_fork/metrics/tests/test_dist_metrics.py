@@ -1,19 +1,23 @@
-import copy
 import itertools
 import pickle
+import copy
 
 import numpy as np
 import pytest
+
 import scipy.sparse as sp
 from scipy.spatial.distance import cdist
 from sklearn_fork.metrics import DistanceMetric
-from sklearn_fork.metrics._dist_metrics import (  # Unexposed private DistanceMetric for 32 bit
+
+from sklearn_fork.metrics._dist_metrics import (
     BOOL_METRICS,
+    # Unexposed private DistanceMetric for 32 bit
     DistanceMetric32,
 )
+
 from sklearn_fork.utils import check_random_state
 from sklearn_fork.utils._testing import assert_allclose, create_memmap_backed_data
-from sklearn_fork.utils.fixes import parse_version, sp_version
+from sklearn_fork.utils.fixes import sp_version, parse_version
 
 
 def dist_func(x1, x2, p):
@@ -69,10 +73,14 @@ else:
 
 # TODO: Remove filterwarnings in 1.3 when wminkowski is removed
 @pytest.mark.filterwarnings("ignore:WMinkowskiDistance:FutureWarning:sklearn_fork")
-@pytest.mark.parametrize("metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0])
+@pytest.mark.parametrize(
+    "metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0]
+)
 @pytest.mark.parametrize("X, Y", [(X64, Y64), (X32, Y32), (X_mmap, Y_mmap)])
 def test_cdist(metric_param_grid, X, Y):
-    DistanceMetricInterface = DistanceMetric if X.dtype == Y.dtype == np.float64 else DistanceMetric32
+    DistanceMetricInterface = (
+        DistanceMetric if X.dtype == Y.dtype == np.float64 else DistanceMetric32
+    )
     metric, param_grid = metric_param_grid
     keys = param_grid.keys()
     X_csr, Y_csr = sp.csr_matrix(X), sp.csr_matrix(Y)
@@ -119,7 +127,9 @@ def test_cdist(metric_param_grid, X, Y):
 
 
 @pytest.mark.parametrize("metric", BOOL_METRICS)
-@pytest.mark.parametrize("X_bool, Y_bool", [(X_bool, Y_bool), (X_bool_mmap, Y_bool_mmap)])
+@pytest.mark.parametrize(
+    "X_bool, Y_bool", [(X_bool, Y_bool), (X_bool_mmap, Y_bool_mmap)]
+)
 def test_cdist_bool_metric(metric, X_bool, Y_bool):
     D_scipy_cdist = cdist(X_bool, Y_bool, metric)
 
@@ -150,10 +160,14 @@ def test_cdist_bool_metric(metric, X_bool, Y_bool):
 
 # TODO: Remove filterwarnings in 1.3 when wminkowski is removed
 @pytest.mark.filterwarnings("ignore:WMinkowskiDistance:FutureWarning:sklearn_fork")
-@pytest.mark.parametrize("metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0])
+@pytest.mark.parametrize(
+    "metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0]
+)
 @pytest.mark.parametrize("X", [X64, X32, X_mmap])
 def test_pdist(metric_param_grid, X):
-    DistanceMetricInterface = DistanceMetric if X.dtype == np.float64 else DistanceMetric32
+    DistanceMetricInterface = (
+        DistanceMetric if X.dtype == np.float64 else DistanceMetric32
+    )
     metric, param_grid = metric_param_grid
     keys = param_grid.keys()
     X_csr = sp.csr_matrix(X)
@@ -197,7 +211,9 @@ def test_pdist(metric_param_grid, X):
 
 # TODO: Remove filterwarnings in 1.3 when wminkowski is removed
 @pytest.mark.filterwarnings("ignore:WMinkowskiDistance:FutureWarning:sklearn_fork")
-@pytest.mark.parametrize("metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0])
+@pytest.mark.parametrize(
+    "metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0]
+)
 def test_distance_metrics_dtype_consistency(metric_param_grid):
     # DistanceMetric must return similar distances for both float32 and float64
     # input data.
@@ -248,10 +264,14 @@ def test_pdist_bool_metrics(metric, X_bool):
 # TODO: Remove filterwarnings in 1.3 when wminkowski is removed
 @pytest.mark.filterwarnings("ignore:WMinkowskiDistance:FutureWarning:sklearn_fork")
 @pytest.mark.parametrize("writable_kwargs", [True, False])
-@pytest.mark.parametrize("metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0])
+@pytest.mark.parametrize(
+    "metric_param_grid", METRICS_DEFAULT_PARAMS, ids=lambda params: params[0]
+)
 @pytest.mark.parametrize("X", [X64, X32])
 def test_pickle(writable_kwargs, metric_param_grid, X):
-    DistanceMetricInterface = DistanceMetric if X.dtype == np.float64 else DistanceMetric32
+    DistanceMetricInterface = (
+        DistanceMetric if X.dtype == np.float64 else DistanceMetric32
+    )
     metric, param_grid = metric_param_grid
     keys = param_grid.keys()
     for vals in itertools.product(*param_grid.values()):
@@ -282,7 +302,9 @@ def test_pickle_bool_metrics(metric, X_bool):
 
 @pytest.mark.parametrize("X, Y", [(X64, Y64), (X32, Y32), (X_mmap, Y_mmap)])
 def test_haversine_metric(X, Y):
-    DistanceMetricInterface = DistanceMetric if X.dtype == np.float64 else DistanceMetric32
+    DistanceMetricInterface = (
+        DistanceMetric if X.dtype == np.float64 else DistanceMetric32
+    )
 
     # The Haversine DistanceMetric only works on 2 features.
     X = np.asarray(X[:, :2])
@@ -295,7 +317,8 @@ def test_haversine_metric(X, Y):
     def haversine_slow(x1, x2):
         return 2 * np.arcsin(
             np.sqrt(
-                np.sin(0.5 * (x1[0] - x2[0])) ** 2 + np.cos(x1[0]) * np.cos(x2[0]) * np.sin(0.5 * (x1[1] - x2[1])) ** 2
+                np.sin(0.5 * (x1[0] - x2[0])) ** 2
+                + np.cos(x1[0]) * np.cos(x2[0]) * np.sin(0.5 * (x1[1] - x2[1])) ** 2
             )
         )
 
@@ -307,7 +330,9 @@ def test_haversine_metric(X, Y):
     haversine = DistanceMetricInterface.get_metric("haversine")
 
     D_sklearn = haversine.pairwise(X, Y)
-    assert_allclose(haversine.dist_to_rdist(D_sklearn), np.sin(0.5 * D_reference) ** 2, rtol=1e-6)
+    assert_allclose(
+        haversine.dist_to_rdist(D_sklearn), np.sin(0.5 * D_reference) ** 2, rtol=1e-6
+    )
 
     assert_allclose(D_sklearn, D_reference)
 

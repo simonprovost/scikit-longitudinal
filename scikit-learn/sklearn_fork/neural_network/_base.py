@@ -5,6 +5,7 @@
 # License: BSD 3 clause
 
 import numpy as np
+
 from scipy.special import expit as logistic_sigmoid
 from scipy.special import xlogy
 
@@ -223,7 +224,10 @@ def binary_log_loss(y_true, y_prob):
     """
     eps = np.finfo(y_prob.dtype).eps
     y_prob = np.clip(y_prob, eps, 1 - eps)
-    return -(xlogy(y_true, y_prob).sum() + xlogy(1 - y_true, 1 - y_prob).sum()) / y_prob.shape[0]
+    return (
+        -(xlogy(y_true, y_prob).sum() + xlogy(1 - y_true, 1 - y_prob).sum())
+        / y_prob.shape[0]
+    )
 
 
 LOSS_FUNCTIONS = {

@@ -11,12 +11,13 @@ of the data.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import load_digits
+from sklearn_fork.neighbors import KernelDensity
 from sklearn_fork.decomposition import PCA
 from sklearn_fork.model_selection import GridSearchCV
-from sklearn_fork.neighbors import KernelDensity
 
 # load the data
 digits = load_digits()
@@ -48,9 +49,13 @@ fig, ax = plt.subplots(9, 11, subplot_kw=dict(xticks=[], yticks=[]))
 for j in range(11):
     ax[4, j].set_visible(False)
     for i in range(4):
-        im = ax[i, j].imshow(real_data[i, j].reshape((8, 8)), cmap=plt.cm.binary, interpolation="nearest")
+        im = ax[i, j].imshow(
+            real_data[i, j].reshape((8, 8)), cmap=plt.cm.binary, interpolation="nearest"
+        )
         im.set_clim(0, 16)
-        im = ax[i + 5, j].imshow(new_data[i, j].reshape((8, 8)), cmap=plt.cm.binary, interpolation="nearest")
+        im = ax[i + 5, j].imshow(
+            new_data[i, j].reshape((8, 8)), cmap=plt.cm.binary, interpolation="nearest"
+        )
         im.set_clim(0, 16)
 
 ax[0, 5].set_title("Selection from the input data")

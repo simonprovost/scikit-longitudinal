@@ -1,19 +1,21 @@
-import warnings
-
-import numpy as np
 import pytest
-from numpy.testing import assert_allclose, assert_array_almost_equal, assert_array_equal
-from sklearn_fork.cross_decomposition import CCA, PLSSVD, PLSCanonical, PLSRegression
+import warnings
+import numpy as np
+from numpy.testing import assert_array_almost_equal, assert_array_equal, assert_allclose
+
+from sklearn_fork.datasets import load_linnerud
 from sklearn_fork.cross_decomposition._pls import (
     _center_scale_xy,
     _get_first_singular_vectors_power_method,
     _get_first_singular_vectors_svd,
     _svd_flip_1d,
 )
-from sklearn_fork.datasets import load_linnerud, make_regression
-from sklearn_fork.exceptions import ConvergenceWarning
+from sklearn_fork.cross_decomposition import CCA
+from sklearn_fork.cross_decomposition import PLSSVD, PLSRegression, PLSCanonical
+from sklearn_fork.datasets import make_regression
 from sklearn_fork.utils import check_random_state
 from sklearn_fork.utils.extmath import svd_flip
+from sklearn_fork.exceptions import ConvergenceWarning
 
 
 def assert_matrix_orthogonal(M):
@@ -41,7 +43,9 @@ def test_pls_canonical_basics():
     U = pls._y_scores
     Q = pls.y_loadings_
     # Need to scale first
-    Xc, Yc, x_mean, y_mean, x_std, y_std = _center_scale_xy(X.copy(), Y.copy(), scale=True)
+    Xc, Yc, x_mean, y_mean, x_std, y_std = _center_scale_xy(
+        X.copy(), Y.copy(), scale=True
+    )
     assert_array_almost_equal(Xc, np.dot(T, P.T))
     assert_array_almost_equal(Yc, np.dot(U, Q.T))
 
@@ -357,11 +361,15 @@ def test_attibutes_shapes(Est):
     n_components = 2
     pls = Est(n_components=n_components)
     pls.fit(X, Y)
-    assert all(attr.shape[1] == n_components for attr in (pls.x_weights_, pls.y_weights_))
+    assert all(
+        attr.shape[1] == n_components for attr in (pls.x_weights_, pls.y_weights_)
+    )
 
 
 # TODO(1.3): remove the warning filter
-@pytest.mark.filterwarnings("ignore:The attribute `coef_` will be transposed in version 1.3")
+@pytest.mark.filterwarnings(
+    "ignore:The attribute `coef_` will be transposed in version 1.3"
+)
 @pytest.mark.parametrize("Est", (PLSRegression, PLSCanonical, CCA))
 def test_univariate_equivalence(Est):
     # Ensure 2D Y with 1 column is equivalent to 1D Y
@@ -408,8 +416,12 @@ def test_copy(Est):
         assert_array_almost_equal(X, X_orig)
 
     # Make sure copy=True gives same transform and predictions as predict=False
-    assert_array_almost_equal(pls.transform(X, Y, copy=True), pls.transform(X.copy(), Y.copy(), copy=False))
-    assert_array_almost_equal(pls.predict(X, copy=True), pls.predict(X.copy(), copy=False))
+    assert_array_almost_equal(
+        pls.transform(X, Y, copy=True), pls.transform(X.copy(), Y.copy(), copy=False)
+    )
+    assert_array_almost_equal(
+        pls.predict(X, copy=True), pls.predict(X.copy(), copy=False)
+    )
 
 
 def _generate_test_scale_and_stability_datasets():
@@ -474,7 +486,9 @@ def test_n_components_upper_bounds(Estimator):
 @pytest.mark.parametrize("n_samples, n_features", [(100, 10), (100, 200)])
 def test_singular_value_helpers(n_samples, n_features, global_random_seed):
     # Make sure SVD and power method give approximately the same results
-    X, Y = make_regression(n_samples, n_features, n_targets=5, random_state=global_random_seed)
+    X, Y = make_regression(
+        n_samples, n_features, n_targets=5, random_state=global_random_seed
+    )
     u1, v1, _ = _get_first_singular_vectors_power_method(X, Y, norm_y_weights=True)
     u2, v2 = _get_first_singular_vectors_svd(X, Y)
 
@@ -518,7 +532,9 @@ def test_svd_flip_1d():
 
 def test_loadings_converges(global_random_seed):
     """Test that CCA converges. Non-regression test for #19549."""
-    X, y = make_regression(n_samples=200, n_features=20, n_targets=20, random_state=global_random_seed)
+    X, y = make_regression(
+        n_samples=200, n_features=20, n_targets=20, random_state=global_random_seed
+    )
 
     cca = CCA(n_components=10, max_iter=500)
 

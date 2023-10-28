@@ -5,23 +5,26 @@ Testing for the base module (sklearn_fork.ensemble.base).
 # Authors: Gilles Louppe
 # License: BSD 3 clause
 
-from collections import OrderedDict
-
 import numpy as np
 import pytest
-from sklearn_fork import ensemble
+
 from sklearn_fork.datasets import load_iris
-from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn_fork.ensemble import BaggingClassifier
 from sklearn_fork.ensemble._base import _set_random_states
-from sklearn_fork.feature_selection import SelectFromModel
-from sklearn_fork.linear_model import LogisticRegression, Perceptron, Ridge
+from sklearn_fork.linear_model import Perceptron
+from sklearn_fork.linear_model import Ridge, LogisticRegression
+from collections import OrderedDict
+from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn_fork.pipeline import Pipeline
+from sklearn_fork.feature_selection import SelectFromModel
+from sklearn_fork import ensemble
 
 
 def test_base():
     # Check BaseEnsemble methods.
-    ensemble = BaggingClassifier(estimator=Perceptron(random_state=None), n_estimators=3)
+    ensemble = BaggingClassifier(
+        estimator=Perceptron(random_state=None), n_estimators=3
+    )
 
     iris = load_iris()
     ensemble.fit(iris.data, iris.target)
@@ -42,7 +45,9 @@ def test_base():
     assert isinstance(ensemble[2].random_state, int)
     assert ensemble[1].random_state != ensemble[2].random_state
 
-    np_int_ensemble = BaggingClassifier(estimator=Perceptron(), n_estimators=np.int32(3))
+    np_int_ensemble = BaggingClassifier(
+        estimator=Perceptron(), n_estimators=np.int32(3)
+    )
     np_int_ensemble.fit(iris.data, iris.target)
 
 
@@ -75,7 +80,10 @@ def test_set_random_states():
     _set_random_states(est1, 3)
     assert isinstance(est1.steps[0][1].estimator.random_state, int)
     assert isinstance(est1.steps[1][1].random_state, int)
-    assert est1.get_params()["sel__estimator__random_state"] != est1.get_params()["clf__random_state"]
+    assert (
+        est1.get_params()["sel__estimator__random_state"]
+        != est1.get_params()["clf__random_state"]
+    )
 
     # ensure multiple random_state parameters are invariant to get_params()
     # iteration order
@@ -93,8 +101,14 @@ def test_set_random_states():
     for cls in [AlphaParamPipeline, RevParamPipeline]:
         est2 = cls(make_steps())
         _set_random_states(est2, 3)
-        assert est1.get_params()["sel__estimator__random_state"] == est2.get_params()["sel__estimator__random_state"]
-        assert est1.get_params()["clf__random_state"] == est2.get_params()["clf__random_state"]
+        assert (
+            est1.get_params()["sel__estimator__random_state"]
+            == est2.get_params()["sel__estimator__random_state"]
+        )
+        assert (
+            est1.get_params()["clf__random_state"]
+            == est2.get_params()["clf__random_state"]
+        )
 
 
 # TODO(1.4): remove
@@ -115,7 +129,9 @@ def test_validate_estimator_value_error():
         ensemble.GradientBoostingRegressor(),
         ensemble.HistGradientBoostingClassifier(),
         ensemble.HistGradientBoostingRegressor(),
-        ensemble.VotingClassifier([("a", LogisticRegression()), ("b", LogisticRegression())]),
+        ensemble.VotingClassifier(
+            [("a", LogisticRegression()), ("b", LogisticRegression())]
+        ),
         ensemble.VotingRegressor([("a", Ridge()), ("b", Ridge())]),
     ],
 )

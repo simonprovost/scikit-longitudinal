@@ -1,19 +1,21 @@
 import numpy as np
 import pytest
-from sklearn_fork.base import ClassifierMixin, clone, is_classifier
-from sklearn_fork.datasets import load_diabetes, load_iris, make_classification, make_regression
-from sklearn_fork.ensemble import (
-    RandomForestClassifier,
-    RandomForestRegressor,
-    StackingClassifier,
-    StackingRegressor,
-    VotingClassifier,
-    VotingRegressor,
-)
+
+from sklearn_fork.base import clone
+from sklearn_fork.base import ClassifierMixin
+from sklearn_fork.base import is_classifier
+
+from sklearn_fork.datasets import make_classification
+from sklearn_fork.datasets import make_regression
+from sklearn_fork.datasets import load_iris, load_diabetes
 from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.linear_model import LinearRegression, LogisticRegression
+from sklearn_fork.linear_model import LogisticRegression, LinearRegression
+from sklearn_fork.svm import LinearSVC, LinearSVR, SVC, SVR
 from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.svm import SVC, SVR, LinearSVC, LinearSVR
+from sklearn_fork.ensemble import RandomForestClassifier, RandomForestRegressor
+
+from sklearn_fork.ensemble import StackingClassifier, StackingRegressor
+from sklearn_fork.ensemble import VotingClassifier, VotingRegressor
 
 X, y = load_iris(return_X_y=True)
 
@@ -87,15 +89,23 @@ def test_ensemble_heterogeneous_estimators_behavior(X, y, estimator):
     estimator.fit(X, y)
     assert len(estimator.named_estimators) == 3
     assert len(estimator.named_estimators_) == 3
-    assert sorted(list(estimator.named_estimators_.keys())) == sorted(["lr", "svm", "rf"])
+    assert sorted(list(estimator.named_estimators_.keys())) == sorted(
+        ["lr", "svm", "rf"]
+    )
 
     # check that set_params() does not add a new attribute
     estimator_new_params = clone(estimator)
     svm_estimator = SVC() if is_classifier(estimator) else SVR()
     estimator_new_params.set_params(svm=svm_estimator).fit(X, y)
     assert not hasattr(estimator_new_params, "svm")
-    assert estimator_new_params.named_estimators.lr.get_params() == estimator.named_estimators.lr.get_params()
-    assert estimator_new_params.named_estimators.rf.get_params() == estimator.named_estimators.rf.get_params()
+    assert (
+        estimator_new_params.named_estimators.lr.get_params()
+        == estimator.named_estimators.lr.get_params()
+    )
+    assert (
+        estimator_new_params.named_estimators.rf.get_params()
+        == estimator.named_estimators.rf.get_params()
+    )
 
     # check the behavior when setting an dropping an estimator
     estimator_dropped = clone(estimator)
@@ -104,7 +114,9 @@ def test_ensemble_heterogeneous_estimators_behavior(X, y, estimator):
     assert len(estimator_dropped.named_estimators) == 3
     assert estimator_dropped.named_estimators.svm == "drop"
     assert len(estimator_dropped.named_estimators_) == 3
-    assert sorted(list(estimator_dropped.named_estimators_.keys())) == sorted(["lr", "svm", "rf"])
+    assert sorted(list(estimator_dropped.named_estimators_.keys())) == sorted(
+        ["lr", "svm", "rf"]
+    )
     for sub_est in estimator_dropped.named_estimators_:
         # check that the correspondence is correct
         assert not isinstance(sub_est, type(estimator.named_estimators.svm))
@@ -112,8 +124,14 @@ def test_ensemble_heterogeneous_estimators_behavior(X, y, estimator):
     # check that we can set the parameters of the underlying classifier
     estimator.set_params(svm__C=10.0)
     estimator.set_params(rf__max_depth=5)
-    assert estimator.get_params()["svm__C"] == estimator.get_params()["svm"].get_params()["C"]
-    assert estimator.get_params()["rf__max_depth"] == estimator.get_params()["rf"].get_params()["max_depth"]
+    assert (
+        estimator.get_params()["svm__C"]
+        == estimator.get_params()["svm"].get_params()["C"]
+    )
+    assert (
+        estimator.get_params()["rf__max_depth"]
+        == estimator.get_params()["rf"].get_params()["max_depth"]
+    )
 
 
 @pytest.mark.parametrize(

@@ -1,35 +1,34 @@
 import re
+import pytest
+import numpy as np
 import warnings
 from unittest.mock import Mock
 
-import numpy as np
-import pytest
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import skip_if_32bit
+from sklearn_fork.utils._testing import MinimalClassifier
+
 from sklearn_fork import datasets
-from sklearn_fork.base import BaseEstimator
 from sklearn_fork.cross_decomposition import CCA, PLSCanonical, PLSRegression
 from sklearn_fork.datasets import make_friedman1
-from sklearn_fork.decomposition import PCA
-from sklearn_fork.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
 from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.feature_selection import SelectFromModel
 from sklearn_fork.linear_model import (
-    ElasticNet,
-    ElasticNetCV,
+    LogisticRegression,
+    SGDClassifier,
     Lasso,
     LassoCV,
-    LogisticRegression,
-    PassiveAggressiveClassifier,
-    SGDClassifier,
+    ElasticNet,
+    ElasticNetCV,
 )
-from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.svm import LinearSVC
-from sklearn_fork.utils._testing import (
-    MinimalClassifier,
-    assert_allclose,
-    assert_array_almost_equal,
-    assert_array_equal,
-    skip_if_32bit,
-)
+from sklearn_fork.feature_selection import SelectFromModel
+from sklearn_fork.ensemble import RandomForestClassifier, HistGradientBoostingClassifier
+from sklearn_fork.linear_model import PassiveAggressiveClassifier
+from sklearn_fork.base import BaseEstimator
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.decomposition import PCA
 
 
 class NaNTag(BaseEstimator):
@@ -53,7 +52,9 @@ rng = np.random.RandomState(0)
 
 
 def test_invalid_input():
-    clf = SGDClassifier(alpha=0.1, max_iter=10, shuffle=True, random_state=None, tol=None)
+    clf = SGDClassifier(
+        alpha=0.1, max_iter=10, shuffle=True, random_state=None, tol=None
+    )
     for threshold in ["gobbledigook", ".5 * gobbledigook"]:
         model = SelectFromModel(clf, threshold=threshold)
         model.fit(data, y)
@@ -98,7 +99,9 @@ def test_max_features_error(max_features, err_type, err_msg):
     err_msg = re.escape(err_msg)
     clf = RandomForestClassifier(n_estimators=5, random_state=0)
 
-    transformer = SelectFromModel(estimator=clf, max_features=max_features, threshold=-np.inf)
+    transformer = SelectFromModel(
+        estimator=clf, max_features=max_features, threshold=-np.inf
+    )
     with pytest.raises(err_type, match=err_msg):
         transformer.fit(data, y)
 
@@ -107,7 +110,9 @@ def test_max_features_error(max_features, err_type, err_msg):
 def test_inferred_max_features_integer(max_features):
     """Check max_features_ and output shape for integer max_features."""
     clf = RandomForestClassifier(n_estimators=5, random_state=0)
-    transformer = SelectFromModel(estimator=clf, max_features=max_features, threshold=-np.inf)
+    transformer = SelectFromModel(
+        estimator=clf, max_features=max_features, threshold=-np.inf
+    )
     X_trans = transformer.fit_transform(data, y)
     if max_features is not None:
         assert transformer.max_features_ == max_features
@@ -124,7 +129,9 @@ def test_inferred_max_features_integer(max_features):
 def test_inferred_max_features_callable(max_features):
     """Check max_features_ and output shape for callable max_features."""
     clf = RandomForestClassifier(n_estimators=5, random_state=0)
-    transformer = SelectFromModel(estimator=clf, max_features=max_features, threshold=-np.inf)
+    transformer = SelectFromModel(
+        estimator=clf, max_features=max_features, threshold=-np.inf
+    )
     X_trans = transformer.fit_transform(data, y)
     assert transformer.max_features_ == max_features(data)
     assert X_trans.shape[1] == transformer.max_features_
@@ -141,7 +148,9 @@ def test_max_features_array_like(max_features):
     y = [0, 1, 0, 1]
 
     clf = RandomForestClassifier(n_estimators=5, random_state=0)
-    transformer = SelectFromModel(estimator=clf, max_features=max_features, threshold=-np.inf)
+    transformer = SelectFromModel(
+        estimator=clf, max_features=max_features, threshold=-np.inf
+    )
     X_trans = transformer.fit_transform(X, y)
     assert X_trans.shape[1] == transformer.max_features_
 
@@ -182,7 +191,9 @@ def test_max_features():
     est = RandomForestClassifier(n_estimators=50, random_state=0)
 
     transformer1 = SelectFromModel(estimator=est, threshold=-np.inf)
-    transformer2 = SelectFromModel(estimator=est, max_features=max_features, threshold=-np.inf)
+    transformer2 = SelectFromModel(
+        estimator=est, max_features=max_features, threshold=-np.inf
+    )
     X_new1 = transformer1.fit_transform(X, y)
     X_new2 = transformer2.fit_transform(X, y)
     assert_allclose(X_new1, X_new2)
@@ -202,7 +213,9 @@ def test_max_features():
         X_new2 = transformer2.fit_transform(X, y)
         scores2 = np.abs(transformer2.estimator_.coef_)
         candidate_indices2 = np.argsort(-scores2, kind="mergesort")
-        assert_allclose(X[:, candidate_indices1[:n_features]], X[:, candidate_indices2[:n_features]])
+        assert_allclose(
+            X[:, candidate_indices1[:n_features]], X[:, candidate_indices2[:n_features]]
+        )
     assert_allclose(transformer1.estimator_.coef_, transformer2.estimator_.coef_)
 
 
@@ -356,7 +369,9 @@ def test_2d_coef():
     for threshold, func in zip(["mean", "median"], [np.mean, np.median]):
         for order in [1, 2, np.inf]:
             # Fit SelectFromModel a multi-class problem
-            transformer = SelectFromModel(estimator=LogisticRegression(), threshold=threshold, norm_order=order)
+            transformer = SelectFromModel(
+                estimator=LogisticRegression(), threshold=threshold, norm_order=order
+            )
             transformer.fit(X, y)
             assert hasattr(transformer.estimator_, "coef_")
             X_new = transformer.transform(X)
@@ -370,7 +385,9 @@ def test_2d_coef():
 
 
 def test_partial_fit():
-    est = PassiveAggressiveClassifier(random_state=0, shuffle=False, max_iter=5, tol=None)
+    est = PassiveAggressiveClassifier(
+        random_state=0, shuffle=False, max_iter=5, tol=None
+    )
     transformer = SelectFromModel(estimator=est)
     transformer.partial_fit(data, y, classes=np.unique(y))
     old_model = transformer.estimator_
@@ -447,7 +464,10 @@ def test_prefit_max_features():
     estimator.fit(data, y)
     model = SelectFromModel(estimator, prefit=True, max_features=lambda X: X.shape[1])
 
-    err_msg = "When `prefit=True` and `max_features` is a callable, call `fit` before calling `transform`."
+    err_msg = (
+        "When `prefit=True` and `max_features` is a callable, call `fit` "
+        "before calling `transform`."
+    )
     with pytest.raises(NotFittedError, match=err_msg):
         model.transform(data)
 
@@ -469,7 +489,8 @@ def test_prefit_get_feature_names_out():
 
     name = type(model).__name__
     err_msg = (
-        f"This {name} instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator."
+        f"This {name} instance is not fitted yet. Call 'fit' with "
+        "appropriate arguments before using this estimator."
     )
     with pytest.raises(NotFittedError, match=err_msg):
         model.get_feature_names_out()
@@ -556,7 +577,9 @@ def _pca_importances(pca_estimator):
     ],
 )
 def test_importance_getter(estimator, importance_getter):
-    selector = SelectFromModel(estimator, threshold="mean", importance_getter=importance_getter)
+    selector = SelectFromModel(
+        estimator, threshold="mean", importance_getter=importance_getter
+    )
     selector.fit(data, y)
     assert selector.transform(data).shape[1] == 1
 
@@ -586,7 +609,9 @@ def test_estimator_does_not_support_feature_names():
     def importance_getter(estimator):
         return np.arange(X.shape[1])
 
-    selector = SelectFromModel(MinimalClassifier(), importance_getter=importance_getter).fit(X, y)
+    selector = SelectFromModel(
+        MinimalClassifier(), importance_getter=importance_getter
+    ).fit(X, y)
 
     # selector learns the feature names itself
     assert_array_equal(selector.feature_names_in_, X.columns)
@@ -616,7 +641,9 @@ def test_partial_fit_validate_max_features(error, err_msg, max_features):
     )
 
     with pytest.raises(error, match=err_msg):
-        SelectFromModel(estimator=SGDClassifier(), max_features=max_features).partial_fit(X, y, classes=[0, 1])
+        SelectFromModel(
+            estimator=SGDClassifier(), max_features=max_features
+        ).partial_fit(X, y, classes=[0, 1])
 
 
 @pytest.mark.parametrize("as_frame", [True, False])
@@ -625,7 +652,9 @@ def test_partial_fit_validate_feature_names(as_frame):
     pytest.importorskip("pandas")
     X, y = datasets.load_iris(as_frame=as_frame, return_X_y=True)
 
-    selector = SelectFromModel(estimator=SGDClassifier(), max_features=4).partial_fit(X, y, classes=[0, 1, 2])
+    selector = SelectFromModel(estimator=SGDClassifier(), max_features=4).partial_fit(
+        X, y, classes=[0, 1, 2]
+    )
     if as_frame:
         assert_array_equal(selector.feature_names_in_, X.columns)
     else:

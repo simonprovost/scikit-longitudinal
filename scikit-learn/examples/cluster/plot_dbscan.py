@@ -22,7 +22,9 @@ from sklearn_fork.datasets import make_blobs
 from sklearn_fork.preprocessing import StandardScaler
 
 centers = [[1, 1], [-1, -1], [1, -1]]
-X, labels_true = make_blobs(n_samples=750, centers=centers, cluster_std=0.4, random_state=0)
+X, labels_true = make_blobs(
+    n_samples=750, centers=centers, cluster_std=0.4, random_state=0
+)
 
 X = StandardScaler().fit_transform(X)
 
@@ -42,8 +44,8 @@ plt.show()
 # the `labels_` attribute. Noisy samples are given the label math:`-1`.
 
 import numpy as np
-from sklearn_fork import metrics
 from sklearn_fork.cluster import DBSCAN
+from sklearn_fork import metrics
 
 db = DBSCAN(eps=0.3, min_samples=10).fit(X)
 labels = db.labels_
@@ -76,7 +78,10 @@ print(f"Homogeneity: {metrics.homogeneity_score(labels_true, labels):.3f}")
 print(f"Completeness: {metrics.completeness_score(labels_true, labels):.3f}")
 print(f"V-measure: {metrics.v_measure_score(labels_true, labels):.3f}")
 print(f"Adjusted Rand Index: {metrics.adjusted_rand_score(labels_true, labels):.3f}")
-print(f"Adjusted Mutual Information: {metrics.adjusted_mutual_info_score(labels_true, labels):.3f}")
+print(
+    "Adjusted Mutual Information:"
+    f" {metrics.adjusted_mutual_info_score(labels_true, labels):.3f}"
+)
 print(f"Silhouette Coefficient: {metrics.silhouette_score(X, labels):.3f}")
 
 # %%

@@ -31,12 +31,13 @@ verified from the labelled scatter plot on the right.
 
 """
 
-import matplotlib.cm as cm
-import matplotlib.pyplot as plt
-import numpy as np
-from sklearn_fork.cluster import KMeans
 from sklearn_fork.datasets import make_blobs
+from sklearn_fork.cluster import KMeans
 from sklearn_fork.metrics import silhouette_samples, silhouette_score
+
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import numpy as np
 
 # Generating the sample data from make_blobs
 # This particular setting has one distinct cluster and 3 clusters placed close
@@ -124,7 +125,9 @@ for n_clusters in range_n_clusters:
 
     # 2nd Plot showing the actual clusters formed
     colors = cm.nipy_spectral(cluster_labels.astype(float) / n_clusters)
-    ax2.scatter(X[:, 0], X[:, 1], marker=".", s=30, lw=0, alpha=0.7, c=colors, edgecolor="k")
+    ax2.scatter(
+        X[:, 0], X[:, 1], marker=".", s=30, lw=0, alpha=0.7, c=colors, edgecolor="k"
+    )
 
     # Labeling the clusters
     centers = clusterer.cluster_centers_
@@ -147,7 +150,8 @@ for n_clusters in range_n_clusters:
     ax2.set_ylabel("Feature space for the 2nd feature")
 
     plt.suptitle(
-        "Silhouette analysis for KMeans clustering on sample data with n_clusters = %d" % n_clusters,
+        "Silhouette analysis for KMeans clustering on sample data with n_clusters = %d"
+        % n_clusters,
         fontsize=14,
         fontweight="bold",
     )

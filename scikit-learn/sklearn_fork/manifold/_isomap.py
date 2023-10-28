@@ -3,20 +3,23 @@
 # Author: Jake Vanderplas  -- <vanderplas@astro.washington.edu>
 # License: BSD 3 clause (C) 2011
 import warnings
-from numbers import Integral, Real
 
 import numpy as np
-from scipy.sparse import issparse
-from scipy.sparse.csgraph import connected_components, shortest_path
+from numbers import Integral, Real
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from ..decomposition import KernelPCA
-from ..metrics.pairwise import _VALID_METRICS
-from ..neighbors import NearestNeighbors, kneighbors_graph, radius_neighbors_graph
-from ..preprocessing import KernelCenterer
-from ..utils._param_validation import Interval, StrOptions
-from ..utils.graph import _fix_connected_components
+from scipy.sparse import issparse
+from scipy.sparse.csgraph import shortest_path
+from scipy.sparse.csgraph import connected_components
+
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
+from ..neighbors import NearestNeighbors, kneighbors_graph
+from ..neighbors import radius_neighbors_graph
 from ..utils.validation import check_is_fitted
+from ..decomposition import KernelPCA
+from ..preprocessing import KernelCenterer
+from ..utils.graph import _fix_connected_components
+from ..utils._param_validation import Interval, StrOptions
+from ..metrics.pairwise import _VALID_METRICS
 
 
 class Isomap(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
@@ -294,7 +297,9 @@ class Isomap(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
         self.dist_matrix_ = shortest_path(nbg, method=self.path_method, directed=False)
 
         if self.nbrs_._fit_X.dtype == np.float32:
-            self.dist_matrix_ = self.dist_matrix_.astype(self.nbrs_._fit_X.dtype, copy=False)
+            self.dist_matrix_ = self.dist_matrix_.astype(
+                self.nbrs_._fit_X.dtype, copy=False
+            )
 
         G = self.dist_matrix_**2
         G *= -0.5

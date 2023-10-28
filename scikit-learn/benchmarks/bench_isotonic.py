@@ -10,14 +10,13 @@ with matplotlib.
 This allows the scaling of the algorithm with the problem size to be
 visualized and understood.
 """
-import argparse
+import numpy as np
 import gc
 from datetime import datetime
-
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.special import expit
 from sklearn_fork.isotonic import isotonic_regression
+from scipy.special import expit
+import matplotlib.pyplot as plt
+import argparse
 
 
 def generate_perturbed_logarithm_dataset(size):
@@ -31,7 +30,9 @@ def generate_logistic_dataset(size):
 
 def generate_pathological_dataset(size):
     # Triggers O(n^2) complexity on the original implementation.
-    return np.r_[np.arange(size), np.arange(-(size - 1), size), np.arange(-(size - 1), 1)]
+    return np.r_[
+        np.arange(size), np.arange(-(size - 1), size), np.arange(-(size - 1), 1)
+    ]
 
 
 DATASET_GENERATORS = {
@@ -74,7 +75,9 @@ if __name__ == "__main__":
         required=True,
         help="Base 10 logarithm of the maximum problem size",
     )
-    parser.add_argument("--show_plot", action="store_true", help="Plot timing output with matplotlib")
+    parser.add_argument(
+        "--show_plot", action="store_true", help="Plot timing output with matplotlib"
+    )
     parser.add_argument("--dataset", choices=DATASET_GENERATORS.keys(), required=True)
 
     args = parser.parse_args()
@@ -85,7 +88,9 @@ if __name__ == "__main__":
     for exponent in range(args.log_min_problem_size, args.log_max_problem_size):
         n = 10**exponent
         Y = DATASET_GENERATORS[args.dataset](n)
-        time_per_iteration = [bench_isotonic_regression(Y) for i in range(args.iterations)]
+        time_per_iteration = [
+            bench_isotonic_regression(Y) for i in range(args.iterations)
+        ]
         timing = (n, np.mean(time_per_iteration))
         timings.append(timing)
 

@@ -14,20 +14,19 @@ Seeding is performed using a binning technique for scalability.
 #          Gael Varoquaux <gael.varoquaux@normalesup.org>
 #          Martino Sorbaro <martino.sorbaro@ed.ac.uk>
 
+import numpy as np
 import warnings
-from collections import defaultdict
 from numbers import Integral, Real
 
-import numpy as np
-
-from .._config import config_context
-from ..base import BaseEstimator, ClusterMixin
-from ..metrics.pairwise import pairwise_distances_argmin
-from ..neighbors import NearestNeighbors
-from ..utils import check_array, check_random_state, gen_batches
+from collections import defaultdict
 from ..utils._param_validation import Interval, validate_params
-from ..utils.parallel import Parallel, delayed
 from ..utils.validation import check_is_fitted
+from ..utils.parallel import delayed, Parallel
+from ..utils import check_random_state, gen_batches, check_array
+from ..base import BaseEstimator, ClusterMixin
+from ..neighbors import NearestNeighbors
+from ..metrics.pairwise import pairwise_distances_argmin
+from .._config import config_context
 
 
 @validate_params(
@@ -111,7 +110,10 @@ def _mean_shift_single_seed(my_mean, X, nbrs, max_iter):
         my_old_mean = my_mean  # save the old mean
         my_mean = np.mean(points_within, axis=0)
         # If converged or at max_iter, adds the cluster
-        if np.linalg.norm(my_mean - my_old_mean) < stop_thresh or completed_iterations == max_iter:
+        if (
+            np.linalg.norm(my_mean - my_old_mean) < stop_thresh
+            or completed_iterations == max_iter
+        ):
             break
         completed_iterations += 1
     return tuple(my_mean), len(points_within), completed_iterations
@@ -261,7 +263,10 @@ def get_bin_seeds(X, bin_size, min_bin_freq=1):
         dtype=np.float32,
     )
     if len(bin_seeds) == len(X):
-        warnings.warn("Binning data failed with provided bin_size=%f, using data points as seeds." % bin_size)
+        warnings.warn(
+            "Binning data failed with provided bin_size=%f, using data points as seeds."
+            % bin_size
+        )
         return X
     bin_seeds = bin_seeds * bin_size
     return bin_seeds
@@ -468,7 +473,8 @@ class MeanShift(ClusterMixin, BaseEstimator):
 
         # execute iterations on all seeds in parallel
         all_res = Parallel(n_jobs=self.n_jobs)(
-            delayed(_mean_shift_single_seed)(seed, X, nbrs, self.max_iter) for seed in seeds
+            delayed(_mean_shift_single_seed)(seed, X, nbrs, self.max_iter)
+            for seed in seeds
         )
         # copy results in a dictionary
         for i in range(len(seeds)):
@@ -481,7 +487,8 @@ class MeanShift(ClusterMixin, BaseEstimator):
             # nothing near seeds
             raise ValueError(
                 "No point was within bandwidth=%f of any seed. Try a different seeding"
-                " strategy                              or increase the bandwidth." % bandwidth
+                " strategy                              or increase the bandwidth."
+                % bandwidth
             )
 
         # POST PROCESSING: remove near duplicate points
@@ -496,10 +503,14 @@ class MeanShift(ClusterMixin, BaseEstimator):
         )
         sorted_centers = np.array([tup[0] for tup in sorted_by_intensity])
         unique = np.ones(len(sorted_centers), dtype=bool)
-        nbrs = NearestNeighbors(radius=bandwidth, n_jobs=self.n_jobs).fit(sorted_centers)
+        nbrs = NearestNeighbors(radius=bandwidth, n_jobs=self.n_jobs).fit(
+            sorted_centers
+        )
         for i, center in enumerate(sorted_centers):
             if unique[i]:
-                neighbor_idxs = nbrs.radius_neighbors([center], return_distance=False)[0]
+                neighbor_idxs = nbrs.radius_neighbors([center], return_distance=False)[
+                    0
+                ]
                 unique[neighbor_idxs] = 0
                 unique[i] = 1  # leave the current point as unique
         cluster_centers = sorted_centers[unique]

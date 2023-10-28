@@ -18,17 +18,23 @@ from numbers import Integral
 
 import numpy as np
 
-from ..base import ClassifierMixin, RegressorMixin, TransformerMixin, clone
-from ..exceptions import NotFittedError
+from ..base import ClassifierMixin
+from ..base import RegressorMixin
+from ..base import TransformerMixin
+from ..base import clone
+from ._base import _fit_single_estimator
+from ._base import _BaseHeterogeneousEnsemble
 from ..preprocessing import LabelEncoder
 from ..utils import Bunch
-from ..utils._estimator_html_repr import _VisualBlock
-from ..utils._param_validation import StrOptions
 from ..utils.metaestimators import available_if
+from ..utils.validation import check_is_fitted
+from ..utils.validation import _check_feature_names_in
 from ..utils.multiclass import check_classification_targets
-from ..utils.parallel import Parallel, delayed
-from ..utils.validation import _check_feature_names_in, check_is_fitted, column_or_1d
-from ._base import _BaseHeterogeneousEnsemble, _fit_single_estimator
+from ..utils.validation import column_or_1d
+from ..utils._param_validation import StrOptions
+from ..exceptions import NotFittedError
+from ..utils._estimator_html_repr import _VisualBlock
+from ..utils.parallel import delayed, Parallel
 
 
 class _BaseVoting(TransformerMixin, _BaseHeterogeneousEnsemble):
@@ -130,7 +136,11 @@ class _BaseVoting(TransformerMixin, _BaseHeterogeneousEnsemble):
         try:
             check_is_fitted(self)
         except NotFittedError as nfe:
-            raise AttributeError("{} object has no n_features_in_ attribute.".format(self.__class__.__name__)) from nfe
+            raise AttributeError(
+                "{} object has no n_features_in_ attribute.".format(
+                    self.__class__.__name__
+                )
+            ) from nfe
 
         return self.estimators_[0].n_features_in_
 
@@ -325,7 +335,9 @@ class VotingClassifier(ClassifierMixin, _BaseVoting):
         self._validate_params()
         check_classification_targets(y)
         if isinstance(y, np.ndarray) and len(y.shape) > 1 and y.shape[1] > 1:
-            raise NotImplementedError("Multilabel and multi-output classification is not supported.")
+            raise NotImplementedError(
+                "Multilabel and multi-output classification is not supported."
+            )
 
         self.le_ = LabelEncoder().fit(y)
         self.classes_ = self.le_.classes_
@@ -368,7 +380,9 @@ class VotingClassifier(ClassifierMixin, _BaseVoting):
 
     def _check_voting(self):
         if self.voting == "hard":
-            raise AttributeError(f"predict_proba is not available when voting={repr(self.voting)}")
+            raise AttributeError(
+                f"predict_proba is not available when voting={repr(self.voting)}"
+            )
         return True
 
     @available_if(_check_voting)
@@ -386,7 +400,9 @@ class VotingClassifier(ClassifierMixin, _BaseVoting):
             Weighted average probability for each class per sample.
         """
         check_is_fitted(self)
-        avg = np.average(self._collect_probas(X), axis=0, weights=self._weights_not_none)
+        avg = np.average(
+            self._collect_probas(X), axis=0, weights=self._weights_not_none
+        )
         return avg
 
     def transform(self, X):
@@ -437,7 +453,8 @@ class VotingClassifier(ClassifierMixin, _BaseVoting):
         check_is_fitted(self, "n_features_in_")
         if self.voting == "soft" and not self.flatten_transform:
             raise ValueError(
-                "get_feature_names_out is not supported when `voting='soft'` and `flatten_transform=False`"
+                "get_feature_names_out is not supported when `voting='soft'` and "
+                "`flatten_transform=False`"
             )
 
         _check_feature_names_in(self, input_features, generate_names=False)
@@ -446,11 +463,15 @@ class VotingClassifier(ClassifierMixin, _BaseVoting):
         active_names = [name for name, est in self.estimators if est != "drop"]
 
         if self.voting == "hard":
-            return np.asarray([f"{class_name}_{name}" for name in active_names], dtype=object)
+            return np.asarray(
+                [f"{class_name}_{name}" for name in active_names], dtype=object
+            )
 
         # voting == "soft"
         n_classes = len(self.classes_)
-        names_out = [f"{class_name}_{name}{i}" for name in active_names for i in range(n_classes)]
+        names_out = [
+            f"{class_name}_{name}{i}" for name in active_names for i in range(n_classes)
+        ]
         return np.asarray(names_out, dtype=object)
 
 

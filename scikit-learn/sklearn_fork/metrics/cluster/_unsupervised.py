@@ -6,16 +6,24 @@
 # License: BSD 3 clause
 
 
-import functools
 from numbers import Integral
+import functools
 
 import numpy as np
 from scipy.sparse import issparse
 
+from ...utils import check_random_state
+from ...utils import check_X_y
+from ...utils import _safe_indexing
+from ...utils._param_validation import (
+    Interval,
+    StrOptions,
+    validate_params,
+)
+from ..pairwise import pairwise_distances_chunked
+from ..pairwise import pairwise_distances
+from ..pairwise import _VALID_METRICS
 from ...preprocessing import LabelEncoder
-from ...utils import _safe_indexing, check_random_state, check_X_y
-from ...utils._param_validation import Interval, StrOptions, validate_params
-from ..pairwise import _VALID_METRICS, pairwise_distances, pairwise_distances_chunked
 
 
 def check_number_of_labels(n_labels, n_samples):
@@ -30,7 +38,10 @@ def check_number_of_labels(n_labels, n_samples):
         Number of samples.
     """
     if not 1 < n_labels < n_samples:
-        raise ValueError("Number of labels is %d. Valid values are 2 to n_samples - 1 (inclusive)" % n_labels)
+        raise ValueError(
+            "Number of labels is %d. Valid values are 2 to n_samples - 1 (inclusive)"
+            % n_labels
+        )
 
 
 @validate_params(
@@ -42,7 +53,9 @@ def check_number_of_labels(n_labels, n_samples):
         "random_state": ["random_state"],
     }
 )
-def silhouette_score(X, labels, *, metric="euclidean", sample_size=None, random_state=None, **kwds):
+def silhouette_score(
+    X, labels, *, metric="euclidean", sample_size=None, random_state=None, **kwds
+):
     """Compute the mean Silhouette Coefficient of all samples.
 
     The Silhouette Coefficient is calculated using the mean intra-cluster
@@ -138,22 +151,30 @@ def _silhouette_reduce(D_chunk, start, labels, label_freqs):
     """
     n_chunk_samples = D_chunk.shape[0]
     # accumulate distances from each sample to each cluster
-    cluster_distances = np.zeros((n_chunk_samples, len(label_freqs)), dtype=D_chunk.dtype)
+    cluster_distances = np.zeros(
+        (n_chunk_samples, len(label_freqs)), dtype=D_chunk.dtype
+    )
 
     if issparse(D_chunk):
         if D_chunk.format != "csr":
-            raise TypeError("Expected CSR matrix. Please pass sparse matrix in CSR format.")
+            raise TypeError(
+                "Expected CSR matrix. Please pass sparse matrix in CSR format."
+            )
         for i in range(n_chunk_samples):
             indptr = D_chunk.indptr
             indices = D_chunk.indices[indptr[i] : indptr[i + 1]]
             sample_weights = D_chunk.data[indptr[i] : indptr[i + 1]]
             sample_labels = np.take(labels, indices)
-            cluster_distances[i] += np.bincount(sample_labels, weights=sample_weights, minlength=len(label_freqs))
+            cluster_distances[i] += np.bincount(
+                sample_labels, weights=sample_weights, minlength=len(label_freqs)
+            )
     else:
         for i in range(n_chunk_samples):
             sample_weights = D_chunk[i]
             sample_labels = labels
-            cluster_distances[i] += np.bincount(sample_labels, weights=sample_weights, minlength=len(label_freqs))
+            cluster_distances[i] += np.bincount(
+                sample_labels, weights=sample_weights, minlength=len(label_freqs)
+            )
 
     # intra_index selects intra-cluster distances within cluster_distances
     end = start + n_chunk_samples
@@ -241,7 +262,8 @@ def silhouette_samples(X, labels, *, metric="euclidean", **kwds):
     # Check for non-zero diagonal entries in precomputed distance matrix
     if metric == "precomputed":
         error_msg = ValueError(
-            "The precomputed distance matrix contains non-zero elements on the diagonal. Use np.fill_diagonal(X, 0)."
+            "The precomputed distance matrix contains non-zero "
+            "elements on the diagonal. Use np.fill_diagonal(X, 0)."
         )
         if X.dtype.kind == "f":
             atol = np.finfo(X.dtype).eps * 100
@@ -257,7 +279,9 @@ def silhouette_samples(X, labels, *, metric="euclidean", **kwds):
     check_number_of_labels(len(le.classes_), n_samples)
 
     kwds["metric"] = metric
-    reduce_func = functools.partial(_silhouette_reduce, labels=labels, label_freqs=label_freqs)
+    reduce_func = functools.partial(
+        _silhouette_reduce, labels=labels, label_freqs=label_freqs
+    )
     results = zip(*pairwise_distances_chunked(X, reduce_func=reduce_func, **kwds))
     intra_clust_dists, inter_clust_dists = results
     intra_clust_dists = np.concatenate(intra_clust_dists)
@@ -327,7 +351,11 @@ def calinski_harabasz_score(X, labels):
         extra_disp += len(cluster_k) * np.sum((mean_k - mean) ** 2)
         intra_disp += np.sum((cluster_k - mean_k) ** 2)
 
-    return 1.0 if intra_disp == 0.0 else extra_disp * (n_samples - n_labels) / (intra_disp * (n_labels - 1.0))
+    return (
+        1.0
+        if intra_disp == 0.0
+        else extra_disp * (n_samples - n_labels) / (intra_disp * (n_labels - 1.0))
+    )
 
 
 @validate_params(

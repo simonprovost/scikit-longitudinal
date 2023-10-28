@@ -52,26 +52,25 @@ Learning (2006), pp. 193-216
 Non-Parametric Function Induction in Semi-Supervised Learning. AISTAT 2005
 """
 
-import warnings
-
 # Authors: Clay Woolam <clay@woolam.org>
 #          Utkarsh Upadhyay <mail@musicallyut.in>
 # License: BSD
 from abc import ABCMeta, abstractmethod
 from numbers import Integral, Real
 
+import warnings
 import numpy as np
 from scipy import sparse
 from scipy.sparse import csgraph
 
 from ..base import BaseEstimator, ClassifierMixin
-from ..exceptions import ConvergenceWarning
 from ..metrics.pairwise import rbf_kernel
 from ..neighbors import NearestNeighbors
-from ..utils._param_validation import Interval, StrOptions
 from ..utils.extmath import safe_sparse_dot
 from ..utils.multiclass import check_classification_targets
 from ..utils.validation import check_is_fitted
+from ..utils._param_validation import Interval, StrOptions
+from ..exceptions import ConvergenceWarning
 
 
 class BaseLabelPropagation(ClassifierMixin, BaseEstimator, metaclass=ABCMeta):
@@ -150,9 +149,13 @@ class BaseLabelPropagation(ClassifierMixin, BaseEstimator, metaclass=ABCMeta):
                 return rbf_kernel(X, y, gamma=self.gamma)
         elif self.kernel == "knn":
             if self.nn_fit is None:
-                self.nn_fit = NearestNeighbors(n_neighbors=self.n_neighbors, n_jobs=self.n_jobs).fit(X)
+                self.nn_fit = NearestNeighbors(
+                    n_neighbors=self.n_neighbors, n_jobs=self.n_jobs
+                ).fit(X)
             if y is None:
-                return self.nn_fit.kneighbors_graph(self.nn_fit._fit_X, self.n_neighbors, mode="connectivity")
+                return self.nn_fit.kneighbors_graph(
+                    self.nn_fit._fit_X, self.n_neighbors, mode="connectivity"
+                )
             else:
                 return self.nn_fit.kneighbors(y, return_distance=False)
         elif callable(self.kernel):
@@ -163,7 +166,9 @@ class BaseLabelPropagation(ClassifierMixin, BaseEstimator, metaclass=ABCMeta):
 
     @abstractmethod
     def _build_graph(self):
-        raise NotImplementedError("Graph construction must be implemented to fit a label propagation model.")
+        raise NotImplementedError(
+            "Graph construction must be implemented to fit a label propagation model."
+        )
 
     def predict(self, X):
         """Perform inductive inference across the model.
@@ -213,7 +218,10 @@ class BaseLabelPropagation(ClassifierMixin, BaseEstimator, metaclass=ABCMeta):
         weight_matrices = self._get_kernel(self.X_, X_2d)
         if self.kernel == "knn":
             probabilities = np.array(
-                [np.sum(self.label_distributions_[weight_matrix], axis=0) for weight_matrix in weight_matrices]
+                [
+                    np.sum(self.label_distributions_[weight_matrix], axis=0)
+                    for weight_matrix in weight_matrices
+                ]
             )
         else:
             weight_matrices = weight_matrices.T
@@ -294,16 +302,22 @@ class BaseLabelPropagation(ClassifierMixin, BaseEstimator, metaclass=ABCMeta):
                 break
 
             l_previous = self.label_distributions_
-            self.label_distributions_ = safe_sparse_dot(graph_matrix, self.label_distributions_)
+            self.label_distributions_ = safe_sparse_dot(
+                graph_matrix, self.label_distributions_
+            )
 
             if self._variant == "propagation":
                 normalizer = np.sum(self.label_distributions_, axis=1)[:, np.newaxis]
                 normalizer[normalizer == 0] = 1
                 self.label_distributions_ /= normalizer
-                self.label_distributions_ = np.where(unlabeled, self.label_distributions_, y_static)
+                self.label_distributions_ = np.where(
+                    unlabeled, self.label_distributions_, y_static
+                )
             else:
                 # clamp
-                self.label_distributions_ = np.multiply(self.alpha, self.label_distributions_) + y_static
+                self.label_distributions_ = (
+                    np.multiply(self.alpha, self.label_distributions_) + y_static
+                )
         else:
             warnings.warn(
                 "max_iter=%d was reached without convergence." % self.max_iter,

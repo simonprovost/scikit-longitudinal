@@ -1,7 +1,8 @@
-import textwrap
 from io import BytesIO
+import textwrap
 
 import pytest
+
 from sklearn_fork.datasets._arff_parser import (
     _liac_arff_parser,
     _pandas_arff_parser,
@@ -121,9 +122,13 @@ def test_pandas_arff_parser_strip_single_quotes(parser_func):
     # We don't strip single quotes for string columns with the pandas parser.
     expected_values = {
         "cat_single_quote": "A",
-        "str_single_quote": "some text" if parser_func is _liac_arff_parser else "'some text'",
+        "str_single_quote": (
+            "some text" if parser_func is _liac_arff_parser else "'some text'"
+        ),
         "str_nested_quote": (
-            '"expect double quotes"' if parser_func is _liac_arff_parser else "'\"expect double quotes\"'"
+            '"expect double quotes"'
+            if parser_func is _liac_arff_parser
+            else "'\"expect double quotes\"'"
         ),
         "class": 0,
     }

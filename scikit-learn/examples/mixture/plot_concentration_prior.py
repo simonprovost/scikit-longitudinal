@@ -32,10 +32,11 @@ tends to divide natural clusters into unnecessary sub-components.
 # Author: Thierry Guillemot <thierry.guillemot.work@gmail.com>
 # License: BSD 3 clause
 
-import matplotlib as mpl
-import matplotlib.gridspec as gridspec
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+
 from sklearn_fork.mixture import BayesianGaussianMixture
 
 
@@ -48,7 +49,9 @@ def plot_ellipses(ax, weights, means, covars):
         angle = 180 * angle / np.pi
         # eigenvector normalization
         eig_vals = 2 * np.sqrt(2) * np.sqrt(eig_vals)
-        ell = mpl.patches.Ellipse(means[n], eig_vals[0], eig_vals[1], angle=180 + angle, edgecolor="black")
+        ell = mpl.patches.Ellipse(
+            means[n], eig_vals[0], eig_vals[1], angle=180 + angle, edgecolor="black"
+        )
         ell.set_clip_box(ax.bbox)
         ell.set_alpha(weights[n])
         ell.set_facecolor("#56B4E9")
@@ -91,7 +94,9 @@ def plot_results(ax1, ax2, estimator, X, y, title, plot_title=False):
 random_state, n_components, n_features = 2, 3, 2
 colors = np.array(["#0072B2", "#F0E442", "#D55E00"])
 
-covars = np.array([[[0.7, 0.0], [0.0, 0.1]], [[0.5, 0.0], [0.0, 0.1]], [[0.5, 0.0], [0.0, 0.1]]])
+covars = np.array(
+    [[[0.7, 0.0], [0.0, 0.1]], [[0.5, 0.0], [0.0, 0.1]], [[0.5, 0.0], [0.0, 0.1]]]
+)
 samples = np.array([200, 500, 200])
 means = np.array([[0.0, -0.70], [0.0, 0.0], [0.0, 0.70]])
 
@@ -127,13 +132,20 @@ estimators = [
 
 # Generate data
 rng = np.random.RandomState(random_state)
-X = np.vstack([rng.multivariate_normal(means[j], covars[j], samples[j]) for j in range(n_components)])
+X = np.vstack(
+    [
+        rng.multivariate_normal(means[j], covars[j], samples[j])
+        for j in range(n_components)
+    ]
+)
 y = np.concatenate([np.full(samples[j], j, dtype=int) for j in range(n_components)])
 
 # Plot results in two different figures
 for title, estimator, concentrations_prior in estimators:
     plt.figure(figsize=(4.7 * 3, 8))
-    plt.subplots_adjust(bottom=0.04, top=0.90, hspace=0.05, wspace=0.05, left=0.03, right=0.99)
+    plt.subplots_adjust(
+        bottom=0.04, top=0.90, hspace=0.05, wspace=0.05, left=0.03, right=0.99
+    )
 
     gs = gridspec.GridSpec(3, len(concentrations_prior))
     for k, concentration in enumerate(concentrations_prior):

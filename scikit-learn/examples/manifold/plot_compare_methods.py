@@ -29,11 +29,12 @@ representation of the data in the low-dimensional space.
 # We start by generating the S-curve dataset.
 
 import matplotlib.pyplot as plt
+from matplotlib import ticker
 
 # unused but required import for doing 3d projections with matplotlib < 3.2
 import mpl_toolkits.mplot3d  # noqa: F401
-from matplotlib import ticker
-from sklearn_fork import datasets, manifold
+
+from sklearn_fork import manifold, datasets
 
 n_samples = 1500
 S_points, S_color = datasets.make_s_curve(n_samples, random_state=0)
@@ -122,7 +123,9 @@ lle_mod = manifold.LocallyLinearEmbedding(method="modified", **params)
 S_mod = lle_mod.fit_transform(S_points)
 
 # %%
-fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(7, 7), facecolor="white", constrained_layout=True)
+fig, axs = plt.subplots(
+    nrows=2, ncols=2, figsize=(7, 7), facecolor="white", constrained_layout=True
+)
 fig.suptitle("Locally Linear Embeddings", size=16)
 
 lle_methods = [
@@ -178,7 +181,9 @@ plot_2d(S_scaling, S_color, "Multidimensional scaling")
 # representation of the data using a spectral decomposition of the graph Laplacian.
 # Read more in the :ref:`User Guide <spectral_embedding>`.
 
-spectral = manifold.SpectralEmbedding(n_components=n_components, n_neighbors=n_neighbors)
+spectral = manifold.SpectralEmbedding(
+    n_components=n_components, n_neighbors=n_neighbors
+)
 S_spectral = spectral.fit_transform(S_points)
 
 plot_2d(S_spectral, S_color, "Spectral Embedding")

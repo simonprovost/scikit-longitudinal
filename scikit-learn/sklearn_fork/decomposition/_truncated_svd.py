@@ -7,18 +7,17 @@
 # License: 3-clause BSD.
 
 from numbers import Integral, Real
-
 import numpy as np
 import scipy.sparse as sp
 from scipy.sparse.linalg import svds
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
 from ..utils import check_array, check_random_state
 from ..utils._arpack import _init_arpack_v0
-from ..utils._param_validation import Interval, StrOptions
 from ..utils.extmath import randomized_svd, safe_sparse_dot, svd_flip
 from ..utils.sparsefuncs import mean_variance_axis
 from ..utils.validation import check_is_fitted
+from ..utils._param_validation import Interval, StrOptions
 
 __all__ = ["TruncatedSVD"]
 
@@ -235,7 +234,10 @@ class TruncatedSVD(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstima
 
         elif self.algorithm == "randomized":
             if self.n_components > X.shape[1]:
-                raise ValueError(f"n_components({self.n_components}) must be <= n_features({X.shape[1]}).")
+                raise ValueError(
+                    f"n_components({self.n_components}) must be <="
+                    f" n_features({X.shape[1]})."
+                )
             U, Sigma, VT = randomized_svd(
                 X,
                 self.n_components,
@@ -249,7 +251,9 @@ class TruncatedSVD(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstima
 
         # As a result of the SVD approximation error on X ~ U @ Sigma @ V.T,
         # X @ V is not the same as U @ Sigma
-        if self.algorithm == "randomized" or (self.algorithm == "arpack" and self.tol > 0):
+        if self.algorithm == "randomized" or (
+            self.algorithm == "arpack" and self.tol > 0
+        ):
             X_transformed = safe_sparse_dot(X, self.components_.T)
         else:
             X_transformed = U * Sigma

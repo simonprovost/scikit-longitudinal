@@ -48,6 +48,7 @@ X /= X.max()  # Normalize X to speed-up convergence
 # ---------------------------
 
 import numpy as np
+
 from sklearn_fork import linear_model
 from sklearn_fork.svm import l1_min_c
 

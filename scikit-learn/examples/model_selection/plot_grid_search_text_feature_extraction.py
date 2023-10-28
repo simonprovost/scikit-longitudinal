@@ -105,7 +105,6 @@ parameter_grid = {
 # via the parameter `n_jobs`.
 
 from pprint import pprint
-
 from sklearn_fork.model_selection import RandomizedSearchCV
 
 random_search = RandomizedSearchCV(
@@ -136,7 +135,10 @@ for param_name in sorted(parameter_grid.keys()):
 
 # %%
 test_accuracy = random_search.score(data_test.data, data_test.target)
-print(f"Accuracy of the best parameters using the inner CV of the random search: {random_search.best_score_:.3f}")
+print(
+    "Accuracy of the best parameters using the inner CV of "
+    f"the random search: {random_search.best_score_:.3f}"
+)
 print(f"Accuracy on test set: {test_accuracy:.3f}")
 
 # %%

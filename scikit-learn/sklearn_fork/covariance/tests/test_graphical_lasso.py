@@ -1,17 +1,26 @@
 """ Test the graphical_lasso module.
 """
 import sys
-from io import StringIO
+import pytest
 
 import numpy as np
-import pytest
-from numpy.testing import assert_allclose
 from scipy import linalg
-from sklearn_fork import datasets
-from sklearn_fork.covariance import GraphicalLasso, GraphicalLassoCV, empirical_covariance, graphical_lasso
+
+from numpy.testing import assert_allclose
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_array_less
+from sklearn_fork.utils._testing import _convert_container
+
+from sklearn_fork.covariance import (
+    graphical_lasso,
+    GraphicalLasso,
+    GraphicalLassoCV,
+    empirical_covariance,
+)
 from sklearn_fork.datasets import make_sparse_spd_matrix
+from io import StringIO
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import _convert_container, assert_array_almost_equal, assert_array_less
+from sklearn_fork import datasets
 
 
 def test_graphical_lasso(random_state=0):
@@ -28,7 +37,9 @@ def test_graphical_lasso(random_state=0):
         covs = dict()
         icovs = dict()
         for method in ("cd", "lars"):
-            cov_, icov_, costs = graphical_lasso(emp_cov, return_costs=True, alpha=alpha, mode=method)
+            cov_, icov_, costs = graphical_lasso(
+                emp_cov, return_costs=True, alpha=alpha, mode=method
+            )
             covs[method] = cov_
             icovs[method] = icov_
             costs, dual_gap = np.array(costs).T
@@ -72,7 +83,9 @@ def test_graphical_lasso_n_iter(mode):
     X, _ = datasets.make_classification(n_samples=5_000, n_features=20, random_state=0)
     emp_cov = empirical_covariance(X)
 
-    _, _, n_iter = graphical_lasso(emp_cov, 0.2, mode=mode, max_iter=2, return_n_iter=True)
+    _, _, n_iter = graphical_lasso(
+        emp_cov, 0.2, mode=mode, max_iter=2, return_n_iter=True
+    )
     assert n_iter == 2
 
 
@@ -142,7 +155,9 @@ def test_graphical_lasso_iris_singular():
     X = datasets.load_iris().data[indices, :]
     emp_cov = empirical_covariance(X)
     for method in ("cd", "lars"):
-        cov, icov = graphical_lasso(emp_cov, alpha=0.01, return_costs=False, mode=method)
+        cov, icov = graphical_lasso(
+            emp_cov, alpha=0.01, return_costs=False, mode=method
+        )
         assert_array_almost_equal(cov, cov_R, decimal=5)
         assert_array_almost_equal(icov, icov_R, decimal=5)
 
@@ -228,7 +243,9 @@ def test_graphical_lasso_cv_scores():
     )
     rng = np.random.RandomState(0)
     X = rng.multivariate_normal(mean=[0, 0, 0, 0], cov=true_cov, size=200)
-    cov = GraphicalLassoCV(cv=splits, alphas=n_alphas, n_refinements=n_refinements).fit(X)
+    cov = GraphicalLassoCV(cv=splits, alphas=n_alphas, n_refinements=n_refinements).fit(
+        X
+    )
 
     cv_results = cov.cv_results_
     # alpha and one for each split

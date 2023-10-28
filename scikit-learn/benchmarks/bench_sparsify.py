@@ -43,8 +43,8 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     60       300       381409   1271.4     97.1          clf.predict(X_test_sparse)
 """
 
-import numpy as np
 from scipy.sparse import csr_matrix
+import numpy as np
 from sklearn_fork.linear_model import SGDRegressor
 from sklearn_fork.metrics import r2_score
 

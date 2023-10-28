@@ -20,10 +20,11 @@ The visualization shows coefficients of the models for varying C.
 #          Andreas Mueller <amueller@ais.uni-bonn.de>
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork import datasets
+import matplotlib.pyplot as plt
+
 from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork import datasets
 from sklearn_fork.preprocessing import StandardScaler
 
 X, y = datasets.load_digits(return_X_y=True)
@@ -42,7 +43,9 @@ for i, (C, axes_row) in enumerate(zip((1, 0.1, 0.01), axes)):
     # Increase tolerance for short training time
     clf_l1_LR = LogisticRegression(C=C, penalty="l1", tol=0.01, solver="saga")
     clf_l2_LR = LogisticRegression(C=C, penalty="l2", tol=0.01, solver="saga")
-    clf_en_LR = LogisticRegression(C=C, penalty="elasticnet", solver="saga", l1_ratio=l1_ratio, tol=0.01)
+    clf_en_LR = LogisticRegression(
+        C=C, penalty="elasticnet", solver="saga", l1_ratio=l1_ratio, tol=0.01
+    )
     clf_l1_LR.fit(X, y)
     clf_l2_LR.fit(X, y)
     clf_en_LR.fit(X, y)
@@ -63,7 +66,9 @@ for i, (C, axes_row) in enumerate(zip((1, 0.1, 0.01), axes)):
     print("{:<40} {:.2f}%".format("Sparsity with Elastic-Net penalty:", sparsity_en_LR))
     print("{:<40} {:.2f}%".format("Sparsity with L2 penalty:", sparsity_l2_LR))
     print("{:<40} {:.2f}".format("Score with L1 penalty:", clf_l1_LR.score(X, y)))
-    print("{:<40} {:.2f}".format("Score with Elastic-Net penalty:", clf_en_LR.score(X, y)))
+    print(
+        "{:<40} {:.2f}".format("Score with Elastic-Net penalty:", clf_en_LR.score(X, y))
+    )
     print("{:<40} {:.2f}".format("Score with L2 penalty:", clf_l2_LR.score(X, y)))
 
     if i == 0:

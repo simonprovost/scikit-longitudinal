@@ -9,27 +9,27 @@
 #   https://cseweb.ucsd.edu/~lvdmaaten/workshops/nips2010/papers/vandermaaten.pdf
 
 import warnings
-from numbers import Integral, Real
 from time import time
-
 import numpy as np
 from scipy import linalg
+from scipy.spatial.distance import pdist
+from scipy.spatial.distance import squareform
 from scipy.sparse import csr_matrix, issparse
-from scipy.spatial.distance import pdist, squareform
-
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from ..decomposition import PCA
-from ..metrics.pairwise import _VALID_METRICS, pairwise_distances
+from numbers import Integral, Real
 from ..neighbors import NearestNeighbors
+from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
 from ..utils import check_random_state
 from ..utils._openmp_helpers import _openmp_effective_n_threads
-from ..utils._param_validation import Hidden, Interval, StrOptions
 from ..utils.validation import check_non_negative
+from ..utils._param_validation import Interval, StrOptions, Hidden
+from ..decomposition import PCA
+from ..metrics.pairwise import pairwise_distances, _VALID_METRICS
+
+# mypy error: Module 'sklearn_fork.manifold' has no attribute '_utils'
+from . import _utils  # type: ignore
 
 # mypy error: Module 'sklearn_fork.manifold' has no attribute '_barnes_hut_tsne'
-# mypy error: Module 'sklearn_fork.manifold' has no attribute '_utils'
 from . import _barnes_hut_tsne  # type: ignore
-from . import _utils  # type: ignore
 
 MACHINE_EPSILON = np.finfo(np.double).eps
 
@@ -58,7 +58,9 @@ def _joint_probabilities(distances, desired_perplexity, verbose):
     # Compute conditional probabilities such that they approximately match
     # the desired perplexity
     distances = distances.astype(np.float32, copy=False)
-    conditional_P = _utils._binary_search_perplexity(distances, desired_perplexity, verbose)
+    conditional_P = _utils._binary_search_perplexity(
+        distances, desired_perplexity, verbose
+    )
     P = conditional_P + conditional_P.T
     sum_P = np.maximum(np.sum(P), MACHINE_EPSILON)
     P = np.maximum(squareform(P) / sum_P, MACHINE_EPSILON)
@@ -99,7 +101,9 @@ def _joint_probabilities_nn(distances, desired_perplexity, verbose):
     n_samples = distances.shape[0]
     distances_data = distances.data.reshape(n_samples, -1)
     distances_data = distances_data.astype(np.float32, copy=False)
-    conditional_P = _utils._binary_search_perplexity(distances_data, desired_perplexity, verbose)
+    conditional_P = _utils._binary_search_perplexity(
+        distances_data, desired_perplexity, verbose
+    )
     assert np.all(np.isfinite(conditional_P)), "All probabilities should be finite"
 
     # Symmetrize the joint probability distribution using sparse operations
@@ -411,7 +415,9 @@ def _gradient_descent(
 
             if verbose >= 2:
                 print(
-                    "[t-SNE] Iteration %d: error = %.7f, gradient norm = %.7f (%s iterations in %0.3fs)"
+                    "[t-SNE] Iteration %d: error = %.7f,"
+                    " gradient norm = %.7f"
+                    " (%s iterations in %0.3fs)"
                     % (i + 1, error, grad_norm, n_iter_check, duration)
                 )
 
@@ -421,13 +427,17 @@ def _gradient_descent(
             elif i - best_iter > n_iter_without_progress:
                 if verbose >= 2:
                     print(
-                        "[t-SNE] Iteration %d: did not make any progress during the last %d episodes. Finished."
+                        "[t-SNE] Iteration %d: did not make any progress "
+                        "during the last %d episodes. Finished."
                         % (i + 1, n_iter_without_progress)
                     )
                 break
             if grad_norm <= min_grad_norm:
                 if verbose >= 2:
-                    print("[t-SNE] Iteration %d: gradient norm %f. Finished." % (i + 1, grad_norm))
+                    print(
+                        "[t-SNE] Iteration %d: gradient norm %f. Finished."
+                        % (i + 1, grad_norm)
+                    )
                 break
 
     return p, error, i
@@ -493,7 +503,10 @@ def trustworthiness(X, X_embedded, *, n_neighbors=5, metric="euclidean"):
     """
     n_samples = X.shape[0]
     if n_neighbors >= n_samples / 2:
-        raise ValueError(f"n_neighbors ({n_neighbors}) should be less than n_samples / 2 ({n_samples / 2})")
+        raise ValueError(
+            f"n_neighbors ({n_neighbors}) should be less than n_samples / 2"
+            f" ({n_samples / 2})"
+        )
     dist_X = pairwise_distances(X, metric=metric)
     if metric == "precomputed":
         dist_X = dist_X.copy()
@@ -502,7 +515,11 @@ def trustworthiness(X, X_embedded, *, n_neighbors=5, metric="euclidean"):
     np.fill_diagonal(dist_X, np.inf)
     ind_X = np.argsort(dist_X, axis=1)
     # `ind_X[i]` is the index of sorted distances between i and other samples
-    ind_X_embedded = NearestNeighbors(n_neighbors=n_neighbors).fit(X_embedded).kneighbors(return_distance=False)
+    ind_X_embedded = (
+        NearestNeighbors(n_neighbors=n_neighbors)
+        .fit(X_embedded)
+        .kneighbors(return_distance=False)
+    )
 
     # We build an inverted index of neighbors in the input space: For sample i,
     # we define `inverted_index[i]` as the inverted index of sorted distances:
@@ -510,9 +527,13 @@ def trustworthiness(X, X_embedded, *, n_neighbors=5, metric="euclidean"):
     inverted_index = np.zeros((n_samples, n_samples), dtype=int)
     ordered_indices = np.arange(n_samples + 1)
     inverted_index[ordered_indices[:-1, np.newaxis], ind_X] = ordered_indices[1:]
-    ranks = inverted_index[ordered_indices[:-1, np.newaxis], ind_X_embedded] - n_neighbors
+    ranks = (
+        inverted_index[ordered_indices[:-1, np.newaxis], ind_X_embedded] - n_neighbors
+    )
     t = np.sum(ranks[ranks > 0])
-    t = 1.0 - t * (2.0 / (n_samples * n_neighbors * (2.0 * n_samples - 3.0 * n_neighbors - 1.0)))
+    t = 1.0 - t * (
+        2.0 / (n_samples * n_neighbors * (2.0 * n_samples - 3.0 * n_neighbors - 1.0))
+    )
     return t
 
 
@@ -812,11 +833,16 @@ class TSNE(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
 
         if isinstance(self.init, str) and self.init == "pca" and issparse(X):
             raise TypeError(
-                'PCA initialization is currently not supported with the sparse input matrix. Use init="random" instead.'
+                "PCA initialization is currently not supported "
+                "with the sparse input matrix. Use "
+                'init="random" instead.'
             )
         if self.square_distances != "deprecated":
             warnings.warn(
-                "The parameter `square_distances` has not effect and will be removed in version 1.3.",
+                (
+                    "The parameter `square_distances` has not effect and will be "
+                    "removed in version 1.3."
+                ),
                 FutureWarning,
             )
         if self.learning_rate == "auto":
@@ -834,16 +860,23 @@ class TSNE(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
                 dtype=[np.float32, np.float64],
             )
         else:
-            X = self._validate_data(X, accept_sparse=["csr", "csc", "coo"], dtype=[np.float32, np.float64])
+            X = self._validate_data(
+                X, accept_sparse=["csr", "csc", "coo"], dtype=[np.float32, np.float64]
+            )
         if self.metric == "precomputed":
             if isinstance(self.init, str) and self.init == "pca":
-                raise ValueError('The parameter init="pca" cannot be used with metric="precomputed".')
+                raise ValueError(
+                    'The parameter init="pca" cannot be used with metric="precomputed".'
+                )
             if X.shape[0] != X.shape[1]:
                 raise ValueError("X should be a square distance matrix")
 
             check_non_negative(
                 X,
-                "TSNE.fit(). With metric='precomputed', X should contain positive distances.",
+                (
+                    "TSNE.fit(). With metric='precomputed', X "
+                    "should contain positive distances."
+                ),
             )
 
             if self.method == "exact" and issparse(X):
@@ -882,10 +915,14 @@ class TSNE(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
                     distances = pairwise_distances(X, metric=self.metric, squared=True)
                 else:
                     metric_params_ = self.metric_params or {}
-                    distances = pairwise_distances(X, metric=self.metric, n_jobs=self.n_jobs, **metric_params_)
+                    distances = pairwise_distances(
+                        X, metric=self.metric, n_jobs=self.n_jobs, **metric_params_
+                    )
 
             if np.any(distances < 0):
-                raise ValueError("All distances should be positive, the metric given is not correct")
+                raise ValueError(
+                    "All distances should be positive, the metric given is not correct"
+                )
 
             if self.metric != "euclidean":
                 distances **= 2
@@ -894,7 +931,9 @@ class TSNE(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
             P = _joint_probabilities(distances, self.perplexity, self.verbose)
             assert np.all(np.isfinite(P)), "All probabilities should be finite"
             assert np.all(P >= 0), "All probabilities should be non-negative"
-            assert np.all(P <= 1), "All probabilities should be less or then equal to one"
+            assert np.all(
+                P <= 1
+            ), "All probabilities should be less or then equal to one"
 
         else:
             # Compute the number of nearest neighbors to find.
@@ -918,13 +957,21 @@ class TSNE(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
             knn.fit(X)
             duration = time() - t0
             if self.verbose:
-                print("[t-SNE] Indexed {} samples in {:.3f}s...".format(n_samples, duration))
+                print(
+                    "[t-SNE] Indexed {} samples in {:.3f}s...".format(
+                        n_samples, duration
+                    )
+                )
 
             t0 = time()
             distances_nn = knn.kneighbors_graph(mode="distance")
             duration = time() - t0
             if self.verbose:
-                print("[t-SNE] Computed neighbors for {} samples in {:.3f}s...".format(n_samples, duration))
+                print(
+                    "[t-SNE] Computed neighbors for {} samples in {:.3f}s...".format(
+                        n_samples, duration
+                    )
+                )
 
             # Free the memory used by the ball_tree
             del knn
@@ -956,7 +1003,9 @@ class TSNE(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
         elif self.init == "random":
             # The embedding is initialized with iid samples from Gaussians with
             # standard deviation 1e-4.
-            X_embedded = 1e-4 * random_state.standard_normal(size=(n_samples, self.n_components)).astype(np.float32)
+            X_embedded = 1e-4 * random_state.standard_normal(
+                size=(n_samples, self.n_components)
+            ).astype(np.float32)
 
         # Degrees of freedom of the Student's t-distribution. The suggestion
         # degrees_of_freedom = n_components - 1 comes from
@@ -1018,7 +1067,10 @@ class TSNE(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
         P *= self.early_exaggeration
         params, kl_divergence, it = _gradient_descent(obj_func, params, **opt_args)
         if self.verbose:
-            print("[t-SNE] KL divergence after %d iterations with early exaggeration: %f" % (it + 1, kl_divergence))
+            print(
+                "[t-SNE] KL divergence after %d iterations with early exaggeration: %f"
+                % (it + 1, kl_divergence)
+            )
 
         # Learning schedule (part 2): disable early exaggeration and finish
         # optimization with a higher momentum at 0.8
@@ -1035,7 +1087,10 @@ class TSNE(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
         self.n_iter_ = it
 
         if self.verbose:
-            print("[t-SNE] KL divergence after %d iterations: %f" % (it + 1, kl_divergence))
+            print(
+                "[t-SNE] KL divergence after %d iterations: %f"
+                % (it + 1, kl_divergence)
+            )
 
         X_embedded = params.reshape(n_samples, self.n_components)
         self.kl_divergence_ = kl_divergence

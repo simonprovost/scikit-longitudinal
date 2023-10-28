@@ -4,6 +4,7 @@ import joblib
 import numpy as np
 import pytest
 from numpy.testing import assert_array_equal
+
 from sklearn_fork import config_context, get_config
 from sklearn_fork.compose import make_column_transformer
 from sklearn_fork.datasets import load_iris
@@ -11,7 +12,8 @@ from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.model_selection import GridSearchCV
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
-from sklearn_fork.utils.parallel import Parallel, delayed
+
+from sklearn_fork.utils.parallel import delayed, Parallel
 
 
 def get_working_memory():
@@ -24,7 +26,9 @@ def test_configuration_passes_through_to_joblib(n_jobs, backend):
     # Tests that the global global configuration is passed to joblib jobs
 
     with config_context(working_memory=123):
-        results = Parallel(n_jobs=n_jobs, backend=backend)(delayed(get_working_memory)() for _ in range(2))
+        results = Parallel(n_jobs=n_jobs, backend=backend)(
+            delayed(get_working_memory)() for _ in range(2)
+        )
 
     assert_array_equal(results, [123] * 2)
 

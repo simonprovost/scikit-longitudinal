@@ -37,7 +37,9 @@ experiences[experiences < 0] = 0
 abilities = rng.normal(0, 0.15, size=n_samples)
 parent_hourly_wages = 50 * rng.beta(2, 8, size=n_samples)
 parent_hourly_wages[parent_hourly_wages < 0] = 0
-college_degrees = (9 * abilities + 0.02 * parent_hourly_wages + rng.randn(n_samples) > 0.7).astype(int)
+college_degrees = (
+    9 * abilities + 0.02 * parent_hourly_wages + rng.randn(n_samples) > 0.7
+).astype(int)
 
 true_coef = pd.Series(
     {

@@ -6,12 +6,18 @@ import warnings
 import numpy as np
 import scipy.sparse as sp
 
-from ..utils._openmp_helpers import _openmp_effective_n_threads
-from ..utils._param_validation import StrOptions
+from ._kmeans import _BaseKMeans
+from ._kmeans import _kmeans_single_elkan
+from ._kmeans import _kmeans_single_lloyd
+from ._kmeans import _labels_inertia_threadpool_limit
+from ._k_means_common import _inertia_dense
+from ._k_means_common import _inertia_sparse
 from ..utils.extmath import row_norms
-from ..utils.validation import _check_sample_weight, check_is_fitted, check_random_state
-from ._k_means_common import _inertia_dense, _inertia_sparse
-from ._kmeans import _BaseKMeans, _kmeans_single_elkan, _kmeans_single_lloyd, _labels_inertia_threadpool_limit
+from ..utils._openmp_helpers import _openmp_effective_n_threads
+from ..utils.validation import check_is_fitted
+from ..utils.validation import _check_sample_weight
+from ..utils.validation import check_random_state
+from ..utils._param_validation import StrOptions
 
 
 class _BisectingTree:
@@ -32,8 +38,12 @@ class _BisectingTree:
 
     def split(self, labels, centers, scores):
         """Split the cluster node into two subclusters."""
-        self.left = _BisectingTree(indices=self.indices[labels == 0], center=centers[0], score=scores[0])
-        self.right = _BisectingTree(indices=self.indices[labels == 1], center=centers[1], score=scores[1])
+        self.left = _BisectingTree(
+            indices=self.indices[labels == 0], center=centers[0], score=scores[0]
+        )
+        self.right = _BisectingTree(
+            indices=self.indices[labels == 1], center=centers[1], score=scores[1]
+        )
 
         # reset the indices attribute to save memory
         self.indices = None
@@ -327,7 +337,9 @@ class BisectingKMeans(_BaseKMeans):
             print(f"New centroids from bisection: {best_centers}")
 
         if self.bisecting_strategy == "biggest_inertia":
-            scores = self._inertia_per_cluster(X, best_centers, best_labels, sample_weight)
+            scores = self._inertia_per_cluster(
+                X, best_centers, best_labels, sample_weight
+            )
         else:  # bisecting_strategy == "largest_cluster"
             # Using minlength to make sure that we have the counts for both labels even
             # if all samples are labelled 0.
@@ -421,7 +433,9 @@ class BisectingKMeans(_BaseKMeans):
             self.cluster_centers_ += self._X_mean
 
         _inertia = _inertia_sparse if sp.issparse(X) else _inertia_dense
-        self.inertia_ = _inertia(X, sample_weight, self.cluster_centers_, self.labels_, self._n_threads)
+        self.inertia_ = _inertia(
+            X, sample_weight, self.cluster_centers_, self.labels_, self._n_threads
+        )
 
         self._n_features_out = self.cluster_centers_.shape[0]
 
@@ -500,9 +514,13 @@ class BisectingKMeans(_BaseKMeans):
         # Compute the labels for each subset of the data points.
         labels = np.full(X.shape[0], -1, dtype=np.int32)
 
-        labels[mask] = self._predict_recursive(X[mask], sample_weight[mask], cluster_node.left)
+        labels[mask] = self._predict_recursive(
+            X[mask], sample_weight[mask], cluster_node.left
+        )
 
-        labels[~mask] = self._predict_recursive(X[~mask], sample_weight[~mask], cluster_node.right)
+        labels[~mask] = self._predict_recursive(
+            X[~mask], sample_weight[~mask], cluster_node.right
+        )
 
         return labels
 

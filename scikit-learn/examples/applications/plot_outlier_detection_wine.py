@@ -37,17 +37,19 @@ example, none of these could be applied that easily.
 # Author: Virgile Fritsch <virgile.fritsch@inria.fr>
 # License: BSD 3 clause
 
-import matplotlib.font_manager
-import matplotlib.pyplot as plt
 import numpy as np
 from sklearn_fork.covariance import EllipticEnvelope
-from sklearn_fork.datasets import load_wine
 from sklearn_fork.svm import OneClassSVM
+import matplotlib.pyplot as plt
+import matplotlib.font_manager
+from sklearn_fork.datasets import load_wine
 
 # Define "classifiers" to be used
 classifiers = {
     "Empirical Covariance": EllipticEnvelope(support_fraction=1.0, contamination=0.25),
-    "Robust Covariance (Minimum Covariance Determinant)": EllipticEnvelope(contamination=0.25),
+    "Robust Covariance (Minimum Covariance Determinant)": EllipticEnvelope(
+        contamination=0.25
+    ),
     "OCSVM": OneClassSVM(nu=0.25, gamma=0.35),
 }
 colors = ["m", "g", "b"]
@@ -64,7 +66,9 @@ for i, (clf_name, clf) in enumerate(classifiers.items()):
     clf.fit(X1)
     Z1 = clf.decision_function(np.c_[xx1.ravel(), yy1.ravel()])
     Z1 = Z1.reshape(xx1.shape)
-    legend1[clf_name] = plt.contour(xx1, yy1, Z1, levels=[0], linewidths=2, colors=colors[i])
+    legend1[clf_name] = plt.contour(
+        xx1, yy1, Z1, levels=[0], linewidths=2, colors=colors[i]
+    )
 
 legend1_values_list = list(legend1.values())
 legend1_keys_list = list(legend1.keys())
@@ -123,7 +127,9 @@ for i, (clf_name, clf) in enumerate(classifiers.items()):
     clf.fit(X2)
     Z2 = clf.decision_function(np.c_[xx2.ravel(), yy2.ravel()])
     Z2 = Z2.reshape(xx2.shape)
-    legend2[clf_name] = plt.contour(xx2, yy2, Z2, levels=[0], linewidths=2, colors=colors[i])
+    legend2[clf_name] = plt.contour(
+        xx2, yy2, Z2, levels=[0], linewidths=2, colors=colors[i]
+    )
 
 legend2_values_list = list(legend2.values())
 legend2_keys_list = list(legend2.keys())

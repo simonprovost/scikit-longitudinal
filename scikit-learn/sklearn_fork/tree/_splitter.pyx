@@ -15,17 +15,20 @@
 
 # License: BSD 3 clause
 
-from cython cimport final
-from libc.stdlib cimport qsort
-from libc.string cimport memcpy
-
 from ._criterion cimport Criterion
 
+from libc.stdlib cimport qsort
+from libc.string cimport memcpy
+from cython cimport final
+
 import numpy as np
+
 from scipy.sparse import csc_matrix
 
-from ._utils cimport RAND_R_MAX, log, rand_int, rand_uniform
-
+from ._utils cimport log
+from ._utils cimport rand_int
+from ._utils cimport rand_uniform
+from ._utils cimport RAND_R_MAX
 
 cdef double INFINITY = np.inf
 

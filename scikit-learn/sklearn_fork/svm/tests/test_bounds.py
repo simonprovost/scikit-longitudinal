@@ -1,11 +1,14 @@
 import numpy as np
-import pytest
 from scipy import sparse as sp
 from scipy import stats
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.svm import LinearSVC
+
+import pytest
+
 from sklearn_fork.svm._bounds import l1_min_c
-from sklearn_fork.svm._newrand import bounded_rand_int_wrap, set_seed_wrap
+from sklearn_fork.svm import LinearSVC
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.svm._newrand import set_seed_wrap, bounded_rand_int_wrap
+
 
 dense_X = [[-1, 0], [0, 1], [1, 1], [1, 1]]
 sparse_X = sp.csr_matrix(dense_X)

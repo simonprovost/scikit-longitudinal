@@ -8,17 +8,22 @@ over the internet, all details are available on the official website:
 # Copyright (c) 2011 Olivier Grisel <olivier.grisel@ensta.org>
 # License: BSD 3 clause
 
-import logging
-from numbers import Integral, Real
 from os import listdir, makedirs, remove
-from os.path import exists, isdir, join
+from os.path import join, exists, isdir
+from ..utils._param_validation import validate_params, Interval, Hidden, StrOptions
+from numbers import Integral, Real
+import logging
 
 import numpy as np
 from joblib import Memory
 
+from ._base import (
+    get_data_home,
+    _fetch_remote,
+    RemoteFileMetadata,
+    load_descr,
+)
 from ..utils import Bunch
-from ..utils._param_validation import Hidden, Interval, StrOptions, validate_params
-from ._base import RemoteFileMetadata, _fetch_remote, get_data_home, load_descr
 
 logger = logging.getLogger(__name__)
 
@@ -155,14 +160,17 @@ def _load_imgs(file_paths, slice_, color, resize):
         # Checks if jpeg reading worked. Refer to issue #3594 for more
         # details.
         pil_img = Image.open(file_path)
-        pil_img = pil_img.crop((w_slice.start, h_slice.start, w_slice.stop, h_slice.stop))
+        pil_img = pil_img.crop(
+            (w_slice.start, h_slice.start, w_slice.stop, h_slice.stop)
+        )
         if resize is not None:
             pil_img = pil_img.resize((w, h))
         face = np.asarray(pil_img, dtype=np.float32)
 
         if face.ndim == 0:
             raise RuntimeError(
-                "Failed to read the image file %s, Please make sure that libjpeg is installed" % file_path
+                "Failed to read the image file %s, "
+                "Please make sure that libjpeg is installed" % file_path
             )
 
         face /= 255.0  # scale uint8 coded colors to the [0.0, 1.0] floats
@@ -181,7 +189,9 @@ def _load_imgs(file_paths, slice_, color, resize):
 #
 
 
-def _fetch_lfw_people(data_folder_path, slice_=None, color=False, resize=None, min_faces_per_person=0):
+def _fetch_lfw_people(
+    data_folder_path, slice_=None, color=False, resize=None, min_faces_per_person=0
+):
     """Perform the actual data loading for the lfw people dataset
 
     This operation is meant to be cached by a joblib wrapper.
@@ -202,7 +212,9 @@ def _fetch_lfw_people(data_folder_path, slice_=None, color=False, resize=None, m
 
     n_faces = len(file_paths)
     if n_faces == 0:
-        raise ValueError("min_faces_per_person=%d is too restrictive" % min_faces_per_person)
+        raise ValueError(
+            "min_faces_per_person=%d is too restrictive" % min_faces_per_person
+        )
 
     target_names = np.unique(person_names)
     target = np.searchsorted(target_names, person_names)
@@ -353,7 +365,9 @@ def fetch_lfw_people(
         return X, target
 
     # pack the results as a Bunch instance
-    return Bunch(data=X, images=faces, target=target, target_names=target_names, DESCR=fdescr)
+    return Bunch(
+        data=X, images=faces, target=target, target_names=target_names, DESCR=fdescr
+    )
 
 
 #
@@ -361,7 +375,9 @@ def fetch_lfw_people(
 #
 
 
-def _fetch_lfw_pairs(index_file_path, data_folder_path, slice_=None, color=False, resize=None):
+def _fetch_lfw_pairs(
+    index_file_path, data_folder_path, slice_=None, color=False, resize=None
+):
     """Perform the actual data loading for the LFW pairs dataset
 
     This operation is meant to be cached by a joblib wrapper.
@@ -529,7 +545,10 @@ def fetch_lfw_pairs(
         "10_folds": "pairs.txt",
     }
     if subset not in label_filenames:
-        raise ValueError("subset='%s' is invalid: should be one of %r" % (subset, list(sorted(label_filenames.keys()))))
+        raise ValueError(
+            "subset='%s' is invalid: should be one of %r"
+            % (subset, list(sorted(label_filenames.keys())))
+        )
     index_file_path = join(lfw_home, label_filenames[subset])
 
     # load and memoize the pairs as np arrays

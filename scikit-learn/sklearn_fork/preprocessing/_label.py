@@ -6,22 +6,25 @@
 #          Hamzeh Alsalhi <ha258@cornell.edu>
 # License: BSD 3 clause
 
-import array
-import itertools
-import warnings
 from collections import defaultdict
 from numbers import Integral
+import itertools
+import array
+import warnings
 
 import numpy as np
 import scipy.sparse as sp
 
 from ..base import BaseEstimator, TransformerMixin
-from ..utils import column_or_1d
-from ..utils._encode import _encode, _unique
-from ..utils._param_validation import Interval, validate_params
-from ..utils.multiclass import type_of_target, unique_labels
+
 from ..utils.sparsefuncs import min_max_axis
+from ..utils._param_validation import Interval, validate_params
+from ..utils import column_or_1d
 from ..utils.validation import _num_samples, check_array, check_is_fitted
+from ..utils.multiclass import unique_labels
+from ..utils.multiclass import type_of_target
+from ..utils._encode import _encode, _unique
+
 
 __all__ = [
     "label_binarize",
@@ -283,7 +286,10 @@ class LabelBinarizer(TransformerMixin, BaseEstimator):
         self._validate_params()
 
         if self.neg_label >= self.pos_label:
-            raise ValueError(f"neg_label={self.neg_label} must be strictly less than pos_label={self.pos_label}.")
+            raise ValueError(
+                f"neg_label={self.neg_label} must be strictly less than "
+                f"pos_label={self.pos_label}."
+            )
 
         if self.sparse_output and (self.pos_label == 0 or self.neg_label != 0):
             raise ValueError(
@@ -295,7 +301,9 @@ class LabelBinarizer(TransformerMixin, BaseEstimator):
         self.y_type_ = type_of_target(y, input_name="y")
 
         if "multioutput" in self.y_type_:
-            raise ValueError("Multioutput target data is not supported with label binarization")
+            raise ValueError(
+                "Multioutput target data is not supported with label binarization"
+            )
         if _num_samples(y) == 0:
             raise ValueError("y has 0 samples: %r" % y)
 
@@ -399,7 +407,9 @@ class LabelBinarizer(TransformerMixin, BaseEstimator):
         if self.y_type_ == "multiclass":
             y_inv = _inverse_binarize_multiclass(Y, self.classes_)
         else:
-            y_inv = _inverse_binarize_thresholding(Y, self.y_type_, self.classes_, threshold)
+            y_inv = _inverse_binarize_thresholding(
+                Y, self.y_type_, self.classes_, threshold
+            )
 
         if self.sparse_input_:
             y_inv = sp.csr_matrix(y_inv)
@@ -484,12 +494,18 @@ def label_binarize(y, *, classes, neg_label=0, pos_label=1, sparse_output=False)
     if not isinstance(y, list):
         # XXX Workaround that will be removed when list of list format is
         # dropped
-        y = check_array(y, input_name="y", accept_sparse="csr", ensure_2d=False, dtype=None)
+        y = check_array(
+            y, input_name="y", accept_sparse="csr", ensure_2d=False, dtype=None
+        )
     else:
         if _num_samples(y) == 0:
             raise ValueError("y has 0 samples: %r" % y)
     if neg_label >= pos_label:
-        raise ValueError("neg_label={0} must be strictly less than pos_label={1}.".format(neg_label, pos_label))
+        raise ValueError(
+            "neg_label={0} must be strictly less than pos_label={1}.".format(
+                neg_label, pos_label
+            )
+        )
 
     if sparse_output and (pos_label == 0 or neg_label != 0):
         raise ValueError(
@@ -506,7 +522,9 @@ def label_binarize(y, *, classes, neg_label=0, pos_label=1, sparse_output=False)
 
     y_type = type_of_target(y)
     if "multioutput" in y_type:
-        raise ValueError("Multioutput target data is not supported with label binarization")
+        raise ValueError(
+            "Multioutput target data is not supported with label binarization"
+        )
     if y_type == "unknown":
         raise ValueError("The type of target data is not known")
 
@@ -530,7 +548,9 @@ def label_binarize(y, *, classes, neg_label=0, pos_label=1, sparse_output=False)
         y_n_classes = y.shape[1] if hasattr(y, "shape") else len(y[0])
         if classes.size != y_n_classes:
             raise ValueError(
-                "classes {0} mismatch with the labels {1} found in the data".format(classes, unique_labels(y))
+                "classes {0} mismatch with the labels {1} found in the data".format(
+                    classes, unique_labels(y)
+                )
             )
 
     if y_type in ("binary", "multiclass"):
@@ -552,7 +572,9 @@ def label_binarize(y, *, classes, neg_label=0, pos_label=1, sparse_output=False)
             data.fill(pos_label)
             Y.data = data
     else:
-        raise ValueError("%s target data is not supported with label binarization" % y_type)
+        raise ValueError(
+            "%s target data is not supported with label binarization" % y_type
+        )
 
     if not sparse_output:
         Y = Y.toarray()
@@ -630,7 +652,9 @@ def _inverse_binarize_thresholding(y, output_type, classes, threshold):
         raise ValueError("output_type='binary', but y.shape = {0}".format(y.shape))
 
     if output_type != "binary" and y.shape[1] != len(classes):
-        raise ValueError("The number of class is not equal to the number of dimension of y.")
+        raise ValueError(
+            "The number of class is not equal to the number of dimension of y."
+        )
 
     classes = np.asarray(classes)
 
@@ -877,10 +901,14 @@ class MultiLabelBinarizer(TransformerMixin, BaseEstimator):
             indices.extend(index)
             indptr.append(len(indices))
         if unknown:
-            warnings.warn("unknown class(es) {0} will be ignored".format(sorted(unknown, key=str)))
+            warnings.warn(
+                "unknown class(es) {0} will be ignored".format(sorted(unknown, key=str))
+            )
         data = np.ones(len(indices), dtype=int)
 
-        return sp.csr_matrix((data, indices, indptr), shape=(len(indptr) - 1, len(class_mapping)))
+        return sp.csr_matrix(
+            (data, indices, indptr), shape=(len(indptr) - 1, len(class_mapping))
+        )
 
     def inverse_transform(self, yt):
         """Transform the given indicator matrix into label sets.
@@ -899,19 +927,28 @@ class MultiLabelBinarizer(TransformerMixin, BaseEstimator):
         check_is_fitted(self)
 
         if yt.shape[1] != len(self.classes_):
-            raise ValueError("Expected indicator for {0} classes, but got {1}".format(len(self.classes_), yt.shape[1]))
+            raise ValueError(
+                "Expected indicator for {0} classes, but got {1}".format(
+                    len(self.classes_), yt.shape[1]
+                )
+            )
 
         if sp.issparse(yt):
             yt = yt.tocsr()
             if len(yt.data) != 0 and len(np.setdiff1d(yt.data, [0, 1])) > 0:
                 raise ValueError("Expected only 0s and 1s in label indicator.")
             return [
-                tuple(self.classes_.take(yt.indices[start:end])) for start, end in zip(yt.indptr[:-1], yt.indptr[1:])
+                tuple(self.classes_.take(yt.indices[start:end]))
+                for start, end in zip(yt.indptr[:-1], yt.indptr[1:])
             ]
         else:
             unexpected = np.setdiff1d(yt, [0, 1])
             if len(unexpected) > 0:
-                raise ValueError("Expected only 0s and 1s in label indicator. Also got {0}".format(unexpected))
+                raise ValueError(
+                    "Expected only 0s and 1s in label indicator. Also got {0}".format(
+                        unexpected
+                    )
+                )
             return [tuple(self.classes_.compress(indicators)) for indicators in yt]
 
     def _more_tags(self):

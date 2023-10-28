@@ -64,8 +64,10 @@ X = np.concatenate([X, random_state.randn(n_samples, 200 * n_features)], axis=1)
 # frequent class.
 
 import matplotlib.pyplot as plt
+
 from sklearn_fork import svm
-from sklearn_fork.metrics import RocCurveDisplay, auc
+from sklearn_fork.metrics import auc
+from sklearn_fork.metrics import RocCurveDisplay
 from sklearn_fork.model_selection import StratifiedKFold
 
 n_splits = 6

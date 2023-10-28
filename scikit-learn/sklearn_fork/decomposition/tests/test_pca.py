@@ -1,14 +1,17 @@
-import warnings
-
 import numpy as np
-import pytest
 import scipy as sp
 from numpy.testing import assert_array_equal
-from sklearn_fork import datasets
-from sklearn_fork.datasets import load_iris
-from sklearn_fork.decomposition import PCA
-from sklearn_fork.decomposition._pca import _assess_dimension, _infer_dimension
+
+import pytest
+import warnings
+
 from sklearn_fork.utils._testing import assert_allclose
+
+from sklearn_fork import datasets
+from sklearn_fork.decomposition import PCA
+from sklearn_fork.datasets import load_iris
+from sklearn_fork.decomposition._pca import _assess_dimension
+from sklearn_fork.decomposition._pca import _infer_dimension
 
 iris = datasets.load_iris()
 PCA_SOLVERS = ["full", "arpack", "randomized", "auto"]
@@ -91,7 +94,9 @@ def test_whitening(solver, copy):
     assert_allclose(X_whitened.mean(axis=0), np.zeros(n_components), atol=1e-12)
 
     X_ = X.copy()
-    pca = PCA(n_components=n_components, whiten=False, copy=copy, svd_solver=solver).fit(X_.copy())
+    pca = PCA(
+        n_components=n_components, whiten=False, copy=copy, svd_solver=solver
+    ).fit(X_.copy())
     X_unwhitened = pca.transform(X_)
     assert X_unwhitened.shape == (n_samples, n_components)
 
@@ -112,7 +117,9 @@ def test_pca_explained_variance_equivalence_solver(svd_solver):
     pca_full.fit(X)
     pca_other.fit(X)
 
-    assert_allclose(pca_full.explained_variance_, pca_other.explained_variance_, rtol=5e-2)
+    assert_allclose(
+        pca_full.explained_variance_, pca_other.explained_variance_, rtol=5e-2
+    )
     assert_allclose(
         pca_full.explained_variance_ratio_,
         pca_other.explained_variance_ratio_,
@@ -164,7 +171,9 @@ def test_pca_singular_values(svd_solver):
     X_trans = pca.fit_transform(X)
 
     # compare to the Frobenius norm
-    assert_allclose(np.sum(pca.singular_values_**2), np.linalg.norm(X_trans, "fro") ** 2)
+    assert_allclose(
+        np.sum(pca.singular_values_**2), np.linalg.norm(X_trans, "fro") ** 2
+    )
     # Compare to the 2-norms of the score vectors
     assert_allclose(pca.singular_values_, np.sqrt(np.sum(X_trans**2, axis=0)))
 
@@ -226,7 +235,9 @@ def test_pca_inverse(svd_solver, whiten):
     assert_allclose(X, Y_inverse, rtol=5e-6)
 
 
-@pytest.mark.parametrize("data", [np.array([[0, 1, 0], [1, 0, 0]]), np.array([[0, 1, 0], [1, 0, 0]]).T])
+@pytest.mark.parametrize(
+    "data", [np.array([[0, 1, 0], [1, 0, 0]]), np.array([[0, 1, 0], [1, 0, 0]]).T]
+)
 @pytest.mark.parametrize(
     "svd_solver, n_components, err_msg",
     [
@@ -236,7 +247,10 @@ def test_pca_inverse(svd_solver, whiten):
         (
             "auto",
             3,
-            (r"n_components=3 must be between 0 and min\(n_samples, " r"n_features\)=2 with svd_solver='full'"),
+            (
+                r"n_components=3 must be between 0 and min\(n_samples, "
+                r"n_features\)=2 with svd_solver='full'"
+            ),
         ),
     ],
 )
@@ -296,7 +310,9 @@ def test_n_components_mle_error(svd_solver):
     n_samples, n_features = 600, 10
     X = rng.randn(n_samples, n_features)
     pca = PCA(n_components="mle", svd_solver=svd_solver)
-    err_msg = "n_components='mle' cannot be a string with svd_solver='{}'".format(svd_solver)
+    err_msg = "n_components='mle' cannot be a string with svd_solver='{}'".format(
+        svd_solver
+    )
     with pytest.raises(ValueError, match=err_msg):
         pca.fit(X)
 
@@ -317,7 +333,11 @@ def test_infer_dim_1():
     # Or at least use explicit variable names...
     n, p = 1000, 5
     rng = np.random.RandomState(0)
-    X = rng.randn(n, p) * 0.1 + rng.randn(n, 1) * np.array([3, 4, 5, 1, 2]) + np.array([1, 0, 7, 4, 6])
+    X = (
+        rng.randn(n, p) * 0.1
+        + rng.randn(n, 1) * np.array([3, 4, 5, 1, 2])
+        + np.array([1, 0, 7, 4, 6])
+    )
     pca = PCA(n_components=p, svd_solver="full")
     pca.fit(X)
     spect = pca.explained_variance_
@@ -464,7 +484,9 @@ def test_pca_zero_noise_variance_edge_cases(svd_solver):
 )
 def test_pca_svd_solver_auto(data, n_components, expected_solver):
     pca_auto = PCA(n_components=n_components, random_state=0)
-    pca_test = PCA(n_components=n_components, svd_solver=expected_solver, random_state=0)
+    pca_test = PCA(
+        n_components=n_components, svd_solver=expected_solver, random_state=0
+    )
     pca_auto.fit(data)
     pca_test.fit(data)
     assert_allclose(pca_auto.components_, pca_test.components_)

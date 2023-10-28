@@ -54,14 +54,18 @@ def check_openmp_support():
         # FIXME: temporary fix to link against system libraries on linux
         # "-Wl,--sysroot=/" should be removed
         extra_preargs = [
-            flag for flag in extra_preargs if flag.startswith(("-L", "-Wl,-rpath", "-l", "-Wl,--sysroot=/"))
+            flag
+            for flag in extra_preargs
+            if flag.startswith(("-L", "-Wl,-rpath", "-l", "-Wl,--sysroot=/"))
         ]
 
     extra_postargs = get_openmp_flag()
 
     openmp_exception = None
     try:
-        output = compile_test_program(code, extra_preargs=extra_preargs, extra_postargs=extra_postargs)
+        output = compile_test_program(
+            code, extra_preargs=extra_preargs, extra_postargs=extra_postargs
+        )
 
         if output and "nthreads=" in output[0]:
             nthreads = int(output[0].strip().split("=")[1])
@@ -86,7 +90,9 @@ def check_openmp_support():
 
     if not openmp_supported:
         if os.getenv("SKLEARN_FAIL_NO_OPENMP"):
-            raise Exception("Failed to build scikit-learn with OpenMP support") from openmp_exception
+            raise Exception(
+                "Failed to build scikit-learn with OpenMP support"
+            ) from openmp_exception
         else:
             message = textwrap.dedent("""
 

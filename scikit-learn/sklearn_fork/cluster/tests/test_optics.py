@@ -1,20 +1,24 @@
 # Authors: Shane Grigsby <refuge@rocktalus.com>
 #          Adrin Jalali <adrin.jalali@gmail.com>
 # License: BSD 3 clause
-import warnings
-
 import numpy as np
 import pytest
 from scipy import sparse
-from sklearn_fork.cluster import DBSCAN, OPTICS
-from sklearn_fork.cluster._optics import _extend_region, _extract_xi_labels
-from sklearn_fork.cluster.tests.common import generate_clustered_data
+import warnings
+
 from sklearn_fork.datasets import make_blobs
-from sklearn_fork.exceptions import DataConversionWarning, EfficiencyWarning
+from sklearn_fork.cluster import OPTICS
+from sklearn_fork.cluster._optics import _extend_region, _extract_xi_labels
+from sklearn_fork.exceptions import DataConversionWarning
 from sklearn_fork.metrics.cluster import contingency_matrix
 from sklearn_fork.metrics.pairwise import pairwise_distances
+from sklearn_fork.cluster import DBSCAN
 from sklearn_fork.utils import shuffle
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.exceptions import EfficiencyWarning
+from sklearn_fork.cluster.tests.common import generate_clustered_data
+
 
 rng = np.random.RandomState(0)
 n_points_per_cluster = 10
@@ -93,22 +97,34 @@ def test_extract_xi(global_dtype):
     C5 = [3, -2] + 0.6 * rng.randn(n_points_per_cluster, 2)
     C6 = [5, 6] + 0.2 * rng.randn(n_points_per_cluster, 2)
 
-    X = np.vstack((C1, C2, C3, C4, C5, np.array([[100, 100]]), C6)).astype(global_dtype, copy=False)
+    X = np.vstack((C1, C2, C3, C4, C5, np.array([[100, 100]]), C6)).astype(
+        global_dtype, copy=False
+    )
     expected_labels = np.r_[[2] * 5, [0] * 5, [1] * 5, [3] * 5, [1] * 5, -1, [4] * 5]
     X, expected_labels = shuffle(X, expected_labels, random_state=rng)
 
-    clust = OPTICS(min_samples=3, min_cluster_size=2, max_eps=20, cluster_method="xi", xi=0.4).fit(X)
+    clust = OPTICS(
+        min_samples=3, min_cluster_size=2, max_eps=20, cluster_method="xi", xi=0.4
+    ).fit(X)
     assert_array_equal(clust.labels_, expected_labels)
 
     # check float min_samples and min_cluster_size
-    clust = OPTICS(min_samples=0.1, min_cluster_size=0.08, max_eps=20, cluster_method="xi", xi=0.4).fit(X)
+    clust = OPTICS(
+        min_samples=0.1, min_cluster_size=0.08, max_eps=20, cluster_method="xi", xi=0.4
+    ).fit(X)
     assert_array_equal(clust.labels_, expected_labels)
 
-    X = np.vstack((C1, C2, C3, C4, C5, np.array([[100, 100]] * 2), C6)).astype(global_dtype, copy=False)
-    expected_labels = np.r_[[1] * 5, [3] * 5, [2] * 5, [0] * 5, [2] * 5, -1, -1, [4] * 5]
+    X = np.vstack((C1, C2, C3, C4, C5, np.array([[100, 100]] * 2), C6)).astype(
+        global_dtype, copy=False
+    )
+    expected_labels = np.r_[
+        [1] * 5, [3] * 5, [2] * 5, [0] * 5, [2] * 5, -1, -1, [4] * 5
+    ]
     X, expected_labels = shuffle(X, expected_labels, random_state=rng)
 
-    clust = OPTICS(min_samples=3, min_cluster_size=3, max_eps=20, cluster_method="xi", xi=0.3).fit(X)
+    clust = OPTICS(
+        min_samples=3, min_cluster_size=3, max_eps=20, cluster_method="xi", xi=0.3
+    ).fit(X)
     # this may fail if the predecessor correction is not at work!
     assert_array_equal(clust.labels_, expected_labels)
 
@@ -119,15 +135,21 @@ def test_extract_xi(global_dtype):
     expected_labels = np.r_[[0] * 4, [1] * 4, [2] * 4]
     X, expected_labels = shuffle(X, expected_labels, random_state=rng)
 
-    clust = OPTICS(min_samples=2, min_cluster_size=2, max_eps=np.inf, cluster_method="xi", xi=0.04).fit(X)
+    clust = OPTICS(
+        min_samples=2, min_cluster_size=2, max_eps=np.inf, cluster_method="xi", xi=0.04
+    ).fit(X)
     assert_array_equal(clust.labels_, expected_labels)
 
 
 def test_cluster_hierarchy_(global_dtype):
     rng = np.random.RandomState(0)
     n_points_per_cluster = 100
-    C1 = [0, 0] + 2 * rng.randn(n_points_per_cluster, 2).astype(global_dtype, copy=False)
-    C2 = [0, 0] + 50 * rng.randn(n_points_per_cluster, 2).astype(global_dtype, copy=False)
+    C1 = [0, 0] + 2 * rng.randn(n_points_per_cluster, 2).astype(
+        global_dtype, copy=False
+    )
+    C2 = [0, 0] + 50 * rng.randn(n_points_per_cluster, 2).astype(
+        global_dtype, copy=False
+    )
     X = np.vstack((C1, C2))
     X = shuffle(X, random_state=0)
 
@@ -186,7 +208,9 @@ def test_bad_extract():
     # Test an extraction of eps too close to original eps
     msg = "Specify an epsilon smaller than 0.15. Got 0.3."
     centers = [[1, 1], [-1, -1], [1, -1]]
-    X, labels_true = make_blobs(n_samples=750, centers=centers, cluster_std=0.4, random_state=0)
+    X, labels_true = make_blobs(
+        n_samples=750, centers=centers, cluster_std=0.4, random_state=0
+    )
 
     # Compute OPTICS
     clust = OPTICS(max_eps=5.0 * 0.03, cluster_method="dbscan", eps=0.3, min_samples=10)
@@ -197,7 +221,9 @@ def test_bad_extract():
 def test_bad_reachability():
     msg = "All reachability values are inf. Set a larger max_eps."
     centers = [[1, 1], [-1, -1], [1, -1]]
-    X, labels_true = make_blobs(n_samples=750, centers=centers, cluster_std=0.4, random_state=0)
+    X, labels_true = make_blobs(
+        n_samples=750, centers=centers, cluster_std=0.4, random_state=0
+    )
 
     with pytest.warns(UserWarning, match=msg):
         clust = OPTICS(max_eps=5.0 * 0.003, min_samples=10, eps=0.015)
@@ -253,7 +279,9 @@ def test_close_extract():
     # Test extract where extraction eps is close to scaled max_eps
 
     centers = [[1, 1], [-1, -1], [1, -1]]
-    X, labels_true = make_blobs(n_samples=750, centers=centers, cluster_std=0.4, random_state=0)
+    X, labels_true = make_blobs(
+        n_samples=750, centers=centers, cluster_std=0.4, random_state=0
+    )
 
     # Compute OPTICS
     clust = OPTICS(max_eps=1.0, cluster_method="dbscan", eps=0.3, min_samples=10).fit(X)
@@ -271,19 +299,25 @@ def test_dbscan_optics_parity(eps, min_samples, metric, is_sparse, global_dtype)
     # Test that OPTICS clustering labels are <= 5% difference of DBSCAN
 
     centers = [[1, 1], [-1, -1], [1, -1]]
-    X, labels_true = make_blobs(n_samples=150, centers=centers, cluster_std=0.4, random_state=0)
+    X, labels_true = make_blobs(
+        n_samples=150, centers=centers, cluster_std=0.4, random_state=0
+    )
     X = sparse.csr_matrix(X) if is_sparse else X
 
     X = X.astype(global_dtype, copy=False)
 
     # calculate optics with dbscan extract at 0.3 epsilon
-    op = OPTICS(min_samples=min_samples, cluster_method="dbscan", eps=eps, metric=metric).fit(X)
+    op = OPTICS(
+        min_samples=min_samples, cluster_method="dbscan", eps=eps, metric=metric
+    ).fit(X)
 
     # calculate dbscan labels
     db = DBSCAN(eps=eps, min_samples=min_samples).fit(X)
 
     contingency = contingency_matrix(db.labels_, op.labels_)
-    agree = min(np.sum(np.max(contingency, axis=0)), np.sum(np.max(contingency, axis=1)))
+    agree = min(
+        np.sum(np.max(contingency, axis=0)), np.sum(np.max(contingency, axis=1))
+    )
     disagree = X.shape[0] - agree
 
     percent_mismatch = np.round((disagree - 1) / X.shape[0], 2)
@@ -774,7 +808,9 @@ def test_precomputed_dists(is_sparse, global_dtype):
     dists = sparse.csr_matrix(dists) if is_sparse else dists
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", EfficiencyWarning)
-        clust1 = OPTICS(min_samples=10, algorithm="brute", metric="precomputed").fit(dists)
+        clust1 = OPTICS(min_samples=10, algorithm="brute", metric="precomputed").fit(
+            dists
+        )
     clust2 = OPTICS(min_samples=10, algorithm="brute", metric="euclidean").fit(redX)
 
     assert_allclose(clust1.reachability_, clust2.reachability_)

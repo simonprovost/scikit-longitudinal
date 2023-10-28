@@ -21,16 +21,18 @@ a BayesianRidge as supervised estimator.
 import shutil
 import tempfile
 
-import matplotlib.pyplot as plt
 import numpy as np
-from joblib import Memory
+import matplotlib.pyplot as plt
 from scipy import linalg, ndimage
+from joblib import Memory
+
+from sklearn_fork.feature_extraction.image import grid_to_graph
 from sklearn_fork import feature_selection
 from sklearn_fork.cluster import FeatureAgglomeration
-from sklearn_fork.feature_extraction.image import grid_to_graph
 from sklearn_fork.linear_model import BayesianRidge
-from sklearn_fork.model_selection import GridSearchCV, KFold
 from sklearn_fork.pipeline import Pipeline
+from sklearn_fork.model_selection import GridSearchCV
+from sklearn_fork.model_selection import KFold
 
 # %%
 # Set parameters

@@ -10,14 +10,16 @@ multiple candidates.
 
 """
 
-import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
-from scipy.stats import randint
 from sklearn_fork import datasets
-from sklearn_fork.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt
+from scipy.stats import randint
+import numpy as np
+
 from sklearn_fork.experimental import enable_halving_search_cv  # noqa
 from sklearn_fork.model_selection import HalvingRandomSearchCV
+from sklearn_fork.ensemble import RandomForestClassifier
+
 
 # %%
 # We first define the parameter space and train a
@@ -37,7 +39,9 @@ param_dist = {
     "criterion": ["gini", "entropy"],
 }
 
-rsh = HalvingRandomSearchCV(estimator=clf, param_distributions=param_dist, factor=2, random_state=rng)
+rsh = HalvingRandomSearchCV(
+    estimator=clf, param_distributions=param_dist, factor=2, random_state=rng
+)
 rsh.fit(X, y)
 
 # %%
@@ -47,11 +51,14 @@ rsh.fit(X, y)
 results = pd.DataFrame(rsh.cv_results_)
 results["params_str"] = results.params.apply(str)
 results.drop_duplicates(subset=("params_str", "iter"), inplace=True)
-mean_scores = results.pivot(index="iter", columns="params_str", values="mean_test_score")
+mean_scores = results.pivot(
+    index="iter", columns="params_str", values="mean_test_score"
+)
 ax = mean_scores.plot(legend=False, alpha=0.6)
 
 labels = [
-    f"iter={i}\nn_samples={rsh.n_resources_[i]}\nn_candidates={rsh.n_candidates_[i]}" for i in range(rsh.n_iterations_)
+    f"iter={i}\nn_samples={rsh.n_resources_[i]}\nn_candidates={rsh.n_candidates_[i]}"
+    for i in range(rsh.n_iterations_)
 ]
 
 ax.set_xticks(range(rsh.n_iterations_))

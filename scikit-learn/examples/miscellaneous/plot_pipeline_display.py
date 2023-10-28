@@ -19,10 +19,10 @@ steps in the pipeline.
 # :class:`~sklearn_fork.linear_model.LogisticRegression`, and displays its visual
 # representation.
 
-from sklearn_fork import set_config
-from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.pipeline import Pipeline
 from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork import set_config
 
 steps = [
     ("preprocessing", StandardScaler()),
@@ -53,9 +53,9 @@ set_config(display="diagram")
 # :class:`~sklearn_fork.linear_model.LogisticRegression`, and displays its visual
 # representation.
 
-from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.pipeline import Pipeline
-from sklearn_fork.preprocessing import PolynomialFeatures, StandardScaler
+from sklearn_fork.preprocessing import StandardScaler, PolynomialFeatures
+from sklearn_fork.linear_model import LogisticRegression
 
 steps = [
     ("standard_scaler", StandardScaler()),
@@ -73,9 +73,9 @@ pipe  # click on the diagram below to see the details of each step
 # a classifier, :class:`~sklearn_fork.svm.SVC`, and displays its visual
 # representation.
 
-from sklearn_fork.decomposition import PCA
 from sklearn_fork.pipeline import Pipeline
 from sklearn_fork.svm import SVC
+from sklearn_fork.decomposition import PCA
 
 steps = [("reduce_dim", PCA(n_components=4)), ("classifier", SVC(kernel="linear"))]
 pipe = Pipeline(steps)
@@ -90,11 +90,12 @@ pipe  # click on the diagram below to see the details of each step
 # representation.
 
 import numpy as np
-from sklearn_fork.compose import ColumnTransformer
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.pipeline import Pipeline
 from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.pipeline import Pipeline, make_pipeline
+from sklearn_fork.compose import ColumnTransformer
 from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
+from sklearn_fork.linear_model import LogisticRegression
 
 numeric_preprocessor = Pipeline(
     steps=[
@@ -132,12 +133,13 @@ pipe  # click on the diagram below to see the details of each step
 # representation.
 
 import numpy as np
-from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.pipeline import Pipeline
 from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.model_selection import GridSearchCV
-from sklearn_fork.pipeline import Pipeline, make_pipeline
+from sklearn_fork.compose import ColumnTransformer
 from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
+from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.model_selection import GridSearchCV
 
 numeric_preprocessor = Pipeline(
     steps=[
@@ -163,7 +165,9 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-pipe = Pipeline(steps=[("preprocessor", preprocessor), ("classifier", RandomForestClassifier())])
+pipe = Pipeline(
+    steps=[("preprocessor", preprocessor), ("classifier", RandomForestClassifier())]
+)
 
 param_grid = {
     "classifier__n_estimators": [200, 500],

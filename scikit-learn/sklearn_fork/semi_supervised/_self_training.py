@@ -3,11 +3,11 @@ from numbers import Integral, Real
 
 import numpy as np
 
-from ..base import BaseEstimator, MetaEstimatorMixin, clone
-from ..utils import safe_mask
+from ..base import MetaEstimatorMixin, clone, BaseEstimator
 from ..utils._param_validation import HasMethods, Interval, StrOptions
-from ..utils.metaestimators import available_if
 from ..utils.validation import check_is_fitted
+from ..utils.metaestimators import available_if
+from ..utils import safe_mask
 
 __all__ = ["SelfTrainingClassifier"]
 
@@ -19,7 +19,9 @@ __all__ = ["SelfTrainingClassifier"]
 def _estimator_has(attr):
     """Check if `self.base_estimator_ `or `self.base_estimator_` has `attr`."""
     return lambda self: (
-        hasattr(self.base_estimator_, attr) if hasattr(self, "base_estimator_") else hasattr(self.base_estimator, attr)
+        hasattr(self.base_estimator_, attr)
+        if hasattr(self, "base_estimator_")
+        else hasattr(self.base_estimator, attr)
     )
 
 
@@ -191,7 +193,9 @@ class SelfTrainingClassifier(MetaEstimatorMixin, BaseEstimator):
 
         # we need row slicing support for sparce matrices, but costly finiteness check
         # can be delegated to the base estimator.
-        X, y = self._validate_data(X, y, accept_sparse=["csr", "csc", "lil", "dok"], force_all_finite=False)
+        X, y = self._validate_data(
+            X, y, accept_sparse=["csr", "csc", "lil", "dok"], force_all_finite=False
+        )
 
         self.base_estimator_ = clone(self.base_estimator)
 
@@ -207,7 +211,9 @@ class SelfTrainingClassifier(MetaEstimatorMixin, BaseEstimator):
         if np.all(has_label):
             warnings.warn("y contains no unlabeled samples", UserWarning)
 
-        if self.criterion == "k_best" and (self.k_best > X.shape[0] - np.sum(has_label)):
+        if self.criterion == "k_best" and (
+            self.k_best > X.shape[0] - np.sum(has_label)
+        ):
             warnings.warn(
                 (
                     "k_best is larger than the amount of unlabeled "
@@ -223,9 +229,13 @@ class SelfTrainingClassifier(MetaEstimatorMixin, BaseEstimator):
 
         self.n_iter_ = 0
 
-        while not np.all(has_label) and (self.max_iter is None or self.n_iter_ < self.max_iter):
+        while not np.all(has_label) and (
+            self.max_iter is None or self.n_iter_ < self.max_iter
+        ):
             self.n_iter_ += 1
-            self.base_estimator_.fit(X[safe_mask(X, has_label)], self.transduction_[has_label])
+            self.base_estimator_.fit(
+                X[safe_mask(X, has_label)], self.transduction_[has_label]
+            )
 
             # Predict on the unlabeled samples
             prob = self.base_estimator_.predict_proba(X[safe_mask(X, ~has_label)])
@@ -257,14 +267,19 @@ class SelfTrainingClassifier(MetaEstimatorMixin, BaseEstimator):
                 break
 
             if self.verbose:
-                print(f"End of iteration {self.n_iter_}, added {selected_full.shape[0]} new labels.")
+                print(
+                    f"End of iteration {self.n_iter_},"
+                    f" added {selected_full.shape[0]} new labels."
+                )
 
         if self.n_iter_ == self.max_iter:
             self.termination_condition_ = "max_iter"
         if np.all(has_label):
             self.termination_condition_ = "all_labeled"
 
-        self.base_estimator_.fit(X[safe_mask(X, has_label)], self.transduction_[has_label])
+        self.base_estimator_.fit(
+            X[safe_mask(X, has_label)], self.transduction_[has_label]
+        )
         self.classes_ = self.base_estimator_.classes_
         return self
 

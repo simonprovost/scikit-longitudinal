@@ -41,21 +41,21 @@ Programming (pp. 693-703). Springer, Berlin, Heidelberg.
 # Author: Daniel Lopez-Sanchez <lope@usal.es>
 # License: BSD 3 clause
 
-# Will use this for timing results
-from time import time
+# Load data manipulation functions
+from sklearn_fork.datasets import load_digits
+from sklearn_fork.model_selection import train_test_split
 
 # Some common libraries
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Load data manipulation functions
-from sklearn_fork.datasets import load_digits
-from sklearn_fork.kernel_approximation import Nystroem, PolynomialCountSketch
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.pipeline import Pipeline
+# Will use this for timing results
+from time import time
 
 # Import SVM classifiers and feature map approximation algorithms
-from sklearn_fork.svm import SVC, LinearSVC
+from sklearn_fork.svm import LinearSVC, SVC
+from sklearn_fork.kernel_approximation import Nystroem, PolynomialCountSketch
+from sklearn_fork.pipeline import Pipeline
 
 # Split data in train and test sets
 X, y = load_digits()["data"], load_digits()["target"]
@@ -100,7 +100,9 @@ for k in out_dims:
             [
                 (
                     "NY",
-                    Nystroem(kernel="poly", gamma=1.0, degree=2, coef0=0, n_components=k),
+                    Nystroem(
+                        kernel="poly", gamma=1.0, degree=2, coef0=0, n_components=k
+                    ),
                 ),
                 ("SVM", LinearSVC()),
             ]

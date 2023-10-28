@@ -27,19 +27,21 @@ those effects.
 # Author: Narine Kokhlikyan <narine@slice.com>
 # License: BSD
 
-from time import time
-
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from matplotlib.ticker import NullFormatter
-from sklearn_fork import datasets, manifold
+from sklearn_fork import manifold, datasets
+from time import time
 
 n_samples = 150
 n_components = 2
 (fig, subplots) = plt.subplots(3, 5, figsize=(15, 8))
 perplexities = [5, 30, 50, 100]
 
-X, y = datasets.make_circles(n_samples=n_samples, factor=0.5, noise=0.05, random_state=0)
+X, y = datasets.make_circles(
+    n_samples=n_samples, factor=0.5, noise=0.05, random_state=0
+)
 
 red = y == 0
 green = y == 1

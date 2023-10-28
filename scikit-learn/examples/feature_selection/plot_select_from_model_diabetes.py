@@ -55,8 +55,6 @@ plt.bar(height=importance, x=feature_names)
 plt.title("Feature importances via coefficients")
 plt.show()
 
-from time import time
-
 # %%
 # Selecting features based on importance
 # --------------------------------------
@@ -70,6 +68,7 @@ from time import time
 # Since we want to select only 2 features, we will set this threshold slightly
 # above the coefficient of third most important feature.
 from sklearn_fork.feature_selection import SelectFromModel
+from time import time
 
 threshold = np.sort(importance)[-3] + 0.01
 
@@ -98,16 +97,26 @@ print(f"Done in {toc - tic:.3f}s")
 from sklearn_fork.feature_selection import SequentialFeatureSelector
 
 tic_fwd = time()
-sfs_forward = SequentialFeatureSelector(ridge, n_features_to_select=2, direction="forward").fit(X, y)
+sfs_forward = SequentialFeatureSelector(
+    ridge, n_features_to_select=2, direction="forward"
+).fit(X, y)
 toc_fwd = time()
 
 tic_bwd = time()
-sfs_backward = SequentialFeatureSelector(ridge, n_features_to_select=2, direction="backward").fit(X, y)
+sfs_backward = SequentialFeatureSelector(
+    ridge, n_features_to_select=2, direction="backward"
+).fit(X, y)
 toc_bwd = time()
 
-print(f"Features selected by forward sequential selection: {feature_names[sfs_forward.get_support()]}")
+print(
+    "Features selected by forward sequential selection: "
+    f"{feature_names[sfs_forward.get_support()]}"
+)
 print(f"Done in {toc_fwd - tic_fwd:.3f}s")
-print(f"Features selected by backward sequential selection: {feature_names[sfs_backward.get_support()]}")
+print(
+    "Features selected by backward sequential selection: "
+    f"{feature_names[sfs_backward.get_support()]}"
+)
 print(f"Done in {toc_bwd - tic_bwd:.3f}s")
 
 # %%

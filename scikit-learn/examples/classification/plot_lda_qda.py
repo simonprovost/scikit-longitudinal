@@ -15,8 +15,8 @@ class has its own standard deviation with QDA.
 # Colormap
 # --------
 
-import matplotlib as mpl
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 from matplotlib import colors
 
 cmap = colors.LinearSegmentedColormap(
@@ -92,7 +92,9 @@ def plot_data(lda, X, y, y_pred, fig_index):
 
     # class 1: dots
     plt.scatter(X1_tp[:, 0], X1_tp[:, 1], marker=".", color="blue")
-    plt.scatter(X1_fp[:, 0], X1_fp[:, 1], marker="x", s=20, color="#000099")  # dark blue
+    plt.scatter(
+        X1_fp[:, 0], X1_fp[:, 1], marker="x", s=20, color="#000099"
+    )  # dark blue
 
     # class 0 and 1 : areas
     nx, ny = 200, 100
@@ -101,7 +103,9 @@ def plot_data(lda, X, y, y_pred, fig_index):
     xx, yy = np.meshgrid(np.linspace(x_min, x_max, nx), np.linspace(y_min, y_max, ny))
     Z = lda.predict_proba(np.c_[xx.ravel(), yy.ravel()])
     Z = Z[:, 1].reshape(xx.shape)
-    plt.pcolormesh(xx, yy, Z, cmap="red_blue_classes", norm=colors.Normalize(0.0, 1.0), zorder=0)
+    plt.pcolormesh(
+        xx, yy, Z, cmap="red_blue_classes", norm=colors.Normalize(0.0, 1.0), zorder=0
+    )
     plt.contour(xx, yy, Z, [0.5], linewidths=2.0, colors="white")
 
     # means
@@ -168,7 +172,8 @@ plt.suptitle(
     fontsize=15,
 )
 
-from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
+from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn_fork.discriminant_analysis import QuadraticDiscriminantAnalysis
 
 for i, (X, y) in enumerate([dataset_fixed_cov(), dataset_cov()]):
     # Linear Discriminant Analysis

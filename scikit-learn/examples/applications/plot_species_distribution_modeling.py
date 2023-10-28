@@ -43,11 +43,12 @@ References
 
 from time import time
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork import metrics, svm
-from sklearn_fork.datasets import fetch_species_distributions
+import matplotlib.pyplot as plt
+
 from sklearn_fork.utils import Bunch
+from sklearn_fork.datasets import fetch_species_distributions
+from sklearn_fork import svm, metrics
 
 # if basemap is available, we'll use it.
 # otherwise, we'll improvise later...
@@ -109,12 +110,17 @@ def create_species_bunch(species_name, train, test, coverages, xgrid, ygrid):
     return bunch
 
 
-def plot_species_distribution(species=("bradypus_variegatus_0", "microryzomys_minutus_0")):
+def plot_species_distribution(
+    species=("bradypus_variegatus_0", "microryzomys_minutus_0")
+):
     """
     Plot the species distribution.
     """
     if len(species) > 2:
-        print("Note: when more than two species are provided, only the first two will be used")
+        print(
+            "Note: when more than two species are provided,"
+            " only the first two will be used"
+        )
 
     t0 = time()
 
@@ -128,8 +134,12 @@ def plot_species_distribution(species=("bradypus_variegatus_0", "microryzomys_mi
     X, Y = np.meshgrid(xgrid, ygrid[::-1])
 
     # create a bunch for each species
-    BV_bunch = create_species_bunch(species[0], data.train, data.test, data.coverages, xgrid, ygrid)
-    MM_bunch = create_species_bunch(species[1], data.train, data.test, data.coverages, xgrid, ygrid)
+    BV_bunch = create_species_bunch(
+        species[0], data.train, data.test, data.coverages, xgrid, ygrid
+    )
+    MM_bunch = create_species_bunch(
+        species[1], data.train, data.test, data.coverages, xgrid, ygrid
+    )
 
     # background points (grid coordinates) for evaluation
     np.random.seed(13)
@@ -174,7 +184,9 @@ def plot_species_distribution(species=("bradypus_variegatus_0", "microryzomys_mi
             m.drawcountries()
         else:
             print(" - plot coastlines from coverage")
-            plt.contour(X, Y, land_reference, levels=[-9998], colors="k", linestyles="solid")
+            plt.contour(
+                X, Y, land_reference, levels=[-9998], colors="k", linestyles="solid"
+            )
             plt.xticks([])
             plt.yticks([])
 

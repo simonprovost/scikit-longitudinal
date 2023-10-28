@@ -3,13 +3,15 @@ from time import time
 
 import numpy as np
 import pandas as pd
-from sklearn_fork.compose import make_column_selector, make_column_transformer
+
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.compose import make_column_transformer, make_column_selector
 from sklearn_fork.datasets import fetch_openml
+from sklearn_fork.metrics import accuracy_score, roc_auc_score
 from sklearn_fork.ensemble import HistGradientBoostingClassifier
 from sklearn_fork.ensemble._hist_gradient_boosting.utils import get_equivalent_estimator
-from sklearn_fork.metrics import accuracy_score, roc_auc_score
-from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.preprocessing import OrdinalEncoder
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--n-leaf-nodes", type=int, default=31)
@@ -92,6 +94,8 @@ predict(est, X_test, y_test)
 if args.lightgbm:
     est = get_equivalent_estimator(est, lib="lightgbm", n_classes=n_classes)
     est.set_params(max_cat_to_onehot=1)  # dont use OHE
-    categorical_features = [f_idx for (f_idx, is_cat) in enumerate(is_categorical) if is_cat]
+    categorical_features = [
+        f_idx for (f_idx, is_cat) in enumerate(is_categorical) if is_cat
+    ]
     fit(est, X_train, y_train, "lightgbm", categorical_feature=categorical_features)
     predict(est, X_test, y_test)

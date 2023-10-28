@@ -36,10 +36,9 @@ script :ref:`sphx_glr_auto_examples_text_plot_document_clustering.py`.
 # the classification problem "too easy". This is achieved using simple
 # heuristics that are neither perfect nor standard, hence disabled by default.
 
-from time import time
-
 from sklearn_fork.datasets import fetch_20newsgroups
 from sklearn_fork.feature_extraction.text import TfidfVectorizer
+from time import time
 
 categories = [
     "alt.atheism",
@@ -80,7 +79,9 @@ def load_dataset(verbose=False, remove=()):
 
     # Extracting features from the training data using a sparse vectorizer
     t0 = time()
-    vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5, min_df=5, stop_words="english")
+    vectorizer = TfidfVectorizer(
+        sublinear_tf=True, max_df=0.5, min_df=5, stop_words="english"
+    )
     X_train = vectorizer.fit_transform(data_train.data)
     duration_train = time() - t0
 
@@ -96,12 +97,21 @@ def load_dataset(verbose=False, remove=()):
         data_train_size_mb = size_mb(data_train.data)
         data_test_size_mb = size_mb(data_test.data)
 
-        print(f"{len(data_train.data)} documents - {data_train_size_mb:.2f}MB (training set)")
+        print(
+            f"{len(data_train.data)} documents - "
+            f"{data_train_size_mb:.2f}MB (training set)"
+        )
         print(f"{len(data_test.data)} documents - {data_test_size_mb:.2f}MB (test set)")
         print(f"{len(target_names)} categories")
-        print(f"vectorize training done in {duration_train:.3f}s at {data_train_size_mb / duration_train:.3f}MB/s")
+        print(
+            f"vectorize training done in {duration_train:.3f}s "
+            f"at {data_train_size_mb / duration_train:.3f}MB/s"
+        )
         print(f"n_samples: {X_train.shape[0]}, n_features: {X_train.shape[1]}")
-        print(f"vectorize testing done in {duration_test:.3f}s at {data_test_size_mb / duration_test:.3f}MB/s")
+        print(
+            f"vectorize testing done in {duration_test:.3f}s "
+            f"at {data_test_size_mb / duration_test:.3f}MB/s"
+        )
         print(f"n_samples: {X_test.shape[0]}, n_features: {X_test.shape[1]}")
 
     return X_train, X_test, y_train, y_test, feature_names, target_names
@@ -123,7 +133,9 @@ def load_dataset(verbose=False, remove=()):
 # We start by using the custom function `load_dataset` to load the data without
 # metadata stripping.
 
-X_train, X_test, y_train, y_test, feature_names, target_names = load_dataset(verbose=True)
+X_train, X_test, y_train, y_test, feature_names, target_names = load_dataset(
+    verbose=True
+)
 
 # %%
 # Our first model is an instance of the
@@ -152,7 +164,9 @@ fig, ax = plt.subplots(figsize=(10, 5))
 ConfusionMatrixDisplay.from_predictions(y_test, pred, ax=ax)
 ax.xaxis.set_ticklabels(target_names)
 ax.yaxis.set_ticklabels(target_names)
-_ = ax.set_title(f"Confusion Matrix for {clf.__class__.__name__}\non the original documents")
+_ = ax.set_title(
+    f"Confusion Matrix for {clf.__class__.__name__}\non the original documents"
+)
 
 # %%
 # The confusion matrix highlights that documents of the `alt.atheism` class are
@@ -168,8 +182,8 @@ _ = ax.set_title(f"Confusion Matrix for {clf.__class__.__name__}\non the origina
 # We can gain a deeper understanding of how this classifier makes its decisions
 # by looking at the words with the highest average feature effects:
 
-import numpy as np
 import pandas as pd
+import numpy as np
 
 
 def plot_feature_effects():
@@ -231,7 +245,9 @@ _ = plot_feature_effects().set_title("Average feature effect on the original dat
 # in the dataset coming from some sort of metadata such as the email addresses
 # of the sender of previous emails in the discussion as can be seen below:
 
-data_train = fetch_20newsgroups(subset="train", categories=categories, shuffle=True, random_state=42)
+data_train = fetch_20newsgroups(
+    subset="train", categories=categories, shuffle=True, random_state=42
+)
 
 for doc in data_train.data:
     if "caltech" in doc:
@@ -272,7 +288,9 @@ fig, ax = plt.subplots(figsize=(10, 5))
 ConfusionMatrixDisplay.from_predictions(y_test, pred, ax=ax)
 ax.xaxis.set_ticklabels(target_names)
 ax.yaxis.set_ticklabels(target_names)
-_ = ax.set_title(f"Confusion Matrix for {clf.__class__.__name__}\non filtered documents")
+_ = ax.set_title(
+    f"Confusion Matrix for {clf.__class__.__name__}\non filtered documents"
+)
 
 # %%
 # By looking at the confusion matrix, it is more evident that the scores of the
@@ -297,8 +315,8 @@ _ = plot_feature_effects().set_title("Average feature effects on filtered docume
 # training time and testing time. For such purpose we define the following
 # benchmarking utilities:
 
-from sklearn_fork import metrics
 from sklearn_fork.utils.extmath import density
+from sklearn_fork import metrics
 
 
 def benchmark(clf, custom_name=False):
@@ -343,11 +361,14 @@ def benchmark(clf, custom_name=False):
 # :ref:`sphx_glr_auto_examples_model_selection_plot_grid_search_text_feature_extraction.py`
 # for a demo on how such tuning can be done.
 
-from sklearn_fork.ensemble import RandomForestClassifier
-from sklearn_fork.linear_model import LogisticRegression, SGDClassifier
-from sklearn_fork.naive_bayes import ComplementNB
-from sklearn_fork.neighbors import KNeighborsClassifier, NearestCentroid
+from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.svm import LinearSVC
+from sklearn_fork.linear_model import SGDClassifier
+from sklearn_fork.naive_bayes import ComplementNB
+from sklearn_fork.neighbors import KNeighborsClassifier
+from sklearn_fork.neighbors import NearestCentroid
+from sklearn_fork.ensemble import RandomForestClassifier
+
 
 results = []
 for clf, name in (
@@ -359,7 +380,9 @@ for clf, name in (
     (LinearSVC(C=0.1, dual=False, max_iter=1000), "Linear SVC"),
     # L2 penalty Linear SGD
     (
-        SGDClassifier(loss="log_loss", alpha=1e-4, n_iter_no_change=3, early_stopping=True),
+        SGDClassifier(
+            loss="log_loss", alpha=1e-4, n_iter_no_change=3, early_stopping=True
+        ),
         "log-loss SGD",
     ),
     # NearestCentroid (aka Rocchio classifier)

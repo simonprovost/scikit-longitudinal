@@ -38,10 +38,13 @@ is prone to overfitting. The use of the power transform is then recommended.
 #         Nicolas Hug <contact@nicolas-hug.com>
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn_fork.preprocessing import PowerTransformer
+from sklearn_fork.preprocessing import QuantileTransformer
 from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.preprocessing import PowerTransformer, QuantileTransformer
+
 
 N_SAMPLES = 1000
 FONT_SIZE = 6
@@ -53,7 +56,9 @@ bc = PowerTransformer(method="box-cox")
 yj = PowerTransformer(method="yeo-johnson")
 # n_quantiles is set to the training set size rather than the default value
 # to avoid a warning being raised by this example
-qt = QuantileTransformer(n_quantiles=500, output_distribution="normal", random_state=rng)
+qt = QuantileTransformer(
+    n_quantiles=500, output_distribution="normal", random_state=rng
+)
 size = (N_SAMPLES, 1)
 
 

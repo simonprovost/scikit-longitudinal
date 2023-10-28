@@ -20,18 +20,18 @@ Algorithm 21.1
 # License: BSD3
 
 import warnings
-from math import log, sqrt
+from math import sqrt, log
 from numbers import Integral, Real
-
 import numpy as np
 from scipy import linalg
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from ..exceptions import ConvergenceWarning
+
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
 from ..utils import check_random_state
 from ..utils._param_validation import Interval, StrOptions
 from ..utils.extmath import fast_logdet, randomized_svd, squared_norm
 from ..utils.validation import check_is_fitted
+from ..exceptions import ConvergenceWarning
 
 
 class FactorAnalysis(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
@@ -235,7 +235,8 @@ class FactorAnalysis(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEsti
         else:
             if len(self.noise_variance_init) != n_features:
                 raise ValueError(
-                    "noise_variance_init dimension does not with number of features : %d != %d"
+                    "noise_variance_init dimension does not "
+                    "with number of features : %d != %d"
                     % (len(self.noise_variance_init), n_features)
                 )
             psi = np.array(self.noise_variance_init)
@@ -290,7 +291,9 @@ class FactorAnalysis(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEsti
             psi = np.maximum(var - np.sum(W**2, axis=0), SMALL)
         else:
             warnings.warn(
-                "FactorAnalysis did not converge." + " You might want" + " to increase the number of iterations.",
+                "FactorAnalysis did not converge."
+                + " You might want"
+                + " to increase the number of iterations.",
                 ConvergenceWarning,
             )
 
@@ -419,7 +422,9 @@ class FactorAnalysis(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEsti
     def _rotate(self, components, n_components=None, tol=1e-6):
         "Rotate the factor analysis solution."
         # note that tol is not exposed
-        return _ortho_rotation(components.T, method=self.rotation, tol=tol)[: self.n_components]
+        return _ortho_rotation(components.T, method=self.rotation, tol=tol)[
+            : self.n_components
+        ]
 
     @property
     def _n_features_out(self):

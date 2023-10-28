@@ -1955,7 +1955,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 
 /* "sklearn_fork/utils/_sorting.pyx":3
  * from cython cimport floating
- *
+ * 
  * cdef inline void dual_swap(             # <<<<<<<<<<<<<<
  *     floating* darr,
  *     intp_t *iarr,
@@ -1979,7 +1979,7 @@ static CYTHON_INLINE void __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_du
  *     cdef floating dtmp = darr[a]
  *     darr[a] = darr[b]             # <<<<<<<<<<<<<<
  *     darr[b] = dtmp
- *
+ * 
  */
   (__pyx_v_darr[__pyx_v_a]) = (__pyx_v_darr[__pyx_v_b]);
 
@@ -1987,14 +1987,14 @@ static CYTHON_INLINE void __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_du
  *     cdef floating dtmp = darr[a]
  *     darr[a] = darr[b]
  *     darr[b] = dtmp             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef intp_t itmp = iarr[a]
  */
   (__pyx_v_darr[__pyx_v_b]) = __pyx_v_dtmp;
 
   /* "sklearn_fork/utils/_sorting.pyx":14
  *     darr[b] = dtmp
- *
+ * 
  *     cdef intp_t itmp = iarr[a]             # <<<<<<<<<<<<<<
  *     iarr[a] = iarr[b]
  *     iarr[b] = itmp
@@ -2002,11 +2002,11 @@ static CYTHON_INLINE void __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_du
   __pyx_v_itmp = (__pyx_v_iarr[__pyx_v_a]);
 
   /* "sklearn_fork/utils/_sorting.pyx":15
- *
+ * 
  *     cdef intp_t itmp = iarr[a]
  *     iarr[a] = iarr[b]             # <<<<<<<<<<<<<<
  *     iarr[b] = itmp
- *
+ * 
  */
   (__pyx_v_iarr[__pyx_v_a]) = (__pyx_v_iarr[__pyx_v_b]);
 
@@ -2014,14 +2014,14 @@ static CYTHON_INLINE void __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_du
  *     cdef intp_t itmp = iarr[a]
  *     iarr[a] = iarr[b]
  *     iarr[b] = itmp             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   (__pyx_v_iarr[__pyx_v_b]) = __pyx_v_itmp;
 
   /* "sklearn_fork/utils/_sorting.pyx":3
  * from cython cimport floating
- *
+ * 
  * cdef inline void dual_swap(             # <<<<<<<<<<<<<<
  *     floating* darr,
  *     intp_t *iarr,
@@ -2048,7 +2048,7 @@ static CYTHON_INLINE void __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_du
  *     cdef floating dtmp = darr[a]
  *     darr[a] = darr[b]             # <<<<<<<<<<<<<<
  *     darr[b] = dtmp
- *
+ * 
  */
   (__pyx_v_darr[__pyx_v_a]) = (__pyx_v_darr[__pyx_v_b]);
 
@@ -2056,14 +2056,14 @@ static CYTHON_INLINE void __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_du
  *     cdef floating dtmp = darr[a]
  *     darr[a] = darr[b]
  *     darr[b] = dtmp             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef intp_t itmp = iarr[a]
  */
   (__pyx_v_darr[__pyx_v_b]) = __pyx_v_dtmp;
 
   /* "sklearn_fork/utils/_sorting.pyx":14
  *     darr[b] = dtmp
- *
+ * 
  *     cdef intp_t itmp = iarr[a]             # <<<<<<<<<<<<<<
  *     iarr[a] = iarr[b]
  *     iarr[b] = itmp
@@ -2071,11 +2071,11 @@ static CYTHON_INLINE void __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_du
   __pyx_v_itmp = (__pyx_v_iarr[__pyx_v_a]);
 
   /* "sklearn_fork/utils/_sorting.pyx":15
- *
+ * 
  *     cdef intp_t itmp = iarr[a]
  *     iarr[a] = iarr[b]             # <<<<<<<<<<<<<<
  *     iarr[b] = itmp
- *
+ * 
  */
   (__pyx_v_iarr[__pyx_v_a]) = (__pyx_v_iarr[__pyx_v_b]);
 
@@ -2083,14 +2083,14 @@ static CYTHON_INLINE void __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_du
  *     cdef intp_t itmp = iarr[a]
  *     iarr[a] = iarr[b]
  *     iarr[b] = itmp             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   (__pyx_v_iarr[__pyx_v_b]) = __pyx_v_itmp;
 
   /* "sklearn_fork/utils/_sorting.pyx":3
  * from cython cimport floating
- *
+ * 
  * cdef inline void dual_swap(             # <<<<<<<<<<<<<<
  *     floating* darr,
  *     intp_t *iarr,
@@ -2100,8 +2100,8 @@ static CYTHON_INLINE void __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_du
 }
 
 /* "sklearn_fork/utils/_sorting.pyx":19
- *
- *
+ * 
+ * 
  * cdef int simultaneous_sort(             # <<<<<<<<<<<<<<
  *     floating* values,
  *     intp_t* indices,
@@ -2119,7 +2119,7 @@ static int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
   __pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t __pyx_t_4;
 
   /* "sklearn_fork/utils/_sorting.pyx":49
- *
+ * 
  *     # in the small-array case, do things efficiently
  *     if size <= 1:             # <<<<<<<<<<<<<<
  *         pass
@@ -2354,7 +2354,7 @@ static int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
  *             if values[0] > values[size - 1]:
  *                 dual_swap(values, indices, 0, size - 1)             # <<<<<<<<<<<<<<
  *         pivot_val = values[size - 1]
- *
+ * 
  */
         __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_dual_swap(__pyx_v_values, __pyx_v_indices, 0, (__pyx_v_size - 1));
 
@@ -2380,7 +2380,7 @@ static int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
  *             if values[0] > values[size - 1]:
  *                 dual_swap(values, indices, 0, size - 1)
  *         pivot_val = values[size - 1]             # <<<<<<<<<<<<<<
- *
+ * 
  *         # Partition indices about pivot.  At the end of this operation,
  */
     __pyx_v_pivot_val = (__pyx_v_values[(__pyx_v_size - 1)]);
@@ -2449,7 +2449,7 @@ static int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
  *                 store_idx += 1
  *         dual_swap(values, indices, store_idx, size - 1)             # <<<<<<<<<<<<<<
  *         pivot_idx = store_idx
- *
+ * 
  */
     __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_dual_swap(__pyx_v_values, __pyx_v_indices, __pyx_v_store_idx, (__pyx_v_size - 1));
 
@@ -2457,13 +2457,13 @@ static int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
  *                 store_idx += 1
  *         dual_swap(values, indices, store_idx, size - 1)
  *         pivot_idx = store_idx             # <<<<<<<<<<<<<<
- *
+ * 
  *         # Recursively sort each side of the pivot
  */
     __pyx_v_pivot_idx = __pyx_v_store_idx;
 
     /* "sklearn_fork/utils/_sorting.pyx":87
- *
+ * 
  *         # Recursively sort each side of the pivot
  *         if pivot_idx > 1:             # <<<<<<<<<<<<<<
  *             simultaneous_sort(values, indices, pivot_idx)
@@ -2482,7 +2482,7 @@ static int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
       (void)(__pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort(__pyx_v_values, __pyx_v_indices, __pyx_v_pivot_idx));
 
       /* "sklearn_fork/utils/_sorting.pyx":87
- *
+ * 
  *         # Recursively sort each side of the pivot
  *         if pivot_idx > 1:             # <<<<<<<<<<<<<<
  *             simultaneous_sort(values, indices, pivot_idx)
@@ -2529,8 +2529,8 @@ static int __pyx_fuse_0__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_sorting.pyx":19
- *
- *
+ * 
+ * 
  * cdef int simultaneous_sort(             # <<<<<<<<<<<<<<
  *     floating* values,
  *     intp_t* indices,
@@ -2553,7 +2553,7 @@ static int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
   __pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t __pyx_t_4;
 
   /* "sklearn_fork/utils/_sorting.pyx":49
- *
+ * 
  *     # in the small-array case, do things efficiently
  *     if size <= 1:             # <<<<<<<<<<<<<<
  *         pass
@@ -2788,7 +2788,7 @@ static int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
  *             if values[0] > values[size - 1]:
  *                 dual_swap(values, indices, 0, size - 1)             # <<<<<<<<<<<<<<
  *         pivot_val = values[size - 1]
- *
+ * 
  */
         __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_dual_swap(__pyx_v_values, __pyx_v_indices, 0, (__pyx_v_size - 1));
 
@@ -2814,7 +2814,7 @@ static int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
  *             if values[0] > values[size - 1]:
  *                 dual_swap(values, indices, 0, size - 1)
  *         pivot_val = values[size - 1]             # <<<<<<<<<<<<<<
- *
+ * 
  *         # Partition indices about pivot.  At the end of this operation,
  */
     __pyx_v_pivot_val = (__pyx_v_values[(__pyx_v_size - 1)]);
@@ -2883,7 +2883,7 @@ static int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
  *                 store_idx += 1
  *         dual_swap(values, indices, store_idx, size - 1)             # <<<<<<<<<<<<<<
  *         pivot_idx = store_idx
- *
+ * 
  */
     __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_dual_swap(__pyx_v_values, __pyx_v_indices, __pyx_v_store_idx, (__pyx_v_size - 1));
 
@@ -2891,13 +2891,13 @@ static int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
  *                 store_idx += 1
  *         dual_swap(values, indices, store_idx, size - 1)
  *         pivot_idx = store_idx             # <<<<<<<<<<<<<<
- *
+ * 
  *         # Recursively sort each side of the pivot
  */
     __pyx_v_pivot_idx = __pyx_v_store_idx;
 
     /* "sklearn_fork/utils/_sorting.pyx":87
- *
+ * 
  *         # Recursively sort each side of the pivot
  *         if pivot_idx > 1:             # <<<<<<<<<<<<<<
  *             simultaneous_sort(values, indices, pivot_idx)
@@ -2916,7 +2916,7 @@ static int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
       (void)(__pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort(__pyx_v_values, __pyx_v_indices, __pyx_v_pivot_idx));
 
       /* "sklearn_fork/utils/_sorting.pyx":87
- *
+ * 
  *         # Recursively sort each side of the pivot
  *         if pivot_idx > 1:             # <<<<<<<<<<<<<<
  *             simultaneous_sort(values, indices, pivot_idx)
@@ -2963,8 +2963,8 @@ static int __pyx_fuse_1__pyx_f_12sklearn_fork_5utils_8_sorting_simultaneous_sort
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_sorting.pyx":19
- *
- *
+ * 
+ * 
  * cdef int simultaneous_sort(             # <<<<<<<<<<<<<<
  *     floating* values,
  *     intp_t* indices,
@@ -3385,7 +3385,7 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn_fork/utils/_sorting.pyx":1
  * from cython cimport floating             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline void dual_swap(
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)

@@ -26,11 +26,14 @@ clusters widely spaced.
 # Author: Olivier Grisel <olivier.grisel@ensta.org>
 # License: BSD 3 clause
 
-import matplotlib.cm as cm
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.cluster import KMeans, MiniBatchKMeans
-from sklearn_fork.utils import check_random_state, shuffle
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+
+from sklearn_fork.utils import shuffle
+from sklearn_fork.utils import check_random_state
+from sklearn_fork.cluster import MiniBatchKMeans
+from sklearn_fork.cluster import KMeans
 
 random_state = np.random.RandomState(0)
 
@@ -54,7 +57,9 @@ def make_data(random_state, n_samples_per_center, grid_size, scale):
     centers = np.array([[i, j] for i in range(grid_size) for j in range(grid_size)])
     n_clusters_true, n_features = centers.shape
 
-    noise = random_state.normal(scale=scale, size=(n_samples_per_center, centers.shape[1]))
+    noise = random_state.normal(
+        scale=scale, size=(n_samples_per_center, centers.shape[1])
+    )
 
     X = np.concatenate([c + noise for c in centers])
     y = np.concatenate([[i] * n_samples_per_center for i in range(n_clusters_true)])
@@ -90,7 +95,9 @@ for factory, init, params, format in cases:
                 **params,
             ).fit(X)
             inertia[i, run_id] = km.inertia_
-    p = plt.errorbar(n_init_range, inertia.mean(axis=1), inertia.std(axis=1), fmt=format)
+    p = plt.errorbar(
+        n_init_range, inertia.mean(axis=1), inertia.std(axis=1), fmt=format
+    )
     plots.append(p[0])
     legends.append("%s with %s init" % (factory.__name__, init))
 
@@ -102,7 +109,9 @@ plt.title("Mean inertia for various k-means init across %d runs" % n_runs)
 # Part 2: Qualitative visual inspection of the convergence
 
 X, y = make_data(random_state, n_samples_per_center, grid_size, scale)
-km = MiniBatchKMeans(n_clusters=n_clusters, init="random", n_init=1, random_state=random_state).fit(X)
+km = MiniBatchKMeans(
+    n_clusters=n_clusters, init="random", n_init=1, random_state=random_state
+).fit(X)
 
 plt.figure()
 for k in range(n_clusters):
@@ -118,6 +127,8 @@ for k in range(n_clusters):
         markeredgecolor="k",
         markersize=6,
     )
-    plt.title("Example cluster allocation with a single random init\nwith MiniBatchKMeans")
+    plt.title(
+        "Example cluster allocation with a single random init\nwith MiniBatchKMeans"
+    )
 
 plt.show()

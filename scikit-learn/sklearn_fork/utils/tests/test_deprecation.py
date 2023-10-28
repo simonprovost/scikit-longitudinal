@@ -4,8 +4,9 @@
 
 import pickle
 
+from sklearn_fork.utils.deprecation import _is_deprecated
+from sklearn_fork.utils.deprecation import deprecated
 import pytest
-from sklearn_fork.utils.deprecation import _is_deprecated, deprecated
 
 
 @deprecated("qwerty")

@@ -1,7 +1,7 @@
 import scipy as sp
 
-from ...utils._plotting import _BinaryClassifierCurveDisplayMixin
 from .. import det_curve
+from ...utils._plotting import _BinaryClassifierCurveDisplayMixin
 
 
 class DetCurveDisplay(_BinaryClassifierCurveDisplayMixin):
@@ -305,7 +305,9 @@ class DetCurveDisplay(_BinaryClassifierCurveDisplayMixin):
             sp.stats.norm.ppf(self.fnr),
             **line_kwargs,
         )
-        info_pos_label = f" (Positive label: {self.pos_label})" if self.pos_label is not None else ""
+        info_pos_label = (
+            f" (Positive label: {self.pos_label})" if self.pos_label is not None else ""
+        )
 
         xlabel = "False Positive Rate" + info_pos_label
         ylabel = "False Negative Rate" + info_pos_label
@@ -316,7 +318,10 @@ class DetCurveDisplay(_BinaryClassifierCurveDisplayMixin):
 
         ticks = [0.001, 0.01, 0.05, 0.20, 0.5, 0.80, 0.95, 0.99, 0.999]
         tick_locations = sp.stats.norm.ppf(ticks)
-        tick_labels = ["{:.0%}".format(s) if (100 * s).is_integer() else "{:.1%}".format(s) for s in ticks]
+        tick_labels = [
+            "{:.0%}".format(s) if (100 * s).is_integer() else "{:.1%}".format(s)
+            for s in ticks
+        ]
         self.ax_.set_xticks(tick_locations)
         self.ax_.set_xticklabels(tick_labels)
         self.ax_.set_xlim(-3, 3)

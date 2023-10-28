@@ -1,4 +1,5 @@
 import numpy as np
+
 from sklearn_fork.metrics import balanced_accuracy_score, r2_score
 
 
@@ -22,7 +23,9 @@ def neg_mean_data_error(X, U, V):
 
 def make_dict_learning_scorers(caller):
     caller.train_scorer = lambda _, __: (
-        neg_mean_data_error(caller.X, caller.estimator.transform(caller.X), caller.estimator.components_)
+        neg_mean_data_error(
+            caller.X, caller.estimator.transform(caller.X), caller.estimator.components_
+        )
     )
     caller.test_scorer = lambda _, __: (
         neg_mean_data_error(

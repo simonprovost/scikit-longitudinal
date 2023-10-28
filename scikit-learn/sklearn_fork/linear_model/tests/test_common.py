@@ -4,6 +4,7 @@ import inspect
 
 import numpy as np
 import pytest
+
 from sklearn_fork.base import is_classifier
 from sklearn_fork.datasets import make_low_rank_matrix
 from sklearn_fork.linear_model import (
@@ -53,7 +54,9 @@ from sklearn_fork.linear_model import (
         # This is a known limitation, see:
         # https://github.com/scikit-learn/scikit-learn/issues/21305
         pytest.param(
-            LogisticRegression(penalty="elasticnet", solver="saga", l1_ratio=0.5, tol=1e-15),
+            LogisticRegression(
+                penalty="elasticnet", solver="saga", l1_ratio=0.5, tol=1e-15
+            ),
             marks=pytest.mark.xfail(reason="Missing importance sampling scheme"),
         ),
         LogisticRegressionCV(),
@@ -89,7 +92,10 @@ def test_balance_property(model, with_sample_weight, global_random_seed):
     # M.V. Wuthrich and M. Merz, "Statistical Foundations of Actuarial Learning and its
     # Applications" (June 3, 2022). http://doi.org/10.2139/ssrn.3822407
 
-    if with_sample_weight and "sample_weight" not in inspect.signature(model.fit).parameters.keys():
+    if (
+        with_sample_weight
+        and "sample_weight" not in inspect.signature(model.fit).parameters.keys()
+    ):
         pytest.skip("Estimator does not support sample_weight.")
 
     rel = 2e-4  # test precision
@@ -107,7 +113,10 @@ def test_balance_property(model, with_sample_weight, global_random_seed):
         n_targets = 3
     X = make_low_rank_matrix(n_samples=n_train, n_features=n_features, random_state=rng)
     if n_targets:
-        coef = rng.uniform(low=-2, high=2, size=(n_features, n_targets)) / np.max(X, axis=0)[:, None]
+        coef = (
+            rng.uniform(low=-2, high=2, size=(n_features, n_targets))
+            / np.max(X, axis=0)[:, None]
+        )
     else:
         coef = rng.uniform(low=-2, high=2, size=n_features) / np.max(X, axis=0)
 
@@ -129,7 +138,9 @@ def test_balance_property(model, with_sample_weight, global_random_seed):
 
     # Assert balance property.
     if is_classifier(model):
-        assert np.average(model.predict_proba(X)[:, 1], weights=sw) == pytest.approx(np.average(y, weights=sw), rel=rel)
+        assert np.average(model.predict_proba(X)[:, 1], weights=sw) == pytest.approx(
+            np.average(y, weights=sw), rel=rel
+        )
     else:
         assert np.average(model.predict(X), weights=sw, axis=0) == pytest.approx(
             np.average(y, weights=sw, axis=0), rel=rel

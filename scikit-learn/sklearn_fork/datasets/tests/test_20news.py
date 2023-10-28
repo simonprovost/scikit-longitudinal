@@ -4,12 +4,16 @@ or if specifically requested via environment variable
 from functools import partial
 from unittest.mock import patch
 
-import numpy as np
 import pytest
+
+import numpy as np
 import scipy.sparse as sp
-from sklearn_fork.datasets.tests.test_common import check_as_frame, check_pandas_dependency_message, check_return_X_y
-from sklearn_fork.preprocessing import normalize
+
+from sklearn_fork.datasets.tests.test_common import check_as_frame
+from sklearn_fork.datasets.tests.test_common import check_pandas_dependency_message
+from sklearn_fork.datasets.tests.test_common import check_return_X_y
 from sklearn_fork.utils._testing import assert_allclose_dense_sparse
+from sklearn_fork.preprocessing import normalize
 
 
 def test_20news(fetch_20newsgroups_fxt):
@@ -17,7 +21,9 @@ def test_20news(fetch_20newsgroups_fxt):
     assert data.DESCR.startswith(".. _20newsgroups_dataset:")
 
     # Extract a reduced dataset
-    data2cats = fetch_20newsgroups_fxt(subset="all", categories=data.target_names[-1:-3:-1], shuffle=False)
+    data2cats = fetch_20newsgroups_fxt(
+        subset="all", categories=data.target_names[-1:-3:-1], shuffle=False
+    )
     # Check that the ordering of the target_names is the same
     # as the ordering in the full dataset
     assert data2cats.target_names == data.target_names[-2:]

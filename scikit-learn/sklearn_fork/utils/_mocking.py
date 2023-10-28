@@ -2,7 +2,8 @@ import numpy as np
 
 from ..base import BaseEstimator, ClassifierMixin
 from .metaestimators import available_if
-from .validation import _check_sample_weight, _num_samples, check_array, check_is_fitted
+from .validation import _check_sample_weight, _num_samples, check_array
+from .validation import check_is_fitted
 
 
 class ArraySlicingWrapper:
@@ -207,11 +208,14 @@ class CheckingClassifier(ClassifierMixin, BaseEstimator):
         if self.expected_fit_params:
             missing = set(self.expected_fit_params) - set(fit_params)
             if missing:
-                raise AssertionError(f"Expected fit parameter(s) {list(missing)} not seen.")
+                raise AssertionError(
+                    f"Expected fit parameter(s) {list(missing)} not seen."
+                )
             for key, value in fit_params.items():
                 if _num_samples(value) != _num_samples(X):
                     raise AssertionError(
-                        f"Fit parameter {key} has length {_num_samples(value)}; expected {_num_samples(X)}."
+                        f"Fit parameter {key} has length {_num_samples(value)}"
+                        f"; expected {_num_samples(X)}."
                     )
         if self.expected_sample_weight:
             if sample_weight is None:
@@ -273,7 +277,10 @@ class CheckingClassifier(ClassifierMixin, BaseEstimator):
                 else (n_samples, n_classes)
             Confidence score.
         """
-        if self.methods_to_check == "all" or "decision_function" in self.methods_to_check:
+        if (
+            self.methods_to_check == "all"
+            or "decision_function" in self.methods_to_check
+        ):
             X, y = self._check_X_y(X)
         if len(self.classes_) == 2:
             # for binary classifier, the confidence score is related to

@@ -11,13 +11,10 @@ The module contains:
     * Fast rand_r alternative based on xor shifts
 """
 import numpy as np
-
 cimport numpy as cnp
-
 cnp.import_array()
 
 from . import check_random_state
-
 
 cdef UINT32_t DEFAULT_SEED = 1
 

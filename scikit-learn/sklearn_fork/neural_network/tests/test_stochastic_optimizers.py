@@ -1,6 +1,12 @@
 import numpy as np
-from sklearn_fork.neural_network._stochastic_optimizers import AdamOptimizer, BaseOptimizer, SGDOptimizer
+
+from sklearn_fork.neural_network._stochastic_optimizers import (
+    BaseOptimizer,
+    SGDOptimizer,
+    AdamOptimizer,
+)
 from sklearn_fork.utils._testing import assert_array_equal
+
 
 shapes = [(4, 6), (6, 8), (7, 8, 9)]
 
@@ -35,7 +41,9 @@ def test_sgd_optimizer_momentum():
         velocities = [rng.random_sample(shape) for shape in shapes]
         optimizer.velocities = velocities
         grads = [rng.random_sample(shape) for shape in shapes]
-        updates = [momentum * velocity - lr * grad for velocity, grad in zip(velocities, grads)]
+        updates = [
+            momentum * velocity - lr * grad for velocity, grad in zip(velocities, grads)
+        ]
         expected = [param + update for param, update in zip(params, updates)]
         optimizer.update_params(params, grads)
 
@@ -62,8 +70,12 @@ def test_sgd_optimizer_nesterovs_momentum():
         velocities = [rng.random_sample(shape) for shape in shapes]
         optimizer.velocities = velocities
         grads = [rng.random_sample(shape) for shape in shapes]
-        updates = [momentum * velocity - lr * grad for velocity, grad in zip(velocities, grads)]
-        updates = [momentum * update - lr * grad for update, grad in zip(updates, grads)]
+        updates = [
+            momentum * velocity - lr * grad for velocity, grad in zip(velocities, grads)
+        ]
+        updates = [
+            momentum * update - lr * grad for update, grad in zip(updates, grads)
+        ]
         expected = [param + update for param, update in zip(params, updates)]
         optimizer.update_params(params, grads)
 
@@ -91,7 +103,9 @@ def test_adam_optimizer():
             ms = [beta_1 * m + (1 - beta_1) * grad for m, grad in zip(ms, grads)]
             vs = [beta_2 * v + (1 - beta_2) * (grad**2) for v, grad in zip(vs, grads)]
             learning_rate = lr * np.sqrt(1 - beta_2**t) / (1 - beta_1**t)
-            updates = [-learning_rate * m / (np.sqrt(v) + epsilon) for m, v in zip(ms, vs)]
+            updates = [
+                -learning_rate * m / (np.sqrt(v) + epsilon) for m, v in zip(ms, vs)
+            ]
             expected = [param + update for param, update in zip(params, updates)]
 
             optimizer.update_params(params, grads)

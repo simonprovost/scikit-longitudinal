@@ -17,10 +17,11 @@ Note that those results can be highly dependent on the value of
 import warnings
 
 import matplotlib.pyplot as plt
-from sklearn_fork import datasets
-from sklearn_fork.exceptions import ConvergenceWarning
+
 from sklearn_fork.neural_network import MLPClassifier
 from sklearn_fork.preprocessing import MinMaxScaler
+from sklearn_fork import datasets
+from sklearn_fork.exceptions import ConvergenceWarning
 
 # different learning rate schedules and momentum parameters
 params = [
@@ -108,7 +109,9 @@ def plot_on_dataset(X, y, ax, name):
         # some parameter combinations will not converge as can be seen on the
         # plots so they are ignored here
         with warnings.catch_warnings():
-            warnings.filterwarnings("ignore", category=ConvergenceWarning, module="sklearn_fork")
+            warnings.filterwarnings(
+                "ignore", category=ConvergenceWarning, module="sklearn_fork"
+            )
             mlp.fit(X, y)
 
         mlps.append(mlp)
@@ -129,7 +132,9 @@ data_sets = [
     datasets.make_moons(noise=0.3, random_state=0),
 ]
 
-for ax, data, name in zip(axes.ravel(), data_sets, ["iris", "digits", "circles", "moons"]):
+for ax, data, name in zip(
+    axes.ravel(), data_sets, ["iris", "digits", "circles", "moons"]
+):
     plot_on_dataset(*data, ax=ax, name=name)
 
 fig.legend(ax.get_lines(), labels, ncol=3, loc="upper center")

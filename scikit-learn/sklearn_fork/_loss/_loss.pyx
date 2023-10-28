@@ -28,11 +28,11 @@
 #
 # Note: We require 1-dim ndarrays to be contiguous.
 
-import numpy as np
 from cython.parallel import parallel, prange
+import numpy as np
 
 from libc.math cimport exp, fabs, log, log1p, pow
-from libc.stdlib cimport free, malloc
+from libc.stdlib cimport malloc, free
 
 
 # -------------------------------------

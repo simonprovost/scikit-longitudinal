@@ -1,19 +1,19 @@
-from abc import abstractmethod
 from copy import deepcopy
 from math import ceil, floor, log
+from abc import abstractmethod
 from numbers import Integral, Real
 
 import numpy as np
-
+from ._search import BaseSearchCV
+from . import ParameterGrid, ParameterSampler
 from ..base import is_classifier
+from ._split import check_cv, _yields_constant_splits
 from ..metrics._scorer import get_scorer_names
 from ..utils import resample
 from ..utils._param_validation import Interval, StrOptions
 from ..utils.multiclass import check_classification_targets
 from ..utils.validation import _num_samples
-from . import ParameterGrid, ParameterSampler
-from ._search import BaseSearchCV
-from ._split import _yields_constant_splits, check_cv
+
 
 __all__ = ["HalvingGridSearchCV", "HalvingRandomSearchCV"]
 
@@ -48,7 +48,8 @@ class _SubsampleMetaSplitter:
 def _top_k(results, k, itr):
     # Return the best candidates of a given iteration
     iteration, mean_test_score, params = (
-        np.asarray(a) for a in (results["iter"], results["mean_test_score"], results["params"])
+        np.asarray(a)
+        for a in (results["iter"], results["mean_test_score"], results["params"])
     )
     iter_indices = np.flatnonzero(iteration == itr)
     scores = mean_test_score[iter_indices]
@@ -132,7 +133,10 @@ class BaseSuccessiveHalving(BaseSearchCV):
                 "shuffle=False."
             )
 
-        if self.resource != "n_samples" and self.resource not in self.estimator.get_params():
+        if (
+            self.resource != "n_samples"
+            and self.resource not in self.estimator.get_params()
+        ):
             raise ValueError(
                 f"Cannot use resource={self.resource} which is not supported "
                 f"by estimator {self.estimator.__class__.__name__}"
@@ -143,7 +147,9 @@ class BaseSuccessiveHalving(BaseSearchCV):
                 # for n_candidates=exhaust to work, we need to know what
                 # min_resources is. Similarly min_resources=exhaust needs to
                 # know the actual number of candidates.
-                raise ValueError("n_candidates and min_resources cannot be both set to 'exhaust'.")
+                raise ValueError(
+                    "n_candidates and min_resources cannot be both set to 'exhaust'."
+                )
 
         self.min_resources_ = self.min_resources
         if self.min_resources_ in ("smallest", "exhaust"):
@@ -165,16 +171,22 @@ class BaseSuccessiveHalving(BaseSearchCV):
         self.max_resources_ = self.max_resources
         if self.max_resources_ == "auto":
             if not self.resource == "n_samples":
-                raise ValueError("resource can only be 'n_samples' when max_resources='auto'")
+                raise ValueError(
+                    "resource can only be 'n_samples' when max_resources='auto'"
+                )
             self.max_resources_ = _num_samples(X)
 
         if self.min_resources_ > self.max_resources_:
             raise ValueError(
-                f"min_resources_={self.min_resources_} is greater than max_resources_={self.max_resources_}."
+                f"min_resources_={self.min_resources_} is greater "
+                f"than max_resources_={self.max_resources_}."
             )
 
         if self.min_resources_ == 0:
-            raise ValueError(f"min_resources_={self.min_resources_}: you might have passed an empty dataset X.")
+            raise ValueError(
+                f"min_resources_={self.min_resources_}: you might have passed "
+                "an empty dataset X."
+            )
 
     @staticmethod
     def _select_best_index(refit, refit_metric, results):
@@ -227,7 +239,9 @@ class BaseSuccessiveHalving(BaseSearchCV):
             Instance of fitted estimator.
         """
         self._validate_params()
-        self._checked_cv_orig = check_cv(self.cv, y, classifier=is_classifier(self.estimator))
+        self._checked_cv_orig = check_cv(
+            self.cv, y, classifier=is_classifier(self.estimator)
+        )
 
         self._check_input_parameters(
             X=X,
@@ -247,10 +261,13 @@ class BaseSuccessiveHalving(BaseSearchCV):
     def _run_search(self, evaluate_candidates):
         candidate_params = self._generate_candidate_params()
 
-        if self.resource != "n_samples" and any(self.resource in candidate for candidate in candidate_params):
+        if self.resource != "n_samples" and any(
+            self.resource in candidate for candidate in candidate_params
+        ):
             # Can only check this now since we need the candidates list
             raise ValueError(
-                f"Cannot use parameter {self.resource} as the resource since it is part of the searched parameters."
+                f"Cannot use parameter {self.resource} as the resource since "
+                "it is part of the searched parameters."
             )
 
         # n_required_iterations is the number of iterations needed so that the
@@ -272,7 +289,9 @@ class BaseSuccessiveHalving(BaseSearchCV):
         # max_resources. Depending on max_resources and the number of
         # candidates, this may be higher or smaller than
         # n_required_iterations.
-        n_possible_iterations = 1 + floor(log(self.max_resources_ // self.min_resources_, self.factor))
+        n_possible_iterations = 1 + floor(
+            log(self.max_resources_ // self.min_resources_, self.factor)
+        )
 
         if self.aggressive_elimination:
             n_iterations = n_required_iterations
@@ -336,7 +355,9 @@ class BaseSuccessiveHalving(BaseSearchCV):
                 "n_resources": [n_resources] * n_candidates,
             }
 
-            results = evaluate_candidates(candidate_params, cv, more_results=more_results)
+            results = evaluate_candidates(
+                candidate_params, cv, more_results=more_results
+            )
 
             n_candidates_to_keep = ceil(n_candidates / self.factor)
             candidate_params = _top_k(results, n_candidates_to_keep, itr)
@@ -354,7 +375,10 @@ class BaseSuccessiveHalving(BaseSearchCV):
         tags = deepcopy(super()._more_tags())
         tags["_xfail_checks"].update(
             {
-                "check_fit2d_1sample": "Fail during parameter check since min/max resources requires more samples",
+                "check_fit2d_1sample": (
+                    "Fail during parameter check since min/max resources requires"
+                    " more samples"
+                ),
             }
         )
         return tags

@@ -1,11 +1,16 @@
 import numpy as np
-import pytest
 import scipy.sparse as sp
+
+import pytest
+
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_almost_equal
 from sklearn_fork.base import ClassifierMixin
-from sklearn_fork.datasets import load_iris
-from sklearn_fork.linear_model import PassiveAggressiveClassifier, PassiveAggressiveRegressor
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_almost_equal, assert_array_equal
+from sklearn_fork.datasets import load_iris
+from sklearn_fork.linear_model import PassiveAggressiveClassifier
+from sklearn_fork.linear_model import PassiveAggressiveRegressor
 
 iris = load_iris()
 random_state = check_random_state(12)
@@ -91,7 +96,9 @@ def test_classifier_partial_fit():
     classes = np.unique(y)
     for data in (X, X_csr):
         for average in (False, True):
-            clf = PassiveAggressiveClassifier(random_state=0, average=average, max_iter=5)
+            clf = PassiveAggressiveClassifier(
+                random_state=0, average=average, max_iter=5
+            )
             for t in range(30):
                 clf.partial_fit(data, y, classes)
             score = clf.score(data, y)
@@ -121,13 +128,17 @@ def test_classifier_correctness(loss):
     clf1.fit(X, y_bin)
 
     for data in (X, X_csr):
-        clf2 = PassiveAggressiveClassifier(loss=loss, max_iter=2, shuffle=False, tol=None)
+        clf2 = PassiveAggressiveClassifier(
+            loss=loss, max_iter=2, shuffle=False, tol=None
+        )
         clf2.fit(data, y_bin)
 
         assert_array_almost_equal(clf1.w, clf2.coef_.ravel(), decimal=2)
 
 
-@pytest.mark.parametrize("response_method", ["predict_proba", "predict_log_proba", "transform"])
+@pytest.mark.parametrize(
+    "response_method", ["predict_proba", "predict_log_proba", "transform"]
+)
 def test_classifier_undefined_methods(response_method):
     clf = PassiveAggressiveClassifier(max_iter=100)
     with pytest.raises(AttributeError):
@@ -139,12 +150,16 @@ def test_class_weights():
     X2 = np.array([[-1.0, -1.0], [-1.0, 0], [-0.8, -1.0], [1.0, 1.0], [1.0, 0.0]])
     y2 = [1, 1, 1, -1, -1]
 
-    clf = PassiveAggressiveClassifier(C=0.1, max_iter=100, class_weight=None, random_state=100)
+    clf = PassiveAggressiveClassifier(
+        C=0.1, max_iter=100, class_weight=None, random_state=100
+    )
     clf.fit(X2, y2)
     assert_array_equal(clf.predict([[0.2, -1.0]]), np.array([1]))
 
     # we give a small weights to class 1
-    clf = PassiveAggressiveClassifier(C=0.1, max_iter=100, class_weight={1: 0.001}, random_state=100)
+    clf = PassiveAggressiveClassifier(
+        C=0.1, max_iter=100, class_weight={1: 0.001}, random_state=100
+    )
     clf.fit(X2, y2)
 
     # now the hyperplane should rotate clock-wise and
@@ -169,7 +184,9 @@ def test_equal_class_weight():
     clf_balanced = PassiveAggressiveClassifier(C=0.1, tol=None, class_weight="balanced")
     clf_balanced.fit(X2, y2)
 
-    clf_weighted = PassiveAggressiveClassifier(C=0.1, tol=None, class_weight={0: 0.5, 1: 0.5})
+    clf_weighted = PassiveAggressiveClassifier(
+        C=0.1, tol=None, class_weight={0: 0.5, 1: 0.5}
+    )
     clf_weighted.fit(X2, y2)
 
     # should be similar up to some epsilon due to learning rate schedule
@@ -217,7 +234,9 @@ def test_regressor_partial_fit():
 
     for data in (X, X_csr):
         for average in (False, True):
-            reg = PassiveAggressiveRegressor(random_state=0, average=average, max_iter=100)
+            reg = PassiveAggressiveRegressor(
+                random_state=0, average=average, max_iter=100
+            )
             for t in range(50):
                 reg.partial_fit(data, y_bin)
             pred = reg.predict(data)
@@ -238,7 +257,9 @@ def test_regressor_correctness(loss):
     reg1.fit(X, y_bin)
 
     for data in (X, X_csr):
-        reg2 = PassiveAggressiveRegressor(tol=None, loss=loss, max_iter=2, shuffle=False)
+        reg2 = PassiveAggressiveRegressor(
+            tol=None, loss=loss, max_iter=2, shuffle=False
+        )
         reg2.fit(data, y_bin)
 
         assert_array_almost_equal(reg1.w, reg2.coef_.ravel(), decimal=2)

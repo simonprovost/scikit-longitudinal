@@ -6,35 +6,38 @@
 Descent (SGD).
 """
 
+import numpy as np
 import warnings
+
 from abc import ABCMeta, abstractmethod
 from numbers import Integral, Real
 
-import numpy as np
-
-from ..base import BaseEstimator, OutlierMixin, RegressorMixin, clone, is_classifier
-from ..exceptions import ConvergenceWarning
-from ..model_selection import ShuffleSplit, StratifiedShuffleSplit
-from ..utils import check_random_state, compute_class_weight
-from ..utils._param_validation import Hidden, Interval, StrOptions
-from ..utils.extmath import safe_sparse_dot
+from ..base import clone, is_classifier
+from ._base import LinearClassifierMixin, SparseCoefMixin
+from ._base import make_dataset
+from ..base import BaseEstimator, RegressorMixin, OutlierMixin
+from ..utils import check_random_state
 from ..utils.metaestimators import available_if
+from ..utils.extmath import safe_sparse_dot
 from ..utils.multiclass import _check_partial_fit_first_call
-from ..utils.parallel import Parallel, delayed
-from ..utils.validation import _check_sample_weight, check_is_fitted
-from ._base import LinearClassifierMixin, SparseCoefMixin, make_dataset
-from ._sgd_fast import (
-    EpsilonInsensitive,
-    Hinge,
-    Huber,
-    Log,
-    ModifiedHuber,
-    SquaredEpsilonInsensitive,
-    SquaredHinge,
-    SquaredLoss,
-    _plain_sgd32,
-    _plain_sgd64,
-)
+from ..utils.validation import check_is_fitted, _check_sample_weight
+from ..utils._param_validation import Interval
+from ..utils._param_validation import StrOptions
+from ..utils._param_validation import Hidden
+from ..utils.parallel import delayed, Parallel
+from ..exceptions import ConvergenceWarning
+from ..model_selection import StratifiedShuffleSplit, ShuffleSplit
+
+from ._sgd_fast import _plain_sgd32, _plain_sgd64
+from ..utils import compute_class_weight
+from ._sgd_fast import Hinge
+from ._sgd_fast import SquaredHinge
+from ._sgd_fast import Log
+from ._sgd_fast import ModifiedHuber
+from ._sgd_fast import SquaredLoss
+from ._sgd_fast import Huber
+from ._sgd_fast import EpsilonInsensitive
+from ._sgd_fast import SquaredEpsilonInsensitive
 
 LEARNING_RATE_TYPES = {
     "constant": 1,
@@ -139,7 +142,10 @@ class BaseSGD(SparseCoefMixin, BaseEstimator, metaclass=ABCMeta):
         """Validate input params."""
         if self.early_stopping and for_partial_fit:
             raise ValueError("early_stopping should be False with partial_fit")
-        if self.learning_rate in ("constant", "invscaling", "adaptive") and self.eta0 <= 0.0:
+        if (
+            self.learning_rate in ("constant", "invscaling", "adaptive")
+            and self.eta0 <= 0.0
+        ):
             raise ValueError("eta0 must be > 0")
         if self.learning_rate == "optimal" and self.alpha == 0:
             raise ValueError(
@@ -185,11 +191,15 @@ class BaseSGD(SparseCoefMixin, BaseEstimator, metaclass=ABCMeta):
                     raise ValueError("Provided ``coef_`` does not match dataset. ")
                 self.coef_ = coef_init
             else:
-                self.coef_ = np.zeros((n_classes, n_features), dtype=input_dtype, order="C")
+                self.coef_ = np.zeros(
+                    (n_classes, n_features), dtype=input_dtype, order="C"
+                )
 
             # allocate intercept_ for multi-class
             if intercept_init is not None:
-                intercept_init = np.asarray(intercept_init, order="C", dtype=input_dtype)
+                intercept_init = np.asarray(
+                    intercept_init, order="C", dtype=input_dtype
+                )
                 if intercept_init.shape != (n_classes,):
                     raise ValueError("Provided intercept_init does not match dataset.")
                 self.intercept_ = intercept_init
@@ -228,13 +238,17 @@ class BaseSGD(SparseCoefMixin, BaseEstimator, metaclass=ABCMeta):
         # initialize average parameters
         if self.average > 0:
             self._standard_coef = self.coef_
-            self._average_coef = np.zeros(self.coef_.shape, dtype=input_dtype, order="C")
+            self._average_coef = np.zeros(
+                self.coef_.shape, dtype=input_dtype, order="C"
+            )
             if one_class:
                 self._standard_intercept = 1 - self.offset_
             else:
                 self._standard_intercept = self.intercept_
 
-            self._average_intercept = np.zeros(self._standard_intercept.shape, dtype=input_dtype, order="C")
+            self._average_intercept = np.zeros(
+                self._standard_intercept.shape, dtype=input_dtype, order="C"
+            )
 
     def _make_validation_split(self, y, sample_mask):
         """Split the dataset between training set and validation set.
@@ -263,12 +277,15 @@ class BaseSGD(SparseCoefMixin, BaseEstimator, metaclass=ABCMeta):
             splitter_type = StratifiedShuffleSplit
         else:
             splitter_type = ShuffleSplit
-        cv = splitter_type(test_size=self.validation_fraction, random_state=self.random_state)
+        cv = splitter_type(
+            test_size=self.validation_fraction, random_state=self.random_state
+        )
         idx_train, idx_val = next(cv.split(np.zeros(shape=(y.shape[0], 1)), y))
 
         if not np.any(sample_mask[idx_val]):
             raise ValueError(
-                "The sample weights for validation set are all zero, consider using a different random state."
+                "The sample weights for validation set are all zero, consider using a"
+                " different random state."
             )
 
         if idx_train.shape[0] == 0 or idx_val.shape[0] == 0:
@@ -288,7 +305,9 @@ class BaseSGD(SparseCoefMixin, BaseEstimator, metaclass=ABCMeta):
         validation_mask[idx_val] = True
         return validation_mask
 
-    def _make_validation_score_cb(self, validation_mask, X, y, sample_weight, classes=None):
+    def _make_validation_score_cb(
+        self, validation_mask, X, y, sample_weight, classes=None
+    ):
         if not self.early_stopping:
             return None
 
@@ -400,11 +419,15 @@ def fit_binary(
     """
     # if average is not true, average_coef, and average_intercept will be
     # unused
-    y_i, coef, intercept, average_coef, average_intercept = _prepare_fit_binary(est, y, i, input_dtye=X.dtype)
+    y_i, coef, intercept, average_coef, average_intercept = _prepare_fit_binary(
+        est, y, i, input_dtye=X.dtype
+    )
     assert y_i.shape[0] == y.shape[0] == sample_weight.shape[0]
 
     random_state = check_random_state(random_state)
-    dataset, intercept_decay = make_dataset(X, y_i, sample_weight, random_state=random_state)
+    dataset, intercept_decay = make_dataset(
+        X, y_i, sample_weight, random_state=random_state
+    )
 
     penalty_type = est._get_penalty_type(est.penalty)
     learning_rate_type = est._get_learning_rate_type(learning_rate)
@@ -412,7 +435,9 @@ def fit_binary(
     if validation_mask is None:
         validation_mask = est._make_validation_split(y_i, sample_mask=sample_weight > 0)
     classes = np.array([-1, 1], dtype=y_i.dtype)
-    validation_score_cb = est._make_validation_score_cb(validation_mask, X, y_i, sample_weight, classes=classes)
+    validation_score_cb = est._make_validation_score_cb(
+        validation_mask, X, y_i, sample_weight, classes=classes
+    )
 
     # numpy mtrand expects a C long which is a signed 32 bit integer under
     # Windows
@@ -571,7 +596,9 @@ class BaseSGDClassifier(LinearClassifierMixin, BaseSGD, metaclass=ABCMeta):
         n_classes = self.classes_.shape[0]
 
         # Allocate datastructures from input arguments
-        self._expanded_class_weight = compute_class_weight(self.class_weight, classes=self.classes_, y=y)
+        self._expanded_class_weight = compute_class_weight(
+            self.class_weight, classes=self.classes_, y=y
+        )
         sample_weight = _check_sample_weight(sample_weight, X, dtype=X.dtype)
 
         if getattr(self, "coef_", None) is None or coef_init is not None:
@@ -584,7 +611,8 @@ class BaseSGDClassifier(LinearClassifierMixin, BaseSGD, metaclass=ABCMeta):
             )
         elif n_features != self.coef_.shape[-1]:
             raise ValueError(
-                "Number of features %d does not match previous data %d." % (n_features, self.coef_.shape[-1])
+                "Number of features %d does not match previous data %d."
+                % (n_features, self.coef_.shape[-1])
             )
 
         self.loss_function_ = self._get_loss_function(loss)
@@ -613,7 +641,10 @@ class BaseSGDClassifier(LinearClassifierMixin, BaseSGD, metaclass=ABCMeta):
                 max_iter=max_iter,
             )
         else:
-            raise ValueError("The number of classes has to be greater than one; got %d class" % n_classes)
+            raise ValueError(
+                "The number of classes has to be greater than one; got %d class"
+                % n_classes
+            )
 
         return self
 
@@ -670,7 +701,11 @@ class BaseSGDClassifier(LinearClassifierMixin, BaseSGD, metaclass=ABCMeta):
             intercept_init,
         )
 
-        if self.tol is not None and self.tol > -np.inf and self.n_iter_ == self.max_iter:
+        if (
+            self.tol is not None
+            and self.tol > -np.inf
+            and self.n_iter_ == self.max_iter
+        ):
             warnings.warn(
                 (
                     "Maximum number of iteration reached before "
@@ -731,7 +766,9 @@ class BaseSGDClassifier(LinearClassifierMixin, BaseSGD, metaclass=ABCMeta):
         # to non-deterministic behavior
         random_state = check_random_state(self.random_state)
         seeds = random_state.randint(MAX_INT, size=len(self.classes_))
-        result = Parallel(n_jobs=self.n_jobs, verbose=self.verbose, require="sharedmem")(
+        result = Parallel(
+            n_jobs=self.n_jobs, verbose=self.verbose, require="sharedmem"
+        )(
             delayed(fit_binary)(
                 self,
                 i,
@@ -1199,7 +1236,9 @@ class SGDClassifier(BaseSGDClassifier):
 
     def _check_proba(self):
         if self.loss not in ("log_loss", "modified_huber"):
-            raise AttributeError("probability estimates are not available for loss=%r" % self.loss)
+            raise AttributeError(
+                "probability estimates are not available for loss=%r" % self.loss
+            )
         return True
 
     @available_if(_check_proba)
@@ -1278,7 +1317,9 @@ class SGDClassifier(BaseSGDClassifier):
 
         else:
             raise NotImplementedError(
-                "predict_(log_)proba only supported when loss='log_loss' or loss='modified_huber' (%r given)"
+                "predict_(log_)proba only supported when"
+                " loss='log_loss' or loss='modified_huber' "
+                "(%r given)"
                 % self.loss
             )
 
@@ -1310,7 +1351,9 @@ class SGDClassifier(BaseSGDClassifier):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             },
             "preserves_dtype": [np.float64, np.float32],
         }
@@ -1421,7 +1464,9 @@ class BaseSGDRegressor(RegressorMixin, BaseSGD):
             self._average_coef = np.zeros(n_features, dtype=X.dtype, order="C")
             self._average_intercept = np.zeros(1, dtype=X.dtype, order="C")
 
-        self._fit_regressor(X, y, alpha, C, loss, learning_rate, sample_weight, max_iter)
+        self._fit_regressor(
+            X, y, alpha, C, loss, learning_rate, sample_weight, max_iter
+        )
 
         return self
 
@@ -1504,7 +1549,11 @@ class BaseSGDRegressor(RegressorMixin, BaseSGD):
             intercept_init,
         )
 
-        if self.tol is not None and self.tol > -np.inf and self.n_iter_ == self.max_iter:
+        if (
+            self.tol is not None
+            and self.tol > -np.inf
+            and self.n_iter_ == self.max_iter
+        ):
             warnings.warn(
                 (
                     "Maximum number of iteration reached before "
@@ -1590,7 +1639,9 @@ class BaseSGDRegressor(RegressorMixin, BaseSGD):
         """
         return self._decision_function(X)
 
-    def _fit_regressor(self, X, y, alpha, C, loss, learning_rate, sample_weight, max_iter):
+    def _fit_regressor(
+        self, X, y, alpha, C, loss, learning_rate, sample_weight, max_iter
+    ):
         loss_function = self._get_loss_function(loss)
         penalty_type = self._get_penalty_type(self.penalty)
         learning_rate_type = self._get_learning_rate_type(learning_rate)
@@ -1599,14 +1650,18 @@ class BaseSGDRegressor(RegressorMixin, BaseSGD):
             self.t_ = 1.0
 
         validation_mask = self._make_validation_split(y, sample_mask=sample_weight > 0)
-        validation_score_cb = self._make_validation_score_cb(validation_mask, X, y, sample_weight)
+        validation_score_cb = self._make_validation_score_cb(
+            validation_mask, X, y, sample_weight
+        )
 
         random_state = check_random_state(self.random_state)
         # numpy mtrand expects a C long which is a signed 32 bit integer under
         # Windows
         seed = random_state.randint(0, MAX_INT)
 
-        dataset, intercept_decay = make_dataset(X, y, sample_weight, random_state=random_state)
+        dataset, intercept_decay = make_dataset(
+            X, y, sample_weight, random_state=random_state
+        )
 
         tol = self.tol if self.tol is not None else -np.inf
 
@@ -1950,7 +2005,9 @@ class SGDRegressor(BaseSGDRegressor):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             },
             "preserves_dtype": [np.float64, np.float32],
         }
@@ -2165,7 +2222,9 @@ class SGDOneClassSVM(BaseSGD, OutlierMixin):
         # associated to early_stopping=False in _make_validation_split and
         # _make_validation_score_cb respectively.
         validation_mask = self._make_validation_split(y, sample_mask=sample_weight > 0)
-        validation_score_cb = self._make_validation_score_cb(validation_mask, X, y, sample_weight)
+        validation_score_cb = self._make_validation_score_cb(
+            validation_mask, X, y, sample_weight
+        )
 
         random_state = check_random_state(self.random_state)
         # numpy mtrand expects a C long which is a signed 32 bit integer under
@@ -2283,7 +2342,8 @@ class SGDOneClassSVM(BaseSGD, OutlierMixin):
             )
         elif n_features != self.coef_.shape[-1]:
             raise ValueError(
-                "Number of features %d does not match previous data %d." % (n_features, self.coef_.shape[-1])
+                "Number of features %d does not match previous data %d."
+                % (n_features, self.coef_.shape[-1])
             )
 
         if self.average and getattr(self, "_average_coef", None) is None:
@@ -2377,7 +2437,11 @@ class SGDOneClassSVM(BaseSGD, OutlierMixin):
             offset_init,
         )
 
-        if self.tol is not None and self.tol > -np.inf and self.n_iter_ == self.max_iter:
+        if (
+            self.tol is not None
+            and self.tol > -np.inf
+            and self.n_iter_ == self.max_iter
+        ):
             warnings.warn(
                 (
                     "Maximum number of iteration reached before "
@@ -2498,7 +2562,9 @@ class SGDOneClassSVM(BaseSGD, OutlierMixin):
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples"
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                )
             },
             "preserves_dtype": [np.float64, np.float32],
         }

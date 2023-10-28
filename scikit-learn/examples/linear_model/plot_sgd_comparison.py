@@ -9,11 +9,14 @@ on the hand-written digits dataset.
 # Author: Rob Zinkov <rob at zinkov dot com>
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork import datasets
-from sklearn_fork.linear_model import LogisticRegression, PassiveAggressiveClassifier, Perceptron, SGDClassifier
+
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.linear_model import SGDClassifier, Perceptron
+from sklearn_fork.linear_model import PassiveAggressiveClassifier
+from sklearn_fork.linear_model import LogisticRegression
 
 heldout = [0.95, 0.90, 0.75, 0.50, 0.01]
 # Number of rounds to fit and evaluate an estimator.
@@ -30,7 +33,9 @@ classifiers = [
     ),
     (
         "Passive-Aggressive II",
-        PassiveAggressiveClassifier(max_iter=110, loss="squared_hinge", C=1.0, tol=1e-4),
+        PassiveAggressiveClassifier(
+            max_iter=110, loss="squared_hinge", C=1.0, tol=1e-4
+        ),
     ),
     (
         "SAG",
@@ -47,7 +52,9 @@ for name, clf in classifiers:
     for i in heldout:
         yy_ = []
         for r in range(rounds):
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=i, random_state=rng)
+            X_train, X_test, y_train, y_test = train_test_split(
+                X, y, test_size=i, random_state=rng
+            )
             clf.fit(X_train, y_train)
             y_pred = clf.predict(X_test)
             yy_.append(1 - np.mean(y_pred == y_test))

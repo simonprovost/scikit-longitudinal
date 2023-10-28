@@ -14,12 +14,15 @@ information on this dataset.
 # Code source: Gaël Varoquaux
 # License: BSD 3 clause
 
+import numpy as np
 import matplotlib.pyplot as plt
+
+
+from sklearn_fork import decomposition
+from sklearn_fork import datasets
 
 # unused but required import for doing 3d projections with matplotlib < 3.2
 import mpl_toolkits.mplot3d  # noqa: F401
-import numpy as np
-from sklearn_fork import datasets, decomposition
 
 np.random.seed(5)
 

@@ -1,17 +1,31 @@
-import numpy as np
 import pytest
+import numpy as np
+
 from numpy.testing import assert_allclose
+
 from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.datasets import load_diabetes, load_iris, make_classification, make_regression
+from sklearn_fork.datasets import load_diabetes
+from sklearn_fork.datasets import load_iris
+from sklearn_fork.datasets import make_classification
+from sklearn_fork.datasets import make_regression
 from sklearn_fork.dummy import DummyClassifier
-from sklearn_fork.ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn_fork.ensemble import RandomForestRegressor
+from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.linear_model import LinearRegression
+from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.impute import SimpleImputer
 from sklearn_fork.inspection import permutation_importance
-from sklearn_fork.linear_model import LinearRegression, LogisticRegression
-from sklearn_fork.metrics import get_scorer, mean_squared_error, r2_score
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.metrics import (
+    get_scorer,
+    mean_squared_error,
+    r2_score,
+)
 from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import KBinsDiscretizer, OneHotEncoder, StandardScaler, scale
+from sklearn_fork.preprocessing import KBinsDiscretizer
+from sklearn_fork.preprocessing import OneHotEncoder
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.preprocessing import scale
 from sklearn_fork.utils import parallel_backend
 from sklearn_fork.utils._testing import _convert_container
 
@@ -51,7 +65,9 @@ def test_permutation_importance_correlated_feature_regression(n_jobs, max_sample
 
 @pytest.mark.parametrize("n_jobs", [1, 2])
 @pytest.mark.parametrize("max_samples", [0.5, 1.0])
-def test_permutation_importance_correlated_feature_regression_pandas(n_jobs, max_samples):
+def test_permutation_importance_correlated_feature_regression_pandas(
+    n_jobs, max_samples
+):
     pd = pytest.importorskip("pandas")
 
     # Make sure that feature highly correlated to the target have a higher
@@ -121,7 +137,9 @@ def test_robustness_to_high_cardinality_noisy_feature(n_jobs, max_samples, seed=
     # Split the dataset to be able to evaluate on a held-out test set. The
     # Test size should be large enough for importance measurements to be
     # stable:
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=rng)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.5, random_state=rng
+    )
     clf = RandomForestClassifier(n_estimators=5, random_state=rng)
     clf.fit(X_train, y_train)
 
@@ -206,7 +224,9 @@ def test_permutation_importance_mixed_types_pandas():
     y = np.array([0, 1, 0, 1])
 
     num_preprocess = make_pipeline(SimpleImputer(), StandardScaler())
-    preprocess = ColumnTransformer([("num", num_preprocess, ["col1"]), ("cat", OneHotEncoder(), ["col2"])])
+    preprocess = ColumnTransformer(
+        [("num", num_preprocess, ["col1"]), ("cat", OneHotEncoder(), ["col2"])]
+    )
     clf = make_pipeline(preprocess, LogisticRegression(solver="lbfgs"))
     clf.fit(X, y)
 
@@ -228,8 +248,12 @@ def test_permutation_importance_linear_regresssion():
 
     # this relationship can be computed in closed form
     expected_importances = 2 * lr.coef_**2
-    results = permutation_importance(lr, X, y, n_repeats=50, scoring="neg_mean_squared_error")
-    assert_allclose(expected_importances, results.importances_mean, rtol=1e-1, atol=1e-6)
+    results = permutation_importance(
+        lr, X, y, n_repeats=50, scoring="neg_mean_squared_error"
+    )
+    assert_allclose(
+        expected_importances, results.importances_mean, rtol=1e-1, atol=1e-6
+    )
 
 
 @pytest.mark.parametrize("max_samples", [500, 1.0])
@@ -256,13 +280,21 @@ def test_permutation_importance_equivalence_sequential_parallel(max_samples):
     # ('loky' or 'multiprocessing') depending on the joblib version:
 
     # process-based parallelism (by default):
-    importance_processes = permutation_importance(lr, X, y, n_repeats=5, random_state=0, n_jobs=2)
-    assert_allclose(importance_processes["importances"], importance_sequential["importances"])
+    importance_processes = permutation_importance(
+        lr, X, y, n_repeats=5, random_state=0, n_jobs=2
+    )
+    assert_allclose(
+        importance_processes["importances"], importance_sequential["importances"]
+    )
 
     # thread-based parallelism:
     with parallel_backend("threading"):
-        importance_threading = permutation_importance(lr, X, y, n_repeats=5, random_state=0, n_jobs=2)
-    assert_allclose(importance_threading["importances"], importance_sequential["importances"])
+        importance_threading = permutation_importance(
+            lr, X, y, n_repeats=5, random_state=0, n_jobs=2
+        )
+    assert_allclose(
+        importance_threading["importances"], importance_sequential["importances"]
+    )
 
 
 @pytest.mark.parametrize("n_jobs", [None, 1, 2])
@@ -330,7 +362,9 @@ def test_permutation_importance_equivalence_array_dataframe(n_jobs, max_samples)
         n_jobs=n_jobs,
         max_samples=max_samples,
     )
-    assert_allclose(importance_array["importances"], importance_dataframe["importances"])
+    assert_allclose(
+        importance_array["importances"], importance_dataframe["importances"]
+    )
 
 
 @pytest.mark.parametrize("input_type", ["array", "dataframe"])
@@ -338,7 +372,9 @@ def test_permutation_importance_large_memmaped_data(input_type):
     # Smoke, non-regression test for:
     # https://github.com/scikit-learn/scikit-learn/issues/15810
     n_samples, n_features = int(5e4), 4
-    X, y = make_classification(n_samples=n_samples, n_features=n_features, random_state=0)
+    X, y = make_classification(
+        n_samples=n_samples, n_features=n_features, random_state=0
+    )
     assert X.nbytes > 1e6  # trigger joblib memmaping
 
     X = _convert_container(X, input_type)
@@ -375,7 +411,9 @@ def test_permutation_importance_sample_weight():
     # When all samples are weighted with the same weights, the ratio of
     # the two features importance should equal to 1 on expectation (when using
     # mean absolutes error as the loss function).
-    pi = permutation_importance(lr, x, y, random_state=1, scoring="neg_mean_absolute_error", n_repeats=200)
+    pi = permutation_importance(
+        lr, x, y, random_state=1, scoring="neg_mean_absolute_error", n_repeats=200
+    )
     x1_x2_imp_ratio_w_none = pi.importances_mean[0] / pi.importances_mean[1]
     assert x1_x2_imp_ratio_w_none == pytest.approx(1, 0.01)
 
@@ -398,7 +436,9 @@ def test_permutation_importance_sample_weight():
     # the second half of the samples approaches to infinity, the ratio of
     # the two features importance should equal to 2 on expectation (when using
     # mean absolutes error as the loss function).
-    w = np.hstack([np.repeat(10.0**10, n_half_samples), np.repeat(1.0, n_half_samples)])
+    w = np.hstack(
+        [np.repeat(10.0**10, n_half_samples), np.repeat(1.0, n_half_samples)]
+    )
     lr.fit(x, y, w)
     pi = permutation_importance(
         lr,
@@ -439,7 +479,9 @@ def test_permutation_importance_no_weights_scoring_function():
     # test that permutation_importance raise exception when sample_weight is
     # not None
     with pytest.raises(TypeError):
-        permutation_importance(lr, x, y, random_state=1, scoring=my_scorer, n_repeats=1, sample_weight=w)
+        permutation_importance(
+            lr, x, y, random_state=1, scoring=my_scorer, n_repeats=1, sample_weight=w
+        )
 
 
 @pytest.mark.parametrize(
@@ -469,12 +511,16 @@ def test_permutation_importance_multi_metric(list_single_scorer, multi_scorer):
     x, y = make_regression(n_samples=500, n_features=10, random_state=0)
     lr = LinearRegression().fit(x, y)
 
-    multi_importance = permutation_importance(lr, x, y, random_state=1, scoring=multi_scorer, n_repeats=2)
+    multi_importance = permutation_importance(
+        lr, x, y, random_state=1, scoring=multi_scorer, n_repeats=2
+    )
     assert set(multi_importance.keys()) == set(list_single_scorer)
 
     for scorer in list_single_scorer:
         multi_result = multi_importance[scorer]
-        single_result = permutation_importance(lr, x, y, random_state=1, scoring=scorer, n_repeats=2)
+        single_result = permutation_importance(
+            lr, x, y, random_state=1, scoring=scorer, n_repeats=2
+        )
 
         assert_allclose(multi_result.importances, single_result.importances)
 

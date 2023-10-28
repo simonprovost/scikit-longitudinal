@@ -12,17 +12,39 @@ import warnings
 from numbers import Integral, Real
 
 import numpy as np
-from scipy import optimize, sparse, stats
+from scipy import sparse
+from scipy import stats
+from scipy import optimize
 from scipy.special import boxcox
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, OneToOneFeatureMixin, TransformerMixin
+from ..base import (
+    BaseEstimator,
+    TransformerMixin,
+    OneToOneFeatureMixin,
+    ClassNamePrefixFeaturesOutMixin,
+)
 from ..utils import check_array
 from ..utils._param_validation import Interval, Options, StrOptions, validate_params
 from ..utils.extmath import _incremental_mean_and_var, row_norms
-from ..utils.sparsefuncs import incr_mean_variance_axis, inplace_column_scale, mean_variance_axis, min_max_axis
-from ..utils.sparsefuncs_fast import inplace_csr_row_normalize_l1, inplace_csr_row_normalize_l2
-from ..utils.validation import FLOAT_DTYPES, _check_sample_weight, check_is_fitted, check_random_state
+from ..utils.sparsefuncs_fast import (
+    inplace_csr_row_normalize_l1,
+    inplace_csr_row_normalize_l2,
+)
+from ..utils.sparsefuncs import (
+    inplace_column_scale,
+    mean_variance_axis,
+    incr_mean_variance_axis,
+    min_max_axis,
+)
+from ..utils.validation import (
+    check_is_fitted,
+    check_random_state,
+    _check_sample_weight,
+    FLOAT_DTYPES,
+)
+
 from ._encoders import OneHotEncoder
+
 
 BOUNDS_THRESHOLD = 1e-7
 
@@ -199,7 +221,9 @@ def scale(X, *, axis=0, with_mean=True, with_std=True, copy=True):
                 " See docstring for motivation and alternatives."
             )
         if axis != 0:
-            raise ValueError("Can only scale sparse matrix on axis=0,  got axis=%d" % axis)
+            raise ValueError(
+                "Can only scale sparse matrix on axis=0,  got axis=%d" % axis
+            )
         if with_std:
             _, var = mean_variance_axis(X, axis=0)
             var = _handle_zeros_in_scale(var, copy=False)
@@ -437,11 +461,15 @@ class MinMaxScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
         feature_range = self.feature_range
         if feature_range[0] >= feature_range[1]:
             raise ValueError(
-                "Minimum of desired feature range must be smaller than maximum. Got %s." % str(feature_range)
+                "Minimum of desired feature range must be smaller than maximum. Got %s."
+                % str(feature_range)
             )
 
         if sparse.issparse(X):
-            raise TypeError("MinMaxScaler does not support sparse input. Consider using MaxAbsScaler instead.")
+            raise TypeError(
+                "MinMaxScaler does not support sparse input. "
+                "Consider using MaxAbsScaler instead."
+            )
 
         first_pass = not hasattr(self, "n_samples_seen_")
         X = self._validate_data(
@@ -462,7 +490,9 @@ class MinMaxScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
             self.n_samples_seen_ += X.shape[0]
 
         data_range = data_max - data_min
-        self.scale_ = (feature_range[1] - feature_range[0]) / _handle_zeros_in_scale(data_range, copy=True)
+        self.scale_ = (feature_range[1] - feature_range[0]) / _handle_zeros_in_scale(
+            data_range, copy=True
+        )
         self.min_ = feature_range[0] - data_min * self.scale_
         self.data_min_ = data_min
         self.data_max_ = data_max
@@ -513,7 +543,9 @@ class MinMaxScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
         """
         check_is_fitted(self)
 
-        X = check_array(X, copy=self.copy, dtype=FLOAT_DTYPES, force_all_finite="allow-nan")
+        X = check_array(
+            X, copy=self.copy, dtype=FLOAT_DTYPES, force_all_finite="allow-nan"
+        )
 
         X -= self.min_
         X /= self.scale_
@@ -604,7 +636,9 @@ def minmax_scale(X, feature_range=(0, 1), *, axis=0, copy=True):
     """
     # Unlike the scaler object, this function allows 1d input.
     # If copy is required, it will be done inside the scaler object.
-    X = check_array(X, copy=False, ensure_2d=False, dtype=FLOAT_DTYPES, force_all_finite="allow-nan")
+    X = check_array(
+        X, copy=False, ensure_2d=False, dtype=FLOAT_DTYPES, force_all_finite="allow-nan"
+    )
     original_ndim = X.ndim
 
     if original_ndim == 1:
@@ -871,7 +905,9 @@ class StandardScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
                     "Cannot center sparse matrices: pass `with_mean=False` "
                     "instead. See docstring for motivation and alternatives."
                 )
-            sparse_constructor = sparse.csr_matrix if X.format == "csr" else sparse.csc_matrix
+            sparse_constructor = (
+                sparse.csr_matrix if X.format == "csr" else sparse.csc_matrix
+            )
 
             if self.with_std:
                 # First pass
@@ -901,8 +937,12 @@ class StandardScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
                 self.mean_ = None  # as with_mean must be False for sparse
                 self.var_ = None
                 weights = _check_sample_weight(sample_weight, X)
-                sum_weights_nan = weights @ sparse_constructor((np.isnan(X.data), X.indices, X.indptr), shape=X.shape)
-                self.n_samples_seen_ += (np.sum(weights) - sum_weights_nan).astype(dtype)
+                sum_weights_nan = weights @ sparse_constructor(
+                    (np.isnan(X.data), X.indices, X.indptr), shape=X.shape
+                )
+                self.n_samples_seen_ += (np.sum(weights) - sum_weights_nan).astype(
+                    dtype
+                )
         else:
             # First pass
             if not hasattr(self, "scale_"):
@@ -935,8 +975,12 @@ class StandardScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
         if self.with_std:
             # Extract the list of near constant features on the raw variances,
             # before taking the square root.
-            constant_mask = _is_constant_feature(self.var_, self.mean_, self.n_samples_seen_)
-            self.scale_ = _handle_zeros_in_scale(np.sqrt(self.var_), copy=False, constant_mask=constant_mask)
+            constant_mask = _is_constant_feature(
+                self.var_, self.mean_, self.n_samples_seen_
+            )
+            self.scale_ = _handle_zeros_in_scale(
+                np.sqrt(self.var_), copy=False, constant_mask=constant_mask
+            )
         else:
             self.scale_ = None
 
@@ -1516,7 +1560,9 @@ class RobustScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
             quantiles = []
             for feature_idx in range(X.shape[1]):
                 if sparse.issparse(X):
-                    column_nnz_data = X.data[X.indptr[feature_idx] : X.indptr[feature_idx + 1]]
+                    column_nnz_data = X.data[
+                        X.indptr[feature_idx] : X.indptr[feature_idx + 1]
+                    ]
                     column_data = np.zeros(shape=X.shape[0], dtype=X.dtype)
                     column_data[: len(column_nnz_data)] = column_nnz_data
                 else:
@@ -1605,7 +1651,9 @@ class RobustScaler(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
         return {"allow_nan": True}
 
 
-@validate_params({"X": ["array-like", "sparse matrix"], "axis": [Options(Integral, {0, 1})]})
+@validate_params(
+    {"X": ["array-like", "sparse matrix"], "axis": [Options(Integral, {0, 1})]}
+)
 def robust_scale(
     X,
     *,
@@ -1808,7 +1856,9 @@ def normalize(X, norm="l2", *, axis=1, copy=True, return_norm=False):
     if sparse.issparse(X):
         if return_norm and norm in ("l1", "l2"):
             raise NotImplementedError(
-                "return_norm=True is not implemented for sparse matrices with norm 'l1' or norm 'l2'"
+                "return_norm=True is not implemented "
+                "for sparse matrices with norm 'l1' "
+                "or norm 'l2'"
             )
         if norm == "l1":
             inplace_csr_row_normalize_l1(X)
@@ -2258,7 +2308,8 @@ class KernelCenterer(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEsti
 
         if K.shape[0] != K.shape[1]:
             raise ValueError(
-                "Kernel matrix must be a square matrix. Input is a {}x{} matrix.".format(K.shape[0], K.shape[1])
+                "Kernel matrix must be a square matrix."
+                " Input is a {}x{} matrix.".format(K.shape[0], K.shape[1])
             )
 
         n_samples = K.shape[0]
@@ -2515,7 +2566,10 @@ class QuantileTransformer(OneToOneFeatureMixin, TransformerMixin, BaseEstimator)
             The data used to scale along the features axis.
         """
         if self.ignore_implicit_zeros:
-            warnings.warn("'ignore_implicit_zeros' takes effect only with sparse matrix. This parameter has no effect.")
+            warnings.warn(
+                "'ignore_implicit_zeros' takes effect only with"
+                " sparse matrix. This parameter has no effect."
+            )
 
         n_samples, n_features = X.shape
         references = self.references_ * 100
@@ -2523,7 +2577,9 @@ class QuantileTransformer(OneToOneFeatureMixin, TransformerMixin, BaseEstimator)
         self.quantiles_ = []
         for col in X.T:
             if self.subsample < n_samples:
-                subsample_idx = random_state.choice(n_samples, size=self.subsample, replace=False)
+                subsample_idx = random_state.choice(
+                    n_samples, size=self.subsample, replace=False
+                )
                 col = col.take(subsample_idx, mode="clip")
             self.quantiles_.append(np.nanpercentile(col, references))
         self.quantiles_ = np.transpose(self.quantiles_)
@@ -2611,8 +2667,9 @@ class QuantileTransformer(OneToOneFeatureMixin, TransformerMixin, BaseEstimator)
 
         if self.n_quantiles > n_samples:
             warnings.warn(
-                "n_quantiles (%s) is greater than the total number of samples (%s). n_quantiles is set to n_samples."
-                % (self.n_quantiles, n_samples)
+                "n_quantiles (%s) is greater than the total number "
+                "of samples (%s). n_quantiles is set to "
+                "n_samples." % (self.n_quantiles, n_samples)
             )
         self.n_quantiles_ = max(1, min(self.n_quantiles, n_samples))
 
@@ -2710,7 +2767,9 @@ class QuantileTransformer(OneToOneFeatureMixin, TransformerMixin, BaseEstimator)
                 and not self.ignore_implicit_zeros
                 and (sparse.issparse(X) and np.any(X.data < 0))
             ):
-                raise ValueError("QuantileTransformer only accepts non-negative sparse matrices.")
+                raise ValueError(
+                    "QuantileTransformer only accepts non-negative sparse matrices."
+                )
 
         return X
 
@@ -2739,7 +2798,9 @@ class QuantileTransformer(OneToOneFeatureMixin, TransformerMixin, BaseEstimator)
                 )
         else:
             for feature_idx in range(X.shape[1]):
-                X[:, feature_idx] = self._transform_col(X[:, feature_idx], self.quantiles_[:, feature_idx], inverse)
+                X[:, feature_idx] = self._transform_col(
+                    X[:, feature_idx], self.quantiles_[:, feature_idx], inverse
+                )
 
         return X
 
@@ -2781,7 +2842,9 @@ class QuantileTransformer(OneToOneFeatureMixin, TransformerMixin, BaseEstimator)
             The projected data.
         """
         check_is_fitted(self)
-        X = self._check_inputs(X, in_fit=False, accept_sparse_negative=True, copy=self.copy)
+        X = self._check_inputs(
+            X, in_fit=False, accept_sparse_negative=True, copy=self.copy
+        )
 
         return self._transform(X, inverse=True)
 
@@ -2789,7 +2852,9 @@ class QuantileTransformer(OneToOneFeatureMixin, TransformerMixin, BaseEstimator)
         return {"allow_nan": True}
 
 
-@validate_params({"X": ["array-like", "sparse matrix"], "axis": [Options(Integral, {0, 1})]})
+@validate_params(
+    {"X": ["array-like", "sparse matrix"], "axis": [Options(Integral, {0, 1})]}
+)
 def quantile_transform(
     X,
     *,
@@ -3313,11 +3378,15 @@ class PowerTransformer(OneToOneFeatureMixin, TransformerMixin, BaseEstimator):
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", r"All-NaN (slice|axis) encountered")
             if check_positive and self.method == "box-cox" and np.nanmin(X) <= 0:
-                raise ValueError("The Box-Cox transformation can only be applied to strictly positive data")
+                raise ValueError(
+                    "The Box-Cox transformation can only be "
+                    "applied to strictly positive data"
+                )
 
         if check_shape and not X.shape[1] == len(self.lambdas_):
             raise ValueError(
-                "Input data has a different number of features than fitting data. Should have {n}, data has {m}".format(
+                "Input data has a different number of features "
+                "than fitting data. Should have {n}, data has {m}".format(
                     n=len(self.lambdas_), m=X.shape[1]
                 )
             )

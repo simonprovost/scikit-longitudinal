@@ -1,23 +1,24 @@
 from functools import partial
 from itertools import chain
 
-import numpy as np
 import pytest
-from sklearn_fork.metrics.cluster import (
-    adjusted_mutual_info_score,
-    adjusted_rand_score,
-    calinski_harabasz_score,
-    completeness_score,
-    davies_bouldin_score,
-    fowlkes_mallows_score,
-    homogeneity_score,
-    mutual_info_score,
-    normalized_mutual_info_score,
-    rand_score,
-    silhouette_score,
-    v_measure_score,
-)
+import numpy as np
+
+from sklearn_fork.metrics.cluster import adjusted_mutual_info_score
+from sklearn_fork.metrics.cluster import adjusted_rand_score
+from sklearn_fork.metrics.cluster import rand_score
+from sklearn_fork.metrics.cluster import completeness_score
+from sklearn_fork.metrics.cluster import fowlkes_mallows_score
+from sklearn_fork.metrics.cluster import homogeneity_score
+from sklearn_fork.metrics.cluster import mutual_info_score
+from sklearn_fork.metrics.cluster import normalized_mutual_info_score
+from sklearn_fork.metrics.cluster import v_measure_score
+from sklearn_fork.metrics.cluster import silhouette_score
+from sklearn_fork.metrics.cluster import calinski_harabasz_score
+from sklearn_fork.metrics.cluster import davies_bouldin_score
+
 from sklearn_fork.utils._testing import assert_allclose
+
 
 # Dictionaries of metrics
 # ------------------------
@@ -90,18 +91,24 @@ y2 = rng.randint(3, size=30)
 
 
 def test_symmetric_non_symmetric_union():
-    assert sorted(SYMMETRIC_METRICS + NON_SYMMETRIC_METRICS) == sorted(SUPERVISED_METRICS)
+    assert sorted(SYMMETRIC_METRICS + NON_SYMMETRIC_METRICS) == sorted(
+        SUPERVISED_METRICS
+    )
 
 
 # 0.22 AMI and NMI changes
 @pytest.mark.filterwarnings("ignore::FutureWarning")
-@pytest.mark.parametrize("metric_name, y1, y2", [(name, y1, y2) for name in SYMMETRIC_METRICS])
+@pytest.mark.parametrize(
+    "metric_name, y1, y2", [(name, y1, y2) for name in SYMMETRIC_METRICS]
+)
 def test_symmetry(metric_name, y1, y2):
     metric = SUPERVISED_METRICS[metric_name]
     assert metric(y1, y2) == pytest.approx(metric(y2, y1))
 
 
-@pytest.mark.parametrize("metric_name, y1, y2", [(name, y1, y2) for name in NON_SYMMETRIC_METRICS])
+@pytest.mark.parametrize(
+    "metric_name, y1, y2", [(name, y1, y2) for name in NON_SYMMETRIC_METRICS]
+)
 def test_non_symmetry(metric_name, y1, y2):
     metric = SUPERVISED_METRICS[metric_name]
     assert metric(y1, y2) != pytest.approx(metric(y2, y1))
@@ -122,7 +129,9 @@ def test_normalized_output(metric_name):
 
     lower_bound_1 = [0, 0, 0, 0, 0, 0]
     lower_bound_2 = [0, 1, 2, 3, 4, 5]
-    score = np.array([metric(lower_bound_1, lower_bound_2), metric(lower_bound_2, lower_bound_1)])
+    score = np.array(
+        [metric(lower_bound_1, lower_bound_2), metric(lower_bound_2, lower_bound_1)]
+    )
     assert not (score < 0).any()
 
 
@@ -192,7 +201,9 @@ def test_single_sample(metric):
         metric([i], [j])
 
 
-@pytest.mark.parametrize("metric_name, metric_func", dict(SUPERVISED_METRICS, **UNSUPERVISED_METRICS).items())
+@pytest.mark.parametrize(
+    "metric_name, metric_func", dict(SUPERVISED_METRICS, **UNSUPERVISED_METRICS).items()
+)
 def test_inf_nan_input(metric_name, metric_func):
     if metric_name in SUPERVISED_METRICS:
         invalids = [

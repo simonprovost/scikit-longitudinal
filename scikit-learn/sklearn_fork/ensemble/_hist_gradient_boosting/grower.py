@@ -6,19 +6,22 @@ the gradients and hessians of the training data.
 """
 # Author: Nicolas Hug
 
-import numbers
-from heapq import heappop, heappush
-from timeit import default_timer as time
-
+from heapq import heappush, heappop
 import numpy as np
-from sklearn_fork.utils._openmp_helpers import _openmp_effective_n_threads
+from timeit import default_timer as time
+import numbers
 
-from ._bitset import set_raw_bitset_from_binned_bitset
-from .common import PREDICTOR_RECORD_DTYPE, X_BITSET_INNER_DTYPE, Y_DTYPE, MonotonicConstraint
+from .splitting import Splitter
 from .histogram import HistogramBuilder
 from .predictor import TreePredictor
-from .splitting import Splitter
 from .utils import sum_parallel
+from .common import PREDICTOR_RECORD_DTYPE
+from .common import X_BITSET_INNER_DTYPE
+from .common import Y_DTYPE
+from .common import MonotonicConstraint
+from ._bitset import set_raw_bitset_from_binned_bitset
+from sklearn_fork.utils._openmp_helpers import _openmp_effective_n_threads
+
 
 EPS = np.finfo(Y_DTYPE).eps  # to avoid zero division errors
 
@@ -250,7 +253,9 @@ class TreeGrower:
             n_bins_non_missing = n_bins - 1
 
         if isinstance(n_bins_non_missing, numbers.Integral):
-            n_bins_non_missing = np.array([n_bins_non_missing] * X_binned.shape[1], dtype=np.uint32)
+            n_bins_non_missing = np.array(
+                [n_bins_non_missing] * X_binned.shape[1], dtype=np.uint32
+            )
         else:
             n_bins_non_missing = np.asarray(n_bins_non_missing, dtype=np.uint32)
 
@@ -276,7 +281,11 @@ class TreeGrower:
         else:
             is_categorical = np.asarray(is_categorical, dtype=np.uint8)
 
-        if np.any(np.logical_and(is_categorical == 1, monotonic_cst != MonotonicConstraint.NO_CST)):
+        if np.any(
+            np.logical_and(
+                is_categorical == 1, monotonic_cst != MonotonicConstraint.NO_CST
+            )
+        ):
             raise ValueError("Categorical features cannot have monotonic constraints.")
 
         hessians_are_constant = hessians.shape[0] == 1
@@ -335,11 +344,18 @@ class TreeGrower:
         if X_binned.dtype != np.uint8:
             raise NotImplementedError("X_binned must be of type uint8.")
         if not X_binned.flags.f_contiguous:
-            raise ValueError("X_binned should be passed as Fortran contiguous array for maximum efficiency.")
+            raise ValueError(
+                "X_binned should be passed as Fortran contiguous "
+                "array for maximum efficiency."
+            )
         if min_gain_to_split < 0:
-            raise ValueError("min_gain_to_split={} must be positive.".format(min_gain_to_split))
+            raise ValueError(
+                "min_gain_to_split={} must be positive.".format(min_gain_to_split)
+            )
         if min_hessian_to_split < 0:
-            raise ValueError("min_hessian_to_split={} must be positive.".format(min_hessian_to_split))
+            raise ValueError(
+                "min_hessian_to_split={} must be positive.".format(min_hessian_to_split)
+            )
 
     def grow(self):
         """Grow the tree, from root to leaves."""
@@ -391,7 +407,9 @@ class TreeGrower:
         if self.interaction_cst is not None:
             self.root.interaction_cst_indices = range(len(self.interaction_cst))
             allowed_features = set().union(*self.interaction_cst)
-            self.root.allowed_features = np.fromiter(allowed_features, dtype=np.uint32, count=len(allowed_features))
+            self.root.allowed_features = np.fromiter(
+                allowed_features, dtype=np.uint32, count=len(allowed_features)
+            )
 
         tic = time()
         self.root.histograms = self.histogram_builder.compute_histograms_brute(
@@ -485,14 +503,18 @@ class TreeGrower:
                 left_child_node.allowed_features,
                 left_child_node.interaction_cst_indices,
             ) = self._compute_interactions(node)
-            right_child_node.interaction_cst_indices = left_child_node.interaction_cst_indices
+            right_child_node.interaction_cst_indices = (
+                left_child_node.interaction_cst_indices
+            )
             right_child_node.allowed_features = left_child_node.allowed_features
 
         if not self.has_missing_values[node.split_info.feature_idx]:
             # If no missing values are encountered at fit time, then samples
             # with missing values during predict() will go to whichever child
             # has the most samples.
-            node.split_info.missing_go_to_left = left_child_node.n_samples > right_child_node.n_samples
+            node.split_info.missing_go_to_left = (
+                left_child_node.n_samples > right_child_node.n_samples
+            )
 
         self.n_nodes += 2
         self.n_categorical_splits += node.split_info.is_categorical
@@ -516,12 +538,18 @@ class TreeGrower:
         if self.with_monotonic_cst:
             # Set value bounds for respecting monotonic constraints
             # See test_nodes_values() for details
-            if self.monotonic_cst[node.split_info.feature_idx] == MonotonicConstraint.NO_CST:
+            if (
+                self.monotonic_cst[node.split_info.feature_idx]
+                == MonotonicConstraint.NO_CST
+            ):
                 lower_left = lower_right = node.children_lower_bound
                 upper_left = upper_right = node.children_upper_bound
             else:
                 mid = (left_child_node.value + right_child_node.value) / 2
-                if self.monotonic_cst[node.split_info.feature_idx] == MonotonicConstraint.POS:
+                if (
+                    self.monotonic_cst[node.split_info.feature_idx]
+                    == MonotonicConstraint.POS
+                ):
                     lower_left, upper_left = node.children_lower_bound, mid
                     lower_right, upper_right = mid, node.children_upper_bound
                 else:  # NEG
@@ -555,10 +583,12 @@ class TreeGrower:
             smallest_child.histograms = self.histogram_builder.compute_histograms_brute(
                 smallest_child.sample_indices, smallest_child.allowed_features
             )
-            largest_child.histograms = self.histogram_builder.compute_histograms_subtraction(
-                node.histograms,
-                smallest_child.histograms,
-                smallest_child.allowed_features,
+            largest_child.histograms = (
+                self.histogram_builder.compute_histograms_subtraction(
+                    node.histograms,
+                    smallest_child.histograms,
+                    smallest_child.allowed_features,
+                )
             )
             self.total_compute_hist_time += time() - tic
 
@@ -655,8 +685,12 @@ class TreeGrower:
         A TreePredictor object.
         """
         predictor_nodes = np.zeros(self.n_nodes, dtype=PREDICTOR_RECORD_DTYPE)
-        binned_left_cat_bitsets = np.zeros((self.n_categorical_splits, 8), dtype=X_BITSET_INNER_DTYPE)
-        raw_left_cat_bitsets = np.zeros((self.n_categorical_splits, 8), dtype=X_BITSET_INNER_DTYPE)
+        binned_left_cat_bitsets = np.zeros(
+            (self.n_categorical_splits, 8), dtype=X_BITSET_INNER_DTYPE
+        )
+        raw_left_cat_bitsets = np.zeros(
+            (self.n_categorical_splits, 8), dtype=X_BITSET_INNER_DTYPE
+        )
         _fill_predictor_arrays(
             predictor_nodes,
             binned_left_cat_bitsets,
@@ -665,7 +699,9 @@ class TreeGrower:
             binning_thresholds,
             self.n_bins_non_missing,
         )
-        return TreePredictor(predictor_nodes, binned_left_cat_bitsets, raw_left_cat_bitsets)
+        return TreePredictor(
+            predictor_nodes, binned_left_cat_bitsets, raw_left_cat_bitsets
+        )
 
 
 def _fill_predictor_arrays(

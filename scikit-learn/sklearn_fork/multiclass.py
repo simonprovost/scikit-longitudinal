@@ -34,31 +34,29 @@ case.
 # License: BSD 3 clause
 
 import array
-import itertools
-import warnings
 from numbers import Integral, Real
-
 import numpy as np
+import warnings
 import scipy.sparse as sp
+import itertools
 
-from .base import (
-    BaseEstimator,
-    ClassifierMixin,
-    MetaEstimatorMixin,
-    MultiOutputMixin,
-    clone,
-    is_classifier,
-    is_regressor,
-)
-from .metrics.pairwise import pairwise_distances_argmin
+from .base import BaseEstimator, ClassifierMixin, clone, is_classifier
+from .base import MultiOutputMixin
+from .base import MetaEstimatorMixin, is_regressor
 from .preprocessing import LabelBinarizer
+from .metrics.pairwise import pairwise_distances_argmin
 from .utils import check_random_state
 from .utils._param_validation import HasMethods, Interval
 from .utils._tags import _safe_tags
+from .utils.validation import _num_samples
+from .utils.validation import check_is_fitted
+from .utils.multiclass import (
+    _check_partial_fit_first_call,
+    check_classification_targets,
+    _ovr_decision_function,
+)
 from .utils.metaestimators import _safe_split, available_if
-from .utils.multiclass import _check_partial_fit_first_call, _ovr_decision_function, check_classification_targets
-from .utils.parallel import Parallel, delayed
-from .utils.validation import _num_samples, check_is_fitted
+from .utils.parallel import delayed, Parallel
 
 __all__ = [
     "OneVsRestClassifier",
@@ -76,7 +74,9 @@ def _fit_binary(estimator, X, y, classes=None):
                 c = 0
             else:
                 c = y[0]
-            warnings.warn("Label %s is present in all training examples." % str(classes[c]))
+            warnings.warn(
+                "Label %s is present in all training examples." % str(classes[c])
+            )
         estimator = _ConstantPredictor().fit(X, unique_y)
     else:
         estimator = clone(estimator)
@@ -113,8 +113,12 @@ def _threshold_for_binary_predict(estimator):
 
 class _ConstantPredictor(BaseEstimator):
     def fit(self, X, y):
-        check_params = dict(force_all_finite=False, dtype=None, ensure_2d=False, accept_sparse=True)
-        self._validate_data(X, y, reset=True, validate_separately=(check_params, check_params))
+        check_params = dict(
+            force_all_finite=False, dtype=None, ensure_2d=False, accept_sparse=True
+        )
+        self._validate_data(
+            X, y, reset=True, validate_separately=(check_params, check_params)
+        )
         self.y_ = y
         return self
 
@@ -165,11 +169,14 @@ def _estimators_has(attr):
     values has it too. This function is used together with `avaliable_if`.
     """
     return lambda self: (
-        hasattr(self.estimator, attr) or (hasattr(self, "estimators_") and hasattr(self.estimators_[0], attr))
+        hasattr(self.estimator, attr)
+        or (hasattr(self, "estimators_") and hasattr(self.estimators_[0], attr))
     )
 
 
-class OneVsRestClassifier(MultiOutputMixin, ClassifierMixin, MetaEstimatorMixin, BaseEstimator):
+class OneVsRestClassifier(
+    MultiOutputMixin, ClassifierMixin, MetaEstimatorMixin, BaseEstimator
+):
     """One-vs-the-rest (OvR) multiclass strategy.
 
     Also known as one-vs-all, this strategy consists in fitting one classifier
@@ -372,7 +379,11 @@ class OneVsRestClassifier(MultiOutputMixin, ClassifierMixin, MetaEstimatorMixin,
             self._validate_params()
 
             if not hasattr(self.estimator, "partial_fit"):
-                raise ValueError(("Base estimator {0}, doesn't have partial_fit method").format(self.estimator))
+                raise ValueError(
+                    ("Base estimator {0}, doesn't have partial_fit method").format(
+                        self.estimator
+                    )
+                )
             self.estimators_ = [clone(self.estimator) for _ in range(self.n_classes_)]
 
             # A sparse LabelBinarizer, with sparse_output=True, has been
@@ -384,7 +395,9 @@ class OneVsRestClassifier(MultiOutputMixin, ClassifierMixin, MetaEstimatorMixin,
 
         if len(np.setdiff1d(y, self.classes_)):
             raise ValueError(
-                ("Mini-batch contains {0} while classes " + "must be subset of {1}").format(np.unique(y), self.classes_)
+                (
+                    "Mini-batch contains {0} while classes " + "must be subset of {1}"
+                ).format(np.unique(y), self.classes_)
             )
 
         Y = self.label_binarizer_.transform(y)
@@ -392,7 +405,8 @@ class OneVsRestClassifier(MultiOutputMixin, ClassifierMixin, MetaEstimatorMixin,
         columns = (col.toarray().ravel() for col in Y.T)
 
         self.estimators_ = Parallel(n_jobs=self.n_jobs)(
-            delayed(_partial_fit_binary)(estimator, X, column) for estimator, column in zip(self.estimators_, columns)
+            delayed(_partial_fit_binary)(estimator, X, column)
+            for estimator, column in zip(self.estimators_, columns)
         )
 
         if hasattr(self.estimators_[0], "n_features_in_"):
@@ -433,7 +447,9 @@ class OneVsRestClassifier(MultiOutputMixin, ClassifierMixin, MetaEstimatorMixin,
                 indices.extend(np.where(_predict_binary(e, X) > thresh)[0])
                 indptr.append(len(indices))
             data = np.ones(len(indices), dtype=int)
-            indicator = sp.csc_matrix((data, indices, indptr), shape=(n_samples, len(self.estimators_)))
+            indicator = sp.csc_matrix(
+                (data, indices, indptr), shape=(n_samples, len(self.estimators_))
+            )
             return self.label_binarizer_.inverse_transform(indicator)
 
     @available_if(_estimators_has("predict_proba"))
@@ -502,7 +518,9 @@ class OneVsRestClassifier(MultiOutputMixin, ClassifierMixin, MetaEstimatorMixin,
         check_is_fitted(self)
         if len(self.estimators_) == 1:
             return self.estimators_[0].decision_function(X)
-        return np.array([est.decision_function(X).ravel() for est in self.estimators_]).T
+        return np.array(
+            [est.decision_function(X).ravel() for est in self.estimators_]
+        ).T
 
     @property
     def multilabel_(self):
@@ -655,18 +673,24 @@ class OneVsOneClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimator):
         """
         self._validate_params()
         # We need to validate the data because we do a safe_indexing later.
-        X, y = self._validate_data(X, y, accept_sparse=["csr", "csc"], force_all_finite=False)
+        X, y = self._validate_data(
+            X, y, accept_sparse=["csr", "csc"], force_all_finite=False
+        )
         check_classification_targets(y)
 
         self.classes_ = np.unique(y)
         if len(self.classes_) == 1:
-            raise ValueError("OneVsOneClassifier can not be fit when only one class is present.")
+            raise ValueError(
+                "OneVsOneClassifier can not be fit when only one class is present."
+            )
         n_classes = self.classes_.shape[0]
         estimators_indices = list(
             zip(
                 *(
                     Parallel(n_jobs=self.n_jobs)(
-                        delayed(_fit_ovo_binary)(self.estimator, X, y, self.classes_[i], self.classes_[j])
+                        delayed(_fit_ovo_binary)(
+                            self.estimator, X, y, self.classes_[i], self.classes_[j]
+                        )
                         for i in range(n_classes)
                         for j in range(i + 1, n_classes)
                     )
@@ -713,11 +737,16 @@ class OneVsOneClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimator):
         if first_call:
             self._validate_params()
 
-            self.estimators_ = [clone(self.estimator) for _ in range(self.n_classes_ * (self.n_classes_ - 1) // 2)]
+            self.estimators_ = [
+                clone(self.estimator)
+                for _ in range(self.n_classes_ * (self.n_classes_ - 1) // 2)
+            ]
 
         if len(np.setdiff1d(y, self.classes_)):
             raise ValueError(
-                "Mini-batch contains {0} while it must be subset of {1}".format(np.unique(y), self.classes_)
+                "Mini-batch contains {0} while it must be subset of {1}".format(
+                    np.unique(y), self.classes_
+                )
             )
 
         X, y = self._validate_data(
@@ -730,7 +759,9 @@ class OneVsOneClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimator):
         check_classification_targets(y)
         combinations = itertools.combinations(range(self.n_classes_), 2)
         self.estimators_ = Parallel(n_jobs=self.n_jobs)(
-            delayed(_partial_fit_ovo_binary)(estimator, X, y, self.classes_[i], self.classes_[j])
+            delayed(_partial_fit_ovo_binary)(
+                estimator, X, y, self.classes_[i], self.classes_[j]
+            )
             for estimator, (i, j) in zip(self.estimators_, (combinations))
         )
 
@@ -800,8 +831,12 @@ class OneVsOneClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimator):
         else:
             Xs = [X[:, idx] for idx in indices]
 
-        predictions = np.vstack([est.predict(Xi) for est, Xi in zip(self.estimators_, Xs)]).T
-        confidences = np.vstack([_predict_binary(est, Xi) for est, Xi in zip(self.estimators_, Xs)]).T
+        predictions = np.vstack(
+            [est.predict(Xi) for est, Xi in zip(self.estimators_, Xs)]
+        ).T
+        confidences = np.vstack(
+            [_predict_binary(est, Xi) for est, Xi in zip(self.estimators_, Xs)]
+        ).T
         Y = _ovr_decision_function(predictions, confidences, len(self.classes_))
         if self.n_classes_ == 2:
             return Y[:, 1]
@@ -958,7 +993,9 @@ class OutputCodeClassifier(MetaEstimatorMixin, ClassifierMixin, BaseEstimator):
         self.classes_ = np.unique(y)
         n_classes = self.classes_.shape[0]
         if n_classes == 0:
-            raise ValueError("OutputCodeClassifier can not be fit when no class is present.")
+            raise ValueError(
+                "OutputCodeClassifier can not be fit when no class is present."
+            )
         code_size_ = int(n_classes * self.code_size)
 
         # FIXME: there are more elaborate methods than generating the codebook

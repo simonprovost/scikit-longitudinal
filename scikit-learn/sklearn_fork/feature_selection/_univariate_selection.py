@@ -5,19 +5,19 @@
 # License: BSD 3 clause
 
 
-import warnings
-from numbers import Integral, Real
-
 import numpy as np
+import warnings
+
+from numbers import Integral, Real
 from scipy import special, stats
 from scipy.sparse import issparse
 
 from ..base import BaseEstimator
 from ..preprocessing import LabelBinarizer
-from ..utils import as_float_array, check_array, check_X_y, safe_mask, safe_sqr
-from ..utils._param_validation import Interval, StrOptions, validate_params
-from ..utils.extmath import row_norms, safe_sparse_dot
+from ..utils import as_float_array, check_array, check_X_y, safe_sqr, safe_mask
+from ..utils.extmath import safe_sparse_dot, row_norms
 from ..utils.validation import check_is_fitted
+from ..utils._param_validation import Interval, StrOptions, validate_params
 from ._base import SelectorMixin
 
 
@@ -430,7 +430,9 @@ def f_regression(X, y, *, center=True, force_finite=True):
     SelectPercentile: Select features based on percentile of the highest
         scores.
     """
-    correlation_coefficient = r_regression(X, y, center=center, force_finite=force_finite)
+    correlation_coefficient = r_regression(
+        X, y, center=center, force_finite=force_finite
+    )
     deg_of_freedom = y.size - (2 if center else 1)
 
     corr_coef_squared = correlation_coefficient**2
@@ -490,7 +492,9 @@ class _BaseFilter(SelectorMixin, BaseEstimator):
         """
         self._validate_params()
 
-        X, y = self._validate_data(X, y, accept_sparse=["csr", "csc"], multi_output=True)
+        X, y = self._validate_data(
+            X, y, accept_sparse=["csr", "csc"], multi_output=True
+        )
 
         self._check_params(X, y)
         score_func_ret = self.score_func(X, y)
@@ -694,7 +698,8 @@ class SelectKBest(_BaseFilter):
     def _check_params(self, X, y):
         if not isinstance(self.k, str) and self.k > X.shape[1]:
             raise ValueError(
-                f"k should be <= n_features = {X.shape[1]}; got {self.k}. Use k='all' to return all features."
+                f"k should be <= n_features = {X.shape[1]}; "
+                f"got {self.k}. Use k='all' to return all features."
             )
 
     def _get_support_mask(self):
@@ -877,7 +882,9 @@ class SelectFdr(_BaseFilter):
 
         n_features = len(self.pvalues_)
         sv = np.sort(self.pvalues_)
-        selected = sv[sv <= float(self.alpha) / n_features * np.arange(1, n_features + 1)]
+        selected = sv[
+            sv <= float(self.alpha) / n_features * np.arange(1, n_features + 1)
+        ]
         if selected.size == 0:
             return np.zeros_like(self.pvalues_, dtype=bool)
         return self.pvalues_ <= selected.max()

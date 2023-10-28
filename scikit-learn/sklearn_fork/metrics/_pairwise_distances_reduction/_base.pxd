@@ -4,7 +4,8 @@
 
 from cython cimport final
 
-from ...utils._typedefs cimport float64_t, intp_t
+from ...utils._typedefs cimport intp_t, float64_t
+
 from ._datasets_pair cimport DatasetsPair64
 
 

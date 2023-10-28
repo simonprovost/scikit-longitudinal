@@ -50,7 +50,9 @@ learning_rate = 1.0
 from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.tree import DecisionTreeClassifier
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=2_000, shuffle=False)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=2_000, shuffle=False
+)
 
 dt_stump = DecisionTreeClassifier(max_depth=1, min_samples_leaf=1)
 dt_stump.fit(X_train, y_train)

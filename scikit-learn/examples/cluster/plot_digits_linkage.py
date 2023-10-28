@@ -34,7 +34,8 @@ from time import time
 
 import numpy as np
 from matplotlib import pyplot as plt
-from sklearn_fork import datasets, manifold
+
+from sklearn_fork import manifold, datasets
 
 digits = datasets.load_digits()
 X, y = digits.data, digits.target

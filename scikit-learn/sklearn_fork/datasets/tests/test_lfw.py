@@ -8,17 +8,19 @@ more than a couple of minutes) but as the dataset loader is leveraging
 joblib, successive runs will be fast (less than 200ms).
 """
 
-import os
 import random
+import os
 import shutil
 import tempfile
-from functools import partial
-
 import numpy as np
 import pytest
-from sklearn_fork.datasets import fetch_lfw_pairs, fetch_lfw_people
-from sklearn_fork.datasets.tests.test_common import check_return_X_y
+from functools import partial
+from sklearn_fork.datasets import fetch_lfw_pairs
+from sklearn_fork.datasets import fetch_lfw_people
+
 from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.datasets.tests.test_common import check_return_X_y
+
 
 SCIKIT_LEARN_DATA = None
 SCIKIT_LEARN_EMPTY_DATA = None
@@ -84,7 +86,12 @@ def setup_module():
             first_name, second_name = random_state.sample(FAKE_NAMES, 2)
             first_index = np_rng.choice(np.arange(counts[first_name]))
             second_index = np_rng.choice(np.arange(counts[second_name]))
-            f.write(("%s\t%d\t%s\t%d\n" % (first_name, first_index, second_name, second_index)).encode())
+            f.write(
+                (
+                    "%s\t%d\t%s\t%d\n"
+                    % (first_name, first_index, second_name, second_index)
+                ).encode()
+            )
 
     with open(os.path.join(LFW_HOME, "pairsDevTest.txt"), "wb") as f:
         f.write(b"Fake place holder that won't be tested")
@@ -107,7 +114,9 @@ def test_load_empty_lfw_people():
 
 
 def test_load_fake_lfw_people():
-    lfw_people = fetch_lfw_people(data_home=SCIKIT_LEARN_DATA, min_faces_per_person=3, download_if_missing=False)
+    lfw_people = fetch_lfw_people(
+        data_home=SCIKIT_LEARN_DATA, min_faces_per_person=3, download_if_missing=False
+    )
 
     # The data is croped around the center as a rectangular bounding box
     # around the face. Colors are converted to gray levels:
@@ -134,7 +143,9 @@ def test_load_fake_lfw_people():
     assert lfw_people.DESCR.startswith(".. _labeled_faces_in_the_wild_dataset:")
 
     # the ids and class names are the same as previously
-    assert_array_equal(lfw_people.target, [0, 0, 1, 6, 5, 6, 3, 6, 0, 3, 6, 1, 2, 4, 5, 1, 2])
+    assert_array_equal(
+        lfw_people.target, [0, 0, 1, 6, 5, 6, 3, 6, 0, 3, 6, 1, 2, 4, 5, 1, 2]
+    )
     assert_array_equal(
         lfw_people.target_names,
         [
@@ -175,7 +186,9 @@ def test_load_empty_lfw_pairs():
 
 
 def test_load_fake_lfw_pairs():
-    lfw_pairs_train = fetch_lfw_pairs(data_home=SCIKIT_LEARN_DATA, download_if_missing=False)
+    lfw_pairs_train = fetch_lfw_pairs(
+        data_home=SCIKIT_LEARN_DATA, download_if_missing=False
+    )
 
     # The data is croped around the center as a rectangular bounding box
     # around the face. Colors are converted to gray levels:

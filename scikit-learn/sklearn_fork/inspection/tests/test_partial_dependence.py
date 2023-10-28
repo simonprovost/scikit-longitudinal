@@ -5,35 +5,42 @@ import warnings
 
 import numpy as np
 import pytest
+
 import sklearn_fork
-from sklearn_fork.base import BaseEstimator, ClassifierMixin, clone
-from sklearn_fork.cluster import KMeans
-from sklearn_fork.compose import make_column_transformer
-from sklearn_fork.datasets import load_iris, make_classification, make_regression
-from sklearn_fork.dummy import DummyClassifier
-from sklearn_fork.ensemble import (
-    GradientBoostingClassifier,
-    GradientBoostingRegressor,
-    HistGradientBoostingClassifier,
-    HistGradientBoostingRegressor,
-    RandomForestRegressor,
-)
-from sklearn_fork.exceptions import NotFittedError
 from sklearn_fork.inspection import partial_dependence
 from sklearn_fork.inspection._partial_dependence import (
     _grid_from_X,
     _partial_dependence_brute,
     _partial_dependence_recursion,
 )
-from sklearn_fork.linear_model import LinearRegression, LogisticRegression, MultiTaskLasso
-from sklearn_fork.metrics import r2_score
-from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import PolynomialFeatures, RobustScaler, StandardScaler, scale
+from sklearn_fork.ensemble import GradientBoostingClassifier
+from sklearn_fork.ensemble import GradientBoostingRegressor
+from sklearn_fork.ensemble import RandomForestRegressor
+from sklearn_fork.ensemble import HistGradientBoostingClassifier
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
+from sklearn_fork.linear_model import LinearRegression
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.linear_model import MultiTaskLasso
 from sklearn_fork.tree import DecisionTreeRegressor
-from sklearn_fork.tree.tests.test_tree import assert_is_subtree
+from sklearn_fork.datasets import load_iris
+from sklearn_fork.datasets import make_classification, make_regression
+from sklearn_fork.cluster import KMeans
+from sklearn_fork.compose import make_column_transformer
+from sklearn_fork.metrics import r2_score
+from sklearn_fork.preprocessing import PolynomialFeatures
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.preprocessing import RobustScaler
+from sklearn_fork.preprocessing import scale
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.dummy import DummyClassifier
+from sklearn_fork.base import BaseEstimator, ClassifierMixin, clone
+from sklearn_fork.exceptions import NotFittedError
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import assert_array_equal
 from sklearn_fork.utils import _IS_32BIT
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
 from sklearn_fork.utils.validation import check_random_state
+from sklearn_fork.tree.tests.test_tree import assert_is_subtree
+
 
 # toy sample
 X = [[-2, -1], [-1, -1], [-1, -2], [1, 1], [1, 2], [2, 1]]
@@ -43,7 +50,9 @@ y = [-1, -1, -1, 1, 1, 1]
 # (X, y), n_targets  <-- as expected in the output of partial_dep()
 binary_classification_data = (make_classification(n_samples=50, random_state=0), 1)
 multiclass_classification_data = (
-    make_classification(n_samples=50, n_classes=3, n_clusters_per_class=1, random_state=0),
+    make_classification(
+        n_samples=50, n_classes=3, n_clusters_per_class=1, random_state=0
+    ),
     3,
 )
 regression_data = (make_regression(n_samples=50, random_state=0), 1)
@@ -143,7 +152,9 @@ def test_grid_from_X():
 
     # n_unique_values > grid_resolution
     X = rng.normal(size=(20, 2))
-    grid, axes = _grid_from_X(X, percentiles, is_categorical, grid_resolution=grid_resolution)
+    grid, axes = _grid_from_X(
+        X, percentiles, is_categorical, grid_resolution=grid_resolution
+    )
     assert grid.shape == (grid_resolution * grid_resolution, X.shape[1])
     assert np.asarray(axes).shape == (2, grid_resolution)
 
@@ -151,7 +162,9 @@ def test_grid_from_X():
     n_unique_values = 12
     X[n_unique_values - 1 :, 0] = 12345
     rng.shuffle(X)  # just to make sure the order is irrelevant
-    grid, axes = _grid_from_X(X, percentiles, is_categorical, grid_resolution=grid_resolution)
+    grid, axes = _grid_from_X(
+        X, percentiles, is_categorical, grid_resolution=grid_resolution
+    )
     assert grid.shape == (n_unique_values * grid_resolution, X.shape[1])
     # axes is a list of arrays of different shapes
     assert axes[0].shape == (n_unique_values,)
@@ -173,7 +186,9 @@ def test_grid_from_X_with_categorical(grid_resolution):
     percentiles = (0.05, 0.95)
     is_categorical = [True]
     X = pd.DataFrame({"cat_feature": ["A", "B", "C", "A", "B", "D", "E"]})
-    grid, axes = _grid_from_X(X, percentiles, is_categorical, grid_resolution=grid_resolution)
+    grid, axes = _grid_from_X(
+        X, percentiles, is_categorical, grid_resolution=grid_resolution
+    )
     assert grid.shape == (5, X.shape[1])
     assert axes[0].shape == (5,)
 
@@ -194,7 +209,9 @@ def test_grid_from_X_heterogeneous_type(grid_resolution):
     )
     nunique = X.nunique()
 
-    grid, axes = _grid_from_X(X, percentiles, is_categorical, grid_resolution=grid_resolution)
+    grid, axes = _grid_from_X(
+        X, percentiles, is_categorical, grid_resolution=grid_resolution
+    )
     if grid_resolution == 3:
         assert grid.shape == (15, 2)
         assert axes[0].shape[0] == nunique["num"]
@@ -260,7 +277,9 @@ def test_partial_dependence_helpers(est, method, target_feature):
     grid = np.array([[0.5], [123]])
 
     if method == "brute":
-        pdp, predictions = _partial_dependence_brute(est, grid, features, X, response_method="auto")
+        pdp, predictions = _partial_dependence_brute(
+            est, grid, features, X, response_method="auto"
+        )
     else:
         pdp = _partial_dependence_recursion(est, grid, features)
 
@@ -391,7 +410,9 @@ def test_recursion_decision_function(est, target_feature):
     (
         LinearRegression(),
         GradientBoostingRegressor(random_state=0),
-        HistGradientBoostingRegressor(random_state=0, min_samples_leaf=1, max_leaf_nodes=None, max_iter=1),
+        HistGradientBoostingRegressor(
+            random_state=0, min_samples_leaf=1, max_leaf_nodes=None, max_iter=1
+        ),
         DecisionTreeRegressor(random_state=0),
     ),
 )
@@ -412,7 +433,9 @@ def test_partial_dependence_easy_target(est, power):
 
     est.fit(X, y)
 
-    pdp = partial_dependence(est, features=[target_variable], X=X, grid_resolution=1000, kind="average")
+    pdp = partial_dependence(
+        est, features=[target_variable], X=X, grid_resolution=1000, kind="average"
+    )
 
     new_X = pdp["grid_values"][0].reshape(-1, 1)
     new_y = pdp["average"][0]
@@ -446,7 +469,9 @@ def test_multiclass_multioutput(Estimator):
     est = Estimator()
     est.fit(X, y)
 
-    with pytest.raises(ValueError, match="Multiclass-multioutput estimators are not supported"):
+    with pytest.raises(
+        ValueError, match="Multiclass-multioutput estimators are not supported"
+    ):
         partial_dependence(est, X, [0])
 
 
@@ -510,7 +535,9 @@ def test_partial_dependence_error(estimator, params, err_msg):
         partial_dependence(estimator, X, **params)
 
 
-@pytest.mark.parametrize("estimator", [LinearRegression(), GradientBoostingClassifier(random_state=0)])
+@pytest.mark.parametrize(
+    "estimator", [LinearRegression(), GradientBoostingClassifier(random_state=0)]
+)
 @pytest.mark.parametrize("features", [-1, 10000])
 def test_partial_dependence_unknown_feature_indices(estimator, features):
     X, y = make_classification(random_state=0)
@@ -521,7 +548,9 @@ def test_partial_dependence_unknown_feature_indices(estimator, features):
         partial_dependence(estimator, X, [features])
 
 
-@pytest.mark.parametrize("estimator", [LinearRegression(), GradientBoostingClassifier(random_state=0)])
+@pytest.mark.parametrize(
+    "estimator", [LinearRegression(), GradientBoostingClassifier(random_state=0)]
+)
 def test_partial_dependence_unknown_feature_string(estimator):
     pd = pytest.importorskip("pandas")
     X, y = make_classification(random_state=0)
@@ -534,7 +563,9 @@ def test_partial_dependence_unknown_feature_string(estimator):
         partial_dependence(estimator, df, features)
 
 
-@pytest.mark.parametrize("estimator", [LinearRegression(), GradientBoostingClassifier(random_state=0)])
+@pytest.mark.parametrize(
+    "estimator", [LinearRegression(), GradientBoostingClassifier(random_state=0)]
+)
 def test_partial_dependence_X_list(estimator):
     # check that array-like objects are accepted
     X, y = make_classification(random_state=0)
@@ -549,10 +580,14 @@ def test_warning_recursion_non_constant_init():
     gbc = GradientBoostingClassifier(init=DummyClassifier(), random_state=0)
     gbc.fit(X, y)
 
-    with pytest.warns(UserWarning, match="Using recursion method with a non-constant init predictor"):
+    with pytest.warns(
+        UserWarning, match="Using recursion method with a non-constant init predictor"
+    ):
         partial_dependence(gbc, X, [0], method="recursion", kind="average")
 
-    with pytest.warns(UserWarning, match="Using recursion method with a non-constant init predictor"):
+    with pytest.warns(
+        UserWarning, match="Using recursion method with a non-constant init predictor"
+    ):
         partial_dependence(gbc, X, [0], method="recursion", kind="average")
 
 
@@ -587,7 +622,9 @@ def test_hist_gbdt_sw_not_supported():
     clf = HistGradientBoostingRegressor(random_state=1)
     clf.fit(X, y, sample_weight=np.ones(len(X)))
 
-    with pytest.raises(NotImplementedError, match="does not support partial dependence"):
+    with pytest.raises(
+        NotImplementedError, match="does not support partial dependence"
+    ):
         partial_dependence(clf, X, features=[1])
 
 
@@ -603,7 +640,9 @@ def test_partial_dependence_pipeline():
     pipe.fit(iris.data, iris.target)
 
     features = 0
-    pdp_pipe = partial_dependence(pipe, iris.data, features=[features], grid_resolution=10, kind="average")
+    pdp_pipe = partial_dependence(
+        pipe, iris.data, features=[features], grid_resolution=10, kind="average"
+    )
     pdp_clf = partial_dependence(
         clf,
         scaler.transform(iris.data),
@@ -654,7 +693,9 @@ def test_partial_dependence_dataframe(estimator, preprocessor, features):
 
     pipe = make_pipeline(preprocessor, estimator)
     pipe.fit(df, iris.target)
-    pdp_pipe = partial_dependence(pipe, df, features=features, grid_resolution=10, kind="average")
+    pdp_pipe = partial_dependence(
+        pipe, df, features=features, grid_resolution=10, kind="average"
+    )
 
     # the column transformer will reorder the column when transforming
     # we mixed the index to be sure that we are computing the partial
@@ -707,9 +748,13 @@ def test_partial_dependence_feature_type(features, expected_pd_shape):
         (StandardScaler(), [iris.feature_names[i] for i in (0, 2)]),
         (RobustScaler(), [iris.feature_names[i] for i in (1, 3)]),
     )
-    pipe = make_pipeline(preprocessor, LogisticRegression(max_iter=1000, random_state=0))
+    pipe = make_pipeline(
+        preprocessor, LogisticRegression(max_iter=1000, random_state=0)
+    )
     pipe.fit(df, iris.target)
-    pdp_pipe = partial_dependence(pipe, df, features=features, grid_resolution=10, kind="average")
+    pdp_pipe = partial_dependence(
+        pipe, df, features=features, grid_resolution=10, kind="average"
+    )
     assert pdp_pipe["average"].shape == expected_pd_shape
     assert len(pdp_pipe["grid_values"]) == len(pdp_pipe["average"].shape) - 1
 
@@ -725,7 +770,9 @@ def test_partial_dependence_feature_type(features, expected_pd_shape):
 )
 def test_partial_dependence_unfitted(estimator):
     X = iris.data
-    preprocessor = make_column_transformer((StandardScaler(), [0, 2]), (RobustScaler(), [1, 3]))
+    preprocessor = make_column_transformer(
+        (StandardScaler(), [0, 2]), (RobustScaler(), [1, 3])
+    )
     pipe = make_pipeline(preprocessor, estimator)
     with pytest.raises(NotFittedError, match="is not fitted yet"):
         partial_dependence(pipe, X, features=[0, 2], grid_resolution=10)
@@ -761,7 +808,10 @@ def test_partial_dependence_bunch_values_deprecated():
 
     pdp_avg = partial_dependence(est, X=X, features=[1, 2], kind="average")
 
-    msg = "Key: 'values', is deprecated in 1.3 and will be removed in 1.5. Please use 'grid_values' instead"
+    msg = (
+        "Key: 'values', is deprecated in 1.3 and will be "
+        "removed in 1.5. Please use 'grid_values' instead"
+    )
 
     with warnings.catch_warnings():
         # Does not raise warnings with "grid_values"

@@ -7,9 +7,11 @@ is too big to use in unit-testing.
 """
 
 from functools import partial
-
 import pytest
-from sklearn_fork.datasets.tests.test_common import check_as_frame, check_pandas_dependency_message, check_return_X_y
+
+from sklearn_fork.datasets.tests.test_common import check_as_frame
+from sklearn_fork.datasets.tests.test_common import check_pandas_dependency_message
+from sklearn_fork.datasets.tests.test_common import check_return_X_y
 
 
 @pytest.mark.parametrize("as_frame", [True, False])
@@ -23,7 +25,9 @@ from sklearn_fork.datasets.tests.test_common import check_as_frame, check_pandas
         ("smtp", 9571, 3),
     ],
 )
-def test_fetch_kddcup99_percent10(fetch_kddcup99_fxt, as_frame, subset, n_samples, n_features):
+def test_fetch_kddcup99_percent10(
+    fetch_kddcup99_fxt, as_frame, subset, n_samples, n_features
+):
     data = fetch_kddcup99_fxt(subset=subset, as_frame=as_frame)
     assert data.data.shape == (n_samples, n_features)
     assert data.target.shape == (n_samples,)
@@ -73,7 +77,10 @@ def test_corrupted_file_error_message(fetch_kddcup99_fxt, tmp_path):
     with samples_path.open("wb") as f:
         f.write(b"THIS IS CORRUPTED")
 
-    msg = f"The cache for fetch_kddcup99 is invalid, please delete {str(kddcup99_dir)} and run the fetch_kddcup99 again"
+    msg = (
+        "The cache for fetch_kddcup99 is invalid, please "
+        f"delete {str(kddcup99_dir)} and run the fetch_kddcup99 again"
+    )
 
     with pytest.raises(IOError, match=msg):
         fetch_kddcup99_fxt(data_home=str(tmp_path))

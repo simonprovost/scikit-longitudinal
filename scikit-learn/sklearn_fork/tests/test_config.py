@@ -3,9 +3,10 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 
 import pytest
+
+from sklearn_fork import get_config, set_config, config_context
 import sklearn_fork
-from sklearn_fork import config_context, get_config, set_config
-from sklearn_fork.utils.parallel import Parallel, delayed
+from sklearn_fork.utils.parallel import delayed, Parallel
 
 
 def test_config_context():
@@ -140,7 +141,10 @@ def test_config_threadsafe():
     sleep_durations = [0.1, 0.2, 0.1, 0.2]
 
     with ThreadPoolExecutor(max_workers=2) as e:
-        items = [output for output in e.map(set_assume_finite, assume_finites, sleep_durations)]
+        items = [
+            output
+            for output in e.map(set_assume_finite, assume_finites, sleep_durations)
+        ]
 
     assert items == [False, True, False, True]
 

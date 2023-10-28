@@ -8,12 +8,19 @@ from typing import List
 import numpy as np
 import scipy as sp
 
+
 from ..externals import _arff
 from ..externals._arff import ArffSparseDataType
-from ..utils import _chunk_generator, check_pandas_support, get_chunk_n_rows
+from ..utils import (
+    _chunk_generator,
+    check_pandas_support,
+    get_chunk_n_rows,
+)
 
 
-def _split_sparse_columns(arff_data: ArffSparseDataType, include_columns: List) -> ArffSparseDataType:
+def _split_sparse_columns(
+    arff_data: ArffSparseDataType, include_columns: List
+) -> ArffSparseDataType:
     """Obtains several columns from sparse ARFF representation. Additionally,
     the column indices are re-labelled, given the columns that are not
     included. (e.g., when including [1, 2, 3], the columns will be relabelled
@@ -35,7 +42,9 @@ def _split_sparse_columns(arff_data: ArffSparseDataType, include_columns: List) 
         include_columns argument.
     """
     arff_data_new: ArffSparseDataType = (list(), list(), list())
-    reindexed_columns = {column_idx: array_idx for array_idx, column_idx in enumerate(include_columns)}
+    reindexed_columns = {
+        column_idx: array_idx for array_idx, column_idx in enumerate(include_columns)
+    }
     for val, row_idx, col_idx in zip(arff_data[0], arff_data[1], arff_data[2]):
         if col_idx in include_columns:
             arff_data_new[0].append(val)
@@ -44,12 +53,16 @@ def _split_sparse_columns(arff_data: ArffSparseDataType, include_columns: List) 
     return arff_data_new
 
 
-def _sparse_data_to_array(arff_data: ArffSparseDataType, include_columns: List) -> np.ndarray:
+def _sparse_data_to_array(
+    arff_data: ArffSparseDataType, include_columns: List
+) -> np.ndarray:
     # turns the sparse data back into an array (can't use toarray() function,
     # as this does only work on numeric data)
     num_obs = max(arff_data[1]) + 1
     y_shape = (num_obs, len(include_columns))
-    reindexed_columns = {column_idx: array_idx for array_idx, column_idx in enumerate(include_columns)}
+    reindexed_columns = {
+        column_idx: array_idx for array_idx, column_idx in enumerate(include_columns)
+    }
     # TODO: improve for efficiency
     y = np.empty(y_shape, dtype=np.float64)
     for val, row_idx, col_idx in zip(arff_data[0], arff_data[1], arff_data[2]):
@@ -156,11 +169,15 @@ def _liac_arff_parser(
     # we should not let LIAC-ARFF to encode the nominal attributes with NumPy
     # arrays to have only numerical values.
     encode_nominal = not (output_arrays_type == "pandas")
-    arff_container = _arff.load(stream, return_type=return_type, encode_nominal=encode_nominal)
+    arff_container = _arff.load(
+        stream, return_type=return_type, encode_nominal=encode_nominal
+    )
     columns_to_select = feature_names_to_select + target_names_to_select
 
     categories = {
-        name: cat for name, cat in arff_container["attributes"] if isinstance(cat, list) and name in columns_to_select
+        name: cat
+        for name, cat in arff_container["attributes"]
+        if isinstance(cat, list) and name in columns_to_select
     }
     if output_arrays_type == "pandas":
         pd = check_pandas_support("fetch_openml with as_frame=True")
@@ -179,7 +196,9 @@ def _liac_arff_parser(
         columns_to_keep = [col for col in columns_names if col in columns_to_select]
         dfs = [first_df[columns_to_keep]]
         for data in _chunk_generator(arff_container["data"], chunksize):
-            dfs.append(pd.DataFrame(data, columns=columns_names, copy=False)[columns_to_keep])
+            dfs.append(
+                pd.DataFrame(data, columns=columns_names, copy=False)[columns_to_keep]
+            )
         frame = pd.concat(dfs, ignore_index=True)
         del dfs, first_df
 
@@ -197,18 +216,26 @@ def _liac_arff_parser(
                 dtypes[name] = frame.dtypes[name]
         frame = frame.astype(dtypes)
 
-        X, y = _post_process_frame(frame, feature_names_to_select, target_names_to_select)
+        X, y = _post_process_frame(
+            frame, feature_names_to_select, target_names_to_select
+        )
     else:
         arff_data = arff_container["data"]
 
         feature_indices_to_select = [
-            int(openml_columns_info[col_name]["index"]) for col_name in feature_names_to_select
+            int(openml_columns_info[col_name]["index"])
+            for col_name in feature_names_to_select
         ]
-        target_indices_to_select = [int(openml_columns_info[col_name]["index"]) for col_name in target_names_to_select]
+        target_indices_to_select = [
+            int(openml_columns_info[col_name]["index"])
+            for col_name in target_names_to_select
+        ]
 
         if isinstance(arff_data, Generator):
             if shape is None:
-                raise ValueError("shape must be provided when arr['data'] is a Generator")
+                raise ValueError(
+                    "shape must be provided when arr['data'] is a Generator"
+                )
             if shape[0] == -1:
                 count = -1
             else:
@@ -234,9 +261,13 @@ def _liac_arff_parser(
             y = _sparse_data_to_array(arff_data, target_indices_to_select)
         else:
             # This should never happen
-            raise ValueError(f"Unexpected type for data obtained from arff: {type(arff_data)}")
+            raise ValueError(
+                f"Unexpected type for data obtained from arff: {type(arff_data)}"
+            )
 
-        is_classification = {col_name in categories for col_name in target_names_to_select}
+        is_classification = {
+            col_name in categories for col_name in target_names_to_select
+        }
         if not is_classification:
             # No target
             pass
@@ -251,7 +282,9 @@ def _liac_arff_parser(
                 ]
             )
         elif any(is_classification):
-            raise ValueError("Mix of nominal and non-nominal targets is not currently supported")
+            raise ValueError(
+                "Mix of nominal and non-nominal targets is not currently supported"
+            )
 
         # reshape y back to 1-D array, if there is only 1 target column;
         # back to None if there are not target columns
@@ -339,7 +372,11 @@ def _pandas_arff_parser(
             dtypes[name] = "category"
     # since we will not pass `names` when reading the ARFF file, we need to translate
     # `dtypes` from column names to column indices to pass to `pandas.read_csv`
-    dtypes_positional = {col_idx: dtypes[name] for col_idx, name in enumerate(openml_columns_info) if name in dtypes}
+    dtypes_positional = {
+        col_idx: dtypes[name]
+        for col_idx, name in enumerate(openml_columns_info)
+        if name in dtypes
+    }
 
     default_read_csv_kwargs = {
         "header": None,
@@ -389,7 +426,11 @@ def _pandas_arff_parser(
 
         return match.group("contents")
 
-    categorical_columns = [name for name, dtype in frame.dtypes.items() if isinstance(dtype, pd.CategoricalDtype)]
+    categorical_columns = [
+        name
+        for name, dtype in frame.dtypes.items()
+        if isinstance(dtype, pd.CategoricalDtype)
+    ]
     for col in categorical_columns:
         frame[col] = frame[col].cat.rename_categories(strip_single_quotes)
 
@@ -486,4 +527,6 @@ def load_arff_from_gzip_file(
             read_csv_kwargs,
         )
     else:
-        raise ValueError(f"Unknown parser: '{parser}'. Should be 'liac-arff' or 'pandas'.")
+        raise ValueError(
+            f"Unknown parser: '{parser}'. Should be 'liac-arff' or 'pandas'."
+        )

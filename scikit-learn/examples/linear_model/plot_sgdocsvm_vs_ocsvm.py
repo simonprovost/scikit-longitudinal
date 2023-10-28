@@ -19,13 +19,13 @@ show that we obtain similar results on a toy dataset.
 
 """  # noqa: E501
 
-import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork.kernel_approximation import Nystroem
-from sklearn_fork.linear_model import SGDOneClassSVM
-from sklearn_fork.pipeline import make_pipeline
+import matplotlib.pyplot as plt
+import matplotlib
 from sklearn_fork.svm import OneClassSVM
+from sklearn_fork.linear_model import SGDOneClassSVM
+from sklearn_fork.kernel_approximation import Nystroem
+from sklearn_fork.pipeline import make_pipeline
 
 font = {"weight": "normal", "size": 15}
 
@@ -65,7 +65,9 @@ Z = Z.reshape(xx.shape)
 
 # Fit the One-Class SVM using a kernel approximation and SGD
 transform = Nystroem(gamma=gamma, random_state=random_state)
-clf_sgd = SGDOneClassSVM(nu=nu, shuffle=True, fit_intercept=True, random_state=random_state, tol=1e-4)
+clf_sgd = SGDOneClassSVM(
+    nu=nu, shuffle=True, fit_intercept=True, random_state=random_state, tol=1e-4
+)
 pipe_sgd = make_pipeline(transform, clf_sgd)
 pipe_sgd.fit(X_train)
 y_pred_train_sgd = pipe_sgd.predict(X_train)

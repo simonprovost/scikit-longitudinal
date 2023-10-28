@@ -109,7 +109,11 @@ from sklearn_fork.covariance import EmpiricalCovariance, MinCovDet
 robust_cov = MinCovDet().fit(X)
 # fit a MLE estimator to data
 emp_cov = EmpiricalCovariance().fit(X)
-print("Estimated covariance matrix:\nMCD (Robust):\n{}\nMLE:\n{}".format(robust_cov.covariance_, emp_cov.covariance_))
+print(
+    "Estimated covariance matrix:\nMCD (Robust):\n{}\nMLE:\n{}".format(
+        robust_cov.covariance_, emp_cov.covariance_
+    )
+)
 
 # %%
 # To better visualize the difference, we plot contours of the
@@ -121,7 +125,9 @@ print("Estimated covariance matrix:\nMCD (Robust):\n{}\nMLE:\n{}".format(robust_
 fig, ax = plt.subplots(figsize=(10, 5))
 # Plot data set
 inlier_plot = ax.scatter(X[:, 0], X[:, 1], color="black", label="inliers")
-outlier_plot = ax.scatter(X[:, 0][-n_outliers:], X[:, 1][-n_outliers:], color="red", label="outliers")
+outlier_plot = ax.scatter(
+    X[:, 0][-n_outliers:], X[:, 1][-n_outliers:], color="red", label="outliers"
+)
 ax.set_xlim(ax.get_xlim()[0], 10.0)
 ax.set_title("Mahalanobis distances of a contaminated data set")
 
@@ -134,11 +140,15 @@ zz = np.c_[xx.ravel(), yy.ravel()]
 # Calculate the MLE based Mahalanobis distances of the meshgrid
 mahal_emp_cov = emp_cov.mahalanobis(zz)
 mahal_emp_cov = mahal_emp_cov.reshape(xx.shape)
-emp_cov_contour = plt.contour(xx, yy, np.sqrt(mahal_emp_cov), cmap=plt.cm.PuBu_r, linestyles="dashed")
+emp_cov_contour = plt.contour(
+    xx, yy, np.sqrt(mahal_emp_cov), cmap=plt.cm.PuBu_r, linestyles="dashed"
+)
 # Calculate the MCD based Mahalanobis distances
 mahal_robust_cov = robust_cov.mahalanobis(zz)
 mahal_robust_cov = mahal_robust_cov.reshape(xx.shape)
-robust_contour = ax.contour(xx, yy, np.sqrt(mahal_robust_cov), cmap=plt.cm.YlOrBr_r, linestyles="dotted")
+robust_contour = ax.contour(
+    xx, yy, np.sqrt(mahal_robust_cov), cmap=plt.cm.YlOrBr_r, linestyles="dotted"
+)
 
 # Add legend
 ax.legend(

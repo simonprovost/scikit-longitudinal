@@ -99,8 +99,12 @@ common_params = {
     "return_times": True,
 }
 
-train_sizes, _, test_scores_nb, fit_times_nb, score_times_nb = learning_curve(naive_bayes, **common_params)
-train_sizes, _, test_scores_svm, fit_times_svm, score_times_svm = learning_curve(svc, **common_params)
+train_sizes, _, test_scores_nb, fit_times_nb, score_times_nb = learning_curve(
+    naive_bayes, **common_params
+)
+train_sizes, _, test_scores_svm, fit_times_svm, score_times_svm = learning_curve(
+    svc, **common_params
+)
 
 # %%
 fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(16, 12), sharex=True)
@@ -121,7 +125,9 @@ for ax_idx, (fit_times, score_times, estimator) in enumerate(
         alpha=0.3,
     )
     ax[0, ax_idx].set_ylabel("Fit time (s)")
-    ax[0, ax_idx].set_title(f"Scalability of the {estimator.__class__.__name__} classifier")
+    ax[0, ax_idx].set_title(
+        f"Scalability of the {estimator.__class__.__name__} classifier"
+    )
 
     # scalability regarding the score time
     ax[1, ax_idx].plot(train_sizes, score_times.mean(axis=1), "o-")
@@ -165,7 +171,9 @@ for ax_idx, (fit_times, test_scores, estimator) in enumerate(
     )
     ax[ax_idx].set_ylabel("Accuracy")
     ax[ax_idx].set_xlabel("Fit time (s)")
-    ax[ax_idx].set_title(f"Performance of the {estimator.__class__.__name__} classifier")
+    ax[ax_idx].set_title(
+        f"Performance of the {estimator.__class__.__name__} classifier"
+    )
 
 plt.show()
 

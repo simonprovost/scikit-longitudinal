@@ -5,9 +5,9 @@ Data comes from a random square matrix.
 
 """
 from datetime import datetime
-
 import numpy as np
 from sklearn_fork import linear_model
+
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt

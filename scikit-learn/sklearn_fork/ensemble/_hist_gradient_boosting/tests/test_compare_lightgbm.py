@@ -1,11 +1,13 @@
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.metrics import accuracy_score
+from sklearn_fork.datasets import make_classification, make_regression
 import numpy as np
 import pytest
-from sklearn_fork.datasets import make_classification, make_regression
-from sklearn_fork.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
+
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
+from sklearn_fork.ensemble import HistGradientBoostingClassifier
 from sklearn_fork.ensemble._hist_gradient_boosting.binning import _BinMapper
 from sklearn_fork.ensemble._hist_gradient_boosting.utils import get_equivalent_estimator
-from sklearn_fork.metrics import accuracy_score
-from sklearn_fork.model_selection import train_test_split
 
 
 @pytest.mark.parametrize("seed", range(5))
@@ -28,7 +30,9 @@ from sklearn_fork.model_selection import train_test_split
         (1000, 8),
     ],
 )
-def test_same_predictions_regression(seed, loss, min_samples_leaf, n_samples, max_leaf_nodes):
+def test_same_predictions_regression(
+    seed, loss, min_samples_leaf, n_samples, max_leaf_nodes
+):
     # Make sure sklearn_fork has the same predictions as lightgbm for easy targets.
     #
     # In particular when the size of the trees are bound and the number of
@@ -57,7 +61,9 @@ def test_same_predictions_regression(seed, loss, min_samples_leaf, n_samples, ma
     max_iter = 1
     max_bins = 255
 
-    X, y = make_regression(n_samples=n_samples, n_features=5, n_informative=5, random_state=0)
+    X, y = make_regression(
+        n_samples=n_samples, n_features=5, n_informative=5, random_state=0
+    )
 
     if loss in ("gamma", "poisson"):
         # make the target positive
@@ -95,7 +101,10 @@ def test_same_predictions_regression(seed, loss, min_samples_leaf, n_samples, ma
         # TODO: We are not entirely satisfied with this lax comparison, but the root
         # cause is not clear, maybe algorithmic differences. One such example is the
         # poisson_max_delta_step parameter of LightGBM which does not exist in HGBT.
-        assert np.mean(np.isclose(pred_lightgbm, pred_sklearn, rtol=1e-2, atol=1e-2)) > 0.65
+        assert (
+            np.mean(np.isclose(pred_lightgbm, pred_sklearn, rtol=1e-2, atol=1e-2))
+            > 0.65
+        )
     else:
         # Less than 1% of the predictions may deviate more than 1e-3 in relative terms.
         assert np.mean(np.isclose(pred_lightgbm, pred_sklearn, rtol=1e-3)) > 1 - 0.01
@@ -116,7 +125,9 @@ def test_same_predictions_regression(seed, loss, min_samples_leaf, n_samples, ma
         (1000, 8),
     ],
 )
-def test_same_predictions_classification(seed, min_samples_leaf, n_samples, max_leaf_nodes):
+def test_same_predictions_classification(
+    seed, min_samples_leaf, n_samples, max_leaf_nodes
+):
     # Same as test_same_predictions_regression but for classification
     pytest.importorskip("lightgbm")
 
@@ -150,7 +161,9 @@ def test_same_predictions_classification(seed, min_samples_leaf, n_samples, max_
         min_samples_leaf=min_samples_leaf,
         max_leaf_nodes=max_leaf_nodes,
     )
-    est_lightgbm = get_equivalent_estimator(est_sklearn, lib="lightgbm", n_classes=n_classes)
+    est_lightgbm = get_equivalent_estimator(
+        est_sklearn, lib="lightgbm", n_classes=n_classes
+    )
 
     est_lightgbm.fit(X_train, y_train)
     est_sklearn.fit(X_train, y_train)
@@ -185,7 +198,9 @@ def test_same_predictions_classification(seed, min_samples_leaf, n_samples, max_
         (10000, 8),
     ],
 )
-def test_same_predictions_multiclass_classification(seed, min_samples_leaf, n_samples, max_leaf_nodes):
+def test_same_predictions_multiclass_classification(
+    seed, min_samples_leaf, n_samples, max_leaf_nodes
+):
     # Same as test_same_predictions_regression but for classification
     pytest.importorskip("lightgbm")
 
@@ -221,7 +236,9 @@ def test_same_predictions_multiclass_classification(seed, min_samples_leaf, n_sa
         min_samples_leaf=min_samples_leaf,
         max_leaf_nodes=max_leaf_nodes,
     )
-    est_lightgbm = get_equivalent_estimator(est_sklearn, lib="lightgbm", n_classes=n_classes)
+    est_lightgbm = get_equivalent_estimator(
+        est_sklearn, lib="lightgbm", n_classes=n_classes
+    )
 
     est_lightgbm.fit(X_train, y_train)
     est_sklearn.fit(X_train, y_train)

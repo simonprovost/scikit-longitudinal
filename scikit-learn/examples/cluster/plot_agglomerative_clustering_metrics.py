@@ -37,9 +37,10 @@ thus the clustering puts them in the same cluster.
 # Author: Gael Varoquaux
 # License: BSD 3-Clause or CC-0
 
-import matplotlib.patheffects as PathEffects
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as PathEffects
 import numpy as np
+
 from sklearn_fork.cluster import AgglomerativeClustering
 from sklearn_fork.metrics import pairwise_distances
 
@@ -64,7 +65,13 @@ for i, (phi, a) in enumerate([(0.5, 0.15), (0.5, 0.6), (0.3, 0.2)]):
         # Make the noise sparse
         additional_noise[np.abs(additional_noise) < 0.997] = 0
 
-        X.append(12 * ((a + amplitude_noise) * (sqr(6 * (t + phi + phase_noise))) + additional_noise))
+        X.append(
+            12
+            * (
+                (a + amplitude_noise) * (sqr(6 * (t + phi + phase_noise)))
+                + additional_noise
+            )
+        )
         y.append(i)
 
 X = np.array(X)
@@ -96,7 +103,9 @@ for index, metric in enumerate(["cosine", "euclidean", "cityblock"]):
     plt.figure(figsize=(5, 4.5))
     for i in range(n_clusters):
         for j in range(n_clusters):
-            avg_dist[i, j] = pairwise_distances(X[y == i], X[y == j], metric=metric).mean()
+            avg_dist[i, j] = pairwise_distances(
+                X[y == i], X[y == j], metric=metric
+            ).mean()
     avg_dist /= avg_dist.max()
     for i in range(n_clusters):
         for j in range(n_clusters):
@@ -107,7 +116,9 @@ for index, metric in enumerate(["cosine", "euclidean", "cityblock"]):
                 verticalalignment="center",
                 horizontalalignment="center",
             )
-            t.set_path_effects([PathEffects.withStroke(linewidth=5, foreground="w", alpha=0.5)])
+            t.set_path_effects(
+                [PathEffects.withStroke(linewidth=5, foreground="w", alpha=0.5)]
+            )
 
     plt.imshow(avg_dist, interpolation="nearest", cmap="cividis", vmin=0)
     plt.xticks(range(n_clusters), labels, rotation=45)
@@ -119,7 +130,9 @@ for index, metric in enumerate(["cosine", "euclidean", "cityblock"]):
 
 # Plot clustering results
 for index, metric in enumerate(["cosine", "euclidean", "cityblock"]):
-    model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", metric=metric)
+    model = AgglomerativeClustering(
+        n_clusters=n_clusters, linkage="average", metric=metric
+    )
     model.fit(X)
     plt.figure()
     plt.axes([0, 0, 1, 1])

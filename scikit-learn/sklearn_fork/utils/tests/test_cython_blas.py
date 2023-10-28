@@ -1,23 +1,21 @@
-import numpy as np
 import pytest
-from sklearn_fork.utils._cython_blas import (
-    ColMajor,
-    NoTrans,
-    RowMajor,
-    Trans,
-    _asum_memview,
-    _axpy_memview,
-    _copy_memview,
-    _dot_memview,
-    _gemm_memview,
-    _gemv_memview,
-    _ger_memview,
-    _nrm2_memview,
-    _rot_memview,
-    _rotg_memview,
-    _scal_memview,
-)
+
+import numpy as np
+
 from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._cython_blas import _dot_memview
+from sklearn_fork.utils._cython_blas import _asum_memview
+from sklearn_fork.utils._cython_blas import _axpy_memview
+from sklearn_fork.utils._cython_blas import _nrm2_memview
+from sklearn_fork.utils._cython_blas import _copy_memview
+from sklearn_fork.utils._cython_blas import _scal_memview
+from sklearn_fork.utils._cython_blas import _rotg_memview
+from sklearn_fork.utils._cython_blas import _rot_memview
+from sklearn_fork.utils._cython_blas import _gemv_memview
+from sklearn_fork.utils._cython_blas import _ger_memview
+from sklearn_fork.utils._cython_blas import _gemm_memview
+from sklearn_fork.utils._cython_blas import RowMajor, ColMajor
+from sklearn_fork.utils._cython_blas import Trans, NoTrans
 
 
 def _numpy_to_cython(dtype):
@@ -164,13 +162,17 @@ def test_rot(dtype):
 
 
 @pytest.mark.parametrize("dtype", [np.float32, np.float64])
-@pytest.mark.parametrize("opA, transA", [(_no_op, NoTrans), (np.transpose, Trans)], ids=["NoTrans", "Trans"])
+@pytest.mark.parametrize(
+    "opA, transA", [(_no_op, NoTrans), (np.transpose, Trans)], ids=["NoTrans", "Trans"]
+)
 @pytest.mark.parametrize("order", [RowMajor, ColMajor], ids=["RowMajor", "ColMajor"])
 def test_gemv(dtype, opA, transA, order):
     gemv = _gemv_memview[_numpy_to_cython(dtype)]
 
     rng = np.random.RandomState(0)
-    A = np.asarray(opA(rng.random_sample((20, 10)).astype(dtype, copy=False)), order=ORDER[order])
+    A = np.asarray(
+        opA(rng.random_sample((20, 10)).astype(dtype, copy=False)), order=ORDER[order]
+    )
     x = rng.random_sample(10).astype(dtype, copy=False)
     y = rng.random_sample(20).astype(dtype, copy=False)
     alpha, beta = 2.5, -0.5
@@ -189,7 +191,9 @@ def test_ger(dtype, order):
     rng = np.random.RandomState(0)
     x = rng.random_sample(10).astype(dtype, copy=False)
     y = rng.random_sample(20).astype(dtype, copy=False)
-    A = np.asarray(rng.random_sample((10, 20)).astype(dtype, copy=False), order=ORDER[order])
+    A = np.asarray(
+        rng.random_sample((10, 20)).astype(dtype, copy=False), order=ORDER[order]
+    )
     alpha = 2.5
 
     expected = alpha * np.outer(x, y) + A
@@ -199,16 +203,26 @@ def test_ger(dtype, order):
 
 
 @pytest.mark.parametrize("dtype", [np.float32, np.float64])
-@pytest.mark.parametrize("opB, transB", [(_no_op, NoTrans), (np.transpose, Trans)], ids=["NoTrans", "Trans"])
-@pytest.mark.parametrize("opA, transA", [(_no_op, NoTrans), (np.transpose, Trans)], ids=["NoTrans", "Trans"])
+@pytest.mark.parametrize(
+    "opB, transB", [(_no_op, NoTrans), (np.transpose, Trans)], ids=["NoTrans", "Trans"]
+)
+@pytest.mark.parametrize(
+    "opA, transA", [(_no_op, NoTrans), (np.transpose, Trans)], ids=["NoTrans", "Trans"]
+)
 @pytest.mark.parametrize("order", [RowMajor, ColMajor], ids=["RowMajor", "ColMajor"])
 def test_gemm(dtype, opA, transA, opB, transB, order):
     gemm = _gemm_memview[_numpy_to_cython(dtype)]
 
     rng = np.random.RandomState(0)
-    A = np.asarray(opA(rng.random_sample((30, 10)).astype(dtype, copy=False)), order=ORDER[order])
-    B = np.asarray(opB(rng.random_sample((10, 20)).astype(dtype, copy=False)), order=ORDER[order])
-    C = np.asarray(rng.random_sample((30, 20)).astype(dtype, copy=False), order=ORDER[order])
+    A = np.asarray(
+        opA(rng.random_sample((30, 10)).astype(dtype, copy=False)), order=ORDER[order]
+    )
+    B = np.asarray(
+        opB(rng.random_sample((10, 20)).astype(dtype, copy=False)), order=ORDER[order]
+    )
+    C = np.asarray(
+        rng.random_sample((30, 20)).astype(dtype, copy=False), order=ORDER[order]
+    )
     alpha, beta = 2.5, -0.5
 
     expected = alpha * opA(A).dot(opB(B)) + beta * C

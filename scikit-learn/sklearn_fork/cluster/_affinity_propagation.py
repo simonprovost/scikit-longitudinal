@@ -5,18 +5,19 @@
 
 # License: BSD 3 clause
 
-import warnings
 from numbers import Integral, Real
+import warnings
 
 import numpy as np
 
-from .._config import config_context
-from ..base import BaseEstimator, ClusterMixin
 from ..exceptions import ConvergenceWarning
-from ..metrics import euclidean_distances, pairwise_distances_argmin
+from ..base import BaseEstimator, ClusterMixin
 from ..utils import check_random_state
 from ..utils._param_validation import Interval, StrOptions, validate_params
 from ..utils.validation import check_is_fitted
+from ..metrics import euclidean_distances
+from ..metrics import pairwise_distances_argmin
+from .._config import config_context
 
 
 def _equal_similarities_and_preferences(S, preference):
@@ -49,7 +50,10 @@ def _affinity_propagation(
     if n_samples == 1 or _equal_similarities_and_preferences(S, preference):
         # It makes no sense to run the algorithm in this case, so return 1 or
         # n_samples clusters, depending on preferences
-        warnings.warn("All samples have mutually equal similarities. Returning arbitrary cluster center(s).")
+        warnings.warn(
+            "All samples have mutually equal similarities. "
+            "Returning arbitrary cluster center(s)."
+        )
         if preference.flat[0] >= S.flat[n_samples - 1]:
             return (
                 (np.arange(n_samples), np.arange(n_samples), 0)
@@ -72,9 +76,9 @@ def _affinity_propagation(
     tmp = np.zeros((n_samples, n_samples))
 
     # Remove degeneracies
-    S += (np.finfo(S.dtype).eps * S + np.finfo(S.dtype).tiny * 100) * random_state.standard_normal(
-        size=(n_samples, n_samples)
-    )
+    S += (
+        np.finfo(S.dtype).eps * S + np.finfo(S.dtype).tiny * 100
+    ) * random_state.standard_normal(size=(n_samples, n_samples))
 
     # Execute parallel affinity propagation updates
     e = np.zeros((n_samples, convergence_iter))
@@ -137,7 +141,10 @@ def _affinity_propagation(
     if K > 0:
         if never_converged:
             warnings.warn(
-                "Affinity propagation did not converge, this model may return degenerate cluster centers and labels.",
+                (
+                    "Affinity propagation did not converge, this model "
+                    "may return degenerate cluster centers and labels."
+                ),
                 ConvergenceWarning,
             )
         c = np.argmax(S[:, I], axis=1)
@@ -156,7 +163,10 @@ def _affinity_propagation(
         labels = np.searchsorted(cluster_centers_indices, labels)
     else:
         warnings.warn(
-            "Affinity propagation did not converge and this model will not have any cluster centers.",
+            (
+                "Affinity propagation did not converge and this model "
+                "will not have any cluster centers."
+            ),
             ConvergenceWarning,
         )
         labels = np.array([-1] * n_samples)
@@ -492,7 +502,8 @@ class AffinityPropagation(ClusterMixin, BaseEstimator):
 
         if self.affinity_matrix_.shape[0] != self.affinity_matrix_.shape[1]:
             raise ValueError(
-                f"The matrix of similarities must be a square array. Got {self.affinity_matrix_.shape} instead."
+                "The matrix of similarities must be a square array. "
+                f"Got {self.affinity_matrix_.shape} instead."
             )
 
         if self.preference is None:
@@ -540,7 +551,9 @@ class AffinityPropagation(ClusterMixin, BaseEstimator):
         check_is_fitted(self)
         X = self._validate_data(X, reset=False, accept_sparse="csr")
         if not hasattr(self, "cluster_centers_"):
-            raise ValueError("Predict method is not supported when affinity='precomputed'.")
+            raise ValueError(
+                "Predict method is not supported when affinity='precomputed'."
+            )
 
         if self.cluster_centers_.shape[0] > 0:
             with config_context(assume_finite=True):

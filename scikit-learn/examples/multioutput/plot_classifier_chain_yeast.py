@@ -36,14 +36,14 @@ with randomly ordered chains).
 # Author: Adam Kleczewski
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork.datasets import fetch_openml
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import jaccard_score
+from sklearn_fork.multioutput import ClassifierChain
 from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.multiclass import OneVsRestClassifier
-from sklearn_fork.multioutput import ClassifierChain
+from sklearn_fork.metrics import jaccard_score
+from sklearn_fork.linear_model import LogisticRegression
 
 # Load a multi-label dataset from https://www.openml.org/d/40597
 X, Y = fetch_openml("yeast", version=4, return_X_y=True, parser="pandas")
@@ -65,10 +65,15 @@ for chain in chains:
     chain.fit(X_train, Y_train)
 
 Y_pred_chains = np.array([chain.predict(X_test) for chain in chains])
-chain_jaccard_scores = [jaccard_score(Y_test, Y_pred_chain >= 0.5, average="samples") for Y_pred_chain in Y_pred_chains]
+chain_jaccard_scores = [
+    jaccard_score(Y_test, Y_pred_chain >= 0.5, average="samples")
+    for Y_pred_chain in Y_pred_chains
+]
 
 Y_pred_ensemble = Y_pred_chains.mean(axis=0)
-ensemble_jaccard_score = jaccard_score(Y_test, Y_pred_ensemble >= 0.5, average="samples")
+ensemble_jaccard_score = jaccard_score(
+    Y_test, Y_pred_ensemble >= 0.5, average="samples"
+)
 
 model_scores = [ovr_jaccard_score] + chain_jaccard_scores
 model_scores.append(ensemble_jaccard_score)

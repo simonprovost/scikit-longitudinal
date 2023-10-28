@@ -18,8 +18,8 @@ See also :ref:`minimal_cost_complexity_pruning` for details on pruning.
 """
 
 import matplotlib.pyplot as plt
-from sklearn_fork.datasets import load_breast_cancer
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.datasets import load_breast_cancer
 from sklearn_fork.tree import DecisionTreeClassifier
 
 # %%
@@ -58,7 +58,11 @@ for ccp_alpha in ccp_alphas:
     clf = DecisionTreeClassifier(random_state=0, ccp_alpha=ccp_alpha)
     clf.fit(X_train, y_train)
     clfs.append(clf)
-print("Number of nodes in the last tree is: {} with ccp_alpha: {}".format(clfs[-1].tree_.node_count, ccp_alphas[-1]))
+print(
+    "Number of nodes in the last tree is: {} with ccp_alpha: {}".format(
+        clfs[-1].tree_.node_count, ccp_alphas[-1]
+    )
+)
 
 # %%
 # For the remainder of this example, we remove the last element in

@@ -6,13 +6,13 @@ from numbers import Integral, Real
 
 import numpy as np
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from ..linear_model import ridge_regression
 from ..utils import check_random_state
-from ..utils._param_validation import Hidden, Interval, StrOptions
 from ..utils.extmath import svd_flip
+from ..utils._param_validation import Hidden, Interval, StrOptions
 from ..utils.validation import check_array, check_is_fitted
-from ._dict_learning import MiniBatchDictionaryLearning, dict_learning
+from ..linear_model import ridge_regression
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
+from ._dict_learning import dict_learning, MiniBatchDictionaryLearning
 
 
 class _BaseSparsePCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
@@ -110,7 +110,9 @@ class _BaseSparsePCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEsti
         X = self._validate_data(X, reset=False)
         X = X - self.mean_
 
-        U = ridge_regression(self.components_.T, X.T, self.ridge_alpha, solver="cholesky")
+        U = ridge_regression(
+            self.components_.T, X.T, self.ridge_alpha, solver="cholesky"
+        )
 
         return U
 

@@ -70,7 +70,9 @@ def plot_embedding(X, title):
             # don't show points that are too close
             continue
         shown_images = np.concatenate([shown_images, [X[i]]], axis=0)
-        imagebox = offsetbox.AnnotationBbox(offsetbox.OffsetImage(digits.images[i], cmap=plt.cm.gray_r), X[i])
+        imagebox = offsetbox.AnnotationBbox(
+            offsetbox.OffsetImage(digits.images[i], cmap=plt.cm.gray_r), X[i]
+        )
         imagebox.set(zorder=1)
         ax.add_artist(imagebox)
 
@@ -100,26 +102,48 @@ def plot_embedding(X, title):
 from sklearn_fork.decomposition import TruncatedSVD
 from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn_fork.ensemble import RandomTreesEmbedding
-from sklearn_fork.manifold import MDS, TSNE, Isomap, LocallyLinearEmbedding, SpectralEmbedding
+from sklearn_fork.manifold import (
+    Isomap,
+    LocallyLinearEmbedding,
+    MDS,
+    SpectralEmbedding,
+    TSNE,
+)
 from sklearn_fork.neighbors import NeighborhoodComponentsAnalysis
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.random_projection import SparseRandomProjection
 
 embeddings = {
-    "Random projection embedding": SparseRandomProjection(n_components=2, random_state=42),
+    "Random projection embedding": SparseRandomProjection(
+        n_components=2, random_state=42
+    ),
     "Truncated SVD embedding": TruncatedSVD(n_components=2),
-    "Linear Discriminant Analysis embedding": LinearDiscriminantAnalysis(n_components=2),
+    "Linear Discriminant Analysis embedding": LinearDiscriminantAnalysis(
+        n_components=2
+    ),
     "Isomap embedding": Isomap(n_neighbors=n_neighbors, n_components=2),
-    "Standard LLE embedding": LocallyLinearEmbedding(n_neighbors=n_neighbors, n_components=2, method="standard"),
-    "Modified LLE embedding": LocallyLinearEmbedding(n_neighbors=n_neighbors, n_components=2, method="modified"),
-    "Hessian LLE embedding": LocallyLinearEmbedding(n_neighbors=n_neighbors, n_components=2, method="hessian"),
-    "LTSA LLE embedding": LocallyLinearEmbedding(n_neighbors=n_neighbors, n_components=2, method="ltsa"),
-    "MDS embedding": MDS(n_components=2, n_init=1, max_iter=120, n_jobs=2, normalized_stress="auto"),
+    "Standard LLE embedding": LocallyLinearEmbedding(
+        n_neighbors=n_neighbors, n_components=2, method="standard"
+    ),
+    "Modified LLE embedding": LocallyLinearEmbedding(
+        n_neighbors=n_neighbors, n_components=2, method="modified"
+    ),
+    "Hessian LLE embedding": LocallyLinearEmbedding(
+        n_neighbors=n_neighbors, n_components=2, method="hessian"
+    ),
+    "LTSA LLE embedding": LocallyLinearEmbedding(
+        n_neighbors=n_neighbors, n_components=2, method="ltsa"
+    ),
+    "MDS embedding": MDS(
+        n_components=2, n_init=1, max_iter=120, n_jobs=2, normalized_stress="auto"
+    ),
     "Random Trees embedding": make_pipeline(
         RandomTreesEmbedding(n_estimators=200, max_depth=5, random_state=0),
         TruncatedSVD(n_components=2),
     ),
-    "Spectral embedding": SpectralEmbedding(n_components=2, random_state=0, eigen_solver="arpack"),
+    "Spectral embedding": SpectralEmbedding(
+        n_components=2, random_state=0, eigen_solver="arpack"
+    ),
     "t-SNE embeedding": TSNE(
         n_components=2,
         n_iter=500,
@@ -127,7 +151,9 @@ embeddings = {
         n_jobs=2,
         random_state=0,
     ),
-    "NCA embedding": NeighborhoodComponentsAnalysis(n_components=2, init="pca", random_state=0),
+    "NCA embedding": NeighborhoodComponentsAnalysis(
+        n_components=2, init="pca", random_state=0
+    ),
 }
 
 # %%

@@ -25,12 +25,13 @@ dimensional data.
 
 import time
 import warnings
-from itertools import cycle, islice
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork import cluster, datasets
 from sklearn_fork.preprocessing import StandardScaler
+from itertools import cycle, islice
 
 np.random.seed(0)
 
@@ -52,14 +53,18 @@ X_aniso = np.dot(X, transformation)
 aniso = (X_aniso, y)
 
 # blobs with varied variances
-varied = datasets.make_blobs(n_samples=n_samples, cluster_std=[1.0, 2.5, 0.5], random_state=random_state)
+varied = datasets.make_blobs(
+    n_samples=n_samples, cluster_std=[1.0, 2.5, 0.5], random_state=random_state
+)
 
 # %%
 # Run the clustering and plot
 
 # Set up cluster parameters
 plt.figure(figsize=(9 * 1.3 + 2, 14.5))
-plt.subplots_adjust(left=0.02, right=0.98, bottom=0.001, top=0.96, wspace=0.05, hspace=0.01)
+plt.subplots_adjust(
+    left=0.02, right=0.98, bottom=0.001, top=0.96, wspace=0.05, hspace=0.01
+)
 
 plot_num = 1
 
@@ -87,10 +92,18 @@ for i_dataset, (dataset, algo_params) in enumerate(datasets):
     # ============
     # Create cluster objects
     # ============
-    ward = cluster.AgglomerativeClustering(n_clusters=params["n_clusters"], linkage="ward")
-    complete = cluster.AgglomerativeClustering(n_clusters=params["n_clusters"], linkage="complete")
-    average = cluster.AgglomerativeClustering(n_clusters=params["n_clusters"], linkage="average")
-    single = cluster.AgglomerativeClustering(n_clusters=params["n_clusters"], linkage="single")
+    ward = cluster.AgglomerativeClustering(
+        n_clusters=params["n_clusters"], linkage="ward"
+    )
+    complete = cluster.AgglomerativeClustering(
+        n_clusters=params["n_clusters"], linkage="complete"
+    )
+    average = cluster.AgglomerativeClustering(
+        n_clusters=params["n_clusters"], linkage="average"
+    )
+    single = cluster.AgglomerativeClustering(
+        n_clusters=params["n_clusters"], linkage="single"
+    )
 
     clustering_algorithms = (
         ("Single Linkage", single),

@@ -1,12 +1,21 @@
 import numpy as np
 import pytest
+
 from sklearn_fork.datasets import load_iris, make_classification, make_regression
-from sklearn_fork.linear_model import LinearRegression, LogisticRegression
+from sklearn_fork.linear_model import (
+    LinearRegression,
+    LogisticRegression,
+)
 from sklearn_fork.svm import SVC
 from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn_fork.utils._mocking import _MockEstimatorOnOffPrediction
-from sklearn_fork.utils._response import _get_response_values, _get_response_values_binary
 from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
+
+from sklearn_fork.utils._response import (
+    _get_response_values,
+    _get_response_values_binary,
+)
+
 
 X, y = load_iris(return_X_y=True)
 X_binary, y_binary = X[:100], y[:100]
@@ -33,7 +42,9 @@ def test_get_response_values_regressor_error(response_method):
 def test_get_response_values_error_multiclass_classifier(estimator, response_method):
     """Check that we raise an error with multiclass classifier and requesting
     response values different from `predict`."""
-    X, y = make_classification(n_samples=10, n_clusters_per_class=1, n_classes=3, random_state=0)
+    X, y = make_classification(
+        n_samples=10, n_clusters_per_class=1, n_classes=3, random_state=0
+    )
     classifier = estimator.fit(X, y)
     err_msg = "With a multiclass estimator, the response method should be predict"
     with pytest.raises(ValueError, match=err_msg):
@@ -81,7 +92,10 @@ def test_get_response_values_classifier_inconsistent_y_pred_for_binary_proba():
     y_single_class = np.zeros_like(y_two_class)
     classifier = DecisionTreeClassifier().fit(X, y_single_class)
 
-    err_msg = r"Got predict_proba of shape \(10, 1\), but need classifier with " r"two classes"
+    err_msg = (
+        r"Got predict_proba of shape \(10, 1\), but need classifier with "
+        r"two classes"
+    )
     with pytest.raises(ValueError, match=err_msg):
         _get_response_values(classifier, X, response_method="predict_proba")
 
@@ -189,11 +203,15 @@ def test_get_response_error(estimator, X, y, err_msg, params):
 def test_get_response_predict_proba():
     """Check the behaviour of `_get_response_values_binary` using `predict_proba`."""
     classifier = DecisionTreeClassifier().fit(X_binary, y_binary)
-    y_proba, pos_label = _get_response_values_binary(classifier, X_binary, response_method="predict_proba")
+    y_proba, pos_label = _get_response_values_binary(
+        classifier, X_binary, response_method="predict_proba"
+    )
     np.testing.assert_allclose(y_proba, classifier.predict_proba(X_binary)[:, 1])
     assert pos_label == 1
 
-    y_proba, pos_label = _get_response_values_binary(classifier, X_binary, response_method="predict_proba", pos_label=0)
+    y_proba, pos_label = _get_response_values_binary(
+        classifier, X_binary, response_method="predict_proba", pos_label=0
+    )
     np.testing.assert_allclose(y_proba, classifier.predict_proba(X_binary)[:, 0])
     assert pos_label == 0
 
@@ -201,7 +219,9 @@ def test_get_response_predict_proba():
 def test_get_response_decision_function():
     """Check the behaviour of `_get_response_values_binary` using decision_function."""
     classifier = LogisticRegression().fit(X_binary, y_binary)
-    y_score, pos_label = _get_response_values_binary(classifier, X_binary, response_method="decision_function")
+    y_score, pos_label = _get_response_values_binary(
+        classifier, X_binary, response_method="decision_function"
+    )
     np.testing.assert_allclose(y_score, classifier.decision_function(X_binary))
     assert pos_label == 1
 

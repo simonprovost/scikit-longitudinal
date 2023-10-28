@@ -7,13 +7,16 @@ import numpy as np
 from scipy import sparse
 from scipy.stats.mstats import mquantiles
 
-from ...base import is_regressor
-from ...utils import check_matplotlib_support  # noqa
-from ...utils import Bunch, _safe_indexing, check_array, check_random_state
-from ...utils._encode import _unique
-from ...utils.parallel import Parallel, delayed
 from .. import partial_dependence
 from .._pd_utils import _check_feature_names, _get_feature_index
+from ...base import is_regressor
+from ...utils import Bunch
+from ...utils import check_array
+from ...utils import check_matplotlib_support  # noqa
+from ...utils import check_random_state
+from ...utils import _safe_indexing
+from ...utils.parallel import delayed, Parallel
+from ...utils._encode import _unique
 
 
 class PartialDependenceDisplay:
@@ -526,7 +529,10 @@ class PartialDependenceDisplay:
             if target is None:
                 raise ValueError("target must be specified for multi-class")
             target_idx = np.searchsorted(estimator.classes_, target)
-            if not (0 <= target_idx < len(estimator.classes_)) or estimator.classes_[target_idx] != target:
+            if (
+                not (0 <= target_idx < len(estimator.classes_))
+                or estimator.classes_[target_idx] != target
+            ):
                 raise ValueError("target not in est.classes_, got {}".format(target))
         else:
             # regression and binary classification
@@ -554,14 +560,18 @@ class PartialDependenceDisplay:
             if isinstance(fxs, (numbers.Integral, str)):
                 fxs = (fxs,)
             try:
-                fxs = tuple(_get_feature_index(fx, feature_names=feature_names) for fx in fxs)
+                fxs = tuple(
+                    _get_feature_index(fx, feature_names=feature_names) for fx in fxs
+                )
             except TypeError as e:
                 raise ValueError(
-                    "Each entry in features must be either an int, a string, or an iterable of size at most 2."
+                    "Each entry in features must be either an int, "
+                    "a string, or an iterable of size at most 2."
                 ) from e
             if not 1 <= np.size(fxs) <= 2:
                 raise ValueError(
-                    "Each entry in features must be either an int, a string, or an iterable of size at most 2."
+                    "Each entry in features must be either an int, "
+                    "a string, or an iterable of size at most 2."
                 )
             # store the information if 2-way PD was requested with ICE to later
             # raise a ValueError with an exhaustive list of problematic
@@ -587,7 +597,9 @@ class PartialDependenceDisplay:
         features = tmp_features
 
         if categorical_features is None:
-            is_categorical = [(False,) if len(fxs) == 1 else (False, False) for fxs in features]
+            is_categorical = [
+                (False,) if len(fxs) == 1 else (False, False) for fxs in features
+            ]
         else:
             # we need to create a boolean indicator of which features are
             # categorical from the categorical_features list.
@@ -601,13 +613,19 @@ class PartialDependenceDisplay:
                         f"{categorical_features.size} elements while `X` contains "
                         f"{n_features} features."
                     )
-                is_categorical = [tuple(categorical_features[fx] for fx in fxs) for fxs in features]
+                is_categorical = [
+                    tuple(categorical_features[fx] for fx in fxs) for fxs in features
+                ]
             elif categorical_features.dtype.kind in ("i", "O", "U"):
                 # categorical features provided as a list of indices or feature names
                 categorical_features_idx = [
-                    _get_feature_index(cat, feature_names=feature_names) for cat in categorical_features
+                    _get_feature_index(cat, feature_names=feature_names)
+                    for cat in categorical_features
                 ]
-                is_categorical = [tuple([idx in categorical_features_idx for idx in fxs]) for fxs in features]
+                is_categorical = [
+                    tuple([idx in categorical_features_idx for idx in fxs])
+                    for fxs in features
+                ]
             else:
                 raise ValueError(
                     "Expected `categorical_features` to be an array-like of boolean,"
@@ -624,11 +642,19 @@ class PartialDependenceDisplay:
             # collect the indices of the categorical features targeted by the partial
             # dependence computation
             categorical_features_targeted = set(
-                [fx for fxs, cats in zip(features, is_categorical) for fx in fxs if any(cats)]
+                [
+                    fx
+                    for fxs, cats in zip(features, is_categorical)
+                    for fx in fxs
+                    if any(cats)
+                ]
             )
             if categorical_features_targeted:
                 min_n_cats = min(
-                    [len(_unique(_safe_indexing(X, idx, axis=1))) for idx in categorical_features_targeted]
+                    [
+                        len(_unique(_safe_indexing(X, idx, axis=1)))
+                        for idx in categorical_features_targeted
+                    ]
                 )
                 if grid_resolution < min_n_cats:
                     raise ValueError(
@@ -640,28 +666,39 @@ class PartialDependenceDisplay:
 
             for is_cat, kind_plot in zip(is_categorical, kind_):
                 if any(is_cat) and kind_plot != "average":
-                    raise ValueError("It is not possible to display individual effects for categorical features.")
+                    raise ValueError(
+                        "It is not possible to display individual effects for"
+                        " categorical features."
+                    )
 
         # Early exit if the axes does not have the correct number of axes
         if ax is not None and not isinstance(ax, plt.Axes):
             axes = np.asarray(ax, dtype=object)
             if axes.size != len(features):
-                raise ValueError("Expected ax to have {} axes, got {}".format(len(features), axes.size))
+                raise ValueError(
+                    "Expected ax to have {} axes, got {}".format(
+                        len(features), axes.size
+                    )
+                )
 
         for i in chain.from_iterable(features):
             if i >= len(feature_names):
                 raise ValueError(
-                    "All entries of features must be less than len(feature_names) = {0}, got {1}.".format(
-                        len(feature_names), i
-                    )
+                    "All entries of features must be less than "
+                    "len(feature_names) = {0}, got {1}.".format(len(feature_names), i)
                 )
 
         if isinstance(subsample, numbers.Integral):
             if subsample <= 0:
-                raise ValueError(f"When an integer, subsample={subsample} should be positive.")
+                raise ValueError(
+                    f"When an integer, subsample={subsample} should be positive."
+                )
         elif isinstance(subsample, numbers.Real):
             if subsample <= 0 or subsample >= 1:
-                raise ValueError(f"When a floating-point, subsample={subsample} should be in the (0, 1) range.")
+                raise ValueError(
+                    f"When a floating-point, subsample={subsample} should be in "
+                    "the (0, 1) range."
+                )
 
         # compute predictions and/or averaged predictions
         pd_results = Parallel(n_jobs=n_jobs, verbose=verbose)(
@@ -686,12 +723,18 @@ class PartialDependenceDisplay:
         # multiclass and multioutput scenario are mutually exclusive. So there is
         # no risk of overwriting target_idx here.
         pd_result = pd_results[0]  # checking the first result is enough
-        n_tasks = pd_result.average.shape[0] if kind_[0] == "average" else pd_result.individual.shape[0]
+        n_tasks = (
+            pd_result.average.shape[0]
+            if kind_[0] == "average"
+            else pd_result.individual.shape[0]
+        )
         if is_regressor(estimator) and n_tasks > 1:
             if target is None:
                 raise ValueError("target must be specified for multi-output regressors")
             if not 0 <= target <= n_tasks:
-                raise ValueError("target must be in [0, n_tasks], got {}.".format(target))
+                raise ValueError(
+                    "target must be in [0, n_tasks], got {}.".format(target)
+                )
             target_idx = target
 
         deciles = {}
@@ -774,8 +817,12 @@ class PartialDependenceDisplay:
         ice_lines_subsampled = preds[ice_lines_idx, :]
         # plot the subsampled ice
         for ice_idx, ice in enumerate(ice_lines_subsampled):
-            line_idx = np.unravel_index(pd_plot_idx * n_total_lines_by_plot + ice_idx, self.lines_.shape)
-            self.lines_[line_idx] = ax.plot(feature_values, ice.ravel(), **individual_line_kw)[0]
+            line_idx = np.unravel_index(
+                pd_plot_idx * n_total_lines_by_plot + ice_idx, self.lines_.shape
+            )
+            self.lines_[line_idx] = ax.plot(
+                feature_values, ice.ravel(), **individual_line_kw
+            )[0]
 
     def _plot_average_dependence(
         self,
@@ -1165,7 +1212,9 @@ class PartialDependenceDisplay:
             kind = self.kind
 
         if self.is_categorical is None:
-            is_categorical = [(False,) if len(fx) == 1 else (False, False) for fx in self.features]
+            is_categorical = [
+                (False,) if len(fx) == 1 else (False, False) for fx in self.features
+            ]
         else:
             is_categorical = self.is_categorical
 
@@ -1274,7 +1323,9 @@ class PartialDependenceDisplay:
         else:
             # we need to determine the number of ICE samples computed
             ice_plot_idx = is_average_plot.index(False)
-            n_ice_lines = self._get_sample_count(len(pd_results_[ice_plot_idx].individual[0]))
+            n_ice_lines = self._get_sample_count(
+                len(pd_results_[ice_plot_idx].individual[0])
+            )
             if any([kind_plot == "both" for kind_plot in kind]):
                 n_lines = n_ice_lines + 1  # account for the average line
             else:
@@ -1285,7 +1336,9 @@ class PartialDependenceDisplay:
             # by a previous call to plot.
             if not ax.axison:
                 raise ValueError(
-                    "The ax was already used in another plot function, please set ax=display.axes_ instead"
+                    "The ax was already used in another plot "
+                    "function, please set ax=display.axes_ "
+                    "instead"
                 )
 
             ax.set_axis_off()
@@ -1306,14 +1359,18 @@ class PartialDependenceDisplay:
 
             axes_ravel = self.axes_.ravel()
 
-            gs = GridSpecFromSubplotSpec(n_rows, n_cols, subplot_spec=ax.get_subplotspec())
+            gs = GridSpecFromSubplotSpec(
+                n_rows, n_cols, subplot_spec=ax.get_subplotspec()
+            )
             for i, spec in zip(range(n_features), gs):
                 axes_ravel[i] = self.figure_.add_subplot(spec)
 
         else:  # array-like
             ax = np.asarray(ax, dtype=object)
             if ax.size != n_features:
-                raise ValueError("Expected ax to have {} axes, got {}".format(n_features, ax.size))
+                raise ValueError(
+                    "Expected ax to have {} axes, got {}".format(n_features, ax.size)
+                )
 
             if ax.ndim == 2:
                 n_cols = ax.shape[1]

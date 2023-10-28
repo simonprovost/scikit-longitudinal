@@ -3,19 +3,26 @@
 # Authors: Gilles Louppe
 # License: BSD 3 clause
 
-import warnings
 from abc import ABCMeta, abstractmethod
 from typing import List
+import warnings
 
 import numpy as np
+
 from joblib import effective_n_jobs
 
-from ..base import BaseEstimator, MetaEstimatorMixin, clone, is_classifier, is_regressor
-from ..utils import Bunch, _print_elapsed_time, check_random_state, deprecated
+from ..base import clone
+from ..base import is_classifier, is_regressor
+from ..base import BaseEstimator
+from ..base import MetaEstimatorMixin
+from ..utils import Bunch, _print_elapsed_time, deprecated
+from ..utils import check_random_state
 from ..utils.metaestimators import _BaseComposition
 
 
-def _fit_single_estimator(estimator, X, y, sample_weight=None, message_clsname=None, message=None):
+def _fit_single_estimator(
+    estimator, X, y, sample_weight=None, message_clsname=None, message=None
+):
     """Private function used to fit an estimator within a job."""
     if sample_weight is not None:
         try:
@@ -24,7 +31,9 @@ def _fit_single_estimator(estimator, X, y, sample_weight=None, message_clsname=N
         except TypeError as exc:
             if "unexpected keyword argument 'sample_weight'" in str(exc):
                 raise TypeError(
-                    "Underlying estimator {} does not support sample weights.".format(estimator.__class__.__name__)
+                    "Underlying estimator {} does not support sample weights.".format(
+                        estimator.__class__.__name__
+                    )
                 ) from exc
             raise
     else:
@@ -139,14 +148,21 @@ class BaseEnsemble(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta):
 
         Sets the `estimator_` attributes.
         """
-        if self.estimator is not None and (self.base_estimator not in [None, "deprecated"]):
-            raise ValueError("Both `estimator` and `base_estimator` were set. Only set `estimator`.")
+        if self.estimator is not None and (
+            self.base_estimator not in [None, "deprecated"]
+        ):
+            raise ValueError(
+                "Both `estimator` and `base_estimator` were set. Only set `estimator`."
+            )
 
         if self.estimator is not None:
             self.estimator_ = self.estimator
         elif self.base_estimator not in [None, "deprecated"]:
             warnings.warn(
-                "`base_estimator` was renamed to `estimator` in version 1.2 and will be removed in 1.4.",
+                (
+                    "`base_estimator` was renamed to `estimator` in version 1.2 and "
+                    "will be removed in 1.4."
+                ),
                 FutureWarning,
             )
             self.estimator_ = self.base_estimator
@@ -207,7 +223,9 @@ def _partition_estimators(n_estimators, n_jobs):
     return n_jobs, n_estimators_per_job.tolist(), [0] + starts.tolist()
 
 
-class _BaseHeterogeneousEnsemble(MetaEstimatorMixin, _BaseComposition, metaclass=ABCMeta):
+class _BaseHeterogeneousEnsemble(
+    MetaEstimatorMixin, _BaseComposition, metaclass=ABCMeta
+):
     """Base class for heterogeneous ensemble of learners.
 
     Parameters
@@ -245,7 +263,8 @@ class _BaseHeterogeneousEnsemble(MetaEstimatorMixin, _BaseComposition, metaclass
     def _validate_estimators(self):
         if len(self.estimators) == 0:
             raise ValueError(
-                "Invalid 'estimators' attribute, 'estimators' should be a non-empty list of (string, estimator) tuples."
+                "Invalid 'estimators' attribute, 'estimators' should be a "
+                "non-empty list of (string, estimator) tuples."
             )
         names, estimators = zip(*self.estimators)
         # defined by MetaEstimatorMixin
@@ -253,14 +272,19 @@ class _BaseHeterogeneousEnsemble(MetaEstimatorMixin, _BaseComposition, metaclass
 
         has_estimator = any(est != "drop" for est in estimators)
         if not has_estimator:
-            raise ValueError("All estimators are dropped. At least one is required to be an estimator.")
+            raise ValueError(
+                "All estimators are dropped. At least one is required "
+                "to be an estimator."
+            )
 
         is_estimator_type = is_classifier if is_classifier(self) else is_regressor
 
         for est in estimators:
             if est != "drop" and not is_estimator_type(est):
                 raise ValueError(
-                    "The estimator {} should be a {}.".format(est.__class__.__name__, is_estimator_type.__name__[3:])
+                    "The estimator {} should be a {}.".format(
+                        est.__class__.__name__, is_estimator_type.__name__[3:]
+                    )
                 )
 
         return names, estimators

@@ -1,9 +1,8 @@
-from time import time
-
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.sparse as sparse
 from sklearn_fork.preprocessing import PolynomialFeatures
+from time import time
 
 degree = 2
 trials = 3
@@ -12,7 +11,9 @@ dimensionalities = np.array([1, 2, 8, 16, 32, 64])
 densities = np.array([0.01, 0.1, 1.0])
 csr_times = {d: np.zeros(len(dimensionalities)) for d in densities}
 dense_times = {d: np.zeros(len(dimensionalities)) for d in densities}
-transform = PolynomialFeatures(degree=degree, include_bias=False, interaction_only=False)
+transform = PolynomialFeatures(
+    degree=degree, include_bias=False, interaction_only=False
+)
 
 for trial in range(trials):
     for density in densities:

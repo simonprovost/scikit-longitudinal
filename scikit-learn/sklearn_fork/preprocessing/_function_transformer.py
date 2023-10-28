@@ -3,9 +3,13 @@ import warnings
 import numpy as np
 
 from ..base import BaseEstimator, TransformerMixin
-from ..utils._param_validation import StrOptions
 from ..utils.metaestimators import available_if
-from ..utils.validation import _allclose_dense_sparse, _check_feature_names_in, check_array
+from ..utils.validation import (
+    _allclose_dense_sparse,
+    _check_feature_names_in,
+    check_array,
+)
+from ..utils._param_validation import StrOptions
 
 
 def _identity(X):
@@ -177,7 +181,10 @@ class FunctionTransformer(TransformerMixin, BaseEstimator):
             dtypes = X.dtypes
 
         if not all(np.issubdtype(d, np.number) for d in dtypes):
-            raise ValueError("'check_inverse' is only supported when all the elements in `X` is numerical.")
+            raise ValueError(
+                "'check_inverse' is only supported when all the elements in `X` is"
+                " numerical."
+            )
 
         if not _allclose_dense_sparse(X[idx_selected], X_round_trip):
             warnings.warn(
@@ -335,6 +342,9 @@ class FunctionTransformer(TransformerMixin, BaseEstimator):
             return super().set_output(transform=transform)
 
         if transform == "pandas" and self.feature_names_out is None:
-            warnings.warn('With transform="pandas", `func` should return a DataFrame to follow the set_output API.')
+            warnings.warn(
+                'With transform="pandas", `func` should return a DataFrame to follow'
+                " the set_output API."
+            )
 
         return self

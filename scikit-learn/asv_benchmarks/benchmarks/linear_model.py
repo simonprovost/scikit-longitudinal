@@ -1,4 +1,11 @@
-from sklearn_fork.linear_model import ElasticNet, Lasso, LinearRegression, LogisticRegression, Ridge, SGDRegressor
+from sklearn_fork.linear_model import (
+    LogisticRegression,
+    Ridge,
+    ElasticNet,
+    Lasso,
+    LinearRegression,
+    SGDRegressor,
+)
 
 from .common import Benchmark, Estimator, Predictor
 from .datasets import (
@@ -77,7 +84,9 @@ class RidgeBenchmark(Predictor, Estimator, Benchmark):
         if representation == "dense":
             data = _synth_regression_dataset(n_samples=500000, n_features=100)
         else:
-            data = _synth_regression_sparse_dataset(n_samples=100000, n_features=10000, density=0.005)
+            data = _synth_regression_sparse_dataset(
+                n_samples=100000, n_features=10000, density=0.005
+            )
 
         return data
 
@@ -116,7 +125,9 @@ class LinearRegressionBenchmark(Predictor, Estimator, Benchmark):
         if representation == "dense":
             data = _synth_regression_dataset(n_samples=1000000, n_features=100)
         else:
-            data = _synth_regression_sparse_dataset(n_samples=10000, n_features=100000, density=0.01)
+            data = _synth_regression_sparse_dataset(
+                n_samples=10000, n_features=100000, density=0.01
+            )
 
         return data
 
@@ -146,7 +157,9 @@ class SGDRegressorBenchmark(Predictor, Estimator, Benchmark):
         if representation == "dense":
             data = _synth_regression_dataset(n_samples=100000, n_features=200)
         else:
-            data = _synth_regression_sparse_dataset(n_samples=100000, n_features=1000, density=0.01)
+            data = _synth_regression_sparse_dataset(
+                n_samples=100000, n_features=1000, density=0.01
+            )
 
         return data
 
@@ -180,7 +193,9 @@ class ElasticNetBenchmark(Predictor, Estimator, Benchmark):
         if representation == "dense":
             data = _synth_regression_dataset(n_samples=1000000, n_features=100)
         else:
-            data = _synth_regression_sparse_dataset(n_samples=50000, n_features=5000, density=0.01)
+            data = _synth_regression_sparse_dataset(
+                n_samples=50000, n_features=5000, density=0.01
+            )
 
         return data
 
@@ -219,7 +234,9 @@ class LassoBenchmark(Predictor, Estimator, Benchmark):
         if representation == "dense":
             data = _synth_regression_dataset(n_samples=1000000, n_features=100)
         else:
-            data = _synth_regression_sparse_dataset(n_samples=50000, n_features=5000, density=0.01)
+            data = _synth_regression_sparse_dataset(
+                n_samples=50000, n_features=5000, density=0.01
+            )
 
         return data
 

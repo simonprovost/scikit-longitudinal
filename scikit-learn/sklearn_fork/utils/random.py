@@ -1,10 +1,9 @@
 # Author: Hamzeh Alsalhi <ha258@cornell.edu>
 #
 # License: BSD 3 clause
-import array
-
 import numpy as np
 import scipy.sparse as sp
+import array
 
 from . import check_random_state
 from ._random import sample_without_replacement
@@ -55,11 +54,15 @@ def _random_choice_csc(n_samples, classes, class_probability=None, random_state=
             class_prob_j = np.asarray(class_probability[j])
 
         if not np.isclose(np.sum(class_prob_j), 1.0):
-            raise ValueError("Probability array at index {0} does not sum to one".format(j))
+            raise ValueError(
+                "Probability array at index {0} does not sum to one".format(j)
+            )
 
         if class_prob_j.shape[0] != classes[j].shape[0]:
             raise ValueError(
-                "classes[{0}] (length {1}) and class_probability[{0}] (length {2}) have different length.".format(
+                "classes[{0}] (length {1}) and "
+                "class_probability[{0}] (length {2}) have "
+                "different length.".format(
                     j, classes[j].shape[0], class_prob_j.shape[0]
                 )
             )
@@ -74,14 +77,20 @@ def _random_choice_csc(n_samples, classes, class_probability=None, random_state=
         if classes[j].shape[0] > 1:
             p_nonzero = 1 - class_prob_j[classes[j] == 0]
             nnz = int(n_samples * p_nonzero)
-            ind_sample = sample_without_replacement(n_population=n_samples, n_samples=nnz, random_state=random_state)
+            ind_sample = sample_without_replacement(
+                n_population=n_samples, n_samples=nnz, random_state=random_state
+            )
             indices.extend(ind_sample)
 
             # Normalize probabilities for the nonzero elements
             classes_j_nonzero = classes[j] != 0
             class_probability_nz = class_prob_j[classes_j_nonzero]
-            class_probability_nz_norm = class_probability_nz / np.sum(class_probability_nz)
-            classes_ind = np.searchsorted(class_probability_nz_norm.cumsum(), rng.uniform(size=nnz))
+            class_probability_nz_norm = class_probability_nz / np.sum(
+                class_probability_nz
+            )
+            classes_ind = np.searchsorted(
+                class_probability_nz_norm.cumsum(), rng.uniform(size=nnz)
+            )
             data.extend(classes[j][classes_j_nonzero][classes_ind])
         indptr.append(len(indices))
 

@@ -3,13 +3,15 @@
 #          Giorgio Patrini
 #
 # License: BSD 3 clause
-import numpy as np
 import scipy.sparse as sp
+import numpy as np
 
+from .sparsefuncs_fast import (
+    csr_mean_variance_axis0 as _csr_mean_var_axis0,
+    csc_mean_variance_axis0 as _csc_mean_var_axis0,
+    incr_mean_variance_axis0 as _incr_mean_var_axis0,
+)
 from ..utils.validation import _check_sample_weight
-from .sparsefuncs_fast import csc_mean_variance_axis0 as _csc_mean_var_axis0
-from .sparsefuncs_fast import csr_mean_variance_axis0 as _csr_mean_var_axis0
-from .sparsefuncs_fast import incr_mean_variance_axis0 as _incr_mean_var_axis0
 
 
 def _raise_typeerror(X):
@@ -21,7 +23,9 @@ def _raise_typeerror(X):
 
 def _raise_error_wrong_axis(axis):
     if axis not in (0, 1):
-        raise ValueError("Unknown axis value: %d. Use 0 for rows, or 1 for columns" % axis)
+        raise ValueError(
+            "Unknown axis value: %d. Use 0 for rows, or 1 for columns" % axis
+        )
 
 
 def inplace_csr_column_scale(X, scale):
@@ -101,14 +105,22 @@ def mean_variance_axis(X, axis, weights=None, return_sum_weights=False):
 
     if isinstance(X, sp.csr_matrix):
         if axis == 0:
-            return _csr_mean_var_axis0(X, weights=weights, return_sum_weights=return_sum_weights)
+            return _csr_mean_var_axis0(
+                X, weights=weights, return_sum_weights=return_sum_weights
+            )
         else:
-            return _csc_mean_var_axis0(X.T, weights=weights, return_sum_weights=return_sum_weights)
+            return _csc_mean_var_axis0(
+                X.T, weights=weights, return_sum_weights=return_sum_weights
+            )
     elif isinstance(X, sp.csc_matrix):
         if axis == 0:
-            return _csc_mean_var_axis0(X, weights=weights, return_sum_weights=return_sum_weights)
+            return _csc_mean_var_axis0(
+                X, weights=weights, return_sum_weights=return_sum_weights
+            )
         else:
-            return _csr_mean_var_axis0(X.T, weights=weights, return_sum_weights=return_sum_weights)
+            return _csr_mean_var_axis0(
+                X.T, weights=weights, return_sum_weights=return_sum_weights
+            )
     else:
         _raise_typeerror(X)
 
@@ -202,7 +214,9 @@ def incr_mean_variance_axis(X, *, axis, last_mean, last_var, last_n, weights=Non
     if weights is not None:
         weights = _check_sample_weight(weights, X, dtype=X.dtype)
 
-    return _incr_mean_var_axis0(X, last_mean=last_mean, last_var=last_var, last_n=last_n, weights=weights)
+    return _incr_mean_var_axis0(
+        X, last_mean=last_mean, last_var=last_var, last_n=last_n, weights=weights
+    )
 
 
 def inplace_column_scale(X, scale):
@@ -420,9 +434,13 @@ def _min_or_max_axis(X, axis, min_or_max):
     value = np.compress(mask, value)
 
     if axis == 0:
-        res = sp.coo_matrix((value, (np.zeros(len(value)), major_index)), dtype=X.dtype, shape=(1, M))
+        res = sp.coo_matrix(
+            (value, (np.zeros(len(value)), major_index)), dtype=X.dtype, shape=(1, M)
+        )
     else:
-        res = sp.coo_matrix((value, (major_index, np.zeros(len(value)))), dtype=X.dtype, shape=(M, 1))
+        res = sp.coo_matrix(
+            (value, (major_index, np.zeros(len(value)))), dtype=X.dtype, shape=(M, 1)
+        )
     return res.A.ravel()
 
 
@@ -563,7 +581,8 @@ def _get_median(data, n_zeros):
         return _get_elem_at_rank(middle, data, n_negative, n_zeros)
 
     return (
-        _get_elem_at_rank(middle - 1, data, n_negative, n_zeros) + _get_elem_at_rank(middle, data, n_negative, n_zeros)
+        _get_elem_at_rank(middle - 1, data, n_negative, n_zeros)
+        + _get_elem_at_rank(middle, data, n_negative, n_zeros)
     ) / 2.0
 
 

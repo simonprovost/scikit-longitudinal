@@ -1,11 +1,19 @@
 import numpy as np
 import pytest
-from numpy.testing import assert_allclose, assert_array_equal
 from scipy import sparse
+
+from numpy.testing import assert_array_equal
+from numpy.testing import assert_allclose
+
 from sklearn_fork.datasets import load_iris
-from sklearn_fork.utils import _safe_indexing, check_array
-from sklearn_fork.utils._mocking import CheckingClassifier, _MockEstimatorOnOffPrediction
+from sklearn_fork.utils import check_array
+from sklearn_fork.utils import _safe_indexing
 from sklearn_fork.utils._testing import _convert_container
+
+from sklearn_fork.utils._mocking import (
+    _MockEstimatorOnOffPrediction,
+    CheckingClassifier,
+)
 
 
 @pytest.fixture
@@ -52,14 +60,18 @@ def test_check_on_fit_fail(iris, kwargs):
         clf.fit(X, y)
 
 
-@pytest.mark.parametrize("pred_func", ["predict", "predict_proba", "decision_function", "score"])
+@pytest.mark.parametrize(
+    "pred_func", ["predict", "predict_proba", "decision_function", "score"]
+)
 def test_check_X_on_predict_success(iris, pred_func):
     X, y = iris
     clf = CheckingClassifier(check_X=_success).fit(X, y)
     getattr(clf, pred_func)(X)
 
 
-@pytest.mark.parametrize("pred_func", ["predict", "predict_proba", "decision_function", "score"])
+@pytest.mark.parametrize(
+    "pred_func", ["predict", "predict_proba", "decision_function", "score"]
+)
 def test_check_X_on_predict_fail(iris, pred_func):
     X, y = iris
     clf = CheckingClassifier(check_X=_success).fit(X, y)
@@ -122,7 +134,9 @@ def test_checking_classifier_with_params(iris):
         clf.fit(X, y)
     clf.fit(X_sparse, y)
 
-    clf = CheckingClassifier(check_X=check_array, check_X_params={"accept_sparse": False})
+    clf = CheckingClassifier(
+        check_X=check_array, check_X_params={"accept_sparse": False}
+    )
     clf.fit(X, y)
     with pytest.raises(TypeError, match="A sparse matrix was passed"):
         clf.fit(X_sparse, y)
@@ -152,7 +166,9 @@ def test_checking_classifier_missing_fit_params(iris):
     "methods_to_check",
     [["predict"], ["predict", "predict_proba"]],
 )
-@pytest.mark.parametrize("predict_method", ["predict", "predict_proba", "decision_function", "score"])
+@pytest.mark.parametrize(
+    "predict_method", ["predict", "predict_proba", "decision_function", "score"]
+)
 def test_checking_classifier_methods_to_check(iris, methods_to_check, predict_method):
     # check that methods_to_check allows to bypass checks
     X, y = iris

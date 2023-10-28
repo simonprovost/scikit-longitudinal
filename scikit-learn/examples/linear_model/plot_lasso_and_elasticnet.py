@@ -13,8 +13,9 @@ compared with the ground-truth.
 # Data Generation
 # ---------------------------------------------------
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.metrics import r2_score
 
 np.random.seed(42)
@@ -90,5 +91,7 @@ plt.stem(
 )
 
 plt.legend(loc="best")
-plt.title("Lasso $R^2$: %.3f, Elastic Net $R^2$: %.3f" % (r2_score_lasso, r2_score_enet))
+plt.title(
+    "Lasso $R^2$: %.3f, Elastic Net $R^2$: %.3f" % (r2_score_lasso, r2_score_enet)
+)
 plt.show()

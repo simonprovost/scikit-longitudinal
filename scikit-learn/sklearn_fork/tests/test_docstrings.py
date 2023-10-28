@@ -5,9 +5,13 @@ from typing import Optional
 import pytest
 
 # make it possible to discover experimental estimators when calling `all_estimators`
-from sklearn_fork.experimental import enable_halving_search_cv  # noqa
 from sklearn_fork.experimental import enable_iterative_imputer  # noqa
-from sklearn_fork.utils.discovery import all_displays, all_estimators, all_functions
+from sklearn_fork.experimental import enable_halving_search_cv  # noqa
+
+from sklearn_fork.utils.discovery import all_estimators
+from sklearn_fork.utils.discovery import all_displays
+from sklearn_fork.utils.discovery import all_functions
+
 
 numpydoc_validation = pytest.importorskip("numpydoc.validate")
 
@@ -116,7 +120,10 @@ def repr_errors(res, Klass=None, method: Optional[str] = None) -> str:
             obj_signature = str(signature(obj))
         except TypeError:
             # In particular we can't parse the signature of properties
-            obj_signature = "\nParsing of the method signature failed, possibly because this is a property."
+            obj_signature = (
+                "\nParsing of the method signature failed, "
+                "possibly because this is a property."
+            )
 
         obj_name = Klass.__name__ + "." + method
     else:
@@ -129,7 +136,9 @@ def repr_errors(res, Klass=None, method: Optional[str] = None) -> str:
             obj_name + obj_signature,
             res["docstring"],
             "# Errors",
-            "\n".join(" - {}: {}".format(code, message) for code, message in res["errors"]),
+            "\n".join(
+                " - {}: {}".format(code, message) for code, message in res["errors"]
+            ),
         ]
     )
     return msg
@@ -168,8 +177,8 @@ def test_docstring(Klass, method, request):
 
 
 if __name__ == "__main__":
-    import argparse
     import sys
+    import argparse
 
     parser = argparse.ArgumentParser(description="Validate docstring with numpydoc.")
     parser.add_argument("import_path", help="Import path to validate")
@@ -183,7 +192,9 @@ if __name__ == "__main__":
     # method = None.
     # TODO: this detection can be improved. Currently we assume that we have
     # class # methods if the second path element before last is in camel case.
-    if len(import_path_sections) >= 2 and re.match(r"(?:[A-Z][a-z]*)+", import_path_sections[-2]):
+    if len(import_path_sections) >= 2 and re.match(
+        r"(?:[A-Z][a-z]*)+", import_path_sections[-2]
+    ):
         method = import_path_sections[-1]
     else:
         method = None

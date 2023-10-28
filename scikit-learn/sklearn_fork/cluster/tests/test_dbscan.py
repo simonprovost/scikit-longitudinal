@@ -3,17 +3,23 @@ Tests for DBSCAN clustering algorithm
 """
 
 import pickle
-import warnings
 
 import numpy as np
-import pytest
-from scipy import sparse
+
+import warnings
+
 from scipy.spatial import distance
-from sklearn_fork.cluster import DBSCAN, dbscan
+from scipy import sparse
+
+import pytest
+
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.neighbors import NearestNeighbors
+from sklearn_fork.cluster import DBSCAN
+from sklearn_fork.cluster import dbscan
 from sklearn_fork.cluster.tests.common import generate_clustered_data
 from sklearn_fork.metrics.pairwise import pairwise_distances
-from sklearn_fork.neighbors import NearestNeighbors
-from sklearn_fork.utils._testing import assert_array_equal
+
 
 n_clusters = 3
 X = generate_clustered_data(n_clusters=n_clusters)
@@ -28,7 +34,9 @@ def test_dbscan_similarity():
     D = distance.squareform(distance.pdist(X))
     D /= np.max(D)
     # Compute DBSCAN
-    core_samples, labels = dbscan(D, metric="precomputed", eps=eps, min_samples=min_samples)
+    core_samples, labels = dbscan(
+        D, metric="precomputed", eps=eps, min_samples=min_samples
+    )
     # number of clusters, ignoring noise if present
     n_clusters_1 = len(set(labels)) - (1 if -1 in labels else 0)
 
@@ -78,7 +86,9 @@ def test_dbscan_sparse_precomputed(include_self):
     D_sparse = nn.radius_neighbors_graph(X=X_, mode="distance")
     # Ensure it is sparse not merely on diagonals:
     assert D_sparse.nnz < D.shape[0] * (D.shape[0] - 1)
-    core_sparse, labels_sparse = dbscan(D_sparse, eps=0.8, min_samples=10, metric="precomputed")
+    core_sparse, labels_sparse = dbscan(
+        D_sparse, eps=0.8, min_samples=10, metric="precomputed"
+    )
     core_dense, labels_dense = dbscan(D, eps=0.8, min_samples=10, metric="precomputed")
     assert_array_equal(core_dense, core_sparse)
     assert_array_equal(labels_dense, labels_sparse)
@@ -138,7 +148,9 @@ def test_dbscan_callable():
     metric = distance.euclidean
     # Compute DBSCAN
     # parameters chosen for task
-    core_samples, labels = dbscan(X, metric=metric, eps=eps, min_samples=min_samples, algorithm="ball_tree")
+    core_samples, labels = dbscan(
+        X, metric=metric, eps=eps, min_samples=min_samples, algorithm="ball_tree"
+    )
 
     # number of clusters, ignoring noise if present
     n_clusters_1 = len(set(labels)) - int(-1 in labels)
@@ -172,14 +184,18 @@ def test_dbscan_metric_params():
     core_sample_1, labels_1 = db.core_sample_indices_, db.labels_
 
     # Test that sample labels are the same as passing Minkowski 'p' directly
-    db = DBSCAN(metric="minkowski", eps=eps, min_samples=min_samples, algorithm="ball_tree", p=p).fit(X)
+    db = DBSCAN(
+        metric="minkowski", eps=eps, min_samples=min_samples, algorithm="ball_tree", p=p
+    ).fit(X)
     core_sample_2, labels_2 = db.core_sample_indices_, db.labels_
 
     assert_array_equal(core_sample_1, core_sample_2)
     assert_array_equal(labels_1, labels_2)
 
     # Minkowski with p=1 should be equivalent to Manhattan distance
-    db = DBSCAN(metric="manhattan", eps=eps, min_samples=min_samples, algorithm="ball_tree").fit(X)
+    db = DBSCAN(
+        metric="manhattan", eps=eps, min_samples=min_samples, algorithm="ball_tree"
+    ).fit(X)
     core_sample_3, labels_3 = db.core_sample_indices_, db.labels_
 
     assert_array_equal(core_sample_1, core_sample_3)
@@ -187,7 +203,11 @@ def test_dbscan_metric_params():
 
     with pytest.warns(
         SyntaxWarning,
-        match="Parameter p is found in metric_params. The corresponding parameter from __init__ is ignored.",
+        match=(
+            "Parameter p is found in metric_params. "
+            "The corresponding parameter from __init__ "
+            "is ignored."
+        ),
     ):
         # Test that checks p is ignored in favor of metric_params={'p': <val>}
         db = DBSCAN(
@@ -210,7 +230,9 @@ def test_dbscan_balltree():
     min_samples = 10
 
     D = pairwise_distances(X)
-    core_samples, labels = dbscan(D, metric="precomputed", eps=eps, min_samples=min_samples)
+    core_samples, labels = dbscan(
+        D, metric="precomputed", eps=eps, min_samples=min_samples
+    )
 
     # number of clusters, ignoring noise if present
     n_clusters_1 = len(set(labels)) - int(-1 in labels)
@@ -275,15 +297,27 @@ def test_weighted_dbscan(global_random_seed):
     assert_array_equal([], dbscan([[0], [1]], sample_weight=None, min_samples=6)[0])
     assert_array_equal([], dbscan([[0], [1]], sample_weight=[5, 5], min_samples=6)[0])
     assert_array_equal([0], dbscan([[0], [1]], sample_weight=[6, 5], min_samples=6)[0])
-    assert_array_equal([0, 1], dbscan([[0], [1]], sample_weight=[6, 6], min_samples=6)[0])
+    assert_array_equal(
+        [0, 1], dbscan([[0], [1]], sample_weight=[6, 6], min_samples=6)[0]
+    )
 
     # points within eps of each other:
-    assert_array_equal([0, 1], dbscan([[0], [1]], eps=1.5, sample_weight=[5, 1], min_samples=6)[0])
+    assert_array_equal(
+        [0, 1], dbscan([[0], [1]], eps=1.5, sample_weight=[5, 1], min_samples=6)[0]
+    )
     # and effect of non-positive and non-integer sample_weight:
-    assert_array_equal([], dbscan([[0], [1]], sample_weight=[5, 0], eps=1.5, min_samples=6)[0])
-    assert_array_equal([0, 1], dbscan([[0], [1]], sample_weight=[5.9, 0.1], eps=1.5, min_samples=6)[0])
-    assert_array_equal([0, 1], dbscan([[0], [1]], sample_weight=[6, 0], eps=1.5, min_samples=6)[0])
-    assert_array_equal([], dbscan([[0], [1]], sample_weight=[6, -1], eps=1.5, min_samples=6)[0])
+    assert_array_equal(
+        [], dbscan([[0], [1]], sample_weight=[5, 0], eps=1.5, min_samples=6)[0]
+    )
+    assert_array_equal(
+        [0, 1], dbscan([[0], [1]], sample_weight=[5.9, 0.1], eps=1.5, min_samples=6)[0]
+    )
+    assert_array_equal(
+        [0, 1], dbscan([[0], [1]], sample_weight=[6, 0], eps=1.5, min_samples=6)[0]
+    )
+    assert_array_equal(
+        [], dbscan([[0], [1]], sample_weight=[6, -1], eps=1.5, min_samples=6)[0]
+    )
 
     # for non-negative sample_weight, cores should be identical to repetition
     rng = np.random.RandomState(global_random_seed)

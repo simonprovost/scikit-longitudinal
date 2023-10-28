@@ -17,10 +17,10 @@ import numpy as np
 from scipy import linalg, sparse
 
 from . import check_random_state
-from ._array_api import _is_numpy_namespace, get_namespace
 from ._logistic_sigmoid import _log_logistic_sigmoid
 from .sparsefuncs_fast import csr_row_norms
 from .validation import check_array
+from ._array_api import get_namespace, _is_numpy_namespace
 
 
 def squared_norm(x):
@@ -42,7 +42,10 @@ def squared_norm(x):
     x = np.ravel(x, order="K")
     if np.issubdtype(x.dtype, np.integer):
         warnings.warn(
-            "Array type is integer, np.dot may overflow. Data should be float type to avoid this issue",
+            (
+                "Array type is integer, np.dot may overflow. "
+                "Data should be float type to avoid this issue"
+            ),
             UserWarning,
         )
     return np.dot(x, x)
@@ -140,7 +143,10 @@ def density(w, **kwargs):
     """
     if kwargs:
         warnings.warn(
-            "Additional keyword arguments are deprecated in version 1.2 and will be removed in version 1.4.",
+            (
+                "Additional keyword arguments are deprecated in version 1.2 and will be"
+                " removed in version 1.4."
+            ),
             FutureWarning,
         )
 
@@ -186,12 +192,19 @@ def safe_sparse_dot(a, b, *, dense_output=False):
     else:
         ret = a @ b
 
-    if sparse.issparse(a) and sparse.issparse(b) and dense_output and hasattr(ret, "toarray"):
+    if (
+        sparse.issparse(a)
+        and sparse.issparse(b)
+        and dense_output
+        and hasattr(ret, "toarray")
+    ):
         return ret.toarray()
     return ret
 
 
-def randomized_range_finder(A, *, size, n_iter, power_iteration_normalizer="auto", random_state=None):
+def randomized_range_finder(
+    A, *, size, n_iter, power_iteration_normalizer="auto", random_state=None
+):
     """Compute an orthonormal matrix whose range approximates the range of A.
 
     Parameters
@@ -414,7 +427,8 @@ def randomized_svd(
     """
     if isinstance(M, (sparse.lil_matrix, sparse.dok_matrix)):
         warnings.warn(
-            "Calculating SVD of a {} is expensive. csr_matrix is more efficient.".format(type(M).__name__),
+            "Calculating SVD of a {} is expensive. "
+            "csr_matrix is more efficient.".format(type(M).__name__),
             sparse.SparseEfficiencyWarning,
         )
 
@@ -954,7 +968,9 @@ def _safe_accumulator_op(op, x, *args, **kwargs):
     return result
 
 
-def _incremental_mean_and_var(X, last_mean, last_variance, last_sample_count, sample_weight=None):
+def _incremental_mean_and_var(
+    X, last_mean, last_variance, last_sample_count, sample_weight=None
+):
     """Calculate mean update and a Youngs and Cramer variance update.
 
     If sample_weight is given, the weighted mean and variance is computed.
@@ -1019,8 +1035,12 @@ def _incremental_mean_and_var(X, last_mean, last_variance, last_sample_count, sa
     if sample_weight is not None:
         # equivalent to np.nansum(X * sample_weight, axis=0)
         # safer because np.float64(X*W) != np.float64(X)*np.float64(W)
-        new_sum = _safe_accumulator_op(np.matmul, sample_weight, np.where(X_nan_mask, 0, X))
-        new_sample_count = _safe_accumulator_op(np.sum, sample_weight[:, None] * (~X_nan_mask), axis=0)
+        new_sum = _safe_accumulator_op(
+            np.matmul, sample_weight, np.where(X_nan_mask, 0, X)
+        )
+        new_sample_count = _safe_accumulator_op(
+            np.sum, sample_weight[:, None] * (~X_nan_mask), axis=0
+        )
     else:
         new_sum = _safe_accumulator_op(sum_op, X, axis=0)
         n_samples = X.shape[0]
@@ -1038,9 +1058,13 @@ def _incremental_mean_and_var(X, last_mean, last_variance, last_sample_count, sa
         if sample_weight is not None:
             # equivalent to np.nansum((X-T)**2 * sample_weight, axis=0)
             # safer because np.float64(X*W) != np.float64(X)*np.float64(W)
-            correction = _safe_accumulator_op(np.matmul, sample_weight, np.where(X_nan_mask, 0, temp))
+            correction = _safe_accumulator_op(
+                np.matmul, sample_weight, np.where(X_nan_mask, 0, temp)
+            )
             temp **= 2
-            new_unnormalized_variance = _safe_accumulator_op(np.matmul, sample_weight, np.where(X_nan_mask, 0, temp))
+            new_unnormalized_variance = _safe_accumulator_op(
+                np.matmul, sample_weight, np.where(X_nan_mask, 0, temp)
+            )
         else:
             correction = _safe_accumulator_op(sum_op, temp, axis=0)
             temp **= 2
@@ -1058,7 +1082,9 @@ def _incremental_mean_and_var(X, last_mean, last_variance, last_sample_count, sa
             updated_unnormalized_variance = (
                 last_unnormalized_variance
                 + new_unnormalized_variance
-                + last_over_new_count / updated_sample_count * (last_sum / last_over_new_count - new_sum) ** 2
+                + last_over_new_count
+                / updated_sample_count
+                * (last_sum / last_over_new_count - new_sum) ** 2
             )
 
         zeros = last_sample_count == 0
@@ -1115,9 +1141,16 @@ def stable_cumsum(arr, axis=None, rtol=1e-05, atol=1e-08):
     """
     out = np.cumsum(arr, axis=axis, dtype=np.float64)
     expected = np.sum(arr, axis=axis, dtype=np.float64)
-    if not np.all(np.isclose(out.take(-1, axis=axis), expected, rtol=rtol, atol=atol, equal_nan=True)):
+    if not np.all(
+        np.isclose(
+            out.take(-1, axis=axis), expected, rtol=rtol, atol=atol, equal_nan=True
+        )
+    ):
         warnings.warn(
-            "cumsum was found to be unstable: its last element does not correspond to sum",
+            (
+                "cumsum was found to be unstable: "
+                "its last element does not correspond to sum"
+            ),
             RuntimeWarning,
         )
     return out

@@ -36,6 +36,7 @@ identify the directions of largest non-Gaussianity (lower right).
 # Generate sample data
 # --------------------
 import numpy as np
+
 from sklearn_fork.decomposition import PCA, FastICA
 
 rng = np.random.RandomState(42)
@@ -63,7 +64,9 @@ import matplotlib.pyplot as plt
 
 
 def plot_samples(S, axis_list=None):
-    plt.scatter(S[:, 0], S[:, 1], s=2, marker="o", zorder=10, color="steelblue", alpha=0.5)
+    plt.scatter(
+        S[:, 0], S[:, 1], s=2, marker="o", zorder=10, color="steelblue", alpha=0.5
+    )
     if axis_list is not None:
         for axis, color, label in axis_list:
             axis /= axis.std()

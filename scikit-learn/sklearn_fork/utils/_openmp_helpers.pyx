@@ -1,6 +1,6 @@
 import os
-
 from joblib import cpu_count
+
 
 # Module level cache for cpu_count as we do not expect this to change during
 # the lifecycle of a Python program. This dictionary is keyed by

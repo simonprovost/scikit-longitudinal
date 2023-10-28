@@ -3,11 +3,12 @@
 # Changes must be made there.
 
 cimport numpy as cnp
-from cython cimport final
+
 from libcpp.memory cimport shared_ptr
 from libcpp.vector cimport vector
+from cython cimport final
 
-from ...utils._typedefs cimport float64_t, intp_t
+from ...utils._typedefs cimport intp_t, float64_t
 
 cnp.import_array()
 
@@ -32,7 +33,6 @@ cdef cnp.ndarray[object, ndim=1] coerce_vectors_to_nd_arrays(
 
 from ._base cimport BaseDistancesReduction64
 from ._middle_term_computer cimport MiddleTermComputer64
-
 
 cdef class RadiusNeighbors64(BaseDistancesReduction64):
     """float64 implementation of the RadiusNeighbors."""
@@ -92,7 +92,6 @@ cdef class EuclideanRadiusNeighbors64(RadiusNeighbors64):
 
 from ._base cimport BaseDistancesReduction32
 from ._middle_term_computer cimport MiddleTermComputer32
-
 
 cdef class RadiusNeighbors32(BaseDistancesReduction32):
     """float32 implementation of the RadiusNeighbors."""

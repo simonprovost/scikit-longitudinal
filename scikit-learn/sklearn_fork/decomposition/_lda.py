@@ -14,17 +14,21 @@ from numbers import Integral, Real
 
 import numpy as np
 import scipy.sparse as sp
-from joblib import effective_n_jobs
 from scipy.special import gammaln, logsumexp
+from joblib import effective_n_jobs
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
 from ..utils import check_random_state, gen_batches, gen_even_slices
+from ..utils.validation import check_non_negative
+from ..utils.validation import check_is_fitted
+from ..utils.parallel import delayed, Parallel
 from ..utils._param_validation import Interval, StrOptions
-from ..utils.parallel import Parallel, delayed
-from ..utils.validation import check_is_fitted, check_non_negative
-from ._online_lda_fast import _dirichlet_expectation_1d as cy_dirichlet_expectation_1d
-from ._online_lda_fast import _dirichlet_expectation_2d
-from ._online_lda_fast import mean_change as cy_mean_change
+
+from ._online_lda_fast import (
+    mean_change as cy_mean_change,
+    _dirichlet_expectation_1d as cy_dirichlet_expectation_1d,
+    _dirichlet_expectation_2d,
+)
 
 EPS = np.finfo(float).eps
 
@@ -83,7 +87,9 @@ def _update_doc_distribution(
     n_topics = exp_topic_word_distr.shape[0]
 
     if random_state:
-        doc_topic_distr = random_state.gamma(100.0, 0.01, (n_samples, n_topics)).astype(X.dtype, copy=False)
+        doc_topic_distr = random_state.gamma(100.0, 0.01, (n_samples, n_topics)).astype(
+            X.dtype, copy=False
+        )
     else:
         doc_topic_distr = np.ones((n_samples, n_topics), dtype=X.dtype)
 
@@ -91,7 +97,9 @@ def _update_doc_distribution(
     exp_doc_topic = np.exp(_dirichlet_expectation_2d(doc_topic_distr))
 
     # diff on `component_` (only calculate it when `cal_diff` is True)
-    suff_stats = np.zeros(exp_topic_word_distr.shape, dtype=X.dtype) if cal_sstats else None
+    suff_stats = (
+        np.zeros(exp_topic_word_distr.shape, dtype=X.dtype) if cal_sstats else None
+    )
 
     if is_sparse_x:
         X_data = X.data
@@ -145,7 +153,9 @@ def _update_doc_distribution(
     return (doc_topic_distr, suff_stats)
 
 
-class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
+class LatentDirichletAllocation(
+    ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
+):
     """Latent Dirichlet Allocation with online variational Bayes algorithm.
 
     The implementation is based on [1]_ and [2]_.
@@ -401,12 +411,14 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
         init_gamma = 100.0
         init_var = 1.0 / init_gamma
         # In the literature, this is called `lambda`
-        self.components_ = self.random_state_.gamma(init_gamma, init_var, (self.n_components, n_features)).astype(
-            dtype, copy=False
-        )
+        self.components_ = self.random_state_.gamma(
+            init_gamma, init_var, (self.n_components, n_features)
+        ).astype(dtype, copy=False)
 
         # In the literature, this is `exp(E[log(beta)])`
-        self.exp_dirichlet_component_ = np.exp(_dirichlet_expectation_2d(self.components_))
+        self.exp_dirichlet_component_ = np.exp(
+            _dirichlet_expectation_2d(self.components_)
+        )
 
     def _e_step(self, X, cal_sstats, random_init, parallel=None):
         """E-step in EM update.
@@ -502,7 +514,9 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
         """
 
         # E-step
-        _, suff_stats = self._e_step(X, cal_sstats=True, random_init=True, parallel=parallel)
+        _, suff_stats = self._e_step(
+            X, cal_sstats=True, random_init=True, parallel=parallel
+        )
 
         # M-step
         if batch_update:
@@ -510,13 +524,19 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
         else:
             # online update
             # In the literature, the weight is `rho`
-            weight = np.power(self.learning_offset + self.n_batch_iter_, -self.learning_decay)
+            weight = np.power(
+                self.learning_offset + self.n_batch_iter_, -self.learning_decay
+            )
             doc_ratio = float(total_samples) / X.shape[0]
             self.components_ *= 1 - weight
-            self.components_ += weight * (self.topic_word_prior_ + doc_ratio * suff_stats)
+            self.components_ += weight * (
+                self.topic_word_prior_ + doc_ratio * suff_stats
+            )
 
         # update `component_` related variables
-        self.exp_dirichlet_component_ = np.exp(_dirichlet_expectation_2d(self.components_))
+        self.exp_dirichlet_component_ = np.exp(
+            _dirichlet_expectation_2d(self.components_)
+        )
         self.n_batch_iter_ += 1
         return
 
@@ -569,7 +589,9 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
         if first_time:
             self._validate_params()
 
-        X = self._check_non_neg_array(X, reset_n_features=first_time, whom="LatentDirichletAllocation.partial_fit")
+        X = self._check_non_neg_array(
+            X, reset_n_features=first_time, whom="LatentDirichletAllocation.partial_fit"
+        )
         n_samples, n_features = X.shape
         batch_size = self.batch_size
 
@@ -579,7 +601,8 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
 
         if n_features != self.components_.shape[1]:
             raise ValueError(
-                "The provided data has %d dimensions while the model was trained with feature size %d."
+                "The provided data has %d dimensions while "
+                "the model was trained with feature size %d."
                 % (n_features, self.components_.shape[1])
             )
 
@@ -615,7 +638,9 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
             Fitted estimator.
         """
         self._validate_params()
-        X = self._check_non_neg_array(X, reset_n_features=True, whom="LatentDirichletAllocation.fit")
+        X = self._check_non_neg_array(
+            X, reset_n_features=True, whom="LatentDirichletAllocation.fit"
+        )
         n_samples, n_features = X.shape
         max_iter = self.max_iter
         evaluate_every = self.evaluate_every
@@ -640,14 +665,23 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
                         )
                 else:
                     # batch update
-                    self._em_step(X, total_samples=n_samples, batch_update=True, parallel=parallel)
+                    self._em_step(
+                        X, total_samples=n_samples, batch_update=True, parallel=parallel
+                    )
 
                 # check perplexity
                 if evaluate_every > 0 and (i + 1) % evaluate_every == 0:
-                    doc_topics_distr, _ = self._e_step(X, cal_sstats=False, random_init=False, parallel=parallel)
-                    bound = self._perplexity_precomp_distr(X, doc_topics_distr, sub_sampling=False)
+                    doc_topics_distr, _ = self._e_step(
+                        X, cal_sstats=False, random_init=False, parallel=parallel
+                    )
+                    bound = self._perplexity_precomp_distr(
+                        X, doc_topics_distr, sub_sampling=False
+                    )
                     if self.verbose:
-                        print("iteration: %d of max_iter: %d, perplexity: %.4f" % (i + 1, max_iter, bound))
+                        print(
+                            "iteration: %d of max_iter: %d, perplexity: %.4f"
+                            % (i + 1, max_iter, bound)
+                        )
 
                     if last_bound and abs(last_bound - bound) < self.perp_tol:
                         break
@@ -658,8 +692,12 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
                 self.n_iter_ += 1
 
         # calculate final perplexity value on train set
-        doc_topics_distr, _ = self._e_step(X, cal_sstats=False, random_init=False, parallel=parallel)
-        self.bound_ = self._perplexity_precomp_distr(X, doc_topics_distr, sub_sampling=False)
+        doc_topics_distr, _ = self._e_step(
+            X, cal_sstats=False, random_init=False, parallel=parallel
+        )
+        self.bound_ = self._perplexity_precomp_distr(
+            X, doc_topics_distr, sub_sampling=False
+        )
 
         return self
 
@@ -697,7 +735,9 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
             Document topic distribution for X.
         """
         check_is_fitted(self)
-        X = self._check_non_neg_array(X, reset_n_features=False, whom="LatentDirichletAllocation.transform")
+        X = self._check_non_neg_array(
+            X, reset_n_features=False, whom="LatentDirichletAllocation.transform"
+        )
         doc_topic_distr = self._unnormalized_transform(X)
         doc_topic_distr /= doc_topic_distr.sum(axis=1)[:, np.newaxis]
         return doc_topic_distr
@@ -758,12 +798,16 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
             else:
                 ids = np.nonzero(X[idx_d, :])[0]
                 cnts = X[idx_d, ids]
-            temp = dirichlet_doc_topic[idx_d, :, np.newaxis] + dirichlet_component_[:, ids]
+            temp = (
+                dirichlet_doc_topic[idx_d, :, np.newaxis] + dirichlet_component_[:, ids]
+            )
             norm_phi = logsumexp(temp, axis=0)
             score += np.dot(cnts, norm_phi)
 
         # compute E[log p(theta | alpha) - log q(theta | gamma)]
-        score += _loglikelihood(doc_topic_prior, doc_topic_distr, dirichlet_doc_topic, self.n_components)
+        score += _loglikelihood(
+            doc_topic_prior, doc_topic_distr, dirichlet_doc_topic, self.n_components
+        )
 
         # Compensate for the subsampling of the population of documents
         if sub_sampling:
@@ -771,7 +815,9 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
             score *= doc_ratio
 
         # E[log p(beta | eta) - log q (beta | lambda)]
-        score += _loglikelihood(topic_word_prior, self.components_, dirichlet_component_, n_features)
+        score += _loglikelihood(
+            topic_word_prior, self.components_, dirichlet_component_, n_features
+        )
 
         return score
 
@@ -792,7 +838,9 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
             Use approximate bound as score.
         """
         check_is_fitted(self)
-        X = self._check_non_neg_array(X, reset_n_features=False, whom="LatentDirichletAllocation.score")
+        X = self._check_non_neg_array(
+            X, reset_n_features=False, whom="LatentDirichletAllocation.score"
+        )
 
         doc_topic_distr = self._unnormalized_transform(X)
         score = self._approx_bound(X, doc_topic_distr, sub_sampling=False)
@@ -824,7 +872,9 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
         else:
             n_samples, n_components = doc_topic_distr.shape
             if n_samples != X.shape[0]:
-                raise ValueError("Number of samples in X and doc_topic_distr do not match.")
+                raise ValueError(
+                    "Number of samples in X and doc_topic_distr do not match."
+                )
 
             if n_components != self.n_components:
                 raise ValueError("Number of topics does not match.")
@@ -863,7 +913,9 @@ class LatentDirichletAllocation(ClassNamePrefixFeaturesOutMixin, TransformerMixi
             Perplexity score.
         """
         check_is_fitted(self)
-        X = self._check_non_neg_array(X, reset_n_features=True, whom="LatentDirichletAllocation.perplexity")
+        X = self._check_non_neg_array(
+            X, reset_n_features=True, whom="LatentDirichletAllocation.perplexity"
+        )
         return self._perplexity_precomp_distr(X, sub_sampling=sub_sampling)
 
     @property

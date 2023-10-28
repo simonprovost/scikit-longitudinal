@@ -26,12 +26,15 @@ but is computationally more demanding.
 #
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
-from scipy.special import expit
+import matplotlib.pyplot as plt
+
 from sklearn_fork import ensemble
+from sklearn_fork.model_selection import KFold
+from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.metrics import log_loss
-from sklearn_fork.model_selection import KFold, train_test_split
+
+from scipy.special import expit
 
 # Generate data (adapted from G. Ridgeway's gbm example)
 n_samples = 1000
@@ -127,7 +130,9 @@ plt.axvline(x=cv_best_iter, color=cv_color, linestyle=cv_line)
 
 # add three vertical lines to xticks
 xticks = plt.xticks()
-xticks_pos = np.array(xticks[0].tolist() + [oob_best_iter, cv_best_iter, test_best_iter])
+xticks_pos = np.array(
+    xticks[0].tolist() + [oob_best_iter, cv_best_iter, test_best_iter]
+)
 xticks_label = np.array(list(map(lambda t: int(t), xticks[0])) + ["OOB", "CV", "Test"])
 ind = np.argsort(xticks_pos)
 xticks_pos = xticks_pos[ind]

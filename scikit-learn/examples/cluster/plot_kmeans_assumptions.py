@@ -32,7 +32,9 @@ X_aniso = np.dot(X, transformation)  # Anisotropic blobs
 X_varied, y_varied = make_blobs(
     n_samples=n_samples, cluster_std=[1.0, 2.5, 0.5], random_state=random_state
 )  # Unequal variance
-X_filtered = np.vstack((X[y == 0][:500], X[y == 1][:100], X[y == 2][:10]))  # Unevenly sized blobs
+X_filtered = np.vstack(
+    (X[y == 0][:500], X[y == 1][:100], X[y == 2][:10])
+)  # Unevenly sized blobs
 y_filtered = [0] * 500 + [1] * 100 + [2] * 10
 
 # %%
@@ -126,7 +128,9 @@ plt.show()
 # initializations. In this case we set `n_init=10` to avoid finding a
 # sub-optimal local minimum. For more details see :ref:`kmeans_sparse_high_dim`.
 
-y_pred = KMeans(n_clusters=3, n_init=10, random_state=random_state).fit_predict(X_filtered)
+y_pred = KMeans(n_clusters=3, n_init=10, random_state=random_state).fit_predict(
+    X_filtered
+)
 plt.scatter(X_filtered[:, 0], X_filtered[:, 1], c=y_pred)
 plt.title("Unevenly Sized Blobs \nwith several initializations")
 plt.show()

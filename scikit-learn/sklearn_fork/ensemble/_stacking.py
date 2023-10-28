@@ -10,19 +10,34 @@ from numbers import Integral
 import numpy as np
 import scipy.sparse as sparse
 
-from ..base import ClassifierMixin, RegressorMixin, TransformerMixin, clone, is_classifier, is_regressor
+from ..base import clone
+from ..base import ClassifierMixin, RegressorMixin, TransformerMixin
+from ..base import is_classifier, is_regressor
 from ..exceptions import NotFittedError
-from ..linear_model import LogisticRegression, RidgeCV
-from ..model_selection import check_cv, cross_val_predict
-from ..preprocessing import LabelEncoder
-from ..utils import Bunch
 from ..utils._estimator_html_repr import _VisualBlock
-from ..utils._param_validation import HasMethods, StrOptions
-from ..utils.metaestimators import available_if
+
+from ._base import _fit_single_estimator
+from ._base import _BaseHeterogeneousEnsemble
+
+from ..linear_model import LogisticRegression
+from ..linear_model import RidgeCV
+
+from ..model_selection import cross_val_predict
+from ..model_selection import check_cv
+
+from ..preprocessing import LabelEncoder
+
+from ..utils import Bunch
 from ..utils.multiclass import check_classification_targets, type_of_target
-from ..utils.parallel import Parallel, delayed
-from ..utils.validation import _check_feature_names_in, _check_response_method, check_is_fitted, column_or_1d
-from ._base import _BaseHeterogeneousEnsemble, _fit_single_estimator
+from ..utils.metaestimators import available_if
+from ..utils.parallel import delayed, Parallel
+from ..utils._param_validation import HasMethods, StrOptions
+from ..utils.validation import (
+    _check_feature_names_in,
+    _check_response_method,
+    check_is_fitted,
+    column_or_1d,
+)
 
 
 def _estimator_has(attr):
@@ -110,7 +125,10 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
                 # Some estimator return a 1D array for predictions
                 # which must be 2-dimensional arrays.
                 X_meta.append(preds.reshape(-1, 1))
-            elif self.stack_method_[est_idx] == "predict_proba" and len(self.classes_) == 2:
+            elif (
+                self.stack_method_[est_idx] == "predict_proba"
+                and len(self.classes_) == 2
+            ):
                 # Remove the first column when using probabilities in
                 # binary classification because both features `preds` are perfectly
                 # collinear.
@@ -135,7 +153,9 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
         try:
             method_name = _check_response_method(estimator, method).__name__
         except AttributeError as e:
-            raise ValueError(f"Underlying estimator {name} does not implement the method {method}.") from e
+            raise ValueError(
+                f"Underlying estimator {name} does not implement the method {method}."
+            ) from e
 
         return method_name
 
@@ -203,7 +223,8 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
                 self.named_estimators_[name_est] = "drop"
 
         self.stack_method_ = [
-            self._method_name(name, est, meth) for name, est, meth in zip(names, all_estimators, stack_method)
+            self._method_name(name, est, meth)
+            for name, est, meth in zip(names, all_estimators, stack_method)
         ]
 
         if self.cv == "prefit":
@@ -223,7 +244,9 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
             if hasattr(cv, "random_state") and cv.random_state is None:
                 cv.random_state = np.random.RandomState()
 
-            fit_params = {"sample_weight": sample_weight} if sample_weight is not None else None
+            fit_params = (
+                {"sample_weight": sample_weight} if sample_weight is not None else None
+            )
             predictions = Parallel(n_jobs=self.n_jobs)(
                 delayed(cross_val_predict)(
                     clone(est),
@@ -241,10 +264,16 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
 
         # Only not None or not 'drop' estimators will be used in transform.
         # Remove the None from the method as well.
-        self.stack_method_ = [meth for (meth, est) in zip(self.stack_method_, all_estimators) if est != "drop"]
+        self.stack_method_ = [
+            meth
+            for (meth, est) in zip(self.stack_method_, all_estimators)
+            if est != "drop"
+        ]
 
         X_meta = self._concatenate_predictions(X, predictions)
-        _fit_single_estimator(self.final_estimator_, X_meta, y, sample_weight=sample_weight)
+        _fit_single_estimator(
+            self.final_estimator_, X_meta, y, sample_weight=sample_weight
+        )
 
         return self
 
@@ -254,14 +283,18 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
         try:
             check_is_fitted(self)
         except NotFittedError as nfe:
-            raise AttributeError(f"{self.__class__.__name__} object has no attribute n_features_in_") from nfe
+            raise AttributeError(
+                f"{self.__class__.__name__} object has no attribute n_features_in_"
+            ) from nfe
         return self.estimators_[0].n_features_in_
 
     def _transform(self, X):
         """Concatenate and return the predictions of the estimators."""
         check_is_fitted(self)
         predictions = [
-            getattr(est, meth)(X) for est, meth in zip(self.estimators_, self.stack_method_) if est != "drop"
+            getattr(est, meth)(X)
+            for est, meth in zip(self.estimators_, self.stack_method_)
+            if est != "drop"
         ]
         return self._concatenate_predictions(X, predictions)
 
@@ -289,16 +322,22 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
             Transformed feature names.
         """
         check_is_fitted(self, "n_features_in_")
-        input_features = _check_feature_names_in(self, input_features, generate_names=self.passthrough)
+        input_features = _check_feature_names_in(
+            self, input_features, generate_names=self.passthrough
+        )
 
         class_name = self.__class__.__name__.lower()
-        non_dropped_estimators = (name for name, est in self.estimators if est != "drop")
+        non_dropped_estimators = (
+            name for name, est in self.estimators if est != "drop"
+        )
         meta_names = []
         for est, n_features_out in zip(non_dropped_estimators, self._n_feature_outs):
             if n_features_out == 1:
                 meta_names.append(f"{class_name}_{est}")
             else:
-                meta_names.extend(f"{class_name}_{est}{i}" for i in range(n_features_out))
+                meta_names.extend(
+                    f"{class_name}_{est}{i}" for i in range(n_features_out)
+                )
 
         if self.passthrough:
             return np.concatenate((meta_names, input_features))
@@ -336,7 +375,9 @@ class _BaseStacking(TransformerMixin, _BaseHeterogeneousEnsemble, metaclass=ABCM
 
         # final estimator is wrapped in a parallel block to show the label:
         # 'final_estimator' in the html repr
-        final_block = _VisualBlock("parallel", [final_estimator], names=["final_estimator"], dash_wrapped=False)
+        final_block = _VisualBlock(
+            "parallel", [final_estimator], names=["final_estimator"], dash_wrapped=False
+        )
         return _VisualBlock("serial", (parallel, final_block), dash_wrapped=False)
 
 
@@ -518,7 +559,9 @@ class StackingClassifier(ClassifierMixin, _BaseStacking):
 
     _parameter_constraints: dict = {
         **_BaseStacking._parameter_constraints,
-        "stack_method": [StrOptions({"auto", "predict_proba", "decision_function", "predict"})],
+        "stack_method": [
+            StrOptions({"auto", "predict_proba", "decision_function", "predict"})
+        ],
     }
 
     def __init__(
@@ -545,7 +588,11 @@ class StackingClassifier(ClassifierMixin, _BaseStacking):
     def _validate_final_estimator(self):
         self._clone_final_estimator(default=LogisticRegression())
         if not is_classifier(self.final_estimator_):
-            raise ValueError("'final_estimator' parameter should be a classifier. Got {}".format(self.final_estimator_))
+            raise ValueError(
+                "'final_estimator' parameter should be a classifier. Got {}".format(
+                    self.final_estimator_
+                )
+            )
 
     def _validate_estimators(self):
         """Overload the method of `_BaseHeterogeneousEnsemble` to be more
@@ -555,14 +602,18 @@ class StackingClassifier(ClassifierMixin, _BaseStacking):
         """
         if len(self.estimators) == 0:
             raise ValueError(
-                "Invalid 'estimators' attribute, 'estimators' should be a non-empty list of (string, estimator) tuples."
+                "Invalid 'estimators' attribute, 'estimators' should be a "
+                "non-empty list of (string, estimator) tuples."
             )
         names, estimators = zip(*self.estimators)
         self._validate_names(names)
 
         has_estimator = any(est != "drop" for est in estimators)
         if not has_estimator:
-            raise ValueError("All estimators are dropped. At least one is required to be an estimator.")
+            raise ValueError(
+                "All estimators are dropped. At least one is required "
+                "to be an estimator."
+            )
 
         return names, estimators
 
@@ -596,7 +647,10 @@ class StackingClassifier(ClassifierMixin, _BaseStacking):
             self._label_encoder = [LabelEncoder().fit(yk) for yk in y.T]
             self.classes_ = [le.classes_ for le in self._label_encoder]
             y_encoded = np.array(
-                [self._label_encoder[target_idx].transform(target) for target_idx, target in enumerate(y.T)]
+                [
+                    self._label_encoder[target_idx].transform(target)
+                    for target_idx, target in enumerate(y.T)
+                ]
             ).T
         else:
             self._label_encoder = LabelEncoder().fit(y)
@@ -871,7 +925,11 @@ class StackingRegressor(RegressorMixin, _BaseStacking):
     def _validate_final_estimator(self):
         self._clone_final_estimator(default=RidgeCV())
         if not is_regressor(self.final_estimator_):
-            raise ValueError("'final_estimator' parameter should be a regressor. Got {}".format(self.final_estimator_))
+            raise ValueError(
+                "'final_estimator' parameter should be a regressor. Got {}".format(
+                    self.final_estimator_
+                )
+            )
 
     def fit(self, X, y, sample_weight=None):
         """Fit the estimators.

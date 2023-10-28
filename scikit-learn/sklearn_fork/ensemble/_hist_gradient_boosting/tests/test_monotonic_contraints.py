@@ -1,12 +1,18 @@
 import re
-
 import numpy as np
 import pytest
-from sklearn_fork.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
-from sklearn_fork.ensemble._hist_gradient_boosting.common import G_H_DTYPE, X_BINNED_DTYPE, MonotonicConstraint
+
 from sklearn_fork.ensemble._hist_gradient_boosting.grower import TreeGrower
+from sklearn_fork.ensemble._hist_gradient_boosting.common import G_H_DTYPE
+from sklearn_fork.ensemble._hist_gradient_boosting.common import X_BINNED_DTYPE
+from sklearn_fork.ensemble._hist_gradient_boosting.common import MonotonicConstraint
+from sklearn_fork.ensemble._hist_gradient_boosting.splitting import (
+    Splitter,
+    compute_node_value,
+)
 from sklearn_fork.ensemble._hist_gradient_boosting.histogram import HistogramBuilder
-from sklearn_fork.ensemble._hist_gradient_boosting.splitting import Splitter, compute_node_value
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
+from sklearn_fork.ensemble import HistGradientBoostingClassifier
 from sklearn_fork.utils._openmp_helpers import _openmp_effective_n_threads
 
 n_threads = _openmp_effective_n_threads()
@@ -105,13 +111,23 @@ def assert_children_values_bounded(grower, monotonic_cst):
             if monotonic_cst == MonotonicConstraint.POS:
                 assert node.left_child.value <= node.right_child.value <= middle
                 if not right_sibling.is_leaf:
-                    assert middle <= right_sibling.left_child.value <= right_sibling.right_child.value
+                    assert (
+                        middle
+                        <= right_sibling.left_child.value
+                        <= right_sibling.right_child.value
+                    )
             else:  # NEG
                 assert node.left_child.value >= node.right_child.value >= middle
                 if not right_sibling.is_leaf:
-                    assert middle >= right_sibling.left_child.value >= right_sibling.right_child.value
+                    assert (
+                        middle
+                        >= right_sibling.left_child.value
+                        >= right_sibling.right_child.value
+                    )
 
-        recursively_check_children_node_values(node.left_child, right_sibling=node.right_child)
+        recursively_check_children_node_values(
+            node.left_child, right_sibling=node.right_child
+        )
         recursively_check_children_node_values(node.right_child)
 
     recursively_check_children_node_values(grower.root)
@@ -154,7 +170,9 @@ def test_nodes_values(monotonic_cst, seed):
     gradients = rng.normal(size=n_samples).astype(G_H_DTYPE)
     hessians = np.ones(shape=1, dtype=G_H_DTYPE)
 
-    grower = TreeGrower(X_binned, gradients, hessians, monotonic_cst=[monotonic_cst], shrinkage=0.1)
+    grower = TreeGrower(
+        X_binned, gradients, hessians, monotonic_cst=[monotonic_cst], shrinkage=0.1
+    )
     grower.grow()
 
     # grow() will shrink the leaves values at the very end. For our comparison
@@ -165,7 +183,9 @@ def test_nodes_values(monotonic_cst, seed):
         leave.value /= grower.shrinkage
 
     # We pass undefined binning_thresholds because we won't use predict anyway
-    predictor = grower.make_predictor(binning_thresholds=np.zeros((X_binned.shape[1], X_binned.max() + 1)))
+    predictor = grower.make_predictor(
+        binning_thresholds=np.zeros((X_binned.shape[1], X_binned.max() + 1))
+    )
 
     # The consistency of the bounds can only be checked on the tree grower
     # as the node bounds are not copied into the predictor tree. The
@@ -247,12 +267,16 @@ def test_input_error():
     y = [0, 1, 2]
 
     gbdt = HistGradientBoostingRegressor(monotonic_cst=[1, 0, -1])
-    with pytest.raises(ValueError, match=re.escape("monotonic_cst has shape (3,) but the input data")):
+    with pytest.raises(
+        ValueError, match=re.escape("monotonic_cst has shape (3,) but the input data")
+    ):
         gbdt.fit(X, y)
 
     for monotonic_cst in ([1, 3], [1, -3], [0.3, -0.7]):
         gbdt = HistGradientBoostingRegressor(monotonic_cst=monotonic_cst)
-        expected_msg = re.escape("must be an array-like of -1, 0 or 1. Observed values:")
+        expected_msg = re.escape(
+            "must be an array-like of -1, 0 or 1. Observed values:"
+        )
         with pytest.raises(ValueError, match=expected_msg):
             gbdt.fit(X, y)
 
@@ -271,13 +295,18 @@ def test_input_error_related_to_feature_names():
 
     monotonic_cst = {"d": 1, "a": 1, "c": -1}
     gbdt = HistGradientBoostingRegressor(monotonic_cst=monotonic_cst)
-    expected_msg = re.escape("monotonic_cst contains 2 unexpected feature names: ['c', 'd'].")
+    expected_msg = re.escape(
+        "monotonic_cst contains 2 unexpected feature names: ['c', 'd']."
+    )
     with pytest.raises(ValueError, match=expected_msg):
         gbdt.fit(X, y)
 
     monotonic_cst = {k: 1 for k in "abcdefghijklmnopqrstuvwxyz"}
     gbdt = HistGradientBoostingRegressor(monotonic_cst=monotonic_cst)
-    expected_msg = re.escape("monotonic_cst contains 24 unexpected feature names: ['c', 'd', 'e', 'f', 'g', '...'].")
+    expected_msg = re.escape(
+        "monotonic_cst contains 24 unexpected feature names: "
+        "['c', 'd', 'e', 'f', 'g', '...']."
+    )
     with pytest.raises(ValueError, match=expected_msg):
         gbdt.fit(X, y)
 
@@ -317,10 +346,14 @@ def test_bounded_value_min_gain_to_split():
     sum_hessians = all_hessians.sum()
     hessians_are_constant = False
 
-    builder = HistogramBuilder(X_binned, n_bins, all_gradients, all_hessians, hessians_are_constant, n_threads)
+    builder = HistogramBuilder(
+        X_binned, n_bins, all_gradients, all_hessians, hessians_are_constant, n_threads
+    )
     n_bins_non_missing = np.array([n_bins - 1] * X_binned.shape[1], dtype=np.uint32)
     has_missing_values = np.array([False] * X_binned.shape[1], dtype=np.uint8)
-    monotonic_cst = np.array([MonotonicConstraint.NO_CST] * X_binned.shape[1], dtype=np.int8)
+    monotonic_cst = np.array(
+        [MonotonicConstraint.NO_CST] * X_binned.shape[1], dtype=np.int8
+    )
     is_categorical = np.zeros_like(monotonic_cst, dtype=np.uint8)
     missing_values_bin_idx = n_bins - 1
     children_lower_bound, children_upper_bound = -np.inf, np.inf

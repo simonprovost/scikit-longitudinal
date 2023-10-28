@@ -54,7 +54,7 @@ X, y, true_weights = make_regression(
 # coefficients.
 
 import pandas as pd
-from sklearn_fork.linear_model import ARDRegression, BayesianRidge, LinearRegression
+from sklearn_fork.linear_model import ARDRegression, LinearRegression, BayesianRidge
 
 olr = LinearRegression().fit(X, y)
 brr = BayesianRidge(compute_score=True, n_iter=30).fit(X, y)
@@ -176,7 +176,9 @@ y_brr, y_brr_std = brr_poly.predict(X_plot, return_std=True)
 # Plotting polynomial regressions with std errors of the scores
 # -------------------------------------------------------------
 
-ax = sns.scatterplot(data=full_data, x="input_feature", y="target", color="black", alpha=0.75)
+ax = sns.scatterplot(
+    data=full_data, x="input_feature", y="target", color="black", alpha=0.75
+)
 ax.plot(X_plot, y_plot, color="black", label="Ground Truth")
 ax.plot(X_plot, y_brr, color="red", label="BayesianRidge with polynomial features")
 ax.plot(X_plot, y_ard, color="navy", label="ARD with polynomial features")

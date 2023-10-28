@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.testing import assert_allclose
 from pytest import approx
+
 from sklearn_fork.utils.stats import _weighted_percentile
 
 
@@ -91,5 +92,7 @@ def test_weighted_percentile_2d():
     w_2d = np.vstack((w1, w2)).T
 
     w_median = _weighted_percentile(x_2d, w_2d)
-    p_axis_0 = [_weighted_percentile(x_2d[:, i], w_2d[:, i]) for i in range(x_2d.shape[1])]
+    p_axis_0 = [
+        _weighted_percentile(x_2d[:, i], w_2d[:, i]) for i in range(x_2d.shape[1])
+    ]
     assert_allclose(w_median, p_axis_0)

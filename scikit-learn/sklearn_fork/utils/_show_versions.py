@@ -7,9 +7,10 @@ adapted from :func:`pandas.show_versions`
 
 import platform
 import sys
-
-from .. import __version__
 from ..utils.fixes import threadpool_info
+from .. import __version__
+
+
 from ._openmp_helpers import _openmp_parallelism_enabled
 
 
@@ -61,7 +62,7 @@ def _get_deps_info():
         "sklearn_fork": __version__,
     }
 
-    from importlib.metadata import PackageNotFoundError, version
+    from importlib.metadata import version, PackageNotFoundError
 
     for modname in deps:
         try:
@@ -88,7 +89,11 @@ def show_versions():
     for k, stat in deps_info.items():
         print("{k:>13}: {stat}".format(k=k, stat=stat))
 
-    print("\n{k}: {stat}".format(k="Built with OpenMP", stat=_openmp_parallelism_enabled()))
+    print(
+        "\n{k}: {stat}".format(
+            k="Built with OpenMP", stat=_openmp_parallelism_enabled()
+        )
+    )
 
     # show threadpoolctl results
     threadpool_results = threadpool_info()

@@ -3,7 +3,6 @@ Loss functions for linear models with raw_prediction = X @ coef
 """
 import numpy as np
 from scipy import sparse
-
 from ..utils.extmath import squared_norm
 
 
@@ -471,7 +470,11 @@ class LinearModelLoss:
             # exploiting the symmetry (as opposed to, e.g., BLAS gemm).
             if sparse.issparse(X):
                 hess[:n_features, :n_features] = (
-                    X.T @ sparse.dia_matrix((hess_pointwise, 0), shape=(n_samples, n_samples)) @ X
+                    X.T
+                    @ sparse.dia_matrix(
+                        (hess_pointwise, 0), shape=(n_samples, n_samples)
+                    )
+                    @ X
                 ).toarray()
             else:
                 # np.einsum may use less memory but the following, using BLAS matrix
@@ -482,7 +485,9 @@ class LinearModelLoss:
             if l2_reg_strength > 0:
                 # The L2 penalty enters the Hessian on the diagonal only. To add those
                 # terms, we use a flattened view on the array.
-                hess.reshape(-1)[: (n_features * n_dof) : (n_dof + 1)] += l2_reg_strength
+                hess.reshape(-1)[
+                    : (n_features * n_dof) : (n_dof + 1)
+                ] += l2_reg_strength
 
             if self.fit_intercept:
                 # With intercept included as added column to X, the hessian becomes
@@ -502,7 +507,9 @@ class LinearModelLoss:
 
         return grad, hess, hessian_warning
 
-    def gradient_hessian_product(self, coef, X, y, sample_weight=None, l2_reg_strength=0.0, n_threads=1):
+    def gradient_hessian_product(
+        self, coef, X, y, sample_weight=None, l2_reg_strength=0.0, n_threads=1
+    ):
         """Computes gradient and hessp (hessian product function) w.r.t. coef.
 
         Parameters
@@ -551,7 +558,10 @@ class LinearModelLoss:
             # Precompute as much as possible: hX, hX_sum and hessian_sum
             hessian_sum = hess_pointwise.sum()
             if sparse.issparse(X):
-                hX = sparse.dia_matrix((hess_pointwise, 0), shape=(n_samples, n_samples)) @ X
+                hX = (
+                    sparse.dia_matrix((hess_pointwise, 0), shape=(n_samples, n_samples))
+                    @ X
+                )
             else:
                 hX = hess_pointwise[:, np.newaxis] * X
 

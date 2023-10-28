@@ -1,12 +1,17 @@
 from itertools import product
 
 import numpy as np
-import pytest
+from sklearn_fork.utils._testing import (
+    assert_allclose,
+    assert_array_equal,
+)
 from scipy import linalg
-from sklearn_fork import manifold, neighbors
+import pytest
+
+from sklearn_fork import neighbors, manifold
 from sklearn_fork.datasets import make_blobs
 from sklearn_fork.manifold._locally_linear import barycenter_kneighbors_graph
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal, ignore_warnings
+from sklearn_fork.utils._testing import ignore_warnings
 
 eigen_solvers = ["dense", "arpack"]
 
@@ -17,7 +22,9 @@ def test_barycenter_kneighbors_graph(global_dtype):
     X = np.array([[0, 1], [1.01, 1.0], [2, 0]], dtype=global_dtype)
 
     graph = barycenter_kneighbors_graph(X, 1)
-    expected_graph = np.array([[0.0, 1.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0]], dtype=global_dtype)
+    expected_graph = np.array(
+        [[0.0, 1.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0]], dtype=global_dtype
+    )
 
     assert graph.dtype == global_dtype
 
@@ -48,7 +55,9 @@ def test_lle_simple_grid(global_dtype):
     X = X.astype(global_dtype, copy=False)
 
     n_components = 2
-    clf = manifold.LocallyLinearEmbedding(n_neighbors=5, n_components=n_components, random_state=rng)
+    clf = manifold.LocallyLinearEmbedding(
+        n_neighbors=5, n_components=n_components, random_state=rng
+    )
     tol = 0.1
 
     N = barycenter_kneighbors_graph(X, clf.n_neighbors).toarray()
@@ -59,7 +68,9 @@ def test_lle_simple_grid(global_dtype):
         clf.set_params(eigen_solver=solver)
         clf.fit(X)
         assert clf.embedding_.shape[1] == n_components
-        reconstruction_error = linalg.norm(np.dot(N, clf.embedding_) - clf.embedding_, "fro") ** 2
+        reconstruction_error = (
+            linalg.norm(np.dot(N, clf.embedding_) - clf.embedding_, "fro") ** 2
+        )
 
         assert reconstruction_error < tol
         assert_allclose(clf.reconstruction_error_, reconstruction_error, atol=1e-1)
@@ -81,7 +92,9 @@ def test_lle_manifold(global_dtype, method, solver):
     X = X.astype(global_dtype, copy=False)
     n_components = 2
 
-    clf = manifold.LocallyLinearEmbedding(n_neighbors=6, n_components=n_components, method=method, random_state=0)
+    clf = manifold.LocallyLinearEmbedding(
+        n_neighbors=6, n_components=n_components, method=method, random_state=0
+    )
     tol = 1.5 if method == "standard" else 3
 
     N = barycenter_kneighbors_graph(X, clf.n_neighbors).toarray()
@@ -91,17 +104,22 @@ def test_lle_manifold(global_dtype, method, solver):
     clf.set_params(eigen_solver=solver)
     clf.fit(X)
     assert clf.embedding_.shape[1] == n_components
-    reconstruction_error = linalg.norm(np.dot(N, clf.embedding_) - clf.embedding_, "fro") ** 2
+    reconstruction_error = (
+        linalg.norm(np.dot(N, clf.embedding_) - clf.embedding_, "fro") ** 2
+    )
     details = "solver: %s, method: %s" % (solver, method)
     assert reconstruction_error < tol, details
-    assert np.abs(clf.reconstruction_error_ - reconstruction_error) < tol * reconstruction_error, details
+    assert (
+        np.abs(clf.reconstruction_error_ - reconstruction_error)
+        < tol * reconstruction_error
+    ), details
 
 
 def test_pipeline():
     # check that LocallyLinearEmbedding works fine as a Pipeline
     # only checks that no error is raised.
     # TODO check that it actually does something useful
-    from sklearn_fork import datasets, pipeline
+    from sklearn_fork import pipeline, datasets
 
     X, y = datasets.make_blobs(random_state=0)
     clf = pipeline.Pipeline(
@@ -148,4 +166,6 @@ def test_get_feature_names_out():
     iso = manifold.LocallyLinearEmbedding(n_components=n_components)
     iso.fit(X)
     names = iso.get_feature_names_out()
-    assert_array_equal([f"locallylinearembedding{i}" for i in range(n_components)], names)
+    assert_array_equal(
+        [f"locallylinearembedding{i}" for i in range(n_components)], names
+    )

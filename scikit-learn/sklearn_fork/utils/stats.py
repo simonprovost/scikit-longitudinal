@@ -46,15 +46,22 @@ def _weighted_percentile(array, sample_weight, percentile=50):
 
     # For percentile=0, ignore leading observations with sample_weight=0. GH20528
     mask = adjusted_percentile == 0
-    adjusted_percentile[mask] = np.nextafter(adjusted_percentile[mask], adjusted_percentile[mask] + 1)
+    adjusted_percentile[mask] = np.nextafter(
+        adjusted_percentile[mask], adjusted_percentile[mask] + 1
+    )
 
     percentile_idx = np.array(
-        [np.searchsorted(weight_cdf[:, i], adjusted_percentile[i]) for i in range(weight_cdf.shape[1])]
+        [
+            np.searchsorted(weight_cdf[:, i], adjusted_percentile[i])
+            for i in range(weight_cdf.shape[1])
+        ]
     )
     percentile_idx = np.array(percentile_idx)
     # In rare cases, percentile_idx equals to sorted_idx.shape[0]
     max_idx = sorted_idx.shape[0] - 1
-    percentile_idx = np.apply_along_axis(lambda x: np.clip(x, 0, max_idx), axis=0, arr=percentile_idx)
+    percentile_idx = np.apply_along_axis(
+        lambda x: np.clip(x, 0, max_idx), axis=0, arr=percentile_idx
+    )
 
     col_index = np.arange(array.shape[1])
     percentile_in_sorted = sorted_idx[percentile_idx, col_index]

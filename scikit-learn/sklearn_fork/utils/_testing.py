@@ -10,25 +10,28 @@
 #          Giorgio Patrini
 #          Thierry Guillemot
 # License: BSD 3 clause
-import atexit
-import contextlib
-import functools
-import inspect
 import os
 import os.path as op
-import re
-import shutil
-import sys
-import tempfile
-import unittest
+import inspect
 import warnings
-from collections.abc import Iterable, Sequence
-from functools import wraps
-from inspect import signature
-from subprocess import STDOUT, CalledProcessError, TimeoutExpired, check_output
-from unittest import TestCase
+import sys
+import functools
+import tempfile
+from subprocess import check_output, STDOUT, CalledProcessError
+from subprocess import TimeoutExpired
+import re
+import contextlib
+from collections.abc import Iterable
+from collections.abc import Sequence
 
 import scipy as sp
+from functools import wraps
+from inspect import signature
+
+import shutil
+import atexit
+import unittest
+from unittest import TestCase
 
 # WindowsError only exist on Windows
 try:
@@ -36,22 +39,30 @@ try:
 except NameError:
     WindowsError = None
 
-import joblib
-import numpy as np
-import sklearn_fork
 from numpy.testing import assert_allclose as np_assert_allclose
-from numpy.testing import (
-    assert_almost_equal,
-    assert_approx_equal,
-    assert_array_almost_equal,
-    assert_array_equal,
-    assert_array_less,
+from numpy.testing import assert_almost_equal
+from numpy.testing import assert_approx_equal
+from numpy.testing import assert_array_equal
+from numpy.testing import assert_array_almost_equal
+from numpy.testing import assert_array_less
+import numpy as np
+import joblib
+
+import sklearn_fork
+from sklearn_fork.utils import (
+    IS_PYPY,
+    _IS_32BIT,
+    _in_unstable_openblas_configuration,
 )
-from sklearn_fork.utils import _IS_32BIT, IS_PYPY, _in_unstable_openblas_configuration
 from sklearn_fork.utils._array_api import _check_array_api_dispatch
-from sklearn_fork.utils.fixes import threadpool_info
 from sklearn_fork.utils.multiclass import check_classification_targets
-from sklearn_fork.utils.validation import check_array, check_is_fitted, check_X_y
+from sklearn_fork.utils.validation import (
+    check_array,
+    check_is_fitted,
+    check_X_y,
+)
+from sklearn_fork.utils.fixes import threadpool_info
+
 
 __all__ = [
     "assert_raises",
@@ -98,7 +109,8 @@ def assert_no_warnings(func, *args, **kw):
 
         if len(w) > 0:
             raise AssertionError(
-                "Got warnings when calling %s: [%s]" % (func.__name__, ", ".join(str(warning) for warning in w))
+                "Got warnings when calling %s: [%s]"
+                % (func.__name__, ", ".join(str(warning) for warning in w))
             )
     return result
 
@@ -233,8 +245,8 @@ def assert_raise_message(exceptions, message, function, *args, **kwargs):
         error_message = str(e)
         if message not in error_message:
             raise AssertionError(
-                "Error message does not include the expected string: %r. Observed error message: %r"
-                % (message, error_message)
+                "Error message does not include the expected"
+                " string: %r. Observed error message: %r" % (message, error_message)
             )
     else:
         # concatenate exception names
@@ -246,7 +258,9 @@ def assert_raise_message(exceptions, message, function, *args, **kwargs):
         raise AssertionError("%s not raised by %s" % (names, function.__name__))
 
 
-def assert_allclose(actual, desired, rtol=None, atol=0.0, equal_nan=True, err_msg="", verbose=True):
+def assert_allclose(
+    actual, desired, rtol=None, atol=0.0, equal_nan=True, err_msg="", verbose=True
+):
     """dtype-aware variant of numpy.testing.assert_allclose
 
     This variant introspects the least precise floating point dtype
@@ -354,7 +368,9 @@ def assert_allclose_dense_sparse(x, y, rtol=1e-07, atol=1e-9, err_msg=""):
         # both dense
         assert_allclose(x, y, rtol=rtol, atol=atol, err_msg=err_msg)
     else:
-        raise ValueError("Can only compare two sparse matrices, not a sparse matrix and an array.")
+        raise ValueError(
+            "Can only compare two sparse matrices, not a sparse matrix and an array."
+        )
 
 
 def set_random_state(estimator, random_state=0):
@@ -388,7 +404,9 @@ try:
         _in_unstable_openblas_configuration(),
         reason="OpenBLAS is unstable for this configuration",
     )
-    skip_if_no_parallel = pytest.mark.skipif(not joblib.parallel.mp, reason="joblib is in serial mode")
+    skip_if_no_parallel = pytest.mark.skipif(
+        not joblib.parallel.mp, reason="joblib is in serial mode"
+    )
     skip_if_array_api_compat_not_configured = pytest.mark.skipif(
         not ARRAY_API_COMPAT_FUNCTIONAL,
         reason="requires array_api_compat installed and a new enough version of NumPy",
@@ -467,7 +485,9 @@ def _create_memmap_backed_array(array, filename, mmap_mode):
     fp = np.memmap(filename, dtype=array.dtype, mode="w+", shape=array.shape)
     fp[:] = array[:]  # write array to memmap array
     fp.flush()
-    memmap_backed_array = np.memmap(filename, dtype=array.dtype, mode=mmap_mode, shape=array.shape)
+    memmap_backed_array = np.memmap(
+        filename, dtype=array.dtype, mode=mmap_mode, shape=array.shape
+    )
     return memmap_backed_array
 
 
@@ -476,13 +496,20 @@ def _create_aligned_memmap_backed_arrays(data, mmap_mode, folder):
         filename = op.join(folder, "data.dat")
         return _create_memmap_backed_array(data, filename, mmap_mode)
 
-    if isinstance(data, Sequence) and all(isinstance(each, np.ndarray) for each in data):
+    if isinstance(data, Sequence) and all(
+        isinstance(each, np.ndarray) for each in data
+    ):
         return [
-            _create_memmap_backed_array(array, op.join(folder, f"data{index}.dat"), mmap_mode)
+            _create_memmap_backed_array(
+                array, op.join(folder, f"data{index}.dat"), mmap_mode
+            )
             for index, array in enumerate(data)
         ]
 
-    raise ValueError("When creating aligned memmap-backed arrays, input must be a single array or a sequence of arrays")
+    raise ValueError(
+        "When creating aligned memmap-backed arrays, input must be a single array or a"
+        " sequence of arrays"
+    )
 
 
 def create_memmap_backed_data(data, mmap_mode="r", return_folder=False, aligned=False):
@@ -513,12 +540,16 @@ def create_memmap_backed_data(data, mmap_mode="r", return_folder=False, aligned=
         aligned = True
 
     if aligned:
-        memmap_backed_data = _create_aligned_memmap_backed_arrays(data, mmap_mode, temp_folder)
+        memmap_backed_data = _create_aligned_memmap_backed_arrays(
+            data, mmap_mode, temp_folder
+        )
     else:
         filename = op.join(temp_folder, "data.pkl")
         joblib.dump(data, filename)
         memmap_backed_data = joblib.load(filename, mmap_mode=mmap_mode)
-    result = memmap_backed_data if not return_folder else (memmap_backed_data, temp_folder)
+    result = (
+        memmap_backed_data if not return_folder else (memmap_backed_data, temp_folder)
+    )
     return result
 
 
@@ -533,9 +564,17 @@ def _get_args(function, varargs=False):
     except ValueError:
         # Error on builtin C function
         return []
-    args = [key for key, param in params.items() if param.kind not in (param.VAR_POSITIONAL, param.VAR_KEYWORD)]
+    args = [
+        key
+        for key, param in params.items()
+        if param.kind not in (param.VAR_POSITIONAL, param.VAR_KEYWORD)
+    ]
     if varargs:
-        varargs = [param.name for param in params.values() if param.kind == param.VAR_POSITIONAL]
+        varargs = [
+            param.name
+            for param in params.values()
+            if param.kind == param.VAR_POSITIONAL
+        ]
         if len(varargs) == 0:
             varargs = None
         return args, varargs
@@ -592,7 +631,9 @@ def check_docstring_parameters(func, doc=None, ignore=None):
     ignore = [] if ignore is None else ignore
 
     func_name = _get_func_name(func)
-    if not func_name.startswith("sklearn_fork.") or func_name.startswith("sklearn_fork.externals"):
+    if not func_name.startswith("sklearn_fork.") or func_name.startswith(
+        "sklearn_fork.externals"
+    ):
         return incorrect
     # Don't check docstring for property-functions
     if inspect.isdatadescriptor(func):
@@ -636,9 +677,16 @@ def check_docstring_parameters(func, doc=None, ignore=None):
         # Type hints are empty only if parameter name ended with :
         if not type_definition.strip():
             if ":" in name and name[: name.index(":")][-1:].strip():
-                incorrect += [func_name + " There was no space between the param name and colon (%r)" % name]
+                incorrect += [
+                    func_name
+                    + " There was no space between the param name and colon (%r)" % name
+                ]
             elif name.rstrip().endswith(":"):
-                incorrect += [func_name + " Parameter %r has an empty type spec. Remove the colon" % (name.lstrip())]
+                incorrect += [
+                    func_name
+                    + " Parameter %r has an empty type spec. Remove the colon"
+                    % (name.lstrip())
+                ]
 
         # Create a list of parameters to compare with the parameters gotten
         # from the func signature
@@ -668,13 +716,15 @@ def check_docstring_parameters(func, doc=None, ignore=None):
             break
     if len(param_signature) > len(param_docs):
         message += [
-            "Parameters in function docstring have less items w.r.t. function signature, first missing item: %s"
+            "Parameters in function docstring have less items w.r.t."
+            " function signature, first missing item: %s"
             % param_signature[len(param_docs)]
         ]
 
     elif len(param_signature) < len(param_docs):
         message += [
-            "Parameters in function docstring have more items w.r.t. function signature, first extra item: %s"
+            "Parameters in function docstring have more items w.r.t."
+            " function signature, first extra item: %s"
             % param_docs[len(param_signature)]
         ]
 
@@ -692,7 +742,10 @@ def check_docstring_parameters(func, doc=None, ignore=None):
 
     message += ["Full diff:"]
 
-    message.extend(line.strip() for line in difflib.ndiff(param_signature_formatted, param_docs_formatted))
+    message.extend(
+        line.strip()
+        for line in difflib.ndiff(param_signature_formatted, param_docs_formatted)
+    )
 
     incorrect.extend(message)
 
@@ -740,11 +793,15 @@ def assert_run_python_script(source_code, timeout=60):
             try:
                 out = check_output(cmd, **kwargs)
             except CalledProcessError as e:
-                raise RuntimeError("script errored with output:\n%s" % e.output.decode("utf-8"))
+                raise RuntimeError(
+                    "script errored with output:\n%s" % e.output.decode("utf-8")
+                )
             if out != b"":
                 raise AssertionError(out.decode("utf-8"))
         except TimeoutExpired as e:
-            raise RuntimeError("script timeout, output so far:\n%s" % e.output.decode("utf-8"))
+            raise RuntimeError(
+                "script timeout, output so far:\n%s" % e.output.decode("utf-8")
+            )
     finally:
         os.unlink(source_file)
 
@@ -844,7 +901,11 @@ def raises(expected_exc_type, match=None, may_pass=False, err_msg=None):
 class _Raises(contextlib.AbstractContextManager):
     # see raises() for parameters
     def __init__(self, expected_exc_type, match, may_pass, err_msg):
-        self.expected_exc_types = expected_exc_type if isinstance(expected_exc_type, Iterable) else [expected_exc_type]
+        self.expected_exc_types = (
+            expected_exc_type
+            if isinstance(expected_exc_type, Iterable)
+            else [expected_exc_type]
+        )
         self.matches = [match] if isinstance(match, str) else match
         self.may_pass = may_pass
         self.err_msg = err_msg
@@ -861,7 +922,10 @@ class _Raises(contextlib.AbstractContextManager):
                 err_msg = self.err_msg or f"Did not raise: {self.expected_exc_types}"
                 raise AssertionError(err_msg)
 
-        if not any(issubclass(exc_type, expected_type) for expected_type in self.expected_exc_types):
+        if not any(
+            issubclass(exc_type, expected_type)
+            for expected_type in self.expected_exc_types
+        ):
             if self.err_msg is not None:
                 raise AssertionError(self.err_msg) from exc_value
             else:
@@ -869,9 +933,8 @@ class _Raises(contextlib.AbstractContextManager):
 
         if self.matches is not None:
             err_msg = self.err_msg or (
-                "The error message should contain one of the following patterns:\n{}\nGot {}".format(
-                    "\n".join(self.matches), str(exc_value)
-                )
+                "The error message should contain one of the following "
+                "patterns:\n{}\nGot {}".format("\n".join(self.matches), str(exc_value))
             )
             if not any(re.search(match, str(exc_value)) for match in self.matches):
                 raise AssertionError(err_msg) from exc_value

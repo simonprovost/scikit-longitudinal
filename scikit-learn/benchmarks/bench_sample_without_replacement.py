@@ -3,14 +3,15 @@ Benchmarks for sampling without replacement of integer.
 
 """
 import gc
-import operator
-import optparse
-import random
 import sys
+import optparse
 from datetime import datetime
+import operator
 
 import matplotlib.pyplot as plt
 import numpy as np
+import random
+
 from sklearn_fork.utils.random import sample_without_replacement
 
 
@@ -71,7 +72,10 @@ if __name__ == "__main__":
         dest="selected_algorithm",
         default=default_algorithms,
         type=str,
-        help="Comma-separated list of transformer to benchmark. Default: %default. \nAvailable: %default",
+        help=(
+            "Comma-separated list of transformer to benchmark. "
+            "Default: %default. \nAvailable: %default"
+        ),
     )
 
     # op.add_option("--random-seed",
@@ -86,7 +90,10 @@ if __name__ == "__main__":
     selected_algorithm = opts.selected_algorithm.split(",")
     for key in selected_algorithm:
         if key not in default_algorithms.split(","):
-            raise ValueError('Unknown sampling algorithm "%s" not in (%s).' % (key, default_algorithms))
+            raise ValueError(
+                'Unknown sampling algorithm "%s" not in (%s).'
+                % (key, default_algorithms)
+            )
 
     ###########################################################################
     # List sampling algorithm
@@ -98,14 +105,16 @@ if __name__ == "__main__":
 
     ###########################################################################
     # Set Python core input
-    sampling_algorithm["python-core-sample"] = lambda n_population, n_sample: random.sample(
-        range(n_population), n_sample
+    sampling_algorithm["python-core-sample"] = (
+        lambda n_population, n_sample: random.sample(range(n_population), n_sample)
     )
 
     ###########################################################################
     # Set custom automatic method selection
-    sampling_algorithm["custom-auto"] = lambda n_population, n_samples, random_state=None: sample_without_replacement(
-        n_population, n_samples, method="auto", random_state=random_state
+    sampling_algorithm["custom-auto"] = (
+        lambda n_population, n_samples, random_state=None: sample_without_replacement(
+            n_population, n_samples, method="auto", random_state=random_state
+        )
     )
 
     ###########################################################################
@@ -132,25 +141,33 @@ if __name__ == "__main__":
 
     ###########################################################################
     # Set custom reservoir based method
-    sampling_algorithm["custom-pool"] = lambda n_population, n_samples, random_state=None: sample_without_replacement(
-        n_population, n_samples, method="pool", random_state=random_state
+    sampling_algorithm["custom-pool"] = (
+        lambda n_population, n_samples, random_state=None: sample_without_replacement(
+            n_population, n_samples, method="pool", random_state=random_state
+        )
     )
 
     ###########################################################################
     # Numpy permutation based
-    sampling_algorithm["numpy-permutation"] = lambda n_population, n_sample: np.random.permutation(n_population)[
-        :n_sample
-    ]
+    sampling_algorithm["numpy-permutation"] = (
+        lambda n_population, n_sample: np.random.permutation(n_population)[:n_sample]
+    )
 
     ###########################################################################
     # Remove unspecified algorithm
-    sampling_algorithm = {key: value for key, value in sampling_algorithm.items() if key in selected_algorithm}
+    sampling_algorithm = {
+        key: value
+        for key, value in sampling_algorithm.items()
+        if key in selected_algorithm
+    }
 
     ###########################################################################
     # Perform benchmark
     ###########################################################################
     time = {}
-    n_samples = np.linspace(start=0, stop=opts.n_population, num=opts.n_steps).astype(int)
+    n_samples = np.linspace(start=0, stop=opts.n_population, num=opts.n_steps).astype(
+        int
+    )
 
     ratio = n_samples / opts.n_population
 
@@ -163,7 +180,9 @@ if __name__ == "__main__":
 
         for step in range(opts.n_steps):
             for it in range(opts.n_times):
-                time[name][step, it] = bench_sample(sampling_algorithm[name], opts.n_population, n_samples[step])
+                time[name][step, it] = bench_sample(
+                    sampling_algorithm[name], opts.n_population, n_samples[step]
+                )
 
         print("done")
 

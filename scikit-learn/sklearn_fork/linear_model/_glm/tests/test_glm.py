@@ -2,27 +2,35 @@
 #
 # License: BSD 3 clause
 
+from functools import partial
 import itertools
 import warnings
-from functools import partial
 
 import numpy as np
+from numpy.testing import assert_allclose
 import pytest
 import scipy
-from numpy.testing import assert_allclose
 from scipy import linalg
 from scipy.optimize import minimize, root
+
+from sklearn_fork.base import clone
 from sklearn_fork._loss import HalfBinomialLoss, HalfPoissonLoss, HalfTweedieLoss
 from sklearn_fork._loss.link import IdentityLink, LogLink
-from sklearn_fork.base import clone
+
 from sklearn_fork.datasets import make_low_rank_matrix, make_regression
-from sklearn_fork.exceptions import ConvergenceWarning
-from sklearn_fork.linear_model import GammaRegressor, PoissonRegressor, Ridge, TweedieRegressor
+from sklearn_fork.linear_model import (
+    GammaRegressor,
+    PoissonRegressor,
+    Ridge,
+    TweedieRegressor,
+)
 from sklearn_fork.linear_model._glm import _GeneralizedLinearRegressor
 from sklearn_fork.linear_model._glm._newton_solver import NewtonCholeskySolver
 from sklearn_fork.linear_model._linear_loss import LinearModelLoss
+from sklearn_fork.exceptions import ConvergenceWarning
 from sklearn_fork.metrics import d2_tweedie_score, mean_poisson_deviance
 from sklearn_fork.model_selection import train_test_split
+
 
 SOLVERS = ["lbfgs", "newton-cholesky"]
 
@@ -34,7 +42,9 @@ class BinomialRegressor(_GeneralizedLinearRegressor):
 
 def _special_minimize(fun, grad, x, tol_NM, tol):
     # Find good starting point by Nelder-Mead
-    res_NM = minimize(fun, x, method="Nelder-Mead", options={"xatol": tol_NM, "fatol": tol_NM})
+    res_NM = minimize(
+        fun, x, method="Nelder-Mead", options={"xatol": tol_NM, "fatol": tol_NM}
+    )
     # Now refine via root finding on the gradient of the function, which is
     # more precise than minimizing the function itself.
     res = root(
@@ -48,7 +58,9 @@ def _special_minimize(fun, grad, x, tol_NM, tol):
 
 @pytest.fixture(scope="module")
 def regression_data():
-    X, y = make_regression(n_samples=107, n_features=10, n_informative=80, noise=0.5, random_state=2)
+    X, y = make_regression(
+        n_samples=107, n_features=10, n_informative=80, noise=0.5, random_state=2
+    )
     return X, y
 
 
@@ -160,7 +172,9 @@ def glm_dataset(global_random_seed, request):
         sample_weight=sw,
         l2_reg_strength=l2_reg_strength,
     )
-    coef_penalized_with_intercept = _special_minimize(fun, grad, coef_unpenalized, tol_NM=1e-6, tol=1e-14)
+    coef_penalized_with_intercept = _special_minimize(
+        fun, grad, coef_unpenalized, tol_NM=1e-6, tol=1e-14
+    )
 
     linear_loss = LinearModelLoss(base_loss=model._get_loss(), fit_intercept=False)
     fun = partial(
@@ -177,10 +191,14 @@ def glm_dataset(global_random_seed, request):
         sample_weight=sw,
         l2_reg_strength=l2_reg_strength,
     )
-    coef_penalized_without_intercept = _special_minimize(fun, grad, coef_unpenalized[:-1], tol_NM=1e-6, tol=1e-14)
+    coef_penalized_without_intercept = _special_minimize(
+        fun, grad, coef_unpenalized[:-1], tol_NM=1e-6, tol=1e-14
+    )
 
     # To be sure
-    assert np.linalg.norm(coef_penalized_with_intercept) < np.linalg.norm(coef_unpenalized)
+    assert np.linalg.norm(coef_penalized_with_intercept) < np.linalg.norm(
+        coef_unpenalized
+    )
 
     return (
         model,
@@ -226,7 +244,9 @@ def test_glm_regression(solver, fit_intercept, glm_dataset):
     assert_allclose(model.coef_, coef, rtol=rtol)
 
     # Same with sample_weight.
-    model = clone(model).set_params(**params).fit(X, y, sample_weight=np.ones(X.shape[0]))
+    model = (
+        clone(model).set_params(**params).fit(X, y, sample_weight=np.ones(X.shape[0]))
+    )
     assert model.intercept_ == pytest.approx(intercept, rel=rtol)
     assert_allclose(model.coef_, coef, rtol=rtol)
 
@@ -470,7 +490,9 @@ def test_glm_regression_unpenalized_hstacked_X(solver, fit_intercept, glm_datase
             # Same as in test_glm_regression_unpenalized.
             # But it is not the minimum norm solution. Otherwise the norms would be
             # equal.
-            norm_solution = np.linalg.norm(0.5 * np.r_[intercept, intercept, coef, coef])
+            norm_solution = np.linalg.norm(
+                0.5 * np.r_[intercept, intercept, coef, coef]
+            )
             norm_model = np.linalg.norm(np.r_[model.intercept_, model.coef_])
             assert norm_model > (1 + 1e-12) * norm_solution
             # For minimum norm solution, we would have
@@ -617,7 +639,9 @@ def test_glm_identity_regression(fit_intercept):
 
 @pytest.mark.parametrize("fit_intercept", [False, True])
 @pytest.mark.parametrize("alpha", [0.0, 1.0])
-@pytest.mark.parametrize("GLMEstimator", [_GeneralizedLinearRegressor, PoissonRegressor, GammaRegressor])
+@pytest.mark.parametrize(
+    "GLMEstimator", [_GeneralizedLinearRegressor, PoissonRegressor, GammaRegressor]
+)
 def test_glm_sample_weight_consistency(fit_intercept, alpha, GLMEstimator):
     """Test that the impact of sample_weight is consistent"""
     rng = np.random.RandomState(0)
@@ -759,7 +783,9 @@ def test_warm_start(solver, fit_intercept, global_random_seed):
 @pytest.mark.parametrize("n_samples, n_features", [(100, 10), (10, 100)])
 @pytest.mark.parametrize("fit_intercept", [True, False])
 @pytest.mark.parametrize("sample_weight", [None, True])
-def test_normal_ridge_comparison(n_samples, n_features, fit_intercept, sample_weight, request):
+def test_normal_ridge_comparison(
+    n_samples, n_features, fit_intercept, sample_weight, request
+):
     """Compare with Ridge regression for Normal distributions."""
     test_size = 10
     X, y = make_regression(
@@ -849,7 +875,9 @@ def test_convergence_warning(regression_data):
         est.fit(X, y)
 
 
-@pytest.mark.parametrize("name, link_class", [("identity", IdentityLink), ("log", LogLink)])
+@pytest.mark.parametrize(
+    "name, link_class", [("identity", IdentityLink), ("log", LogLink)]
+)
 def test_tweedie_link_argument(name, link_class):
     """Test GLM link argument set as string."""
     y = np.array([0.1, 0.5])  # in range of all distributions
@@ -883,7 +911,9 @@ def test_tweedie_score(regression_data, power, link):
     # make y positive
     y = np.abs(y) + 1.0
     glm = TweedieRegressor(power=power, link=link).fit(X, y)
-    assert glm.score(X, y) == pytest.approx(d2_tweedie_score(y, glm.predict(X), power=power))
+    assert glm.score(X, y) == pytest.approx(
+        d2_tweedie_score(y, glm.predict(X), power=power)
+    )
 
 
 @pytest.mark.parametrize(
@@ -905,7 +935,9 @@ def test_linalg_warning_with_newton_solver(global_random_seed):
     # Use at least 20 samples to reduce the likelihood of getting a degenerate
     # dataset for any global_random_seed.
     X_orig = rng.normal(size=(20, 3))
-    y = rng.poisson(np.exp(X_orig @ np.ones(X_orig.shape[1])), size=X_orig.shape[0]).astype(np.float64)
+    y = rng.poisson(
+        np.exp(X_orig @ np.ones(X_orig.shape[1])), size=X_orig.shape[0]
+    ).astype(np.float64)
 
     # Collinear variation of the same input features.
     X_collinear = np.hstack([X_orig] * 10)
@@ -949,12 +981,19 @@ def test_linalg_warning_with_newton_solver(global_random_seed):
     # Fitting a Newton solver on the collinear version of the training data
     # without regularization should raise an informative warning and fallback
     # to the LBFGS solver.
-    msg = "The inner solver of .*Newton.*Solver stumbled upon a singular or very ill-conditioned Hessian matrix"
+    msg = (
+        "The inner solver of .*Newton.*Solver stumbled upon a singular or very "
+        "ill-conditioned Hessian matrix"
+    )
     with pytest.warns(scipy.linalg.LinAlgWarning, match=msg):
-        reg = PoissonRegressor(solver=newton_solver, alpha=0.0, tol=tol).fit(X_collinear, y)
+        reg = PoissonRegressor(solver=newton_solver, alpha=0.0, tol=tol).fit(
+            X_collinear, y
+        )
     # As a result we should still automatically converge to a good solution.
     collinear_newton_deviance = mean_poisson_deviance(y, reg.predict(X_collinear))
-    assert collinear_newton_deviance == pytest.approx(original_newton_deviance, rel=rtol)
+    assert collinear_newton_deviance == pytest.approx(
+        original_newton_deviance, rel=rtol
+    )
 
     # Increasing the regularization slightly should make the problem go away:
     with warnings.catch_warnings():
@@ -963,8 +1002,12 @@ def test_linalg_warning_with_newton_solver(global_random_seed):
 
     # The slightly penalized model on the collinear data should be close enough
     # to the unpenalized model on the original data.
-    penalized_collinear_newton_deviance = mean_poisson_deviance(y, reg.predict(X_collinear))
-    assert penalized_collinear_newton_deviance == pytest.approx(original_newton_deviance, rel=rtol)
+    penalized_collinear_newton_deviance = mean_poisson_deviance(
+        y, reg.predict(X_collinear)
+    )
+    assert penalized_collinear_newton_deviance == pytest.approx(
+        original_newton_deviance, rel=rtol
+    )
 
 
 @pytest.mark.parametrize("verbose", [0, 1, 2])
@@ -1017,7 +1060,9 @@ def test_newton_solver_verbosity(capsys, verbose):
         sol.line_search(X=X, y=y, sample_weight=None)
         captured = capsys.readouterr()
     if verbose >= 1:
-        assert "Line search did not converge and resorts to lbfgs instead." in captured.out
+        assert (
+            "Line search did not converge and resorts to lbfgs instead." in captured.out
+        )
 
     # Set the Newton solver to a state with bad Newton step such that the loss
     # improvement in line search is tiny.
@@ -1048,7 +1093,9 @@ def test_newton_solver_verbosity(capsys, verbose):
 
     # Test for a case with negative hessian. We badly initialize coef for a Tweedie
     # loss with non-canonical link, e.g. Inverse Gaussian deviance with a log link.
-    linear_loss = LinearModelLoss(base_loss=HalfTweedieLoss(power=3), fit_intercept=False)
+    linear_loss = LinearModelLoss(
+        base_loss=HalfTweedieLoss(power=3), fit_intercept=False
+    )
     sol = NewtonCholeskySolver(
         coef=linear_loss.init_zero_coef(X) + 1,
         linear_loss=linear_loss,
@@ -1061,6 +1108,7 @@ def test_newton_solver_verbosity(capsys, verbose):
     captured = capsys.readouterr()
     if verbose >= 1:
         assert (
-            "The inner solver detected a pointwise Hessian with many negative values and resorts to lbfgs instead."
+            "The inner solver detected a pointwise Hessian with many negative values"
+            " and resorts to lbfgs instead."
             in captured.out
         )

@@ -50,7 +50,9 @@ target = np.sin(data).ravel()
 # - only samples from the beginning of the signal will be available.
 training_sample_indices = rng.choice(np.arange(0, 400), size=40, replace=False)
 training_data = data[training_sample_indices]
-training_noisy_target = target[training_sample_indices] + 0.5 * rng.randn(len(training_sample_indices))
+training_noisy_target = target[training_sample_indices] + 0.5 * rng.randn(
+    len(training_sample_indices)
+)
 
 # %%
 # Let's plot the true signal and the noisy measurements available for training.
@@ -66,7 +68,10 @@ plt.scatter(
 plt.legend()
 plt.xlabel("data")
 plt.ylabel("target")
-_ = plt.title("Illustration of the true generative process and \nnoisy measurements available during training")
+_ = plt.title(
+    "Illustration of the true generative process and \n"
+    "noisy measurements available during training"
+)
 
 # %%
 # Limitations of a simple linear model
@@ -120,7 +125,6 @@ _ = plt.title("Limitation of a linear model such as ridge")
 #
 # Thus, let's use such a :class:`~sklearn_fork.kernel_ridge.KernelRidge`.
 import time
-
 from sklearn_fork.gaussian_process.kernels import ExpSineSquared
 from sklearn_fork.kernel_ridge import KernelRidge
 
@@ -128,7 +132,9 @@ kernel_ridge = KernelRidge(kernel=ExpSineSquared())
 
 start_time = time.time()
 kernel_ridge.fit(training_data, training_noisy_target)
-print(f"Fitting KernelRidge with default kernel: {time.time() - start_time:.3f} seconds")
+print(
+    f"Fitting KernelRidge with default kernel: {time.time() - start_time:.3f} seconds"
+)
 
 # %%
 plt.plot(data, target, label="True signal", linewidth=2, linestyle="dashed")
@@ -148,7 +154,10 @@ plt.plot(
 plt.legend(loc="lower right")
 plt.xlabel("data")
 plt.ylabel("target")
-_ = plt.title("Kernel ridge regression with an exponential sine squared\n kernel using default hyperparameters")
+_ = plt.title(
+    "Kernel ridge regression with an exponential sine squared\n "
+    "kernel using default hyperparameters"
+)
 
 # %%
 # This fitted model is not accurate. Indeed, we did not set the parameters of
@@ -166,10 +175,9 @@ kernel_ridge.kernel
 # search to tune the different parameters the kernel ridge model: the `alpha`
 # parameter and the kernel parameters.
 
-from scipy.stats import loguniform
-
 # %%
 from sklearn_fork.model_selection import RandomizedSearchCV
+from scipy.stats import loguniform
 
 param_distributions = {
     "alpha": loguniform(1e0, 1e3),
@@ -218,7 +226,10 @@ plt.plot(
 plt.legend(loc="lower right")
 plt.xlabel("data")
 plt.ylabel("target")
-_ = plt.title("Kernel ridge regression with an exponential sine squared\n kernel using tuned hyperparameters")
+_ = plt.title(
+    "Kernel ridge regression with an exponential sine squared\n "
+    "kernel using tuned hyperparameters"
+)
 
 # %%
 # We get a much more accurate model. We still observe some errors mainly due to
@@ -238,11 +249,15 @@ _ = plt.title("Kernel ridge regression with an exponential sine squared\n kernel
 from sklearn_fork.gaussian_process import GaussianProcessRegressor
 from sklearn_fork.gaussian_process.kernels import WhiteKernel
 
-kernel = 1.0 * ExpSineSquared(1.0, 5.0, periodicity_bounds=(1e-2, 1e1)) + WhiteKernel(1e-1)
+kernel = 1.0 * ExpSineSquared(1.0, 5.0, periodicity_bounds=(1e-2, 1e1)) + WhiteKernel(
+    1e-1
+)
 gaussian_process = GaussianProcessRegressor(kernel=kernel)
 start_time = time.time()
 gaussian_process.fit(training_data, training_noisy_target)
-print(f"Time for GaussianProcessRegressor fitting: {time.time() - start_time:.3f} seconds")
+print(
+    f"Time for GaussianProcessRegressor fitting: {time.time() - start_time:.3f} seconds"
+)
 
 # %%
 # The computation cost of training a Gaussian process is much less than the
@@ -260,7 +275,9 @@ mean_predictions_gpr, std_predictions_gpr = gaussian_process.predict(
     data,
     return_std=True,
 )
-print(f"Time for GaussianProcessRegressor predict: {time.time() - start_time:.3f} seconds")
+print(
+    f"Time for GaussianProcessRegressor predict: {time.time() - start_time:.3f} seconds"
+)
 
 # %%
 plt.plot(data, target, label="True signal", linewidth=2, linestyle="dashed")

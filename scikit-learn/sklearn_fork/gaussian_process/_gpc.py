@@ -8,20 +8,19 @@ from numbers import Integral
 from operator import itemgetter
 
 import numpy as np
+from scipy.linalg import cholesky, cho_solve, solve
 import scipy.optimize
-from scipy.linalg import cho_solve, cholesky, solve
 from scipy.special import erf, expit
 
 from ..base import BaseEstimator, ClassifierMixin, clone
-from ..multiclass import OneVsOneClassifier, OneVsRestClassifier
-from ..preprocessing import LabelEncoder
-from ..utils import check_random_state
-from ..utils._param_validation import Interval, StrOptions
-from ..utils.optimize import _check_optimize_result
+from .kernels import Kernel, RBF, CompoundKernel, ConstantKernel as C
 from ..utils.validation import check_is_fitted
-from .kernels import RBF, CompoundKernel
-from .kernels import ConstantKernel as C
-from .kernels import Kernel
+from ..utils import check_random_state
+from ..utils.optimize import _check_optimize_result
+from ..utils._param_validation import Interval, StrOptions
+from ..preprocessing import LabelEncoder
+from ..multiclass import OneVsRestClassifier, OneVsOneClassifier
+
 
 # Values required for approximating the logistic sigmoid by
 # error functions. coefs are obtained via:
@@ -30,7 +29,9 @@ from .kernels import Kernel
 # A = (erf(np.dot(x, self.lambdas)) + 1) / 2
 # coefs = lstsq(A, b)[0]
 LAMBDAS = np.array([0.41, 0.4, 0.37, 0.44, 0.39])[:, np.newaxis]
-COEFS = np.array([-1854.8214151, 3516.89893646, 221.29346712, 128.12323805, -2010.49422654])[:, np.newaxis]
+COEFS = np.array(
+    [-1854.8214151, 3516.89893646, 221.29346712, 128.12323805, -2010.49422654]
+)[:, np.newaxis]
 
 
 class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
@@ -184,7 +185,9 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
         self : returns an instance of self.
         """
         if self.kernel is None:  # Use an RBF kernel as default
-            self.kernel_ = C(1.0, constant_value_bounds="fixed") * RBF(1.0, length_scale_bounds="fixed")
+            self.kernel_ = C(1.0, constant_value_bounds="fixed") * RBF(
+                1.0, length_scale_bounds="fixed"
+            )
         else:
             self.kernel_ = clone(self.kernel)
 
@@ -204,7 +207,9 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
             )
         elif self.classes_.size == 1:
             raise ValueError(
-                "{0:s} requires 2 classes; got {1:d} class".format(self.__class__.__name__, self.classes_.size)
+                "{0:s} requires 2 classes; got {1:d} class".format(
+                    self.__class__.__name__, self.classes_.size
+                )
             )
 
         if self.optimizer is not None and self.kernel_.n_dims > 0:
@@ -212,25 +217,34 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
             # likelihood (potentially starting from several initial values)
             def obj_func(theta, eval_gradient=True):
                 if eval_gradient:
-                    lml, grad = self.log_marginal_likelihood(theta, eval_gradient=True, clone_kernel=False)
+                    lml, grad = self.log_marginal_likelihood(
+                        theta, eval_gradient=True, clone_kernel=False
+                    )
                     return -lml, -grad
                 else:
                     return -self.log_marginal_likelihood(theta, clone_kernel=False)
 
             # First optimize starting from theta specified in kernel
-            optima = [self._constrained_optimization(obj_func, self.kernel_.theta, self.kernel_.bounds)]
+            optima = [
+                self._constrained_optimization(
+                    obj_func, self.kernel_.theta, self.kernel_.bounds
+                )
+            ]
 
             # Additional runs are performed from log-uniform chosen initial
             # theta
             if self.n_restarts_optimizer > 0:
                 if not np.isfinite(self.kernel_.bounds).all():
                     raise ValueError(
-                        "Multiple optimizer restarts (n_restarts_optimizer>0) requires that all bounds are finite."
+                        "Multiple optimizer restarts (n_restarts_optimizer>0) "
+                        "requires that all bounds are finite."
                     )
                 bounds = self.kernel_.bounds
                 for iteration in range(self.n_restarts_optimizer):
                     theta_initial = np.exp(self.rng.uniform(bounds[:, 0], bounds[:, 1]))
-                    optima.append(self._constrained_optimization(obj_func, theta_initial, bounds))
+                    optima.append(
+                        self._constrained_optimization(obj_func, theta_initial, bounds)
+                    )
             # Select result from run with minimal (negative) log-marginal
             # likelihood
             lml_values = list(map(itemgetter(1), optima))
@@ -239,13 +253,17 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
 
             self.log_marginal_likelihood_value_ = -np.min(lml_values)
         else:
-            self.log_marginal_likelihood_value_ = self.log_marginal_likelihood(self.kernel_.theta)
+            self.log_marginal_likelihood_value_ = self.log_marginal_likelihood(
+                self.kernel_.theta
+            )
 
         # Precompute quantities required for predictions which are independent
         # of actual query points
         K = self.kernel_(self.X_train_)
 
-        _, (self.pi_, self.W_sr_, self.L_, _, _) = self._posterior_mode(K, return_temporaries=True)
+        _, (self.pi_, self.W_sr_, self.L_, _, _) = self._posterior_mode(
+            K, return_temporaries=True
+        )
 
         return self
 
@@ -314,7 +332,9 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
 
         return np.vstack((1 - pi_star, pi_star)).T
 
-    def log_marginal_likelihood(self, theta=None, eval_gradient=False, clone_kernel=True):
+    def log_marginal_likelihood(
+        self, theta=None, eval_gradient=False, clone_kernel=True
+    ):
         """Returns log-marginal likelihood of theta for training data.
 
         Parameters
@@ -373,7 +393,11 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
         R = W_sr[:, np.newaxis] * cho_solve((L, True), np.diag(W_sr))  # Line 7
         C = solve(L, W_sr[:, np.newaxis] * K)  # Line 8
         # Line 9: (use einsum to compute np.diag(C.T.dot(C))))
-        s_2 = -0.5 * (np.diag(K) - np.einsum("ij, ij -> j", C, C)) * (pi * (1 - pi) * (1 - 2 * pi))  # third derivative
+        s_2 = (
+            -0.5
+            * (np.diag(K) - np.einsum("ij, ij -> j", C, C))
+            * (pi * (1 - pi) * (1 - 2 * pi))
+        )  # third derivative
 
         for j in range(d_Z.shape[0]):
             C = K_gradient[:, :, j]  # Line 11
@@ -398,7 +422,11 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
 
         # If warm_start are enabled, we reuse the last solution for the
         # posterior mode as initialization; otherwise, we initialize with 0
-        if self.warm_start and hasattr(self, "f_cached") and self.f_cached.shape == self.y_train_.shape:
+        if (
+            self.warm_start
+            and hasattr(self, "f_cached")
+            and self.f_cached.shape == self.y_train_.shape
+        ):
             f = self.f_cached
         else:
             f = np.zeros_like(self.y_train_, dtype=np.float64)
@@ -423,7 +451,11 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
 
             # Line 10: Compute log marginal likelihood in loop and use as
             #          convergence criterion
-            lml = -0.5 * a.T.dot(f) - np.log1p(np.exp(-(self.y_train_ * 2 - 1) * f)).sum() - np.log(np.diag(L)).sum()
+            lml = (
+                -0.5 * a.T.dot(f)
+                - np.log1p(np.exp(-(self.y_train_ * 2 - 1) * f)).sum()
+                - np.log(np.diag(L)).sum()
+            )
             # Check if we have converged (log marginal likelihood does
             # not decrease)
             # XXX: more complex convergence criterion
@@ -439,7 +471,9 @@ class _BinaryGaussianProcessClassifierLaplace(BaseEstimator):
 
     def _constrained_optimization(self, obj_func, initial_theta, bounds):
         if self.optimizer == "fmin_l_bfgs_b":
-            opt_res = scipy.optimize.minimize(obj_func, initial_theta, method="L-BFGS-B", jac=True, bounds=bounds)
+            opt_res = scipy.optimize.minimize(
+                obj_func, initial_theta, method="L-BFGS-B", jac=True, bounds=bounds
+            )
             _check_optimize_result("lbfgs", opt_res)
             theta_opt, func_min = opt_res.x, opt_res.fun
         elif callable(self.optimizer):
@@ -667,9 +701,13 @@ class GaussianProcessClassifier(ClassifierMixin, BaseEstimator):
             raise ValueError("kernel cannot be a CompoundKernel")
 
         if self.kernel is None or self.kernel.requires_vector_input:
-            X, y = self._validate_data(X, y, multi_output=False, ensure_2d=True, dtype="numeric")
+            X, y = self._validate_data(
+                X, y, multi_output=False, ensure_2d=True, dtype="numeric"
+            )
         else:
-            X, y = self._validate_data(X, y, multi_output=False, ensure_2d=False, dtype=None)
+            X, y = self._validate_data(
+                X, y, multi_output=False, ensure_2d=False, dtype=None
+            )
 
         self.base_estimator_ = _BinaryGaussianProcessClassifierLaplace(
             kernel=self.kernel,
@@ -685,14 +723,19 @@ class GaussianProcessClassifier(ClassifierMixin, BaseEstimator):
         self.n_classes_ = self.classes_.size
         if self.n_classes_ == 1:
             raise ValueError(
-                "GaussianProcessClassifier requires 2 or more distinct classes; got %d class (only class %s is present)"
-                % (self.n_classes_, self.classes_[0])
+                "GaussianProcessClassifier requires 2 or more "
+                "distinct classes; got %d class (only class %s "
+                "is present)" % (self.n_classes_, self.classes_[0])
             )
         if self.n_classes_ > 2:
             if self.multi_class == "one_vs_rest":
-                self.base_estimator_ = OneVsRestClassifier(self.base_estimator_, n_jobs=self.n_jobs)
+                self.base_estimator_ = OneVsRestClassifier(
+                    self.base_estimator_, n_jobs=self.n_jobs
+                )
             elif self.multi_class == "one_vs_one":
-                self.base_estimator_ = OneVsOneClassifier(self.base_estimator_, n_jobs=self.n_jobs)
+                self.base_estimator_ = OneVsOneClassifier(
+                    self.base_estimator_, n_jobs=self.n_jobs
+                )
             else:
                 raise ValueError("Unknown multi-class mode %s" % self.multi_class)
 
@@ -700,10 +743,15 @@ class GaussianProcessClassifier(ClassifierMixin, BaseEstimator):
 
         if self.n_classes_ > 2:
             self.log_marginal_likelihood_value_ = np.mean(
-                [estimator.log_marginal_likelihood() for estimator in self.base_estimator_.estimators_]
+                [
+                    estimator.log_marginal_likelihood()
+                    for estimator in self.base_estimator_.estimators_
+                ]
             )
         else:
-            self.log_marginal_likelihood_value_ = self.base_estimator_.log_marginal_likelihood()
+            self.log_marginal_likelihood_value_ = (
+                self.base_estimator_.log_marginal_likelihood()
+            )
 
         return self
 
@@ -765,9 +813,13 @@ class GaussianProcessClassifier(ClassifierMixin, BaseEstimator):
         if self.n_classes_ == 2:
             return self.base_estimator_.kernel_
         else:
-            return CompoundKernel([estimator.kernel_ for estimator in self.base_estimator_.estimators_])
+            return CompoundKernel(
+                [estimator.kernel_ for estimator in self.base_estimator_.estimators_]
+            )
 
-    def log_marginal_likelihood(self, theta=None, eval_gradient=False, clone_kernel=True):
+    def log_marginal_likelihood(
+        self, theta=None, eval_gradient=False, clone_kernel=True
+    ):
         """Return log-marginal likelihood of theta for training data.
 
         In the case of multi-class classification, the mean log-marginal
@@ -812,16 +864,23 @@ class GaussianProcessClassifier(ClassifierMixin, BaseEstimator):
 
         theta = np.asarray(theta)
         if self.n_classes_ == 2:
-            return self.base_estimator_.log_marginal_likelihood(theta, eval_gradient, clone_kernel=clone_kernel)
+            return self.base_estimator_.log_marginal_likelihood(
+                theta, eval_gradient, clone_kernel=clone_kernel
+            )
         else:
             if eval_gradient:
-                raise NotImplementedError("Gradient of log-marginal-likelihood not implemented for multi-class GPC.")
+                raise NotImplementedError(
+                    "Gradient of log-marginal-likelihood not implemented for "
+                    "multi-class GPC."
+                )
             estimators = self.base_estimator_.estimators_
             n_dims = estimators[0].kernel_.n_dims
             if theta.shape[0] == n_dims:  # use same theta for all sub-kernels
                 return np.mean(
                     [
-                        estimator.log_marginal_likelihood(theta, clone_kernel=clone_kernel)
+                        estimator.log_marginal_likelihood(
+                            theta, clone_kernel=clone_kernel
+                        )
                         for i, estimator in enumerate(estimators)
                     ]
                 )
@@ -838,6 +897,7 @@ class GaussianProcessClassifier(ClassifierMixin, BaseEstimator):
                 )
             else:
                 raise ValueError(
-                    "Shape of theta must be either %d or %d. Obtained theta with shape %d."
+                    "Shape of theta must be either %d or %d. "
+                    "Obtained theta with shape %d."
                     % (n_dims, n_dims * self.classes_.shape[0], theta.shape[0])
                 )

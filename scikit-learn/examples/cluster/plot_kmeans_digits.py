@@ -53,7 +53,6 @@ print(f"# digits: {n_digits}; # samples: {n_samples}; # features {n_features}")
 # * train and time the pipeline fitting;
 # * measure the performance of the clustering obtained via different metrics.
 from time import time
-
 from sklearn_fork import metrics
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
@@ -103,7 +102,9 @@ def bench_k_means(kmeans, name, data, labels):
     ]
 
     # Show the results
-    formatter_result = "{:9s}\t{:.3f}s\t{:.0f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}"
+    formatter_result = (
+        "{:9s}\t{:.3f}s\t{:.0f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}"
+    )
     print(formatter_result.format(*results))
 
 
@@ -189,7 +190,10 @@ plt.scatter(
     color="w",
     zorder=10,
 )
-plt.title("K-means clustering on the digits dataset (PCA-reduced data)\nCentroids are marked with white cross")
+plt.title(
+    "K-means clustering on the digits dataset (PCA-reduced data)\n"
+    "Centroids are marked with white cross"
+)
 plt.xlim(x_min, x_max)
 plt.ylim(y_min, y_max)
 plt.xticks(())

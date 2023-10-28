@@ -6,19 +6,19 @@ Testing for Neighborhood Component Analysis module (sklearn_fork.neighbors.nca)
 #          John Chiotellis <ioannis.chiotellis@in.tum.de>
 # License: BSD 3 clause
 
-import re
-
-import numpy as np
 import pytest
-from numpy.testing import assert_array_almost_equal, assert_array_equal
+import re
+import numpy as np
+from numpy.testing import assert_array_equal, assert_array_almost_equal
 from scipy.optimize import check_grad
 from sklearn_fork import clone
-from sklearn_fork.datasets import load_iris, make_blobs, make_classification
 from sklearn_fork.exceptions import ConvergenceWarning
-from sklearn_fork.metrics import pairwise_distances
-from sklearn_fork.neighbors import NeighborhoodComponentsAnalysis
-from sklearn_fork.preprocessing import LabelEncoder
 from sklearn_fork.utils import check_random_state
+from sklearn_fork.datasets import load_iris, make_classification, make_blobs
+from sklearn_fork.neighbors import NeighborhoodComponentsAnalysis
+from sklearn_fork.metrics import pairwise_distances
+from sklearn_fork.preprocessing import LabelEncoder
+
 
 rng = check_random_state(0)
 # load and shuffle iris dataset
@@ -39,7 +39,9 @@ def test_simple_example():
     """
     X = np.array([[0, 0], [0, 1], [2, 0], [2, 1]])
     y = np.array([1, 0, 1, 0])
-    nca = NeighborhoodComponentsAnalysis(n_components=2, init="identity", random_state=42)
+    nca = NeighborhoodComponentsAnalysis(
+        n_components=2, init="identity", random_state=42
+    )
     nca.fit(X, y)
     X_t = nca.transform(X)
     assert_array_equal(pairwise_distances(X_t).argsort()[:, 1], np.array([2, 3, 0, 1]))
@@ -74,7 +76,9 @@ def test_toy_example_collapse_points():
 
         def callback(self, transformation, n_iter):
             """Stores the last value of the loss function"""
-            self.loss, _ = self.fake_nca._loss_grad_lbfgs(transformation, self.X, self.same_class_mask, -1.0)
+            self.loss, _ = self.fake_nca._loss_grad_lbfgs(
+                transformation, self.X, self.same_class_mask, -1.0
+            )
 
     loss_storer = LossStorer(X, y)
     nca = NeighborhoodComponentsAnalysis(random_state=42, callback=loss_storer.callback)
@@ -263,7 +267,9 @@ def test_auto_init(n_samples, n_features, n_classes, n_components):
     # Test that auto choose the init as expected with every configuration
     # of order of n_samples, n_features, n_classes and n_components.
     rng = np.random.RandomState(42)
-    nca_base = NeighborhoodComponentsAnalysis(init="auto", n_components=n_components, max_iter=1, random_state=rng)
+    nca_base = NeighborhoodComponentsAnalysis(
+        init="auto", n_components=n_components, max_iter=1, random_state=rng
+    )
     if n_classes >= n_samples:
         pass
         # n_classes > n_samples is impossible, and n_classes == n_samples
@@ -338,14 +344,21 @@ def test_warm_start_effectiveness():
 
     diff_warm = np.sum(np.abs(transformation_warm_plus_one - transformation_warm))
     diff_cold = np.sum(np.abs(transformation_cold_plus_one - transformation_cold))
-    assert diff_warm < 3.0, "Transformer changed significantly after one iteration even though it was warm-started."
+    assert diff_warm < 3.0, (
+        "Transformer changed significantly after one "
+        "iteration even though it was warm-started."
+    )
 
-    assert (
-        diff_cold > diff_warm
-    ), "Cold-started transformer changed less significantly than warm-started transformer after one iteration."
+    assert diff_cold > diff_warm, (
+        "Cold-started transformer changed less "
+        "significantly than warm-started "
+        "transformer after one iteration."
+    )
 
 
-@pytest.mark.parametrize("init_name", ["pca", "lda", "identity", "random", "precomputed"])
+@pytest.mark.parametrize(
+    "init_name", ["pca", "lda", "identity", "random", "precomputed"]
+)
 def test_verbose(init_name, capsys):
     # assert there is proper output when verbose = 1, for every initialization
     # except auto because auto will call one of the others
@@ -379,7 +392,8 @@ def test_verbose(init_name, capsys):
         # The following regex will match for instance:
         # '[NeighborhoodComponentsAnalysis]  0    6.988936e+01   0.01'
         assert re.match(
-            r"\[NeighborhoodComponentsAnalysis\] *\d+ *\d\.\d{6}e" r"[+|-]\d+\ *\d+\.\d{2}",
+            r"\[NeighborhoodComponentsAnalysis\] *\d+ *\d\.\d{6}e"
+            r"[+|-]\d+\ *\d+\.\d{2}",
             line,
         )
     assert re.match(
@@ -438,7 +452,9 @@ def test_one_class():
     X = iris_data[iris_target == 0]
     y = iris_target[iris_target == 0]
 
-    nca = NeighborhoodComponentsAnalysis(max_iter=30, n_components=X.shape[1], init="identity")
+    nca = NeighborhoodComponentsAnalysis(
+        max_iter=30, n_components=X.shape[1], init="identity"
+    )
     nca.fit(X, y)
     assert_array_equal(X, nca.transform(X))
 

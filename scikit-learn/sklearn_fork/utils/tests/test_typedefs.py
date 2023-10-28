@@ -1,5 +1,6 @@
 import numpy as np
 import pytest
+
 from sklearn_fork.utils._typedefs import testing_make_array_from_typed_val
 
 

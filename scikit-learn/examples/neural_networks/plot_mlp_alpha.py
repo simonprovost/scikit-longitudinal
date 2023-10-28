@@ -23,11 +23,11 @@ decision boundary.
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.colors import ListedColormap
-from sklearn_fork.datasets import make_circles, make_classification, make_moons
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.datasets import make_moons, make_circles, make_classification
 from sklearn_fork.neural_network import MLPClassifier
 from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import StandardScaler
 
 h = 0.02  # step size in the mesh
 
@@ -51,7 +51,9 @@ for alpha in alphas:
     )
     names.append(f"alpha {alpha:.2f}")
 
-X, y = make_classification(n_features=2, n_redundant=0, n_informative=2, random_state=0, n_clusters_per_class=1)
+X, y = make_classification(
+    n_features=2, n_redundant=0, n_informative=2, random_state=0, n_clusters_per_class=1
+)
 rng = np.random.RandomState(2)
 X += 2 * rng.uniform(size=X.shape)
 linearly_separable = (X, y)
@@ -67,7 +69,9 @@ i = 1
 # iterate over datasets
 for X, y in datasets:
     # split into training and test part
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.4, random_state=42
+    )
 
     x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
     y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5

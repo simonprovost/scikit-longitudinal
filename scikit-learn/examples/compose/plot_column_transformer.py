@@ -23,14 +23,15 @@ helpful, but serves to illustrate the technique.
 # License: BSD 3 clause
 
 import numpy as np
-from sklearn_fork.compose import ColumnTransformer
+
+from sklearn_fork.preprocessing import FunctionTransformer
 from sklearn_fork.datasets import fetch_20newsgroups
 from sklearn_fork.decomposition import TruncatedSVD
 from sklearn_fork.feature_extraction import DictVectorizer
 from sklearn_fork.feature_extraction.text import TfidfVectorizer
 from sklearn_fork.metrics import classification_report
 from sklearn_fork.pipeline import Pipeline
-from sklearn_fork.preprocessing import FunctionTransformer
+from sklearn_fork.compose import ColumnTransformer
 from sklearn_fork.svm import LinearSVC
 
 ##############################################################################

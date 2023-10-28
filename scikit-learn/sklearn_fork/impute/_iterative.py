@@ -1,21 +1,34 @@
-import warnings
+from time import time
 from collections import namedtuple
 from numbers import Integral, Real
-from time import time
+import warnings
 
-import numpy as np
 from scipy import stats
+import numpy as np
 
 from ..base import clone
 from ..exceptions import ConvergenceWarning
 from ..preprocessing import normalize
-from ..utils import _safe_assign, _safe_indexing, check_array, check_random_state, is_scalar_nan
+from ..utils import (
+    check_array,
+    check_random_state,
+    is_scalar_nan,
+    _safe_assign,
+    _safe_indexing,
+)
+from ..utils.validation import FLOAT_DTYPES, check_is_fitted
+from ..utils.validation import _check_feature_names_in
 from ..utils._mask import _get_mask
 from ..utils._param_validation import HasMethods, Interval, StrOptions
-from ..utils.validation import FLOAT_DTYPES, _check_feature_names_in, check_is_fitted
-from ._base import SimpleImputer, _BaseImputer, _check_inputs_dtype
 
-_ImputerTriplet = namedtuple("_ImputerTriplet", ["feat_idx", "neighbor_feat_idx", "estimator"])
+from ._base import _BaseImputer
+from ._base import SimpleImputer
+from ._base import _check_inputs_dtype
+
+
+_ImputerTriplet = namedtuple(
+    "_ImputerTriplet", ["feat_idx", "neighbor_feat_idx", "estimator"]
+)
 
 
 def _assign_where(X1, X2, cond):
@@ -274,9 +287,13 @@ class IterativeImputer(_BaseImputer):
         "max_iter": [Interval(Integral, 0, None, closed="left")],
         "tol": [Interval(Real, 0, None, closed="left")],
         "n_nearest_features": [None, Interval(Integral, 1, None, closed="left")],
-        "initial_strategy": [StrOptions({"mean", "median", "most_frequent", "constant"})],
+        "initial_strategy": [
+            StrOptions({"mean", "median", "most_frequent", "constant"})
+        ],
         "fill_value": "no_validation",  # any object is valid
-        "imputation_order": [StrOptions({"ascending", "descending", "roman", "arabic", "random"})],
+        "imputation_order": [
+            StrOptions({"ascending", "descending", "roman", "arabic", "random"})
+        ],
         "skip_complete": ["boolean"],
         "min_value": [None, Interval(Real, None, None, closed="both"), "array-like"],
         "max_value": [None, Interval(Real, None, None, closed="both"), "array-like"],
@@ -373,7 +390,10 @@ class IterativeImputer(_BaseImputer):
             `X_filled[missing_row_mask, feat_idx]`.
         """
         if estimator is None and fit_mode is False:
-            raise ValueError("If fit_mode is False, then an already-fitted estimator should be passed in.")
+            raise ValueError(
+                "If fit_mode is False, then an already-fitted "
+                "estimator should be passed in."
+            )
 
         if estimator is None:
             estimator = clone(self._estimator)
@@ -422,10 +442,14 @@ class IterativeImputer(_BaseImputer):
             b = (self._max_value[feat_idx] - mus) / sigmas
 
             truncated_normal = stats.truncnorm(a=a, b=b, loc=mus, scale=sigmas)
-            imputed_values[inrange_mask] = truncated_normal.rvs(random_state=self.random_state_)
+            imputed_values[inrange_mask] = truncated_normal.rvs(
+                random_state=self.random_state_
+            )
         else:
             imputed_values = estimator.predict(X_test)
-            imputed_values = np.clip(imputed_values, self._min_value[feat_idx], self._max_value[feat_idx])
+            imputed_values = np.clip(
+                imputed_values, self._min_value[feat_idx], self._max_value[feat_idx]
+            )
 
         # update the feature
         _safe_assign(
@@ -608,7 +632,9 @@ class IterativeImputer(_BaseImputer):
         else:
             X_filled = self.initial_imputer_.transform(X)
 
-        valid_mask = np.flatnonzero(np.logical_not(np.isnan(self.initial_imputer_.statistics_)))
+        valid_mask = np.flatnonzero(
+            np.logical_not(np.isnan(self.initial_imputer_.statistics_))
+        )
 
         if not self.keep_empty_features:
             # drop empty features
@@ -673,7 +699,9 @@ class IterativeImputer(_BaseImputer):
             The imputed input data.
         """
         self._validate_params()
-        self.random_state_ = getattr(self, "random_state_", check_random_state(self.random_state))
+        self.random_state_ = getattr(
+            self, "random_state_", check_random_state(self.random_state)
+        )
 
         if self.estimator is None:
             from ..linear_model import BayesianRidge
@@ -686,7 +714,9 @@ class IterativeImputer(_BaseImputer):
 
         self.initial_imputer_ = None
 
-        X, Xt, mask_missing_values, complete_mask = self._initial_imputation(X, in_fit=True)
+        X, Xt, mask_missing_values, complete_mask = self._initial_imputation(
+            X, in_fit=True
+        )
 
         super()._fit_indicator(complete_mask)
         X_indicator = super()._transform_indicator(complete_mask)
@@ -727,7 +757,9 @@ class IterativeImputer(_BaseImputer):
                 ordered_idx = self._get_ordered_idx(mask_missing_values)
 
             for feat_idx in ordered_idx:
-                neighbor_feat_idx = self._get_neighbor_feat_idx(n_features, feat_idx, abs_corr_mat)
+                neighbor_feat_idx = self._get_neighbor_feat_idx(
+                    n_features, feat_idx, abs_corr_mat
+                )
                 Xt, estimator = self._impute_one_feature(
                     Xt,
                     mask_missing_values,
@@ -736,19 +768,26 @@ class IterativeImputer(_BaseImputer):
                     estimator=None,
                     fit_mode=True,
                 )
-                estimator_triplet = _ImputerTriplet(feat_idx, neighbor_feat_idx, estimator)
+                estimator_triplet = _ImputerTriplet(
+                    feat_idx, neighbor_feat_idx, estimator
+                )
                 self.imputation_sequence_.append(estimator_triplet)
 
             if self.verbose > 1:
                 print(
-                    "[IterativeImputer] Ending imputation round %d/%d, elapsed time %0.2f"
+                    "[IterativeImputer] Ending imputation round "
+                    "%d/%d, elapsed time %0.2f"
                     % (self.n_iter_, self.max_iter, time() - start_t)
                 )
 
             if not self.sample_posterior:
                 inf_norm = np.linalg.norm(Xt - Xt_previous, ord=np.inf, axis=None)
                 if self.verbose > 0:
-                    print("[IterativeImputer] Change: {}, scaled tolerance: {} ".format(inf_norm, normalized_tol))
+                    print(
+                        "[IterativeImputer] Change: {}, scaled tolerance: {} ".format(
+                            inf_norm, normalized_tol
+                        )
+                    )
                 if inf_norm < normalized_tol:
                     if self.verbose > 0:
                         print("[IterativeImputer] Early stopping criterion reached.")
@@ -782,7 +821,9 @@ class IterativeImputer(_BaseImputer):
         """
         check_is_fitted(self)
 
-        X, Xt, mask_missing_values, complete_mask = self._initial_imputation(X, in_fit=False)
+        X, Xt, mask_missing_values, complete_mask = self._initial_imputation(
+            X, in_fit=False
+        )
 
         X_indicator = super()._transform_indicator(complete_mask)
 
@@ -806,7 +847,8 @@ class IterativeImputer(_BaseImputer):
             if not (it + 1) % imputations_per_round:
                 if self.verbose > 1:
                     print(
-                        "[IterativeImputer] Ending imputation round %d/%d, elapsed time %0.2f"
+                        "[IterativeImputer] Ending imputation round "
+                        "%d/%d, elapsed time %0.2f"
                         % (i_rnd + 1, self.n_iter_, time() - start_t)
                     )
                 i_rnd += 1

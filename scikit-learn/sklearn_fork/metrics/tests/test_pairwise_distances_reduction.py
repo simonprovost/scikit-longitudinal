@@ -2,23 +2,28 @@ import itertools
 import re
 import warnings
 from collections import defaultdict
-from math import floor, log10
 
 import numpy as np
 import pytest
 import threadpoolctl
+from math import log10, floor
 from scipy.sparse import csr_matrix
 from scipy.spatial.distance import cdist
-from sklearn_fork.metrics import euclidean_distances
+
 from sklearn_fork.metrics._pairwise_distances_reduction import (
+    BaseDistancesReductionDispatcher,
     ArgKmin,
     ArgKminClassMode,
-    BaseDistancesReductionDispatcher,
     RadiusNeighbors,
     sqeuclidean_row_norms,
 )
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal, create_memmap_backed_data
-from sklearn_fork.utils.fixes import parse_version, sp_version
+from sklearn_fork.metrics import euclidean_distances
+from sklearn_fork.utils.fixes import sp_version, parse_version
+from sklearn_fork.utils._testing import (
+    assert_array_equal,
+    assert_allclose,
+    create_memmap_backed_data,
+)
 
 # Common supported metric between scipy.spatial.distance.cdist
 # and BaseDistanceReductionDispatcher.
@@ -133,7 +138,9 @@ def assert_argkmin_results_quasi_equality(
 
     n_significant_digits = -(int(floor(log10(abs(rtol)))) + 1)
 
-    assert ref_dist.shape == dist.shape == ref_indices.shape == indices.shape, "Arrays of results have various shapes."
+    assert (
+        ref_dist.shape == dist.shape == ref_indices.shape == indices.shape
+    ), "Arrays of results have various shapes."
 
     n_queries, n_neighbors = ref_dist.shape
 
@@ -142,7 +149,9 @@ def assert_argkmin_results_quasi_equality(
         ref_dist_row = ref_dist[query_idx]
         dist_row = dist[query_idx]
 
-        assert is_sorted(ref_dist_row), f"Reference distances aren't sorted on row {query_idx}"
+        assert is_sorted(
+            ref_dist_row
+        ), f"Reference distances aren't sorted on row {query_idx}"
         assert is_sorted(dist_row), f"Distances aren't sorted on row {query_idx}"
 
         assert_allclose(ref_dist_row, dist_row, rtol=rtol)
@@ -170,10 +179,15 @@ def assert_argkmin_results_quasi_equality(
             f"derived from rtol={rtol:.1e}"
         )
         for rounded_distance in reference_neighbors_groups.keys():
-            assert reference_neighbors_groups[rounded_distance] == effective_neighbors_groups[rounded_distance], msg
+            assert (
+                reference_neighbors_groups[rounded_distance]
+                == effective_neighbors_groups[rounded_distance]
+            ), msg
 
 
-def assert_radius_neighbors_results_equality(ref_dist, dist, ref_indices, indices, radius):
+def assert_radius_neighbors_results_equality(
+    ref_dist, dist, ref_indices, indices, radius
+):
     # We get arrays of arrays and we need to check for individual pairs
     for i in range(ref_dist.shape[0]):
         assert (ref_dist[i] <= radius).all()
@@ -215,7 +229,9 @@ def assert_radius_neighbors_results_quasi_equality(
 
     n_significant_digits = -(int(floor(log10(abs(rtol)))) + 1)
 
-    assert len(ref_dist) == len(dist) == len(ref_indices) == len(indices), "Arrays of results have various lengths."
+    assert (
+        len(ref_dist) == len(dist) == len(ref_indices) == len(indices)
+    ), "Arrays of results have various lengths."
 
     n_queries = len(ref_dist)
 
@@ -224,7 +240,9 @@ def assert_radius_neighbors_results_quasi_equality(
         ref_dist_row = ref_dist[query_idx]
         dist_row = dist[query_idx]
 
-        assert is_sorted(ref_dist_row), f"Reference distances aren't sorted on row {query_idx}"
+        assert is_sorted(
+            ref_dist_row
+        ), f"Reference distances aren't sorted on row {query_idx}"
         assert is_sorted(dist_row), f"Distances aren't sorted on row {query_idx}"
 
         # Vectors' lengths might be different due to small
@@ -236,9 +254,10 @@ def assert_radius_neighbors_results_quasi_equality(
         min_length = min(len(ref_dist_row), len(dist_row))
         last_extra_elements = largest_row[min_length:]
         if last_extra_elements.size > 0:
-            assert np.all(
-                radius - rtol <= last_extra_elements <= radius + rtol
-            ), f"The last extra elements ({last_extra_elements}) aren't in [radius ± rtol]=[{radius} ± {rtol}]"
+            assert np.all(radius - rtol <= last_extra_elements <= radius + rtol), (
+                f"The last extra elements ({last_extra_elements}) aren't in [radius ±"
+                f" rtol]=[{radius} ± {rtol}]"
+            )
 
         # We truncate the neighbors results list on the smallest length to
         # be able to compare them, ignoring the elements checked above.
@@ -270,7 +289,10 @@ def assert_radius_neighbors_results_quasi_equality(
             f"derived from rtol={rtol:.1e}"
         )
         for rounded_distance in reference_neighbors_groups.keys():
-            assert reference_neighbors_groups[rounded_distance] == effective_neighbors_groups[rounded_distance], msg
+            assert (
+                reference_neighbors_groups[rounded_distance]
+                == effective_neighbors_groups[rounded_distance]
+            ), msg
 
 
 ASSERT_RESULT = {
@@ -320,7 +342,9 @@ def test_assert_argkmin_results_quasi_equality():
     )
 
     # Sanity check: compare the reference results to themselves.
-    assert_argkmin_results_quasi_equality(ref_dist, ref_dist, ref_indices, ref_indices, rtol)
+    assert_argkmin_results_quasi_equality(
+        ref_dist, ref_dist, ref_indices, ref_indices, rtol
+    )
 
     # Apply valid permutation on indices: the last 3 points are
     # all very close to one another so we accept any permutation
@@ -448,7 +472,9 @@ def test_assert_radius_neighbors_results_quasi_equality():
     )
 
     # Having extra last elements is invalid if they are lesser than radius - rtol
-    msg = re.escape("The last extra elements ([6.]) aren't in [radius ± rtol]=[6.1 ± 1e-07]")
+    msg = re.escape(
+        "The last extra elements ([6.]) aren't in [radius ± rtol]=[6.1 ± 1e-07]"
+    )
     with pytest.raises(AssertionError, match=msg):
         assert_radius_neighbors_results_quasi_equality(
             np.array([np.array([1.2, 2.5, 6])]),
@@ -498,24 +524,42 @@ def test_pairwise_distances_reduction_is_usable_for():
     assert BaseDistancesReductionDispatcher.is_usable_for(X_csr, Y, metric)
     assert BaseDistancesReductionDispatcher.is_usable_for(X, Y_csr, metric)
 
-    assert BaseDistancesReductionDispatcher.is_usable_for(X.astype(np.float64), Y.astype(np.float64), metric)
+    assert BaseDistancesReductionDispatcher.is_usable_for(
+        X.astype(np.float64), Y.astype(np.float64), metric
+    )
 
-    assert BaseDistancesReductionDispatcher.is_usable_for(X.astype(np.float32), Y.astype(np.float32), metric)
+    assert BaseDistancesReductionDispatcher.is_usable_for(
+        X.astype(np.float32), Y.astype(np.float32), metric
+    )
 
-    assert not BaseDistancesReductionDispatcher.is_usable_for(X.astype(np.int64), Y.astype(np.int64), metric)
+    assert not BaseDistancesReductionDispatcher.is_usable_for(
+        X.astype(np.int64), Y.astype(np.int64), metric
+    )
 
     assert not BaseDistancesReductionDispatcher.is_usable_for(X, Y, metric="pyfunc")
-    assert not BaseDistancesReductionDispatcher.is_usable_for(X.astype(np.float32), Y, metric)
-    assert not BaseDistancesReductionDispatcher.is_usable_for(X, Y.astype(np.int32), metric)
+    assert not BaseDistancesReductionDispatcher.is_usable_for(
+        X.astype(np.float32), Y, metric
+    )
+    assert not BaseDistancesReductionDispatcher.is_usable_for(
+        X, Y.astype(np.int32), metric
+    )
 
     # F-ordered arrays are not supported
-    assert not BaseDistancesReductionDispatcher.is_usable_for(np.asfortranarray(X), Y, metric)
+    assert not BaseDistancesReductionDispatcher.is_usable_for(
+        np.asfortranarray(X), Y, metric
+    )
 
     assert BaseDistancesReductionDispatcher.is_usable_for(X_csr, Y, metric="euclidean")
-    assert BaseDistancesReductionDispatcher.is_usable_for(X, Y_csr, metric="sqeuclidean")
+    assert BaseDistancesReductionDispatcher.is_usable_for(
+        X, Y_csr, metric="sqeuclidean"
+    )
 
-    assert BaseDistancesReductionDispatcher.is_usable_for(X_csr, Y_csr, metric="sqeuclidean")
-    assert BaseDistancesReductionDispatcher.is_usable_for(X_csr, Y_csr, metric="euclidean")
+    assert BaseDistancesReductionDispatcher.is_usable_for(
+        X_csr, Y_csr, metric="sqeuclidean"
+    )
+    assert BaseDistancesReductionDispatcher.is_usable_for(
+        X_csr, Y_csr, metric="euclidean"
+    )
 
     # CSR matrices without non-zeros elements aren't currently supported
     # TODO: support CSR matrices without non-zeros elements
@@ -538,11 +582,17 @@ def test_argkmin_factory_method_wrong_usages():
     k = 5
     metric = "euclidean"
 
-    msg = "Only float64 or float32 datasets pairs are supported at this time, got: X.dtype=float32 and Y.dtype=float64"
+    msg = (
+        "Only float64 or float32 datasets pairs are supported at this time, "
+        "got: X.dtype=float32 and Y.dtype=float64"
+    )
     with pytest.raises(ValueError, match=msg):
         ArgKmin.compute(X=X.astype(np.float32), Y=Y, k=k, metric=metric)
 
-    msg = "Only float64 or float32 datasets pairs are supported at this time, got: X.dtype=float64 and Y.dtype=int32"
+    msg = (
+        "Only float64 or float32 datasets pairs are supported at this time, "
+        "got: X.dtype=float64 and Y.dtype=int32"
+    )
     with pytest.raises(ValueError, match=msg):
         ArgKmin.compute(X=X, Y=Y.astype(np.int32), k=k, metric=metric)
 
@@ -555,7 +605,9 @@ def test_argkmin_factory_method_wrong_usages():
     with pytest.raises(ValueError, match="Unrecognized metric"):
         ArgKmin.compute(X=X, Y=Y, k=k, metric="wrong metric")
 
-    with pytest.raises(ValueError, match=r"Buffer has wrong number of dimensions \(expected 2, got 1\)"):
+    with pytest.raises(
+        ValueError, match=r"Buffer has wrong number of dimensions \(expected 2, got 1\)"
+    ):
         ArgKmin.compute(X=np.array([1.0, 2.0]), Y=Y, k=k, metric=metric)
 
     with pytest.raises(ValueError, match="ndarray is not C-contiguous"):
@@ -567,7 +619,9 @@ def test_argkmin_factory_method_wrong_usages():
     message = r"Some metric_kwargs have been passed \({'p': 3}\) but"
 
     with pytest.warns(UserWarning, match=message):
-        ArgKmin.compute(X=X, Y=Y, k=k, metric=metric, metric_kwargs=unused_metric_kwargs)
+        ArgKmin.compute(
+            X=X, Y=Y, k=k, metric=metric, metric_kwargs=unused_metric_kwargs
+        )
 
     # A UserWarning must be raised in this case.
     metric_kwargs = {
@@ -609,7 +663,10 @@ def test_argkmin_classmode_factory_method_wrong_usages():
     labels = rng.randint(low=0, high=10, size=100)
     unique_labels = np.unique(labels)
 
-    msg = "Only float64 or float32 datasets pairs are supported at this time, got: X.dtype=float32 and Y.dtype=float64"
+    msg = (
+        "Only float64 or float32 datasets pairs are supported at this time, "
+        "got: X.dtype=float32 and Y.dtype=float64"
+    )
     with pytest.raises(ValueError, match=msg):
         ArgKminClassMode.compute(
             X=X.astype(np.float32),
@@ -621,7 +678,10 @@ def test_argkmin_classmode_factory_method_wrong_usages():
             unique_labels=unique_labels,
         )
 
-    msg = "Only float64 or float32 datasets pairs are supported at this time, got: X.dtype=float64 and Y.dtype=int32"
+    msg = (
+        "Only float64 or float32 datasets pairs are supported at this time, "
+        "got: X.dtype=float64 and Y.dtype=int32"
+    )
     with pytest.raises(ValueError, match=msg):
         ArgKminClassMode.compute(
             X=X,
@@ -666,7 +726,9 @@ def test_argkmin_classmode_factory_method_wrong_usages():
             unique_labels=unique_labels,
         )
 
-    with pytest.raises(ValueError, match=r"Buffer has wrong number of dimensions \(expected 2, got 1\)"):
+    with pytest.raises(
+        ValueError, match=r"Buffer has wrong number of dimensions \(expected 2, got 1\)"
+    ):
         ArgKminClassMode.compute(
             X=np.array([1.0, 2.0]),
             Y=Y,
@@ -715,14 +777,22 @@ def test_radius_neighbors_factory_method_wrong_usages():
     radius = 5
     metric = "euclidean"
 
-    msg = "Only float64 or float32 datasets pairs are supported at this time, got: X.dtype=float32 and Y.dtype=float64"
+    msg = (
+        "Only float64 or float32 datasets pairs are supported at this time, "
+        "got: X.dtype=float32 and Y.dtype=float64"
+    )
     with pytest.raises(
         ValueError,
         match=msg,
     ):
-        RadiusNeighbors.compute(X=X.astype(np.float32), Y=Y, radius=radius, metric=metric)
+        RadiusNeighbors.compute(
+            X=X.astype(np.float32), Y=Y, radius=radius, metric=metric
+        )
 
-    msg = "Only float64 or float32 datasets pairs are supported at this time, got: X.dtype=float64 and Y.dtype=int32"
+    msg = (
+        "Only float64 or float32 datasets pairs are supported at this time, "
+        "got: X.dtype=float64 and Y.dtype=int32"
+    )
     with pytest.raises(
         ValueError,
         match=msg,
@@ -735,11 +805,17 @@ def test_radius_neighbors_factory_method_wrong_usages():
     with pytest.raises(ValueError, match="Unrecognized metric"):
         RadiusNeighbors.compute(X=X, Y=Y, radius=radius, metric="wrong metric")
 
-    with pytest.raises(ValueError, match=r"Buffer has wrong number of dimensions \(expected 2, got 1\)"):
-        RadiusNeighbors.compute(X=np.array([1.0, 2.0]), Y=Y, radius=radius, metric=metric)
+    with pytest.raises(
+        ValueError, match=r"Buffer has wrong number of dimensions \(expected 2, got 1\)"
+    ):
+        RadiusNeighbors.compute(
+            X=np.array([1.0, 2.0]), Y=Y, radius=radius, metric=metric
+        )
 
     with pytest.raises(ValueError, match="ndarray is not C-contiguous"):
-        RadiusNeighbors.compute(X=np.asfortranarray(X), Y=Y, radius=radius, metric=metric)
+        RadiusNeighbors.compute(
+            X=np.asfortranarray(X), Y=Y, radius=radius, metric=metric
+        )
 
     unused_metric_kwargs = {"p": 3}
 
@@ -747,7 +823,9 @@ def test_radius_neighbors_factory_method_wrong_usages():
     message = r"Some metric_kwargs have been passed \({'p': 3}\) but"
 
     with pytest.warns(UserWarning, match=message):
-        RadiusNeighbors.compute(X=X, Y=Y, radius=radius, metric=metric, metric_kwargs=unused_metric_kwargs)
+        RadiusNeighbors.compute(
+            X=X, Y=Y, radius=radius, metric=metric, metric_kwargs=unused_metric_kwargs
+        )
 
     # A UserWarning must be raised in this case.
     metric_kwargs = {
@@ -758,7 +836,9 @@ def test_radius_neighbors_factory_method_wrong_usages():
     message = r"Some metric_kwargs have been passed \({'p': 3, 'Y_norm_squared'"
 
     with pytest.warns(UserWarning, match=message):
-        RadiusNeighbors.compute(X=X, Y=Y, radius=radius, metric=metric, metric_kwargs=metric_kwargs)
+        RadiusNeighbors.compute(
+            X=X, Y=Y, radius=radius, metric=metric, metric_kwargs=metric_kwargs
+        )
 
     # No user warning must be raised in this case.
     metric_kwargs = {
@@ -767,7 +847,9 @@ def test_radius_neighbors_factory_method_wrong_usages():
     }
     with warnings.catch_warnings():
         warnings.simplefilter("error", category=UserWarning)
-        RadiusNeighbors.compute(X=X, Y=Y, radius=radius, metric=metric, metric_kwargs=metric_kwargs)
+        RadiusNeighbors.compute(
+            X=X, Y=Y, radius=radius, metric=metric, metric_kwargs=metric_kwargs
+        )
 
     # No user warning must be raised in this case.
     metric_kwargs = {
@@ -775,10 +857,14 @@ def test_radius_neighbors_factory_method_wrong_usages():
     }
     with warnings.catch_warnings():
         warnings.simplefilter("error", category=UserWarning)
-        RadiusNeighbors.compute(X=X, Y=Y, radius=radius, metric=metric, metric_kwargs=metric_kwargs)
+        RadiusNeighbors.compute(
+            X=X, Y=Y, radius=radius, metric=metric, metric_kwargs=metric_kwargs
+        )
 
 
-@pytest.mark.parametrize("n_samples_X, n_samples_Y", [(100, 100), (500, 100), (100, 500)])
+@pytest.mark.parametrize(
+    "n_samples_X, n_samples_Y", [(100, 100), (500, 100), (100, 500)]
+)
 @pytest.mark.parametrize("Dispatcher", [ArgKmin, RadiusNeighbors])
 @pytest.mark.parametrize("dtype", [np.float64, np.float32])
 def test_chunk_size_agnosticism(
@@ -826,10 +912,14 @@ def test_chunk_size_agnosticism(
         **compute_parameters,
     )
 
-    ASSERT_RESULT[(Dispatcher, dtype)](ref_dist, dist, ref_indices, indices, **check_parameters)
+    ASSERT_RESULT[(Dispatcher, dtype)](
+        ref_dist, dist, ref_indices, indices, **check_parameters
+    )
 
 
-@pytest.mark.parametrize("n_samples_X, n_samples_Y", [(100, 100), (500, 100), (100, 500)])
+@pytest.mark.parametrize(
+    "n_samples_X, n_samples_Y", [(100, 100), (500, 100), (100, 500)]
+)
 @pytest.mark.parametrize("Dispatcher", [ArgKmin, RadiusNeighbors])
 @pytest.mark.parametrize("dtype", [np.float64, np.float32])
 def test_n_threads_agnosticism(
@@ -876,7 +966,9 @@ def test_n_threads_agnosticism(
             **compute_parameters,
         )
 
-    ASSERT_RESULT[(Dispatcher, dtype)](ref_dist, dist, ref_indices, indices, **check_parameters)
+    ASSERT_RESULT[(Dispatcher, dtype)](
+        ref_dist, dist, ref_indices, indices, **check_parameters
+    )
 
 
 @pytest.mark.parametrize(
@@ -944,7 +1036,9 @@ def test_format_agnosticism(
         )
 
 
-@pytest.mark.parametrize("n_samples_X, n_samples_Y", [(100, 100), (100, 500), (500, 100)])
+@pytest.mark.parametrize(
+    "n_samples_X, n_samples_Y", [(100, 100), (100, 500), (500, 100)]
+)
 @pytest.mark.parametrize(
     "metric",
     ["euclidean", "minkowski", "manhattan", "infinity", "seuclidean", "haversine"],
@@ -988,7 +1082,9 @@ def test_strategies_consistency(
         parameter,
         metric=metric,
         # Taking the first
-        metric_kwargs=_get_metric_params_list(metric, n_features, seed=global_random_seed)[0],
+        metric_kwargs=_get_metric_params_list(
+            metric, n_features, seed=global_random_seed
+        )[0],
         # To be sure to use parallelization
         chunk_size=n_samples_X // 4,
         strategy="parallel_on_X",
@@ -1002,7 +1098,9 @@ def test_strategies_consistency(
         parameter,
         metric=metric,
         # Taking the first
-        metric_kwargs=_get_metric_params_list(metric, n_features, seed=global_random_seed)[0],
+        metric_kwargs=_get_metric_params_list(
+            metric, n_features, seed=global_random_seed
+        )[0],
         # To be sure to use parallelization
         chunk_size=n_samples_Y // 4,
         strategy="parallel_on_Y",
@@ -1010,7 +1108,9 @@ def test_strategies_consistency(
         **compute_parameters,
     )
 
-    ASSERT_RESULT[(Dispatcher, dtype)](dist_par_X, dist_par_Y, indices_par_X, indices_par_Y, **check_parameters)
+    ASSERT_RESULT[(Dispatcher, dtype)](
+        dist_par_X, dist_par_Y, indices_par_X, indices_par_Y, **check_parameters
+    )
 
 
 # "Concrete Dispatchers"-specific tests
@@ -1067,7 +1167,9 @@ def test_pairwise_distances_argkmin(
     # Getting the associated distances
     argkmin_distances_ref = np.zeros(argkmin_indices_ref.shape, dtype=np.float64)
     for row_idx in range(argkmin_indices_ref.shape[0]):
-        argkmin_distances_ref[row_idx] = dist_matrix[row_idx, argkmin_indices_ref[row_idx]]
+        argkmin_distances_ref[row_idx] = dist_matrix[
+            row_idx, argkmin_indices_ref[row_idx]
+        ]
 
     for _X, _Y in itertools.product((X, X_csr), (Y, Y_csr)):
         argkmin_distances, argkmin_indices = ArgKmin.compute(
@@ -1112,7 +1214,9 @@ def test_pairwise_distances_radius_neighbors(
     X = translation + rng.rand(n_samples, n_features).astype(dtype) * spread
     Y = translation + rng.rand(n_samples, n_features).astype(dtype) * spread
 
-    metric_kwargs = _get_metric_params_list(metric, n_features, seed=global_random_seed)[0]
+    metric_kwargs = _get_metric_params_list(
+        metric, n_features, seed=global_random_seed
+    )[0]
 
     # Reference for argkmin results
     if metric == "euclidean":
@@ -1200,7 +1304,9 @@ def test_memmap_backed_data(
         **compute_parameters,
     )
 
-    ASSERT_RESULT[(Dispatcher, dtype)](ref_dist, dist_mm, ref_indices, indices_mm, **check_parameters)
+    ASSERT_RESULT[(Dispatcher, dtype)](
+        ref_dist, dist_mm, ref_indices, indices_mm, **check_parameters
+    )
 
 
 @pytest.mark.parametrize("n_samples", [100, 1000])

@@ -1,5 +1,6 @@
-from functools import update_wrapper, wraps
 from types import MethodType
+from functools import wraps
+from functools import update_wrapper
 
 
 class _AvailableIfDescriptor:
@@ -22,7 +23,9 @@ class _AvailableIfDescriptor:
         update_wrapper(self, fn)
 
     def __get__(self, obj, owner=None):
-        attr_err = AttributeError(f"This {repr(owner.__name__)} has no attribute {repr(self.attribute_name)}")
+        attr_err = AttributeError(
+            f"This {repr(owner.__name__)} has no attribute {repr(self.attribute_name)}"
+        )
         if obj is not None:
             # delegate only on instances, not the classes.
             # this is to allow access to the docstrings.

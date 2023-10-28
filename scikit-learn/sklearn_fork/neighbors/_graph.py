@@ -4,11 +4,12 @@
 #         Tom Dupre la Tour
 #
 # License: BSD 3 clause (C) INRIA, University of Amsterdam
-from ..base import ClassNamePrefixFeaturesOutMixin, TransformerMixin
+from ._base import KNeighborsMixin, RadiusNeighborsMixin
+from ._base import NeighborsBase
+from ._unsupervised import NearestNeighbors
+from ..base import TransformerMixin, ClassNamePrefixFeaturesOutMixin
 from ..utils._param_validation import StrOptions
 from ..utils.validation import check_is_fitted
-from ._base import KNeighborsMixin, NeighborsBase, RadiusNeighborsMixin
-from ._unsupervised import NearestNeighbors
 
 
 def _check_params(X, metric, p, metric_params):
@@ -223,7 +224,9 @@ def radius_neighbors_graph(
     return X.radius_neighbors_graph(query, radius, mode)
 
 
-class KNeighborsTransformer(ClassNamePrefixFeaturesOutMixin, KNeighborsMixin, TransformerMixin, NeighborsBase):
+class KNeighborsTransformer(
+    ClassNamePrefixFeaturesOutMixin, KNeighborsMixin, TransformerMixin, NeighborsBase
+):
     """Transform X into a (weighted) graph of k nearest neighbors.
 
     The transformed data is a sparse graph as returned by kneighbors_graph.
@@ -408,7 +411,9 @@ class KNeighborsTransformer(ClassNamePrefixFeaturesOutMixin, KNeighborsMixin, Tr
         """
         check_is_fitted(self)
         add_one = self.mode == "distance"
-        return self.kneighbors_graph(X, mode=self.mode, n_neighbors=self.n_neighbors + add_one)
+        return self.kneighbors_graph(
+            X, mode=self.mode, n_neighbors=self.n_neighbors + add_one
+        )
 
     def fit_transform(self, X, y=None):
         """Fit to data, then transform it.
@@ -435,7 +440,11 @@ class KNeighborsTransformer(ClassNamePrefixFeaturesOutMixin, KNeighborsMixin, Tr
         return self.fit(X).transform(X)
 
     def _more_tags(self):
-        return {"_xfail_checks": {"check_methods_sample_order_invariance": "check is not applicable."}}
+        return {
+            "_xfail_checks": {
+                "check_methods_sample_order_invariance": "check is not applicable."
+            }
+        }
 
 
 class RadiusNeighborsTransformer(
@@ -657,4 +666,8 @@ class RadiusNeighborsTransformer(
         return self.fit(X).transform(X)
 
     def _more_tags(self):
-        return {"_xfail_checks": {"check_methods_sample_order_invariance": "check is not applicable."}}
+        return {
+            "_xfail_checks": {
+                "check_methods_sample_order_invariance": "check is not applicable."
+            }
+        }

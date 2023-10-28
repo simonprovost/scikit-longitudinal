@@ -1,11 +1,11 @@
 """Helpers to check build environment before actual build of scikit-learn"""
 
-import glob
 import os
-import subprocess
 import sys
+import glob
 import tempfile
 import textwrap
+import subprocess
 
 from setuptools.command.build_ext import customize_compiler, new_compiler
 
@@ -28,7 +28,9 @@ def compile_test_program(code, extra_preargs=None, extra_postargs=None):
             os.mkdir("objects")
 
             # Compile, test program
-            ccompiler.compile(["test_program.c"], output_dir="objects", extra_postargs=extra_postargs)
+            ccompiler.compile(
+                ["test_program.c"], output_dir="objects", extra_postargs=extra_postargs
+            )
 
             # Link test program
             objects = glob.glob(os.path.join("objects", "*" + ccompiler.obj_extension))

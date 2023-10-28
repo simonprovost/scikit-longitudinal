@@ -30,12 +30,12 @@ meaningful despite the large reduction in dimension.
 
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork import datasets
+from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.decomposition import PCA
 from sklearn_fork.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.neighbors import KNeighborsClassifier, NeighborhoodComponentsAnalysis
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
@@ -47,7 +47,9 @@ random_state = 0
 X, y = datasets.load_digits(return_X_y=True)
 
 # Split into train/test
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, stratify=y, random_state=random_state)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.5, stratify=y, random_state=random_state
+)
 
 dim = len(X[0])
 n_classes = len(np.unique(y))
@@ -89,5 +91,7 @@ for i, (name, model) in enumerate(dim_reduction_methods):
 
     # Plot the projected points and show the evaluation score
     plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=y, s=30, cmap="Set1")
-    plt.title("{}, KNN (k={})\nTest accuracy = {:.2f}".format(name, n_neighbors, acc_knn))
+    plt.title(
+        "{}, KNN (k={})\nTest accuracy = {:.2f}".format(name, n_neighbors, acc_knn)
+    )
 plt.show()

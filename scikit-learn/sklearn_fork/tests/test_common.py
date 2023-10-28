@@ -7,66 +7,90 @@ General tests for all estimators in sklearn_fork.
 # License: BSD 3 clause
 
 import os
-import pkgutil
-import re
-import sys
 import warnings
-from functools import partial
+import sys
+import re
+import pkgutil
 from inspect import isgenerator, signature
-from itertools import chain, product
+from itertools import product, chain
+from functools import partial
 
-import numpy as np
 import pytest
-import sklearn_fork
-from sklearn_fork.cluster import OPTICS, AffinityPropagation, Birch, MeanShift, SpectralClustering
-from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.datasets import make_blobs
-from sklearn_fork.decomposition import PCA
-from sklearn_fork.exceptions import ConvergenceWarning, FitFailedWarning
+import numpy as np
 
-# make it possible to discover experimental estimators when calling `all_estimators`
-from sklearn_fork.experimental import enable_halving_search_cv  # noqa
-from sklearn_fork.experimental import enable_iterative_imputer  # noqa
-from sklearn_fork.linear_model import LogisticRegression, Ridge
-from sklearn_fork.linear_model._base import LinearClassifierMixin
-from sklearn_fork.manifold import TSNE, Isomap, LocallyLinearEmbedding
-from sklearn_fork.model_selection import GridSearchCV, HalvingGridSearchCV, HalvingRandomSearchCV, RandomizedSearchCV
+from sklearn_fork.cluster import (
+    AffinityPropagation,
+    Birch,
+    MeanShift,
+    OPTICS,
+    SpectralClustering,
+)
+from sklearn_fork.datasets import make_blobs
+from sklearn_fork.manifold import Isomap, TSNE, LocallyLinearEmbedding
 from sklearn_fork.neighbors import (
+    LocalOutlierFactor,
     KNeighborsClassifier,
     KNeighborsRegressor,
-    LocalOutlierFactor,
     RadiusNeighborsClassifier,
     RadiusNeighborsRegressor,
 )
-from sklearn_fork.pipeline import Pipeline, make_pipeline
-from sklearn_fork.preprocessing import FunctionTransformer, MinMaxScaler, OneHotEncoder, StandardScaler
+from sklearn_fork.preprocessing import FunctionTransformer
 from sklearn_fork.semi_supervised import LabelPropagation, LabelSpreading
-from sklearn_fork.utils import IS_PYPY, all_estimators
+
+from sklearn_fork.utils import all_estimators
+from sklearn_fork.utils._testing import ignore_warnings
+from sklearn_fork.exceptions import ConvergenceWarning
+from sklearn_fork.exceptions import FitFailedWarning
+from sklearn_fork.utils.estimator_checks import check_estimator
+
+import sklearn_fork
+
+# make it possible to discover experimental estimators when calling `all_estimators`
+from sklearn_fork.experimental import enable_iterative_imputer  # noqa
+from sklearn_fork.experimental import enable_halving_search_cv  # noqa
+
+from sklearn_fork.compose import ColumnTransformer
+from sklearn_fork.decomposition import PCA
+from sklearn_fork.preprocessing import StandardScaler, MinMaxScaler, OneHotEncoder
+from sklearn_fork.linear_model._base import LinearClassifierMixin
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.linear_model import Ridge
+from sklearn_fork.model_selection import GridSearchCV
+from sklearn_fork.model_selection import RandomizedSearchCV
+from sklearn_fork.model_selection import HalvingGridSearchCV
+from sklearn_fork.model_selection import HalvingRandomSearchCV
+from sklearn_fork.pipeline import make_pipeline, Pipeline
+
+from sklearn_fork.utils import IS_PYPY
 from sklearn_fork.utils._tags import _DEFAULT_TAGS, _safe_tags
-from sklearn_fork.utils._testing import SkipTest, ignore_warnings, set_random_state
+from sklearn_fork.utils._testing import (
+    SkipTest,
+    set_random_state,
+)
 from sklearn_fork.utils.estimator_checks import (
     _construct_instance,
-    _get_check_estimator_ids,
     _set_checking_parameters,
+    _get_check_estimator_ids,
     check_class_weight_balanced_linear_classifier,
+    parametrize_with_checks,
     check_dataframe_column_names_consistency,
-    check_estimator,
-    check_get_feature_names_out_error,
-    check_global_ouptut_transform_pandas,
     check_n_features_in_after_fitting,
     check_param_validation,
-    check_set_output_transform,
-    check_set_output_transform_pandas,
     check_transformer_get_feature_names_out,
     check_transformer_get_feature_names_out_pandas,
-    parametrize_with_checks,
+    check_set_output_transform,
+    check_set_output_transform_pandas,
+    check_global_ouptut_transform_pandas,
+    check_get_feature_names_out_error,
 )
 
 
 def test_all_estimator_no_base_class():
     # test that all_estimators doesn't find abstract classes.
     for name, Estimator in all_estimators():
-        msg = ("Base estimators such as {0} should not be included in all_estimators").format(name)
+        msg = (
+            "Base estimators such as {0} should not be included in all_estimators"
+        ).format(name)
         assert not name.lower().startswith("base"), msg
 
 
@@ -88,7 +112,10 @@ def _sample_func(x, y=1):
                 class_weight="balanced",
                 warm_start=True,
             ),
-            "LogisticRegression(class_weight='balanced',random_state=1,solver='newton-cg',warm_start=True)",
+            (
+                "LogisticRegression(class_weight='balanced',random_state=1,"
+                "solver='newton-cg',warm_start=True)"
+            ),
         ),
     ],
 )
@@ -157,7 +184,9 @@ def _tested_linear_classifiers():
                 # FIXME
                 continue
 
-            if "class_weight" in clazz().get_params().keys() and issubclass(clazz, LinearClassifierMixin):
+            if "class_weight" in clazz().get_params().keys() and issubclass(
+                clazz, LinearClassifierMixin
+            ):
                 yield name, clazz
 
 
@@ -170,21 +199,30 @@ def test_class_weight_balanced_linear_classifiers(name, Classifier):
 def test_import_all_consistency():
     # Smoke test to check that any name in a __all__ list is actually defined
     # in the namespace of the module or package.
-    pkgs = pkgutil.walk_packages(path=sklearn_fork.__path__, prefix="sklearn_fork.", onerror=lambda _: None)
+    pkgs = pkgutil.walk_packages(
+        path=sklearn_fork.__path__, prefix="sklearn_fork.", onerror=lambda _: None
+    )
     submods = [modname for _, modname, _ in pkgs]
     for modname in submods + ["sklearn_fork"]:
         if ".tests." in modname:
             continue
-        if IS_PYPY and ("_svmlight_format_io" in modname or "feature_extraction._hashing_fast" in modname):
+        if IS_PYPY and (
+            "_svmlight_format_io" in modname
+            or "feature_extraction._hashing_fast" in modname
+        ):
             continue
         package = __import__(modname, fromlist="dummy")
         for name in getattr(package, "__all__", ()):
-            assert hasattr(package, name), "Module '{0}' has no attribute '{1}'".format(modname, name)
+            assert hasattr(package, name), "Module '{0}' has no attribute '{1}'".format(
+                modname, name
+            )
 
 
 def test_root_import_all_completeness():
     EXCEPTIONS = ("utils", "tests", "base", "setup", "conftest")
-    for _, modname, _ in pkgutil.walk_packages(path=sklearn_fork.__path__, onerror=lambda _: None):
+    for _, modname, _ in pkgutil.walk_packages(
+        path=sklearn_fork.__path__, onerror=lambda _: None
+    ):
         if "." in modname or modname.startswith("_") or modname in EXCEPTIONS:
             continue
         assert modname in sklearn_fork.__all__
@@ -204,7 +242,12 @@ def test_all_tests_are_importable():
         "sklearn_fork.datasets.descr",
         "sklearn_fork.datasets.images",
     }
-    lookup = {name: ispkg for _, name, ispkg in pkgutil.walk_packages(sklearn_fork.__path__, prefix="sklearn_fork.")}
+    lookup = {
+        name: ispkg
+        for _, name, ispkg in pkgutil.walk_packages(
+            sklearn_fork.__path__, prefix="sklearn_fork."
+        )
+    }
     missing_tests = [
         name
         for name, ispkg in lookup.items()
@@ -266,7 +309,9 @@ def _generate_search_cv_instances():
         ],
     ):
         init_params = signature(SearchCV).parameters
-        extra_params = {"min_resources": "smallest"} if "min_resources" in init_params else {}
+        extra_params = (
+            {"min_resources": "smallest"} if "min_resources" in init_params else {}
+        )
         search_cv = SearchCV(Estimator(), param_grid, cv=2, **extra_params)
         set_random_state(search_cv)
         yield search_cv
@@ -284,10 +329,12 @@ def _generate_search_cv_instances():
         ],
     ):
         init_params = signature(SearchCV).parameters
-        extra_params = {"min_resources": "smallest"} if "min_resources" in init_params else {}
-        search_cv = SearchCV(make_pipeline(PCA(), Estimator()), param_grid, cv=2, **extra_params).set_params(
-            error_score="raise"
+        extra_params = (
+            {"min_resources": "smallest"} if "min_resources" in init_params else {}
         )
+        search_cv = SearchCV(
+            make_pipeline(PCA(), Estimator()), param_grid, cv=2, **extra_params
+        ).set_params(error_score="raise")
         set_random_state(search_cv)
         yield search_cv
 
@@ -308,7 +355,9 @@ def test_search_cv(estimator, check, request):
         check(estimator)
 
 
-@pytest.mark.parametrize("estimator", _tested_estimators(), ids=_get_check_estimator_ids)
+@pytest.mark.parametrize(
+    "estimator", _tested_estimators(), ids=_get_check_estimator_ids
+)
 def test_valid_tag_types(estimator):
     """Check that estimator tags are valid."""
     tags = _safe_tags(estimator)
@@ -321,7 +370,9 @@ def test_valid_tag_types(estimator):
         assert isinstance(tag, correct_tags)
 
 
-@pytest.mark.parametrize("estimator", _tested_estimators(), ids=_get_check_estimator_ids)
+@pytest.mark.parametrize(
+    "estimator", _tested_estimators(), ids=_get_check_estimator_ids
+)
 def test_check_n_features_in_after_fitting(estimator):
     _set_checking_parameters(estimator)
     check_n_features_in_after_fitting(estimator.__class__.__name__, estimator)
@@ -336,7 +387,9 @@ def _estimators_that_predict_in_fit():
             est = estimator.set_params(early_stopping=True, n_iter_no_change=1)
             if est.__class__.__name__ in {"MLPClassifier", "MLPRegressor"}:
                 # TODO: FIX MLP to not check validation set during MLP
-                yield pytest.param(est, marks=pytest.mark.xfail(msg="MLP still validates in fit"))
+                yield pytest.param(
+                    est, marks=pytest.mark.xfail(msg="MLP still validates in fit")
+                )
             else:
                 yield est
         elif "n_iter_no_change" in est_params:
@@ -356,12 +409,16 @@ column_name_estimators = list(
 )
 
 
-@pytest.mark.parametrize("estimator", column_name_estimators, ids=_get_check_estimator_ids)
+@pytest.mark.parametrize(
+    "estimator", column_name_estimators, ids=_get_check_estimator_ids
+)
 def test_pandas_column_name_consistency(estimator):
     _set_checking_parameters(estimator)
     with ignore_warnings(category=(FutureWarning)):
         with warnings.catch_warnings(record=True) as record:
-            check_dataframe_column_names_consistency(estimator.__class__.__name__, estimator)
+            check_dataframe_column_names_consistency(
+                estimator.__class__.__name__, estimator
+            )
         for warning in record:
             assert "was fitted without feature names" not in str(warning.message)
 
@@ -382,23 +439,35 @@ def _include_in_get_feature_names_out_check(transformer):
 
 
 GET_FEATURES_OUT_ESTIMATORS = [
-    est for est in _tested_estimators("transformer") if _include_in_get_feature_names_out_check(est)
+    est
+    for est in _tested_estimators("transformer")
+    if _include_in_get_feature_names_out_check(est)
 ]
 
 
-@pytest.mark.parametrize("transformer", GET_FEATURES_OUT_ESTIMATORS, ids=_get_check_estimator_ids)
+@pytest.mark.parametrize(
+    "transformer", GET_FEATURES_OUT_ESTIMATORS, ids=_get_check_estimator_ids
+)
 def test_transformers_get_feature_names_out(transformer):
     _set_checking_parameters(transformer)
 
     with ignore_warnings(category=(FutureWarning)):
-        check_transformer_get_feature_names_out(transformer.__class__.__name__, transformer)
-        check_transformer_get_feature_names_out_pandas(transformer.__class__.__name__, transformer)
+        check_transformer_get_feature_names_out(
+            transformer.__class__.__name__, transformer
+        )
+        check_transformer_get_feature_names_out_pandas(
+            transformer.__class__.__name__, transformer
+        )
 
 
-ESTIMATORS_WITH_GET_FEATURE_NAMES_OUT = [est for est in _tested_estimators() if hasattr(est, "get_feature_names_out")]
+ESTIMATORS_WITH_GET_FEATURE_NAMES_OUT = [
+    est for est in _tested_estimators() if hasattr(est, "get_feature_names_out")
+]
 
 
-@pytest.mark.parametrize("estimator", ESTIMATORS_WITH_GET_FEATURE_NAMES_OUT, ids=_get_check_estimator_ids)
+@pytest.mark.parametrize(
+    "estimator", ESTIMATORS_WITH_GET_FEATURE_NAMES_OUT, ids=_get_check_estimator_ids
+)
 def test_estimators_get_feature_names_out_error(estimator):
     estimator_name = estimator.__class__.__name__
     _set_checking_parameters(estimator)
@@ -491,31 +560,46 @@ SET_OUTPUT_ESTIMATORS = list(
 )
 
 
-@pytest.mark.parametrize("estimator", SET_OUTPUT_ESTIMATORS, ids=_get_check_estimator_ids)
+@pytest.mark.parametrize(
+    "estimator", SET_OUTPUT_ESTIMATORS, ids=_get_check_estimator_ids
+)
 def test_set_output_transform(estimator):
     name = estimator.__class__.__name__
     if not hasattr(estimator, "set_output"):
-        pytest.skip(f"Skipping check_set_output_transform for {name}: Does not support set_output API")
+        pytest.skip(
+            f"Skipping check_set_output_transform for {name}: Does not support"
+            " set_output API"
+        )
     _set_checking_parameters(estimator)
     with ignore_warnings(category=(FutureWarning)):
         check_set_output_transform(estimator.__class__.__name__, estimator)
 
 
-@pytest.mark.parametrize("estimator", SET_OUTPUT_ESTIMATORS, ids=_get_check_estimator_ids)
+@pytest.mark.parametrize(
+    "estimator", SET_OUTPUT_ESTIMATORS, ids=_get_check_estimator_ids
+)
 def test_set_output_transform_pandas(estimator):
     name = estimator.__class__.__name__
     if not hasattr(estimator, "set_output"):
-        pytest.skip(f"Skipping check_set_output_transform_pandas for {name}: Does not support set_output API yet")
+        pytest.skip(
+            f"Skipping check_set_output_transform_pandas for {name}: Does not support"
+            " set_output API yet"
+        )
     _set_checking_parameters(estimator)
     with ignore_warnings(category=(FutureWarning)):
         check_set_output_transform_pandas(estimator.__class__.__name__, estimator)
 
 
-@pytest.mark.parametrize("estimator", SET_OUTPUT_ESTIMATORS, ids=_get_check_estimator_ids)
+@pytest.mark.parametrize(
+    "estimator", SET_OUTPUT_ESTIMATORS, ids=_get_check_estimator_ids
+)
 def test_global_output_transform_pandas(estimator):
     name = estimator.__class__.__name__
     if not hasattr(estimator, "set_output"):
-        pytest.skip(f"Skipping check_global_ouptut_transform_pandas for {name}: Does not support set_output API yet")
+        pytest.skip(
+            f"Skipping check_global_ouptut_transform_pandas for {name}: Does not"
+            " support set_output API yet"
+        )
     _set_checking_parameters(estimator)
     with ignore_warnings(category=(FutureWarning)):
         check_global_ouptut_transform_pandas(estimator.__class__.__name__, estimator)

@@ -20,7 +20,9 @@ the :class:`sklearn_fork.preprocessing.SplineTransformer` class and its
 # We start by loading the data from the OpenML repository.
 from sklearn_fork.datasets import fetch_openml
 
-bike_sharing = fetch_openml("Bike_Sharing_Demand", version=2, as_frame=True, parser="pandas")
+bike_sharing = fetch_openml(
+    "Bike_Sharing_Demand", version=2, as_frame=True, parser="pandas"
+)
 df = bike_sharing.frame
 
 # %%
@@ -32,6 +34,7 @@ df = bike_sharing.frame
 # and the leisure use of the bikes on the weekends with a more spread peak
 # demand around the middle of the days:
 import matplotlib.pyplot as plt
+
 
 fig, ax = plt.subplots(figsize=(12, 4))
 average_week_demand = df.groupby(["weekday", "hour"])["count"].mean()
@@ -158,10 +161,6 @@ X.iloc[test_4]
 # %%
 X.iloc[train_4]
 
-from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.ensemble import HistGradientBoostingRegressor
-from sklearn_fork.model_selection import cross_validate
-
 # %%
 # All is well. We are now ready to do some predictive modeling!
 #
@@ -184,6 +183,10 @@ from sklearn_fork.model_selection import cross_validate
 # we only try the default hyper-parameters for this model:
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import OrdinalEncoder
+from sklearn_fork.compose import ColumnTransformer
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
+from sklearn_fork.model_selection import cross_validate
+
 
 categorical_columns = [
     "weather",
@@ -241,9 +244,6 @@ def evaluate(model, X, y, cv):
 
 evaluate(gbrt_pipeline, X, y, cv=ts_cv)
 
-import numpy as np
-from sklearn_fork.linear_model import RidgeCV
-
 # %%
 # This model has an average error around 4 to 5% of the maximum demand. This is
 # quite good for a first trial without any hyper-parameter tuning! We just had
@@ -262,7 +262,11 @@ from sklearn_fork.linear_model import RidgeCV
 # For consistency, we scale the numerical features to the same 0-1 range using
 # class:`sklearn_fork.preprocessing.MinMaxScaler`, although in this case it does not
 # impact the results much because they are already on comparable scales:
-from sklearn_fork.preprocessing import MinMaxScaler, OneHotEncoder
+from sklearn_fork.preprocessing import OneHotEncoder
+from sklearn_fork.preprocessing import MinMaxScaler
+from sklearn_fork.linear_model import RidgeCV
+import numpy as np
+
 
 one_hot_encoder = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
 alphas = np.logspace(-6, 6, 25)
@@ -603,8 +607,6 @@ cyclic_spline_linear_pipeline[:-1].transform(X).shape
 # "workingday" and features derived from "hours". This issue will be addressed
 # in the following section.
 
-from sklearn_fork.pipeline import FeatureUnion
-
 # %%
 # Modeling pairwise interactions with splines and polynomial features
 # -------------------------------------------------------------------
@@ -618,6 +620,8 @@ from sklearn_fork.pipeline import FeatureUnion
 # grained spline encoded hours to model the "workingday"/"hours" interaction
 # explicitly without introducing too many new variables:
 from sklearn_fork.preprocessing import PolynomialFeatures
+from sklearn_fork.pipeline import FeatureUnion
+
 
 hour_workday_interaction = make_pipeline(
     ColumnTransformer(
@@ -663,6 +667,7 @@ evaluate(cyclic_spline_interactions_pipeline, X, y, cv=ts_cv)
 # Alternatively, we can use the Nyström method to compute an approximate
 # polynomial kernel expansion. Let us try the latter:
 from sklearn_fork.kernel_approximation import Nystroem
+
 
 cyclic_spline_poly_pipeline = make_pipeline(
     cyclic_spline_transformer,

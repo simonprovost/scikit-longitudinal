@@ -31,16 +31,18 @@ from abc import ABCMeta, abstractmethod
 from numbers import Integral, Real
 
 import numpy as np
-import scipy.sparse as sp
 from scipy import linalg
+import scipy.sparse as sp
 
-from .base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from .exceptions import DataDimensionalityWarning
+from .base import BaseEstimator, TransformerMixin
+from .base import ClassNamePrefixFeaturesOutMixin
+
 from .utils import check_random_state
 from .utils._param_validation import Interval, StrOptions, validate_params
 from .utils.extmath import safe_sparse_dot
 from .utils.random import sample_without_replacement
 from .utils.validation import check_array, check_is_fitted
+from .exceptions import DataDimensionalityWarning
 
 __all__ = [
     "SparseRandomProjection",
@@ -128,7 +130,10 @@ def johnson_lindenstrauss_min_dim(n_samples, *, eps=0.1):
         raise ValueError("The JL bound is defined for eps in ]0, 1[, got %r" % eps)
 
     if np.any(n_samples <= 0):
-        raise ValueError("The JL bound is defined for n_samples greater than zero, got %r" % n_samples)
+        raise ValueError(
+            "The JL bound is defined for n_samples greater than zero, got %r"
+            % n_samples
+        )
 
     denominator = (eps**2 / 2) - (eps**3 / 3)
     return (4 * np.log(n_samples) / denominator).astype(np.int64)
@@ -147,7 +152,9 @@ def _check_density(density, n_features):
 def _check_input_size(n_components, n_features):
     """Factorize argument checking for random matrix generation."""
     if n_components <= 0:
-        raise ValueError("n_components must be strictly positive, got %d" % n_components)
+        raise ValueError(
+            "n_components must be strictly positive, got %d" % n_components
+        )
     if n_features <= 0:
         raise ValueError("n_features must be strictly positive, got %d" % n_features)
 
@@ -186,7 +193,9 @@ def _gaussian_random_matrix(n_components, n_features, random_state=None):
     """
     _check_input_size(n_components, n_features)
     rng = check_random_state(random_state)
-    components = rng.normal(loc=0.0, scale=1.0 / np.sqrt(n_components), size=(n_components, n_features))
+    components = rng.normal(
+        loc=0.0, scale=1.0 / np.sqrt(n_components), size=(n_components, n_features)
+    )
     return components
 
 
@@ -268,7 +277,9 @@ def _sparse_random_matrix(n_components, n_features, density="auto", random_state
         for _ in range(n_components):
             # find the indices of the non-zero components for row i
             n_nonzero_i = rng.binomial(n_features, density)
-            indices_i = sample_without_replacement(n_features, n_nonzero_i, random_state=rng)
+            indices_i = sample_without_replacement(
+                n_features, n_nonzero_i, random_state=rng
+            )
             indices.append(indices_i)
             offset += n_nonzero_i
             indptr.append(offset)
@@ -279,12 +290,16 @@ def _sparse_random_matrix(n_components, n_features, density="auto", random_state
         data = rng.binomial(1, 0.5, size=np.size(indices)) * 2 - 1
 
         # build the CSR structure by concatenating the rows
-        components = sp.csr_matrix((data, indices, indptr), shape=(n_components, n_features))
+        components = sp.csr_matrix(
+            (data, indices, indptr), shape=(n_components, n_features)
+        )
 
         return np.sqrt(1 / density) / np.sqrt(n_components) * components
 
 
-class BaseRandomProjection(TransformerMixin, BaseEstimator, ClassNamePrefixFeaturesOutMixin, metaclass=ABCMeta):
+class BaseRandomProjection(
+    TransformerMixin, BaseEstimator, ClassNamePrefixFeaturesOutMixin, metaclass=ABCMeta
+):
     """Base class for random projections.
 
     Warning: This class should not be used directly.
@@ -360,38 +375,46 @@ class BaseRandomProjection(TransformerMixin, BaseEstimator, ClassNamePrefixFeatu
             BaseRandomProjection class instance.
         """
         self._validate_params()
-        X = self._validate_data(X, accept_sparse=["csr", "csc"], dtype=[np.float64, np.float32])
+        X = self._validate_data(
+            X, accept_sparse=["csr", "csc"], dtype=[np.float64, np.float32]
+        )
 
         n_samples, n_features = X.shape
 
         if self.n_components == "auto":
-            self.n_components_ = johnson_lindenstrauss_min_dim(n_samples=n_samples, eps=self.eps)
+            self.n_components_ = johnson_lindenstrauss_min_dim(
+                n_samples=n_samples, eps=self.eps
+            )
 
             if self.n_components_ <= 0:
                 raise ValueError(
-                    "eps=%f and n_samples=%d lead to a target dimension of %d which is invalid"
-                    % (self.eps, n_samples, self.n_components_)
+                    "eps=%f and n_samples=%d lead to a target dimension of "
+                    "%d which is invalid" % (self.eps, n_samples, self.n_components_)
                 )
 
             elif self.n_components_ > n_features:
                 raise ValueError(
                     "eps=%f and n_samples=%d lead to a target dimension of "
                     "%d which is larger than the original space with "
-                    "n_features=%d" % (self.eps, n_samples, self.n_components_, n_features)
+                    "n_features=%d"
+                    % (self.eps, n_samples, self.n_components_, n_features)
                 )
         else:
             if self.n_components > n_features:
                 warnings.warn(
                     "The number of components is higher than the number of"
                     " features: n_features < n_components (%s < %s)."
-                    "The dimensionality of the problem will not be reduced." % (n_features, self.n_components),
+                    "The dimensionality of the problem will not be reduced."
+                    % (n_features, self.n_components),
                     DataDimensionalityWarning,
                 )
 
             self.n_components_ = self.n_components
 
         # Generate a projection matrix of size [n_components, n_features]
-        self.components_ = self._make_random_matrix(self.n_components_, n_features).astype(X.dtype, copy=False)
+        self.components_ = self._make_random_matrix(
+            self.n_components_, n_features
+        ).astype(X.dtype, copy=False)
 
         if self.compute_inverse_components:
             self.inverse_components_ = self._compute_inverse_components()
@@ -552,7 +575,9 @@ class GaussianRandomProjection(BaseRandomProjection):
             The generated random matrix.
         """
         random_state = check_random_state(self.random_state)
-        return _gaussian_random_matrix(n_components, n_features, random_state=random_state)
+        return _gaussian_random_matrix(
+            n_components, n_features, random_state=random_state
+        )
 
     def transform(self, X):
         """Project the data by using matrix product with the random matrix.
@@ -568,7 +593,9 @@ class GaussianRandomProjection(BaseRandomProjection):
             Projected array.
         """
         check_is_fitted(self)
-        X = self._validate_data(X, accept_sparse=["csr", "csc"], reset=False, dtype=[np.float64, np.float32])
+        X = self._validate_data(
+            X, accept_sparse=["csr", "csc"], reset=False, dtype=[np.float64, np.float32]
+        )
 
         return X @ self.components_.T
 
@@ -753,7 +780,9 @@ class SparseRandomProjection(BaseRandomProjection):
         """
         random_state = check_random_state(self.random_state)
         self.density_ = _check_density(self.density, n_features)
-        return _sparse_random_matrix(n_components, n_features, density=self.density_, random_state=random_state)
+        return _sparse_random_matrix(
+            n_components, n_features, density=self.density_, random_state=random_state
+        )
 
     def transform(self, X):
         """Project the data by using matrix product with the random matrix.
@@ -770,6 +799,8 @@ class SparseRandomProjection(BaseRandomProjection):
             `dense_output = False`.
         """
         check_is_fitted(self)
-        X = self._validate_data(X, accept_sparse=["csr", "csc"], reset=False, dtype=[np.float64, np.float32])
+        X = self._validate_data(
+            X, accept_sparse=["csr", "csc"], reset=False, dtype=[np.float64, np.float32]
+        )
 
         return safe_sparse_dot(X, self.components_.T, dense_output=self.dense_output)

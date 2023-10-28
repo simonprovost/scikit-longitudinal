@@ -25,9 +25,9 @@ n_neighbors=20 appears to work well in general.
 
 """
 
+import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-import numpy as np
 from sklearn_fork.neighbors import LocalOutlierFactor
 
 np.random.seed(42)
@@ -80,5 +80,8 @@ plt.legend(
     loc="upper left",
     prop=matplotlib.font_manager.FontProperties(size=11),
 )
-plt.xlabel("errors novel regular: %d/40 ; errors novel abnormal: %d/40" % (n_error_test, n_error_outliers))
+plt.xlabel(
+    "errors novel regular: %d/40 ; errors novel abnormal: %d/40"
+    % (n_error_test, n_error_outliers)
+)
 plt.show()

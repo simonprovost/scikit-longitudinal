@@ -28,9 +28,13 @@ classifier will also be demonstrated.
 from sklearn_fork.datasets import make_classification
 from sklearn_fork.model_selection import train_test_split
 
-X, y = make_classification(n_samples=100_000, n_features=20, n_informative=2, n_redundant=10, random_state=42)
+X, y = make_classification(
+    n_samples=100_000, n_features=20, n_informative=2, n_redundant=10, random_state=42
+)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.99, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.99, random_state=42
+)
 
 # %%
 # Calibration curves
@@ -54,6 +58,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.99, random
 
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
+
 from sklearn_fork.calibration import CalibratedClassifierCV, CalibrationDisplay
 from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.naive_bayes import GaussianNB
@@ -133,7 +138,15 @@ plt.show()
 from collections import defaultdict
 
 import pandas as pd
-from sklearn_fork.metrics import brier_score_loss, f1_score, log_loss, precision_score, recall_score, roc_auc_score
+
+from sklearn_fork.metrics import (
+    precision_score,
+    recall_score,
+    f1_score,
+    brier_score_loss,
+    log_loss,
+    roc_auc_score,
+)
 
 scores = defaultdict(list)
 for i, (clf, name) in enumerate(clf_list):
@@ -182,6 +195,7 @@ score_df
 #   calibration (see :ref:`User Guide <calibration>`)
 
 import numpy as np
+
 from sklearn_fork.svm import LinearSVC
 
 

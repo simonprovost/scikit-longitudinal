@@ -3,32 +3,39 @@
 # Author: Jan Hendrik Metzen <jhm@informatik.uni-bremen.de>
 # License: BSD 3 clause
 
+import pytest
+import numpy as np
 from inspect import signature
 
-import numpy as np
-import pytest
-from sklearn_fork.base import clone
+from sklearn_fork.gaussian_process.kernels import _approx_fprime
+
+from sklearn_fork.metrics.pairwise import (
+    PAIRWISE_KERNEL_FUNCTIONS,
+    euclidean_distances,
+    pairwise_kernels,
+)
 from sklearn_fork.gaussian_process.kernels import (
     RBF,
-    CompoundKernel,
-    ConstantKernel,
-    DotProduct,
-    Exponentiation,
-    ExpSineSquared,
-    KernelOperator,
     Matern,
-    PairwiseKernel,
     RationalQuadratic,
+    ExpSineSquared,
+    DotProduct,
+    ConstantKernel,
     WhiteKernel,
-    _approx_fprime,
+    PairwiseKernel,
+    KernelOperator,
+    Exponentiation,
+    CompoundKernel,
 )
-from sklearn_fork.metrics.pairwise import PAIRWISE_KERNEL_FUNCTIONS, euclidean_distances, pairwise_kernels
+from sklearn_fork.base import clone
+
 from sklearn_fork.utils._testing import (
-    assert_allclose,
     assert_almost_equal,
-    assert_array_almost_equal,
     assert_array_equal,
+    assert_array_almost_equal,
+    assert_allclose,
 )
+
 
 X = np.random.RandomState(0).normal(0, 1, (5, 2))
 Y = np.random.RandomState(0).normal(0, 1, (6, 2))
@@ -98,8 +105,12 @@ def test_kernel_theta(kernel):
     # Determine kernel parameters that contribute to theta
     init_sign = signature(kernel.__class__.__init__).parameters.values()
     args = [p.name for p in init_sign if p.name != "self"]
-    theta_vars = map(lambda s: s[0 : -len("_bounds")], filter(lambda s: s.endswith("_bounds"), args))
-    assert set(hyperparameter.name for hyperparameter in kernel.hyperparameters) == set(theta_vars)
+    theta_vars = map(
+        lambda s: s[0 : -len("_bounds")], filter(lambda s: s.endswith("_bounds"), args)
+    )
+    assert set(hyperparameter.name for hyperparameter in kernel.hyperparameters) == set(
+        theta_vars
+    )
 
     # Check that values returned in theta are consistent with
     # hyperparameter values (being their logarithms)
@@ -189,7 +200,9 @@ def test_kernel_anisotropic():
     assert_array_equal(kernel.k2.length_scale, [1.0, 4.0])
 
 
-@pytest.mark.parametrize("kernel", [kernel for kernel in kernels if kernel.is_stationary()])
+@pytest.mark.parametrize(
+    "kernel", [kernel for kernel in kernels if kernel.is_stationary()]
+)
 def test_kernel_stationary(kernel):
     # Test stationarity of kernels.
     K = kernel(X, X + 1)
@@ -202,7 +215,9 @@ def test_kernel_input_type(kernel):
     if isinstance(kernel, Exponentiation):
         assert kernel.requires_vector_input == kernel.kernel.requires_vector_input
     if isinstance(kernel, KernelOperator):
-        assert kernel.requires_vector_input == (kernel.k1.requires_vector_input or kernel.k2.requires_vector_input)
+        assert kernel.requires_vector_input == (
+            kernel.k1.requires_vector_input or kernel.k2.requires_vector_input
+        )
 
 
 def test_compound_kernel_input_type():
@@ -328,10 +343,14 @@ def test_set_get_params(kernel):
                 continue
         size = hyperparameter.n_elements
         if size > 1:  # anisotropic kernels
-            assert_almost_equal(np.exp(kernel.theta[index : index + size]), params[hyperparameter.name])
+            assert_almost_equal(
+                np.exp(kernel.theta[index : index + size]), params[hyperparameter.name]
+            )
             index += size
         else:
-            assert_almost_equal(np.exp(kernel.theta[index]), params[hyperparameter.name])
+            assert_almost_equal(
+                np.exp(kernel.theta[index]), params[hyperparameter.name]
+            )
             index += 1
     # Test set_params()
     index = 0
@@ -343,7 +362,9 @@ def test_set_get_params(kernel):
         size = hyperparameter.n_elements
         if size > 1:  # anisotropic kernels
             kernel.set_params(**{hyperparameter.name: [value] * size})
-            assert_almost_equal(np.exp(kernel.theta[index : index + size]), [value] * size)
+            assert_almost_equal(
+                np.exp(kernel.theta[index : index + size]), [value] * size
+            )
             index += size
         else:
             kernel.set_params(**{hyperparameter.name: value})
@@ -360,6 +381,10 @@ def test_repr_kernels(kernel):
 
 def test_rational_quadratic_kernel():
     kernel = RationalQuadratic(length_scale=[1.0, 1.0])
-    message = "RationalQuadratic kernel only supports isotropic version, please use a single scalar for length_scale"
+    message = (
+        "RationalQuadratic kernel only supports isotropic "
+        "version, please use a single "
+        "scalar for length_scale"
+    )
     with pytest.raises(AttributeError, match=message):
         kernel(X)

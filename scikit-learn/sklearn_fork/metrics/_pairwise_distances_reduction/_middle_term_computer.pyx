@@ -4,9 +4,15 @@
 
 from libcpp.vector cimport vector
 
-from ...utils._cython_blas cimport BLAS_Order, BLAS_Trans, NoTrans, RowMajor, Trans, _gemm
-from ...utils._typedefs cimport float32_t, float64_t, int32_t, intp_t
-
+from ...utils._cython_blas cimport (
+  BLAS_Order,
+  BLAS_Trans,
+  NoTrans,
+  RowMajor,
+  Trans,
+  _gemm,
+)
+from ...utils._typedefs cimport float64_t, float32_t, int32_t, intp_t
 
 # TODO: change for `libcpp.algorithm.fill` once Cython 3 is used
 # Introduction in Cython:
@@ -16,7 +22,7 @@ cdef extern from "<algorithm>" namespace "std" nogil:
     void fill[Iter, T](Iter first, Iter last, const T& value) except + #noqa
 
 import numpy as np
-from scipy.sparse import csr_matrix, issparse
+from scipy.sparse import issparse, csr_matrix
 
 
 cdef void _middle_term_sparse_sparse_64(

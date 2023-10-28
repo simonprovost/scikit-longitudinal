@@ -1,6 +1,6 @@
 """Tools to support array_api."""
-import math
 from functools import wraps
+import math
 
 import numpy
 import scipy.special as special
@@ -19,13 +19,17 @@ def _check_array_api_dispatch(array_api_dispatch):
         try:
             import array_api_compat  # noqa
         except ImportError:
-            raise ImportError("array_api_compat is required to dispatch arrays using the API specification")
+            raise ImportError(
+                "array_api_compat is required to dispatch arrays using the API"
+                " specification"
+            )
 
         numpy_version = parse_version(numpy.__version__)
         min_numpy_version = "1.21"
         if numpy_version < parse_version(min_numpy_version):
             raise ImportError(
-                f"NumPy must be {min_numpy_version} or newer to dispatch array using the API specification"
+                f"NumPy must be {min_numpy_version} or newer to dispatch array using"
+                " the API specification"
             )
 
 
@@ -89,7 +93,10 @@ def _isdtype_single(dtype, kind, *, xp):
         elif kind == "unsigned integer":
             return dtype in {xp.uint8, xp.uint16, xp.uint32, xp.uint64}
         elif kind == "integral":
-            return any(_isdtype_single(dtype, k, xp=xp) for k in ("signed integer", "unsigned integer"))
+            return any(
+                _isdtype_single(dtype, k, xp=xp)
+                for k in ("signed integer", "unsigned integer")
+            )
         elif kind == "real floating":
             return dtype in {xp.float32, xp.float64}
         elif kind == "complex floating":
@@ -102,7 +109,10 @@ def _isdtype_single(dtype, kind, *, xp):
                 complex_dtypes.add(xp.complex128)
             return dtype in complex_dtypes
         elif kind == "numeric":
-            return any(_isdtype_single(dtype, k, xp=xp) for k in ("integral", "real floating", "complex floating"))
+            return any(
+                _isdtype_single(dtype, k, xp=xp)
+                for k in ("integral", "real floating", "complex floating")
+            )
         else:
             raise ValueError(f"Unrecognized data type kind: {kind!r}")
     else:
@@ -261,7 +271,9 @@ class _NumPyAPIWrapper:
         https://data-apis.org/array-api/latest/API_specification/generated/array_api.reshape.html
         """
         if not isinstance(shape, tuple):
-            raise TypeError(f"shape must be a tuple, got {shape!r} of type {type(shape)}")
+            raise TypeError(
+                f"shape must be a tuple, got {shape!r} of type {type(shape)}"
+            )
 
         if copy is True:
             x = x.copy()

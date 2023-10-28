@@ -12,10 +12,14 @@ In this examples we will use a movie review dataset.
 # License: Simplified BSD
 
 import sys
-
-from sklearn_fork import metrics
+from sklearn_fork.feature_extraction.text import TfidfVectorizer
+from sklearn_fork.svm import LinearSVC
+from sklearn_fork.pipeline import Pipeline
+from sklearn_fork.model_selection import GridSearchCV
 from sklearn_fork.datasets import load_files
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork import metrics
+
 
 if __name__ == "__main__":
     # NOTE: we put the following in a 'if __name__ == "__main__"' protected
@@ -31,8 +35,7 @@ if __name__ == "__main__":
 
     # split the dataset in training and test set:
     docs_train, docs_test, y_train, y_test = train_test_split(
-        dataset.data, dataset.target, test_size=0.25, random_state=None
-    )
+        dataset.data, dataset.target, test_size=0.25, random_state=None)
 
     # TASK: Build a vectorizer / classifier pipeline that filters out tokens
     # that are too rare or too frequent
@@ -48,7 +51,8 @@ if __name__ == "__main__":
     # named y_predicted
 
     # Print the classification report
-    print(metrics.classification_report(y_test, y_predicted, target_names=dataset.target_names))
+    print(metrics.classification_report(y_test, y_predicted,
+                                        target_names=dataset.target_names))
 
     # Print and plot the confusion matrix
     cm = metrics.confusion_matrix(y_test, y_predicted)

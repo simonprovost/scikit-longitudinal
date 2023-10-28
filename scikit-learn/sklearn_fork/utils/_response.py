@@ -85,7 +85,10 @@ def _get_response_values(
             )
 
         if pos_label is not None and pos_label not in classes.tolist():
-            raise ValueError(f"pos_label={pos_label} is not a valid label: It should be one of {classes}")
+            raise ValueError(
+                f"pos_label={pos_label} is not a valid label: It should be "
+                f"one of {classes}"
+            )
         elif pos_label is None and target_type == "binary":
             pos_label = pos_label if pos_label is not None else classes[-1]
 
@@ -96,7 +99,10 @@ def _get_response_values(
                     col_idx = np.flatnonzero(classes == pos_label)[0]
                     y_pred = y_pred[:, col_idx]
                 else:
-                    err_msg = f"Got predict_proba of shape {y_pred.shape}, but need classifier with two classes."
+                    err_msg = (
+                        f"Got predict_proba of shape {y_pred.shape}, but need "
+                        "classifier with two classes."
+                    )
                     raise ValueError(err_msg)
         elif prediction_method.__name__ == "decision_function":
             if target_type == "binary":
@@ -152,9 +158,13 @@ def _get_response_values_binary(estimator, X, response_method, pos_label=None):
 
     check_is_fitted(estimator)
     if not is_classifier(estimator):
-        raise ValueError(classification_error + f" Got {estimator.__class__.__name__} instead.")
+        raise ValueError(
+            classification_error + f" Got {estimator.__class__.__name__} instead."
+        )
     elif len(estimator.classes_) != 2:
-        raise ValueError(classification_error + f" Got {len(estimator.classes_)} classes instead.")
+        raise ValueError(
+            classification_error + f" Got {len(estimator.classes_)} classes instead."
+        )
 
     if response_method == "auto":
         response_method = ["predict_proba", "decision_function"]

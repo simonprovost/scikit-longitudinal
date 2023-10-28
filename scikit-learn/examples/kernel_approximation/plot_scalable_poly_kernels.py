@@ -52,7 +52,9 @@ y[y == 2] = 1  # We will try to separate class 2 from the other 6 classes.
 
 from sklearn_fork.model_selection import train_test_split
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=5_000, test_size=10_000, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, train_size=5_000, test_size=10_000, random_state=42
+)
 
 # %%
 # Feature normalization
@@ -62,8 +64,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=5_000, test
 # the LIBSVM webpage, and then normalize to unit length as done in the
 # original Tensor Sketch paper [1].
 
-from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import MinMaxScaler, Normalizer
+from sklearn_fork.pipeline import make_pipeline
 
 mm = make_pipeline(MinMaxScaler(), Normalizer())
 X_train = mm.fit_transform(X_train)
@@ -78,7 +80,6 @@ X_test = mm.transform(X_test)
 # plot them later.
 
 import time
-
 from sklearn_fork.svm import LinearSVC
 
 results = {}
@@ -139,7 +140,10 @@ for n_components in N_COMPONENTS:
         "time": ps_lsvm_time,
         "score": ps_lsvm_score,
     }
-    print(f"Linear SVM score on {n_components} PolynomialCountSketch " + f"features: {ps_lsvm_score:.2f}%")
+    print(
+        f"Linear SVM score on {n_components} PolynomialCountSketch "
+        + f"features: {ps_lsvm_score:.2f}%"
+    )
 
 # %%
 # Establishing the kernelized SVM model

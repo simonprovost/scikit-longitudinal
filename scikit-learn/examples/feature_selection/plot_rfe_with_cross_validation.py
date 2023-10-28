@@ -39,8 +39,8 @@ X, y = make_classification(
 # strategy "accuracy" optimizes the proportion of correctly classified samples.
 
 from sklearn_fork.feature_selection import RFECV
-from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.model_selection import StratifiedKFold
+from sklearn_fork.linear_model import LogisticRegression
 
 min_features_to_select = 1  # Minimum number of features to consider
 clf = LogisticRegression()

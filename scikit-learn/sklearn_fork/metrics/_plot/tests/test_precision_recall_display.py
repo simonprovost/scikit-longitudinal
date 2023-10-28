@@ -1,25 +1,31 @@
 import numpy as np
 import pytest
+
 from sklearn_fork.compose import make_column_transformer
 from sklearn_fork.datasets import load_breast_cancer, make_classification
 from sklearn_fork.exceptions import NotFittedError
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import PrecisionRecallDisplay, average_precision_score, precision_recall_curve
+from sklearn_fork.metrics import average_precision_score, precision_recall_curve
 from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
 from sklearn_fork.utils import shuffle
 
+from sklearn_fork.metrics import PrecisionRecallDisplay
+
 # TODO: Remove when https://github.com/numpy/numpy/issues/14397 is resolved
 pytestmark = pytest.mark.filterwarnings(
-    "ignore:In future, it will be an error for 'np.bool_':DeprecationWarning:matplotlib.*"
+    "ignore:In future, it will be an error for 'np.bool_':DeprecationWarning:"
+    "matplotlib.*"
 )
 
 
 @pytest.mark.parametrize("constructor_name", ["from_estimator", "from_predictions"])
 @pytest.mark.parametrize("response_method", ["predict_proba", "decision_function"])
 @pytest.mark.parametrize("drop_intermediate", [True, False])
-def test_precision_recall_display_plotting(pyplot, constructor_name, response_method, drop_intermediate):
+def test_precision_recall_display_plotting(
+    pyplot, constructor_name, response_method, drop_intermediate
+):
     """Check the overall plotting rendering."""
     X, y = make_classification(n_classes=2, n_samples=50, random_state=0)
     pos_label = 1
@@ -46,7 +52,9 @@ def test_precision_recall_display_plotting(pyplot, constructor_name, response_me
             y, y_pred, pos_label=pos_label, drop_intermediate=drop_intermediate
         )
 
-    precision, recall, _ = precision_recall_curve(y, y_pred, pos_label=pos_label, drop_intermediate=drop_intermediate)
+    precision, recall, _ = precision_recall_curve(
+        y, y_pred, pos_label=pos_label, drop_intermediate=drop_intermediate
+    )
     average_precision = average_precision_score(y, y_pred, pos_label=pos_label)
 
     np.testing.assert_allclose(display.precision, precision)
@@ -92,7 +100,9 @@ def test_precision_recall_display_name(pyplot, constructor_name, default_label):
     if constructor_name == "from_estimator":
         display = PrecisionRecallDisplay.from_estimator(classifier, X, y)
     else:
-        display = PrecisionRecallDisplay.from_predictions(y, y_pred, pos_label=pos_label)
+        display = PrecisionRecallDisplay.from_predictions(
+            y, y_pred, pos_label=pos_label
+        )
 
     average_precision = average_precision_score(y, y_pred, pos_label=pos_label)
 
@@ -101,14 +111,19 @@ def test_precision_recall_display_name(pyplot, constructor_name, default_label):
 
     # check that the name can be set
     display.plot(name="MySpecialEstimator")
-    assert display.line_.get_label() == f"MySpecialEstimator (AP = {average_precision:.2f})"
+    assert (
+        display.line_.get_label()
+        == f"MySpecialEstimator (AP = {average_precision:.2f})"
+    )
 
 
 @pytest.mark.parametrize(
     "clf",
     [
         make_pipeline(StandardScaler(), LogisticRegression()),
-        make_pipeline(make_column_transformer((StandardScaler(), [0, 1])), LogisticRegression()),
+        make_pipeline(
+            make_column_transformer((StandardScaler(), [0, 1])), LogisticRegression()
+        ),
     ],
 )
 def test_precision_recall_display_pipeline(pyplot, clf):
@@ -141,7 +156,9 @@ def test_precision_recall_display_string_labels(pyplot):
     with pytest.raises(ValueError, match=err_msg):
         PrecisionRecallDisplay.from_predictions(y, y_pred)
 
-    display = PrecisionRecallDisplay.from_predictions(y, y_pred, pos_label=lr.classes_[1])
+    display = PrecisionRecallDisplay.from_predictions(
+        y, y_pred, pos_label=lr.classes_[1]
+    )
     assert display.average_precision == pytest.approx(avg_prec)
 
 

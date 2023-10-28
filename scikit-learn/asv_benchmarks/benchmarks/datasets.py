@@ -1,21 +1,21 @@
-from pathlib import Path
-
 import numpy as np
 import scipy.sparse as sp
 from joblib import Memory
+from pathlib import Path
+
+from sklearn_fork.decomposition import TruncatedSVD
 from sklearn_fork.datasets import (
+    make_blobs,
     fetch_20newsgroups,
-    fetch_olivetti_faces,
     fetch_openml,
     load_digits,
-    make_blobs,
-    make_classification,
     make_regression,
+    make_classification,
+    fetch_olivetti_faces,
 )
-from sklearn_fork.decomposition import TruncatedSVD
+from sklearn_fork.preprocessing import MaxAbsScaler, StandardScaler
 from sklearn_fork.feature_extraction.text import TfidfVectorizer
 from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.preprocessing import MaxAbsScaler, StandardScaler
 
 # memory location for caching datasets
 M = Memory(location=str(Path(__file__).resolve().parent / "cache"))
@@ -23,7 +23,9 @@ M = Memory(location=str(Path(__file__).resolve().parent / "cache"))
 
 @M.cache
 def _blobs_dataset(n_samples=500000, n_features=3, n_clusters=100, dtype=np.float32):
-    X, _ = make_blobs(n_samples=n_samples, n_features=n_features, centers=n_clusters, random_state=0)
+    X, _ = make_blobs(
+        n_samples=n_samples, n_features=n_features, centers=n_clusters, random_state=0
+    )
     X = X.astype(dtype, copy=False)
 
     X, X_val = train_test_split(X, test_size=0.1, random_state=0)
@@ -57,7 +59,9 @@ def _20newsgroups_lowdim_dataset(n_components=100, ngrams=(1, 1), dtype=np.float
 
 @M.cache
 def _mnist_dataset(dtype=np.float32):
-    X, y = fetch_openml("mnist_784", version=1, return_X_y=True, as_frame=False, parser="pandas")
+    X, y = fetch_openml(
+        "mnist_784", version=1, return_X_y=True, as_frame=False, parser="pandas"
+    )
     X = X.astype(dtype, copy=False)
     X = MaxAbsScaler().fit_transform(X)
 
@@ -94,8 +98,12 @@ def _synth_regression_dataset(n_samples=100000, n_features=100, dtype=np.float32
 
 
 @M.cache
-def _synth_regression_sparse_dataset(n_samples=10000, n_features=10000, density=0.01, dtype=np.float32):
-    X = sp.random(m=n_samples, n=n_features, density=density, format="csr", random_state=0)
+def _synth_regression_sparse_dataset(
+    n_samples=10000, n_features=10000, density=0.01, dtype=np.float32
+):
+    X = sp.random(
+        m=n_samples, n=n_features, density=density, format="csr", random_state=0
+    )
     X.data = np.random.RandomState(0).randn(X.getnnz())
     X = X.astype(dtype, copy=False)
     coefs = sp.random(m=n_features, n=1, density=0.5, random_state=0)
@@ -108,7 +116,9 @@ def _synth_regression_sparse_dataset(n_samples=10000, n_features=10000, density=
 
 
 @M.cache
-def _synth_classification_dataset(n_samples=1000, n_features=10000, n_classes=2, dtype=np.float32):
+def _synth_classification_dataset(
+    n_samples=1000, n_features=10000, n_classes=2, dtype=np.float32
+):
     X, y = make_classification(
         n_samples=n_samples,
         n_features=n_features,
@@ -139,7 +149,9 @@ def _olivetti_faces_dataset():
 
 
 @M.cache
-def _random_dataset(n_samples=1000, n_features=1000, representation="dense", dtype=np.float32):
+def _random_dataset(
+    n_samples=1000, n_features=1000, representation="dense", dtype=np.float32
+):
     if representation == "dense":
         X = np.random.RandomState(0).random_sample((n_samples, n_features))
         X = X.astype(dtype, copy=False)

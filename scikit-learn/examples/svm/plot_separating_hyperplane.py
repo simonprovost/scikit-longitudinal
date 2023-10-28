@@ -14,6 +14,7 @@ from sklearn_fork import svm
 from sklearn_fork.datasets import make_blobs
 from sklearn_fork.inspection import DecisionBoundaryDisplay
 
+
 # we create 40 separable points
 X, y = make_blobs(n_samples=40, centers=2, random_state=6)
 

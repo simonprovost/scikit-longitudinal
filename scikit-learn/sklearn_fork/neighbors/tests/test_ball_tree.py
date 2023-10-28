@@ -5,8 +5,8 @@ import pytest
 from numpy.testing import assert_array_almost_equal
 from sklearn_fork.neighbors._ball_tree import BallTree
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import _convert_container
 from sklearn_fork.utils.validation import check_array
+from sklearn_fork.utils._testing import _convert_container
 
 rng = np.random.RandomState(10)
 V_mahalanobis = rng.rand(3, 3)

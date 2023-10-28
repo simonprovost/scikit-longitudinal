@@ -37,12 +37,18 @@ X_test = np.dot(base_X_test, coloring_matrix)
 # Compute the likelihood on test data
 # -----------------------------------
 
+from sklearn_fork.covariance import (
+    ShrunkCovariance,
+    empirical_covariance,
+    log_likelihood,
+)
 from scipy import linalg
-from sklearn_fork.covariance import ShrunkCovariance, empirical_covariance, log_likelihood
 
 # spanning a range of possible shrinkage coefficient values
 shrinkages = np.logspace(-2, 0, 30)
-negative_logliks = [-ShrunkCovariance(shrinkage=s).fit(X_train).score(X_test) for s in shrinkages]
+negative_logliks = [
+    -ShrunkCovariance(shrinkage=s).fit(X_train).score(X_test) for s in shrinkages
+]
 
 # under the ground-truth model, which we would not have access to in real
 # settings
@@ -71,8 +77,8 @@ loglik_real = -log_likelihood(emp_cov, linalg.inv(real_cov))
 #   are Gaussian, in particular for small samples.
 
 
-from sklearn_fork.covariance import OAS, LedoitWolf
 from sklearn_fork.model_selection import GridSearchCV
+from sklearn_fork.covariance import LedoitWolf, OAS
 
 # GridSearch for an optimal shrinkage coefficient
 tuned_parameters = [{"shrinkage": shrinkages}]
@@ -124,7 +130,9 @@ plt.vlines(
     label="Ledoit-Wolf estimate",
 )
 # OAS likelihood
-plt.vlines(oa.shrinkage_, ymin, -loglik_oa, color="purple", linewidth=3, label="OAS estimate")
+plt.vlines(
+    oa.shrinkage_, ymin, -loglik_oa, color="purple", linewidth=3, label="OAS estimate"
+)
 # best CV estimator likelihood
 plt.vlines(
     cv.best_estimator_.shrinkage,

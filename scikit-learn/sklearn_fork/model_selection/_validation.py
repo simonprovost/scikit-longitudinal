@@ -11,30 +11,39 @@ functions to validate the model.
 # License: BSD 3 clause
 
 
+import warnings
 import numbers
 import time
-import warnings
-from collections import Counter
-from contextlib import suppress
 from functools import partial
 from numbers import Real
 from traceback import format_exc
+from contextlib import suppress
+from collections import Counter
 
 import numpy as np
 import scipy.sparse as sp
 from joblib import logger
 
-from ..base import clone, is_classifier
-from ..exceptions import FitFailedWarning
-from ..metrics import check_scoring, get_scorer_names
-from ..metrics._scorer import _check_multimetric_scoring, _MultimetricScorer
-from ..preprocessing import LabelEncoder
-from ..utils import _safe_indexing, check_random_state, indexable
-from ..utils._param_validation import HasMethods, Integral, Interval, StrOptions, validate_params
+from ..base import is_classifier, clone
+from ..utils import indexable, check_random_state, _safe_indexing
+from ..utils.validation import _check_fit_params
+from ..utils.validation import _num_samples
+from ..utils.parallel import delayed, Parallel
 from ..utils.metaestimators import _safe_split
-from ..utils.parallel import Parallel, delayed
-from ..utils.validation import _check_fit_params, _num_samples
+from ..utils._param_validation import (
+    HasMethods,
+    Interval,
+    Integral,
+    StrOptions,
+    validate_params,
+)
+from ..metrics import check_scoring
+from ..metrics import get_scorer_names
+from ..metrics._scorer import _check_multimetric_scoring, _MultimetricScorer
+from ..exceptions import FitFailedWarning
 from ._split import check_cv
+from ..preprocessing import LabelEncoder
+
 
 __all__ = [
     "cross_validate",
@@ -384,14 +393,17 @@ def _normalize_score_results(scores, scaler_score_key="score"):
 
 
 def _warn_or_raise_about_fit_failures(results, error_score):
-    fit_errors = [result["fit_error"] for result in results if result["fit_error"] is not None]
+    fit_errors = [
+        result["fit_error"] for result in results if result["fit_error"] is not None
+    ]
     if fit_errors:
         num_failed_fits = len(fit_errors)
         num_fits = len(results)
         fit_errors_counter = Counter(fit_errors)
         delimiter = "-" * 80 + "\n"
         fit_errors_summary = "\n".join(
-            f"{delimiter}{n} fits failed with the following error:\n{error}" for error, n in fit_errors_counter.items()
+            f"{delimiter}{n} fits failed with the following error:\n{error}"
+            for error, n in fit_errors_counter.items()
         )
 
         if num_failed_fits == num_fits:
@@ -822,7 +834,9 @@ def _score(estimator, X_test, y_test, scorer, error_score="raise"):
 
     # Check non-raised error messages in `_MultimetricScorer`
     if isinstance(scorer, _MultimetricScorer):
-        exception_messages = [(name, str_e) for name, str_e in scores.items() if isinstance(str_e, str)]
+        exception_messages = [
+            (name, str_e) for name, str_e in scores.items() if isinstance(str_e, str)
+        ]
         if exception_messages:
             # error_score != "raise"
             for name, str_e in exception_messages:
@@ -1003,7 +1017,10 @@ def cross_val_predict(
 
     # If classification methods produce multiple columns of output,
     # we need to manually encode classes to ensure consistent column ordering.
-    encode = method in ["decision_function", "predict_proba", "predict_log_proba"] and y is not None
+    encode = (
+        method in ["decision_function", "predict_proba", "predict_log_proba"]
+        and y is not None
+    )
     if encode:
         y = np.asarray(y)
         if y.ndim == 1:
@@ -1019,7 +1036,9 @@ def cross_val_predict(
     # independent, and that it is pickle-able.
     parallel = Parallel(n_jobs=n_jobs, verbose=verbose, pre_dispatch=pre_dispatch)
     predictions = parallel(
-        delayed(_fit_and_predict)(clone(estimator), X, y, train, test, verbose, fit_params, method)
+        delayed(_fit_and_predict)(
+            clone(estimator), X, y, train, test, verbose, fit_params, method
+        )
         for train, test in splits
     )
 
@@ -1102,7 +1121,10 @@ def _fit_and_predict(estimator, X, y, train, test, verbose, fit_params, method):
     func = getattr(estimator, method)
     predictions = func(X_test)
 
-    encode = method in ["decision_function", "predict_proba", "predict_log_proba"] and y is not None
+    encode = (
+        method in ["decision_function", "predict_proba", "predict_log_proba"]
+        and y is not None
+    )
 
     if encode:
         if isinstance(predictions, list):
@@ -1118,7 +1140,9 @@ def _fit_and_predict(estimator, X, y, train, test, verbose, fit_params, method):
         else:
             # A 2D y array should be a binary label indicator matrix
             n_classes = len(set(y)) if y.ndim == 1 else y.shape[1]
-            predictions = _enforce_prediction_order(estimator.classes_, predictions, n_classes, method)
+            predictions = _enforce_prediction_order(
+                estimator.classes_, predictions, n_classes, method
+            )
     return predictions
 
 
@@ -1136,7 +1160,11 @@ def _enforce_prediction_order(classes, predictions, n_classes, method):
     and `n_classes` is the number of classes in the full training set.
     """
     if n_classes != len(classes):
-        recommendation = "To fix this, use a cross-validation technique resulting in properly stratified folds"
+        recommendation = (
+            "To fix this, use a cross-validation "
+            "technique resulting in properly "
+            "stratified folds"
+        )
         warnings.warn(
             "Number of classes in training fold ({}) does "
             "not match total number of classes ({}). "
@@ -1163,7 +1191,9 @@ def _enforce_prediction_order(classes, predictions, n_classes, method):
                     "Only {} class/es in training fold, but {} "
                     "in overall dataset. This "
                     "is not supported for decision_function "
-                    "with imbalanced folds. {}".format(len(classes), n_classes, recommendation)
+                    "with imbalanced folds. {}".format(
+                        len(classes), n_classes, recommendation
+                    )
                 )
 
         float_min = np.finfo(predictions.dtype).min
@@ -1356,7 +1386,9 @@ def permutation_test_score(
 
     # We clone the estimator to make sure that all the folds are
     # independent, and that it is pickle-able.
-    score = _permutation_test_score(clone(estimator), X, y, groups, cv, scorer, fit_params=fit_params)
+    score = _permutation_test_score(
+        clone(estimator), X, y, groups, cv, scorer, fit_params=fit_params
+    )
     permutation_scores = Parallel(n_jobs=n_jobs, verbose=verbose)(
         delayed(_permutation_test_score)(
             clone(estimator),
@@ -1598,7 +1630,10 @@ def learning_curve(
     The average test accuracy is 0.93
     """
     if exploit_incremental_learning and not hasattr(estimator, "partial_fit"):
-        raise ValueError("An estimator must support the partial_fit interface to exploit incremental learning")
+        raise ValueError(
+            "An estimator must support the partial_fit interface "
+            "to exploit incremental learning"
+        )
     X, y, groups = indexable(X, y, groups)
 
     cv = check_cv(cv, y, classifier=is_classifier(estimator))
@@ -1716,12 +1751,18 @@ def _translate_train_sizes(train_sizes, n_max_training_samples):
             raise ValueError(
                 "train_sizes has been interpreted as fractions "
                 "of the maximum number of training samples and "
-                "must be within (0, 1], but is within [%f, %f]." % (n_min_required_samples, n_max_required_samples)
+                "must be within (0, 1], but is within [%f, %f]."
+                % (n_min_required_samples, n_max_required_samples)
             )
-        train_sizes_abs = (train_sizes_abs * n_max_training_samples).astype(dtype=int, copy=False)
+        train_sizes_abs = (train_sizes_abs * n_max_training_samples).astype(
+            dtype=int, copy=False
+        )
         train_sizes_abs = np.clip(train_sizes_abs, 1, n_max_training_samples)
     else:
-        if n_min_required_samples <= 0 or n_max_required_samples > n_max_training_samples:
+        if (
+            n_min_required_samples <= 0
+            or n_max_required_samples > n_max_training_samples
+        ):
             raise ValueError(
                 "train_sizes has been interpreted as absolute "
                 "numbers of training samples and must be within "
@@ -1790,7 +1831,11 @@ def _incremental_fit_estimator(
         score_time = time.time() - start_score
         score_times.append(score_time)
 
-    ret = (train_scores, test_scores, fit_times, score_times) if return_times else (train_scores, test_scores)
+    ret = (
+        (train_scores, test_scores, fit_times, score_times)
+        if return_times
+        else (train_scores, test_scores)
+    )
 
     return np.array(ret).T
 

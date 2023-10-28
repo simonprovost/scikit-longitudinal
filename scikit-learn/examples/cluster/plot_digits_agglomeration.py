@@ -13,9 +13,10 @@ feature agglomeration.
 # Modified for documentation by Jaques Grobler
 # License: BSD 3 clause
 
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn_fork import cluster, datasets
+import matplotlib.pyplot as plt
+
+from sklearn_fork import datasets, cluster
 from sklearn_fork.feature_extraction.image import grid_to_graph
 
 digits = datasets.load_digits()

@@ -60,13 +60,17 @@ _ = test_ax.set_title("Testing data")
 from sklearn_fork.decomposition import PCA, KernelPCA
 
 pca = PCA(n_components=2)
-kernel_pca = KernelPCA(n_components=None, kernel="rbf", gamma=10, fit_inverse_transform=True, alpha=0.1)
+kernel_pca = KernelPCA(
+    n_components=None, kernel="rbf", gamma=10, fit_inverse_transform=True, alpha=0.1
+)
 
 X_test_pca = pca.fit(X_train).transform(X_test)
 X_test_kernel_pca = kernel_pca.fit(X_train).transform(X_test)
 
 # %%
-fig, (orig_data_ax, pca_proj_ax, kernel_pca_proj_ax) = plt.subplots(ncols=3, figsize=(14, 4))
+fig, (orig_data_ax, pca_proj_ax, kernel_pca_proj_ax) = plt.subplots(
+    ncols=3, figsize=(14, 4)
+)
 
 orig_data_ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test)
 orig_data_ax.set_ylabel("Feature #1")
@@ -136,7 +140,9 @@ pca_back_proj_ax.scatter(X_reconstructed_pca[:, 0], X_reconstructed_pca[:, 1], c
 pca_back_proj_ax.set_xlabel("Feature #0")
 pca_back_proj_ax.set_title("Reconstruction via PCA")
 
-kernel_pca_back_proj_ax.scatter(X_reconstructed_kernel_pca[:, 0], X_reconstructed_kernel_pca[:, 1], c=y_test)
+kernel_pca_back_proj_ax.scatter(
+    X_reconstructed_kernel_pca[:, 0], X_reconstructed_kernel_pca[:, 1], c=y_test
+)
 kernel_pca_back_proj_ax.set_xlabel("Feature #0")
 _ = kernel_pca_back_proj_ax.set_title("Reconstruction via KernelPCA")
 

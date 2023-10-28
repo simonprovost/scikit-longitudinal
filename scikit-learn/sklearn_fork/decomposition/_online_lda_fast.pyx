@@ -1,6 +1,6 @@
-cimport numpy as cnp
 from cython cimport floating
 
+cimport numpy as cnp
 import numpy as np
 
 cnp.import_array()

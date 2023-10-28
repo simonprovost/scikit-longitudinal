@@ -1,16 +1,17 @@
-import numpy as np
 import pytest
+
+import numpy as np
 import scipy.sparse as sp
+
 from sklearn_fork.base import clone
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import ignore_warnings
+from sklearn_fork.utils.stats import _weighted_percentile
+
 from sklearn_fork.dummy import DummyClassifier, DummyRegressor
 from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.utils._testing import (
-    assert_almost_equal,
-    assert_array_almost_equal,
-    assert_array_equal,
-    ignore_warnings,
-)
-from sklearn_fork.utils.stats import _weighted_percentile
 
 
 @ignore_warnings
@@ -81,9 +82,13 @@ def test_most_frequent_and_prior_strategy():
         _check_predict_proba(clf, X, y)
 
         if strategy == "prior":
-            assert_array_almost_equal(clf.predict_proba([X[0]]), clf.class_prior_.reshape((1, -1)))
+            assert_array_almost_equal(
+                clf.predict_proba([X[0]]), clf.class_prior_.reshape((1, -1))
+            )
         else:
-            assert_array_almost_equal(clf.predict_proba([X[0]]), clf.class_prior_.reshape((1, -1)) > 0.5)
+            assert_array_almost_equal(
+                clf.predict_proba([X[0]]), clf.class_prior_.reshape((1, -1)) > 0.5
+            )
 
 
 def test_most_frequent_and_prior_strategy_with_2d_column_y():
@@ -208,16 +213,22 @@ def test_classifier_score_with_None(y, y_test):
     assert clf.score(None, y_test) == 0.5
 
 
-@pytest.mark.parametrize("strategy", ["stratified", "most_frequent", "prior", "uniform", "constant"])
+@pytest.mark.parametrize(
+    "strategy", ["stratified", "most_frequent", "prior", "uniform", "constant"]
+)
 def test_classifier_prediction_independent_of_X(strategy, global_random_seed):
     y = [0, 2, 1, 1]
     X1 = [[0]] * 4
-    clf1 = DummyClassifier(strategy=strategy, random_state=global_random_seed, constant=0)
+    clf1 = DummyClassifier(
+        strategy=strategy, random_state=global_random_seed, constant=0
+    )
     clf1.fit(X1, y)
     predictions1 = clf1.predict(X1)
 
     X2 = [[1]] * 4
-    clf2 = DummyClassifier(strategy=strategy, random_state=global_random_seed, constant=0)
+    clf2 = DummyClassifier(
+        strategy=strategy, random_state=global_random_seed, constant=0
+    )
     clf2.fit(X2, y)
     predictions2 = clf2.predict(X2)
 
@@ -344,7 +355,9 @@ def test_quantile_strategy_multioutput_regressor(global_random_seed):
     y_pred_learn = est.predict(X_learn)
     y_pred_test = est.predict(X_test)
 
-    _check_equality_regressor(quantile_values, y_learn, y_pred_learn, y_test, y_pred_test)
+    _check_equality_regressor(
+        quantile_values, y_learn, y_pred_learn, y_test, y_pred_test
+    )
     _check_behavior_2d(est)
 
 
@@ -353,7 +366,9 @@ def test_quantile_invalid():
     y = [0] * 5  # ignored
 
     est = DummyRegressor(strategy="quantile", quantile=None)
-    err_msg = "When using `strategy='quantile', you have to specify the desired quantile"
+    err_msg = (
+        "When using `strategy='quantile', you have to specify the desired quantile"
+    )
     with pytest.raises(ValueError, match=err_msg):
         est.fit(X, y)
 
@@ -460,7 +475,9 @@ def test_constant_strategy_multioutput():
 
     clf = DummyClassifier(strategy="constant", random_state=0, constant=[1, 0])
     clf.fit(X, y)
-    assert_array_equal(clf.predict(X), np.hstack([np.ones((n_samples, 1)), np.zeros((n_samples, 1))]))
+    assert_array_equal(
+        clf.predict(X), np.hstack([np.ones((n_samples, 1)), np.zeros((n_samples, 1))])
+    )
     _check_predict_proba(clf, X, y)
 
 
@@ -520,7 +537,9 @@ def test_constant_strategy_sparse_target():
     clf.fit(X, y)
     y_pred = clf.predict(X)
     assert sp.issparse(y_pred)
-    assert_array_equal(y_pred.toarray(), np.hstack([np.ones((n_samples, 1)), np.zeros((n_samples, 1))]))
+    assert_array_equal(
+        y_pred.toarray(), np.hstack([np.ones((n_samples, 1)), np.zeros((n_samples, 1))])
+    )
 
 
 def test_uniform_strategy_sparse_target_warning(global_random_seed):
@@ -657,7 +676,9 @@ def test_regressor_prediction_independent_of_X(strategy):
     assert_array_equal(predictions1, predictions2)
 
 
-@pytest.mark.parametrize("strategy", ["stratified", "most_frequent", "prior", "uniform", "constant"])
+@pytest.mark.parametrize(
+    "strategy", ["stratified", "most_frequent", "prior", "uniform", "constant"]
+)
 def test_dtype_of_classifier_probas(strategy):
     y = [0, 2, 1, 1]
     X = np.zeros(4)

@@ -145,7 +145,9 @@ class InconsistentVersionWarning(UserWarning):
         Original scikit-learn version.
     """
 
-    def __init__(self, *, estimator_name, current_sklearn_version, original_sklearn_version):
+    def __init__(
+        self, *, estimator_name, current_sklearn_version, original_sklearn_version
+    ):
         self.estimator_name = estimator_name
         self.current_sklearn_version = current_sklearn_version
         self.original_sklearn_version = original_sklearn_version

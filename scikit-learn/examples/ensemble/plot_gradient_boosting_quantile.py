@@ -58,6 +58,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 from sklearn_fork.ensemble import GradientBoostingRegressor
 from sklearn_fork.metrics import mean_pinball_loss, mean_squared_error
 
+
 all_models = {}
 common_params = dict(
     learning_rate=0.05,
@@ -92,6 +93,7 @@ xx = np.atleast_2d(np.linspace(0, 10, 1000)).T
 # 90% interval (from 5th to 95th conditional percentiles).
 import matplotlib.pyplot as plt
 
+
 y_pred = all_models["mse"].predict(xx)
 y_lower = all_models["q 0.05"].predict(xx)
 y_upper = all_models["q 0.95"].predict(xx)
@@ -104,7 +106,9 @@ plt.plot(xx, y_med, "r-", label="Predicted median")
 plt.plot(xx, y_pred, "r-", label="Predicted mean")
 plt.plot(xx, y_upper, "k-")
 plt.plot(xx, y_lower, "k-")
-plt.fill_between(xx.ravel(), y_lower, y_upper, alpha=0.4, label="Predicted 90% interval")
+plt.fill_between(
+    xx.ravel(), y_lower, y_upper, alpha=0.4, label="Predicted 90% interval"
+)
 plt.xlabel("$x$")
 plt.ylabel("$f(x)$")
 plt.ylim(-10, 25)
@@ -208,7 +212,9 @@ coverage_fraction(
 # %%
 # On the training set the calibration is very close to the expected coverage
 # value for a 90% confidence interval.
-coverage_fraction(y_test, all_models["q 0.05"].predict(X_test), all_models["q 0.95"].predict(X_test))
+coverage_fraction(
+    y_test, all_models["q 0.05"].predict(X_test), all_models["q 0.95"].predict(X_test)
+)
 
 
 # %%
@@ -230,12 +236,11 @@ coverage_fraction(y_test, all_models["q 0.05"].predict(X_test), all_models["q 0.
 # of the 5th percentile by selecting the best model parameters by
 # cross-validation on the pinball loss with alpha=0.05:
 
-from pprint import pprint
-
 # %%
 from sklearn_fork.experimental import enable_halving_search_cv  # noqa
-from sklearn_fork.metrics import make_scorer
 from sklearn_fork.model_selection import HalvingRandomSearchCV
+from sklearn_fork.metrics import make_scorer
+from pprint import pprint
 
 param_grid = dict(
     learning_rate=[0.05, 0.1, 0.2],
@@ -303,7 +308,9 @@ plt.plot(xx, f(xx), "g:", linewidth=3, label=r"$f(x) = x\,\sin(x)$")
 plt.plot(X_test, y_test, "b.", markersize=10, label="Test observations")
 plt.plot(xx, y_upper, "k-")
 plt.plot(xx, y_lower, "k-")
-plt.fill_between(xx.ravel(), y_lower, y_upper, alpha=0.4, label="Predicted 90% interval")
+plt.fill_between(
+    xx.ravel(), y_lower, y_upper, alpha=0.4, label="Predicted 90% interval"
+)
 plt.xlabel("$x$")
 plt.ylabel("$f(x)$")
 plt.ylim(-10, 25)

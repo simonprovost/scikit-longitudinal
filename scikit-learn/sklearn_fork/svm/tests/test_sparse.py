@@ -1,13 +1,16 @@
-import numpy as np
 import pytest
+
+import numpy as np
 from numpy.testing import assert_array_almost_equal, assert_array_equal
 from scipy import sparse
-from sklearn_fork import base, datasets, linear_model, svm
-from sklearn_fork.datasets import load_digits, make_blobs, make_classification
-from sklearn_fork.exceptions import ConvergenceWarning
+
+from sklearn_fork import datasets, svm, linear_model, base
+from sklearn_fork.datasets import make_classification, load_digits, make_blobs
 from sklearn_fork.svm.tests import test_svm
-from sklearn_fork.utils._testing import ignore_warnings, skip_if_32bit
+from sklearn_fork.exceptions import ConvergenceWarning
 from sklearn_fork.utils.extmath import safe_sparse_dot
+from sklearn_fork.utils._testing import ignore_warnings, skip_if_32bit
+
 
 # test sample 1
 X = np.array([[-2, -1], [-1, -1], [-1, -2], [1, 1], [1, 2], [2, 1]])
@@ -51,14 +54,20 @@ def check_svm_model_equal(dense_svm, sparse_svm, X_train, y_train, X_test):
     sparse_svm.fit(X_train, y_train)
     assert sparse.issparse(sparse_svm.support_vectors_)
     assert sparse.issparse(sparse_svm.dual_coef_)
-    assert_array_almost_equal(dense_svm.support_vectors_, sparse_svm.support_vectors_.toarray())
+    assert_array_almost_equal(
+        dense_svm.support_vectors_, sparse_svm.support_vectors_.toarray()
+    )
     assert_array_almost_equal(dense_svm.dual_coef_, sparse_svm.dual_coef_.toarray())
     if dense_svm.kernel == "linear":
         assert sparse.issparse(sparse_svm.coef_)
         assert_array_almost_equal(dense_svm.coef_, sparse_svm.coef_.toarray())
     assert_array_almost_equal(dense_svm.support_, sparse_svm.support_)
-    assert_array_almost_equal(dense_svm.predict(X_test_dense), sparse_svm.predict(X_test))
-    assert_array_almost_equal(dense_svm.decision_function(X_test_dense), sparse_svm.decision_function(X_test))
+    assert_array_almost_equal(
+        dense_svm.predict(X_test_dense), sparse_svm.predict(X_test)
+    )
+    assert_array_almost_equal(
+        dense_svm.decision_function(X_test_dense), sparse_svm.decision_function(X_test)
+    )
     assert_array_almost_equal(
         dense_svm.decision_function(X_test_dense),
         sparse_svm.decision_function(X_test_dense),
@@ -66,7 +75,9 @@ def check_svm_model_equal(dense_svm, sparse_svm, X_train, y_train, X_test):
     if isinstance(dense_svm, svm.OneClassSVM):
         msg = "cannot use sparse input in 'OneClassSVM' trained on dense data"
     else:
-        assert_array_almost_equal(dense_svm.predict_proba(X_test_dense), sparse_svm.predict_proba(X_test), 4)
+        assert_array_almost_equal(
+            dense_svm.predict_proba(X_test_dense), sparse_svm.predict_proba(X_test), 4
+        )
         msg = "cannot use sparse input in 'SVC' trained on dense data"
     if sparse.isspmatrix(X_test):
         with pytest.raises(ValueError, match=msg):
@@ -115,8 +126,12 @@ def test_unsorted_indices():
     X, y = X[:50], y[:50]
 
     X_sparse = sparse.csr_matrix(X)
-    coef_dense = svm.SVC(kernel="linear", probability=True, random_state=0).fit(X, y).coef_
-    sparse_svc = svm.SVC(kernel="linear", probability=True, random_state=0).fit(X_sparse, y)
+    coef_dense = (
+        svm.SVC(kernel="linear", probability=True, random_state=0).fit(X, y).coef_
+    )
+    sparse_svc = svm.SVC(kernel="linear", probability=True, random_state=0).fit(
+        X_sparse, y
+    )
     coef_sorted = sparse_svc.coef_
     # make sure dense and sparse SVM give the same result
     assert_array_almost_equal(coef_dense, coef_sorted.toarray())
@@ -137,11 +152,15 @@ def test_unsorted_indices():
     assert not X_sparse_unsorted.has_sorted_indices
     assert not X_test_unsorted.has_sorted_indices
 
-    unsorted_svc = svm.SVC(kernel="linear", probability=True, random_state=0).fit(X_sparse_unsorted, y)
+    unsorted_svc = svm.SVC(kernel="linear", probability=True, random_state=0).fit(
+        X_sparse_unsorted, y
+    )
     coef_unsorted = unsorted_svc.coef_
     # make sure unsorted indices give same result
     assert_array_almost_equal(coef_unsorted.toarray(), coef_sorted.toarray())
-    assert_array_almost_equal(sparse_svc.predict_proba(X_test_unsorted), sparse_svc.predict_proba(X_test))
+    assert_array_almost_equal(
+        sparse_svc.predict_proba(X_test_unsorted), sparse_svc.predict_proba(X_test)
+    )
 
 
 def test_svc_with_custom_kernel():
@@ -160,9 +179,13 @@ def test_svc_iris():
         sp_clf = svm.SVC(kernel=k).fit(iris.data, iris.target)
         clf = svm.SVC(kernel=k).fit(iris.data.toarray(), iris.target)
 
-        assert_array_almost_equal(clf.support_vectors_, sp_clf.support_vectors_.toarray())
+        assert_array_almost_equal(
+            clf.support_vectors_, sp_clf.support_vectors_.toarray()
+        )
         assert_array_almost_equal(clf.dual_coef_, sp_clf.dual_coef_.toarray())
-        assert_array_almost_equal(clf.predict(iris.data.toarray()), sp_clf.predict(iris.data))
+        assert_array_almost_equal(
+            clf.predict(iris.data.toarray()), sp_clf.predict(iris.data)
+        )
         if k == "linear":
             assert_array_almost_equal(clf.coef_, sp_clf.coef_.toarray())
 
@@ -186,7 +209,9 @@ def test_sparse_decision_function():
     dec = np.dot(X, clf.coef_.T) + clf.intercept_
     prediction = clf.predict(X)
     assert_array_almost_equal(dec.ravel(), clf.decision_function(X))
-    assert_array_almost_equal(prediction, clf.classes_[(clf.decision_function(X) > 0).astype(int).ravel()])
+    assert_array_almost_equal(
+        prediction, clf.classes_[(clf.decision_function(X) > 0).astype(int).ravel()]
+    )
     expected = np.array([-1.0, -0.66, -1.0, 0.66, 1.0, 1.0])
     assert_array_almost_equal(clf.decision_function(X), expected, 2)
 
@@ -232,7 +257,9 @@ def test_linearsvc_iris():
 
     assert_array_almost_equal(clf.coef_, sp_clf.coef_, decimal=1)
     assert_array_almost_equal(clf.intercept_, sp_clf.intercept_, decimal=1)
-    assert_array_almost_equal(clf.predict(iris.data.toarray()), sp_clf.predict(iris.data))
+    assert_array_almost_equal(
+        clf.predict(iris.data.toarray()), sp_clf.predict(iris.data)
+    )
 
     # check decision_function
     pred = np.argmax(sp_clf.decision_function(iris.data), 1)
@@ -248,7 +275,9 @@ def test_linearsvc_iris():
 
 def test_weight():
     # Test class weights
-    X_, y_ = make_classification(n_samples=200, n_features=100, weights=[0.833, 0.167], random_state=0)
+    X_, y_ = make_classification(
+        n_samples=200, n_features=100, weights=[0.833, 0.167], random_state=0
+    )
 
     X_ = sparse.csr_matrix(X_)
     for clf in (
@@ -493,14 +522,18 @@ def test_sparse_svc_clone_with_callable_kernel():
     pred = b.predict(X_sp)
     b.predict_proba(X_sp)
 
-    dense_svm = svm.SVC(C=1, kernel=lambda x, y: np.dot(x, y.T), probability=True, random_state=0)
+    dense_svm = svm.SVC(
+        C=1, kernel=lambda x, y: np.dot(x, y.T), probability=True, random_state=0
+    )
     pred_dense = dense_svm.fit(X, Y).predict(X)
     assert_array_equal(pred_dense, pred)
     # b.decision_function(X_sp)  # XXX : should be supported
 
 
 def test_timeout():
-    sp = svm.SVC(C=1, kernel=lambda x, y: x * y.T, probability=True, random_state=0, max_iter=1)
+    sp = svm.SVC(
+        C=1, kernel=lambda x, y: x * y.T, probability=True, random_state=0, max_iter=1
+    )
     warning_msg = (
         r"Solver terminated early \(max_iter=1\).  Consider pre-processing "
         r"your data with StandardScaler or MinMaxScaler."

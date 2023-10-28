@@ -9,7 +9,9 @@ class DrawTree:
         self.x = -1.0
         self.y = depth
         self.tree = tree
-        self.children = [DrawTree(c, self, depth + 1, i + 1) for i, c in enumerate(tree.children)]
+        self.children = [
+            DrawTree(c, self, depth + 1, i + 1) for i, c in enumerate(tree.children)
+        ]
         self.parent = parent
         self.thread = None
         self.mod = 0

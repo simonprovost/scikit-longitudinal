@@ -41,18 +41,19 @@ is held out with the validation stopping criterion.
 #
 # License: BSD 3 clause
 
-import sys
 import time
+import sys
 
-import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork import linear_model
 from sklearn_fork.datasets import fetch_openml
-from sklearn_fork.exceptions import ConvergenceWarning
 from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.utils import shuffle
 from sklearn_fork.utils._testing import ignore_warnings
+from sklearn_fork.exceptions import ConvergenceWarning
+from sklearn_fork.utils import shuffle
 
 
 def load_mnist(n_samples=None, class_0="0", class_1="8"):
@@ -89,7 +90,9 @@ def fit_and_score(estimator, max_iter, X_train, X_test, y_train, y_test):
 # Define the estimators to compare
 estimator_dict = {
     "No stopping criterion": linear_model.SGDClassifier(n_iter_no_change=3),
-    "Training loss": linear_model.SGDClassifier(early_stopping=False, n_iter_no_change=3, tol=0.1),
+    "Training loss": linear_model.SGDClassifier(
+        early_stopping=False, n_iter_no_change=3, tol=0.1
+    ),
     "Validation score": linear_model.SGDClassifier(
         early_stopping=True, n_iter_no_change=3, tol=0.0001, validation_fraction=0.2
     ),
@@ -106,9 +109,13 @@ for estimator_name, estimator in estimator_dict.items():
         print(".", end="")
         sys.stdout.flush()
 
-        fit_time, n_iter, train_score, test_score = fit_and_score(estimator, max_iter, X_train, X_test, y_train, y_test)
+        fit_time, n_iter, train_score, test_score = fit_and_score(
+            estimator, max_iter, X_train, X_test, y_train, y_test
+        )
 
-        results.append((estimator_name, max_iter, fit_time, n_iter, train_score, test_score))
+        results.append(
+            (estimator_name, max_iter, fit_time, n_iter, train_score, test_score)
+        )
     print("")
 
 # Transform the results in a pandas dataframe for easy plotting

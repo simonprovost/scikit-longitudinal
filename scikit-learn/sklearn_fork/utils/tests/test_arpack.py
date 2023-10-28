@@ -1,5 +1,6 @@
 import pytest
 from numpy.testing import assert_allclose
+
 from sklearn_fork.utils import check_random_state
 from sklearn_fork.utils._arpack import _init_arpack_v0
 

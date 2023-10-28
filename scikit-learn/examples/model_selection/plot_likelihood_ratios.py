@@ -55,8 +55,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
 # ratio to evaluate the usefulness of this classifier as a disease diagnosis
 # tool:
 
-from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.metrics import class_likelihood_ratios
+from sklearn_fork.linear_model import LogisticRegression
 
 estimator = LogisticRegression().fit(X_train, y_train)
 y_pred = estimator.predict(X_test)
@@ -166,11 +166,10 @@ extract_score(cross_validate(estimator, X, y, scoring=scoring, cv=10))
 # label `1` corresponds to the positive class "disease", whereas the label `0`
 # stands for "no-disease".
 
-from collections import defaultdict
-
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork.inspection import DecisionBoundaryDisplay
+from collections import defaultdict
 
 populations = defaultdict(list)
 common_params = {
@@ -231,8 +230,12 @@ for ax, (n, weight) in zip(axs.ravel(), enumerate(weights)):
 def scoring_on_bootstrap(estimator, X, y, rng, n_bootstrap=100):
     results_for_prevalence = defaultdict(list)
     for _ in range(n_bootstrap):
-        bootstrap_indices = rng.choice(np.arange(X.shape[0]), size=X.shape[0], replace=True)
-        for key, value in scoring(estimator, X[bootstrap_indices], y[bootstrap_indices]).items():
+        bootstrap_indices = rng.choice(
+            np.arange(X.shape[0]), size=X.shape[0], replace=True
+        )
+        for key, value in scoring(
+            estimator, X[bootstrap_indices], y[bootstrap_indices]
+        ).items():
             results_for_prevalence[key].append(value)
     return pd.DataFrame(results_for_prevalence)
 
@@ -244,10 +247,16 @@ results = defaultdict(list)
 n_bootstrap = 100
 rng = np.random.default_rng(seed=0)
 
-for prevalence, X, y in zip(populations["prevalence"], populations["X"], populations["y"]):
-    results_for_prevalence = scoring_on_bootstrap(estimator, X, y, rng, n_bootstrap=n_bootstrap)
+for prevalence, X, y in zip(
+    populations["prevalence"], populations["X"], populations["y"]
+):
+    results_for_prevalence = scoring_on_bootstrap(
+        estimator, X, y, rng, n_bootstrap=n_bootstrap
+    )
     results["prevalence"].append(prevalence)
-    results["metrics"].append(results_for_prevalence.aggregate(["mean", "std"]).unstack())
+    results["metrics"].append(
+        results_for_prevalence.aggregate(["mean", "std"]).unstack()
+    )
 
 results = pd.DataFrame(results["metrics"], index=results["prevalence"])
 results.index.name = "prevalence"
@@ -259,7 +268,9 @@ results
 # of those computed with on balanced classes.
 
 fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(15, 6))
-results["positive_likelihood_ratio"]["mean"].plot(ax=ax1, color="r", label="extrapolation through populations")
+results["positive_likelihood_ratio"]["mean"].plot(
+    ax=ax1, color="r", label="extrapolation through populations"
+)
 ax1.axhline(y=pos_lr_base + pos_lr_base_std, color="r", linestyle="--")
 ax1.axhline(
     y=pos_lr_base - pos_lr_base_std,
@@ -269,8 +280,10 @@ ax1.axhline(
 )
 ax1.fill_between(
     results.index,
-    results["positive_likelihood_ratio"]["mean"] - results["positive_likelihood_ratio"]["std"],
-    results["positive_likelihood_ratio"]["mean"] + results["positive_likelihood_ratio"]["std"],
+    results["positive_likelihood_ratio"]["mean"]
+    - results["positive_likelihood_ratio"]["std"],
+    results["positive_likelihood_ratio"]["mean"]
+    + results["positive_likelihood_ratio"]["std"],
     color="r",
     alpha=0.3,
 )
@@ -281,7 +294,9 @@ ax1.set(
 )
 ax1.legend(loc="lower right")
 
-ax2 = results["negative_likelihood_ratio"]["mean"].plot(ax=ax2, color="b", label="extrapolation through populations")
+ax2 = results["negative_likelihood_ratio"]["mean"].plot(
+    ax=ax2, color="b", label="extrapolation through populations"
+)
 ax2.axhline(y=neg_lr_base + neg_lr_base_std, color="b", linestyle="--")
 ax2.axhline(
     y=neg_lr_base - neg_lr_base_std,
@@ -291,8 +306,10 @@ ax2.axhline(
 )
 ax2.fill_between(
     results.index,
-    results["negative_likelihood_ratio"]["mean"] - results["negative_likelihood_ratio"]["std"],
-    results["negative_likelihood_ratio"]["mean"] + results["negative_likelihood_ratio"]["std"],
+    results["negative_likelihood_ratio"]["mean"]
+    - results["negative_likelihood_ratio"]["std"],
+    results["negative_likelihood_ratio"]["mean"]
+    + results["negative_likelihood_ratio"]["std"],
     color="b",
     alpha=0.3,
 )

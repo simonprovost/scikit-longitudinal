@@ -3,19 +3,24 @@
 # License: BSD 3 clause
 
 from abc import ABCMeta, abstractmethod
-from numbers import Integral
 
 import numpy as np
+from numbers import Integral
+
 from scipy.linalg import norm
 from scipy.sparse import dia_matrix, issparse
 from scipy.sparse.linalg import eigsh, svds
 
-from ..base import BaseEstimator, BiclusterMixin
-from ..utils import check_random_state, check_scalar
-from ..utils._param_validation import Interval, StrOptions
-from ..utils.extmath import make_nonnegative, randomized_svd, safe_sparse_dot
-from ..utils.validation import assert_all_finite
 from . import KMeans, MiniBatchKMeans
+from ..base import BaseEstimator, BiclusterMixin
+from ..utils import check_random_state
+from ..utils import check_scalar
+
+from ..utils.extmath import make_nonnegative, randomized_svd, safe_sparse_dot
+
+from ..utils.validation import assert_all_finite
+from ..utils._param_validation import Interval, StrOptions
+
 
 __all__ = ["SpectralCoclustering", "SpectralBiclustering"]
 
@@ -66,7 +71,11 @@ def _log_normalize(X):
     """Normalize ``X`` according to Kluger's log-interactions scheme."""
     X = make_nonnegative(X, min_value=1)
     if issparse(X):
-        raise ValueError("Cannot compute log of a sparse matrix, because log(x) diverges to -infinity as x goes to 0.")
+        raise ValueError(
+            "Cannot compute log of a sparse matrix,"
+            " because log(x) diverges to -infinity as x"
+            " goes to 0."
+        )
     L = np.log(X)
     row_avg = L.mean(axis=1)[:, np.newaxis]
     col_avg = L.mean(axis=0)
@@ -140,7 +149,9 @@ class BaseSpectral(BiclusterMixin, BaseEstimator, metaclass=ABCMeta):
             kwargs = {}
             if self.n_svd_vecs is not None:
                 kwargs["n_oversamples"] = self.n_svd_vecs
-            u, _, vt = randomized_svd(array, n_components, random_state=self.random_state, **kwargs)
+            u, _, vt = randomized_svd(
+                array, n_components, random_state=self.random_state, **kwargs
+            )
 
         elif self.svd_method == "arpack":
             u, _, vt = svds(array, k=n_components, ncv=self.n_svd_vecs)
@@ -327,11 +338,16 @@ class SpectralCoclustering(BaseSpectral):
         n_init=10,
         random_state=None,
     ):
-        super().__init__(n_clusters, svd_method, n_svd_vecs, mini_batch, init, n_init, random_state)
+        super().__init__(
+            n_clusters, svd_method, n_svd_vecs, mini_batch, init, n_init, random_state
+        )
 
     def _check_parameters(self, n_samples):
         if self.n_clusters > n_samples:
-            raise ValueError(f"n_clusters should be <= n_samples={n_samples}. Got {self.n_clusters} instead.")
+            raise ValueError(
+                f"n_clusters should be <= n_samples={n_samples}. Got"
+                f" {self.n_clusters} instead."
+            )
 
     def _fit(self, X):
         normalized_data, row_diag, col_diag = _scale_normalize(X)
@@ -346,7 +362,9 @@ class SpectralCoclustering(BaseSpectral):
         self.column_labels_ = labels[n_rows:]
 
         self.rows_ = np.vstack([self.row_labels_ == c for c in range(self.n_clusters)])
-        self.columns_ = np.vstack([self.column_labels_ == c for c in range(self.n_clusters)])
+        self.columns_ = np.vstack(
+            [self.column_labels_ == c for c in range(self.n_clusters)]
+        )
 
 
 class SpectralBiclustering(BaseSpectral):
@@ -496,7 +514,9 @@ class SpectralBiclustering(BaseSpectral):
         n_init=10,
         random_state=None,
     ):
-        super().__init__(n_clusters, svd_method, n_svd_vecs, mini_batch, init, n_init, random_state)
+        super().__init__(
+            n_clusters, svd_method, n_svd_vecs, mini_batch, init, n_init, random_state
+        )
         self.method = method
         self.n_components = n_components
         self.n_best = n_best
@@ -504,7 +524,10 @@ class SpectralBiclustering(BaseSpectral):
     def _check_parameters(self, n_samples):
         if isinstance(self.n_clusters, Integral):
             if self.n_clusters > n_samples:
-                raise ValueError(f"n_clusters should be <= n_samples={n_samples}. Got {self.n_clusters} instead.")
+                raise ValueError(
+                    f"n_clusters should be <= n_samples={n_samples}. Got"
+                    f" {self.n_clusters} instead."
+                )
         else:  # tuple
             try:
                 n_row_clusters, n_column_clusters = self.n_clusters
@@ -533,7 +556,9 @@ class SpectralBiclustering(BaseSpectral):
                 ) from e
 
         if self.n_best > self.n_components:
-            raise ValueError(f"n_best={self.n_best} must be <= n_components={self.n_components}.")
+            raise ValueError(
+                f"n_best={self.n_best} must be <= n_components={self.n_components}."
+            )
 
     def _fit(self, X):
         n_sv = self.n_components
@@ -564,10 +589,18 @@ class SpectralBiclustering(BaseSpectral):
         self.column_labels_ = self._project_and_cluster(X.T, best_ut.T, n_col_clusters)
 
         self.rows_ = np.vstack(
-            [self.row_labels_ == label for label in range(n_row_clusters) for _ in range(n_col_clusters)]
+            [
+                self.row_labels_ == label
+                for label in range(n_row_clusters)
+                for _ in range(n_col_clusters)
+            ]
         )
         self.columns_ = np.vstack(
-            [self.column_labels_ == label for _ in range(n_row_clusters) for label in range(n_col_clusters)]
+            [
+                self.column_labels_ == label
+                for _ in range(n_row_clusters)
+                for label in range(n_col_clusters)
+            ]
         )
 
     def _fit_best_piecewise(self, vectors, n_best, n_clusters):

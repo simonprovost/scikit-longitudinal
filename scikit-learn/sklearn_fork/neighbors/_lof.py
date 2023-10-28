@@ -2,17 +2,18 @@
 #          Alexandre Gramfort <alexandre.gramfort@telecom-paristech.fr>
 # License: BSD 3 clause
 
+import numpy as np
 import warnings
+
+from ._base import NeighborsBase
+from ._base import KNeighborsMixin
+from ..base import OutlierMixin
 from numbers import Real
 
-import numpy as np
-
-from ..base import OutlierMixin
-from ..utils import check_array
 from ..utils._param_validation import Interval, StrOptions
 from ..utils.metaestimators import available_if
 from ..utils.validation import check_is_fitted
-from ._base import KNeighborsMixin, NeighborsBase
+from ..utils import check_array
 
 __all__ = ["LocalOutlierFactor"]
 
@@ -281,11 +282,14 @@ class LocalOutlierFactor(KNeighborsMixin, OutlierMixin, NeighborsBase):
             warnings.warn(
                 "n_neighbors (%s) is greater than the "
                 "total number of samples (%s). n_neighbors "
-                "will be set to (n_samples - 1) for estimation." % (self.n_neighbors, n_samples)
+                "will be set to (n_samples - 1) for estimation."
+                % (self.n_neighbors, n_samples)
             )
         self.n_neighbors_ = max(1, min(self.n_neighbors, n_samples - 1))
 
-        self._distances_fit_X_, _neighbors_indices_fit_X_ = self.kneighbors(n_neighbors=self.n_neighbors_)
+        self._distances_fit_X_, _neighbors_indices_fit_X_ = self.kneighbors(
+            n_neighbors=self.n_neighbors_
+        )
 
         if self._fit_X.dtype == np.float32:
             self._distances_fit_X_ = self._distances_fit_X_.astype(
@@ -293,10 +297,14 @@ class LocalOutlierFactor(KNeighborsMixin, OutlierMixin, NeighborsBase):
                 copy=False,
             )
 
-        self._lrd = self._local_reachability_density(self._distances_fit_X_, _neighbors_indices_fit_X_)
+        self._lrd = self._local_reachability_density(
+            self._distances_fit_X_, _neighbors_indices_fit_X_
+        )
 
         # Compute lof score over training samples to define offset_:
-        lrd_ratios_array = self._lrd[_neighbors_indices_fit_X_] / self._lrd[:, np.newaxis]
+        lrd_ratios_array = (
+            self._lrd[_neighbors_indices_fit_X_] / self._lrd[:, np.newaxis]
+        )
 
         self.negative_outlier_factor_ = -np.mean(lrd_ratios_array, axis=1)
 
@@ -304,7 +312,9 @@ class LocalOutlierFactor(KNeighborsMixin, OutlierMixin, NeighborsBase):
             # inliers score around -1 (the higher, the less abnormal).
             self.offset_ = -1.5
         else:
-            self.offset_ = np.percentile(self.negative_outlier_factor_, 100.0 * self.contamination)
+            self.offset_ = np.percentile(
+                self.negative_outlier_factor_, 100.0 * self.contamination
+            )
 
         return self
 
@@ -455,7 +465,9 @@ class LocalOutlierFactor(KNeighborsMixin, OutlierMixin, NeighborsBase):
         check_is_fitted(self)
         X = check_array(X, accept_sparse="csr")
 
-        distances_X, neighbors_indices_X = self.kneighbors(X, n_neighbors=self.n_neighbors_)
+        distances_X, neighbors_indices_X = self.kneighbors(
+            X, n_neighbors=self.n_neighbors_
+        )
 
         if X.dtype == np.float32:
             distances_X = distances_X.astype(X.dtype, copy=False)

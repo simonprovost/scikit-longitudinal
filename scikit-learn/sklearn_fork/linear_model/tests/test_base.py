@@ -4,16 +4,27 @@
 #
 # License: BSD 3 clause
 
+import pytest
 import warnings
 
 import numpy as np
-import pytest
-from scipy import linalg, sparse
-from sklearn_fork.datasets import load_iris, make_regression, make_sparse_uncorrelated
+from scipy import sparse
+from scipy import linalg
+
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_allclose
+
 from sklearn_fork.linear_model import LinearRegression
-from sklearn_fork.linear_model._base import _deprecate_normalize, _preprocess_data, _rescale_data, make_dataset
-from sklearn_fork.preprocessing import StandardScaler, add_dummy_feature
-from sklearn_fork.utils._testing import assert_allclose, assert_array_almost_equal, assert_array_equal
+from sklearn_fork.linear_model._base import _deprecate_normalize
+from sklearn_fork.linear_model._base import _preprocess_data
+from sklearn_fork.linear_model._base import _rescale_data
+from sklearn_fork.linear_model._base import make_dataset
+from sklearn_fork.datasets import make_sparse_uncorrelated
+from sklearn_fork.datasets import make_regression
+from sklearn_fork.datasets import load_iris
+from sklearn_fork.preprocessing import StandardScaler
+from sklearn_fork.preprocessing import add_dummy_feature
 
 rtol = 1e-6
 
@@ -44,7 +55,9 @@ def test_linear_regression():
 
 @pytest.mark.parametrize("array_constr", [np.array, sparse.csr_matrix])
 @pytest.mark.parametrize("fit_intercept", [True, False])
-def test_linear_regression_sample_weights(array_constr, fit_intercept, global_random_seed):
+def test_linear_regression_sample_weights(
+    array_constr, fit_intercept, global_random_seed
+):
     rng = np.random.RandomState(global_random_seed)
 
     # It would not work with under-determined systems
@@ -112,7 +125,9 @@ def test_raises_value_error_if_sample_weights_greater_than_1d(n_samples, n_featu
 def test_fit_intercept():
     # Test assertions on betas shape.
     X2 = np.array([[0.38349978, 0.61650022], [0.58853682, 0.41146318]])
-    X3 = np.array([[0.27677969, 0.70693172, 0.01628859], [0.08385139, 0.20692515, 0.70922346]])
+    X3 = np.array(
+        [[0.27677969, 0.70693172, 0.01628859], [0.08385139, 0.20692515, 0.70922346]]
+    )
     y = np.array([1, 1])
 
     lr2_without_intercept = LinearRegression(fit_intercept=False).fit(X2, y)
@@ -394,21 +409,27 @@ def test_preprocess_data(global_random_seed):
     expected_X_scale = np.std(X, axis=0) * np.sqrt(X.shape[0])
     expected_y_mean = np.mean(y, axis=0)
 
-    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(X, y, fit_intercept=False, normalize=False)
+    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(
+        X, y, fit_intercept=False, normalize=False
+    )
     assert_array_almost_equal(X_mean, np.zeros(n_features))
     assert_array_almost_equal(y_mean, 0)
     assert_array_almost_equal(X_scale, np.ones(n_features))
     assert_array_almost_equal(Xt, X)
     assert_array_almost_equal(yt, y)
 
-    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(X, y, fit_intercept=True, normalize=False)
+    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(
+        X, y, fit_intercept=True, normalize=False
+    )
     assert_array_almost_equal(X_mean, expected_X_mean)
     assert_array_almost_equal(y_mean, expected_y_mean)
     assert_array_almost_equal(X_scale, np.ones(n_features))
     assert_array_almost_equal(Xt, X - expected_X_mean)
     assert_array_almost_equal(yt, y - expected_y_mean)
 
-    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(X, y, fit_intercept=True, normalize=True)
+    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(
+        X, y, fit_intercept=True, normalize=True
+    )
     assert_array_almost_equal(X_mean, expected_X_mean)
     assert_array_almost_equal(y_mean, expected_y_mean)
     assert_array_almost_equal(X_scale, expected_X_scale)
@@ -427,11 +448,15 @@ def test_preprocess_data_multioutput(global_random_seed):
 
     args = [X, sparse.csc_matrix(X)]
     for X in args:
-        _, yt, _, y_mean, _ = _preprocess_data(X, y, fit_intercept=False, normalize=False)
+        _, yt, _, y_mean, _ = _preprocess_data(
+            X, y, fit_intercept=False, normalize=False
+        )
         assert_array_almost_equal(y_mean, np.zeros(n_outputs))
         assert_array_almost_equal(yt, y)
 
-        _, yt, _, y_mean, _ = _preprocess_data(X, y, fit_intercept=True, normalize=False)
+        _, yt, _, y_mean, _ = _preprocess_data(
+            X, y, fit_intercept=True, normalize=False
+        )
         assert_array_almost_equal(y_mean, expected_y_mean)
         assert_array_almost_equal(yt, y - y_mean)
 
@@ -468,7 +493,9 @@ def test_preprocess_data_weighted(is_sparse, global_random_seed):
     expected_y_mean = np.average(y, axis=0, weights=sample_weight)
 
     X_sample_weight_avg = np.average(X, weights=sample_weight, axis=0)
-    X_sample_weight_var = np.average((X - X_sample_weight_avg) ** 2, weights=sample_weight, axis=0)
+    X_sample_weight_var = np.average(
+        (X - X_sample_weight_avg) ** 2, weights=sample_weight, axis=0
+    )
     constant_mask = X_sample_weight_var < 10 * np.finfo(X.dtype).eps
     assert_array_equal(constant_mask, [0, 0, 1, 1])
     expected_X_scale = np.sqrt(X_sample_weight_var) * np.sqrt(sample_weight.sum())
@@ -530,7 +557,9 @@ def test_preprocess_data_weighted(is_sparse, global_random_seed):
         )
 
         # Constant features go through un-scaled.
-        assert_array_almost_equal(scaler.transform(X).toarray()[:, 2:], Xt.toarray()[:, 2:])
+        assert_array_almost_equal(
+            scaler.transform(X).toarray()[:, 2:], Xt.toarray()[:, 2:]
+        )
     else:
         scaler = StandardScaler(with_mean=True).fit(X, sample_weight=sample_weight)
         assert_array_almost_equal(scaler.mean_, X_mean)
@@ -551,21 +580,27 @@ def test_sparse_preprocess_data_offsets(global_random_seed):
     XA = X.toarray()
     expected_X_scale = np.std(XA, axis=0) * np.sqrt(X.shape[0])
 
-    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(X, y, fit_intercept=False, normalize=False)
+    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(
+        X, y, fit_intercept=False, normalize=False
+    )
     assert_array_almost_equal(X_mean, np.zeros(n_features))
     assert_array_almost_equal(y_mean, 0)
     assert_array_almost_equal(X_scale, np.ones(n_features))
     assert_array_almost_equal(Xt.A, XA)
     assert_array_almost_equal(yt, y)
 
-    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(X, y, fit_intercept=True, normalize=False)
+    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(
+        X, y, fit_intercept=True, normalize=False
+    )
     assert_array_almost_equal(X_mean, np.mean(XA, axis=0))
     assert_array_almost_equal(y_mean, np.mean(y, axis=0))
     assert_array_almost_equal(X_scale, np.ones(n_features))
     assert_array_almost_equal(Xt.A, XA)
     assert_array_almost_equal(yt, y - np.mean(y, axis=0))
 
-    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(X, y, fit_intercept=True, normalize=True)
+    Xt, yt, X_mean, y_mean, X_scale = _preprocess_data(
+        X, y, fit_intercept=True, normalize=True
+    )
     assert_array_almost_equal(X_mean, np.mean(XA, axis=0))
     assert_array_almost_equal(y_mean, np.mean(y, axis=0))
     assert_array_almost_equal(X_scale, expected_X_scale)

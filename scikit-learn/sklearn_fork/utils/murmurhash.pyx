@@ -16,9 +16,7 @@ and can be found here:
 
 
 cimport numpy as cnp
-
 import numpy as np
-
 
 cdef extern from "src/MurmurHash3.h":
     void MurmurHash3_x86_32(void *key, int len, cnp.uint32_t seed, void *out)

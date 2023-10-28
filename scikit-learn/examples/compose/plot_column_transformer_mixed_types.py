@@ -31,20 +31,23 @@ model.
 
 # %%
 import numpy as np
+
 from sklearn_fork.compose import ColumnTransformer
 from sklearn_fork.datasets import fetch_openml
-from sklearn_fork.feature_selection import SelectPercentile, chi2
-from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.model_selection import RandomizedSearchCV, train_test_split
 from sklearn_fork.pipeline import Pipeline
-from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.preprocessing import StandardScaler, OneHotEncoder
+from sklearn_fork.linear_model import LogisticRegression
+from sklearn_fork.model_selection import train_test_split, RandomizedSearchCV
+from sklearn_fork.feature_selection import SelectPercentile, chi2
 
 np.random.seed(0)
 
 # %%
 # Load data from https://www.openml.org/d/40945
-X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True, parser="pandas")
+X, y = fetch_openml(
+    "titanic", version=1, as_frame=True, return_X_y=True, parser="pandas"
+)
 
 # Alternatively X and y can be obtained directly from the frame attribute:
 # X = titanic.frame.drop('survived', axis=1)
@@ -71,7 +74,9 @@ X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True, parser
 # feature.
 
 numeric_features = ["age", "fare"]
-numeric_transformer = Pipeline(steps=[("imputer", SimpleImputer(strategy="median")), ("scaler", StandardScaler())])
+numeric_transformer = Pipeline(
+    steps=[("imputer", SimpleImputer(strategy="median")), ("scaler", StandardScaler())]
+)
 
 categorical_features = ["embarked", "sex", "pclass"]
 categorical_transformer = Pipeline(
@@ -90,7 +95,9 @@ preprocessor = ColumnTransformer(
 # %%
 # Append classifier to preprocessing pipeline.
 # Now we have a full prediction pipeline.
-clf = Pipeline(steps=[("preprocessor", preprocessor), ("classifier", LogisticRegression())])
+clf = Pipeline(
+    steps=[("preprocessor", preprocessor), ("classifier", LogisticRegression())]
+)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
@@ -144,7 +151,9 @@ preprocessor = ColumnTransformer(
         ("cat", categorical_transformer, selector(dtype_include="category")),
     ]
 )
-clf = Pipeline(steps=[("preprocessor", preprocessor), ("classifier", LogisticRegression())])
+clf = Pipeline(
+    steps=[("preprocessor", preprocessor), ("classifier", LogisticRegression())]
+)
 
 
 clf.fit(X_train, y_train)
@@ -219,4 +228,7 @@ cv_results[
 # training set. We can evaluate that final model on held out test data that was
 # not used for hyperparameter tuning.
 #
-print(f"accuracy of the best model from randomized search: {search_cv.score(X_test, y_test):.3f}")
+print(
+    "accuracy of the best model from randomized search: "
+    f"{search_cv.score(X_test, y_test):.3f}"
+)

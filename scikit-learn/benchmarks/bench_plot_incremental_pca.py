@@ -7,14 +7,13 @@ Benchmarks for IncrementalPCA
 
 """
 
-import gc
-from collections import defaultdict
-from time import time
-
-import matplotlib.pyplot as plt
 import numpy as np
+import gc
+from time import time
+from collections import defaultdict
+import matplotlib.pyplot as plt
 from sklearn_fork.datasets import fetch_lfw_people
-from sklearn_fork.decomposition import PCA, IncrementalPCA
+from sklearn_fork.decomposition import IncrementalPCA, PCA
 
 
 def plot_results(X, y, label):
@@ -36,9 +35,14 @@ def benchmark(estimator, data):
 def plot_feature_times(all_times, batch_size, all_components, data):
     plt.figure()
     plot_results(all_components, all_times["pca"], label="PCA")
-    plot_results(all_components, all_times["ipca"], label="IncrementalPCA, bsize=%i" % batch_size)
+    plot_results(
+        all_components, all_times["ipca"], label="IncrementalPCA, bsize=%i" % batch_size
+    )
     plt.legend(loc="upper left")
-    plt.suptitle("Algorithm runtime vs. n_components\n                  LFW, size %i x %i" % data.shape)
+    plt.suptitle(
+        "Algorithm runtime vs. n_components\n                  LFW, size %i x %i"
+        % data.shape
+    )
     plt.xlabel("Number of components (out of max %i)" % data.shape[1])
     plt.ylabel("Time (seconds)")
 
@@ -63,8 +67,8 @@ def plot_batch_times(all_times, n_features, all_batch_sizes, data):
     plot_results(all_batch_sizes, all_times["ipca"], label="IncrementalPCA")
     plt.legend(loc="lower left")
     plt.suptitle(
-        "Algorithm runtime vs. batch_size for n_components %i\n                  LFW, size %i x %i"
-        % (n_features, data.shape[0], data.shape[1])
+        "Algorithm runtime vs. batch_size for n_components %i\n                  LFW,"
+        " size %i x %i" % (n_features, data.shape[0], data.shape[1])
     )
     plt.xlabel("Batch size")
     plt.ylabel("Time (seconds)")
@@ -76,15 +80,17 @@ def plot_batch_errors(all_errors, n_features, all_batch_sizes, data):
     plot_results(all_batch_sizes, all_errors["ipca"], label="IncrementalPCA")
     plt.legend(loc="lower left")
     plt.suptitle(
-        "Algorithm error vs. batch_size for n_components %i\n                  LFW, size %i x %i"
-        % (n_features, data.shape[0], data.shape[1])
+        "Algorithm error vs. batch_size for n_components %i\n                  LFW,"
+        " size %i x %i" % (n_features, data.shape[0], data.shape[1])
     )
     plt.xlabel("Batch size")
     plt.ylabel("Mean absolute error")
 
 
 def fixed_batch_size_comparison(data):
-    all_features = [i.astype(int) for i in np.linspace(data.shape[1] // 10, data.shape[1], num=5)]
+    all_features = [
+        i.astype(int) for i in np.linspace(data.shape[1] // 10, data.shape[1], num=5)
+    ]
     batch_size = 1000
     # Compare runtimes and error for fixed batch size
     all_times = defaultdict(list)
@@ -92,7 +98,9 @@ def fixed_batch_size_comparison(data):
     for n_components in all_features:
         pca = PCA(n_components=n_components)
         ipca = IncrementalPCA(n_components=n_components, batch_size=batch_size)
-        results_dict = {k: benchmark(est, data) for k, est in [("pca", pca), ("ipca", ipca)]}
+        results_dict = {
+            k: benchmark(est, data) for k, est in [("pca", pca), ("ipca", ipca)]
+        }
 
         for k in sorted(results_dict.keys()):
             all_times[k].append(results_dict[k]["time"])
@@ -103,14 +111,22 @@ def fixed_batch_size_comparison(data):
 
 
 def variable_batch_size_comparison(data):
-    batch_sizes = [i.astype(int) for i in np.linspace(data.shape[0] // 10, data.shape[0], num=10)]
+    batch_sizes = [
+        i.astype(int) for i in np.linspace(data.shape[0] // 10, data.shape[0], num=10)
+    ]
 
-    for n_components in [i.astype(int) for i in np.linspace(data.shape[1] // 10, data.shape[1], num=4)]:
+    for n_components in [
+        i.astype(int) for i in np.linspace(data.shape[1] // 10, data.shape[1], num=4)
+    ]:
         all_times = defaultdict(list)
         all_errors = defaultdict(list)
         pca = PCA(n_components=n_components)
-        rpca = PCA(n_components=n_components, svd_solver="randomized", random_state=1999)
-        results_dict = {k: benchmark(est, data) for k, est in [("pca", pca), ("rpca", rpca)]}
+        rpca = PCA(
+            n_components=n_components, svd_solver="randomized", random_state=1999
+        )
+        results_dict = {
+            k: benchmark(est, data) for k, est in [("pca", pca), ("rpca", rpca)]
+        }
 
         # Create flat baselines to compare the variation over batch size
         all_times["pca"].extend([results_dict["pca"]["time"]] * len(batch_sizes))

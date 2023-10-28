@@ -2,61 +2,67 @@
 # build_tools/azure/test_pytest_soft_dependency.sh on these
 # tests to make sure estimator_checks works without pytest.
 
-import sys
 import unittest
+import sys
 import warnings
 from numbers import Integral, Real
 
-import joblib
 import numpy as np
 import scipy.sparse as sp
+import joblib
+
 from sklearn_fork.base import BaseEstimator, ClassifierMixin, OutlierMixin
-from sklearn_fork.cluster import MiniBatchKMeans
 from sklearn_fork.datasets import make_multilabel_classification
-from sklearn_fork.decomposition import PCA
-from sklearn_fork.ensemble import ExtraTreesClassifier
-from sklearn_fork.exceptions import SkipTestWarning
-from sklearn_fork.linear_model import LinearRegression, LogisticRegression, MultiTaskElasticNet, SGDClassifier
-from sklearn_fork.mixture import GaussianMixture
-from sklearn_fork.neighbors import KNeighborsRegressor
-from sklearn_fork.svm import SVC, NuSVC
-from sklearn_fork.utils import all_estimators, deprecated
-from sklearn_fork.utils._param_validation import Interval, StrOptions
+from sklearn_fork.utils import deprecated
 from sklearn_fork.utils._testing import (
+    raises,
+    ignore_warnings,
     MinimalClassifier,
     MinimalRegressor,
     MinimalTransformer,
     SkipTest,
-    ignore_warnings,
-    raises,
 )
+
+from sklearn_fork.utils.validation import check_is_fitted, check_X_y
+from sklearn_fork.ensemble import ExtraTreesClassifier
+from sklearn_fork.linear_model import LinearRegression, SGDClassifier
+from sklearn_fork.mixture import GaussianMixture
+from sklearn_fork.cluster import MiniBatchKMeans
+from sklearn_fork.decomposition import PCA
+from sklearn_fork.linear_model import MultiTaskElasticNet, LogisticRegression
+from sklearn_fork.svm import SVC, NuSVC
+from sklearn_fork.neighbors import KNeighborsRegressor
+from sklearn_fork.utils.validation import check_array
+from sklearn_fork.utils import all_estimators
+from sklearn_fork.exceptions import SkipTestWarning
+from sklearn_fork.utils.metaestimators import available_if
+from sklearn_fork.utils.estimator_checks import check_decision_proba_consistency
+from sklearn_fork.utils._param_validation import Interval, StrOptions
+
 from sklearn_fork.utils.estimator_checks import (
     _NotAnArray,
     _set_checking_parameters,
-    _yield_all_checks,
     check_class_weight_balanced_linear_classifier,
     check_classifier_data_not_an_array,
     check_classifiers_multilabel_output_format_decision_function,
     check_classifiers_multilabel_output_format_predict,
     check_classifiers_multilabel_output_format_predict_proba,
     check_dataframe_column_names_consistency,
-    check_decision_proba_consistency,
     check_estimator,
     check_estimator_get_tags_default_keys,
     check_estimators_unfitted,
-    check_fit_check_is_fitted,
     check_fit_score_takes_y,
-    check_methods_sample_order_invariance,
-    check_methods_subset_invariance,
     check_no_attributes_set_in_init,
-    check_outlier_contamination,
-    check_outlier_corruption,
     check_regressor_data_not_an_array,
     check_requires_y_none,
+    check_outlier_corruption,
+    check_outlier_contamination,
     set_random_state,
+    check_fit_check_is_fitted,
+    check_methods_sample_order_invariance,
+    check_methods_subset_invariance,
+    _yield_all_checks,
 )
-from sklearn_fork.utils.metaestimators import available_if
-from sklearn_fork.utils.validation import check_array, check_is_fitted, check_X_y
 
 
 class CorrectNotFittedError(ValueError):
@@ -223,12 +229,16 @@ class CorrectNotFittedErrorClassifier(BaseBadClassifier):
 class NoSampleWeightPandasSeriesType(BaseEstimator):
     def fit(self, X, y, sample_weight=None):
         # Convert data
-        X, y = self._validate_data(X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True)
+        X, y = self._validate_data(
+            X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True
+        )
         # Function is only called after we verify that pandas is installed
         from pandas import Series
 
         if isinstance(sample_weight, Series):
-            raise ValueError("Estimator does not accept 'sample_weight'of type pandas.Series")
+            raise ValueError(
+                "Estimator does not accept 'sample_weight'of type pandas.Series"
+            )
         return self
 
     def predict(self, X):
@@ -271,7 +281,9 @@ class BadTransformerWithoutMixin(BaseEstimator):
 class NotInvariantPredict(BaseEstimator):
     def fit(self, X, y):
         # Convert data
-        X, y = self._validate_data(X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True)
+        X, y = self._validate_data(
+            X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True
+        )
         return self
 
     def predict(self, X):
@@ -284,7 +296,9 @@ class NotInvariantPredict(BaseEstimator):
 
 class NotInvariantSampleOrder(BaseEstimator):
     def fit(self, X, y):
-        X, y = self._validate_data(X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True)
+        X, y = self._validate_data(
+            X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True
+        )
         # store the original X to check for sample order later
         self._X = X
         return self
@@ -293,7 +307,10 @@ class NotInvariantSampleOrder(BaseEstimator):
         X = check_array(X)
         # if the input contains the same elements but different sample order,
         # then just return zeros.
-        if np.array_equiv(np.sort(X, axis=0), np.sort(self._X, axis=0)) and (X != self._X).any():
+        if (
+            np.array_equiv(np.sort(X, axis=0), np.sort(self._X, axis=0))
+            and (X != self._X).any()
+        ):
             return np.zeros(X.shape[0])
         return X[:, 0]
 
@@ -306,7 +323,9 @@ class OneClassSampleErrorClassifier(BaseBadClassifier):
         self.raise_when_single_class = raise_when_single_class
 
     def fit(self, X, y, sample_weight=None):
-        X, y = check_X_y(X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True)
+        X, y = check_X_y(
+            X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True
+        )
 
         self.has_single_class_ = False
         self.classes_, y = np.unique(y, return_inverse=True)
@@ -492,7 +511,10 @@ def test_check_estimator():
     msg = "Passing a class was deprecated"
     with raises(TypeError, match=msg):
         check_estimator(object)
-    msg = "Parameter 'p' of estimator 'HasMutableParameters' is of type object which is not allowed"
+    msg = (
+        "Parameter 'p' of estimator 'HasMutableParameters' is of type "
+        "object which is not allowed"
+    )
     # check that the "default_constructible" test checks for mutable parameters
     check_estimator(HasImmutableParameters())  # should pass
     with raises(AssertionError, match=msg):
@@ -557,15 +579,18 @@ def test_check_estimator():
     # check for sample order invariance
     name = NotInvariantSampleOrder.__name__
     method = "predict"
-    msg = ("{method} of {name} is not invariant when applied to a datasetwith different sample order.").format(
-        method=method, name=name
-    )
+    msg = (
+        "{method} of {name} is not invariant when applied to a dataset"
+        "with different sample order."
+    ).format(method=method, name=name)
     with raises(AssertionError, match=msg):
         check_estimator(NotInvariantSampleOrder())
     # check for invariant method
     name = NotInvariantPredict.__name__
     method = "predict"
-    msg = ("{method} of {name} is not invariant when applied to a subset.").format(method=method, name=name)
+    msg = ("{method} of {name} is not invariant when applied to a subset.").format(
+        method=method, name=name
+    )
     with raises(AssertionError, match=msg):
         check_estimator(NotInvariantPredict())
     # check for sparse matrix input handling
@@ -697,11 +722,18 @@ def test_check_no_attributes_set_in_init():
         r" Found attributes \['you_should_not_set_this_'\]."
     )
     with raises(AssertionError, match=msg):
-        check_no_attributes_set_in_init("estimator_name", NonConformantEstimatorPrivateSet())
+        check_no_attributes_set_in_init(
+            "estimator_name", NonConformantEstimatorPrivateSet()
+        )
 
-    msg = "Estimator estimator_name should store all parameters as an attribute during init"
+    msg = (
+        "Estimator estimator_name should store all parameters as an attribute"
+        " during init"
+    )
     with raises(AttributeError, match=msg):
-        check_no_attributes_set_in_init("estimator_name", NonConformantEstimatorNoParamSet())
+        check_no_attributes_set_in_init(
+            "estimator_name", NonConformantEstimatorNoParamSet()
+        )
 
 
 def test_check_estimator_pairwise():
@@ -719,12 +751,16 @@ def test_check_estimator_pairwise():
 
 def test_check_classifier_data_not_an_array():
     with raises(AssertionError, match="Not equal to tolerance"):
-        check_classifier_data_not_an_array("estimator_name", EstimatorInconsistentForPandas())
+        check_classifier_data_not_an_array(
+            "estimator_name", EstimatorInconsistentForPandas()
+        )
 
 
 def test_check_regressor_data_not_an_array():
     with raises(AssertionError, match="Not equal to tolerance"):
-        check_regressor_data_not_an_array("estimator_name", EstimatorInconsistentForPandas())
+        check_regressor_data_not_an_array(
+            "estimator_name", EstimatorInconsistentForPandas()
+        )
 
 
 def test_check_estimator_get_tags_default_keys():
@@ -750,7 +786,9 @@ def test_check_dataframe_column_names_consistency():
     lr = LogisticRegression()
     check_dataframe_column_names_consistency(lr.__class__.__name__, lr)
     lr.__doc__ = "Docstring that does not document the estimator's attributes"
-    err_msg = "Estimator LogisticRegression does not document its feature_names_in_ attribute"
+    err_msg = (
+        "Estimator LogisticRegression does not document its feature_names_in_ attribute"
+    )
     with raises(ValueError, match=err_msg):
         check_dataframe_column_names_consistency(lr.__class__.__name__, lr)
 
@@ -786,18 +824,25 @@ def test_check_classifiers_multilabel_output_format_predict():
     # 1. inconsistent array type
     clf = MultiLabelClassifierPredict(response_output=y_test.tolist())
     err_msg = (
-        r"MultiLabelClassifierPredict.predict is expected to output a " r"NumPy array. Got <class 'list'> instead."
+        r"MultiLabelClassifierPredict.predict is expected to output a "
+        r"NumPy array. Got <class 'list'> instead."
     )
     with raises(AssertionError, match=err_msg):
         check_classifiers_multilabel_output_format_predict(clf.__class__.__name__, clf)
     # 2. inconsistent shape
     clf = MultiLabelClassifierPredict(response_output=y_test[:, :-1])
-    err_msg = r"MultiLabelClassifierPredict.predict outputs a NumPy array of " r"shape \(25, 4\) instead of \(25, 5\)."
+    err_msg = (
+        r"MultiLabelClassifierPredict.predict outputs a NumPy array of "
+        r"shape \(25, 4\) instead of \(25, 5\)."
+    )
     with raises(AssertionError, match=err_msg):
         check_classifiers_multilabel_output_format_predict(clf.__class__.__name__, clf)
     # 3. inconsistent dtype
     clf = MultiLabelClassifierPredict(response_output=y_test.astype(np.float64))
-    err_msg = r"MultiLabelClassifierPredict.predict does not output the same " r"dtype than the targets."
+    err_msg = (
+        r"MultiLabelClassifierPredict.predict does not output the same "
+        r"dtype than the targets."
+    )
     with raises(AssertionError, match=err_msg):
         check_classifiers_multilabel_output_format_predict(clf.__class__.__name__, clf)
 
@@ -858,7 +903,9 @@ def test_check_classifiers_multilabel_output_format_predict_proba():
             clf,
         )
     # 2.3. array of inconsistent dtype
-    response_output = [np.ones(shape=(y_test.shape[0], 2), dtype=np.int64) for _ in range(n_outputs)]
+    response_output = [
+        np.ones(shape=(y_test.shape[0], 2), dtype=np.int64) for _ in range(n_outputs)
+    ]
     clf = MultiLabelClassifierPredictProba(response_output=response_output)
     err_msg = (
         "When MultiLabelClassifierPredictProba.predict_proba returns a list, "
@@ -870,7 +917,9 @@ def test_check_classifiers_multilabel_output_format_predict_proba():
             clf,
         )
     # 2.4. array does not contain probability (each row should sum to 1)
-    response_output = [np.ones(shape=(y_test.shape[0], 2), dtype=np.float64) for _ in range(n_outputs)]
+    response_output = [
+        np.ones(shape=(y_test.shape[0], 2), dtype=np.float64) for _ in range(n_outputs)
+    ]
     clf = MultiLabelClassifierPredictProba(response_output=response_output)
     err_msg = (
         r"When MultiLabelClassifierPredictProba.predict_proba returns a list, "
@@ -963,7 +1012,10 @@ def test_check_classifiers_multilabel_output_format_decision_function():
         )
     # 3. inconsistent dtype
     clf = MultiLabelClassifierDecisionFunction(response_output=y_test)
-    err_msg = r"MultiLabelClassifierDecisionFunction.decision_function is expected " r"to output a floating dtype."
+    err_msg = (
+        r"MultiLabelClassifierDecisionFunction.decision_function is expected "
+        r"to output a floating dtype."
+    )
     with raises(AssertionError, match=err_msg):
         check_classifiers_multilabel_output_format_decision_function(
             clf.__class__.__name__,
@@ -974,7 +1026,11 @@ def test_check_classifiers_multilabel_output_format_decision_function():
 def run_tests_without_pytest():
     """Runs the tests in this file without using pytest."""
     main_module = sys.modules["__main__"]
-    test_functions = [getattr(main_module, name) for name in dir(main_module) if name.startswith("test_")]
+    test_functions = [
+        getattr(main_module, name)
+        for name in dir(main_module)
+        if name.startswith("test_")
+    ]
     test_cases = [unittest.FunctionTestCase(fn) for fn in test_functions]
     suite = unittest.TestSuite()
     suite.addTests(test_cases)
@@ -986,7 +1042,9 @@ def test_check_class_weight_balanced_linear_classifier():
     # check that ill-computed balanced weights raises an exception
     msg = "Classifier estimator_name is not computing class_weight=balanced properly"
     with raises(AssertionError, match=msg):
-        check_class_weight_balanced_linear_classifier("estimator_name", BadBalancedWeightsClassifier)
+        check_class_weight_balanced_linear_classifier(
+            "estimator_name", BadBalancedWeightsClassifier
+        )
 
 
 def test_all_estimators_all_public():
@@ -1124,7 +1182,9 @@ def test_check_outlier_contamination():
         check_outlier_contamination(detector.__class__.__name__, detector)
 
     # Add a correct interval constraint and check that the test passes.
-    OutlierDetectorWithConstraint._parameter_constraints["contamination"] = [Interval(Real, 0, 0.5, closed="right")]
+    OutlierDetectorWithConstraint._parameter_constraints["contamination"] = [
+        Interval(Real, 0, 0.5, closed="right")
+    ]
     detector = OutlierDetectorWithConstraint()
     check_outlier_contamination(detector.__class__.__name__, detector)
 
@@ -1137,7 +1197,9 @@ def test_check_outlier_contamination():
 
     err_msg = r"contamination constraint should be an interval in \(0, 0.5\]"
     for interval in incorrect_intervals:
-        OutlierDetectorWithConstraint._parameter_constraints["contamination"] = [interval]
+        OutlierDetectorWithConstraint._parameter_constraints["contamination"] = [
+            interval
+        ]
         detector = OutlierDetectorWithConstraint()
         with raises(AssertionError, match=err_msg):
             check_outlier_contamination(detector.__class__.__name__, detector)

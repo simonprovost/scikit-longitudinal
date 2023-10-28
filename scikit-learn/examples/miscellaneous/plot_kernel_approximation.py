@@ -38,16 +38,15 @@ This is not easily possible for the case of the kernelized SVM.
 #         Andreas Mueller <amueller@ais.uni-bonn.de>
 # License: BSD 3 clause
 
-from time import time
-
 # Standard scientific Python imports
 import matplotlib.pyplot as plt
 import numpy as np
+from time import time
 
 # Import datasets, classifiers and performance metrics
-from sklearn_fork import datasets, pipeline, svm
+from sklearn_fork import datasets, svm, pipeline
+from sklearn_fork.kernel_approximation import RBFSampler, Nystroem
 from sklearn_fork.decomposition import PCA
-from sklearn_fork.kernel_approximation import Nystroem, RBFSampler
 
 # The digits dataset
 digits = datasets.load_digits(n_class=9)
@@ -78,9 +77,13 @@ linear_svm = svm.LinearSVC()
 # and linear svm
 feature_map_fourier = RBFSampler(gamma=0.2, random_state=1)
 feature_map_nystroem = Nystroem(gamma=0.2, random_state=1)
-fourier_approx_svm = pipeline.Pipeline([("feature_map", feature_map_fourier), ("svm", svm.LinearSVC())])
+fourier_approx_svm = pipeline.Pipeline(
+    [("feature_map", feature_map_fourier), ("svm", svm.LinearSVC())]
+)
 
-nystroem_approx_svm = pipeline.Pipeline([("feature_map", feature_map_nystroem), ("svm", svm.LinearSVC())])
+nystroem_approx_svm = pipeline.Pipeline(
+    [("feature_map", feature_map_nystroem), ("svm", svm.LinearSVC())]
+)
 
 # fit and predict using linear and kernel svm:
 

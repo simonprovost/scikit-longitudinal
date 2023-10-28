@@ -3,6 +3,7 @@ from time import time
 
 import numpy as np
 from numpy import random as nr
+
 from sklearn_fork.cluster import KMeans, MiniBatchKMeans
 
 
@@ -35,7 +36,9 @@ def compute_bench(samples_range, features_range):
 
             print("Fast K-Means")
             # let's prepare the data in small chunks
-            mbkmeans = MiniBatchKMeans(init="k-means++", n_clusters=10, batch_size=chunk)
+            mbkmeans = MiniBatchKMeans(
+                init="k-means++", n_clusters=10, batch_size=chunk
+            )
             tstart = time()
             mbkmeans.fit(data)
             delta = time() - tstart
@@ -94,8 +97,8 @@ def compute_bench_2(chunks):
 
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import axes3d  # noqa register the 3d projection
+    import matplotlib.pyplot as plt
 
     samples_range = np.linspace(50, 150, 5).astype(int)
     features_range = np.linspace(150, 50000, 5).astype(int)
@@ -104,8 +107,12 @@ if __name__ == "__main__":
     results = compute_bench(samples_range, features_range)
     results_2 = compute_bench_2(chunks)
 
-    max_time = max([max(i) for i in [t for (label, t) in results.items() if "speed" in label]])
-    max_inertia = max([max(i) for i in [t for (label, t) in results.items() if "speed" not in label]])
+    max_time = max(
+        [max(i) for i in [t for (label, t) in results.items() if "speed" in label]]
+    )
+    max_inertia = max(
+        [max(i) for i in [t for (label, t) in results.items() if "speed" not in label]]
+    )
 
     fig = plt.figure("scikit-learn K-Means benchmark results")
     for c, (label, timings) in zip("brcy", sorted(results.items())):

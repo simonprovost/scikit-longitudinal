@@ -162,7 +162,9 @@ log_marginal_likelihood = [
     gpr.log_marginal_likelihood(theta=np.log([0.36, scale, noise]))
     for scale, noise in zip(length_scale_grid.ravel(), noise_level_grid.ravel())
 ]
-log_marginal_likelihood = np.reshape(log_marginal_likelihood, newshape=noise_level_grid.shape)
+log_marginal_likelihood = np.reshape(
+    log_marginal_likelihood, newshape=noise_level_grid.shape
+)
 
 # %%
 vmin, vmax = (-log_marginal_likelihood).min(), 50

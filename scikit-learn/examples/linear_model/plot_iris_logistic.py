@@ -16,9 +16,9 @@ are colored according to their labels.
 # License: BSD 3 clause
 
 import matplotlib.pyplot as plt
+from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork import datasets
 from sklearn_fork.inspection import DecisionBoundaryDisplay
-from sklearn_fork.linear_model import LogisticRegression
 
 # import some data to play with
 iris = datasets.load_iris()

@@ -1,9 +1,11 @@
 # Author: Guillaume Lemaitre <g.lemaitre58@gmail.com>
 # License: BSD 3 clause
 
-import numpy as np
 import pytest
-from sklearn_fork.mixture import BayesianGaussianMixture, GaussianMixture
+import numpy as np
+
+from sklearn_fork.mixture import GaussianMixture
+from sklearn_fork.mixture import BayesianGaussianMixture
 
 
 @pytest.mark.parametrize("estimator", [GaussianMixture(), BayesianGaussianMixture()])

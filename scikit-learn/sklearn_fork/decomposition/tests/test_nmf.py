@@ -3,23 +3,24 @@ import sys
 from io import StringIO
 
 import numpy as np
-import pytest
 import scipy.sparse as sp
+
 from scipy import linalg
-from scipy.sparse import csc_matrix
-from sklearn_fork.base import clone
 from sklearn_fork.decomposition import NMF, MiniBatchNMF
-from sklearn_fork.decomposition import _nmf as nmf  # For testing internals
 from sklearn_fork.decomposition import non_negative_factorization
-from sklearn_fork.exceptions import ConvergenceWarning
-from sklearn_fork.utils._testing import (
-    assert_allclose,
-    assert_almost_equal,
-    assert_array_almost_equal,
-    assert_array_equal,
-    ignore_warnings,
-)
+from sklearn_fork.decomposition import _nmf as nmf  # For testing internals
+from scipy.sparse import csc_matrix
+
+import pytest
+
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import ignore_warnings
 from sklearn_fork.utils.extmath import squared_norm
+from sklearn_fork.base import clone
+from sklearn_fork.exceptions import ConvergenceWarning
 
 
 @pytest.mark.parametrize(
@@ -27,7 +28,9 @@ from sklearn_fork.utils.extmath import squared_norm
     [[NMF, {"solver": "cd"}], [NMF, {"solver": "mu"}], [MiniBatchNMF, {}]],
 )
 def test_convergence_warning(Estimator, solver):
-    convergence_warning = "Maximum number of iterations 1 reached. Increase it to improve convergence."
+    convergence_warning = (
+        "Maximum number of iterations 1 reached. Increase it to improve convergence."
+    )
     A = np.ones((2, 2))
     with pytest.warns(ConvergenceWarning, match=convergence_warning):
         Estimator(max_iter=1, **solver).fit(A)
@@ -43,7 +46,8 @@ def test_initialize_nn_output():
 
 
 @pytest.mark.filterwarnings(
-    r"ignore:The multiplicative update \('mu'\) solver cannot update zeros present in" r" the initialization"
+    r"ignore:The multiplicative update \('mu'\) solver cannot update zeros present in"
+    r" the initialization"
 )
 def test_parameter_checking():
     # Here we only check for invalid parameter values that are not already
@@ -64,7 +68,10 @@ def test_parameter_checking():
         nmf._initialize_nmf(-A, 2, "nndsvd")
 
     for init in ["nndsvd", "nndsvda", "nndsvdar"]:
-        msg = re.escape("init = '{}' can only be used when n_components <= min(n_samples, n_features)".format(init))
+        msg = re.escape(
+            "init = '{}' can only be used when "
+            "n_components <= min(n_samples, n_features)".format(init)
+        )
         with pytest.raises(ValueError, match=msg):
             NMF(3, init=init).fit(A)
         with pytest.raises(ValueError, match=msg):
@@ -236,7 +243,9 @@ def test_nmf_transform_custom_init(Estimator, solver):
     H_init = np.abs(avg * random_state.randn(n_components, 5))
     W_init = np.abs(avg * random_state.randn(6, n_components))
 
-    m = Estimator(n_components=n_components, init="custom", random_state=0, tol=1e-3, **solver)
+    m = Estimator(
+        n_components=n_components, init="custom", random_state=0, tol=1e-3, **solver
+    )
     m.fit_transform(A, W=W_init, H=H_init)
     m.transform(A)
 
@@ -683,9 +692,9 @@ def test_nmf_regularization(Estimator, solver):
     H_regul = regul.components_
     H_model = model.components_
 
-    assert (linalg.norm(W_model)) ** 2.0 + (linalg.norm(H_model)) ** 2.0 > (linalg.norm(W_regul)) ** 2.0 + (
-        linalg.norm(H_regul)
-    ) ** 2.0
+    assert (linalg.norm(W_model)) ** 2.0 + (linalg.norm(H_model)) ** 2.0 > (
+        linalg.norm(W_regul)
+    ) ** 2.0 + (linalg.norm(H_regul)) ** 2.0
 
 
 @ignore_warnings(category=ConvergenceWarning)
@@ -864,7 +873,9 @@ def test_minibatch_nmf_partial_fit():
     mbnmf2 = MiniBatchNMF(n_components=n_components, init="custom", random_state=0)
 
     # Force the same init of H (W is recomputed anyway) to be able to compare results.
-    W, H = nmf._initialize_nmf(X, n_components=n_components, init="random", random_state=0)
+    W, H = nmf._initialize_nmf(
+        X, n_components=n_components, init="random", random_state=0
+    )
 
     mbnmf1.fit(X, W=W, H=H)
     for i in range(max_iter):

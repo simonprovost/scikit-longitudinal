@@ -14,11 +14,15 @@ import numpy as np
 import scipy.sparse as sp
 from scipy.special import expit  # logistic function
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from ..utils import check_random_state, gen_even_slices
-from ..utils._param_validation import Interval
-from ..utils.extmath import log_logistic, safe_sparse_dot
+from ..base import BaseEstimator
+from ..base import TransformerMixin
+from ..base import ClassNamePrefixFeaturesOutMixin
+from ..utils import check_random_state
+from ..utils import gen_even_slices
+from ..utils.extmath import safe_sparse_dot
+from ..utils.extmath import log_logistic
 from ..utils.validation import check_is_fitted
+from ..utils._param_validation import Interval
 
 
 class BernoulliRBM(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
@@ -165,7 +169,9 @@ class BernoulliRBM(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstima
         """
         check_is_fitted(self)
 
-        X = self._validate_data(X, accept_sparse="csr", reset=False, dtype=(np.float64, np.float32))
+        X = self._validate_data(
+            X, accept_sparse="csr", reset=False, dtype=(np.float64, np.float32)
+        )
         return self._mean_hiddens(X)
 
     def _mean_hiddens(self, v):
@@ -283,7 +289,9 @@ class BernoulliRBM(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstima
         self._validate_params()
 
         first_pass = not hasattr(self, "components_")
-        X = self._validate_data(X, accept_sparse="csr", dtype=np.float64, reset=first_pass)
+        X = self._validate_data(
+            X, accept_sparse="csr", dtype=np.float64, reset=first_pass
+        )
         if not hasattr(self, "random_state_"):
             self.random_state_ = check_random_state(self.random_state)
         if not hasattr(self, "components_"):
@@ -328,7 +336,9 @@ class BernoulliRBM(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstima
         update -= np.dot(h_neg.T, v_neg)
         self.components_ += lr * update
         self.intercept_hidden_ += lr * (h_pos.sum(axis=0) - h_neg.sum(axis=0))
-        self.intercept_visible_ += lr * (np.asarray(v_pos.sum(axis=0)).squeeze() - v_neg.sum(axis=0))
+        self.intercept_visible_ += lr * (
+            np.asarray(v_pos.sum(axis=0)).squeeze() - v_neg.sum(axis=0)
+        )
 
         h_neg[rng.uniform(size=h_neg.shape) < h_neg] = 1.0  # sample binomial
         self.h_samples_ = np.floor(h_neg, h_neg)
@@ -404,7 +414,9 @@ class BernoulliRBM(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstima
         self.h_samples_ = np.zeros((self.batch_size, self.n_components), dtype=X.dtype)
 
         n_batches = int(np.ceil(float(n_samples) / self.batch_size))
-        batch_slices = list(gen_even_slices(n_batches * self.batch_size, n_batches, n_samples=n_samples))
+        batch_slices = list(
+            gen_even_slices(n_batches * self.batch_size, n_batches, n_samples=n_samples)
+        )
         verbose = self.verbose
         begin = time.time()
         for iteration in range(1, self.n_iter + 1):
@@ -429,8 +441,12 @@ class BernoulliRBM(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstima
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_methods_subset_invariance": "fails for the decision_function method",
-                "check_methods_sample_order_invariance": "fails for the score_samples method",
+                "check_methods_subset_invariance": (
+                    "fails for the decision_function method"
+                ),
+                "check_methods_sample_order_invariance": (
+                    "fails for the score_samples method"
+                ),
             },
             "preserves_dtype": [np.float64, np.float32],
         }

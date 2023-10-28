@@ -1,15 +1,21 @@
 import numpy as np
 import pytest
+
 from sklearn_fork.base import ClassifierMixin, clone
-from sklearn_fork.calibration import CalibrationDisplay
 from sklearn_fork.compose import make_column_transformer
 from sklearn_fork.datasets import load_iris
 from sklearn_fork.exceptions import NotFittedError
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
 from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor
+
+from sklearn_fork.calibration import CalibrationDisplay
+from sklearn_fork.metrics import (
+    DetCurveDisplay,
+    PrecisionRecallDisplay,
+    RocCurveDisplay,
+)
 
 
 @pytest.fixture(scope="module")
@@ -89,7 +95,10 @@ def test_display_curve_error_regression(pyplot, data_binary, Display):
         ),
         (
             "auto",
-            "MyClassifier has none of the following attributes: predict_proba, decision_function.",
+            (
+                "MyClassifier has none of the following attributes: predict_proba,"
+                " decision_function."
+            ),
         ),
         (
             "bad_method",
@@ -97,7 +106,9 @@ def test_display_curve_error_regression(pyplot, data_binary, Display):
         ),
     ],
 )
-@pytest.mark.parametrize("Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay])
+@pytest.mark.parametrize(
+    "Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay]
+)
 def test_display_curve_error_no_response(
     pyplot,
     data_binary,
@@ -120,7 +131,9 @@ def test_display_curve_error_no_response(
         Display.from_estimator(clf, X, y, response_method=response_method)
 
 
-@pytest.mark.parametrize("Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay])
+@pytest.mark.parametrize(
+    "Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay]
+)
 @pytest.mark.parametrize("constructor_name", ["from_estimator", "from_predictions"])
 def test_display_curve_estimator_name_multiple_calls(
     pyplot,
@@ -157,10 +170,14 @@ def test_display_curve_estimator_name_multiple_calls(
     [
         LogisticRegression(),
         make_pipeline(StandardScaler(), LogisticRegression()),
-        make_pipeline(make_column_transformer((StandardScaler(), [0, 1])), LogisticRegression()),
+        make_pipeline(
+            make_column_transformer((StandardScaler(), [0, 1])), LogisticRegression()
+        ),
     ],
 )
-@pytest.mark.parametrize("Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay])
+@pytest.mark.parametrize(
+    "Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay]
+)
 def test_display_curve_not_fitted_errors(pyplot, data_binary, clf, Display):
     """Check that a proper error is raised when the classifier is not
     fitted."""
@@ -176,7 +193,9 @@ def test_display_curve_not_fitted_errors(pyplot, data_binary, clf, Display):
     assert disp.estimator_name == model.__class__.__name__
 
 
-@pytest.mark.parametrize("Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay])
+@pytest.mark.parametrize(
+    "Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay]
+)
 def test_display_curve_n_samples_consistency(pyplot, data_binary, Display):
     """Check the error raised when `y_pred` or `sample_weight` have inconsistent
     length."""
@@ -192,7 +211,9 @@ def test_display_curve_n_samples_consistency(pyplot, data_binary, Display):
         Display.from_estimator(classifier, X, y, sample_weight=np.ones(X.shape[0] - 2))
 
 
-@pytest.mark.parametrize("Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay])
+@pytest.mark.parametrize(
+    "Display", [DetCurveDisplay, PrecisionRecallDisplay, RocCurveDisplay]
+)
 def test_display_curve_error_pos_label(pyplot, data_binary, Display):
     """Check consistence of error message when `pos_label` should be specified."""
     X, y = data_binary

@@ -3,14 +3,20 @@ Testing for mean shift clustering methods
 
 """
 
-import warnings
-
 import numpy as np
+import warnings
 import pytest
-from sklearn_fork.cluster import MeanShift, estimate_bandwidth, get_bin_seeds, mean_shift
+
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_allclose
+
+from sklearn_fork.cluster import MeanShift
+from sklearn_fork.cluster import mean_shift
+from sklearn_fork.cluster import estimate_bandwidth
+from sklearn_fork.cluster import get_bin_seeds
 from sklearn_fork.datasets import make_blobs
 from sklearn_fork.metrics import v_measure_score
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
+
 
 n_clusters = 3
 centers = np.array([[1, 1], [-1, -1], [1, -1]]) + 10
@@ -33,7 +39,9 @@ def test_estimate_bandwidth():
 def test_estimate_bandwidth_1sample(global_dtype):
     # Test estimate_bandwidth when n_samples=1 and quantile<1, so that
     # n_neighbors is set to 1.
-    bandwidth = estimate_bandwidth(X.astype(global_dtype, copy=False), n_samples=1, quantile=0.3)
+    bandwidth = estimate_bandwidth(
+        X.astype(global_dtype, copy=False), n_samples=1, quantile=0.3
+    )
 
     assert bandwidth.dtype == X.dtype
     assert bandwidth == pytest.approx(0.0, abs=1e-5)
@@ -43,7 +51,9 @@ def test_estimate_bandwidth_1sample(global_dtype):
     "bandwidth, cluster_all, expected, first_cluster_label",
     [(1.2, True, 3, 0), (1.2, False, 4, -1)],
 )
-def test_mean_shift(global_dtype, bandwidth, cluster_all, expected, first_cluster_label):
+def test_mean_shift(
+    global_dtype, bandwidth, cluster_all, expected, first_cluster_label
+):
     # Test MeanShift algorithm
     X_with_global_dtype = X.astype(global_dtype, copy=False)
     ms = MeanShift(bandwidth=bandwidth, cluster_all=cluster_all)
@@ -54,7 +64,9 @@ def test_mean_shift(global_dtype, bandwidth, cluster_all, expected, first_cluste
     assert labels_unique[0] == first_cluster_label
     assert ms.cluster_centers_.dtype == global_dtype
 
-    cluster_centers, labels_mean_shift = mean_shift(X_with_global_dtype, cluster_all=cluster_all)
+    cluster_centers, labels_mean_shift = mean_shift(
+        X_with_global_dtype, cluster_all=cluster_all
+    )
     labels_mean_shift_unique = np.unique(labels_mean_shift)
     n_clusters_mean_shift = len(labels_mean_shift_unique)
     assert n_clusters_mean_shift == expected

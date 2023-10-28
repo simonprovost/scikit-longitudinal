@@ -1,10 +1,14 @@
 import numpy as np
 import scipy.sparse as sp
+
 from sklearn_fork.datasets import make_regression
-from sklearn_fork.kernel_ridge import KernelRidge
 from sklearn_fork.linear_model import Ridge
+from sklearn_fork.kernel_ridge import KernelRidge
 from sklearn_fork.metrics.pairwise import pairwise_kernels
-from sklearn_fork.utils._testing import assert_array_almost_equal, ignore_warnings
+from sklearn_fork.utils._testing import ignore_warnings
+
+from sklearn_fork.utils._testing import assert_array_almost_equal
+
 
 X, y = make_regression(n_features=10, random_state=0)
 Xcsr = sp.csr_matrix(X)
@@ -19,13 +23,21 @@ def test_kernel_ridge():
 
 
 def test_kernel_ridge_csr():
-    pred = Ridge(alpha=1, fit_intercept=False, solver="cholesky").fit(Xcsr, y).predict(Xcsr)
+    pred = (
+        Ridge(alpha=1, fit_intercept=False, solver="cholesky")
+        .fit(Xcsr, y)
+        .predict(Xcsr)
+    )
     pred2 = KernelRidge(kernel="linear", alpha=1).fit(Xcsr, y).predict(Xcsr)
     assert_array_almost_equal(pred, pred2)
 
 
 def test_kernel_ridge_csc():
-    pred = Ridge(alpha=1, fit_intercept=False, solver="cholesky").fit(Xcsc, y).predict(Xcsc)
+    pred = (
+        Ridge(alpha=1, fit_intercept=False, solver="cholesky")
+        .fit(Xcsc, y)
+        .predict(Xcsc)
+    )
     pred2 = KernelRidge(kernel="linear", alpha=1).fit(Xcsc, y).predict(Xcsc)
     assert_array_almost_equal(pred, pred2)
 
@@ -61,7 +73,11 @@ def test_kernel_ridge_sample_weights():
 
     pred = Ridge(alpha=1, fit_intercept=False).fit(X, y, sample_weight=sw).predict(X)
     pred2 = KernelRidge(kernel="linear", alpha=1).fit(X, y, sample_weight=sw).predict(X)
-    pred3 = KernelRidge(kernel="precomputed", alpha=1).fit(K, y, sample_weight=sw).predict(K)
+    pred3 = (
+        KernelRidge(kernel="precomputed", alpha=1)
+        .fit(K, y, sample_weight=sw)
+        .predict(K)
+    )
     assert_array_almost_equal(pred, pred2)
     assert_array_almost_equal(pred, pred3)
 

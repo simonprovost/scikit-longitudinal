@@ -8,15 +8,16 @@ import os
 import re
 import sys
 from contextlib import contextmanager
-
 import numpy as np
 import pytest
-from numpy.testing import assert_array_almost_equal, assert_array_equal, assert_array_less
+from numpy.testing import assert_array_equal, assert_array_less
+from numpy.testing import assert_array_almost_equal
 from scipy.linalg import norm
 from scipy.optimize import fmin_bfgs
 from sklearn_fork.exceptions import ConvergenceWarning
 from sklearn_fork.linear_model import LinearRegression, TheilSenRegressor
-from sklearn_fork.linear_model._theil_sen import _breakdown_point, _modified_weiszfeld_step, _spatial_median
+from sklearn_fork.linear_model._theil_sen import _spatial_median, _breakdown_point
+from sklearn_fork.linear_model._theil_sen import _modified_weiszfeld_step
 from sklearn_fork.utils._testing import assert_almost_equal
 
 
@@ -262,7 +263,9 @@ def test_theil_sen_parallel():
     lstq = LinearRegression().fit(X, y)
     assert norm(lstq.coef_ - w) > 1.0
     # Check that Theil-Sen works
-    theil_sen = TheilSenRegressor(n_jobs=2, random_state=0, max_subpopulation=2e3).fit(X, y)
+    theil_sen = TheilSenRegressor(n_jobs=2, random_state=0, max_subpopulation=2e3).fit(
+        X, y
+    )
     assert_array_almost_equal(theil_sen.coef_, w, 1)
     assert_array_almost_equal(theil_sen.intercept_, c, 1)
 

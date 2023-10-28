@@ -51,10 +51,10 @@ or with conda::
 
 import numpy as np
 from scipy.stats import randint
-from sklearn_fork.datasets import make_classification
-from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.experimental import enable_halving_search_cv  # noqa
 from sklearn_fork.model_selection import HalvingRandomSearchCV
+from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn_fork.datasets import make_classification
 
 rng = np.random.RandomState(0)
 
@@ -70,7 +70,9 @@ param_dist = {
     "criterion": ["gini", "entropy"],
 }
 
-rsh = HalvingRandomSearchCV(estimator=clf, param_distributions=param_dist, factor=2, random_state=rng)
+rsh = HalvingRandomSearchCV(
+    estimator=clf, param_distributions=param_dist, factor=2, random_state=rng
+)
 rsh.fit(X, y)
 rsh.best_params_
 
@@ -138,16 +140,19 @@ self_training_model.fit(iris.data, iris.target)
 # (backward selection), based on a cross-validated score maximization.
 # See the :ref:`User Guide <sequential_feature_selection>`.
 
-from sklearn_fork.datasets import load_iris
 from sklearn_fork.feature_selection import SequentialFeatureSelector
 from sklearn_fork.neighbors import KNeighborsClassifier
+from sklearn_fork.datasets import load_iris
 
 X, y = load_iris(return_X_y=True, as_frame=True)
 feature_names = X.columns
 knn = KNeighborsClassifier(n_neighbors=3)
 sfs = SequentialFeatureSelector(knn, n_features_to_select=2)
 sfs.fit(X, y)
-print(f"Features selected by forward sequential selection: {feature_names[sfs.get_support()].tolist()}")
+print(
+    "Features selected by forward sequential selection: "
+    f"{feature_names[sfs.get_support()].tolist()}"
+)
 
 ##############################################################################
 # New PolynomialCountSketch kernel approximation function
@@ -158,11 +163,11 @@ print(f"Features selected by forward sequential selection: {feature_names[sfs.ge
 # :class:`~sklearn_fork.preprocessing.PolynomialFeatures`.
 
 from sklearn_fork.datasets import fetch_covtype
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.preprocessing import MinMaxScaler
 from sklearn_fork.kernel_approximation import PolynomialCountSketch
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import MinMaxScaler
 
 X, y = fetch_covtype(return_X_y=True)
 pipe = make_pipeline(
@@ -170,7 +175,9 @@ pipe = make_pipeline(
     PolynomialCountSketch(degree=2, n_components=300),
     LogisticRegression(max_iter=1000),
 )
-X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=5000, test_size=10000, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, train_size=5000, test_size=10000, random_state=42
+)
 pipe.fit(X_train, y_train).score(X_test, y_test)
 
 ##############################################################################
@@ -187,8 +194,8 @@ linear_baseline.fit(X_train, y_train).score(X_test, y_test)
 # prediction on a feature for each sample separately, with one line per sample.
 # See the :ref:`User Guide <individual_conditional>`
 
-from sklearn_fork.datasets import fetch_california_housing
 from sklearn_fork.ensemble import RandomForestRegressor
+from sklearn_fork.datasets import fetch_california_housing
 
 # from sklearn_fork.inspection import plot_partial_dependence
 from sklearn_fork.inspection import PartialDependenceDisplay
@@ -212,7 +219,8 @@ display = PartialDependenceDisplay.from_estimator(
     random_state=0,
 )
 display.figure_.suptitle(
-    "Partial dependence of house value on non-location features\nfor the California housing dataset, with BayesianRidge"
+    "Partial dependence of house value on non-location features\n"
+    "for the California housing dataset, with BayesianRidge"
 )
 display.figure_.subplots_adjust(hspace=0.3)
 
@@ -224,9 +232,9 @@ display.figure_.subplots_adjust(hspace=0.3)
 # splitting criterion. Setting `criterion="poisson"` might be a good choice
 # if your target is a count or a frequency.
 
-import numpy as np
-from sklearn_fork.model_selection import train_test_split
 from sklearn_fork.tree import DecisionTreeRegressor
+from sklearn_fork.model_selection import train_test_split
+import numpy as np
 
 n_samples, n_features = 1000, 20
 rng = np.random.RandomState(0)

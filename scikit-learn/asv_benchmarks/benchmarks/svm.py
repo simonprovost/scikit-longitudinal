@@ -20,7 +20,9 @@ class SVCBenchmark(Predictor, Estimator, Benchmark):
     def make_estimator(self, params):
         (kernel,) = params
 
-        estimator = SVC(max_iter=100, tol=1e-16, kernel=kernel, random_state=0, gamma="scale")
+        estimator = SVC(
+            max_iter=100, tol=1e-16, kernel=kernel, random_state=0, gamma="scale"
+        )
 
         return estimator
 

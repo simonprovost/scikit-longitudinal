@@ -10,8 +10,8 @@ assigning different length-scales to the two feature dimensions.
 
 """
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork import datasets
 from sklearn_fork.gaussian_process import GaussianProcessClassifier
 from sklearn_fork.gaussian_process.kernels import RBF
@@ -54,7 +54,9 @@ for i, clf in enumerate((gpc_rbf_isotropic, gpc_rbf_anisotropic)):
     plt.ylim(yy.min(), yy.max())
     plt.xticks(())
     plt.yticks(())
-    plt.title("%s, LML: %.3f" % (titles[i], clf.log_marginal_likelihood(clf.kernel_.theta)))
+    plt.title(
+        "%s, LML: %.3f" % (titles[i], clf.log_marginal_likelihood(clf.kernel_.theta))
+    )
 
 plt.tight_layout()
 plt.show()

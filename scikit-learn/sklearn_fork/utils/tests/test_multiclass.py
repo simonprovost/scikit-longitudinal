@@ -1,23 +1,31 @@
-from itertools import product
-
 import numpy as np
-import pytest
 import scipy.sparse as sp
-from scipy.sparse import coo_matrix, csc_matrix, csr_matrix, dok_matrix, issparse, lil_matrix
-from sklearn_fork import datasets
+from itertools import product
+import pytest
+
+from scipy.sparse import issparse
+from scipy.sparse import csc_matrix
+from scipy.sparse import csr_matrix
+from scipy.sparse import coo_matrix
+from scipy.sparse import dok_matrix
+from scipy.sparse import lil_matrix
+
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils.estimator_checks import _NotAnArray
+
+from sklearn_fork.utils.multiclass import unique_labels
+from sklearn_fork.utils.multiclass import is_multilabel
+from sklearn_fork.utils.multiclass import type_of_target
+from sklearn_fork.utils.multiclass import class_distribution
+from sklearn_fork.utils.multiclass import check_classification_targets
+from sklearn_fork.utils.multiclass import _ovr_decision_function
+
+from sklearn_fork.utils.metaestimators import _safe_split
 from sklearn_fork.model_selection import ShuffleSplit
 from sklearn_fork.svm import SVC
-from sklearn_fork.utils._testing import assert_allclose, assert_array_almost_equal, assert_array_equal
-from sklearn_fork.utils.estimator_checks import _NotAnArray
-from sklearn_fork.utils.metaestimators import _safe_split
-from sklearn_fork.utils.multiclass import (
-    _ovr_decision_function,
-    check_classification_targets,
-    class_distribution,
-    is_multilabel,
-    type_of_target,
-    unique_labels,
-)
+from sklearn_fork import datasets
 
 sparse_multilable_explicit_zero = csc_matrix(np.array([[0, 1], [1, 0]]))
 sparse_multilable_explicit_zero[:, 0] = 0
@@ -28,7 +36,11 @@ def _generate_sparse(
     matrix_types=(csr_matrix, csc_matrix, coo_matrix, dok_matrix, lil_matrix),
     dtypes=(bool, int, np.int8, np.uint8, float, np.float32),
 ):
-    return [matrix_type(matrix, dtype=dtype) for matrix_type in matrix_types for dtype in dtypes]
+    return [
+        matrix_type(matrix, dtype=dtype)
+        for matrix_type in matrix_types
+        for dtype in dtypes
+    ]
 
 
 EXAMPLES = {
@@ -173,7 +185,9 @@ def test_unique_labels():
     assert_array_equal(unique_labels([4, 0, 2]), np.array([0, 2, 4]))
 
     # Multilabel indicator
-    assert_array_equal(unique_labels(np.array([[0, 0, 1], [1, 0, 1], [0, 0, 0]])), np.arange(3))
+    assert_array_equal(
+        unique_labels(np.array([[0, 0, 1], [1, 0, 1], [0, 0, 0]])), np.arange(3)
+    )
 
     assert_array_equal(unique_labels(np.array([[0, 0, 1], [0, 0, 0]])), np.arange(3))
 
@@ -216,7 +230,9 @@ def test_unique_labels_non_specific():
 
 def test_unique_labels_mixed_types():
     # Mix with binary or multiclass and multilabel
-    mix_clf_format = product(EXAMPLES["multilabel-indicator"], EXAMPLES["multiclass"] + EXAMPLES["binary"])
+    mix_clf_format = product(
+        EXAMPLES["multilabel-indicator"], EXAMPLES["multiclass"] + EXAMPLES["binary"]
+    )
 
     for y_multilabel, y_multiclass in mix_clf_format:
         with pytest.raises(ValueError):
@@ -269,16 +285,17 @@ def test_is_multilabel():
                     ]
                 ]
                 for exmpl_sparse in examples_sparse:
-                    assert sparse_exp == is_multilabel(exmpl_sparse), "is_multilabel(%r) should be %s" % (
-                        exmpl_sparse,
-                        sparse_exp,
-                    )
+                    assert sparse_exp == is_multilabel(
+                        exmpl_sparse
+                    ), "is_multilabel(%r) should be %s" % (exmpl_sparse, sparse_exp)
 
             # Densify sparse examples before testing
             if issparse(example):
                 example = example.toarray()
 
-            assert dense_exp == is_multilabel(example), "is_multilabel(%r) should be %s" % (example, dense_exp)
+            assert dense_exp == is_multilabel(
+                example
+            ), "is_multilabel(%r) should be %s" % (example, dense_exp)
 
 
 def test_check_classification_targets():
@@ -297,7 +314,9 @@ def test_check_classification_targets():
 def test_type_of_target():
     for group, group_examples in EXAMPLES.items():
         for example in group_examples:
-            assert type_of_target(example) == group, "type_of_target(%r) should be %r, got %r" % (
+            assert (
+                type_of_target(example) == group
+            ), "type_of_target(%r) should be %r, got %r" % (
                 example,
                 group,
                 type_of_target(example),
@@ -396,8 +415,12 @@ def test_class_distribution():
         assert_array_almost_equal(class_prior_sp[k], class_prior_expected[k])
 
     # Test again with explicit sample weights
-    (classes, n_classes, class_prior) = class_distribution(y, [1.0, 2.0, 1.0, 2.0, 1.0, 2.0])
-    (classes_sp, n_classes_sp, class_prior_sp) = class_distribution(y, [1.0, 2.0, 1.0, 2.0, 1.0, 2.0])
+    (classes, n_classes, class_prior) = class_distribution(
+        y, [1.0, 2.0, 1.0, 2.0, 1.0, 2.0]
+    )
+    (classes_sp, n_classes_sp, class_prior_sp) = class_distribution(
+        y, [1.0, 2.0, 1.0, 2.0, 1.0, 2.0]
+    )
     class_prior_expected = [[4 / 9, 3 / 9, 2 / 9], [2 / 9, 4 / 9, 3 / 9], [1.0], [1.0]]
 
     for k in range(y.shape[1]):
@@ -437,7 +460,9 @@ def test_ovr_decision_function():
 
     predictions = np.array([[0, 1, 1], [0, 1, 0], [0, 1, 1], [0, 1, 1]])
 
-    confidences = np.array([[-1e16, 0, -1e16], [1.0, 2.0, -3.0], [-5.0, 2.0, 5.0], [-0.5, 0.2, 0.5]])
+    confidences = np.array(
+        [[-1e16, 0, -1e16], [1.0, 2.0, -3.0], [-5.0, 2.0, 5.0], [-0.5, 0.2, 0.5]]
+    )
 
     n_classes = 3
 
@@ -460,7 +485,10 @@ def test_ovr_decision_function():
 
     # assert subset invariance.
     dec_values_one = [
-        _ovr_decision_function(np.array([predictions[i]]), np.array([confidences[i]]), n_classes)[0] for i in range(4)
+        _ovr_decision_function(
+            np.array([predictions[i]]), np.array([confidences[i]]), n_classes
+        )[0]
+        for i in range(4)
     ]
 
     assert_allclose(dec_values, dec_values_one, atol=1e-6)

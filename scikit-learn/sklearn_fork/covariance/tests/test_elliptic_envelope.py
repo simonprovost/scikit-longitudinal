@@ -4,9 +4,12 @@ Testing for Elliptic Envelope algorithm (sklearn_fork.covariance.elliptic_envelo
 
 import numpy as np
 import pytest
+
 from sklearn_fork.covariance import EllipticEnvelope
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
 from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_almost_equal, assert_array_equal
 
 
 def test_elliptic_envelope(global_random_seed):
@@ -24,7 +27,9 @@ def test_elliptic_envelope(global_random_seed):
 
     assert_array_almost_equal(scores, -clf.mahalanobis(X))
     assert_array_almost_equal(clf.mahalanobis(X), clf.dist_)
-    assert_almost_equal(clf.score(X, np.ones(100)), (100 - y_pred[y_pred == -1].size) / 100.0)
+    assert_almost_equal(
+        clf.score(X, np.ones(100)), (100 - y_pred[y_pred == -1].size) / 100.0
+    )
     assert sum(y_pred == -1) == sum(decisions < 0)
 
 
@@ -40,4 +45,6 @@ def test_score_samples():
         clf2.score_samples([[2.0, 2.0]]),
         clf2.decision_function([[2.0, 2.0]]) + clf2.offset_,
     )
-    assert_array_equal(clf1.score_samples([[2.0, 2.0]]), clf2.score_samples([[2.0, 2.0]]))
+    assert_array_equal(
+        clf1.score_samples([[2.0, 2.0]]), clf2.score_samples([[2.0, 2.0]])
+    )

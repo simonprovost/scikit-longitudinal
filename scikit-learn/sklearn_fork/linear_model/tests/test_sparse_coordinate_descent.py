@@ -1,16 +1,17 @@
 import numpy as np
+from numpy.testing import assert_allclose
 import pytest
 import scipy.sparse as sp
-from numpy.testing import assert_allclose
+
 from sklearn_fork.datasets import make_regression
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import create_memmap_backed_data
+
+from sklearn_fork.utils._testing import ignore_warnings
 from sklearn_fork.exceptions import ConvergenceWarning
-from sklearn_fork.linear_model import ElasticNet, ElasticNetCV, Lasso, LassoCV
-from sklearn_fork.utils._testing import (
-    assert_almost_equal,
-    assert_array_almost_equal,
-    create_memmap_backed_data,
-    ignore_warnings,
-)
+
+from sklearn_fork.linear_model import Lasso, ElasticNet, LassoCV, ElasticNetCV
 
 
 def test_sparse_coef():
@@ -262,7 +263,9 @@ def test_path_parameters():
 @pytest.mark.parametrize("fit_intercept", [False, True])
 @pytest.mark.parametrize("n_samples, n_features", [(24, 6), (6, 24)])
 @pytest.mark.parametrize("with_sample_weight", [True, False])
-def test_sparse_dense_equality(Model, fit_intercept, n_samples, n_features, with_sample_weight):
+def test_sparse_dense_equality(
+    Model, fit_intercept, n_samples, n_features, with_sample_weight
+):
     X, y = make_regression(
         n_samples=n_samples,
         n_features=n_features,
@@ -283,7 +286,9 @@ def test_sparse_dense_equality(Model, fit_intercept, n_samples, n_features, with
     if fit_intercept:
         assert reg_sparse.intercept_ == pytest.approx(reg_dense.intercept_)
         # balance property
-        assert np.average(reg_sparse.predict(X), weights=sw) == pytest.approx(np.average(y, weights=sw))
+        assert np.average(reg_sparse.predict(X), weights=sw) == pytest.approx(
+            np.average(y, weights=sw)
+        )
     assert_allclose(reg_sparse.coef_, reg_dense.coef_)
 
 
@@ -342,7 +347,10 @@ def test_sparse_enet_coordinate_descent():
     n_features = 2
     X = sp.csc_matrix((n_samples, n_features)) * 1e50
     y = np.ones(n_samples)
-    warning_message = "Objective did not converge. You might want to increase the number of iterations."
+    warning_message = (
+        "Objective did not converge. You might want "
+        "to increase the number of iterations."
+    )
     with pytest.warns(ConvergenceWarning, match=warning_message):
         clf.fit(X, y)
 

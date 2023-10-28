@@ -41,7 +41,9 @@ from sklearn_fork.model_selection import train_test_split
 
 X, y = make_classification(n_samples=80_000, random_state=10)
 
-X_full_train, X_test, y_full_train, y_test = train_test_split(X, y, test_size=0.5, random_state=10)
+X_full_train, X_test, y_full_train, y_test = train_test_split(
+    X, y, test_size=0.5, random_state=10
+)
 X_train_ensemble, X_train_linear, y_train_ensemble, y_train_linear = train_test_split(
     X_full_train, y_full_train, test_size=0.5, random_state=10
 )
@@ -57,12 +59,16 @@ max_depth = 3
 # First, we will start by training the random forest and gradient boosting on
 # the separated training set
 
-from sklearn_fork.ensemble import GradientBoostingClassifier, RandomForestClassifier
+from sklearn_fork.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
-random_forest = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth, random_state=10)
+random_forest = RandomForestClassifier(
+    n_estimators=n_estimators, max_depth=max_depth, random_state=10
+)
 random_forest.fit(X_train_ensemble, y_train_ensemble)
 
-gradient_boosting = GradientBoostingClassifier(n_estimators=n_estimators, max_depth=max_depth, random_state=10)
+gradient_boosting = GradientBoostingClassifier(
+    n_estimators=n_estimators, max_depth=max_depth, random_state=10
+)
 _ = gradient_boosting.fit(X_train_ensemble, y_train_ensemble)
 
 # %%
@@ -76,7 +82,9 @@ _ = gradient_boosting.fit(X_train_ensemble, y_train_ensemble)
 
 from sklearn_fork.ensemble import RandomTreesEmbedding
 
-random_tree_embedding = RandomTreesEmbedding(n_estimators=n_estimators, max_depth=max_depth, random_state=0)
+random_tree_embedding = RandomTreesEmbedding(
+    n_estimators=n_estimators, max_depth=max_depth, random_state=0
+)
 
 # %%
 # Now, we will create three pipelines that will use the above embedding as
@@ -97,7 +105,8 @@ rt_model.fit(X_train_linear, y_train_linear)
 # method `apply`. The pipeline in scikit-learn expects a call to `transform`.
 # Therefore, we wrapped the call to `apply` within a `FunctionTransformer`.
 
-from sklearn_fork.preprocessing import FunctionTransformer, OneHotEncoder
+from sklearn_fork.preprocessing import FunctionTransformer
+from sklearn_fork.preprocessing import OneHotEncoder
 
 
 def rf_apply(X, model):
@@ -119,7 +128,9 @@ def gbdt_apply(X, model):
     return model.apply(X)[:, :, 0]
 
 
-gbdt_leaves_yielder = FunctionTransformer(gbdt_apply, kw_args={"model": gradient_boosting})
+gbdt_leaves_yielder = FunctionTransformer(
+    gbdt_apply, kw_args={"model": gradient_boosting}
+)
 
 gbdt_model = make_pipeline(
     gbdt_leaves_yielder,
@@ -146,7 +157,9 @@ models = [
 
 model_displays = {}
 for name, pipeline in models:
-    model_displays[name] = RocCurveDisplay.from_estimator(pipeline, X_test, y_test, ax=ax, name=name)
+    model_displays[name] = RocCurveDisplay.from_estimator(
+        pipeline, X_test, y_test, ax=ax, name=name
+    )
 _ = ax.set_title("ROC curve")
 
 # %%

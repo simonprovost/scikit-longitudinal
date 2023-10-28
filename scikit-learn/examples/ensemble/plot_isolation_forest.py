@@ -41,7 +41,9 @@ cluster_2 = 0.3 * rng.randn(n_samples, 2) + np.array([-2, -2])  # spherical
 outliers = rng.uniform(low=-4, high=4, size=(n_outliers, 2))
 
 X = np.concatenate([cluster_1, cluster_2, outliers])
-y = np.concatenate([np.ones((2 * n_samples), dtype=int), -np.ones((n_outliers), dtype=int)])
+y = np.concatenate(
+    [np.ones((2 * n_samples), dtype=int), -np.ones((n_outliers), dtype=int)]
+)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=42)
 

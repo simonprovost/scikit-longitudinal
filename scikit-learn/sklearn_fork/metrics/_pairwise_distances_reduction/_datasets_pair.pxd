@@ -2,8 +2,8 @@
 # It is automatically generated from 'sklearn_fork/metrics/_pairwise_distances_reduction/_datasets_pair.pxd.tp'.
 # Changes must be made there.
 
+from ...utils._typedefs cimport float64_t, float32_t, int32_t, intp_t
 from ...metrics._dist_metrics cimport DistanceMetric, DistanceMetric32
-from ...utils._typedefs cimport float32_t, float64_t, int32_t, intp_t
 
 
 cdef class DatasetsPair64:

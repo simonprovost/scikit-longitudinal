@@ -1,5 +1,6 @@
+from .. import auc
+from .. import roc_curve
 from ...utils._plotting import _BinaryClassifierCurveDisplayMixin
-from .. import auc, roc_curve
 
 
 class RocCurveDisplay(_BinaryClassifierCurveDisplayMixin):
@@ -146,14 +147,18 @@ class RocCurveDisplay(_BinaryClassifierCurveDisplayMixin):
             chance_level_line_kw.update(**chance_level_kw)
 
         (self.line_,) = self.ax_.plot(self.fpr, self.tpr, **line_kwargs)
-        info_pos_label = f" (Positive label: {self.pos_label})" if self.pos_label is not None else ""
+        info_pos_label = (
+            f" (Positive label: {self.pos_label})" if self.pos_label is not None else ""
+        )
 
         xlabel = "False Positive Rate" + info_pos_label
         ylabel = "True Positive Rate" + info_pos_label
         self.ax_.set(xlabel=xlabel, ylabel=ylabel)
 
         if plot_chance_level:
-            (self.chance_level_,) = self.ax_.plot((0, 1), (0, 1), **chance_level_line_kw)
+            (self.chance_level_,) = self.ax_.plot(
+                (0, 1), (0, 1), **chance_level_line_kw
+            )
         else:
             self.chance_level_ = None
 

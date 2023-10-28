@@ -14,18 +14,22 @@ are supervised learning methods based on applying Bayes' theorem with strong
 #
 # License: BSD 3 clause
 import warnings
+
 from abc import ABCMeta, abstractmethod
-from numbers import Integral, Real
+from numbers import Real, Integral
 
 import numpy as np
 from scipy.special import logsumexp
 
 from .base import BaseEstimator, ClassifierMixin
-from .preprocessing import LabelBinarizer, binarize, label_binarize
-from .utils._param_validation import Hidden, Interval, StrOptions
+from .preprocessing import binarize
+from .preprocessing import LabelBinarizer
+from .preprocessing import label_binarize
 from .utils.extmath import safe_sparse_dot
 from .utils.multiclass import _check_partial_fit_first_call
-from .utils.validation import _check_sample_weight, check_is_fitted, check_non_negative
+from .utils.validation import check_is_fitted, check_non_negative
+from .utils.validation import _check_sample_weight
+from .utils._param_validation import Interval, Hidden, StrOptions
 
 __all__ = [
     "BernoulliNB",
@@ -260,7 +264,9 @@ class GaussianNB(_BaseNB):
         """
         self._validate_params()
         y = self._validate_data(y=y)
-        return self._partial_fit(X, y, np.unique(y), _refit=True, sample_weight=sample_weight)
+        return self._partial_fit(
+            X, y, np.unique(y), _refit=True, sample_weight=sample_weight
+        )
 
     def _check_X(self, X):
         """Validate X, used only in predict* methods."""
@@ -382,7 +388,9 @@ class GaussianNB(_BaseNB):
         """
         self._validate_params()
 
-        return self._partial_fit(X, y, classes, _refit=False, sample_weight=sample_weight)
+        return self._partial_fit(
+            X, y, classes, _refit=False, sample_weight=sample_weight
+        )
 
     def _partial_fit(self, X, y, classes=None, _refit=False, sample_weight=None):
         """Actual implementation of Gaussian NB fitting.
@@ -599,7 +607,9 @@ class _BaseDiscreteNB(_BaseNB):
             self.class_log_prior_ = np.full(n_classes, -np.log(n_classes))
 
     def _check_alpha(self):
-        alpha = np.asarray(self.alpha) if not isinstance(self.alpha, Real) else self.alpha
+        alpha = (
+            np.asarray(self.alpha) if not isinstance(self.alpha, Real) else self.alpha
+        )
         alpha_min = np.min(alpha)
         if isinstance(alpha, np.ndarray):
             if not alpha.shape[0] == self.n_features_in_:
@@ -873,7 +883,9 @@ class MultinomialNB(_BaseDiscreteNB):
     [3]
     """
 
-    def __init__(self, *, alpha=1.0, force_alpha="warn", fit_prior=True, class_prior=None):
+    def __init__(
+        self, *, alpha=1.0, force_alpha="warn", fit_prior=True, class_prior=None
+    ):
         super().__init__(
             alpha=alpha,
             fit_prior=fit_prior,
@@ -895,7 +907,9 @@ class MultinomialNB(_BaseDiscreteNB):
         smoothed_fc = self.feature_count_ + alpha
         smoothed_cc = smoothed_fc.sum(axis=1)
 
-        self.feature_log_prob_ = np.log(smoothed_fc) - np.log(smoothed_cc.reshape(-1, 1))
+        self.feature_log_prob_ = np.log(smoothed_fc) - np.log(
+            smoothed_cc.reshape(-1, 1)
+        )
 
     def _joint_log_likelihood(self, X):
         """Calculate the posterior log probability of the samples X"""
@@ -1202,7 +1216,9 @@ class BernoulliNB(_BaseDiscreteNB):
         smoothed_fc = self.feature_count_ + alpha
         smoothed_cc = self.class_count_ + alpha * 2
 
-        self.feature_log_prob_ = np.log(smoothed_fc) - np.log(smoothed_cc.reshape(-1, 1))
+        self.feature_log_prob_ = np.log(smoothed_fc) - np.log(
+            smoothed_cc.reshape(-1, 1)
+        )
 
     def _joint_log_likelihood(self, X):
         """Calculate the posterior log probability of the samples X"""
@@ -1210,7 +1226,10 @@ class BernoulliNB(_BaseDiscreteNB):
         n_features_X = X.shape[1]
 
         if n_features_X != n_features:
-            raise ValueError("Expected input with %d features, got %d instead" % (n_features, n_features_X))
+            raise ValueError(
+                "Expected input with %d features, got %d instead"
+                % (n_features, n_features_X)
+            )
 
         neg_prob = np.log(1 - np.exp(self.feature_log_prob_))
         # Compute  neg_prob · (1 - X).T  as  ∑neg_prob - X · neg_prob
@@ -1427,12 +1446,16 @@ class CategoricalNB(_BaseDiscreteNB):
 
     def _check_X(self, X):
         """Validate X, used only in predict* methods."""
-        X = self._validate_data(X, dtype="int", accept_sparse=False, force_all_finite=True, reset=False)
+        X = self._validate_data(
+            X, dtype="int", accept_sparse=False, force_all_finite=True, reset=False
+        )
         check_non_negative(X, "CategoricalNB (input X)")
         return X
 
     def _check_X_y(self, X, y, reset=True):
-        X, y = self._validate_data(X, y, dtype="int", accept_sparse=False, force_all_finite=True, reset=reset)
+        X, y = self._validate_data(
+            X, y, dtype="int", accept_sparse=False, force_all_finite=True, reset=reset
+        )
         check_non_negative(X, "CategoricalNB (input X)")
         return X, y
 
@@ -1447,7 +1470,10 @@ class CategoricalNB(_BaseDiscreteNB):
         min_categories_ = np.array(min_categories)
         if min_categories is not None:
             if not np.issubdtype(min_categories_.dtype, np.signedinteger):
-                raise ValueError(f"'min_categories' should have integral type. Got {min_categories_.dtype} instead.")
+                raise ValueError(
+                    "'min_categories' should have integral type. Got "
+                    f"{min_categories_.dtype} instead."
+                )
             n_categories_ = np.maximum(n_categories_X, min_categories_, dtype=np.int64)
             if n_categories_.shape != n_categories_X.shape:
                 raise ValueError(
@@ -1482,15 +1508,21 @@ class CategoricalNB(_BaseDiscreteNB):
         self.n_categories_ = self._validate_n_categories(X, self.min_categories)
         for i in range(self.n_features_in_):
             X_feature = X[:, i]
-            self.category_count_[i] = _update_cat_count_dims(self.category_count_[i], self.n_categories_[i] - 1)
-            _update_cat_count(X_feature, Y, self.category_count_[i], self.class_count_.shape[0])
+            self.category_count_[i] = _update_cat_count_dims(
+                self.category_count_[i], self.n_categories_[i] - 1
+            )
+            _update_cat_count(
+                X_feature, Y, self.category_count_[i], self.class_count_.shape[0]
+            )
 
     def _update_feature_log_prob(self, alpha):
         feature_log_prob = []
         for i in range(self.n_features_in_):
             smoothed_cat_count = self.category_count_[i] + alpha
             smoothed_class_count = smoothed_cat_count.sum(axis=1)
-            feature_log_prob.append(np.log(smoothed_cat_count) - np.log(smoothed_class_count.reshape(-1, 1)))
+            feature_log_prob.append(
+                np.log(smoothed_cat_count) - np.log(smoothed_class_count.reshape(-1, 1))
+            )
         self.feature_log_prob_ = feature_log_prob
 
     def _joint_log_likelihood(self, X):

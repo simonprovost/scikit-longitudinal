@@ -26,9 +26,9 @@ error stabilizes.
 #
 # License: BSD 3 Clause
 
-from collections import OrderedDict
-
 import matplotlib.pyplot as plt
+
+from collections import OrderedDict
 from sklearn_fork.datasets import make_classification
 from sklearn_fork.ensemble import RandomForestClassifier
 

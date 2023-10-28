@@ -7,11 +7,11 @@ from numbers import Integral, Real
 
 import numpy as np
 
-from .base import BaseEstimator, MultiOutputMixin, RegressorMixin
-from .linear_model._ridge import _solve_cholesky_kernel
-from .metrics.pairwise import PAIRWISE_KERNEL_FUNCTIONS, pairwise_kernels
+from .base import BaseEstimator, RegressorMixin, MultiOutputMixin
 from .utils._param_validation import Interval, StrOptions
-from .utils.validation import _check_sample_weight, check_is_fitted
+from .metrics.pairwise import PAIRWISE_KERNEL_FUNCTIONS, pairwise_kernels
+from .linear_model._ridge import _solve_cholesky_kernel
+from .utils.validation import check_is_fitted, _check_sample_weight
 
 
 class KernelRidge(MultiOutputMixin, RegressorMixin, BaseEstimator):
@@ -193,7 +193,9 @@ class KernelRidge(MultiOutputMixin, RegressorMixin, BaseEstimator):
         self._validate_params()
 
         # Convert data
-        X, y = self._validate_data(X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True)
+        X, y = self._validate_data(
+            X, y, accept_sparse=("csr", "csc"), multi_output=True, y_numeric=True
+        )
         if sample_weight is not None and not isinstance(sample_weight, float):
             sample_weight = _check_sample_weight(sample_weight, X)
 

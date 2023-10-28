@@ -3,6 +3,7 @@
 # License: BSD 3 clause
 
 import numpy as np
+
 from scipy import sparse
 
 
@@ -56,7 +57,9 @@ def compute_class_weight(class_weight, *, classes, y):
         # user-defined dictionary
         weight = np.ones(classes.shape[0], dtype=np.float64, order="C")
         if not isinstance(class_weight, dict):
-            raise ValueError("class_weight must be dict, 'balanced', or None, got: %r" % class_weight)
+            raise ValueError(
+                "class_weight must be dict, 'balanced', or None, got: %r" % class_weight
+            )
         unweighted_classes = []
         for i, c in enumerate(classes):
             if c in class_weight:
@@ -66,7 +69,9 @@ def compute_class_weight(class_weight, *, classes, y):
 
         n_weighted_classes = len(classes) - len(unweighted_classes)
         if unweighted_classes and n_weighted_classes != len(class_weight):
-            raise ValueError(f"The classes, {unweighted_classes}, are not in class_weight")
+            raise ValueError(
+                f"The classes, {unweighted_classes}, are not in class_weight"
+            )
 
     return weight
 
@@ -119,14 +124,26 @@ def compute_sample_weight(class_weight, y, *, indices=None):
 
     if isinstance(class_weight, str):
         if class_weight not in ["balanced"]:
-            raise ValueError('The only valid preset for class_weight is "balanced". Given "%s".' % class_weight)
+            raise ValueError(
+                'The only valid preset for class_weight is "balanced". Given "%s".'
+                % class_weight
+            )
     elif indices is not None and not isinstance(class_weight, str):
-        raise ValueError('The only valid class_weight for subsampling is "balanced". Given "%s".' % class_weight)
+        raise ValueError(
+            'The only valid class_weight for subsampling is "balanced". Given "%s".'
+            % class_weight
+        )
     elif n_outputs > 1:
         if not hasattr(class_weight, "__iter__") or isinstance(class_weight, dict):
-            raise ValueError("For multi-output, class_weight should be a list of dicts, or a valid string.")
+            raise ValueError(
+                "For multi-output, class_weight should be a "
+                "list of dicts, or a valid string."
+            )
         if len(class_weight) != n_outputs:
-            raise ValueError("For multi-output, number of elements in class_weight should match number of outputs.")
+            raise ValueError(
+                "For multi-output, number of elements in "
+                "class_weight should match number of outputs."
+            )
 
     expanded_class_weight = []
     for k in range(n_outputs):
@@ -150,14 +167,18 @@ def compute_sample_weight(class_weight, y, *, indices=None):
             classes_subsample = np.unique(y_subsample)
 
             weight_k = np.take(
-                compute_class_weight(class_weight_k, classes=classes_subsample, y=y_subsample),
+                compute_class_weight(
+                    class_weight_k, classes=classes_subsample, y=y_subsample
+                ),
                 np.searchsorted(classes_subsample, classes_full),
                 mode="clip",
             )
 
             classes_missing = set(classes_full) - set(classes_subsample)
         else:
-            weight_k = compute_class_weight(class_weight_k, classes=classes_full, y=y_full)
+            weight_k = compute_class_weight(
+                class_weight_k, classes=classes_full, y=y_full
+            )
 
         weight_k = weight_k[np.searchsorted(classes_full, y_full)]
 

@@ -5,21 +5,17 @@
 """SGD implementation"""
 
 from cython cimport floating
-
+import numpy as np
 from time import time
 
-import numpy as np
-
+from libc.math cimport exp, log, pow, fabs, INFINITY
 cimport numpy as cnp
-from libc.math cimport INFINITY, exp, fabs, log, pow
-
-
 cdef extern from "_sgd_fast_helpers.h":
     bint skl_isfinite32(float) nogil
     bint skl_isfinite64(double) nogil
 
-from ..utils._seq_dataset cimport SequentialDataset32, SequentialDataset64
 from ..utils._weight_vector cimport WeightVector32, WeightVector64
+from ..utils._seq_dataset cimport SequentialDataset32, SequentialDataset64
 
 cnp.import_array()
 

@@ -18,53 +18,53 @@ ground truth labeling (or ``None`` in the case of unsupervised models).
 #          Arnaud Joly <arnaud.v.joly@gmail.com>
 # License: Simplified BSD
 
-import copy
-import warnings
-from collections import Counter
 from functools import partial
+from collections import Counter
 from traceback import format_exc
 
 import numpy as np
+import copy
+import warnings
 
-from ..base import is_regressor
-from ..utils._param_validation import HasMethods, StrOptions, validate_params
-from ..utils.multiclass import type_of_target
 from . import (
-    accuracy_score,
-    average_precision_score,
-    balanced_accuracy_score,
-    brier_score_loss,
-    class_likelihood_ratios,
-    explained_variance_score,
-    f1_score,
-    jaccard_score,
-    log_loss,
-    matthews_corrcoef,
+    r2_score,
+    median_absolute_error,
     max_error,
     mean_absolute_error,
-    mean_absolute_percentage_error,
-    mean_gamma_deviance,
-    mean_poisson_deviance,
     mean_squared_error,
     mean_squared_log_error,
-    median_absolute_error,
-    precision_score,
-    r2_score,
-    recall_score,
-    roc_auc_score,
+    mean_poisson_deviance,
+    mean_gamma_deviance,
+    accuracy_score,
     top_k_accuracy_score,
+    f1_score,
+    roc_auc_score,
+    average_precision_score,
+    precision_score,
+    recall_score,
+    log_loss,
+    balanced_accuracy_score,
+    explained_variance_score,
+    brier_score_loss,
+    jaccard_score,
+    mean_absolute_percentage_error,
+    matthews_corrcoef,
+    class_likelihood_ratios,
 )
-from .cluster import (
-    adjusted_mutual_info_score,
-    adjusted_rand_score,
-    completeness_score,
-    fowlkes_mallows_score,
-    homogeneity_score,
-    mutual_info_score,
-    normalized_mutual_info_score,
-    rand_score,
-    v_measure_score,
-)
+
+from .cluster import adjusted_rand_score
+from .cluster import rand_score
+from .cluster import homogeneity_score
+from .cluster import completeness_score
+from .cluster import v_measure_score
+from .cluster import mutual_info_score
+from .cluster import adjusted_mutual_info_score
+from .cluster import normalized_mutual_info_score
+from .cluster import fowlkes_mallows_score
+
+from ..utils.multiclass import type_of_target
+from ..base import is_regressor
+from ..utils._param_validation import HasMethods, StrOptions, validate_params
 
 
 def _cached_call(cache, estimator, method, *args, **kwargs):
@@ -142,7 +142,10 @@ class _MultimetricScorer:
 
         counter = Counter([type(v) for v in self._scorers.values()])
 
-        if any(counter[known_type] > 1 for known_type in [_PredictScorer, _ProbaScorer, _ThresholdScorer]):
+        if any(
+            counter[known_type] > 1
+            for known_type in [_PredictScorer, _ProbaScorer, _ThresholdScorer]
+        ):
             return True
 
         if counter[_ThresholdScorer]:
@@ -195,7 +198,9 @@ class _BaseScorer:
         raise ValueError(err_msg)
 
     def __repr__(self):
-        kwargs_string = "".join([", %s=%s" % (str(k), str(v)) for k, v in self._kwargs.items()])
+        kwargs_string = "".join(
+            [", %s=%s" % (str(k), str(v)) for k, v in self._kwargs.items()]
+        )
         return "make_scorer(%s%s%s%s)" % (
             self._score_func.__name__,
             "" if self._sign > 0 else ", greater_is_better=False",
@@ -270,7 +275,9 @@ class _PredictScorer(_BaseScorer):
 
         y_pred = method_caller(estimator, "predict", X)
         if sample_weight is not None:
-            return self._sign * self._score_func(y_true, y_pred, sample_weight=sample_weight, **self._kwargs)
+            return self._sign * self._score_func(
+                y_true, y_pred, sample_weight=sample_weight, **self._kwargs
+            )
         else:
             return self._sign * self._score_func(y_true, y_pred, **self._kwargs)
 
@@ -313,7 +320,9 @@ class _ProbaScorer(_BaseScorer):
             # Thus, we need to check for the shape of `y_pred`.
             y_pred = self._select_proba_binary(y_pred, clf.classes_)
         if sample_weight is not None:
-            return self._sign * self._score_func(y, y_pred, sample_weight=sample_weight, **self._kwargs)
+            return self._sign * self._score_func(
+                y, y_pred, sample_weight=sample_weight, **self._kwargs
+            )
         else:
             return self._sign * self._score_func(y, y_pred, **self._kwargs)
 
@@ -383,7 +392,9 @@ class _ThresholdScorer(_BaseScorer):
                     y_pred = np.vstack([p[:, -1] for p in y_pred]).T
 
         if sample_weight is not None:
-            return self._sign * self._score_func(y, y_pred, sample_weight=sample_weight, **self._kwargs)
+            return self._sign * self._score_func(
+                y, y_pred, sample_weight=sample_weight, **self._kwargs
+            )
         else:
             return self._sign * self._score_func(y, y_pred, **self._kwargs)
 
@@ -425,8 +436,9 @@ def get_scorer(scoring):
             scorer = copy.deepcopy(_SCORERS[scoring])
         except KeyError:
             raise ValueError(
-                "%r is not a valid scoring value. Use sklearn_fork.metrics.get_scorer_names() to get valid options."
-                % scoring
+                "%r is not a valid scoring value. "
+                "Use sklearn_fork.metrics.get_scorer_names() "
+                "to get valid options." % scoring
             )
     else:
         scorer = scoring
@@ -471,14 +483,19 @@ def _check_multimetric_scoring(estimator, scoring):
     )
 
     if isinstance(scoring, (list, tuple, set)):
-        err_msg = "The list/tuple elements must be unique strings of predefined scorers. "
+        err_msg = (
+            "The list/tuple elements must be unique strings of predefined scorers. "
+        )
         try:
             keys = set(scoring)
         except TypeError as e:
             raise ValueError(err_msg) from e
 
         if len(keys) != len(scoring):
-            raise ValueError(f"{err_msg} Duplicate elements were found in the given list. {scoring!r}")
+            raise ValueError(
+                f"{err_msg} Duplicate elements were found in"
+                f" the given list. {scoring!r}"
+            )
         elif len(keys) > 0:
             if not all(isinstance(k, str) for k in keys):
                 if any(callable(k) for k in keys):
@@ -489,18 +506,29 @@ def _check_multimetric_scoring(estimator, scoring):
                         f"Got {scoring!r}"
                     )
                 else:
-                    raise ValueError(f"{err_msg} Non-string types were found in the given list. Got {scoring!r}")
-            scorers = {scorer: check_scoring(estimator, scoring=scorer) for scorer in scoring}
+                    raise ValueError(
+                        f"{err_msg} Non-string types were found "
+                        f"in the given list. Got {scoring!r}"
+                    )
+            scorers = {
+                scorer: check_scoring(estimator, scoring=scorer) for scorer in scoring
+            }
         else:
             raise ValueError(f"{err_msg} Empty list was given. {scoring!r}")
 
     elif isinstance(scoring, dict):
         keys = set(scoring)
         if not all(isinstance(k, str) for k in keys):
-            raise ValueError(f"Non-string types were found in the keys of the given dict. scoring={scoring!r}")
+            raise ValueError(
+                "Non-string types were found in the keys of "
+                f"the given dict. scoring={scoring!r}"
+            )
         if len(keys) == 0:
             raise ValueError(f"An empty dict was passed. {scoring!r}")
-        scorers = {key: check_scoring(estimator, scoring=scorer) for key, scorer in scoring.items()}
+        scorers = {
+            key: check_scoring(estimator, scoring=scorer)
+            for key, scorer in scoring.items()
+        }
     else:
         raise ValueError(err_msg_generic)
     return scorers
@@ -601,7 +629,9 @@ def make_scorer(
     """
     sign = 1 if greater_is_better else -1
     if needs_proba and needs_threshold:
-        raise ValueError("Set either needs_proba or needs_threshold to True, but not both.")
+        raise ValueError(
+            "Set either needs_proba or needs_threshold to True, but not both."
+        )
     if needs_proba:
         cls = _ProbaScorer
     elif needs_threshold:
@@ -616,14 +646,28 @@ explained_variance_scorer = make_scorer(explained_variance_score)
 r2_scorer = make_scorer(r2_score)
 max_error_scorer = make_scorer(max_error, greater_is_better=False)
 neg_mean_squared_error_scorer = make_scorer(mean_squared_error, greater_is_better=False)
-neg_mean_squared_log_error_scorer = make_scorer(mean_squared_log_error, greater_is_better=False)
-neg_mean_absolute_error_scorer = make_scorer(mean_absolute_error, greater_is_better=False)
-neg_mean_absolute_percentage_error_scorer = make_scorer(mean_absolute_percentage_error, greater_is_better=False)
-neg_median_absolute_error_scorer = make_scorer(median_absolute_error, greater_is_better=False)
-neg_root_mean_squared_error_scorer = make_scorer(mean_squared_error, greater_is_better=False, squared=False)
-neg_mean_poisson_deviance_scorer = make_scorer(mean_poisson_deviance, greater_is_better=False)
+neg_mean_squared_log_error_scorer = make_scorer(
+    mean_squared_log_error, greater_is_better=False
+)
+neg_mean_absolute_error_scorer = make_scorer(
+    mean_absolute_error, greater_is_better=False
+)
+neg_mean_absolute_percentage_error_scorer = make_scorer(
+    mean_absolute_percentage_error, greater_is_better=False
+)
+neg_median_absolute_error_scorer = make_scorer(
+    median_absolute_error, greater_is_better=False
+)
+neg_root_mean_squared_error_scorer = make_scorer(
+    mean_squared_error, greater_is_better=False, squared=False
+)
+neg_mean_poisson_deviance_scorer = make_scorer(
+    mean_poisson_deviance, greater_is_better=False
+)
 
-neg_mean_gamma_deviance_scorer = make_scorer(mean_gamma_deviance, greater_is_better=False)
+neg_mean_gamma_deviance_scorer = make_scorer(
+    mean_gamma_deviance, greater_is_better=False
+)
 
 # Standard Classification Scores
 accuracy_scorer = make_scorer(accuracy_score)
@@ -640,21 +684,35 @@ def negative_likelihood_ratio(y_true, y_pred):
 
 
 positive_likelihood_ratio_scorer = make_scorer(positive_likelihood_ratio)
-neg_negative_likelihood_ratio_scorer = make_scorer(negative_likelihood_ratio, greater_is_better=False)
+neg_negative_likelihood_ratio_scorer = make_scorer(
+    negative_likelihood_ratio, greater_is_better=False
+)
 
 # Score functions that need decision values
-top_k_accuracy_scorer = make_scorer(top_k_accuracy_score, greater_is_better=True, needs_threshold=True)
-roc_auc_scorer = make_scorer(roc_auc_score, greater_is_better=True, needs_threshold=True)
+top_k_accuracy_scorer = make_scorer(
+    top_k_accuracy_score, greater_is_better=True, needs_threshold=True
+)
+roc_auc_scorer = make_scorer(
+    roc_auc_score, greater_is_better=True, needs_threshold=True
+)
 average_precision_scorer = make_scorer(average_precision_score, needs_threshold=True)
 roc_auc_ovo_scorer = make_scorer(roc_auc_score, needs_proba=True, multi_class="ovo")
-roc_auc_ovo_weighted_scorer = make_scorer(roc_auc_score, needs_proba=True, multi_class="ovo", average="weighted")
+roc_auc_ovo_weighted_scorer = make_scorer(
+    roc_auc_score, needs_proba=True, multi_class="ovo", average="weighted"
+)
 roc_auc_ovr_scorer = make_scorer(roc_auc_score, needs_proba=True, multi_class="ovr")
-roc_auc_ovr_weighted_scorer = make_scorer(roc_auc_score, needs_proba=True, multi_class="ovr", average="weighted")
+roc_auc_ovr_weighted_scorer = make_scorer(
+    roc_auc_score, needs_proba=True, multi_class="ovr", average="weighted"
+)
 
 # Score function for probabilistic classification
 neg_log_loss_scorer = make_scorer(log_loss, greater_is_better=False, needs_proba=True)
-neg_brier_score_scorer = make_scorer(brier_score_loss, greater_is_better=False, needs_proba=True)
-brier_score_loss_scorer = make_scorer(brier_score_loss, greater_is_better=False, needs_proba=True)
+neg_brier_score_scorer = make_scorer(
+    brier_score_loss, greater_is_better=False, needs_proba=True
+)
+brier_score_loss_scorer = make_scorer(
+    brier_score_loss, greater_is_better=False, needs_proba=True
+)
 
 
 # Clustering scores

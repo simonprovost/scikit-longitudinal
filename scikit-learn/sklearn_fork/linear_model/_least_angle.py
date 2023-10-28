@@ -8,24 +8,26 @@ Generalized Linear Model for a complete discussion.
 #
 # License: BSD 3 clause
 
+from math import log
 import sys
 import warnings
-from math import log
-from numbers import Integral, Real
 
+from numbers import Integral, Real
 import numpy as np
-from scipy import interpolate, linalg
+from scipy import linalg, interpolate
 from scipy.linalg.lapack import get_lapack_funcs
 
-from ..base import MultiOutputMixin, RegressorMixin
-from ..exceptions import ConvergenceWarning
-from ..model_selection import check_cv
+from ._base import LinearModel, LinearRegression
+from ._base import _deprecate_normalize, _preprocess_data
+from ..base import RegressorMixin, MultiOutputMixin
 
 # mypy error: Module 'sklearn_fork.utils' has no attribute 'arrayfuncs'
-from ..utils import arrayfuncs, as_float_array, check_random_state  # type: ignore
+from ..utils import arrayfuncs, as_float_array  # type: ignore
+from ..utils import check_random_state
 from ..utils._param_validation import Hidden, Interval, StrOptions
-from ..utils.parallel import Parallel, delayed
-from ._base import LinearModel, LinearRegression, _deprecate_normalize, _preprocess_data
+from ..model_selection import check_cv
+from ..exceptions import ConvergenceWarning
+from ..utils.parallel import delayed, Parallel
 
 SOLVE_TRIANGULAR_ARGS = {"check_finite": False}
 
@@ -161,7 +163,10 @@ def lars_path(
            <https://en.wikipedia.org/wiki/Lasso_(statistics)>`_
     """
     if X is None and Gram is not None:
-        raise ValueError("X cannot be None if Gram is not NoneUse lars_path_gram to avoid passing X and y.")
+        raise ValueError(
+            "X cannot be None if Gram is not None"
+            "Use lars_path_gram to avoid passing X and y."
+        )
     return _lars_path_solver(
         X=X,
         y=y,
@@ -645,7 +650,8 @@ def _lars_path_solver(
                     "i.e. alpha=%.3e, "
                     "with an active set of %i regressors, and "
                     "the smallest cholesky pivot element being %.3e."
-                    " Reduce max_iter or increase eps parameters." % (n_iter, alpha, n_active, diag),
+                    " Reduce max_iter or increase eps parameters."
+                    % (n_iter, alpha, n_active, diag),
                     ConvergenceWarning,
                 )
 
@@ -659,7 +665,9 @@ def _lars_path_solver(
             n_active += 1
 
             if verbose > 1:
-                print("%s\t\t%s\t\t%s\t\t%s\t\t%s" % (n_iter, active[-1], "", n_active, C))
+                print(
+                    "%s\t\t%s\t\t%s\t\t%s\t\t%s" % (n_iter, active[-1], "", n_active, C)
+                )
 
         if method == "lasso" and n_iter > 0 and prev_alpha[0] < alpha[0]:
             # alpha is increasing. This is because the updates of Cov are
@@ -677,7 +685,9 @@ def _lars_path_solver(
             break
 
         # least squares solution
-        least_squares, _ = solve_cholesky(L[:n_active, :n_active], sign_active[:n_active], lower=True)
+        least_squares, _ = solve_cholesky(
+            L[:n_active, :n_active], sign_active[:n_active], lower=True
+        )
 
         if least_squares.size == 1 and least_squares == 0:
             # This happens because sign_active[:n_active] = 0
@@ -693,7 +703,9 @@ def _lars_path_solver(
                 L_ = L[:n_active, :n_active].copy()
                 while not np.isfinite(AA):
                     L_.flat[:: n_active + 1] += (2**i) * eps
-                    least_squares, _ = solve_cholesky(L_, sign_active[:n_active], lower=True)
+                    least_squares, _ = solve_cholesky(
+                        L_, sign_active[:n_active], lower=True
+                    )
                     tmp = max(np.sum(least_squares * sign_active[:n_active]), eps)
                     AA = 1.0 / np.sqrt(tmp)
                     i += 1
@@ -804,7 +816,10 @@ def _lars_path_solver(
             sign_active = np.delete(sign_active, idx)
             sign_active = np.append(sign_active, 0.0)  # just to maintain size
             if verbose > 1:
-                print("%s\t\t%s\t\t%s\t\t%s\t\t%s" % (n_iter, "", drop_idx, n_active, abs(temp)))
+                print(
+                    "%s\t\t%s\t\t%s\t\t%s\t\t%s"
+                    % (n_iter, "", drop_idx, n_active, abs(temp))
+                )
 
     if return_path:
         # resize coefs in case of early stop
@@ -1006,7 +1021,9 @@ class Lars(MultiOutputMixin, RegressorMixin, LinearModel):
         """Auxiliary method to fit the model using X, y as training data"""
         n_features = X.shape[1]
 
-        X, y, X_offset, y_offset, X_scale = _preprocess_data(X, y, self.fit_intercept, normalize, self.copy_X)
+        X, y, X_offset, y_offset, X_scale = _preprocess_data(
+            X, y, self.fit_intercept, normalize, self.copy_X
+        )
 
         if y.ndim == 1:
             y = y[:, np.newaxis]
@@ -1048,7 +1065,8 @@ class Lars(MultiOutputMixin, RegressorMixin, LinearModel):
 
             if n_targets == 1:
                 self.alphas_, self.active_, self.coef_path_, self.coef_ = [
-                    a[0] for a in (self.alphas_, self.active_, self.coef_path_, self.coef_)
+                    a[0]
+                    for a in (self.alphas_, self.active_, self.coef_path_, self.coef_)
                 ]
                 self.n_iter_ = self.n_iter_[0]
         else:
@@ -1104,7 +1122,9 @@ class Lars(MultiOutputMixin, RegressorMixin, LinearModel):
 
         X, y = self._validate_data(X, y, y_numeric=True, multi_output=True)
 
-        _normalize = _deprecate_normalize(self.normalize, estimator_name=self.__class__.__name__)
+        _normalize = _deprecate_normalize(
+            self.normalize, estimator_name=self.__class__.__name__
+        )
 
         alpha = getattr(self, "alpha", 0.0)
         if hasattr(self, "n_nonzero_coefs"):
@@ -1689,7 +1709,9 @@ class LarsCV(Lars):
         """
         self._validate_params()
 
-        _normalize = _deprecate_normalize(self.normalize, estimator_name=self.__class__.__name__)
+        _normalize = _deprecate_normalize(
+            self.normalize, estimator_name=self.__class__.__name__
+        )
 
         X, y = self._validate_data(X, y, y_numeric=True)
         X = as_float_array(X, copy=self.copy_X)
@@ -1702,7 +1724,8 @@ class LarsCV(Lars):
         Gram = self.precompute
         if hasattr(Gram, "__array__"):
             warnings.warn(
-                'Parameter "precompute" cannot be an array in %s. Automatically switch to "auto" instead.'
+                'Parameter "precompute" cannot be an array in '
+                '%s. Automatically switch to "auto" instead.'
                 % self.__class__.__name__
             )
             Gram = "auto"
@@ -2216,13 +2239,17 @@ class LassoLarsIC(LassoLars):
         """
         self._validate_params()
 
-        _normalize = _deprecate_normalize(self.normalize, estimator_name=self.__class__.__name__)
+        _normalize = _deprecate_normalize(
+            self.normalize, estimator_name=self.__class__.__name__
+        )
 
         if copy_X is None:
             copy_X = self.copy_X
         X, y = self._validate_data(X, y, y_numeric=True)
 
-        X, y, Xmean, ymean, Xstd = _preprocess_data(X, y, self.fit_intercept, _normalize, copy_X)
+        X, y, Xmean, ymean, Xstd = _preprocess_data(
+            X, y, self.fit_intercept, _normalize, copy_X
+        )
 
         Gram = self.precompute
 
@@ -2248,7 +2275,9 @@ class LassoLarsIC(LassoLars):
         elif self.criterion == "bic":
             criterion_factor = log(n_samples)
         else:
-            raise ValueError(f"criterion should be either bic or aic, got {self.criterion!r}")
+            raise ValueError(
+                f"criterion should be either bic or aic, got {self.criterion!r}"
+            )
 
         residuals = y[:, np.newaxis] - np.dot(X, coef_path_)
         residuals_sum_squares = np.sum(residuals**2, axis=0)
@@ -2265,7 +2294,9 @@ class LassoLarsIC(LassoLars):
         self.alphas_ = alphas_
 
         if self.noise_variance is None:
-            self.noise_variance_ = self._estimate_noise_variance(X, y, positive=self.positive)
+            self.noise_variance_ = self._estimate_noise_variance(
+                X, y, positive=self.positive
+            )
         else:
             self.noise_variance_ = self.noise_variance
 
@@ -2313,4 +2344,6 @@ class LassoLarsIC(LassoLars):
         # X and y are already centered and we don't need to fit with an intercept
         ols_model = LinearRegression(positive=positive, fit_intercept=False)
         y_pred = ols_model.fit(X, y).predict(X)
-        return np.sum((y - y_pred) ** 2) / (X.shape[0] - X.shape[1] - self.fit_intercept)
+        return np.sum((y - y_pred) ** 2) / (
+            X.shape[0] - X.shape[1] - self.fit_intercept
+        )

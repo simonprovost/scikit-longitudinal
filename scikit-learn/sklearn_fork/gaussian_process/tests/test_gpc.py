@@ -4,16 +4,22 @@
 # License: BSD 3 clause
 
 import warnings
-
 import numpy as np
-import pytest
+
 from scipy.optimize import approx_fprime
-from sklearn_fork.exceptions import ConvergenceWarning
+
+import pytest
+
 from sklearn_fork.gaussian_process import GaussianProcessClassifier
-from sklearn_fork.gaussian_process.kernels import RBF, CompoundKernel
-from sklearn_fork.gaussian_process.kernels import ConstantKernel as C
-from sklearn_fork.gaussian_process.kernels import WhiteKernel
+from sklearn_fork.gaussian_process.kernels import (
+    RBF,
+    CompoundKernel,
+    ConstantKernel as C,
+    WhiteKernel,
+)
 from sklearn_fork.gaussian_process.tests._mini_sequence_kernel import MiniSeqKernel
+from sklearn_fork.exceptions import ConvergenceWarning
+
 from sklearn_fork.utils._testing import assert_almost_equal, assert_array_equal
 
 
@@ -61,14 +67,18 @@ def test_predict_consistent_structured():
 def test_lml_improving(kernel):
     # Test that hyperparameter-tuning improves log-marginal likelihood.
     gpc = GaussianProcessClassifier(kernel=kernel).fit(X, y)
-    assert gpc.log_marginal_likelihood(gpc.kernel_.theta) > gpc.log_marginal_likelihood(kernel.theta)
+    assert gpc.log_marginal_likelihood(gpc.kernel_.theta) > gpc.log_marginal_likelihood(
+        kernel.theta
+    )
 
 
 @pytest.mark.parametrize("kernel", kernels)
 def test_lml_precomputed(kernel):
     # Test that lml of optimized kernel is stored correctly.
     gpc = GaussianProcessClassifier(kernel=kernel).fit(X, y)
-    assert_almost_equal(gpc.log_marginal_likelihood(gpc.kernel_.theta), gpc.log_marginal_likelihood(), 7)
+    assert_almost_equal(
+        gpc.log_marginal_likelihood(gpc.kernel_.theta), gpc.log_marginal_likelihood(), 7
+    )
 
 
 @pytest.mark.parametrize("kernel", kernels)
@@ -101,7 +111,9 @@ def test_lml_gradient(kernel):
     gpc = GaussianProcessClassifier(kernel=kernel).fit(X, y)
 
     lml, lml_gradient = gpc.log_marginal_likelihood(kernel.theta, True)
-    lml_gradient_approx = approx_fprime(kernel.theta, lambda theta: gpc.log_marginal_likelihood(theta, False), 1e-10)
+    lml_gradient_approx = approx_fprime(
+        kernel.theta, lambda theta: gpc.log_marginal_likelihood(theta, False), 1e-10
+    )
 
     assert_almost_equal(lml_gradient, lml_gradient_approx, 3)
 
@@ -114,7 +126,9 @@ def test_random_starts(global_random_seed):
     X = rng.randn(n_samples, n_features) * 2 - 1
     y = (np.sin(X).sum(axis=1) + np.sin(3 * X).sum(axis=1)) > 0
 
-    kernel = C(1.0, (1e-2, 1e2)) * RBF(length_scale=[1e-3] * n_features, length_scale_bounds=[(1e-4, 1e2)] * n_features)
+    kernel = C(1.0, (1e-2, 1e2)) * RBF(
+        length_scale=[1e-3] * n_features, length_scale_bounds=[(1e-4, 1e2)] * n_features
+    )
     last_lml = -np.inf
     for n_restarts_optimizer in range(5):
         gp = GaussianProcessClassifier(
@@ -133,9 +147,13 @@ def test_custom_optimizer(kernel, global_random_seed):
     # Define a dummy optimizer that simply tests 10 random hyperparameters
     def optimizer(obj_func, initial_theta, bounds):
         rng = np.random.RandomState(global_random_seed)
-        theta_opt, func_min = initial_theta, obj_func(initial_theta, eval_gradient=False)
+        theta_opt, func_min = initial_theta, obj_func(
+            initial_theta, eval_gradient=False
+        )
         for _ in range(10):
-            theta = np.atleast_1d(rng.uniform(np.maximum(-2, bounds[:, 0]), np.minimum(1, bounds[:, 1])))
+            theta = np.atleast_1d(
+                rng.uniform(np.maximum(-2, bounds[:, 0]), np.minimum(1, bounds[:, 1]))
+            )
             f = obj_func(theta, eval_gradient=False)
             if f < func_min:
                 theta_opt, func_min = theta, f
@@ -144,7 +162,9 @@ def test_custom_optimizer(kernel, global_random_seed):
     gpc = GaussianProcessClassifier(kernel=kernel, optimizer=optimizer)
     gpc.fit(X, y_mc)
     # Checks that optimizer improved marginal likelihood
-    assert gpc.log_marginal_likelihood(gpc.kernel_.theta) >= gpc.log_marginal_likelihood(kernel.theta)
+    assert gpc.log_marginal_likelihood(
+        gpc.kernel_.theta
+    ) >= gpc.log_marginal_likelihood(kernel.theta)
 
 
 @pytest.mark.parametrize("kernel", kernels)
@@ -186,7 +206,9 @@ def test_warning_bounds():
     with pytest.warns(ConvergenceWarning, match=warning_message):
         gpc.fit(X, y)
 
-    kernel_sum = WhiteKernel(noise_level_bounds=[1e-5, 1e-3]) + RBF(length_scale_bounds=[1e3, 1e5])
+    kernel_sum = WhiteKernel(noise_level_bounds=[1e-5, 1e-3]) + RBF(
+        length_scale_bounds=[1e3, 1e5]
+    )
     gpc_sum = GaussianProcessClassifier(kernel=kernel_sum)
     with warnings.catch_warnings(record=True) as record:
         warnings.simplefilter("always")

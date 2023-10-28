@@ -59,10 +59,9 @@ X[X.columns[::3]].head()
 #
 # We will first fit a Lasso model with the AIC criterion.
 import time
-
+from sklearn_fork.preprocessing import StandardScaler
 from sklearn_fork.linear_model import LassoLarsIC
 from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import StandardScaler
 
 start_time = time.time()
 lasso_lars_ic = make_pipeline(StandardScaler(), LassoLarsIC(criterion="aic")).fit(X, y)
@@ -120,7 +119,9 @@ ax.set_xlabel(r"$\alpha$")
 ax.set_ylabel("criterion")
 ax.set_xscale("log")
 ax.legend()
-_ = ax.set_title(f"Information-criterion for model selection (training time {fit_time:.2f}s)")
+_ = ax.set_title(
+    f"Information-criterion for model selection (training time {fit_time:.2f}s)"
+)
 
 # %%
 # Model selection with an information-criterion is very fast. It relies on
@@ -178,7 +179,9 @@ plt.ylim(ymin, ymax)
 plt.xlabel(r"$\alpha$")
 plt.ylabel("Mean square error")
 plt.legend()
-_ = plt.title(f"Mean square error on each fold: coordinate descent (train time: {fit_time:.2f}s)")
+_ = plt.title(
+    f"Mean square error on each fold: coordinate descent (train time: {fit_time:.2f}s)"
+)
 
 # %%
 # Lasso via least angle regression

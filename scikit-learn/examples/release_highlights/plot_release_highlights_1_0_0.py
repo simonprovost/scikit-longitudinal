@@ -134,8 +134,6 @@ spline.fit_transform(X)
 #    :align: center
 #    :scale: 50%
 
-import pandas as pd
-
 ##############################################################################
 # Feature Names Support
 # --------------------------------------------------------------------------
@@ -148,12 +146,11 @@ import pandas as pd
 # non-:term:`fit`, such as :term:`predict`, are consistent with features in
 # :term:`fit`:
 from sklearn_fork.preprocessing import StandardScaler
+import pandas as pd
 
 X = pd.DataFrame([[1, 2, 3], [4, 5, 6]], columns=["a", "b", "c"])
 scalar = StandardScaler().fit(X)
 scalar.feature_names_in_
-
-import pandas as pd
 
 # %%
 # The support of :term:`get_feature_names_out` is available for transformers
@@ -165,6 +162,7 @@ import pandas as pd
 # combine feature names of its transformers:
 from sklearn_fork.compose import ColumnTransformer
 from sklearn_fork.preprocessing import OneHotEncoder
+import pandas as pd
 
 X = pd.DataFrame({"pet": ["dog", "cat", "fish"], "age": [3, 7, 1]})
 preprocessor = ColumnTransformer(

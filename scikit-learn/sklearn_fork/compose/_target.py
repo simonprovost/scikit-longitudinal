@@ -7,12 +7,12 @@ import warnings
 import numpy as np
 
 from ..base import BaseEstimator, RegressorMixin, clone
-from ..exceptions import NotFittedError
-from ..preprocessing import FunctionTransformer
-from ..utils import _safe_indexing, check_array
-from ..utils._param_validation import HasMethods
-from ..utils._tags import _safe_tags
 from ..utils.validation import check_is_fitted
+from ..utils._tags import _safe_tags
+from ..utils import check_array, _safe_indexing
+from ..utils._param_validation import HasMethods
+from ..preprocessing import FunctionTransformer
+from ..exceptions import NotFittedError
 
 __all__ = ["TransformedTargetRegressor"]
 
@@ -158,13 +158,19 @@ class TransformedTargetRegressor(RegressorMixin, BaseEstimator):
         check on a subset (optional).
 
         """
-        if self.transformer is not None and (self.func is not None or self.inverse_func is not None):
-            raise ValueError("'transformer' and functions 'func'/'inverse_func' cannot both be set.")
+        if self.transformer is not None and (
+            self.func is not None or self.inverse_func is not None
+        ):
+            raise ValueError(
+                "'transformer' and functions 'func'/'inverse_func' cannot both be set."
+            )
         elif self.transformer is not None:
             self.transformer_ = clone(self.transformer)
         else:
             if self.func is not None and self.inverse_func is None:
-                raise ValueError("When 'func' is provided, 'inverse_func' must also be provided")
+                raise ValueError(
+                    "When 'func' is provided, 'inverse_func' must also be provided"
+                )
             self.transformer_ = FunctionTransformer(
                 func=self.func,
                 inverse_func=self.inverse_func,
@@ -215,7 +221,8 @@ class TransformedTargetRegressor(RegressorMixin, BaseEstimator):
         self._validate_params()
         if y is None:
             raise ValueError(
-                f"This {self.__class__.__name__} estimator requires y to be passed, but the target y is None."
+                f"This {self.__class__.__name__} estimator "
+                "requires y to be passed, but the target y is None."
             )
         y = check_array(
             y,
@@ -287,7 +294,11 @@ class TransformedTargetRegressor(RegressorMixin, BaseEstimator):
             pred_trans = self.transformer_.inverse_transform(pred.reshape(-1, 1))
         else:
             pred_trans = self.transformer_.inverse_transform(pred)
-        if self._training_dim == 1 and pred_trans.ndim == 2 and pred_trans.shape[1] == 1:
+        if (
+            self._training_dim == 1
+            and pred_trans.ndim == 2
+            and pred_trans.shape[1] == 1
+        ):
             pred_trans = pred_trans.squeeze(axis=1)
 
         return pred_trans
@@ -312,6 +323,10 @@ class TransformedTargetRegressor(RegressorMixin, BaseEstimator):
         try:
             check_is_fitted(self)
         except NotFittedError as nfe:
-            raise AttributeError("{} object has no n_features_in_ attribute.".format(self.__class__.__name__)) from nfe
+            raise AttributeError(
+                "{} object has no n_features_in_ attribute.".format(
+                    self.__class__.__name__
+                )
+            ) from nfe
 
         return self.regressor_.n_features_in_

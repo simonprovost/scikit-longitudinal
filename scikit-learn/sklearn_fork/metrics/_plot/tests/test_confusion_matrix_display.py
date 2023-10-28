@@ -1,24 +1,34 @@
+from numpy.testing import (
+    assert_allclose,
+    assert_array_equal,
+)
 import numpy as np
 import pytest
-from numpy.testing import assert_allclose, assert_array_equal
-from sklearn_fork.compose import make_column_transformer
+
 from sklearn_fork.datasets import make_classification
+from sklearn_fork.compose import make_column_transformer
 from sklearn_fork.exceptions import NotFittedError
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import ConfusionMatrixDisplay, confusion_matrix
 from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import StandardScaler
 from sklearn_fork.svm import SVC, SVR
 
+from sklearn_fork.metrics import ConfusionMatrixDisplay
+from sklearn_fork.metrics import confusion_matrix
+
+
 # TODO: Remove when https://github.com/numpy/numpy/issues/14397 is resolved
 pytestmark = pytest.mark.filterwarnings(
-    "ignore:In future, it will be an error for 'np.bool_':DeprecationWarning:matplotlib.*"
+    "ignore:In future, it will be an error for 'np.bool_':DeprecationWarning:"
+    "matplotlib.*"
 )
 
 
 def test_confusion_matrix_display_validation(pyplot):
     """Check that we raise the proper error when validating parameters."""
-    X, y = make_classification(n_samples=100, n_informative=5, n_classes=5, random_state=0)
+    X, y = make_classification(
+        n_samples=100, n_informative=5, n_classes=5, random_state=0
+    )
 
     with pytest.raises(NotFittedError):
         ConfusionMatrixDisplay.from_estimator(SVC(), X, y)
@@ -46,10 +56,14 @@ def test_confusion_matrix_display_validation(pyplot):
 @pytest.mark.parametrize("constructor_name", ["from_estimator", "from_predictions"])
 @pytest.mark.parametrize("with_labels", [True, False])
 @pytest.mark.parametrize("with_display_labels", [True, False])
-def test_confusion_matrix_display_custom_labels(pyplot, constructor_name, with_labels, with_display_labels):
+def test_confusion_matrix_display_custom_labels(
+    pyplot, constructor_name, with_labels, with_display_labels
+):
     """Check the resulting plot when labels are given."""
     n_classes = 5
-    X, y = make_classification(n_samples=100, n_informative=5, n_classes=n_classes, random_state=0)
+    X, y = make_classification(
+        n_samples=100, n_informative=5, n_classes=n_classes, random_state=0
+    )
     classifier = SVC().fit(X, y)
     y_pred = classifier.predict(X)
 
@@ -100,7 +114,9 @@ def test_confusion_matrix_display_plotting(
 ):
     """Check the overall plotting rendering."""
     n_classes = 5
-    X, y = make_classification(n_samples=100, n_informative=5, n_classes=n_classes, random_state=0)
+    X, y = make_classification(
+        n_samples=100, n_informative=5, n_classes=n_classes, random_state=0
+    )
     classifier = SVC().fit(X, y)
     y_pred = classifier.predict(X)
 
@@ -171,7 +187,9 @@ def test_confusion_matrix_display(pyplot, constructor_name):
     """Check the behaviour of the default constructor without using the class
     methods."""
     n_classes = 5
-    X, y = make_classification(n_samples=100, n_informative=5, n_classes=n_classes, random_state=0)
+    X, y = make_classification(
+        n_samples=100, n_informative=5, n_classes=n_classes, random_state=0
+    )
     classifier = SVC().fit(X, y)
     y_pred = classifier.predict(X)
 
@@ -267,7 +285,9 @@ def test_confusion_matrix_contrast(pyplot):
 def test_confusion_matrix_pipeline(pyplot, clf):
     """Check the behaviour of the plotting with more complex pipeline."""
     n_classes = 5
-    X, y = make_classification(n_samples=100, n_informative=5, n_classes=n_classes, random_state=0)
+    X, y = make_classification(
+        n_samples=100, n_informative=5, n_classes=n_classes, random_state=0
+    )
     with pytest.raises(NotFittedError):
         ConfusionMatrixDisplay.from_estimator(clf, X, y)
     clf.fit(X, y)
@@ -288,7 +308,9 @@ def test_confusion_matrix_with_unknown_labels(pyplot, constructor_name):
     https://github.com/scikit-learn/scikit-learn/pull/18405
     """
     n_classes = 5
-    X, y = make_classification(n_samples=100, n_informative=5, n_classes=n_classes, random_state=0)
+    X, y = make_classification(
+        n_samples=100, n_informative=5, n_classes=n_classes, random_state=0
+    )
     classifier = SVC().fit(X, y)
     y_pred = classifier.predict(X)
     # create unseen labels in `y_true` not seen during fitting and not present
@@ -340,7 +362,9 @@ def test_confusion_matrix_text_kw(pyplot):
     classifier = SVC().fit(X, y)
 
     # from_estimator passes the font size
-    disp = ConfusionMatrixDisplay.from_estimator(classifier, X, y, text_kw={"fontsize": font_size})
+    disp = ConfusionMatrixDisplay.from_estimator(
+        classifier, X, y, text_kw={"fontsize": font_size}
+    )
     for text in disp.text_.reshape(-1):
         assert text.get_fontsize() == font_size
 
@@ -352,6 +376,8 @@ def test_confusion_matrix_text_kw(pyplot):
 
     # from_predictions passes the font size
     y_pred = classifier.predict(X)
-    disp = ConfusionMatrixDisplay.from_predictions(y, y_pred, text_kw={"fontsize": font_size})
+    disp = ConfusionMatrixDisplay.from_predictions(
+        y, y_pred, text_kw={"fontsize": font_size}
+    )
     for text in disp.text_.reshape(-1):
         assert text.get_fontsize() == font_size

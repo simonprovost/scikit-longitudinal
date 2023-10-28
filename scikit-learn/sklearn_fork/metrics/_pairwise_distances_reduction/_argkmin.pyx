@@ -2,26 +2,30 @@
 # It is automatically generated from 'sklearn_fork/metrics/_pairwise_distances_reduction/_argkmin.pyx.tp'.
 # Changes must be made there.
 
+from libc.stdlib cimport free, malloc
+from libc.float cimport DBL_MAX
 from cython cimport final
 from cython.parallel cimport parallel, prange
-from libc.float cimport DBL_MAX
-from libc.stdlib cimport free, malloc
 
 from ...utils._heap cimport heap_push
 from ...utils._sorting cimport simultaneous_sort
-from ...utils._typedefs cimport float64_t, intp_t
-
-import warnings
-from numbers import Integral
+from ...utils._typedefs cimport intp_t, float64_t
 
 import numpy as np
-from scipy.sparse import issparse
+import warnings
 
-from ...utils import _in_unstable_openblas_configuration, check_array, check_scalar
+from numbers import Integral
+from scipy.sparse import issparse
+from ...utils import check_array, check_scalar, _in_unstable_openblas_configuration
 from ...utils.fixes import threadpool_limits
 
-from ._base cimport BaseDistancesReduction64, _sqeuclidean_row_norms64
+from ._base cimport (
+    BaseDistancesReduction64,
+    _sqeuclidean_row_norms64,
+)
+
 from ._datasets_pair cimport DatasetsPair64
+
 from ._middle_term_computer cimport MiddleTermComputer64
 
 
@@ -500,8 +504,13 @@ cdef class EuclideanArgKmin64(ArgKmin64):
                     val_idx=j + Y_start,
                 )
 
-from ._base cimport BaseDistancesReduction32, _sqeuclidean_row_norms32
+from ._base cimport (
+    BaseDistancesReduction32,
+    _sqeuclidean_row_norms32,
+)
+
 from ._datasets_pair cimport DatasetsPair32
+
 from ._middle_term_computer cimport MiddleTermComputer32
 
 

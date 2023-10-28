@@ -2,29 +2,31 @@ import os
 import shutil
 import tempfile
 import warnings
+from pickle import loads
+from pickle import dumps
 from functools import partial
-from pickle import dumps, loads
 
-import numpy as np
 import pytest
-from sklearn_fork.datasets import (
-    clear_data_home,
-    get_data_home,
-    load_breast_cancer,
-    load_diabetes,
-    load_digits,
-    load_files,
-    load_iris,
-    load_linnerud,
-    load_sample_image,
-    load_sample_images,
-    load_wine,
+import numpy as np
+from sklearn_fork.datasets import get_data_home
+from sklearn_fork.datasets import clear_data_home
+from sklearn_fork.datasets import load_files
+from sklearn_fork.datasets import load_sample_images
+from sklearn_fork.datasets import load_sample_image
+from sklearn_fork.datasets import load_digits
+from sklearn_fork.datasets import load_diabetes
+from sklearn_fork.datasets import load_linnerud
+from sklearn_fork.datasets import load_iris
+from sklearn_fork.datasets import load_breast_cancer
+from sklearn_fork.datasets import load_wine
+from sklearn_fork.datasets._base import (
+    load_csv_data,
+    load_gzip_compressed_csv_data,
 )
-from sklearn_fork.datasets._base import load_csv_data, load_gzip_compressed_csv_data
-from sklearn_fork.datasets.tests.test_common import check_as_frame
 from sklearn_fork.preprocessing import scale
 from sklearn_fork.utils import Bunch
 from sklearn_fork.utils.fixes import _is_resource
+from sklearn_fork.datasets.tests.test_common import check_as_frame
 
 
 def _remove_dir(path):
@@ -93,9 +95,13 @@ def test_default_load_files(test_category_dir_1, test_category_dir_2, load_files
     assert res.data == [b"Hello World!\n"]
 
 
-def test_load_files_w_categories_desc_and_encoding(test_category_dir_1, test_category_dir_2, load_files_root):
+def test_load_files_w_categories_desc_and_encoding(
+    test_category_dir_1, test_category_dir_2, load_files_root
+):
     category = os.path.abspath(test_category_dir_1).split(os.sep).pop()
-    res = load_files(load_files_root, description="test", categories=[category], encoding="utf-8")
+    res = load_files(
+        load_files_root, description="test", categories=[category], encoding="utf-8"
+    )
 
     assert len(res.filenames) == 1
     assert len(res.target_names) == 1
@@ -103,7 +109,9 @@ def test_load_files_w_categories_desc_and_encoding(test_category_dir_1, test_cat
     assert res.data == ["Hello World!\n"]
 
 
-def test_load_files_wo_load_content(test_category_dir_1, test_category_dir_2, load_files_root):
+def test_load_files_wo_load_content(
+    test_category_dir_1, test_category_dir_2, load_files_root
+):
     res = load_files(load_files_root, load_content=False)
     assert len(res.filenames) == 1
     assert len(res.target_names) == 2
@@ -121,7 +129,9 @@ def test_load_files_allowed_extensions(tmp_path, allowed_extensions):
     for p in paths:
         p.write_bytes(b"hello")
     res = load_files(tmp_path, allowed_extensions=allowed_extensions)
-    assert set([str(p) for p in paths if p.suffix in allowed_extensions]) == set(res.filenames)
+    assert set([str(p) for p in paths if p.suffix in allowed_extensions]) == set(
+        res.filenames
+    )
 
 
 @pytest.mark.parametrize(
@@ -132,7 +142,9 @@ def test_load_files_allowed_extensions(tmp_path, allowed_extensions):
         ("breast_cancer.csv", 569, 30, ["malignant", "benign"]),
     ],
 )
-def test_load_csv_data(filename, expected_n_samples, expected_n_features, expected_target_names):
+def test_load_csv_data(
+    filename, expected_n_samples, expected_n_features, expected_target_names
+):
     actual_data, actual_target, actual_target_names = load_csv_data(filename)
     assert actual_data.shape[0] == expected_n_samples
     assert actual_data.shape[1] == expected_n_features
@@ -145,7 +157,9 @@ def test_load_csv_data_with_descr():
     descr_file_name = "iris.rst"
 
     res_without_descr = load_csv_data(data_file_name=data_file_name)
-    res_with_descr = load_csv_data(data_file_name=data_file_name, descr_file_name=descr_file_name)
+    res_with_descr = load_csv_data(
+        data_file_name=data_file_name, descr_file_name=descr_file_name
+    )
     assert len(res_with_descr) == 4
     assert len(res_without_descr) == 3
 
@@ -219,7 +233,9 @@ def test_load_diabetes_raw():
 
     diabetes_default = load_diabetes()
 
-    np.testing.assert_allclose(scale(diabetes_raw.data) / (442**0.5), diabetes_default.data, atol=1e-04)
+    np.testing.assert_allclose(
+        scale(diabetes_raw.data) / (442**0.5), diabetes_default.data, atol=1e-04
+    )
 
 
 @pytest.mark.parametrize(
@@ -255,7 +271,12 @@ def test_loader(loader_func, data_shape, target_shape, n_target, has_descr, file
         assert bunch.DESCR
     if filenames:
         assert "data_module" in bunch
-        assert all([f in bunch and _is_resource(bunch["data_module"], bunch[f]) for f in filenames])
+        assert all(
+            [
+                f in bunch and _is_resource(bunch["data_module"], bunch[f])
+                for f in filenames
+            ]
+        )
 
 
 @pytest.mark.parametrize(

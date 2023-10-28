@@ -5,11 +5,14 @@ Common utilities for testing clustering.
 
 import numpy as np
 
+
 ###############################################################################
 # Generate sample data
 
 
-def generate_clustered_data(seed=0, n_clusters=3, n_features=2, n_samples_per_cluster=20, std=0.4):
+def generate_clustered_data(
+    seed=0, n_clusters=3, n_features=2, n_samples_per_cluster=20, std=0.4
+):
     prng = np.random.RandomState(seed)
 
     # the data is voluntary shifted away from zero to check clustering

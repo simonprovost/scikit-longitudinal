@@ -12,7 +12,7 @@ This exercise is used in the :ref:`clf_tut` part of the
 
 """
 
-from sklearn_fork import datasets, linear_model, neighbors
+from sklearn_fork import datasets, neighbors, linear_model
 
 X_digits, y_digits = datasets.load_digits(return_X_y=True)
 X_digits = X_digits / X_digits.max()
@@ -28,4 +28,7 @@ knn = neighbors.KNeighborsClassifier()
 logistic = linear_model.LogisticRegression(max_iter=1000)
 
 print("KNN score: %f" % knn.fit(X_train, y_train).score(X_test, y_test))
-print("LogisticRegression score: %f" % logistic.fit(X_train, y_train).score(X_test, y_test))
+print(
+    "LogisticRegression score: %f"
+    % logistic.fit(X_train, y_train).score(X_test, y_test)
+)

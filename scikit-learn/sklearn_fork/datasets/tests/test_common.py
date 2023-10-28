@@ -2,8 +2,9 @@
 import inspect
 import os
 
-import numpy as np
 import pytest
+import numpy as np
+
 import sklearn_fork.datasets
 
 
@@ -18,12 +19,20 @@ def is_pillow_installed():
 
 FETCH_PYTEST_MARKERS = {
     "return_X_y": {
-        "fetch_20newsgroups": pytest.mark.xfail(reason="X is a list and does not have a shape argument"),
-        "fetch_openml": pytest.mark.xfail(reason="fetch_opeml requires a dataset name or id"),
-        "fetch_lfw_people": pytest.mark.skipif(not is_pillow_installed(), reason="pillow is not installed"),
+        "fetch_20newsgroups": pytest.mark.xfail(
+            reason="X is a list and does not have a shape argument"
+        ),
+        "fetch_openml": pytest.mark.xfail(
+            reason="fetch_opeml requires a dataset name or id"
+        ),
+        "fetch_lfw_people": pytest.mark.skipif(
+            not is_pillow_installed(), reason="pillow is not installed"
+        ),
     },
     "as_frame": {
-        "fetch_openml": pytest.mark.xfail(reason="fetch_opeml requires a dataset name or id"),
+        "fetch_openml": pytest.mark.xfail(
+            reason="fetch_opeml requires a dataset name or id"
+        ),
     },
 }
 
@@ -49,7 +58,9 @@ def check_return_X_y(bunch, dataset_func):
     assert X_y_tuple[1].shape == bunch.target.shape
 
 
-def check_as_frame(bunch, dataset_func, expected_data_dtype=None, expected_target_dtype=None):
+def check_as_frame(
+    bunch, dataset_func, expected_data_dtype=None, expected_target_dtype=None
+):
     pd = pytest.importorskip("pandas")
     frame_bunch = dataset_func(as_frame=True)
     assert hasattr(frame_bunch, "frame")
@@ -101,18 +112,24 @@ def _generate_func_supporting_param(param, dataset_type=("load", "fetch")):
             yield pytest.param(name, obj, marks=marks)
 
 
-@pytest.mark.parametrize("name, dataset_func", _generate_func_supporting_param("return_X_y"))
+@pytest.mark.parametrize(
+    "name, dataset_func", _generate_func_supporting_param("return_X_y")
+)
 def test_common_check_return_X_y(name, dataset_func):
     bunch = dataset_func()
     check_return_X_y(bunch, dataset_func)
 
 
-@pytest.mark.parametrize("name, dataset_func", _generate_func_supporting_param("as_frame"))
+@pytest.mark.parametrize(
+    "name, dataset_func", _generate_func_supporting_param("as_frame")
+)
 def test_common_check_as_frame(name, dataset_func):
     bunch = dataset_func()
     check_as_frame(bunch, dataset_func)
 
 
-@pytest.mark.parametrize("name, dataset_func", _generate_func_supporting_param("as_frame"))
+@pytest.mark.parametrize(
+    "name, dataset_func", _generate_func_supporting_param("as_frame")
+)
 def test_common_check_pandas_dependency(name, dataset_func):
     check_pandas_dependency_message(dataset_func)

@@ -5,13 +5,15 @@
 """SAG and SAGA implementation"""
 
 import numpy as np
-
-from libc.math cimport exp, fabs, log
-from libc.stdio cimport printf
+from libc.math cimport fabs, exp, log
 from libc.time cimport time, time_t
 
+from ._sgd_fast cimport LossFunction
+from ._sgd_fast cimport Log, SquaredLoss
+
 from ..utils._seq_dataset cimport SequentialDataset32, SequentialDataset64
-from ._sgd_fast cimport Log, LossFunction, SquaredLoss
+
+from libc.stdio cimport printf
 
 
 cdef extern from "_sgd_fast_helpers.h":

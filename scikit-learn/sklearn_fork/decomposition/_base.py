@@ -8,16 +8,17 @@
 #
 # License: BSD 3 clause
 
-from abc import ABCMeta, abstractmethod
-
 import numpy as np
 from scipy import linalg
 
-from ..base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
+from ..base import BaseEstimator, TransformerMixin, ClassNamePrefixFeaturesOutMixin
 from ..utils.validation import check_is_fitted
+from abc import ABCMeta, abstractmethod
 
 
-class _BasePCA(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator, metaclass=ABCMeta):
+class _BasePCA(
+    ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator, metaclass=ABCMeta
+):
     """Base class for PCA methods.
 
     Warning: This class should not be used directly.

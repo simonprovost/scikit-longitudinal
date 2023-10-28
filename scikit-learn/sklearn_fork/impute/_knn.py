@@ -3,17 +3,18 @@
 # License: BSD 3 clause
 
 from numbers import Integral
-
 import numpy as np
 
+from ._base import _BaseImputer
+from ..utils.validation import FLOAT_DTYPES
 from ..metrics import pairwise_distances_chunked
 from ..metrics.pairwise import _NAN_METRICS
 from ..neighbors._base import _get_weights
 from ..utils import is_scalar_nan
 from ..utils._mask import _get_mask
+from ..utils.validation import check_is_fitted
+from ..utils.validation import _check_feature_names_in
 from ..utils._param_validation import Hidden, Interval, StrOptions
-from ..utils.validation import FLOAT_DTYPES, _check_feature_names_in, check_is_fitted
-from ._base import _BaseImputer
 
 
 class KNNImputer(_BaseImputer):
@@ -176,10 +177,14 @@ class KNNImputer(_BaseImputer):
             Imputed values for receiver.
         """
         # Get donors
-        donors_idx = np.argpartition(dist_pot_donors, n_neighbors - 1, axis=1)[:, :n_neighbors]
+        donors_idx = np.argpartition(dist_pot_donors, n_neighbors - 1, axis=1)[
+            :, :n_neighbors
+        ]
 
         # Get weight matrix from distance matrix
-        donors_dist = dist_pot_donors[np.arange(donors_idx.shape[0])[:, None], donors_idx]
+        donors_dist = dist_pot_donors[
+            np.arange(donors_idx.shape[0])[:, None], donors_idx
+        ]
 
         weight_matrix = _get_weights(donors_dist, self.weights)
 
@@ -307,14 +312,18 @@ class KNNImputer(_BaseImputer):
                 receivers_idx = row_missing_chunk[np.flatnonzero(col_mask)]
 
                 # distances for samples that needed imputation for column
-                dist_subset = dist_chunk[dist_idx_map[receivers_idx] - start][:, potential_donors_idx]
+                dist_subset = dist_chunk[dist_idx_map[receivers_idx] - start][
+                    :, potential_donors_idx
+                ]
 
                 # receivers with all nan distances impute with mean
                 all_nan_dist_mask = np.isnan(dist_subset).all(axis=1)
                 all_nan_receivers_idx = receivers_idx[all_nan_dist_mask]
 
                 if all_nan_receivers_idx.size:
-                    col_mean = np.ma.array(self._fit_X[:, col], mask=mask_fit_X[:, col]).mean()
+                    col_mean = np.ma.array(
+                        self._fit_X[:, col], mask=mask_fit_X[:, col]
+                    ).mean()
                     X[all_nan_receivers_idx, col] = col_mean
 
                     if len(all_nan_receivers_idx) == len(receivers_idx):
@@ -323,7 +332,9 @@ class KNNImputer(_BaseImputer):
 
                     # receivers with at least one defined distance
                     receivers_idx = receivers_idx[~all_nan_dist_mask]
-                    dist_subset = dist_chunk[dist_idx_map[receivers_idx] - start][:, potential_donors_idx]
+                    dist_subset = dist_chunk[dist_idx_map[receivers_idx] - start][
+                        :, potential_donors_idx
+                    ]
 
                 n_neighbors = min(self.n_neighbors, len(potential_donors_idx))
                 value = self._calc_impute(

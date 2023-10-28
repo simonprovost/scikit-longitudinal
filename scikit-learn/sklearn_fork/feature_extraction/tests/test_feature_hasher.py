@@ -1,8 +1,11 @@
 import numpy as np
-import pytest
 from numpy.testing import assert_array_equal
+import pytest
+
 from sklearn_fork.feature_extraction import FeatureHasher
-from sklearn_fork.feature_extraction._hashing_fast import transform as _hashing_transform
+from sklearn_fork.feature_extraction._hashing_fast import (
+    transform as _hashing_transform,
+)
 
 
 def test_feature_hasher_dicts():
@@ -28,7 +31,9 @@ def test_feature_hasher_strings():
 
         it = (x for x in raw_X)  # iterable
 
-        feature_hasher = FeatureHasher(n_features=n_features, input_type="string", alternate_sign=False)
+        feature_hasher = FeatureHasher(
+            n_features=n_features, input_type="string", alternate_sign=False
+        )
         X = feature_hasher.transform(it)
 
         assert X.shape[0] == len(raw_X)
@@ -82,7 +87,10 @@ def test_hashing_transform_seed():
 
 
 def test_feature_hasher_pairs():
-    raw_X = (iter(d.items()) for d in [{"foo": 1, "bar": 2}, {"baz": 3, "quux": 4, "foo": -1}])
+    raw_X = (
+        iter(d.items())
+        for d in [{"foo": 1, "bar": 2}, {"baz": 3, "quux": 4, "foo": -1}]
+    )
     feature_hasher = FeatureHasher(n_features=16, input_type="pair")
     x1, x2 = feature_hasher.transform(raw_X).toarray()
     x1_nz = sorted(np.abs(x1[x1 != 0]))
@@ -92,7 +100,10 @@ def test_feature_hasher_pairs():
 
 
 def test_feature_hasher_pairs_with_string_values():
-    raw_X = (iter(d.items()) for d in [{"foo": 1, "bar": "a"}, {"baz": "abc", "quux": 4, "foo": -1}])
+    raw_X = (
+        iter(d.items())
+        for d in [{"foo": 1, "bar": "a"}, {"baz": "abc", "quux": 4, "foo": -1}]
+    )
     feature_hasher = FeatureHasher(n_features=16, input_type="pair")
     x1, x2 = feature_hasher.transform(raw_X).toarray()
     x1_nz = sorted(np.abs(x1[x1 != 0]))
@@ -138,10 +149,14 @@ def test_hasher_alternate_sign():
 def test_hash_collisions():
     X = [list("Thequickbrownfoxjumped")]
 
-    Xt = FeatureHasher(alternate_sign=True, n_features=1, input_type="string").fit_transform(X)
+    Xt = FeatureHasher(
+        alternate_sign=True, n_features=1, input_type="string"
+    ).fit_transform(X)
     # check that some of the hashed tokens are added
     # with an opposite sign and cancel out
     assert abs(Xt.data[0]) < len(X[0])
 
-    Xt = FeatureHasher(alternate_sign=False, n_features=1, input_type="string").fit_transform(X)
+    Xt = FeatureHasher(
+        alternate_sign=False, n_features=1, input_type="string"
+    ).fit_transform(X)
     assert Xt.data[0] == len(X[0])

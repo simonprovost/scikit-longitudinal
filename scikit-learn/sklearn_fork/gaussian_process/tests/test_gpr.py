@@ -4,24 +4,29 @@
 # Modified by: Pete Green <p.l.green@liverpool.ac.uk>
 # License: BSD 3 clause
 
-import re
-import sys
 import warnings
-
+import sys
+import re
 import numpy as np
-import pytest
+
 from scipy.optimize import approx_fprime
-from sklearn_fork.exceptions import ConvergenceWarning
+
+import pytest
+
 from sklearn_fork.gaussian_process import GaussianProcessRegressor
-from sklearn_fork.gaussian_process.kernels import RBF
-from sklearn_fork.gaussian_process.kernels import ConstantKernel as C
-from sklearn_fork.gaussian_process.kernels import DotProduct, ExpSineSquared, WhiteKernel
+from sklearn_fork.gaussian_process.kernels import (
+    RBF,
+    ConstantKernel as C,
+    WhiteKernel,
+)
+from sklearn_fork.gaussian_process.kernels import DotProduct, ExpSineSquared
 from sklearn_fork.gaussian_process.tests._mini_sequence_kernel import MiniSeqKernel
+from sklearn_fork.exceptions import ConvergenceWarning
 from sklearn_fork.utils._testing import (
-    assert_allclose,
+    assert_array_less,
     assert_almost_equal,
     assert_array_almost_equal,
-    assert_array_less,
+    assert_allclose,
 )
 
 
@@ -39,8 +44,10 @@ kernels = [
     fixed_kernel,
     RBF(length_scale=1.0, length_scale_bounds=(1e-3, 1e3)),
     C(1.0, (1e-2, 1e2)) * RBF(length_scale=1.0, length_scale_bounds=(1e-3, 1e3)),
-    C(1.0, (1e-2, 1e2)) * RBF(length_scale=1.0, length_scale_bounds=(1e-3, 1e3)) + C(1e-5, (1e-5, 1e2)),
-    C(0.1, (1e-2, 1e2)) * RBF(length_scale=1.0, length_scale_bounds=(1e-3, 1e3)) + C(1e-5, (1e-5, 1e2)),
+    C(1.0, (1e-2, 1e2)) * RBF(length_scale=1.0, length_scale_bounds=(1e-3, 1e3))
+    + C(1e-5, (1e-5, 1e2)),
+    C(0.1, (1e-2, 1e2)) * RBF(length_scale=1.0, length_scale_bounds=(1e-3, 1e3))
+    + C(1e-5, (1e-5, 1e2)),
 ]
 non_fixed_kernels = [kernel for kernel in kernels if kernel != fixed_kernel]
 
@@ -66,7 +73,9 @@ def test_gpr_interpolation_structured():
     gpr = GaussianProcessRegressor(kernel=kernel).fit(X, y)
     y_pred, y_cov = gpr.predict(X, return_cov=True)
 
-    assert_almost_equal(kernel(X, eval_gradient=True)[1].ravel(), (1 - np.eye(len(X))).ravel())
+    assert_almost_equal(
+        kernel(X, eval_gradient=True)[1].ravel(), (1 - np.eye(len(X))).ravel()
+    )
     assert_almost_equal(y_pred, y)
     assert_almost_equal(np.diag(y_cov), 0.0)
 
@@ -78,14 +87,18 @@ def test_lml_improving(kernel):
 
     # Test that hyperparameter-tuning improves log-marginal likelihood.
     gpr = GaussianProcessRegressor(kernel=kernel).fit(X, y)
-    assert gpr.log_marginal_likelihood(gpr.kernel_.theta) > gpr.log_marginal_likelihood(kernel.theta)
+    assert gpr.log_marginal_likelihood(gpr.kernel_.theta) > gpr.log_marginal_likelihood(
+        kernel.theta
+    )
 
 
 @pytest.mark.parametrize("kernel", kernels)
 def test_lml_precomputed(kernel):
     # Test that lml of optimized kernel is stored correctly.
     gpr = GaussianProcessRegressor(kernel=kernel).fit(X, y)
-    assert gpr.log_marginal_likelihood(gpr.kernel_.theta) == pytest.approx(gpr.log_marginal_likelihood())
+    assert gpr.log_marginal_likelihood(gpr.kernel_.theta) == pytest.approx(
+        gpr.log_marginal_likelihood()
+    )
 
 
 @pytest.mark.parametrize("kernel", kernels)
@@ -132,7 +145,9 @@ def test_lml_gradient(kernel):
     gpr = GaussianProcessRegressor(kernel=kernel).fit(X, y)
 
     lml, lml_gradient = gpr.log_marginal_likelihood(kernel.theta, True)
-    lml_gradient_approx = approx_fprime(kernel.theta, lambda theta: gpr.log_marginal_likelihood(theta, False), 1e-10)
+    lml_gradient_approx = approx_fprime(
+        kernel.theta, lambda theta: gpr.log_marginal_likelihood(theta, False), 1e-10
+    )
 
     assert_almost_equal(lml_gradient, lml_gradient_approx, 3)
 
@@ -210,7 +225,11 @@ def test_random_starts():
     n_samples, n_features = 25, 2
     rng = np.random.RandomState(0)
     X = rng.randn(n_samples, n_features) * 2 - 1
-    y = np.sin(X).sum(axis=1) + np.sin(3 * X).sum(axis=1) + rng.normal(scale=0.1, size=n_samples)
+    y = (
+        np.sin(X).sum(axis=1)
+        + np.sin(3 * X).sum(axis=1)
+        + rng.normal(scale=0.1, size=n_samples)
+    )
 
     kernel = C(1.0, (1e-2, 1e2)) * RBF(
         length_scale=[1.0] * n_features, length_scale_bounds=[(1e-4, 1e2)] * n_features
@@ -302,10 +321,14 @@ def test_large_variance_y():
     y_pred, y_pred_std = gpr.predict(X2, return_std=True)
 
     # 'Gold standard' mean predictions from GPy
-    y_pred_gpy = np.array([15.16918303, -27.98707845, -39.31636019, 14.52605515, 69.18503589])
+    y_pred_gpy = np.array(
+        [15.16918303, -27.98707845, -39.31636019, 14.52605515, 69.18503589]
+    )
 
     # 'Gold standard' std predictions from GPy
-    y_pred_std_gpy = np.array([7.78860962, 3.83179178, 0.63149951, 0.52745188, 0.86170042])
+    y_pred_std_gpy = np.array(
+        [7.78860962, 3.83179178, 0.63149951, 0.52745188, 0.86170042]
+    )
 
     # Based on numerical experiments, it's reasonable to expect our
     # GP's mean predictions to get within 7% of predictions of those
@@ -370,9 +393,13 @@ def test_custom_optimizer(kernel):
     # Define a dummy optimizer that simply tests 50 random hyperparameters
     def optimizer(obj_func, initial_theta, bounds):
         rng = np.random.RandomState(0)
-        theta_opt, func_min = initial_theta, obj_func(initial_theta, eval_gradient=False)
+        theta_opt, func_min = initial_theta, obj_func(
+            initial_theta, eval_gradient=False
+        )
         for _ in range(50):
-            theta = np.atleast_1d(rng.uniform(np.maximum(-2, bounds[:, 0]), np.minimum(1, bounds[:, 1])))
+            theta = np.atleast_1d(
+                rng.uniform(np.maximum(-2, bounds[:, 0]), np.minimum(1, bounds[:, 1]))
+            )
             f = obj_func(theta, eval_gradient=False)
             if f < func_min:
                 theta_opt, func_min = theta, f
@@ -381,7 +408,9 @@ def test_custom_optimizer(kernel):
     gpr = GaussianProcessRegressor(kernel=kernel, optimizer=optimizer)
     gpr.fit(X, y)
     # Checks that optimizer improved marginal likelihood
-    assert gpr.log_marginal_likelihood(gpr.kernel_.theta) > gpr.log_marginal_likelihood(gpr.kernel.theta)
+    assert gpr.log_marginal_likelihood(gpr.kernel_.theta) > gpr.log_marginal_likelihood(
+        gpr.kernel.theta
+    )
 
 
 def test_gpr_correct_error_message():
@@ -423,7 +452,9 @@ def test_duplicate_input(kernel):
 
 def test_no_fit_default_predict():
     # Test that GPR predictions without fit does not break by default.
-    default_kernel = C(1.0, constant_value_bounds="fixed") * RBF(1.0, length_scale_bounds="fixed")
+    default_kernel = C(1.0, constant_value_bounds="fixed") * RBF(
+        1.0, length_scale_bounds="fixed"
+    )
     gpr1 = GaussianProcessRegressor()
     _, y_std1 = gpr1.predict(X, return_std=True)
     _, y_cov1 = gpr1.predict(X, return_cov=True)
@@ -448,7 +479,9 @@ def test_warning_bounds():
     with pytest.warns(ConvergenceWarning, match=warning_message):
         gpr.fit(X, y)
 
-    kernel_sum = WhiteKernel(noise_level_bounds=[1e-5, 1e-3]) + RBF(length_scale_bounds=[1e3, 1e5])
+    kernel_sum = WhiteKernel(noise_level_bounds=[1e-5, 1e-3]) + RBF(
+        length_scale_bounds=[1e3, 1e5]
+    )
     gpr_sum = GaussianProcessRegressor(kernel=kernel_sum)
     with warnings.catch_warnings(record=True) as record:
         warnings.simplefilter("always")
@@ -516,7 +549,9 @@ def test_bound_check_fixed_hyperparameter():
     # Check that having a hyperparameter with fixed bounds doesn't cause an
     # error
     k1 = 50.0**2 * RBF(length_scale=50.0)  # long term smooth rising trend
-    k2 = ExpSineSquared(length_scale=1.0, periodicity=1.0, periodicity_bounds="fixed")  # seasonal component
+    k2 = ExpSineSquared(
+        length_scale=1.0, periodicity=1.0, periodicity_bounds="fixed"
+    )  # seasonal component
     kernel = k1 + k2
     GaussianProcessRegressor(kernel=kernel).fit(X, y)
 
@@ -569,9 +604,9 @@ def test_gpr_consistency_std_cov_non_invertible_kernel():
     Inconsistencies were observed when the kernel cannot be inverted (or
     numerically stable).
     """
-    kernel = C(8.98576054e05, (1e-12, 1e12)) * RBF([5.91326520e02, 1.32584051e03], (1e-12, 1e12)) + WhiteKernel(
-        noise_level=1e-5
-    )
+    kernel = C(8.98576054e05, (1e-12, 1e12)) * RBF(
+        [5.91326520e02, 1.32584051e03], (1e-12, 1e12)
+    ) + WhiteKernel(noise_level=1e-5)
     gpr = GaussianProcessRegressor(kernel=kernel, alpha=0, optimizer=None)
     X_train = np.array(
         [

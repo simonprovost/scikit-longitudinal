@@ -39,14 +39,12 @@ various features such as experience, age, or education.
 
 """
 
-import matplotlib.pyplot as plt
-
 # %%
 import numpy as np
-import pandas as pd
 import scipy as sp
+import pandas as pd
+import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn_fork.datasets import fetch_openml
 
 # %%
 # The dataset: wages
@@ -56,6 +54,7 @@ from sklearn_fork.datasets import fetch_openml
 # Note that setting the parameter `as_frame` to True will retrieve the data
 # as a pandas dataframe.
 
+from sklearn_fork.datasets import fetch_openml
 
 survey = fetch_openml(data_id=534, as_frame=True, parser="pandas")
 
@@ -155,13 +154,15 @@ preprocessor = make_column_transformer(
 # To describe the dataset as a linear model we use a ridge regressor
 # with a very small regularization and to model the logarithm of the WAGE.
 
-from sklearn_fork.compose import TransformedTargetRegressor
-from sklearn_fork.linear_model import Ridge
 from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.linear_model import Ridge
+from sklearn_fork.compose import TransformedTargetRegressor
 
 model = make_pipeline(
     preprocessor,
-    TransformedTargetRegressor(regressor=Ridge(alpha=1e-10), func=np.log10, inverse_func=sp.special.exp10),
+    TransformedTargetRegressor(
+        regressor=Ridge(alpha=1e-10), func=np.log10, inverse_func=sp.special.exp10
+    ),
 )
 
 # %%
@@ -177,7 +178,8 @@ model.fit(X_train, y_train)
 # on the test set and computing,
 # for example, the median absolute error of the model.
 
-from sklearn_fork.metrics import PredictionErrorDisplay, median_absolute_error
+from sklearn_fork.metrics import median_absolute_error
+from sklearn_fork.metrics import PredictionErrorDisplay
 
 mae_train = median_absolute_error(y_train, model.predict(X_train))
 y_pred = model.predict(X_test)
@@ -256,7 +258,9 @@ plt.subplots_adjust(left=0.3)
 # This is visible if we compare the standard deviations of different
 # features.
 
-X_train_preprocessed = pd.DataFrame(model[:-1].transform(X_train), columns=feature_names)
+X_train_preprocessed = pd.DataFrame(
+    model[:-1].transform(X_train), columns=feature_names
+)
 
 X_train_preprocessed.std(axis=0).plot.barh(figsize=(9, 7))
 plt.title("Feature ranges")
@@ -315,7 +319,8 @@ plt.subplots_adjust(left=0.3)
 # their robustness is not guaranteed, and they should probably be interpreted
 # with caution.
 
-from sklearn_fork.model_selection import RepeatedKFold, cross_validate
+from sklearn_fork.model_selection import cross_validate
+from sklearn_fork.model_selection import RepeatedKFold
 
 cv = RepeatedKFold(n_splits=5, n_repeats=5, random_state=0)
 cv_model = cross_validate(
@@ -387,7 +392,8 @@ cv_model = cross_validate(
 
 coefs = pd.DataFrame(
     [
-        est[-1].regressor_.coef_ * est[:-1].transform(X.drop(columns=column_to_drop).iloc[train_idx]).std(axis=0)
+        est[-1].regressor_.coef_
+        * est[:-1].transform(X.drop(columns=column_to_drop).iloc[train_idx]).std(axis=0)
         for est, (train_idx, _) in zip(cv_model["estimator"], cv.split(X, y))
     ],
     columns=feature_names[:-1],
@@ -432,7 +438,9 @@ preprocessor = make_column_transformer(
 
 model = make_pipeline(
     preprocessor,
-    TransformedTargetRegressor(regressor=Ridge(alpha=1e-10), func=np.log10, inverse_func=sp.special.exp10),
+    TransformedTargetRegressor(
+        regressor=Ridge(alpha=1e-10), func=np.log10, inverse_func=sp.special.exp10
+    ),
 )
 model.fit(X_train, y_train)
 
@@ -488,7 +496,9 @@ cv_model = cross_validate(
     return_estimator=True,
     n_jobs=2,
 )
-coefs = pd.DataFrame([est[-1].regressor_.coef_ for est in cv_model["estimator"]], columns=feature_names)
+coefs = pd.DataFrame(
+    [est[-1].regressor_.coef_ for est in cv_model["estimator"]], columns=feature_names
+)
 
 # %%
 plt.figure(figsize=(9, 7))
@@ -589,7 +599,9 @@ cv_model = cross_validate(
     return_estimator=True,
     n_jobs=2,
 )
-coefs = pd.DataFrame([est[-1].regressor_.coef_ for est in cv_model["estimator"]], columns=feature_names)
+coefs = pd.DataFrame(
+    [est[-1].regressor_.coef_ for est in cv_model["estimator"]], columns=feature_names
+)
 
 # %%
 plt.ylabel("Age coefficient")
@@ -686,7 +698,9 @@ cv_model = cross_validate(
     return_estimator=True,
     n_jobs=2,
 )
-coefs = pd.DataFrame([est[-1].regressor_.coef_ for est in cv_model["estimator"]], columns=feature_names)
+coefs = pd.DataFrame(
+    [est[-1].regressor_.coef_ for est in cv_model["estimator"]], columns=feature_names
+)
 
 # %%
 plt.figure(figsize=(9, 7))

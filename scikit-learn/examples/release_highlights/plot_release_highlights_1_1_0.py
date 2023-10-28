@@ -21,15 +21,14 @@ or with conda::
 
 """
 
-import matplotlib.pyplot as plt
-import numpy as np
-
 # %%
 # Quantile loss in :class:`ensemble.HistGradientBoostingRegressor`
 # ----------------------------------------------------------------
 # :class:`ensemble.HistGradientBoostingRegressor` can model quantiles with
 # `loss="quantile"` and the new parameter `quantile`.
 from sklearn_fork.ensemble import HistGradientBoostingRegressor
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Simple regression function for X * cos(X)
 rng = np.random.RandomState(42)
@@ -40,7 +39,9 @@ y = X_1d * np.cos(X_1d) + rng.normal(scale=X_1d / 3)
 quantiles = [0.95, 0.5, 0.05]
 parameters = dict(loss="quantile", max_bins=32, max_iter=50)
 hist_quantiles = {
-    f"quantile={quantile:.2f}": HistGradientBoostingRegressor(**parameters, quantile=quantile).fit(X, y)
+    f"quantile={quantile:.2f}": HistGradientBoostingRegressor(
+        **parameters, quantile=quantile
+    ).fit(X, y)
     for quantile in quantiles
 }
 
@@ -58,14 +59,16 @@ _ = ax.legend(loc="lower left")
 # :class:`pipeline.Pipeline` to construct the output feature names for more complex
 # pipelines:
 from sklearn_fork.compose import ColumnTransformer
-from sklearn_fork.datasets import fetch_openml
-from sklearn_fork.feature_selection import SelectKBest
-from sklearn_fork.impute import SimpleImputer
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.preprocessing import OneHotEncoder, StandardScaler
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.feature_selection import SelectKBest
+from sklearn_fork.datasets import fetch_openml
+from sklearn_fork.linear_model import LogisticRegression
 
-X, y = fetch_openml("titanic", version=1, as_frame=True, return_X_y=True, parser="pandas")
+X, y = fetch_openml(
+    "titanic", version=1, as_frame=True, return_X_y=True, parser="pandas"
+)
 numeric_features = ["age", "fare"]
 numeric_transformer = make_pipeline(SimpleImputer(strategy="median"), StandardScaler())
 categorical_features = ["embarked", "pclass"]
@@ -97,8 +100,6 @@ pd.Series(log_reg[-1].coef_.ravel(), index=log_reg_input_features).plot.bar()
 plt.tight_layout()
 
 
-import numpy as np
-
 # %%
 # Grouping infrequent categories in :class:`OneHotEncoder`
 # --------------------------------------------------------
@@ -107,8 +108,11 @@ import numpy as np
 # categories are `min_frequency` and `max_categories`. See the
 # :ref:`User Guide <one_hot_encoder_infrequent_categories>` for more details.
 from sklearn_fork.preprocessing import OneHotEncoder
+import numpy as np
 
-X = np.array([["dog"] * 5 + ["cat"] * 20 + ["rabbit"] * 10 + ["snake"] * 3], dtype=object).T
+X = np.array(
+    [["dog"] * 5 + ["cat"] * 20 + ["rabbit"] * 10 + ["snake"] * 3], dtype=object
+).T
 enc = OneHotEncoder(min_frequency=6, sparse_output=False).fit(X)
 enc.infrequent_categories_
 
@@ -193,9 +197,6 @@ print(
     f"{np.sum((X - X_reconstructed) ** 2) / np.sum(X**2):.5f}",
 )
 
-import matplotlib.pyplot as plt
-from sklearn_fork.cluster import BisectingKMeans, KMeans
-
 # %%
 # BisectingKMeans: divide and cluster
 # -----------------------------------
@@ -205,6 +206,8 @@ from sklearn_fork.cluster import BisectingKMeans, KMeans
 # new clusters repeatedly until the target number of clusters is reached, giving a
 # hierarchical structure to the clustering.
 from sklearn_fork.datasets import make_blobs
+from sklearn_fork.cluster import KMeans, BisectingKMeans
+import matplotlib.pyplot as plt
 
 X, _ = make_blobs(n_samples=1000, centers=2, random_state=0)
 
@@ -217,5 +220,7 @@ ax[0].scatter(km.cluster_centers_[:, 0], km.cluster_centers_[:, 1], s=20, c="r")
 ax[0].set_title("KMeans")
 
 ax[1].scatter(X[:, 0], X[:, 1], s=10, c=bisect_km.labels_)
-ax[1].scatter(bisect_km.cluster_centers_[:, 0], bisect_km.cluster_centers_[:, 1], s=20, c="r")
+ax[1].scatter(
+    bisect_km.cluster_centers_[:, 0], bisect_km.cluster_centers_[:, 1], s=20, c="r"
+)
 _ = ax[1].set_title("BisectingKMeans")

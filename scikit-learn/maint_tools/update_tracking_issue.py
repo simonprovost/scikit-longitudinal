@@ -11,16 +11,20 @@ This scope allows the bot to create and edit its own issues. It is best to use a
 github account that does **not** have commit access to the public repo.
 """
 
-import argparse
-import sys
-from datetime import datetime, timezone
 from pathlib import Path
+import sys
+import argparse
+from datetime import datetime, timezone
 
 import defusedxml.ElementTree as ET
 from github import Github
 
-parser = argparse.ArgumentParser(description="Create or update issue from JUnit test results from pytest")
-parser.add_argument("bot_github_token", help="Github token for creating or updating an issue")
+parser = argparse.ArgumentParser(
+    description="Create or update issue from JUnit test results from pytest"
+)
+parser.add_argument(
+    "bot_github_token", help="Github token for creating or updating an issue"
+)
 parser.add_argument("ci_name", help="Name of CI run instance")
 parser.add_argument("issue_repo", help="Repo to track issues")
 parser.add_argument("link_to_ci_run", help="URL to link to")
@@ -34,7 +38,10 @@ parser.add_argument(
 )
 parser.add_argument(
     "--auto-close",
-    help="If --auto-close is false, then issues will not auto close even if the tests pass.",
+    help=(
+        "If --auto-close is false, then issues will not auto close even if the tests"
+        " pass."
+    ),
     default="true",
 )
 
@@ -57,7 +64,9 @@ title = f"⚠️ CI failed on {args.ci_name} ⚠️"
 
 def get_issue():
     login = gh.get_user().login
-    issues = gh.search_issues(f"repo:{args.issue_repo} {title} in:title state:open author:{login}")
+    issues = gh.search_issues(
+        f"repo:{args.issue_repo} {title} in:title state:open author:{login}"
+    )
     first_page = issues.get_page(0)
     # Return issue if it exist
     return first_page[0] if first_page else None
@@ -72,7 +81,10 @@ def create_or_update_issue(body=""):
     original_body_length = len(body)
     # Avoid "body is too long (maximum is 65536 characters)" error from github REST API
     if original_body_length > max_body_length:
-        body = f"{body[:max_body_length]}\n...\nBody was too long ({original_body_length} characters) and was shortened"
+        body = (
+            f"{body[:max_body_length]}\n...\n"
+            f"Body was too long ({original_body_length} characters) and was shortened"
+        )
 
     if issue is None:
         # Create new issue
@@ -93,7 +105,9 @@ def close_issue_if_opened():
     issue = get_issue()
     if issue is not None:
         header_str = "## CI is no longer failing!"
-        comment_str = f"{header_str} ✅\n\n[Successful run]({args.link_to_ci_run}) on {date_str}"
+        comment_str = (
+            f"{header_str} ✅\n\n[Successful run]({args.link_to_ci_run}) on {date_str}"
+        )
 
         print(f"Commented on issue #{issue.number}")
         # New comment if "## CI is no longer failing!" comment does not exist

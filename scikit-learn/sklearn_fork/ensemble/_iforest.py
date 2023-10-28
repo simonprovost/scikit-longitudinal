@@ -3,18 +3,24 @@
 # License: BSD 3 clause
 
 import numbers
-from numbers import Integral, Real
-from warnings import warn
-
 import numpy as np
 from scipy.sparse import issparse
+from warnings import warn
+from numbers import Integral, Real
 
-from ..base import OutlierMixin
 from ..tree import ExtraTreeRegressor
 from ..tree._tree import DTYPE as tree_dtype
-from ..utils import check_array, check_random_state, gen_batches, get_chunk_n_rows
-from ..utils._param_validation import Interval, RealNotInt, StrOptions
-from ..utils.validation import _num_samples, check_is_fitted
+from ..utils import (
+    check_random_state,
+    check_array,
+    gen_batches,
+    get_chunk_n_rows,
+)
+from ..utils._param_validation import Interval, StrOptions
+from ..utils._param_validation import RealNotInt
+from ..utils.validation import check_is_fitted, _num_samples
+from ..base import OutlierMixin
+
 from ._bagging import BaseBagging
 
 __all__ = ["IsolationForest"]
@@ -232,7 +238,9 @@ class IsolationForest(OutlierMixin, BaseBagging):
         warm_start=False,
     ):
         super().__init__(
-            estimator=ExtraTreeRegressor(max_features=1, splitter="random", random_state=random_state),
+            estimator=ExtraTreeRegressor(
+                max_features=1, splitter="random", random_state=random_state
+            ),
             # here above max_features has no links with self.max_features
             bootstrap=bootstrap,
             bootstrap_features=False,
@@ -300,7 +308,8 @@ class IsolationForest(OutlierMixin, BaseBagging):
                 warn(
                     "max_samples (%s) is greater than the "
                     "total number of samples (%s). max_samples "
-                    "will be set to n_samples for estimation." % (self.max_samples, n_samples)
+                    "will be set to n_samples for estimation."
+                    % (self.max_samples, n_samples)
                 )
                 max_samples = n_samples
             else:
@@ -457,7 +466,9 @@ class IsolationForest(OutlierMixin, BaseBagging):
         #    the data needed to compute the scores -- the returned scores
         #    themselves are 1D.
 
-        chunk_n_rows = get_chunk_n_rows(row_bytes=16 * self._max_features, max_n_rows=n_samples)
+        chunk_n_rows = get_chunk_n_rows(
+            row_bytes=16 * self._max_features, max_n_rows=n_samples
+        )
         slices = gen_batches(n_samples, chunk_n_rows)
 
         scores = np.zeros(n_samples, order="f")
@@ -486,7 +497,9 @@ class IsolationForest(OutlierMixin, BaseBagging):
 
         average_path_length_max_samples = _average_path_length([self._max_samples])
 
-        for tree_idx, (tree, features) in enumerate(zip(self.estimators_, self.estimators_features_)):
+        for tree_idx, (tree, features) in enumerate(
+            zip(self.estimators_, self.estimators_features_)
+        ):
             X_subset = X[:, features] if subsample_features else X
 
             leaves_index = tree.apply(X_subset, check_input=False)
@@ -500,14 +513,18 @@ class IsolationForest(OutlierMixin, BaseBagging):
         scores = 2 ** (
             # For a single training sample, denominator and depth are 0.
             # Therefore, we set the score manually to 1.
-            -np.divide(depths, denominator, out=np.ones_like(depths), where=denominator != 0)
+            -np.divide(
+                depths, denominator, out=np.ones_like(depths), where=denominator != 0
+            )
         )
         return scores
 
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_sample_weights_invariance": "zero sample_weight is not equivalent to removing samples",
+                "check_sample_weights_invariance": (
+                    "zero sample_weight is not equivalent to removing samples"
+                ),
             }
         }
 

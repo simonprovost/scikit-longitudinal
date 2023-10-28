@@ -1,32 +1,34 @@
+from os import environ
+from functools import wraps
 import platform
 import sys
 from contextlib import suppress
-from functools import wraps
-from os import environ
 from unittest import SkipTest
 
 import joblib
-import numpy as np
 import pytest
-from _pytest.doctest import DoctestItem
-from sklearn_fork._min_dependencies import PYTEST_MIN_VERSION
-from sklearn_fork.datasets import (
-    fetch_20newsgroups,
-    fetch_20newsgroups_vectorized,
-    fetch_california_housing,
-    fetch_covtype,
-    fetch_kddcup99,
-    fetch_olivetti_faces,
-    fetch_rcv1,
-)
-from sklearn_fork.tests import random_seed
-from sklearn_fork.utils import _IS_32BIT
-from sklearn_fork.utils.fixes import parse_version, sp_version
+import numpy as np
 from threadpoolctl import threadpool_limits
+from _pytest.doctest import DoctestItem
+
+from sklearn_fork.utils import _IS_32BIT
+from sklearn_fork._min_dependencies import PYTEST_MIN_VERSION
+from sklearn_fork.utils.fixes import sp_version
+from sklearn_fork.utils.fixes import parse_version
+from sklearn_fork.datasets import fetch_20newsgroups
+from sklearn_fork.datasets import fetch_20newsgroups_vectorized
+from sklearn_fork.datasets import fetch_california_housing
+from sklearn_fork.datasets import fetch_covtype
+from sklearn_fork.datasets import fetch_kddcup99
+from sklearn_fork.datasets import fetch_olivetti_faces
+from sklearn_fork.datasets import fetch_rcv1
+from sklearn_fork.tests import random_seed
+
 
 if parse_version(pytest.__version__) < parse_version(PYTEST_MIN_VERSION):
     raise ImportError(
-        "Your version of pytest is too old, you should have at least pytest >= {} installed.".format(PYTEST_MIN_VERSION)
+        "Your version of pytest is too old, you should have "
+        "at least pytest >= {} installed.".format(PYTEST_MIN_VERSION)
     )
 
 scipy_datasets_require_network = sp_version >= parse_version("1.10")
@@ -113,7 +115,9 @@ def pytest_collection_modifyitems(config, items):
     items : list of collected items
     """
     run_network_tests = environ.get("SKLEARN_SKIP_NETWORK_TESTS", "1") == "0"
-    skip_network = pytest.mark.skip(reason="test is enabled when SKLEARN_SKIP_NETWORK_TESTS=0")
+    skip_network = pytest.mark.skip(
+        reason="test is enabled when SKLEARN_SKIP_NETWORK_TESTS=0"
+    )
 
     # download datasets during collection to avoid thread unsafe behavior
     # when running pytest in parallel with pytest-xdist
@@ -145,9 +149,15 @@ def pytest_collection_modifyitems(config, items):
 
     for item in items:
         # Known failure on with GradientBoostingClassifier on ARM64
-        if item.name.endswith("GradientBoostingClassifier") and platform.machine() == "aarch64":
+        if (
+            item.name.endswith("GradientBoostingClassifier")
+            and platform.machine() == "aarch64"
+        ):
             marker = pytest.mark.xfail(
-                reason=("know failure. See https://github.com/scikit-learn/scikit-learn/issues/17797")  # noqa
+                reason=(
+                    "know failure. See "
+                    "https://github.com/scikit-learn/scikit-learn/issues/17797"  # noqa
+                )
             )
             item.add_marker(marker)
 
@@ -162,7 +172,10 @@ def pytest_collection_modifyitems(config, items):
         reason = "doctest are only run when the default numpy int is 64 bits."
         skip_doctests = True
     elif sys.platform.startswith("win32"):
-        reason = "doctests are not run for Windows because numpy arrays repr is inconsistent across platforms."
+        reason = (
+            "doctests are not run for Windows because numpy arrays "
+            "repr is inconsistent across platforms."
+        )
         skip_doctests = True
 
     # Normally doctest has the entire module's scope. Here we set globs to an empty dict

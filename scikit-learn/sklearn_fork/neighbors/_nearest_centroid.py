@@ -8,19 +8,18 @@ Nearest Centroid Classification
 # License: BSD 3 clause
 
 import warnings
-from numbers import Real
-
 import numpy as np
+from numbers import Real
 from scipy import sparse as sp
-from sklearn_fork.metrics.pairwise import _VALID_METRICS
 
 from ..base import BaseEstimator, ClassifierMixin
 from ..metrics.pairwise import pairwise_distances_argmin
 from ..preprocessing import LabelEncoder
-from ..utils._param_validation import Interval, StrOptions
-from ..utils.multiclass import check_classification_targets
-from ..utils.sparsefuncs import csc_median_axis_0
 from ..utils.validation import check_is_fitted
+from ..utils.sparsefuncs import csc_median_axis_0
+from ..utils.multiclass import check_classification_targets
+from ..utils._param_validation import Interval, StrOptions
+from sklearn_fork.metrics.pairwise import _VALID_METRICS
 
 
 class NearestCentroid(ClassifierMixin, BaseEstimator):
@@ -104,7 +103,9 @@ class NearestCentroid(ClassifierMixin, BaseEstimator):
 
     _parameter_constraints: dict = {
         "metric": [
-            StrOptions(set(_VALID_METRICS) - {"mahalanobis", "seuclidean", "wminkowski"}),
+            StrOptions(
+                set(_VALID_METRICS) - {"mahalanobis", "seuclidean", "wminkowski"}
+            ),
             callable,
         ],
         "shrink_threshold": [Interval(Real, 0, None, closed="neither"), None],
@@ -150,7 +151,10 @@ class NearestCentroid(ClassifierMixin, BaseEstimator):
         self.classes_ = classes = le.classes_
         n_classes = classes.size
         if n_classes < 2:
-            raise ValueError("The number of classes has to be greater than one; got %d class" % (n_classes))
+            raise ValueError(
+                "The number of classes has to be greater than one; got %d class"
+                % (n_classes)
+            )
 
         # Mask mapping each class to its members.
         self.centroids_ = np.empty((n_classes, n_features), dtype=np.float64)
@@ -229,4 +233,6 @@ class NearestCentroid(ClassifierMixin, BaseEstimator):
         check_is_fitted(self)
 
         X = self._validate_data(X, accept_sparse="csr", reset=False)
-        return self.classes_[pairwise_distances_argmin(X, self.centroids_, metric=self.metric)]
+        return self.classes_[
+            pairwise_distances_argmin(X, self.centroids_, metric=self.metric)
+        ]

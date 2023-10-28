@@ -37,6 +37,7 @@ necessarily related to visualisation.
 # ------------------------
 import numpy as np
 
+
 try:  # Scipy >= 1.10
     from scipy.datasets import face
 except ImportError:
@@ -49,7 +50,12 @@ raccoon_face = face(gray=True)
 raccoon_face = raccoon_face / 255.0
 
 # downsample for higher speed
-raccoon_face = raccoon_face[::4, ::4] + raccoon_face[1::4, ::4] + raccoon_face[::4, 1::4] + raccoon_face[1::4, 1::4]
+raccoon_face = (
+    raccoon_face[::4, ::4]
+    + raccoon_face[1::4, ::4]
+    + raccoon_face[::4, 1::4]
+    + raccoon_face[1::4, 1::4]
+)
 raccoon_face /= 4.0
 height, width = raccoon_face.shape
 
@@ -77,7 +83,9 @@ def show_with_diff(image, reference, title):
     difference = image - reference
 
     plt.title("Difference (norm: %.2f)" % np.sqrt(np.sum(difference**2)))
-    plt.imshow(difference, vmin=-0.5, vmax=0.5, cmap=plt.cm.PuOr, interpolation="nearest")
+    plt.imshow(
+        difference, vmin=-0.5, vmax=0.5, cmap=plt.cm.PuOr, interpolation="nearest"
+    )
     plt.xticks(())
     plt.yticks(())
     plt.suptitle(title, size=16)
@@ -131,7 +139,8 @@ for i, comp in enumerate(V[:100]):
     plt.xticks(())
     plt.yticks(())
 plt.suptitle(
-    "Dictionary learned from face patches\n" + "Train time %.1fs on %d patches" % (dt, len(data)),
+    "Dictionary learned from face patches\n"
+    + "Train time %.1fs on %d patches" % (dt, len(data)),
     fontsize=16,
 )
 plt.subplots_adjust(0.08, 0.02, 0.92, 0.85, 0.08, 0.23)
@@ -171,7 +180,9 @@ for title, transform_algorithm, kwargs in transform_algorithms:
     if transform_algorithm == "threshold":
         patches -= patches.min()
         patches /= patches.max()
-    reconstructions[title][:, width // 2 :] = reconstruct_from_patches_2d(patches, (height, width // 2))
+    reconstructions[title][:, width // 2 :] = reconstruct_from_patches_2d(
+        patches, (height, width // 2)
+    )
     dt = time() - t0
     print("done in %.2fs." % dt)
     show_with_diff(reconstructions[title], raccoon_face, title + " (time: %.1fs)" % dt)

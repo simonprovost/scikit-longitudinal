@@ -1,63 +1,61 @@
-import numbers
-import os
-import pickle
-import shutil
-import tempfile
 from copy import deepcopy
-from functools import partial
+import pickle
+import tempfile
+import shutil
+import os
+import numbers
 from unittest.mock import Mock
+from functools import partial
 
-import joblib
 import numpy as np
 import pytest
+import joblib
+
 from numpy.testing import assert_allclose
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import ignore_warnings
+
 from sklearn_fork.base import BaseEstimator
-from sklearn_fork.cluster import KMeans
-from sklearn_fork.datasets import (
-    load_diabetes,
-    make_blobs,
-    make_classification,
-    make_multilabel_classification,
-    make_regression,
-)
-from sklearn_fork.linear_model import LogisticRegression, Perceptron, Ridge
 from sklearn_fork.metrics import (
-    SCORERS,
     accuracy_score,
-    average_precision_score,
     balanced_accuracy_score,
+    average_precision_score,
     brier_score_loss,
-    check_scoring,
-)
-from sklearn_fork.metrics import cluster as cluster_module
-from sklearn_fork.metrics import (
     f1_score,
     fbeta_score,
-    get_scorer,
-    get_scorer_names,
     jaccard_score,
     log_loss,
-    make_scorer,
-    matthews_corrcoef,
     precision_score,
     r2_score,
     recall_score,
     roc_auc_score,
     top_k_accuracy_score,
+    matthews_corrcoef,
 )
+from sklearn_fork.metrics import cluster as cluster_module
+from sklearn_fork.metrics import check_scoring
 from sklearn_fork.metrics._scorer import (
-    _check_multimetric_scoring,
-    _MultimetricScorer,
-    _passthrough_scorer,
     _PredictScorer,
+    _passthrough_scorer,
+    _MultimetricScorer,
+    _check_multimetric_scoring,
 )
-from sklearn_fork.model_selection import GridSearchCV, cross_val_score, train_test_split
-from sklearn_fork.multiclass import OneVsRestClassifier
+from sklearn_fork.metrics import make_scorer, get_scorer, SCORERS, get_scorer_names
 from sklearn_fork.neighbors import KNeighborsClassifier
-from sklearn_fork.pipeline import make_pipeline
 from sklearn_fork.svm import LinearSVC
+from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.cluster import KMeans
+from sklearn_fork.linear_model import Ridge, LogisticRegression, Perceptron
 from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_equal, ignore_warnings
+from sklearn_fork.datasets import make_blobs
+from sklearn_fork.datasets import make_classification, make_regression
+from sklearn_fork.datasets import make_multilabel_classification
+from sklearn_fork.datasets import load_diabetes
+from sklearn_fork.model_selection import train_test_split, cross_val_score
+from sklearn_fork.model_selection import GridSearchCV
+from sklearn_fork.multiclass import OneVsRestClassifier
+
 
 REGRESSION_SCORERS = [
     "explained_variance",
@@ -286,14 +284,22 @@ def test_check_scoring_and_check_multimetric_scoring(scoring):
     scorers = _check_multimetric_scoring(estimator, scoring)
     assert isinstance(scorers, dict)
     assert sorted(scorers.keys()) == sorted(list(scoring))
-    assert all([isinstance(scorer, _PredictScorer) for scorer in list(scorers.values())])
+    assert all(
+        [isinstance(scorer, _PredictScorer) for scorer in list(scorers.values())]
+    )
 
     if "acc" in scoring:
-        assert_almost_equal(scorers["acc"](estimator, [[1], [2], [3]], [1, 0, 0]), 2.0 / 3.0)
+        assert_almost_equal(
+            scorers["acc"](estimator, [[1], [2], [3]], [1, 0, 0]), 2.0 / 3.0
+        )
     if "accuracy" in scoring:
-        assert_almost_equal(scorers["accuracy"](estimator, [[1], [2], [3]], [1, 0, 0]), 2.0 / 3.0)
+        assert_almost_equal(
+            scorers["accuracy"](estimator, [[1], [2], [3]], [1, 0, 0]), 2.0 / 3.0
+        )
     if "precision" in scoring:
-        assert_almost_equal(scorers["precision"](estimator, [[1], [2], [3]], [1, 0, 0]), 0.5)
+        assert_almost_equal(
+            scorers["precision"](estimator, [[1], [2], [3]], [1, 0, 0]), 0.5
+        )
 
 
 @pytest.mark.parametrize(
@@ -345,7 +351,9 @@ def test_check_scoring_gridsearchcv():
     # check that cross_val_score definitely calls the scorer
     # and doesn't make any assumptions about the estimator apart from having a
     # fit.
-    scores = cross_val_score(EstimatorWithFit(), [[1], [2], [3]], [1, 0, 1], scoring=DummyScorer(), cv=3)
+    scores = cross_val_score(
+        EstimatorWithFit(), [[1], [2], [3]], [1, 0, 1], scoring=DummyScorer(), cv=3
+    )
     assert_array_equal(scores, 1)
 
 
@@ -414,10 +422,14 @@ def test_classification_binary_scores(scorer_name, metric):
 def test_classification_multiclass_scores(scorer_name, metric):
     # check consistency between score and scorer for scores supporting
     # multiclass classification.
-    X, y = make_classification(n_classes=3, n_informative=3, n_samples=30, random_state=0)
+    X, y = make_classification(
+        n_classes=3, n_informative=3, n_samples=30, random_state=0
+    )
 
     # use `stratify` = y to ensure train and test sets capture all classes
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, stratify=y)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, random_state=0, stratify=y
+    )
 
     clf = DecisionTreeClassifier(random_state=0)
     clf.fit(X_train, y_train)
@@ -568,7 +580,9 @@ def test_raises_on_score_list():
     clf = DecisionTreeClassifier()
     with pytest.raises(ValueError):
         cross_val_score(clf, X, y, scoring=f1_scorer_no_average)
-    grid_search = GridSearchCV(clf, scoring=f1_scorer_no_average, param_grid={"max_depth": [1, 2]})
+    grid_search = GridSearchCV(
+        clf, scoring=f1_scorer_no_average, param_grid={"max_depth": [1, 2]}
+    )
     with pytest.raises(ValueError):
         grid_search.fit(X, y)
 
@@ -605,12 +619,15 @@ def test_classification_scorer_sample_weight():
         else:
             target = y_test
         try:
-            weighted = scorer(estimator[name], X_test, target, sample_weight=sample_weight)
+            weighted = scorer(
+                estimator[name], X_test, target, sample_weight=sample_weight
+            )
             ignored = scorer(estimator[name], X_test[10:], target[10:])
             unweighted = scorer(estimator[name], X_test, target)
-            assert (
-                weighted != unweighted
-            ), f"scorer {name} behaves identically when called with sample weights: {weighted} vs {unweighted}"
+            assert weighted != unweighted, (
+                f"scorer {name} behaves identically when called with "
+                f"sample weights: {weighted} vs {unweighted}"
+            )
             assert_almost_equal(
                 weighted,
                 ignored,
@@ -622,9 +639,10 @@ def test_classification_scorer_sample_weight():
             )
 
         except TypeError as e:
-            assert "sample_weight" in str(
-                e
-            ), f"scorer {name} raises unhelpful exception when called with sample weights: {str(e)}"
+            assert "sample_weight" in str(e), (
+                f"scorer {name} raises unhelpful exception when called "
+                f"with sample weights: {str(e)}"
+            )
 
 
 @ignore_warnings
@@ -653,9 +671,10 @@ def test_regression_scorer_sample_weight():
             weighted = scorer(reg, X_test, y_test, sample_weight=sample_weight)
             ignored = scorer(reg, X_test[11:], y_test[11:])
             unweighted = scorer(reg, X_test, y_test)
-            assert (
-                weighted != unweighted
-            ), f"scorer {name} behaves identically when called with sample weights: {weighted} vs {unweighted}"
+            assert weighted != unweighted, (
+                f"scorer {name} behaves identically when called with "
+                f"sample weights: {weighted} vs {unweighted}"
+            )
             assert_almost_equal(
                 weighted,
                 ignored,
@@ -667,9 +686,10 @@ def test_regression_scorer_sample_weight():
             )
 
         except TypeError as e:
-            assert "sample_weight" in str(
-                e
-            ), f"scorer {name} raises unhelpful exception when called with sample weights: {str(e)}"
+            assert "sample_weight" in str(e), (
+                f"scorer {name} raises unhelpful exception when called "
+                f"with sample weights: {str(e)}"
+            )
 
 
 @pytest.mark.parametrize("name", get_scorer_names())
@@ -708,7 +728,10 @@ def test_scoring_is_not_metric():
 
 
 @pytest.mark.parametrize(
-    "scorers,expected_predict_count,expected_predict_proba_count,expected_decision_func_count",
+    (
+        "scorers,expected_predict_count,"
+        "expected_predict_proba_count,expected_decision_func_count"
+    ),
     [
         (
             {
@@ -829,7 +852,10 @@ def test_multimetric_scorer_sanity_check():
 
     result = multi_scorer(clf, X, y)
 
-    separate_scores = {name: get_scorer(name)(clf, X, y) for name in ["accuracy", "neg_log_loss", "roc_auc"]}
+    separate_scores = {
+        name: get_scorer(name)(clf, X, y)
+        for name in ["accuracy", "neg_log_loss", "roc_auc"]
+    }
 
     for key, value in result.items():
         score_name = scorers[key]
@@ -849,7 +875,9 @@ def test_multimetric_scorer_exception_handling(raise_exc):
         "failing_2": "neg_mean_squared_log_error",
     }
 
-    X, y = make_classification(n_samples=50, n_features=2, n_redundant=0, random_state=0)
+    X, y = make_classification(
+        n_samples=50, n_features=2, n_redundant=0, random_state=0
+    )
     y *= -1  # neg_mean_squared_log_error fails if y contains negative values
 
     clf = DecisionTreeClassifier().fit(X, y)
@@ -857,7 +885,10 @@ def test_multimetric_scorer_exception_handling(raise_exc):
     scorer_dict = _check_multimetric_scoring(clf, scorers)
     multi_scorer = _MultimetricScorer(scorers=scorer_dict, raise_exc=raise_exc)
 
-    error_msg = "Mean Squared Logarithmic Error cannot be used when targets contain negative values."
+    error_msg = (
+        "Mean Squared Logarithmic Error cannot be used when targets contain"
+        " negative values."
+    )
 
     if raise_exc:
         with pytest.raises(ValueError, match=error_msg):
@@ -891,7 +922,9 @@ def test_multimetric_scorer_exception_handling(raise_exc):
 )
 def test_multiclass_roc_proba_scorer(scorer_name, metric):
     scorer = get_scorer(scorer_name)
-    X, y = make_classification(n_classes=3, n_informative=3, n_samples=20, random_state=0)
+    X, y = make_classification(
+        n_classes=3, n_informative=3, n_samples=20, random_state=0
+    )
     lr = LogisticRegression(multi_class="multinomial").fit(X, y)
     y_proba = lr.predict_proba(X)
     expected_score = metric(y, y_proba)
@@ -900,13 +933,19 @@ def test_multiclass_roc_proba_scorer(scorer_name, metric):
 
 
 def test_multiclass_roc_proba_scorer_label():
-    scorer = make_scorer(roc_auc_score, multi_class="ovo", labels=[0, 1, 2], needs_proba=True)
-    X, y = make_classification(n_classes=3, n_informative=3, n_samples=20, random_state=0)
+    scorer = make_scorer(
+        roc_auc_score, multi_class="ovo", labels=[0, 1, 2], needs_proba=True
+    )
+    X, y = make_classification(
+        n_classes=3, n_informative=3, n_samples=20, random_state=0
+    )
     lr = LogisticRegression(multi_class="multinomial").fit(X, y)
     y_proba = lr.predict_proba(X)
 
     y_binary = y == 0
-    expected_score = roc_auc_score(y_binary, y_proba, multi_class="ovo", labels=[0, 1, 2])
+    expected_score = roc_auc_score(
+        y_binary, y_proba, multi_class="ovo", labels=[0, 1, 2]
+    )
 
     assert scorer(lr, X, y_binary) == pytest.approx(expected_score)
 
@@ -918,7 +957,9 @@ def test_multiclass_roc_proba_scorer_label():
 def test_multiclass_roc_no_proba_scorer_errors(scorer_name):
     # Perceptron has no predict_proba
     scorer = get_scorer(scorer_name)
-    X, y = make_classification(n_classes=3, n_informative=3, n_samples=20, random_state=0)
+    X, y = make_classification(
+        n_classes=3, n_informative=3, n_samples=20, random_state=0
+    )
     lr = Perceptron().fit(X, y)
     msg = "'Perceptron' object has no attribute 'predict_proba'"
     with pytest.raises(AttributeError, match=msg):
@@ -1003,7 +1044,9 @@ def test_average_precision_pos_label(string_labeled_classification_problem):
     # check that when calling the scoring function, probability estimates and
     # decision values lead to the same results
     ap_proba = average_precision_score(y_test, y_pred_proba, pos_label=pos_label)
-    ap_decision_function = average_precision_score(y_test, y_pred_decision, pos_label=pos_label)
+    ap_decision_function = average_precision_score(
+        y_test, y_pred_decision, pos_label=pos_label
+    )
     assert ap_proba == pytest.approx(ap_decision_function)
 
     # create a scorer which would require to pass a `pos_label`
@@ -1018,7 +1061,9 @@ def test_average_precision_pos_label(string_labeled_classification_problem):
 
     # otherwise, the scorer should give the same results than calling the
     # scoring function
-    average_precision_scorer = make_scorer(average_precision_score, needs_threshold=True, pos_label=pos_label)
+    average_precision_scorer = make_scorer(
+        average_precision_score, needs_threshold=True, pos_label=pos_label
+    )
     ap_scorer = average_precision_scorer(clf, X_test, y_test)
 
     assert ap_scorer == pytest.approx(ap_proba)
@@ -1030,7 +1075,9 @@ def test_average_precision_pos_label(string_labeled_classification_problem):
     def _predict_proba(self, X):
         raise NotImplementedError
 
-    clf_without_predict_proba.predict_proba = partial(_predict_proba, clf_without_predict_proba)
+    clf_without_predict_proba.predict_proba = partial(
+        _predict_proba, clf_without_predict_proba
+    )
     # sanity check
     with pytest.raises(NotImplementedError):
         clf_without_predict_proba.predict_proba(X_test)
@@ -1050,7 +1097,9 @@ def test_brier_score_loss_pos_label(string_labeled_classification_problem):
 
     # brier score loss is symmetric
     brier_pos_cancer = brier_score_loss(y_test, y_pred_proba[:, 0], pos_label="cancer")
-    brier_pos_not_cancer = brier_score_loss(y_test, y_pred_proba[:, 1], pos_label="not cancer")
+    brier_pos_not_cancer = brier_score_loss(
+        y_test, y_pred_proba[:, 1], pos_label="not cancer"
+    )
     assert brier_pos_cancer == pytest.approx(brier_pos_not_cancer)
 
     brier_scorer = make_scorer(
@@ -1061,8 +1110,12 @@ def test_brier_score_loss_pos_label(string_labeled_classification_problem):
     assert brier_scorer(clf, X_test, y_test) == pytest.approx(brier_pos_cancer)
 
 
-@pytest.mark.parametrize("score_func", [f1_score, precision_score, recall_score, jaccard_score])
-def test_non_symmetric_metric_pos_label(score_func, string_labeled_classification_problem):
+@pytest.mark.parametrize(
+    "score_func", [f1_score, precision_score, recall_score, jaccard_score]
+)
+def test_non_symmetric_metric_pos_label(
+    score_func, string_labeled_classification_problem
+):
     # check that _PredictScorer leads to the right score when `pos_label` is
     # provided. We check for all possible metric supported.
     # Note: At some point we may end up having "scorer tags".
@@ -1092,7 +1145,9 @@ def test_non_symmetric_metric_pos_label(score_func, string_labeled_classificatio
 def test_scorer_select_proba_error(scorer):
     # check that we raise the proper error when passing an unknown
     # pos_label
-    X, y = make_classification(n_classes=2, n_informative=3, n_samples=20, random_state=0)
+    X, y = make_classification(
+        n_classes=2, n_informative=3, n_samples=20, random_state=0
+    )
     lr = LogisticRegression().fit(X, y)
     assert scorer._kwargs["pos_label"] not in np.unique(y).tolist()
 
@@ -1116,7 +1171,9 @@ def test_scorer_no_op_multiclass_select_proba():
     # check that calling a ProbaScorer on a multiclass problem do not raise
     # even if `y_true` would be binary during the scoring.
     # `_select_proba_binary` should not be called in this case.
-    X, y = make_classification(n_classes=3, n_informative=3, n_samples=20, random_state=0)
+    X, y = make_classification(
+        n_classes=3, n_informative=3, n_samples=20, random_state=0
+    )
     lr = LogisticRegression().fit(X, y)
 
     mask_last_class = y == lr.classes_[-1]

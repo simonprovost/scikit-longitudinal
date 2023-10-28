@@ -8,14 +8,19 @@ To run this benchmark, you will need,
  * psutil (optional, but recommended)
 
 """
-import itertools
 import timeit
+import itertools
 
 import numpy as np
 import pandas as pd
 from memory_profiler import memory_usage
+
 from sklearn_fork.datasets import fetch_20newsgroups
-from sklearn_fork.feature_extraction.text import CountVectorizer, HashingVectorizer, TfidfVectorizer
+from sklearn_fork.feature_extraction.text import (
+    CountVectorizer,
+    TfidfVectorizer,
+    HashingVectorizer,
+)
 
 n_repeat = 3
 
@@ -43,7 +48,9 @@ for Vectorizer, (analyzer, ngram_range) in itertools.product(
     bench = {"vectorizer": Vectorizer.__name__}
     params = {"analyzer": analyzer, "ngram_range": ngram_range}
     bench.update(params)
-    dt = timeit.repeat(run_vectorizer(Vectorizer, text, **params), number=1, repeat=n_repeat)
+    dt = timeit.repeat(
+        run_vectorizer(Vectorizer, text, **params), number=1, repeat=n_repeat
+    )
     bench["time"] = "{:.3f} (+-{:.3f})".format(np.mean(dt), np.std(dt))
 
     mem_usage = memory_usage(run_vectorizer(Vectorizer, text, **params))
@@ -56,7 +63,10 @@ for Vectorizer, (analyzer, ngram_range) in itertools.product(
 df = pd.DataFrame(res).set_index(["analyzer", "ngram_range", "vectorizer"])
 
 print("\n========== Run time performance (sec) ===========\n")
-print("Computing the mean and the standard deviation of the run time over {} runs...\n".format(n_repeat))
+print(
+    "Computing the mean and the standard deviation "
+    "of the run time over {} runs...\n".format(n_repeat)
+)
 print(df["time"].unstack(level=-1))
 
 print("\n=============== Memory usage (MB) ===============\n")

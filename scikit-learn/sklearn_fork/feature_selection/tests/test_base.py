@@ -1,7 +1,9 @@
 import numpy as np
 import pytest
-from numpy.testing import assert_array_equal
 from scipy import sparse as sp
+
+from numpy.testing import assert_array_equal
+
 from sklearn_fork.base import BaseEstimator
 from sklearn_fork.feature_selection._base import SelectorMixin
 

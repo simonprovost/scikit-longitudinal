@@ -51,9 +51,17 @@ width_ratio = x and (x / raw_width) or 1
 height_ratio = y and (y / raw_height) or 1
 
 if groups:
-    elements = [g for g in svg.getElementsByTagName("g") if (g.hasAttribute("id") and g.getAttribute("id") in groups)]
+    elements = [
+        g
+        for g in svg.getElementsByTagName("g")
+        if (g.hasAttribute("id") and g.getAttribute("id") in groups)
+    ]
     elements.extend(
-        [p for p in svg.getElementsByTagName("path") if (p.hasAttribute("id") and p.getAttribute("id") in groups)]
+        [
+            p
+            for p in svg.getElementsByTagName("path")
+            if (p.hasAttribute("id") and p.getAttribute("id") in groups)
+        ]
     )
 else:
     elements = svg.getElementsByTagName("g")
@@ -72,7 +80,9 @@ for e in elements:
             paths.append([e.getAttribute("id"), pointset])
     if e.hasAttribute("transform"):
         print(e.getAttribute("id"), e.getAttribute("transform"))
-        for transform in re.findall(r"(\w+)\((-?\d+.?\d*),(-?\d+.?\d*)\)", e.getAttribute("transform")):
+        for transform in re.findall(
+            r"(\w+)\((-?\d+.?\d*),(-?\d+.?\d*)\)", e.getAttribute("transform")
+        ):
             if transform[0] == "translate":
                 x_shift = float(transform[1])
                 y_shift = float(transform[2])
@@ -88,7 +98,12 @@ for g in parsed_groups:
             '<area href="#" title="%s" shape="poly" coords="%s"></area>'
             % (
                 path[0],
-                ", ".join(["%d,%d" % (p[0] * width_ratio, p[1] * height_ratio) for p in path[1]]),
+                ", ".join(
+                    [
+                        "%d,%d" % (p[0] * width_ratio, p[1] * height_ratio)
+                        for p in path[1]
+                    ]
+                ),
             )
         )
 

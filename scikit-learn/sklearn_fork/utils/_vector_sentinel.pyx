@@ -1,6 +1,6 @@
-cimport numpy as cnp
-from cpython.ref cimport Py_INCREF
 from cython.operator cimport dereference as deref
+from cpython.ref cimport Py_INCREF
+cimport numpy as cnp
 
 cnp.import_array()
 

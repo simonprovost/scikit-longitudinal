@@ -6,11 +6,10 @@ import numpy as np
 
 from cython cimport final
 
+from ...utils._typedefs cimport float64_t, float32_t, intp_t
 from ...metrics._dist_metrics cimport DistanceMetric
-from ...utils._typedefs cimport float32_t, float64_t, intp_t
 
-from scipy.sparse import csr_matrix, issparse
-
+from scipy.sparse import issparse, csr_matrix
 
 cdef class DatasetsPair64:
     """Abstract class which wraps a pair of datasets (X, Y).

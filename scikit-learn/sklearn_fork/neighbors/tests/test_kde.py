@@ -1,14 +1,16 @@
-import joblib
 import numpy as np
+
 import pytest
-from sklearn_fork.datasets import make_blobs
-from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.model_selection import GridSearchCV
-from sklearn_fork.neighbors import KDTree, KernelDensity, NearestNeighbors
+
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.neighbors import KernelDensity, KDTree, NearestNeighbors
 from sklearn_fork.neighbors._ball_tree import kernel_norm
 from sklearn_fork.pipeline import make_pipeline
+from sklearn_fork.datasets import make_blobs
+from sklearn_fork.model_selection import GridSearchCV
 from sklearn_fork.preprocessing import StandardScaler
-from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.exceptions import NotFittedError
+import joblib
 
 
 # XXX Duplicated in test_neighbors_tree, test_kde
@@ -41,10 +43,14 @@ def check_results(kernel, bandwidth, atol, rtol, X, Y, dens_true):
     kde = KernelDensity(kernel=kernel, bandwidth=bandwidth, atol=atol, rtol=rtol)
     log_dens = kde.fit(X).score_samples(Y)
     assert_allclose(np.exp(log_dens), dens_true, atol=atol, rtol=max(1e-7, rtol))
-    assert_allclose(np.exp(kde.score(Y)), np.prod(dens_true), atol=atol, rtol=max(1e-7, rtol))
+    assert_allclose(
+        np.exp(kde.score(Y)), np.prod(dens_true), atol=atol, rtol=max(1e-7, rtol)
+    )
 
 
-@pytest.mark.parametrize("kernel", ["gaussian", "tophat", "epanechnikov", "exponential", "linear", "cosine"])
+@pytest.mark.parametrize(
+    "kernel", ["gaussian", "tophat", "epanechnikov", "exponential", "linear", "cosine"]
+)
 @pytest.mark.parametrize("bandwidth", [0.01, 0.1, 1, "scott", "silverman"])
 def test_kernel_density(kernel, bandwidth):
     n_samples, n_features = (100, 3)
@@ -97,7 +103,9 @@ def test_kernel_density_sampling(n_samples=100, n_features=3):
 
 
 @pytest.mark.parametrize("algorithm", ["auto", "ball_tree", "kd_tree"])
-@pytest.mark.parametrize("metric", ["euclidean", "minkowski", "manhattan", "chebyshev", "haversine"])
+@pytest.mark.parametrize(
+    "metric", ["euclidean", "minkowski", "manhattan", "chebyshev", "haversine"]
+)
 def test_kde_algorithm_metric_choice(algorithm, metric):
     # Smoke test for various metrics and algorithms
     rng = np.random.RandomState(0)

@@ -8,21 +8,21 @@ A Theil-Sen Estimator for Multiple Linear Regression Model
 
 
 import warnings
-from itertools import combinations
 from numbers import Integral, Real
+from itertools import combinations
 
 import numpy as np
-from joblib import effective_n_jobs
 from scipy import linalg
-from scipy.linalg.lapack import get_lapack_funcs
 from scipy.special import binom
+from scipy.linalg.lapack import get_lapack_funcs
+from joblib import effective_n_jobs
 
+from ._base import LinearModel
 from ..base import RegressorMixin
-from ..exceptions import ConvergenceWarning
 from ..utils import check_random_state
 from ..utils._param_validation import Interval
-from ..utils.parallel import Parallel, delayed
-from ._base import LinearModel
+from ..utils.parallel import delayed, Parallel
+from ..exceptions import ConvergenceWarning
 
 _EPSILON = np.finfo(np.double).eps
 
@@ -65,13 +65,16 @@ def _modified_weiszfeld_step(X, x_old):
     quotient_norm = linalg.norm(np.sum(diff / diff_norm, axis=0))
 
     if quotient_norm > _EPSILON:  # to avoid division by zero
-        new_direction = np.sum(X[mask, :] / diff_norm, axis=0) / np.sum(1 / diff_norm, axis=0)
+        new_direction = np.sum(X[mask, :] / diff_norm, axis=0) / np.sum(
+            1 / diff_norm, axis=0
+        )
     else:
         new_direction = 1.0
         quotient_norm = 1.0
 
     return (
-        max(0.0, 1.0 - is_x_old_in_X / quotient_norm) * new_direction + min(1.0, is_x_old_in_X / quotient_norm) * x_old
+        max(0.0, 1.0 - is_x_old_in_X / quotient_norm) * new_direction
+        + min(1.0, is_x_old_in_X / quotient_norm) * x_old
     )
 
 
@@ -123,9 +126,9 @@ def _spatial_median(X, max_iter=300, tol=1.0e-3):
             spatial_median_old = spatial_median
     else:
         warnings.warn(
-            "Maximum number of iterations {max_iter} reached in spatial median for TheilSen regressor.".format(
-                max_iter=max_iter
-            ),
+            "Maximum number of iterations {max_iter} reached in "
+            "spatial median for TheilSen regressor."
+            "".format(max_iter=max_iter),
             ConvergenceWarning,
         )
     return n_iter, spatial_median
@@ -147,7 +150,15 @@ def _breakdown_point(n_samples, n_subsamples):
     breakdown_point : float
         Approximation of breakdown point.
     """
-    return 1 - (0.5 ** (1 / n_subsamples) * (n_samples - n_subsamples + 1) + n_subsamples - 1) / n_samples
+    return (
+        1
+        - (
+            0.5 ** (1 / n_subsamples) * (n_samples - n_subsamples + 1)
+            + n_subsamples
+            - 1
+        )
+        / n_samples
+    )
 
 
 def _lstsq(X, y, indices, fit_intercept):
@@ -358,15 +369,16 @@ class TheilSenRegressor(RegressorMixin, LinearModel):
         if n_subsamples is not None:
             if n_subsamples > n_samples:
                 raise ValueError(
-                    "Invalid parameter since n_subsamples > n_samples ({0} > {1}).".format(n_subsamples, n_samples)
+                    "Invalid parameter since n_subsamples > "
+                    "n_samples ({0} > {1}).".format(n_subsamples, n_samples)
                 )
             if n_samples >= n_features:
                 if n_dim > n_subsamples:
                     plus_1 = "+1" if self.fit_intercept else ""
                     raise ValueError(
-                        "Invalid parameter since n_features{0} > n_subsamples ({1} > {2}).".format(
-                            plus_1, n_dim, n_subsamples
-                        )
+                        "Invalid parameter since n_features{0} "
+                        "> n_subsamples ({1} > {2})."
+                        "".format(plus_1, n_dim, n_subsamples)
                     )
             else:  # if n_samples < n_features
                 if n_subsamples != n_samples:
@@ -402,7 +414,9 @@ class TheilSenRegressor(RegressorMixin, LinearModel):
         random_state = check_random_state(self.random_state)
         X, y = self._validate_data(X, y, y_numeric=True)
         n_samples, n_features = X.shape
-        n_subsamples, self.n_subpopulation_ = self._check_subparams(n_samples, n_features)
+        n_subsamples, self.n_subpopulation_ = self._check_subparams(
+            n_samples, n_features
+        )
         self.breakdown_ = _breakdown_point(n_samples, n_subsamples)
 
         if self.verbose:
@@ -417,16 +431,20 @@ class TheilSenRegressor(RegressorMixin, LinearModel):
             indices = list(combinations(range(n_samples), n_subsamples))
         else:
             indices = [
-                random_state.choice(n_samples, size=n_subsamples, replace=False) for _ in range(self.n_subpopulation_)
+                random_state.choice(n_samples, size=n_subsamples, replace=False)
+                for _ in range(self.n_subpopulation_)
             ]
 
         n_jobs = effective_n_jobs(self.n_jobs)
         index_list = np.array_split(indices, n_jobs)
         weights = Parallel(n_jobs=n_jobs, verbose=self.verbose)(
-            delayed(_lstsq)(X, y, index_list[job], self.fit_intercept) for job in range(n_jobs)
+            delayed(_lstsq)(X, y, index_list[job], self.fit_intercept)
+            for job in range(n_jobs)
         )
         weights = np.vstack(weights)
-        self.n_iter_, coefs = _spatial_median(weights, max_iter=self.max_iter, tol=self.tol)
+        self.n_iter_, coefs = _spatial_median(
+            weights, max_iter=self.max_iter, tol=self.tol
+        )
 
         if self.fit_intercept:
             self.intercept_ = coefs[0]

@@ -85,7 +85,9 @@ class NMSlibTransformer(TransformerMixin, BaseEstimator):
         else:
             num_threads = self.n_jobs
 
-        results = self.nmslib_.knnQueryBatch(X.copy(), k=n_neighbors, num_threads=num_threads)
+        results = self.nmslib_.knnQueryBatch(
+            X.copy(), k=n_neighbors, num_threads=num_threads
+        )
         indices, distances = zip(*results)
         indices, distances = np.vstack(indices), np.vstack(distances)
 
@@ -146,7 +148,9 @@ transformers = [
     ),
     (
         "PyNNDescentTransformer",
-        PyNNDescentTransformer(n_neighbors=n_neighbors, metric=metric, parallel_batch_queries=True),
+        PyNNDescentTransformer(
+            n_neighbors=n_neighbors, metric=metric, parallel_batch_queries=True
+        ),
     ),
 ]
 
@@ -168,7 +172,10 @@ for dataset_name, (X, y) in datasets:
             start = time.time()
             Xt = transformer.transform(X)
             transform_duration = time.time() - start
-            print(f"{transformer_name:<{longest}} {transform_duration:.3f} sec (transform)")
+            print(
+                f"{transformer_name:<{longest}} {transform_duration:.3f} sec"
+                " (transform)"
+            )
 
 # %%
 # Sample output::
@@ -210,7 +217,9 @@ transformers = [
     (
         "TSNE with KNeighborsTransformer",
         make_pipeline(
-            KNeighborsTransformer(n_neighbors=n_neighbors, mode="distance", metric=metric),
+            KNeighborsTransformer(
+                n_neighbors=n_neighbors, mode="distance", metric=metric
+            ),
             TSNE(metric="precomputed", **tsne_params),
         ),
     ),
@@ -226,7 +235,9 @@ transformers = [
 # init the plot
 nrows = len(datasets)
 ncols = np.sum([1 for name, model in transformers if "TSNE" in name])
-fig, axes = plt.subplots(nrows=nrows, ncols=ncols, squeeze=False, figsize=(5 * ncols, 4 * nrows))
+fig, axes = plt.subplots(
+    nrows=nrows, ncols=ncols, squeeze=False, figsize=(5 * ncols, 4 * nrows)
+)
 axes = axes.ravel()
 i_ax = 0
 
@@ -239,7 +250,10 @@ for dataset_name, (X, y) in datasets:
         start = time.time()
         Xt = transformer.fit_transform(X)
         transform_duration = time.time() - start
-        print(f"{transformer_name:<{longest}} {transform_duration:.3f} sec (fit_transform)")
+        print(
+            f"{transformer_name:<{longest}} {transform_duration:.3f} sec"
+            " (fit_transform)"
+        )
 
         # plot TSNE embedding which should be very similar across methods
         axes[i_ax].set_title(transformer_name + "\non " + dataset_name)

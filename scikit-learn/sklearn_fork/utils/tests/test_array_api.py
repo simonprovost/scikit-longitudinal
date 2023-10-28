@@ -1,19 +1,21 @@
 import numpy
-import pytest
 from numpy.testing import assert_allclose, assert_array_equal
-from sklearn_fork._config import config_context
+import pytest
+
 from sklearn_fork.base import BaseEstimator
-from sklearn_fork.utils._array_api import (
-    _ArrayAPIWrapper,
-    _asarray_with_order,
-    _convert_to_numpy,
-    _estimator_with_converted_arrays,
-    _NumPyAPIWrapper,
-    get_namespace,
-)
+from sklearn_fork.utils._array_api import get_namespace
+from sklearn_fork.utils._array_api import _NumPyAPIWrapper
+from sklearn_fork.utils._array_api import _ArrayAPIWrapper
+from sklearn_fork.utils._array_api import _asarray_with_order
+from sklearn_fork.utils._array_api import _convert_to_numpy
+from sklearn_fork.utils._array_api import _estimator_with_converted_arrays
 from sklearn_fork.utils._testing import skip_if_array_api_compat_not_configured
 
-pytestmark = pytest.mark.filterwarnings("ignore:The numpy.array_api submodule:UserWarning")
+from sklearn_fork._config import config_context
+
+pytestmark = pytest.mark.filterwarnings(
+    "ignore:The numpy.array_api submodule:UserWarning"
+)
 
 
 @pytest.mark.parametrize("X", [numpy.asarray([1, 2, 3]), [1, 2, 3]])

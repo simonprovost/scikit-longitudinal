@@ -794,7 +794,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "numpy/ufuncobject.h"
 
     /* NumPy API declarations from "numpy/__init__.pxd" */
-
+    
 #include "ios"
 #include "new"
 #include "stdexcept"
@@ -1039,7 +1039,7 @@ static const char *__pyx_f[] = {
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":689
  * # in Cython to enable them only on the right systems.
- *
+ * 
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
@@ -1047,7 +1047,7 @@ static const char *__pyx_f[] = {
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":690
- *
+ * 
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int32      int32_t
@@ -1075,7 +1075,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":696
  * #ctypedef npy_int128     int128_t
- *
+ * 
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
@@ -1083,7 +1083,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":697
- *
+ * 
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint32     uint32_t
@@ -1111,7 +1111,7 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":703
  * #ctypedef npy_uint128    uint128_t
- *
+ * 
  * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
  * ctypedef npy_float64    float64_t
  * #ctypedef npy_float80    float80_t
@@ -1119,7 +1119,7 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 typedef npy_float32 __pyx_t_5numpy_float32_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":704
- *
+ * 
  * ctypedef npy_float32    float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
  * #ctypedef npy_float80    float80_t
@@ -1141,7 +1141,7 @@ typedef npy_long __pyx_t_5numpy_int_t;
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t             # <<<<<<<<<<<<<<
  * ctypedef npy_longlong   longlong_t
- *
+ * 
  */
 typedef npy_longlong __pyx_t_5numpy_long_t;
 
@@ -1149,14 +1149,14 @@ typedef npy_longlong __pyx_t_5numpy_long_t;
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t
  * ctypedef npy_longlong   longlong_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_ulong      uint_t
  */
 typedef npy_longlong __pyx_t_5numpy_longlong_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":717
  * ctypedef npy_longlong   longlong_t
- *
+ * 
  * ctypedef npy_ulong      uint_t             # <<<<<<<<<<<<<<
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t
@@ -1164,11 +1164,11 @@ typedef npy_longlong __pyx_t_5numpy_longlong_t;
 typedef npy_ulong __pyx_t_5numpy_uint_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":718
- *
+ * 
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t             # <<<<<<<<<<<<<<
  * ctypedef npy_ulonglong  ulonglong_t
- *
+ * 
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
 
@@ -1176,32 +1176,32 @@ typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_intp       intp_t
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":721
  * ctypedef npy_ulonglong  ulonglong_t
- *
+ * 
  * ctypedef npy_intp       intp_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uintp      uintp_t
- *
+ * 
  */
 typedef npy_intp __pyx_t_5numpy_intp_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":722
- *
+ * 
  * ctypedef npy_intp       intp_t
  * ctypedef npy_uintp      uintp_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_double     float_t
  */
 typedef npy_uintp __pyx_t_5numpy_uintp_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":724
  * ctypedef npy_uintp      uintp_t
- *
+ * 
  * ctypedef npy_double     float_t             # <<<<<<<<<<<<<<
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t
@@ -1209,11 +1209,11 @@ typedef npy_uintp __pyx_t_5numpy_uintp_t;
 typedef npy_double __pyx_t_5numpy_float_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":725
- *
+ * 
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t             # <<<<<<<<<<<<<<
  * ctypedef npy_longdouble longdouble_t
- *
+ * 
  */
 typedef npy_double __pyx_t_5numpy_double_t;
 
@@ -1221,7 +1221,7 @@ typedef npy_double __pyx_t_5numpy_double_t;
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_cfloat      cfloat_t
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
@@ -1310,7 +1310,7 @@ struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt64
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":728
  * ctypedef npy_longdouble longdouble_t
- *
+ * 
  * ctypedef npy_cfloat      cfloat_t             # <<<<<<<<<<<<<<
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t
@@ -1318,11 +1318,11 @@ struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt64
 typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":729
- *
+ * 
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t             # <<<<<<<<<<<<<<
  * ctypedef npy_clongdouble clongdouble_t
- *
+ * 
  */
 typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
 
@@ -1330,26 +1330,26 @@ typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t             # <<<<<<<<<<<<<<
- *
+ * 
  * ctypedef npy_cdouble     complex_t
  */
 typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":732
  * ctypedef npy_clongdouble clongdouble_t
- *
+ * 
  * ctypedef npy_cdouble     complex_t             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":19
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinel:             # <<<<<<<<<<<<<<
  *     """Wraps a reference to a vector which will be deallocated with this object.
- *
+ * 
  */
 struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel {
   PyObject_HEAD
@@ -1358,11 +1358,11 @@ struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel {
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":33
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinelFloat64(StdVectorSentinel):             # <<<<<<<<<<<<<<
  *     cdef vector[float64_t] vec
- *
+ * 
  */
 struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelFloat64 {
   struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel __pyx_base;
@@ -1371,11 +1371,11 @@ struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelFloat
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":51
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinelIntP(StdVectorSentinel):             # <<<<<<<<<<<<<<
  *     cdef vector[intp_t] vec
- *
+ * 
  */
 struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelIntP {
   struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel __pyx_base;
@@ -1384,11 +1384,11 @@ struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelIntP 
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":69
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinelInt32(StdVectorSentinel):             # <<<<<<<<<<<<<<
  *     cdef vector[int32_t] vec
- *
+ * 
  */
 struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt32 {
   struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel __pyx_base;
@@ -1397,11 +1397,11 @@ struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt32
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":87
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinelInt64(StdVectorSentinel):             # <<<<<<<<<<<<<<
  *     cdef vector[int64_t] vec
- *
+ * 
  */
 struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt64 {
   struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel __pyx_base;
@@ -1411,11 +1411,11 @@ struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt64
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":19
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinel:             # <<<<<<<<<<<<<<
  *     """Wraps a reference to a vector which will be deallocated with this object.
- *
+ * 
  */
 
 struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel {
@@ -1426,11 +1426,11 @@ static struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVecto
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":33
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinelFloat64(StdVectorSentinel):             # <<<<<<<<<<<<<<
  *     cdef vector[float64_t] vec
- *
+ * 
  */
 
 struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelFloat64 {
@@ -1441,11 +1441,11 @@ static struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVecto
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":51
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinelIntP(StdVectorSentinel):             # <<<<<<<<<<<<<<
  *     cdef vector[intp_t] vec
- *
+ * 
  */
 
 struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelIntP {
@@ -1456,11 +1456,11 @@ static struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVecto
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":69
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinelInt32(StdVectorSentinel):             # <<<<<<<<<<<<<<
  *     cdef vector[int32_t] vec
- *
+ * 
  */
 
 struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt32 {
@@ -1471,11 +1471,11 @@ static struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVecto
 
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":87
- *
- *
+ * 
+ * 
  * cdef class StdVectorSentinelInt64(StdVectorSentinel):             # <<<<<<<<<<<<<<
  *     cdef vector[int64_t] vec
- *
+ * 
  */
 
 struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt64 {
@@ -2209,8 +2209,8 @@ static PyObject *__pyx_codeobj__14;
 /* Late includes */
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":8
- *
- *
+ * 
+ * 
  * cdef StdVectorSentinel _create_sentinel(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     if vector_typed is vector[float64_t]:
  *         return StdVectorSentinelFloat64.create_for(vect_ptr)
@@ -2240,8 +2240,8 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":8
- *
- *
+ * 
+ * 
  * cdef StdVectorSentinel _create_sentinel(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     if vector_typed is vector[float64_t]:
  *         return StdVectorSentinelFloat64.create_for(vect_ptr)
@@ -2271,8 +2271,8 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         return StdVectorSentinelInt64.create_for(vect_ptr)
  *     else:  # intp_t
  *         return StdVectorSentinelIntP.create_for(vect_ptr)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __pyx_t_1 = ((PyObject *)__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_21StdVectorSentinelIntP_create_for(__pyx_v_vect_ptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
@@ -2282,8 +2282,8 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":8
- *
- *
+ * 
+ * 
  * cdef StdVectorSentinel _create_sentinel(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     if vector_typed is vector[float64_t]:
  *         return StdVectorSentinelFloat64.create_for(vect_ptr)
@@ -2324,8 +2324,8 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":8
- *
- *
+ * 
+ * 
  * cdef StdVectorSentinel _create_sentinel(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     if vector_typed is vector[float64_t]:
  *         return StdVectorSentinelFloat64.create_for(vect_ptr)
@@ -2366,8 +2366,8 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":8
- *
- *
+ * 
+ * 
  * cdef StdVectorSentinel _create_sentinel(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     if vector_typed is vector[float64_t]:
  *         return StdVectorSentinelFloat64.create_for(vect_ptr)
@@ -2389,7 +2389,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *     """
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         """Return pointer to data."""
- *
+ * 
  */
 
 static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_17StdVectorSentinel_get_data(CYTHON_UNUSED struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *__pyx_v_self) {
@@ -2405,10 +2405,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_17StdVectorSentine
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":29
  *         """Return pointer to data."""
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         """Get typenum for PyArray_SimpleNewFromData."""
- *
+ * 
  */
 
 static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_17StdVectorSentinel_get_typenum(CYTHON_UNUSED struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *__pyx_v_self) {
@@ -2710,7 +2710,7 @@ static PyObject *__pyx_pf_12sklearn_fork_5utils_16_vector_sentinel_17StdVectorSe
 }
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":37
- *
+ * 
  *     @staticmethod
  *     cdef StdVectorSentinel create_for(vector[float64_t] * vect_ptr):             # <<<<<<<<<<<<<<
  *         # This initializes the object directly without calling __init__
@@ -2744,7 +2744,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         cdef StdVectorSentinelFloat64 sentinel = StdVectorSentinelFloat64.__new__(StdVectorSentinelFloat64)
  *         sentinel.vec.swap(deref(vect_ptr))             # <<<<<<<<<<<<<<
  *         return sentinel
- *
+ * 
  */
   __pyx_v_sentinel->vec.swap((*__pyx_v_vect_ptr));
 
@@ -2752,7 +2752,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         cdef StdVectorSentinelFloat64 sentinel = StdVectorSentinelFloat64.__new__(StdVectorSentinelFloat64)
  *         sentinel.vec.swap(deref(vect_ptr))
  *         return sentinel             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef void* get_data(self):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -2761,7 +2761,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":37
- *
+ * 
  *     @staticmethod
  *     cdef StdVectorSentinel create_for(vector[float64_t] * vect_ptr):             # <<<<<<<<<<<<<<
  *         # This initializes the object directly without calling __init__
@@ -2782,10 +2782,10 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":44
  *         return sentinel
- *
+ * 
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         return self.vec.data()
- *
+ * 
  */
 
 static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_24StdVectorSentinelFloat64_get_data(struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelFloat64 *__pyx_v_self) {
@@ -2794,10 +2794,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_24StdVectorSentine
   __Pyx_RefNannySetupContext("get_data", 0);
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":45
- *
+ * 
  *     cdef void* get_data(self):
  *         return self.vec.data()             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef int get_typenum(self):
  */
   __pyx_r = __pyx_v_self->vec.data();
@@ -2805,10 +2805,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_24StdVectorSentine
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":44
  *         return sentinel
- *
+ * 
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         return self.vec.data()
- *
+ * 
  */
 
   /* function exit code */
@@ -2819,10 +2819,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_24StdVectorSentine
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":47
  *         return self.vec.data()
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         return cnp.NPY_FLOAT64
- *
+ * 
  */
 
 static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_24StdVectorSentinelFloat64_get_typenum(CYTHON_UNUSED struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelFloat64 *__pyx_v_self) {
@@ -2831,21 +2831,21 @@ static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_24StdVectorSentinelF
   __Pyx_RefNannySetupContext("get_typenum", 0);
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":48
- *
+ * 
  *     cdef int get_typenum(self):
  *         return cnp.NPY_FLOAT64             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = NPY_FLOAT64;
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":47
  *         return self.vec.data()
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         return cnp.NPY_FLOAT64
- *
+ * 
  */
 
   /* function exit code */
@@ -3149,7 +3149,7 @@ static PyObject *__pyx_pf_12sklearn_fork_5utils_16_vector_sentinel_24StdVectorSe
 }
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":55
- *
+ * 
  *     @staticmethod
  *     cdef StdVectorSentinel create_for(vector[intp_t] * vect_ptr):             # <<<<<<<<<<<<<<
  *         # This initializes the object directly without calling __init__
@@ -3183,7 +3183,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         cdef StdVectorSentinelIntP sentinel = StdVectorSentinelIntP.__new__(StdVectorSentinelIntP)
  *         sentinel.vec.swap(deref(vect_ptr))             # <<<<<<<<<<<<<<
  *         return sentinel
- *
+ * 
  */
   __pyx_v_sentinel->vec.swap((*__pyx_v_vect_ptr));
 
@@ -3191,7 +3191,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         cdef StdVectorSentinelIntP sentinel = StdVectorSentinelIntP.__new__(StdVectorSentinelIntP)
  *         sentinel.vec.swap(deref(vect_ptr))
  *         return sentinel             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef void* get_data(self):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -3200,7 +3200,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":55
- *
+ * 
  *     @staticmethod
  *     cdef StdVectorSentinel create_for(vector[intp_t] * vect_ptr):             # <<<<<<<<<<<<<<
  *         # This initializes the object directly without calling __init__
@@ -3221,10 +3221,10 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":62
  *         return sentinel
- *
+ * 
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         return self.vec.data()
- *
+ * 
  */
 
 static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_21StdVectorSentinelIntP_get_data(struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelIntP *__pyx_v_self) {
@@ -3233,10 +3233,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_21StdVectorSentine
   __Pyx_RefNannySetupContext("get_data", 0);
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":63
- *
+ * 
  *     cdef void* get_data(self):
  *         return self.vec.data()             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef int get_typenum(self):
  */
   __pyx_r = __pyx_v_self->vec.data();
@@ -3244,10 +3244,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_21StdVectorSentine
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":62
  *         return sentinel
- *
+ * 
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         return self.vec.data()
- *
+ * 
  */
 
   /* function exit code */
@@ -3258,10 +3258,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_21StdVectorSentine
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":65
  *         return self.vec.data()
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         return cnp.NPY_INTP
- *
+ * 
  */
 
 static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_21StdVectorSentinelIntP_get_typenum(CYTHON_UNUSED struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelIntP *__pyx_v_self) {
@@ -3270,21 +3270,21 @@ static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_21StdVectorSentinelI
   __Pyx_RefNannySetupContext("get_typenum", 0);
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":66
- *
+ * 
  *     cdef int get_typenum(self):
  *         return cnp.NPY_INTP             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = NPY_INTP;
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":65
  *         return self.vec.data()
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         return cnp.NPY_INTP
- *
+ * 
  */
 
   /* function exit code */
@@ -3588,7 +3588,7 @@ static PyObject *__pyx_pf_12sklearn_fork_5utils_16_vector_sentinel_21StdVectorSe
 }
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":73
- *
+ * 
  *     @staticmethod
  *     cdef StdVectorSentinel create_for(vector[int32_t] * vect_ptr):             # <<<<<<<<<<<<<<
  *         # This initializes the object directly without calling __init__
@@ -3622,7 +3622,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         cdef StdVectorSentinelInt32 sentinel = StdVectorSentinelInt32.__new__(StdVectorSentinelInt32)
  *         sentinel.vec.swap(deref(vect_ptr))             # <<<<<<<<<<<<<<
  *         return sentinel
- *
+ * 
  */
   __pyx_v_sentinel->vec.swap((*__pyx_v_vect_ptr));
 
@@ -3630,7 +3630,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         cdef StdVectorSentinelInt32 sentinel = StdVectorSentinelInt32.__new__(StdVectorSentinelInt32)
  *         sentinel.vec.swap(deref(vect_ptr))
  *         return sentinel             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef void* get_data(self):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -3639,7 +3639,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":73
- *
+ * 
  *     @staticmethod
  *     cdef StdVectorSentinel create_for(vector[int32_t] * vect_ptr):             # <<<<<<<<<<<<<<
  *         # This initializes the object directly without calling __init__
@@ -3660,10 +3660,10 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":80
  *         return sentinel
- *
+ * 
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         return self.vec.data()
- *
+ * 
  */
 
 static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentinelInt32_get_data(struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt32 *__pyx_v_self) {
@@ -3672,10 +3672,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentine
   __Pyx_RefNannySetupContext("get_data", 0);
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":81
- *
+ * 
  *     cdef void* get_data(self):
  *         return self.vec.data()             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef int get_typenum(self):
  */
   __pyx_r = __pyx_v_self->vec.data();
@@ -3683,10 +3683,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentine
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":80
  *         return sentinel
- *
+ * 
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         return self.vec.data()
- *
+ * 
  */
 
   /* function exit code */
@@ -3697,10 +3697,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentine
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":83
  *         return self.vec.data()
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         return cnp.NPY_INT32
- *
+ * 
  */
 
 static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentinelInt32_get_typenum(CYTHON_UNUSED struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt32 *__pyx_v_self) {
@@ -3709,21 +3709,21 @@ static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentinelI
   __Pyx_RefNannySetupContext("get_typenum", 0);
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":84
- *
+ * 
  *     cdef int get_typenum(self):
  *         return cnp.NPY_INT32             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = NPY_INT32;
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":83
  *         return self.vec.data()
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         return cnp.NPY_INT32
- *
+ * 
  */
 
   /* function exit code */
@@ -4027,7 +4027,7 @@ static PyObject *__pyx_pf_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSe
 }
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":91
- *
+ * 
  *     @staticmethod
  *     cdef StdVectorSentinel create_for(vector[int64_t] * vect_ptr):             # <<<<<<<<<<<<<<
  *         # This initializes the object directly without calling __init__
@@ -4061,7 +4061,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         cdef StdVectorSentinelInt64 sentinel = StdVectorSentinelInt64.__new__(StdVectorSentinelInt64)
  *         sentinel.vec.swap(deref(vect_ptr))             # <<<<<<<<<<<<<<
  *         return sentinel
- *
+ * 
  */
   __pyx_v_sentinel->vec.swap((*__pyx_v_vect_ptr));
 
@@ -4069,7 +4069,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
  *         cdef StdVectorSentinelInt64 sentinel = StdVectorSentinelInt64.__new__(StdVectorSentinelInt64)
  *         sentinel.vec.swap(deref(vect_ptr))
  *         return sentinel             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef void* get_data(self):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -4078,7 +4078,7 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":91
- *
+ * 
  *     @staticmethod
  *     cdef StdVectorSentinel create_for(vector[int64_t] * vect_ptr):             # <<<<<<<<<<<<<<
  *         # This initializes the object directly without calling __init__
@@ -4099,10 +4099,10 @@ static struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentin
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":98
  *         return sentinel
- *
+ * 
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         return self.vec.data()
- *
+ * 
  */
 
 static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentinelInt64_get_data(struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt64 *__pyx_v_self) {
@@ -4111,10 +4111,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentine
   __Pyx_RefNannySetupContext("get_data", 0);
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":99
- *
+ * 
  *     cdef void* get_data(self):
  *         return self.vec.data()             # <<<<<<<<<<<<<<
- *
+ * 
  *     cdef int get_typenum(self):
  */
   __pyx_r = __pyx_v_self->vec.data();
@@ -4122,10 +4122,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentine
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":98
  *         return sentinel
- *
+ * 
  *     cdef void* get_data(self):             # <<<<<<<<<<<<<<
  *         return self.vec.data()
- *
+ * 
  */
 
   /* function exit code */
@@ -4136,10 +4136,10 @@ static void *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentine
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":101
  *         return self.vec.data()
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         return cnp.NPY_INT64
- *
+ * 
  */
 
 static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentinelInt64_get_typenum(CYTHON_UNUSED struct __pyx_obj_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinelInt64 *__pyx_v_self) {
@@ -4148,21 +4148,21 @@ static int __pyx_f_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSentinelI
   __Pyx_RefNannySetupContext("get_typenum", 0);
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":102
- *
+ * 
  *     cdef int get_typenum(self):
  *         return cnp.NPY_INT64             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = NPY_INT64;
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":101
  *         return self.vec.data()
- *
+ * 
  *     cdef int get_typenum(self):             # <<<<<<<<<<<<<<
  *         return cnp.NPY_INT64
- *
+ * 
  */
 
   /* function exit code */
@@ -4466,8 +4466,8 @@ static PyObject *__pyx_pf_12sklearn_fork_5utils_16_vector_sentinel_22StdVectorSe
 }
 
 /* "sklearn_fork/utils/_vector_sentinel.pyx":105
- *
- *
+ * 
+ * 
  * cdef cnp.ndarray vector_to_nd_array(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     cdef:
  *         cnp.npy_intp size = deref(vect_ptr).size()
@@ -4511,7 +4511,7 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_12sklearn_fork_5utils_16_vector_sentin
  *         StdVectorSentinel sentinel = _create_sentinel(vect_ptr)
  *         cnp.ndarray arr = cnp.PyArray_SimpleNewFromData(             # <<<<<<<<<<<<<<
  *             1, &size, sentinel.get_typenum(), sentinel.get_data())
- *
+ * 
  */
   __pyx_t_1 = PyArray_SimpleNewFromData(1, (&__pyx_v_size), ((struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *)__pyx_v_sentinel->__pyx_vtab)->get_typenum(__pyx_v_sentinel), ((struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *)__pyx_v_sentinel->__pyx_vtab)->get_data(__pyx_v_sentinel)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4547,8 +4547,8 @@ static PyArrayObject *__pyx_fuse_0__pyx_f_12sklearn_fork_5utils_16_vector_sentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":105
- *
- *
+ * 
+ * 
  * cdef cnp.ndarray vector_to_nd_array(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     cdef:
  *         cnp.npy_intp size = deref(vect_ptr).size()
@@ -4605,7 +4605,7 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_12sklearn_fork_5utils_16_vector_sentin
  *         StdVectorSentinel sentinel = _create_sentinel(vect_ptr)
  *         cnp.ndarray arr = cnp.PyArray_SimpleNewFromData(             # <<<<<<<<<<<<<<
  *             1, &size, sentinel.get_typenum(), sentinel.get_data())
- *
+ * 
  */
   __pyx_t_1 = PyArray_SimpleNewFromData(1, (&__pyx_v_size), ((struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *)__pyx_v_sentinel->__pyx_vtab)->get_typenum(__pyx_v_sentinel), ((struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *)__pyx_v_sentinel->__pyx_vtab)->get_data(__pyx_v_sentinel)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4641,8 +4641,8 @@ static PyArrayObject *__pyx_fuse_1__pyx_f_12sklearn_fork_5utils_16_vector_sentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":105
- *
- *
+ * 
+ * 
  * cdef cnp.ndarray vector_to_nd_array(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     cdef:
  *         cnp.npy_intp size = deref(vect_ptr).size()
@@ -4699,7 +4699,7 @@ static PyArrayObject *__pyx_fuse_2__pyx_f_12sklearn_fork_5utils_16_vector_sentin
  *         StdVectorSentinel sentinel = _create_sentinel(vect_ptr)
  *         cnp.ndarray arr = cnp.PyArray_SimpleNewFromData(             # <<<<<<<<<<<<<<
  *             1, &size, sentinel.get_typenum(), sentinel.get_data())
- *
+ * 
  */
   __pyx_t_1 = PyArray_SimpleNewFromData(1, (&__pyx_v_size), ((struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *)__pyx_v_sentinel->__pyx_vtab)->get_typenum(__pyx_v_sentinel), ((struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *)__pyx_v_sentinel->__pyx_vtab)->get_data(__pyx_v_sentinel)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4735,8 +4735,8 @@ static PyArrayObject *__pyx_fuse_2__pyx_f_12sklearn_fork_5utils_16_vector_sentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":105
- *
- *
+ * 
+ * 
  * cdef cnp.ndarray vector_to_nd_array(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     cdef:
  *         cnp.npy_intp size = deref(vect_ptr).size()
@@ -4793,7 +4793,7 @@ static PyArrayObject *__pyx_fuse_3__pyx_f_12sklearn_fork_5utils_16_vector_sentin
  *         StdVectorSentinel sentinel = _create_sentinel(vect_ptr)
  *         cnp.ndarray arr = cnp.PyArray_SimpleNewFromData(             # <<<<<<<<<<<<<<
  *             1, &size, sentinel.get_typenum(), sentinel.get_data())
- *
+ * 
  */
   __pyx_t_1 = PyArray_SimpleNewFromData(1, (&__pyx_v_size), ((struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *)__pyx_v_sentinel->__pyx_vtab)->get_typenum(__pyx_v_sentinel), ((struct __pyx_vtabstruct_12sklearn_fork_5utils_16_vector_sentinel_StdVectorSentinel *)__pyx_v_sentinel->__pyx_vtab)->get_data(__pyx_v_sentinel)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4829,8 +4829,8 @@ static PyArrayObject *__pyx_fuse_3__pyx_f_12sklearn_fork_5utils_16_vector_sentin
   goto __pyx_L0;
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":105
- *
- *
+ * 
+ * 
  * cdef cnp.ndarray vector_to_nd_array(vector_typed * vect_ptr):             # <<<<<<<<<<<<<<
  *     cdef:
  *         cnp.npy_intp size = deref(vect_ptr).size()
@@ -6796,10 +6796,10 @@ static PyObject *__pyx_f_12sklearn_fork_5utils_16_vector_sentinel___pyx_unpickle
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":734
  * ctypedef npy_cdouble     complex_t
- *
+ * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__pyx_v_a) {
@@ -6812,10 +6812,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew1", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":735
- *
+ * 
  * cdef inline object PyArray_MultiIterNew1(a):
  *     return PyArray_MultiIterNew(1, <void*>a)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew2(a, b):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6827,10 +6827,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":734
  * ctypedef npy_cdouble     complex_t
- *
+ * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(1, <void*>a)
- *
+ * 
  */
 
   /* function exit code */
@@ -6846,10 +6846,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":737
  *     return PyArray_MultiIterNew(1, <void*>a)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__pyx_v_a, PyObject *__pyx_v_b) {
@@ -6862,10 +6862,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew2", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":738
- *
+ * 
  * cdef inline object PyArray_MultiIterNew2(a, b):
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6877,10 +6877,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":737
  *     return PyArray_MultiIterNew(1, <void*>a)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- *
+ * 
  */
 
   /* function exit code */
@@ -6896,10 +6896,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":740
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c) {
@@ -6912,10 +6912,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew3", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":741
- *
+ * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6927,10 +6927,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":740
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- *
+ * 
  */
 
   /* function exit code */
@@ -6946,10 +6946,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":743
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d) {
@@ -6962,10 +6962,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew4", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":744
- *
+ * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -6977,10 +6977,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":743
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- *
+ * 
  */
 
   /* function exit code */
@@ -6996,10 +6996,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":746
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- *
+ * 
  */
 
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d, PyObject *__pyx_v_e) {
@@ -7012,10 +7012,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew5", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":747
- *
+ * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -7027,10 +7027,10 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":746
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
- *
+ * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- *
+ * 
  */
 
   /* function exit code */
@@ -7046,7 +7046,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":749
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape
@@ -7059,7 +7059,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   __Pyx_RefNannySetupContext("PyDataType_SHAPE", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":750
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
  *         return <tuple>d.subarray.shape
@@ -7081,7 +7081,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     goto __pyx_L0;
 
     /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":750
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
  *         return <tuple>d.subarray.shape
@@ -7093,8 +7093,8 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
  *         return <tuple>d.subarray.shape
  *     else:
  *         return ()             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
@@ -7105,7 +7105,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":749
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
- *
+ * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape
@@ -7120,7 +7120,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":928
  *     int _import_umath() except -1
- *
+ * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
@@ -7131,11 +7131,11 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannySetupContext("set_array_base", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":929
- *
+ * 
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!             # <<<<<<<<<<<<<<
  *     PyArray_SetBaseObject(arr, base)
- *
+ * 
  */
   Py_INCREF(__pyx_v_base);
 
@@ -7143,14 +7143,14 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline object get_array_base(ndarray arr):
  */
   (void)(PyArray_SetBaseObject(__pyx_v_arr, __pyx_v_base));
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":928
  *     int _import_umath() except -1
- *
+ * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)
@@ -7162,7 +7162,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":932
  *     PyArray_SetBaseObject(arr, base)
- *
+ * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
@@ -7176,7 +7176,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __Pyx_RefNannySetupContext("get_array_base", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":933
- *
+ * 
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)             # <<<<<<<<<<<<<<
  *     if base is NULL:
@@ -7199,7 +7199,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  *     if base is NULL:
  *         return None             # <<<<<<<<<<<<<<
  *     return <object>base
- *
+ * 
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
@@ -7218,7 +7218,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  *     if base is NULL:
  *         return None
  *     return <object>base             # <<<<<<<<<<<<<<
- *
+ * 
  * # Versions of the import_* functions which are more suitable for
  */
   __Pyx_XDECREF(__pyx_r);
@@ -7228,7 +7228,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":932
  *     PyArray_SetBaseObject(arr, base)
- *
+ * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
@@ -7309,7 +7309,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  *         __pyx_import_array()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.multiarray failed to import")
- *
+ * 
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -7323,7 +7323,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  *         __pyx_import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline int import_umath() except -1:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 944, __pyx_L5_except_error)
@@ -7375,7 +7375,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":946
  *         raise ImportError("numpy.core.multiarray failed to import")
- *
+ * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -7398,7 +7398,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   __Pyx_RefNannySetupContext("import_umath", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":947
- *
+ * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -7423,7 +7423,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 948, __pyx_L3_error)
 
       /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":947
- *
+ * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -7441,7 +7441,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.umath failed to import")
- *
+ * 
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -7455,7 +7455,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 950, __pyx_L5_except_error)
@@ -7468,7 +7468,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __pyx_L5_except_error:;
 
     /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":947
- *
+ * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -7484,7 +7484,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":946
  *         raise ImportError("numpy.core.multiarray failed to import")
- *
+ * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -7507,7 +7507,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":952
  *         raise ImportError("numpy.core.umath failed to import")
- *
+ * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -7530,7 +7530,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   __Pyx_RefNannySetupContext("import_ufunc", 0);
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":953
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -7555,7 +7555,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 954, __pyx_L3_error)
 
       /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":953
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -7573,7 +7573,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
  *         raise ImportError("numpy.core.umath failed to import")
- *
+ * 
  */
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
     if (__pyx_t_4) {
@@ -7587,7 +7587,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef extern from *:
  */
       __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 956, __pyx_L5_except_error)
@@ -7600,7 +7600,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __pyx_L5_except_error:;
 
     /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":953
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
  *         _import_umath()
@@ -7616,7 +7616,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":952
  *         raise ImportError("numpy.core.umath failed to import")
- *
+ * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
  *     try:
  *         _import_umath()
@@ -7638,8 +7638,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":966
- *
- *
+ * 
+ * 
  * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
@@ -7654,15 +7654,15 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyTimedeltaArrType_Type)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyTimedeltaArrType_Type));
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":966
- *
- *
+ * 
+ * 
  * cdef inline bint is_timedelta64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.timedelta64)`
@@ -7675,8 +7675,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_timedelta64_object(PyObject *__pyx_v_
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":981
- *
- *
+ * 
+ * 
  * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
@@ -7691,15 +7691,15 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
  *     bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyDatetimeArrType_Type)             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyDatetimeArrType_Type));
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":981
- *
- *
+ * 
+ * 
  * cdef inline bint is_datetime64_object(object obj):             # <<<<<<<<<<<<<<
  *     """
  *     Cython equivalent of `isinstance(obj, np.datetime64)`
@@ -7712,8 +7712,8 @@ static CYTHON_INLINE int __pyx_f_5numpy_is_datetime64_object(PyObject *__pyx_v_o
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":996
- *
- *
+ * 
+ * 
  * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
@@ -7726,15 +7726,15 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
  *     also needed.  That can be found using `get_datetime64_unit`.
  *     """
  *     return (<PyDatetimeScalarObject*>obj).obval             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = ((PyDatetimeScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":996
- *
- *
+ * 
+ * 
  * cdef inline npy_datetime get_datetime64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy datetime64 object
@@ -7746,8 +7746,8 @@ static CYTHON_INLINE npy_datetime __pyx_f_5numpy_get_datetime64_value(PyObject *
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1006
- *
- *
+ * 
+ * 
  * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
@@ -7760,15 +7760,15 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
  *     returns the int64 value underlying scalar numpy timedelta64 object
  *     """
  *     return (<PyTimedeltaScalarObject*>obj).obval             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = ((PyTimedeltaScalarObject *)__pyx_v_obj)->obval;
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1006
- *
- *
+ * 
+ * 
  * cdef inline npy_timedelta get_timedelta64_value(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the int64 value underlying scalar numpy timedelta64 object
@@ -7780,8 +7780,8 @@ static CYTHON_INLINE npy_timedelta __pyx_f_5numpy_get_timedelta64_value(PyObject
 }
 
 /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1013
- *
- *
+ * 
+ * 
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -7799,8 +7799,8 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
   goto __pyx_L0;
 
   /* "../.venv/lib/python3.9/site-packages/numpy/__init__.pxd":1013
- *
- *
+ * 
+ * 
  * cdef inline NPY_DATETIMEUNIT get_datetime64_unit(object obj) nogil:             # <<<<<<<<<<<<<<
  *     """
  *     returns the unit part of the dtype for a numpy datetime64 object.
@@ -7812,11 +7812,11 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
 }
 
 /* "vector.to_py":60
- *
+ * 
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
- *
+ * 
  */
 
 static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t(const std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t>  &__pyx_v_v) {
@@ -7837,8 +7837,8 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t(vector[X]& v):
  *     return [v[i] for i in range(v.size())]             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
@@ -7857,11 +7857,11 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
   goto __pyx_L0;
 
   /* "vector.to_py":60
- *
+ * 
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
- *
+ * 
  */
 
   /* function exit code */
@@ -7877,7 +7877,7 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
 }
 
 /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v
@@ -7953,7 +7953,7 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t>  __pyx_co
  *     for item in o:
  *         v.push_back(<X>item)             # <<<<<<<<<<<<<<
  *     return v
- *
+ * 
  */
     __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_item); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 48, __pyx_L1_error)
     __pyx_v_v.push_back(((__pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t)__pyx_t_5));
@@ -7972,14 +7972,14 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t>  __pyx_co
  *     for item in o:
  *         v.push_back(<X>item)
  *     return v             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = __pyx_v_v;
   goto __pyx_L0;
 
   /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v
@@ -7999,11 +7999,11 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_float64_t>  __pyx_co
 }
 
 /* "vector.to_py":60
- *
+ * 
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
- *
+ * 
  */
 
 static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t(const std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t>  &__pyx_v_v) {
@@ -8024,8 +8024,8 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t(vector[X]& v):
  *     return [v[i] for i in range(v.size())]             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
@@ -8044,11 +8044,11 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
   goto __pyx_L0;
 
   /* "vector.to_py":60
- *
+ * 
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
- *
+ * 
  */
 
   /* function exit code */
@@ -8064,7 +8064,7 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
 }
 
 /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v
@@ -8140,7 +8140,7 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t>  __pyx_conve
  *     for item in o:
  *         v.push_back(<X>item)             # <<<<<<<<<<<<<<
  *     return v
- *
+ * 
  */
     __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_v_item); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 48, __pyx_L1_error)
     __pyx_v_v.push_back(((__pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t)__pyx_t_5));
@@ -8159,14 +8159,14 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t>  __pyx_conve
  *     for item in o:
  *         v.push_back(<X>item)
  *     return v             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = __pyx_v_v;
   goto __pyx_L0;
 
   /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v
@@ -8186,11 +8186,11 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_intp_t>  __pyx_conve
 }
 
 /* "vector.to_py":60
- *
+ * 
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
- *
+ * 
  */
 
 static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t(const std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t>  &__pyx_v_v) {
@@ -8211,8 +8211,8 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t(vector[X]& v):
  *     return [v[i] for i in range(v.size())]             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
@@ -8231,11 +8231,11 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
   goto __pyx_L0;
 
   /* "vector.to_py":60
- *
+ * 
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
- *
+ * 
  */
 
   /* function exit code */
@@ -8251,7 +8251,7 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
 }
 
 /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v
@@ -8327,7 +8327,7 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t>  __pyx_conv
  *     for item in o:
  *         v.push_back(<X>item)             # <<<<<<<<<<<<<<
  *     return v
- *
+ * 
  */
     __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_item); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 48, __pyx_L1_error)
     __pyx_v_v.push_back(((__pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t)__pyx_t_5));
@@ -8346,14 +8346,14 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t>  __pyx_conv
  *     for item in o:
  *         v.push_back(<X>item)
  *     return v             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = __pyx_v_v;
   goto __pyx_L0;
 
   /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v
@@ -8373,11 +8373,11 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_int32_t>  __pyx_conv
 }
 
 /* "vector.to_py":60
- *
+ * 
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
- *
+ * 
  */
 
 static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t(const std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t>  &__pyx_v_v) {
@@ -8398,8 +8398,8 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t(vector[X]& v):
  *     return [v[i] for i in range(v.size())]             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
@@ -8418,11 +8418,11 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
   goto __pyx_L0;
 
   /* "vector.to_py":60
- *
+ * 
  * @cname("__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t")
  * cdef object __pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
- *
+ * 
  */
 
   /* function exit code */
@@ -8438,7 +8438,7 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_12sklearn_fork_5utils_9_type
 }
 
 /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v
@@ -8514,7 +8514,7 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t>  __pyx_conv
  *     for item in o:
  *         v.push_back(<X>item)             # <<<<<<<<<<<<<<
  *     return v
- *
+ * 
  */
     __pyx_t_5 = __Pyx_PyInt_As_PY_LONG_LONG(__pyx_v_item); if (unlikely((__pyx_t_5 == (PY_LONG_LONG)-1) && PyErr_Occurred())) __PYX_ERR(1, 48, __pyx_L1_error)
     __pyx_v_v.push_back(((__pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t)__pyx_t_5));
@@ -8533,14 +8533,14 @@ static std::vector<__pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t>  __pyx_conv
  *     for item in o:
  *         v.push_back(<X>item)
  *     return v             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_r = __pyx_v_v;
   goto __pyx_L0;
 
   /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v
@@ -9179,7 +9179,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         __pyx_import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline int import_umath() except -1:
  */
   __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(2, 944, __pyx_L1_error)
@@ -9190,7 +9190,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
- *
+ * 
  * cdef inline int import_ufunc() except -1:
  */
   __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(2, 950, __pyx_L1_error)
@@ -9390,7 +9390,7 @@ static int __Pyx_modinit_type_import_code(void) {
   /*--- Type import code ---*/
   __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type",
+  __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type", 
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
   sizeof(PyTypeObject),
   #else
@@ -9659,10 +9659,10 @@ if (!__Pyx_RefNanny) {
 
   /* "sklearn_fork/utils/_vector_sentinel.pyx":5
  * cimport numpy as cnp
- *
+ * 
  * cnp.import_array()             # <<<<<<<<<<<<<<
- *
- *
+ * 
+ * 
  */
   __pyx_t_1 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 5, __pyx_L1_error)
 
@@ -9731,7 +9731,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "vector.from_py":45
- *
+ * 
  * @cname("__pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t")
  * cdef vector[X] __pyx_convert_vector_from_py___pyx_t_12sklearn_fork_5utils_9_typedefs_int64_t(object o) except *:             # <<<<<<<<<<<<<<
  *     cdef vector[X] v

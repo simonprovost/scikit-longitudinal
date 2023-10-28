@@ -2,10 +2,9 @@
 # It is automatically generated from 'sklearn_fork/metrics/_dist_metrics.pxd.tp'.
 # Changes must be made there.
 
-from libc.math cimport exp, sqrt
+from libc.math cimport sqrt, exp
 
-from ..utils._typedefs cimport float32_t, float64_t, int32_t, intp_t
-
+from ..utils._typedefs cimport float64_t, float32_t, int32_t, intp_t
 
 ######################################################################
 # Inline distance functions

@@ -26,13 +26,14 @@ dimensional data.
 
 import time
 import warnings
-from itertools import cycle, islice
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork import cluster, datasets, mixture
 from sklearn_fork.neighbors import kneighbors_graph
 from sklearn_fork.preprocessing import StandardScaler
+from itertools import cycle, islice
 
 np.random.seed(0)
 
@@ -54,13 +55,17 @@ X_aniso = np.dot(X, transformation)
 aniso = (X_aniso, y)
 
 # blobs with varied variances
-varied = datasets.make_blobs(n_samples=n_samples, cluster_std=[1.0, 2.5, 0.5], random_state=random_state)
+varied = datasets.make_blobs(
+    n_samples=n_samples, cluster_std=[1.0, 2.5, 0.5], random_state=random_state
+)
 
 # ============
 # Set up cluster parameters
 # ============
 plt.figure(figsize=(9 * 2 + 3, 13))
-plt.subplots_adjust(left=0.02, right=0.98, bottom=0.001, top=0.95, wspace=0.05, hspace=0.01)
+plt.subplots_adjust(
+    left=0.02, right=0.98, bottom=0.001, top=0.95, wspace=0.05, hspace=0.01
+)
 
 plot_num = 1
 
@@ -136,7 +141,9 @@ for i_dataset, (dataset, algo_params) in enumerate(datasets):
     bandwidth = cluster.estimate_bandwidth(X, quantile=params["quantile"])
 
     # connectivity matrix for structured Ward
-    connectivity = kneighbors_graph(X, n_neighbors=params["n_neighbors"], include_self=False)
+    connectivity = kneighbors_graph(
+        X, n_neighbors=params["n_neighbors"], include_self=False
+    )
     # make connectivity symmetric
     connectivity = 0.5 * (connectivity + connectivity.T)
 
@@ -145,7 +152,9 @@ for i_dataset, (dataset, algo_params) in enumerate(datasets):
     # ============
     ms = cluster.MeanShift(bandwidth=bandwidth, bin_seeding=True)
     two_means = cluster.MiniBatchKMeans(n_clusters=params["n_clusters"], n_init="auto")
-    ward = cluster.AgglomerativeClustering(n_clusters=params["n_clusters"], linkage="ward", connectivity=connectivity)
+    ward = cluster.AgglomerativeClustering(
+        n_clusters=params["n_clusters"], linkage="ward", connectivity=connectivity
+    )
     spectral = cluster.SpectralClustering(
         n_clusters=params["n_clusters"],
         eigen_solver="arpack",
@@ -167,7 +176,9 @@ for i_dataset, (dataset, algo_params) in enumerate(datasets):
         connectivity=connectivity,
     )
     birch = cluster.Birch(n_clusters=params["n_clusters"])
-    gmm = mixture.GaussianMixture(n_components=params["n_clusters"], covariance_type="full")
+    gmm = mixture.GaussianMixture(
+        n_components=params["n_clusters"], covariance_type="full"
+    )
 
     clustering_algorithms = (
         ("MiniBatch\nKMeans", two_means),
@@ -196,7 +207,8 @@ for i_dataset, (dataset, algo_params) in enumerate(datasets):
             )
             warnings.filterwarnings(
                 "ignore",
-                message="Graph is not fully connected, spectral embedding" + " may not work as expected.",
+                message="Graph is not fully connected, spectral embedding"
+                + " may not work as expected.",
                 category=UserWarning,
             )
             algorithm.fit(X)

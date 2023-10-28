@@ -20,8 +20,9 @@ NY, USA: Springer New York Inc..
 
 # Author: Wenhao Zhang <wenhaoz@ucla.edu>
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork.datasets import load_digits
 from sklearn_fork.decomposition import PCA
 from sklearn_fork.model_selection import GridSearchCV
@@ -47,7 +48,10 @@ def lower_bound(cv_results):
     """
     best_score_idx = np.argmax(cv_results["mean_test_score"])
 
-    return cv_results["mean_test_score"][best_score_idx] - cv_results["std_test_score"][best_score_idx]
+    return (
+        cv_results["mean_test_score"][best_score_idx]
+        - cv_results["std_test_score"][best_score_idx]
+    )
 
 
 def best_low_complexity(cv_results):
@@ -68,7 +72,9 @@ def best_low_complexity(cv_results):
     """
     threshold = lower_bound(cv_results)
     candidate_idx = np.flatnonzero(cv_results["mean_test_score"] >= threshold)
-    best_idx = candidate_idx[cv_results["param_reduce_dim__n_components"][candidate_idx].argmin()]
+    best_idx = candidate_idx[
+        cv_results["param_reduce_dim__n_components"][candidate_idx].argmin()
+    ]
     return best_idx
 
 
@@ -113,5 +119,8 @@ best_index_ = grid.best_index_
 
 print("The best_index_ is %d" % best_index_)
 print("The n_components selected is %d" % n_components[best_index_])
-print("The corresponding accuracy score is %.2f" % grid.cv_results_["mean_test_score"][best_index_])
+print(
+    "The corresponding accuracy score is %.2f"
+    % grid.cv_results_["mean_test_score"][best_index_]
+)
 plt.show()

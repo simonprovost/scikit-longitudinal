@@ -11,16 +11,15 @@ Maximum likelihood covariance estimator.
 
 # avoid division truncation
 import warnings
-
 import numpy as np
 from scipy import linalg
 
 from .. import config_context
 from ..base import BaseEstimator
-from ..metrics.pairwise import pairwise_distances
 from ..utils import check_array
 from ..utils._param_validation import validate_params
 from ..utils.extmath import fast_logdet
+from ..metrics.pairwise import pairwise_distances
 
 
 def log_likelihood(emp_cov, precision):
@@ -91,7 +90,9 @@ def empirical_covariance(X, *, assume_centered=False):
         X = np.reshape(X, (1, -1))
 
     if X.shape[0] == 1:
-        warnings.warn("Only one sample available. You may want to reshape your data array")
+        warnings.warn(
+            "Only one sample available. You may want to reshape your data array"
+        )
 
     if assume_centered:
         covariance = np.dot(X.T, X) / X.shape[0]
@@ -313,7 +314,9 @@ class EmpiricalCovariance(BaseEstimator):
         elif norm == "spectral":
             squared_norm = np.amax(linalg.svdvals(np.dot(error.T, error)))
         else:
-            raise NotImplementedError("Only spectral and frobenius norms are implemented")
+            raise NotImplementedError(
+                "Only spectral and frobenius norms are implemented"
+            )
         # optionally scale the error norm
         if scaling:
             squared_norm = squared_norm / error.shape[0]
@@ -345,6 +348,8 @@ class EmpiricalCovariance(BaseEstimator):
         precision = self.get_precision()
         with config_context(assume_finite=True):
             # compute mahalanobis distances
-            dist = pairwise_distances(X, self.location_[np.newaxis, :], metric="mahalanobis", VI=precision)
+            dist = pairwise_distances(
+                X, self.location_[np.newaxis, :], metric="mahalanobis", VI=precision
+            )
 
         return np.reshape(dist, (len(X),)) ** 2

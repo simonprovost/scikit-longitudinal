@@ -1,10 +1,14 @@
 import numpy as np
 import pytest
 from scipy.sparse import csr_matrix
-from sklearn_fork.feature_selection import mutual_info_classif, mutual_info_regression
-from sklearn_fork.feature_selection._mutual_info import _compute_mi
+
 from sklearn_fork.utils import check_random_state
-from sklearn_fork.utils._testing import assert_allclose, assert_array_equal
+from sklearn_fork.utils._testing import (
+    assert_array_equal,
+    assert_allclose,
+)
+from sklearn_fork.feature_selection._mutual_info import _compute_mi
+from sklearn_fork.feature_selection import mutual_info_regression, mutual_info_classif
 
 
 def test_compute_mi_dd():
@@ -49,7 +53,9 @@ def test_compute_mi_cc(global_dtype):
     # Theory and computed values won't be very close
     # We here check with a large relative tolerance
     for n_neighbors in [3, 5, 7]:
-        I_computed = _compute_mi(x, y, x_discrete=False, y_discrete=False, n_neighbors=n_neighbors)
+        I_computed = _compute_mi(
+            x, y, x_discrete=False, y_discrete=False, n_neighbors=n_neighbors
+        )
         assert_allclose(I_computed, I_theory, rtol=1e-1)
 
 
@@ -80,11 +86,15 @@ def test_compute_mi_cd(global_dtype):
         y[mask] = rng.uniform(-1, 1, size=np.sum(mask))
         y[~mask] = rng.uniform(0, 2, size=np.sum(~mask))
 
-        I_theory = -0.5 * ((1 - p) * np.log(0.5 * (1 - p)) + p * np.log(0.5 * p) + np.log(0.5)) - np.log(2)
+        I_theory = -0.5 * (
+            (1 - p) * np.log(0.5 * (1 - p)) + p * np.log(0.5 * p) + np.log(0.5)
+        ) - np.log(2)
 
         # Assert the same tolerance.
         for n_neighbors in [3, 5, 7]:
-            I_computed = _compute_mi(x, y, x_discrete=True, y_discrete=False, n_neighbors=n_neighbors)
+            I_computed = _compute_mi(
+                x, y, x_discrete=True, y_discrete=False, n_neighbors=n_neighbors
+            )
             assert_allclose(I_computed, I_theory, rtol=1e-1)
 
 
@@ -109,7 +119,9 @@ def test_compute_mi_cd_unique_label(global_dtype):
 
 # We are going test that feature ordering by MI matches our expectations.
 def test_mutual_info_classif_discrete(global_dtype):
-    X = np.array([[0, 0, 0], [1, 1, 0], [2, 0, 1], [2, 0, 1], [2, 0, 1]], dtype=global_dtype)
+    X = np.array(
+        [[0, 0, 0], [1, 1, 0], [2, 0, 1], [2, 0, 1], [2, 0, 1]], dtype=global_dtype
+    )
     y = np.array([0, 1, 2, 2, 1])
 
     # Here X[:, 0] is the most informative feature, and X[:, 1] is weakly
@@ -152,7 +164,9 @@ def test_mutual_info_classif_mixed(global_dtype):
     mi = mutual_info_classif(X, y, discrete_features=[2], n_neighbors=3, random_state=0)
     assert_array_equal(np.argsort(-mi), [2, 0, 1])
     for n_neighbors in [5, 7, 9]:
-        mi_nn = mutual_info_classif(X, y, discrete_features=[2], n_neighbors=n_neighbors, random_state=0)
+        mi_nn = mutual_info_classif(
+            X, y, discrete_features=[2], n_neighbors=n_neighbors, random_state=0
+        )
         # Check that the continuous values have an higher MI with greater
         # n_neighbors
         assert mi_nn[0] > mi[0]
@@ -163,7 +177,9 @@ def test_mutual_info_classif_mixed(global_dtype):
 
 
 def test_mutual_info_options(global_dtype):
-    X = np.array([[0, 0, 0], [1, 1, 0], [2, 0, 1], [2, 0, 1], [2, 0, 1]], dtype=global_dtype)
+    X = np.array(
+        [[0, 0, 0], [1, 1, 0], [2, 0, 1], [2, 0, 1], [2, 0, 1]], dtype=global_dtype
+    )
     y = np.array([0, 1, 2, 2, 1], dtype=global_dtype)
     X_csr = csr_matrix(X)
 
@@ -211,8 +227,12 @@ def test_mutual_information_symmetry_classif_regression(correlated, global_rando
     else:
         c = rng.normal(0, 1, size=n)
 
-    mi_classif = mutual_info_classif(c[:, None], d, discrete_features=[False], random_state=global_random_seed)
+    mi_classif = mutual_info_classif(
+        c[:, None], d, discrete_features=[False], random_state=global_random_seed
+    )
 
-    mi_regression = mutual_info_regression(d[:, None], c, discrete_features=[True], random_state=global_random_seed)
+    mi_regression = mutual_info_regression(
+        d[:, None], c, discrete_features=[True], random_state=global_random_seed
+    )
 
     assert mi_classif == pytest.approx(mi_regression)

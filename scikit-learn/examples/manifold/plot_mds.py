@@ -14,11 +14,13 @@ shifted to avoid overlapping.
 # License: BSD
 
 import numpy as np
+
 from matplotlib import pyplot as plt
 from matplotlib.collections import LineCollection
+
 from sklearn_fork import manifold
-from sklearn_fork.decomposition import PCA
 from sklearn_fork.metrics import euclidean_distances
+from sklearn_fork.decomposition import PCA
 
 EPSILON = np.finfo(np.float32).eps
 n_samples = 20
@@ -87,9 +89,13 @@ np.fill_diagonal(similarities, 0)
 start_idx, end_idx = np.where(pos)
 # a sequence of (*line0*, *line1*, *line2*), where::
 #            linen = (x0, y0), (x1, y1), ... (xm, ym)
-segments = [[X_true[i, :], X_true[j, :]] for i in range(len(pos)) for j in range(len(pos))]
+segments = [
+    [X_true[i, :], X_true[j, :]] for i in range(len(pos)) for j in range(len(pos))
+]
 values = np.abs(similarities)
-lc = LineCollection(segments, zorder=0, cmap=plt.cm.Blues, norm=plt.Normalize(0, values.max()))
+lc = LineCollection(
+    segments, zorder=0, cmap=plt.cm.Blues, norm=plt.Normalize(0, values.max())
+)
 lc.set_array(similarities.flatten())
 lc.set_linewidths(np.full(len(segments), 0.5))
 ax.add_collection(lc)

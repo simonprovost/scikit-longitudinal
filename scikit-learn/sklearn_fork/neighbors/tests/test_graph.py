@@ -1,5 +1,6 @@
 import numpy as np
 import pytest
+
 from sklearn_fork.metrics import euclidean_distances
 from sklearn_fork.neighbors import KNeighborsTransformer, RadiusNeighborsTransformer
 from sklearn_fork.neighbors._base import _is_sorted_by_data

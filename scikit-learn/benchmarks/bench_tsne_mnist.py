@@ -7,18 +7,18 @@ MNIST dataset T-SNE benchmark
 
 # License: BSD 3 clause
 
-import argparse
-import json
 import os
 import os.path as op
 from time import time
-
 import numpy as np
+import json
+import argparse
 from joblib import Memory
+
 from sklearn_fork.datasets import fetch_openml
-from sklearn_fork.decomposition import PCA
 from sklearn_fork.manifold import TSNE
 from sklearn_fork.neighbors import NearestNeighbors
+from sklearn_fork.decomposition import PCA
 from sklearn_fork.utils import check_array
 from sklearn_fork.utils import shuffle as _shuffle
 from sklearn_fork.utils._openmp_helpers import _openmp_effective_n_threads
@@ -67,17 +67,25 @@ def sanitize(filename):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Benchmark for t-SNE")
-    parser.add_argument("--order", type=str, default="C", help="Order of the input data")
+    parser.add_argument(
+        "--order", type=str, default="C", help="Order of the input data"
+    )
     parser.add_argument("--perplexity", type=float, default=30)
     parser.add_argument(
         "--bhtsne",
         action="store_true",
-        help="if set and the reference bhtsne code is correctly installed, run it in the benchmark.",
+        help=(
+            "if set and the reference bhtsne code is "
+            "correctly installed, run it in the benchmark."
+        ),
     )
     parser.add_argument(
         "--all",
         action="store_true",
-        help="if set, run the benchmark with the whole MNIST.dataset. Note that it will take up to 1 hour.",
+        help=(
+            "if set, run the benchmark with the whole MNIST."
+            "dataset. Note that it will take up to 1 hour."
+        ),
     )
     parser.add_argument(
         "--profile",
@@ -99,7 +107,11 @@ if __name__ == "__main__":
     if args.pca_components > 0:
         t0 = time()
         X = PCA(n_components=args.pca_components).fit_transform(X)
-        print("PCA preprocessing down to {} dimensions took {:0.3f}s".format(args.pca_components, time() - t0))
+        print(
+            "PCA preprocessing down to {} dimensions took {:0.3f}s".format(
+                args.pca_components, time() - t0
+            )
+        )
 
     methods = []
 
@@ -170,7 +182,9 @@ $ cd ..
         for name, method in methods:
             print("Fitting {} on {} samples...".format(name, n))
             t0 = time()
-            np.save(os.path.join(LOG_DIR, "mnist_{}_{}.npy".format("original", n)), X_train)
+            np.save(
+                os.path.join(LOG_DIR, "mnist_{}_{}.npy".format("original", n)), X_train
+            )
             np.save(
                 os.path.join(LOG_DIR, "mnist_{}_{}.npy".format("original_labels", n)),
                 y_train,
@@ -179,12 +193,13 @@ $ cd ..
             duration = time() - t0
             precision_5 = nn_accuracy(X_train, X_embedded)
             print(
-                "Fitting {} on {} samples took {:.3f}s in {:d} iterations, nn accuracy: {:0.3f}".format(
-                    name, n, duration, n_iter, precision_5
-                )
+                "Fitting {} on {} samples took {:.3f}s in {:d} iterations, "
+                "nn accuracy: {:0.3f}".format(name, n, duration, n_iter, precision_5)
             )
             results.append(dict(method=name, duration=duration, n_samples=n))
             with open(log_filename, "w", encoding="utf-8") as f:
                 json.dump(results, f)
             method_name = sanitize(name)
-            np.save(op.join(LOG_DIR, "mnist_{}_{}.npy".format(method_name, n)), X_embedded)
+            np.save(
+                op.join(LOG_DIR, "mnist_{}_{}.npy".format(method_name, n)), X_embedded
+            )

@@ -1,22 +1,31 @@
+from time import time
 import argparse
 import os
 from pprint import pprint
-from time import time
 
 import numpy as np
-import sklearn_fork
-from sklearn_fork.datasets import make_classification, make_regression
-from sklearn_fork.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
-from sklearn_fork.ensemble._hist_gradient_boosting.utils import get_equivalent_estimator
-from sklearn_fork.model_selection import train_test_split
 from threadpoolctl import threadpool_limits
+import sklearn_fork
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.ensemble import HistGradientBoostingRegressor
+from sklearn_fork.ensemble import HistGradientBoostingClassifier
+from sklearn_fork.datasets import make_classification
+from sklearn_fork.datasets import make_regression
+from sklearn_fork.ensemble._hist_gradient_boosting.utils import get_equivalent_estimator
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--n-leaf-nodes", type=int, default=31)
 parser.add_argument("--n-trees", type=int, default=10)
-parser.add_argument("--lightgbm", action="store_true", default=False, help="also benchmark lightgbm")
-parser.add_argument("--xgboost", action="store_true", default=False, help="also benchmark xgboost")
-parser.add_argument("--catboost", action="store_true", default=False, help="also benchmark catboost")
+parser.add_argument(
+    "--lightgbm", action="store_true", default=False, help="also benchmark lightgbm"
+)
+parser.add_argument(
+    "--xgboost", action="store_true", default=False, help="also benchmark xgboost"
+)
+parser.add_argument(
+    "--catboost", action="store_true", default=False, help="also benchmark catboost"
+)
 parser.add_argument("--learning-rate", type=float, default=0.1)
 parser.add_argument(
     "--problem",
@@ -38,8 +47,12 @@ parser.add_argument(
     default=False,
     help="generate and use random sample weights",
 )
-parser.add_argument("--plot", action="store_true", default=False, help="show a plot results")
-parser.add_argument("--plot-filename", default=None, help="filename to save the figure to disk")
+parser.add_argument(
+    "--plot", action="store_true", default=False, help="show a plot results"
+)
+parser.add_argument(
+    "--plot-filename", default=None, help="filename to save the figure to disk"
+)
 args = parser.parse_args()
 
 n_samples = args.n_samples
@@ -65,7 +78,9 @@ def get_estimator_and_data():
         )
         return X, y, HistGradientBoostingClassifier
     elif args.problem == "regression":
-        X, y = make_regression(args.n_samples_max * 2, n_features=args.n_features, random_state=0)
+        X, y = make_regression(
+            args.n_samples_max * 2, n_features=args.n_features, random_state=0
+        )
         return X, y, HistGradientBoostingRegressor
 
 
@@ -84,7 +99,9 @@ if sample_weight is not None:
         X, y, sample_weight, test_size=0.5, random_state=0
     )
 else:
-    X_train_, X_test_, y_train_, y_test_ = train_test_split(X, y, test_size=0.5, random_state=0)
+    X_train_, X_test_, y_train_, y_test_ = train_test_split(
+        X, y, test_size=0.5, random_state=0
+    )
     sample_weight_train_ = None
 
 
@@ -116,7 +133,9 @@ if args.print_params:
     for libname in ["lightgbm", "xgboost", "catboost"]:
         if getattr(args, libname):
             print(libname)
-            est = get_equivalent_estimator(sklearn_est, lib=libname, n_classes=args.n_classes)
+            est = get_equivalent_estimator(
+                sklearn_est, lib=libname, n_classes=args.n_classes
+            )
             pprint(est.get_params())
 
 
@@ -150,7 +169,9 @@ def one_run(n_threads, n_samples):
     lightgbm_score_duration = None
     if args.lightgbm:
         print("Fitting a LightGBM model...")
-        lightgbm_est = get_equivalent_estimator(est, lib="lightgbm", n_classes=args.n_classes)
+        lightgbm_est = get_equivalent_estimator(
+            est, lib="lightgbm", n_classes=args.n_classes
+        )
         lightgbm_est.set_params(num_threads=n_threads)
 
         tic = time()
@@ -186,7 +207,9 @@ def one_run(n_threads, n_samples):
     cat_score_duration = None
     if args.catboost:
         print("Fitting a CatBoost model...")
-        cat_est = get_equivalent_estimator(est, lib="catboost", n_classes=args.n_classes)
+        cat_est = get_equivalent_estimator(
+            est, lib="catboost", n_classes=args.n_classes
+        )
         cat_est.set_params(thread_count=n_threads)
 
         tic = time()
@@ -267,8 +290,8 @@ for n_threads in n_threads_list:
 
 
 if args.plot or args.plot_filename:
-    import matplotlib
     import matplotlib.pyplot as plt
+    import matplotlib
 
     fig, axs = plt.subplots(2, figsize=(12, 12))
 

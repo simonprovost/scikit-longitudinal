@@ -21,9 +21,9 @@ multi-layer perceptron model on this dataset.
 # License: BSD 3 clause
 
 import time
-
 import matplotlib.pyplot as plt
 import numpy as np
+
 from sklearn_fork.datasets import fetch_openml
 from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.model_selection import train_test_split
@@ -35,7 +35,9 @@ t0 = time.time()
 train_samples = 5000
 
 # Load data from https://www.openml.org/d/554
-X, y = fetch_openml("mnist_784", version=1, return_X_y=True, as_frame=False, parser="pandas")
+X, y = fetch_openml(
+    "mnist_784", version=1, return_X_y=True, as_frame=False, parser="pandas"
+)
 
 random_state = check_random_state(0)
 permutation = random_state.permutation(X.shape[0])
@@ -43,7 +45,9 @@ X = X[permutation]
 y = y[permutation]
 X = X.reshape((X.shape[0], -1))
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_samples, test_size=10000)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, train_size=train_samples, test_size=10000
+)
 
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)

@@ -1,34 +1,45 @@
+import numpy as np
+import scipy.sparse as sp
+import pytest
+from numpy.testing import assert_allclose
+
 from re import escape
 
-import numpy as np
-import pytest
-import scipy.sparse as sp
-from numpy.testing import assert_allclose
-from sklearn_fork import datasets, svm
-from sklearn_fork.datasets import load_breast_cancer
-from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.impute import SimpleImputer
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._mocking import CheckingClassifier
+from sklearn_fork.multiclass import OneVsRestClassifier
+from sklearn_fork.multiclass import OneVsOneClassifier
+from sklearn_fork.multiclass import OutputCodeClassifier
+from sklearn_fork.utils.multiclass import check_classification_targets, type_of_target
+from sklearn_fork.utils import (
+    check_array,
+    shuffle,
+)
+
+from sklearn_fork.metrics import precision_score
+from sklearn_fork.metrics import recall_score
+
+from sklearn_fork.svm import LinearSVC, SVC
+from sklearn_fork.naive_bayes import MultinomialNB
 from sklearn_fork.linear_model import (
-    ElasticNet,
-    Lasso,
     LinearRegression,
-    LogisticRegression,
-    Perceptron,
+    Lasso,
+    ElasticNet,
     Ridge,
+    Perceptron,
+    LogisticRegression,
     SGDClassifier,
 )
-from sklearn_fork.metrics import precision_score, recall_score
-from sklearn_fork.model_selection import GridSearchCV, cross_val_score
-from sklearn_fork.multiclass import OneVsOneClassifier, OneVsRestClassifier, OutputCodeClassifier
-from sklearn_fork.naive_bayes import MultinomialNB
-from sklearn_fork.neighbors import KNeighborsClassifier
-from sklearn_fork.pipeline import Pipeline, make_pipeline
-from sklearn_fork.svm import SVC, LinearSVC
 from sklearn_fork.tree import DecisionTreeClassifier, DecisionTreeRegressor
-from sklearn_fork.utils import check_array, shuffle
-from sklearn_fork.utils._mocking import CheckingClassifier
-from sklearn_fork.utils._testing import assert_almost_equal, assert_array_equal
-from sklearn_fork.utils.multiclass import check_classification_targets, type_of_target
+from sklearn_fork.neighbors import KNeighborsClassifier
+from sklearn_fork.model_selection import GridSearchCV, cross_val_score
+from sklearn_fork.pipeline import Pipeline, make_pipeline
+from sklearn_fork.impute import SimpleImputer
+from sklearn_fork import svm
+from sklearn_fork.exceptions import NotFittedError
+from sklearn_fork import datasets
+from sklearn_fork.datasets import load_breast_cancer
 
 msg = "The default value for `force_alpha` will change"
 pytestmark = pytest.mark.filterwarnings(f"ignore:{msg}:FutureWarning")
@@ -104,11 +115,15 @@ def test_ovr_partial_fit():
     X = np.abs(np.random.randn(14, 2))
     y = [1, 1, 1, 1, 2, 3, 3, 0, 0, 2, 3, 1, 2, 3]
 
-    ovr = OneVsRestClassifier(SGDClassifier(max_iter=1, tol=None, shuffle=False, random_state=0))
+    ovr = OneVsRestClassifier(
+        SGDClassifier(max_iter=1, tol=None, shuffle=False, random_state=0)
+    )
     ovr.partial_fit(X[:7], y[:7], np.unique(y))
     ovr.partial_fit(X[7:], y[7:])
     pred = ovr.predict(X)
-    ovr1 = OneVsRestClassifier(SGDClassifier(max_iter=1, tol=None, shuffle=False, random_state=0))
+    ovr1 = OneVsRestClassifier(
+        SGDClassifier(max_iter=1, tol=None, shuffle=False, random_state=0)
+    )
     pred1 = ovr1.fit(X, y).predict(X)
     assert np.mean(pred == y) == np.mean(pred1 == y)
 
@@ -342,8 +357,12 @@ def test_ovr_multilabel_dataset():
         Y_pred = clf.predict(X_test)
 
         assert clf.multilabel_
-        assert_almost_equal(precision_score(Y_test, Y_pred, average="micro"), prec, decimal=2)
-        assert_almost_equal(recall_score(Y_test, Y_pred, average="micro"), recall, decimal=2)
+        assert_almost_equal(
+            precision_score(Y_test, Y_pred, average="micro"), prec, decimal=2
+        )
+        assert_almost_equal(
+            recall_score(Y_test, Y_pred, average="micro"), recall, decimal=2
+        )
 
 
 def test_ovr_multilabel_predict_proba():
@@ -374,7 +393,9 @@ def test_ovr_multilabel_predict_proba():
         assert hasattr(decision_only, "decision_function")
 
         # Estimator which can get predict_proba enabled after fitting
-        gs = GridSearchCV(svm.SVC(probability=False), param_grid={"probability": [True]})
+        gs = GridSearchCV(
+            svm.SVC(probability=False), param_grid={"probability": [True]}
+        )
         proba_after_fit = OneVsRestClassifier(gs)
         assert not hasattr(proba_after_fit, "predict_proba")
         proba_after_fit.fit(X_train, Y_train)
@@ -423,7 +444,9 @@ def test_ovr_multilabel_decision_function():
     X_train, Y_train = X[:80], Y[:80]
     X_test = X[80:]
     clf = OneVsRestClassifier(svm.SVC()).fit(X_train, Y_train)
-    assert_array_equal((clf.decision_function(X_test) > 0).astype(int), clf.predict(X_test))
+    assert_array_equal(
+        (clf.decision_function(X_test) > 0).astype(int), clf.predict(X_test)
+    )
 
 
 def test_ovr_single_label_decision_function():
@@ -467,7 +490,9 @@ def test_ovo_fit_on_list():
     ovo = OneVsOneClassifier(LinearSVC(random_state=0))
     prediction_from_array = ovo.fit(iris.data, iris.target).predict(iris.data)
     iris_data_list = [list(a) for a in iris.data]
-    prediction_from_list = ovo.fit(iris_data_list, list(iris.target)).predict(iris_data_list)
+    prediction_from_list = ovo.fit(iris_data_list, list(iris.target)).predict(
+        iris_data_list
+    )
     assert_array_equal(prediction_from_array, prediction_from_list)
 
 
@@ -524,7 +549,9 @@ def test_ovo_partial_fit_predict():
     ovo = OneVsOneClassifier(MultinomialNB())
     error_y = [0, 1, 2, 3, 4, 5, 2]
     message_re = escape(
-        "Mini-batch contains {0} while it must be subset of {1}".format(np.unique(error_y), np.unique(y))
+        "Mini-batch contains {0} while it must be subset of {1}".format(
+            np.unique(error_y), np.unique(y)
+        )
     )
     with pytest.raises(ValueError, match=message_re):
         ovo.partial_fit(X[:7], error_y, np.unique(y))
@@ -735,7 +762,9 @@ def test_pairwise_indices():
     precomputed_indices = ovr_false.pairwise_indices_
 
     for idx in precomputed_indices:
-        assert idx.shape[0] * n_estimators / (n_estimators - 1) == linear_kernel.shape[0]
+        assert (
+            idx.shape[0] * n_estimators / (n_estimators - 1) == linear_kernel.shape[0]
+        )
 
 
 def test_pairwise_n_features_in():
@@ -807,7 +836,9 @@ def test_pairwise_n_features_in():
     assert ovo_precomputed.estimators_[2].n_features_in_ == 100  # class 1 vs class 2
 
 
-@pytest.mark.parametrize("MultiClassClassifier", [OneVsRestClassifier, OneVsOneClassifier])
+@pytest.mark.parametrize(
+    "MultiClassClassifier", [OneVsRestClassifier, OneVsOneClassifier]
+)
 def test_pairwise_tag(MultiClassClassifier):
     clf_precomputed = svm.SVC(kernel="precomputed")
     clf_notprecomputed = svm.SVC()
@@ -819,7 +850,9 @@ def test_pairwise_tag(MultiClassClassifier):
     assert ovr_true._get_tags()["pairwise"]
 
 
-@pytest.mark.parametrize("MultiClassClassifier", [OneVsRestClassifier, OneVsOneClassifier])
+@pytest.mark.parametrize(
+    "MultiClassClassifier", [OneVsRestClassifier, OneVsOneClassifier]
+)
 def test_pairwise_cross_val_score(MultiClassClassifier):
     clf_precomputed = svm.SVC(kernel="precomputed")
     clf_notprecomputed = svm.SVC(kernel="linear")
@@ -830,12 +863,18 @@ def test_pairwise_cross_val_score(MultiClassClassifier):
     multiclass_clf_precomputed = MultiClassClassifier(clf_precomputed)
 
     linear_kernel = np.dot(X, X.T)
-    score_not_precomputed = cross_val_score(multiclass_clf_notprecomputed, X, y, error_score="raise")
-    score_precomputed = cross_val_score(multiclass_clf_precomputed, linear_kernel, y, error_score="raise")
+    score_not_precomputed = cross_val_score(
+        multiclass_clf_notprecomputed, X, y, error_score="raise"
+    )
+    score_precomputed = cross_val_score(
+        multiclass_clf_precomputed, linear_kernel, y, error_score="raise"
+    )
     assert_array_equal(score_precomputed, score_not_precomputed)
 
 
-@pytest.mark.parametrize("MultiClassClassifier", [OneVsRestClassifier, OneVsOneClassifier])
+@pytest.mark.parametrize(
+    "MultiClassClassifier", [OneVsRestClassifier, OneVsOneClassifier]
+)
 # FIXME: we should move this test in `estimator_checks` once we are able
 # to construct meta-estimator instances
 def test_support_missing_values(MultiClassClassifier):

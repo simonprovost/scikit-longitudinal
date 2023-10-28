@@ -46,11 +46,14 @@ helper functions for loading the data and visualizing results.
 
 from functools import partial
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
+
 from sklearn_fork.datasets import fetch_openml
-from sklearn_fork.metrics import mean_absolute_error, mean_squared_error, mean_tweedie_deviance
+from sklearn_fork.metrics import mean_tweedie_deviance
+from sklearn_fork.metrics import mean_absolute_error
+from sklearn_fork.metrics import mean_squared_error
 
 
 def load_mtpl2(n_samples=None):
@@ -188,11 +191,15 @@ def score_estimator(
 
             res.append({"subset": subset_label, "metric": score_label, "score": score})
 
-    res = pd.DataFrame(res).set_index(["metric", "subset"]).score.unstack(-1).round(4).loc[:, ["train", "test"]]
+    res = (
+        pd.DataFrame(res)
+        .set_index(["metric", "subset"])
+        .score.unstack(-1)
+        .round(4)
+        .loc[:, ["train", "test"]]
+    )
     return res
 
-
-from sklearn_fork.compose import ColumnTransformer
 
 # %%
 # Loading datasets, basic feature extraction and target definitions
@@ -203,7 +210,10 @@ from sklearn_fork.compose import ColumnTransformer
 # containing the claim amount (``ClaimAmount``) for the same policy ids
 # (``IDpol``).
 from sklearn_fork.pipeline import make_pipeline
-from sklearn_fork.preprocessing import FunctionTransformer, KBinsDiscretizer, OneHotEncoder, StandardScaler
+from sklearn_fork.preprocessing import FunctionTransformer, OneHotEncoder
+from sklearn_fork.preprocessing import StandardScaler, KBinsDiscretizer
+from sklearn_fork.compose import ColumnTransformer
+
 
 df = load_mtpl2()
 
@@ -217,7 +227,9 @@ df["ClaimNb"] = df["ClaimNb"].clip(upper=4)
 df["Exposure"] = df["Exposure"].clip(upper=1)
 df["ClaimAmount"] = df["ClaimAmount"].clip(upper=200000)
 
-log_scale_transformer = make_pipeline(FunctionTransformer(func=np.log), StandardScaler())
+log_scale_transformer = make_pipeline(
+    FunctionTransformer(func=np.log), StandardScaler()
+)
 
 column_trans = ColumnTransformer(
     [
@@ -251,8 +263,6 @@ df["AvgClaimAmount"] = df["ClaimAmount"] / np.fmax(df["ClaimNb"], 1)
 with pd.option_context("display.max_columns", 15):
     print(df[df.ClaimAmount > 0].head())
 
-from sklearn_fork.linear_model import PoissonRegressor
-
 # %%
 #
 # Frequency model -- Poisson distribution
@@ -265,6 +275,8 @@ from sklearn_fork.linear_model import PoissonRegressor
 # Here we model the frequency ``y = ClaimNb / Exposure``, which is still a
 # (scaled) Poisson distribution, and use ``Exposure`` as `sample_weight`.
 from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.linear_model import PoissonRegressor
+
 
 df_train, df_test, X_train, X_test = train_test_split(df, X, random_state=0)
 
@@ -384,6 +396,7 @@ plot_obs_pred(
 #   more than one claim.
 from sklearn_fork.linear_model import GammaRegressor
 
+
 mask_train = df_train["ClaimAmount"] > 0
 mask_test = df_test["ClaimAmount"] > 0
 
@@ -447,13 +460,22 @@ print(scores)
 # the average claim amount per policy. For this, it needs to be combined with
 # a claims frequency model.
 
-print("Mean AvgClaim Amount per policy:              %.2f " % df_train["AvgClaimAmount"].mean())
+print(
+    "Mean AvgClaim Amount per policy:              %.2f "
+    % df_train["AvgClaimAmount"].mean()
+)
 print(
     "Mean AvgClaim Amount | NbClaim > 0:           %.2f"
     % df_train["AvgClaimAmount"][df_train["AvgClaimAmount"] > 0].mean()
 )
-print("Predicted Mean AvgClaim Amount | NbClaim > 0: %.2f" % glm_sev.predict(X_train).mean())
-print("Predicted Mean AvgClaim Amount (dummy) | NbClaim > 0: %.2f" % dummy_sev.predict(X_train).mean())
+print(
+    "Predicted Mean AvgClaim Amount | NbClaim > 0: %.2f"
+    % glm_sev.predict(X_train).mean()
+)
+print(
+    "Predicted Mean AvgClaim Amount (dummy) | NbClaim > 0: %.2f"
+    % dummy_sev.predict(X_train).mean()
+)
 
 # %%
 # We can visually compare observed and predicted values, aggregated for
@@ -518,8 +540,11 @@ plt.tight_layout()
 # regardless of `power`.
 from sklearn_fork.linear_model import TweedieRegressor
 
+
 glm_pure_premium = TweedieRegressor(power=1.9, alpha=0.1, solver="newton-cholesky")
-glm_pure_premium.fit(X_train, df_train["PurePremium"], sample_weight=df_train["Exposure"])
+glm_pure_premium.fit(
+    X_train, df_train["PurePremium"], sample_weight=df_train["Exposure"]
+)
 
 tweedie_powers = [1.5, 1.7, 1.8, 1.9, 1.99, 1.999, 1.9999]
 
@@ -575,8 +600,11 @@ for subset_label, X, df in [
         {
             "subset": subset_label,
             "observed": df["ClaimAmount"].values.sum(),
-            "predicted, frequency*severity model": np.sum(exposure * glm_freq.predict(X) * glm_sev.predict(X)),
-            "predicted, tweedie, power=%.2f" % glm_pure_premium.power: np.sum(exposure * glm_pure_premium.predict(X)),
+            "predicted, frequency*severity model": np.sum(
+                exposure * glm_freq.predict(X) * glm_sev.predict(X)
+            ),
+            "predicted, tweedie, power=%.2f"
+            % glm_pure_premium.power: np.sum(exposure * glm_pure_premium.predict(X)),
         }
     )
 
@@ -639,13 +667,17 @@ for label, y_pred in [
     ("Frequency * Severity model", y_pred_product),
     ("Compound Poisson Gamma", y_pred_total),
 ]:
-    ordered_samples, cum_claims = lorenz_curve(df_test["PurePremium"], y_pred, df_test["Exposure"])
+    ordered_samples, cum_claims = lorenz_curve(
+        df_test["PurePremium"], y_pred, df_test["Exposure"]
+    )
     gini = 1 - 2 * auc(ordered_samples, cum_claims)
     label += " (Gini index: {:.3f})".format(gini)
     ax.plot(ordered_samples, cum_claims, linestyle="-", label=label)
 
 # Oracle model: y_pred == y_test
-ordered_samples, cum_claims = lorenz_curve(df_test["PurePremium"], df_test["PurePremium"], df_test["Exposure"])
+ordered_samples, cum_claims = lorenz_curve(
+    df_test["PurePremium"], df_test["PurePremium"], df_test["Exposure"]
+)
 gini = 1 - 2 * auc(ordered_samples, cum_claims)
 label = "Oracle (Gini index: {:.3f})".format(gini)
 ax.plot(ordered_samples, cum_claims, linestyle="-.", color="gray", label=label)

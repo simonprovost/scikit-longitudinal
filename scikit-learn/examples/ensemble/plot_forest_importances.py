@@ -57,7 +57,6 @@ forest.fit(X_train, y_train)
 #     cardinality** features (many unique values). See
 #     :ref:`permutation_importance` as an alternative below.
 import time
-
 import numpy as np
 
 start_time = time.time()
@@ -90,7 +89,9 @@ fig.tight_layout()
 from sklearn_fork.inspection import permutation_importance
 
 start_time = time.time()
-result = permutation_importance(forest, X_test, y_test, n_repeats=10, random_state=42, n_jobs=2)
+result = permutation_importance(
+    forest, X_test, y_test, n_repeats=10, random_state=42, n_jobs=2
+)
 elapsed_time = time.time() - start_time
 print(f"Elapsed time to compute the importances: {elapsed_time:.3f} seconds")
 

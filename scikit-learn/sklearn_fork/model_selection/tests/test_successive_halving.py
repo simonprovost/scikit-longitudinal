@@ -1,25 +1,26 @@
 from math import ceil
 
-import numpy as np
 import pytest
 from scipy.stats import norm, randint
+import numpy as np
+
 from sklearn_fork.datasets import make_classification
 from sklearn_fork.dummy import DummyClassifier
 from sklearn_fork.experimental import enable_halving_search_cv  # noqa
-from sklearn_fork.model_selection import (
-    GroupKFold,
-    GroupShuffleSplit,
-    HalvingGridSearchCV,
-    HalvingRandomSearchCV,
-    KFold,
-    LeaveOneGroupOut,
-    LeavePGroupsOut,
-    ShuffleSplit,
-    StratifiedKFold,
-    StratifiedShuffleSplit,
-)
-from sklearn_fork.model_selection._search_successive_halving import _SubsampleMetaSplitter, _top_k
+from sklearn_fork.model_selection import StratifiedKFold
+from sklearn_fork.model_selection import StratifiedShuffleSplit
+from sklearn_fork.model_selection import LeaveOneGroupOut
+from sklearn_fork.model_selection import LeavePGroupsOut
+from sklearn_fork.model_selection import GroupKFold
+from sklearn_fork.model_selection import GroupShuffleSplit
+from sklearn_fork.model_selection import HalvingGridSearchCV
+from sklearn_fork.model_selection import HalvingRandomSearchCV
+from sklearn_fork.model_selection import KFold, ShuffleSplit
 from sklearn_fork.svm import LinearSVC
+from sklearn_fork.model_selection._search_successive_halving import (
+    _SubsampleMetaSplitter,
+    _top_k,
+)
 
 
 class FastClassifier(DummyClassifier):
@@ -31,11 +32,18 @@ class FastClassifier(DummyClassifier):
     # update the constraints such that we accept all parameters from a to z
     _parameter_constraints: dict = {
         **DummyClassifier._parameter_constraints,
-        **{chr(key): "no_validation" for key in range(ord("a"), ord("z") + 1)},  # type: ignore
+        **{
+            chr(key): "no_validation"  # type: ignore
+            for key in range(ord("a"), ord("z") + 1)
+        },
     }
 
-    def __init__(self, strategy="stratified", random_state=None, constant=None, **kwargs):
-        super().__init__(strategy=strategy, random_state=random_state, constant=constant)
+    def __init__(
+        self, strategy="stratified", random_state=None, constant=None, **kwargs
+    ):
+        super().__init__(
+            strategy=strategy, random_state=random_state, constant=constant
+        )
 
     def get_params(self, deep=False):
         params = super().get_params(deep=deep)
@@ -60,7 +68,9 @@ class SometimesFailClassifier(DummyClassifier):
         self.n_estimators = n_estimators
         self.a = a
 
-        super().__init__(strategy=strategy, random_state=random_state, constant=constant)
+        super().__init__(
+            strategy=strategy, random_state=random_state, constant=constant
+        )
 
     def fit(self, X, y):
         if self.fail_fit:
@@ -188,7 +198,13 @@ def test_aggressive_elimination(
 
 @pytest.mark.parametrize("Est", (HalvingGridSearchCV, HalvingRandomSearchCV))
 @pytest.mark.parametrize(
-    "min_resources,max_resources,expected_n_iterations,expected_n_possible_iterations,expected_n_resources,",
+    (
+        "min_resources,"
+        "max_resources,"
+        "expected_n_iterations,"
+        "expected_n_possible_iterations,"
+        "expected_n_resources,"
+    ),
     [
         # with enough resources
         ("smallest", "auto", 2, 4, [20, 60]),
@@ -304,16 +320,25 @@ def test_resource_parameter(Est):
     ):
         assert r_i == params["c"] == param_c
 
-    with pytest.raises(ValueError, match="Cannot use resource=1234 which is not supported "):
-        sh = HalvingGridSearchCV(base_estimator, param_grid, cv=2, resource="1234", max_resources=10)
+    with pytest.raises(
+        ValueError, match="Cannot use resource=1234 which is not supported "
+    ):
+        sh = HalvingGridSearchCV(
+            base_estimator, param_grid, cv=2, resource="1234", max_resources=10
+        )
         sh.fit(X, y)
 
     with pytest.raises(
         ValueError,
-        match="Cannot use parameter c as the resource since it is part of the searched parameters.",
+        match=(
+            "Cannot use parameter c as the resource since it is part "
+            "of the searched parameters."
+        ),
     ):
         param_grid = {"a": [1, 2], "b": [1, 2], "c": [1, 3]}
-        sh = HalvingGridSearchCV(base_estimator, param_grid, cv=2, resource="c", max_resources=10)
+        sh = HalvingGridSearchCV(
+            base_estimator, param_grid, cv=2, resource="c", max_resources=10
+        )
         sh.fit(X, y)
 
 
@@ -359,7 +384,9 @@ def test_random_search(max_resources, n_candidates, expected_n_candidates):
         ({"a": randint(1, 3)}, 10),  # not all list, respect n_candidates
     ],
 )
-def test_random_search_discrete_distributions(param_distributions, expected_n_candidates):
+def test_random_search_discrete_distributions(
+    param_distributions, expected_n_candidates
+):
     # Make sure random search samples the appropriate number of candidates when
     # we ask for more than what's possible. How many parameters are sampled
     # depends whether the distributions are 'all lists' or not (see
@@ -441,7 +468,9 @@ def test_input_errors_randomized(params, expected_error_message):
         (0.2, False, 16, 20),
     ],
 )
-def test_subsample_splitter_shapes(fraction, subsample_test, expected_train_size, expected_test_size):
+def test_subsample_splitter_shapes(
+    fraction, subsample_test, expected_train_size, expected_test_size
+):
     # Make sure splits returned by SubsampleMetaSplitter are of appropriate
     # size
 
@@ -477,7 +506,9 @@ def test_subsample_splitter_determinism(subsample_test):
 
     n_samples = 100
     X, y = make_classification(n_samples)
-    cv = _SubsampleMetaSplitter(base_cv=KFold(5), fraction=0.5, subsample_test=subsample_test, random_state=None)
+    cv = _SubsampleMetaSplitter(
+        base_cv=KFold(5), fraction=0.5, subsample_test=subsample_test, random_state=None
+    )
 
     folds_a = list(cv.split(X, y, groups=None))
     folds_b = list(cv.split(X, y, groups=None))
@@ -553,7 +584,9 @@ def test_cv_results(Est):
     assert len(cv_results_df["mean_test_score"].unique()) == len(cv_results_df)
 
     cv_results_df["params_str"] = cv_results_df["params"].apply(str)
-    table = cv_results_df.pivot(index="params_str", columns="iter", values="mean_test_score")
+    table = cv_results_df.pivot(
+        index="params_str", columns="iter", values="mean_test_score"
+    )
 
     # table looks like something like this:
     # iter                    0      1       2        3   4   5
@@ -577,7 +610,9 @@ def test_cv_results(Est):
 
         # make sure that if a candidate is already discarded, we don't evaluate
         # it later
-        assert (already_discarded_mask & nan_mask[it + 1] == already_discarded_mask).all()
+        assert (
+            already_discarded_mask & nan_mask[it + 1] == already_discarded_mask
+        ).all()
 
         # make sure that the number of discarded candidate is correct
         discarded_now_mask = ~already_discarded_mask & nan_mask[it + 1]
@@ -597,7 +632,9 @@ def test_cv_results(Est):
     # possible).
 
     last_iter = cv_results_df["iter"].max()
-    idx_best_last_iter = cv_results_df[cv_results_df["iter"] == last_iter]["mean_test_score"].idxmax()
+    idx_best_last_iter = cv_results_df[cv_results_df["iter"] == last_iter][
+        "mean_test_score"
+    ].idxmax()
     idx_best_all_iters = cv_results_df["mean_test_score"].idxmax()
 
     assert sh.best_params_ == cv_results_df.iloc[idx_best_last_iter]["params"]
@@ -605,7 +642,10 @@ def test_cv_results(Est):
         cv_results_df.iloc[idx_best_last_iter]["mean_test_score"]
         < cv_results_df.iloc[idx_best_all_iters]["mean_test_score"]
     )
-    assert cv_results_df.iloc[idx_best_last_iter]["params"] != cv_results_df.iloc[idx_best_all_iters]["params"]
+    assert (
+        cv_results_df.iloc[idx_best_last_iter]["params"]
+        != cv_results_df.iloc[idx_best_all_iters]["params"]
+    )
 
 
 @pytest.mark.parametrize("Est", (HalvingGridSearchCV, HalvingRandomSearchCV))
@@ -652,7 +692,9 @@ def test_base_estimator_inputs(Est):
     sh.fit(X, y)
 
     assert len(passed_n_samples_fit) == len(passed_n_samples_predict)
-    passed_n_samples = [x + y for (x, y) in zip(passed_n_samples_fit, passed_n_samples_predict)]
+    passed_n_samples = [
+        x + y for (x, y) in zip(passed_n_samples_fit, passed_n_samples_predict)
+    ]
 
     # Lists are of length n_splits * n_iter * n_candidates_at_i.
     # Each chunk of size n_splits corresponds to the n_splits folds for the

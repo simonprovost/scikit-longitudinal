@@ -20,7 +20,9 @@ from sklearn_fork.datasets import make_moons
 
 X, y = make_moons(noise=0.352, random_state=1, n_samples=100)
 
-sns.scatterplot(x=X[:, 0], y=X[:, 1], hue=y, marker="o", s=25, edgecolor="k", legend=False).set_title("Data")
+sns.scatterplot(
+    x=X[:, 0], y=X[:, 1], hue=y, marker="o", s=25, edgecolor="k", legend=False
+).set_title("Data")
 plt.show()
 
 # %%
@@ -236,7 +238,10 @@ print(f"Corrected t-value: {t_stat:.3f}\nCorrected p-value: {p_val:.3f}")
 t_stat_uncorrected = np.mean(differences) / np.sqrt(np.var(differences, ddof=1) / n)
 p_val_uncorrected = t.sf(np.abs(t_stat_uncorrected), df)
 
-print(f"Uncorrected t-value: {t_stat_uncorrected:.3f}\nUncorrected p-value: {p_val_uncorrected:.3f}")
+print(
+    f"Uncorrected t-value: {t_stat_uncorrected:.3f}\n"
+    f"Uncorrected p-value: {p_val_uncorrected:.3f}"
+)
 
 # %%
 # Using the conventional significance alpha level at `p=0.05`, we observe that
@@ -293,7 +298,9 @@ print(f"Uncorrected t-value: {t_stat_uncorrected:.3f}\nUncorrected p-value: {p_v
 # Let's compute and plot the posterior:
 
 # initialize random variable
-t_post = t(df, loc=np.mean(differences), scale=corrected_std(differences, n_train, n_test))
+t_post = t(
+    df, loc=np.mean(differences), scale=corrected_std(differences, n_train, n_test)
+)
 
 # %%
 # Let's plot the posterior distribution:
@@ -317,8 +324,14 @@ plt.show()
 
 better_prob = 1 - t_post.cdf(0)
 
-print(f"Probability of {model_scores.index[0]} being more accurate than {model_scores.index[1]}: {better_prob:.3f}")
-print(f"Probability of {model_scores.index[1]} being more accurate than {model_scores.index[0]}: {1 - better_prob:.3f}")
+print(
+    f"Probability of {model_scores.index[0]} being more accurate than "
+    f"{model_scores.index[1]}: {better_prob:.3f}"
+)
+print(
+    f"Probability of {model_scores.index[1]} being more accurate than "
+    f"{model_scores.index[0]}: {1 - better_prob:.3f}"
+)
 
 # %%
 # In contrast with the frequentist approach, we can compute the probability
@@ -353,7 +366,8 @@ rope_interval = [-0.01, 0.01]
 rope_prob = t_post.cdf(rope_interval[1]) - t_post.cdf(rope_interval[0])
 
 print(
-    f"Probability of {model_scores.index[0]} and {model_scores.index[1]} being practically equivalent: {rope_prob:.3f}"
+    f"Probability of {model_scores.index[0]} and {model_scores.index[1]} "
+    f"being practically equivalent: {rope_prob:.3f}"
 )
 
 # %%
@@ -395,7 +409,9 @@ for interval in intervals:
     cred_interval = list(t_post.interval(interval))
     cred_intervals.append([interval, cred_interval[0], cred_interval[1]])
 
-cred_int_df = pd.DataFrame(cred_intervals, columns=["interval", "lower value", "upper value"]).set_index("interval")
+cred_int_df = pd.DataFrame(
+    cred_intervals, columns=["interval", "lower value", "upper value"]
+).set_index("interval")
 cred_int_df
 
 # %%
@@ -425,7 +441,9 @@ cred_int_df
 from itertools import combinations
 from math import factorial
 
-n_comparisons = factorial(len(model_scores)) / (factorial(2) * factorial(len(model_scores) - 2))
+n_comparisons = factorial(len(model_scores)) / (
+    factorial(2) * factorial(len(model_scores) - 2)
+)
 pairwise_t_test = []
 
 for model_i, model_k in combinations(range(len(model_scores)), 2):
@@ -436,9 +454,13 @@ for model_i, model_k in combinations(range(len(model_scores)), 2):
     p_val *= n_comparisons  # implement Bonferroni correction
     # Bonferroni can output p-values higher than 1
     p_val = 1 if p_val > 1 else p_val
-    pairwise_t_test.append([model_scores.index[model_i], model_scores.index[model_k], t_stat, p_val])
+    pairwise_t_test.append(
+        [model_scores.index[model_i], model_scores.index[model_k], t_stat, p_val]
+    )
 
-pairwise_comp_df = pd.DataFrame(pairwise_t_test, columns=["model_1", "model_2", "t_stat", "p_val"]).round(3)
+pairwise_comp_df = pd.DataFrame(
+    pairwise_t_test, columns=["model_1", "model_2", "t_stat", "p_val"]
+).round(3)
 pairwise_comp_df
 
 # %%
@@ -464,14 +486,18 @@ for model_i, model_k in combinations(range(len(model_scores)), 2):
     model_i_scores = model_scores.iloc[model_i].values
     model_k_scores = model_scores.iloc[model_k].values
     differences = model_i_scores - model_k_scores
-    t_post = t(df, loc=np.mean(differences), scale=corrected_std(differences, n_train, n_test))
+    t_post = t(
+        df, loc=np.mean(differences), scale=corrected_std(differences, n_train, n_test)
+    )
     worse_prob = t_post.cdf(rope_interval[0])
     better_prob = 1 - t_post.cdf(rope_interval[1])
     rope_prob = t_post.cdf(rope_interval[1]) - t_post.cdf(rope_interval[0])
 
     pairwise_bayesian.append([worse_prob, better_prob, rope_prob])
 
-pairwise_bayesian_df = pd.DataFrame(pairwise_bayesian, columns=["worse_prob", "better_prob", "rope_prob"]).round(3)
+pairwise_bayesian_df = pd.DataFrame(
+    pairwise_bayesian, columns=["worse_prob", "better_prob", "rope_prob"]
+).round(3)
 
 pairwise_comp_df = pairwise_comp_df.join(pairwise_bayesian_df)
 pairwise_comp_df

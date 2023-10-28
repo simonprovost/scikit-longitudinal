@@ -1,31 +1,43 @@
-import pickle
-import re
-import warnings
-from collections import defaultdict
 from collections.abc import Mapping
-from functools import partial
-from io import StringIO
+import re
 
-import numpy as np
 import pytest
-from numpy.testing import assert_array_almost_equal, assert_array_equal
+import warnings
 from scipy import sparse
-from sklearn_fork.base import clone
-from sklearn_fork.feature_extraction.text import (
-    ENGLISH_STOP_WORDS,
-    CountVectorizer,
-    HashingVectorizer,
-    TfidfTransformer,
-    TfidfVectorizer,
-    strip_accents_ascii,
-    strip_accents_unicode,
-    strip_tags,
-)
-from sklearn_fork.model_selection import GridSearchCV, cross_val_score, train_test_split
+
+from sklearn_fork.feature_extraction.text import strip_tags
+from sklearn_fork.feature_extraction.text import strip_accents_unicode
+from sklearn_fork.feature_extraction.text import strip_accents_ascii
+
+from sklearn_fork.feature_extraction.text import HashingVectorizer
+from sklearn_fork.feature_extraction.text import CountVectorizer
+from sklearn_fork.feature_extraction.text import TfidfTransformer
+from sklearn_fork.feature_extraction.text import TfidfVectorizer
+
+from sklearn_fork.feature_extraction.text import ENGLISH_STOP_WORDS
+
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.model_selection import cross_val_score
+from sklearn_fork.model_selection import GridSearchCV
 from sklearn_fork.pipeline import Pipeline
 from sklearn_fork.svm import LinearSVC
+
+from sklearn_fork.base import clone
+
+import numpy as np
+from numpy.testing import assert_array_almost_equal
+from numpy.testing import assert_array_equal
 from sklearn_fork.utils import IS_PYPY
-from sklearn_fork.utils._testing import assert_allclose_dense_sparse, assert_almost_equal, fails_if_pypy, skip_if_32bit
+from sklearn_fork.utils._testing import (
+    assert_almost_equal,
+    fails_if_pypy,
+    assert_allclose_dense_sparse,
+    skip_if_32bit,
+)
+from collections import defaultdict
+from functools import partial
+import pickle
+from io import StringIO
 
 JUNK_FOOD_DOCS = (
     "the pizza pizza beer copyright",
@@ -183,7 +195,9 @@ def test_word_analyzer_unigrams(Vectorizer):
 
 
 def test_word_analyzer_unigrams_and_bigrams():
-    wa = CountVectorizer(analyzer="word", strip_accents="unicode", ngram_range=(1, 2)).build_analyzer()
+    wa = CountVectorizer(
+        analyzer="word", strip_accents="unicode", ngram_range=(1, 2)
+    ).build_analyzer()
 
     text = "J'ai mangé du kangourou  ce midi, c'était pas très bon."
     expected = [
@@ -222,13 +236,17 @@ def test_unicode_decode_error():
     with pytest.raises(UnicodeDecodeError):
         wa(text_bytes)
 
-    ca = CountVectorizer(analyzer="char", ngram_range=(3, 6), encoding="ascii").build_analyzer()
+    ca = CountVectorizer(
+        analyzer="char", ngram_range=(3, 6), encoding="ascii"
+    ).build_analyzer()
     with pytest.raises(UnicodeDecodeError):
         ca(text_bytes)
 
 
 def test_char_ngram_analyzer():
-    cnga = CountVectorizer(analyzer="char", strip_accents="unicode", ngram_range=(3, 6)).build_analyzer()
+    cnga = CountVectorizer(
+        analyzer="char", strip_accents="unicode", ngram_range=(3, 6)
+    ).build_analyzer()
 
     text = "J'ai mangé du kangourou  ce midi, c'était pas très bon"
     expected = ["j'a", "'ai", "ai ", "i m", " ma"]
@@ -243,14 +261,18 @@ def test_char_ngram_analyzer():
     expected = [" yeste", "yester", "esterd", "sterda", "terday"]
     assert cnga(text)[-5:] == expected
 
-    cnga = CountVectorizer(input="file", analyzer="char", ngram_range=(3, 6)).build_analyzer()
+    cnga = CountVectorizer(
+        input="file", analyzer="char", ngram_range=(3, 6)
+    ).build_analyzer()
     text = StringIO("This is a test with a file-like object!")
     expected = ["thi", "his", "is ", "s i", " is"]
     assert cnga(text)[:5] == expected
 
 
 def test_char_wb_ngram_analyzer():
-    cnga = CountVectorizer(analyzer="char_wb", strip_accents="unicode", ngram_range=(3, 6)).build_analyzer()
+    cnga = CountVectorizer(
+        analyzer="char_wb", strip_accents="unicode", ngram_range=(3, 6)
+    ).build_analyzer()
 
     text = "This \n\tis a test, really.\n\n I met Harry yesterday"
     expected = [" th", "thi", "his", "is ", " thi"]
@@ -259,14 +281,18 @@ def test_char_wb_ngram_analyzer():
     expected = ["yester", "esterd", "sterda", "terday", "erday "]
     assert cnga(text)[-5:] == expected
 
-    cnga = CountVectorizer(input="file", analyzer="char_wb", ngram_range=(3, 6)).build_analyzer()
+    cnga = CountVectorizer(
+        input="file", analyzer="char_wb", ngram_range=(3, 6)
+    ).build_analyzer()
     text = StringIO("A test with a file-like object!")
     expected = [" a ", " te", "tes", "est", "st ", " tes"]
     assert cnga(text)[:6] == expected
 
 
 def test_word_ngram_analyzer():
-    cnga = CountVectorizer(analyzer="word", strip_accents="unicode", ngram_range=(3, 6)).build_analyzer()
+    cnga = CountVectorizer(
+        analyzer="word", strip_accents="unicode", ngram_range=(3, 6)
+    ).build_analyzer()
 
     text = "This \n\tis a test, really.\n\n I met Harry yesterday"
     expected = ["this is test", "is test really", "test really met"]
@@ -279,7 +305,9 @@ def test_word_ngram_analyzer():
     ]
     assert cnga(text)[-3:] == expected
 
-    cnga_file = CountVectorizer(input="file", analyzer="word", ngram_range=(3, 6)).build_analyzer()
+    cnga_file = CountVectorizer(
+        input="file", analyzer="word", ngram_range=(3, 6)
+    ).build_analyzer()
     file = StringIO(text)
     assert cnga_file(file) == cnga(text)
 
@@ -586,7 +614,9 @@ def test_vectorizer():
 
 def test_tfidf_vectorizer_setters():
     norm, use_idf, smooth_idf, sublinear_tf = "l2", False, False, False
-    tv = TfidfVectorizer(norm=norm, use_idf=use_idf, smooth_idf=smooth_idf, sublinear_tf=sublinear_tf)
+    tv = TfidfVectorizer(
+        norm=norm, use_idf=use_idf, smooth_idf=smooth_idf, sublinear_tf=sublinear_tf
+    )
     tv.fit(JUNK_FOOD_DOCS)
     assert tv._tfidf.norm == norm
     assert tv._tfidf.use_idf == use_idf
@@ -845,13 +875,17 @@ def test_hashed_binary_occurrences():
 
     # using boolean features, we can fetch the binary occurrence info
     # instead.
-    vect = HashingVectorizer(analyzer="char", alternate_sign=False, binary=True, norm=None)
+    vect = HashingVectorizer(
+        analyzer="char", alternate_sign=False, binary=True, norm=None
+    )
     X = vect.transform(test_data)
     assert np.max(X.data) == 1
     assert X.dtype == np.float64
 
     # check the ability to change the dtype
-    vect = HashingVectorizer(analyzer="char", alternate_sign=False, binary=True, norm=None, dtype=np.float64)
+    vect = HashingVectorizer(
+        analyzer="char", alternate_sign=False, binary=True, norm=None, dtype=np.float64
+    )
     X = vect.transform(test_data)
     assert X.dtype == np.float64
 
@@ -896,7 +930,9 @@ def test_count_vectorizer_pipeline_grid_selection():
     target = [-1] * len(JUNK_FOOD_DOCS) + [1] * len(NOTJUNK_FOOD_DOCS)
 
     # split the dataset for model development and final evaluation
-    train_data, test_data, target_train, target_test = train_test_split(data, target, test_size=0.2, random_state=0)
+    train_data, test_data, target_train, target_test = train_test_split(
+        data, target, test_size=0.2, random_state=0
+    )
 
     pipeline = Pipeline([("vect", CountVectorizer()), ("svc", LinearSVC())])
 
@@ -930,7 +966,9 @@ def test_vectorizer_pipeline_grid_selection():
     target = [-1] * len(JUNK_FOOD_DOCS) + [1] * len(NOTJUNK_FOOD_DOCS)
 
     # split the dataset for model development and final evaluation
-    train_data, test_data, target_train, target_test = train_test_split(data, target, test_size=0.1, random_state=0)
+    train_data, test_data, target_train, target_test = train_test_split(
+        data, target, test_size=0.1, random_state=0
+    )
 
     pipeline = Pipeline([("vect", TfidfVectorizer()), ("svc", LinearSVC())])
 
@@ -1081,7 +1119,9 @@ def test_countvectorizer_vocab_sets_when_pickling():
         unpickled_cv = pickle.loads(pickle.dumps(cv))
         cv.fit(ALL_FOOD_DOCS)
         unpickled_cv.fit(ALL_FOOD_DOCS)
-        assert_array_equal(cv.get_feature_names_out(), unpickled_cv.get_feature_names_out())
+        assert_array_equal(
+            cv.get_feature_names_out(), unpickled_cv.get_feature_names_out()
+        )
 
 
 def test_countvectorizer_vocab_dicts_when_pickling():
@@ -1108,7 +1148,9 @@ def test_countvectorizer_vocab_dicts_when_pickling():
         unpickled_cv = pickle.loads(pickle.dumps(cv))
         cv.fit(ALL_FOOD_DOCS)
         unpickled_cv.fit(ALL_FOOD_DOCS)
-        assert_array_equal(cv.get_feature_names_out(), unpickled_cv.get_feature_names_out())
+        assert_array_equal(
+            cv.get_feature_names_out(), unpickled_cv.get_feature_names_out()
+        )
 
 
 def test_stop_words_removal():
@@ -1223,7 +1265,9 @@ def test_vectorizer_vocab_clone():
     assert vect_vocab_clone.vocabulary_ == vect_vocab.vocabulary_
 
 
-@pytest.mark.parametrize("Vectorizer", (CountVectorizer, TfidfVectorizer, HashingVectorizer))
+@pytest.mark.parametrize(
+    "Vectorizer", (CountVectorizer, TfidfVectorizer, HashingVectorizer)
+)
 def test_vectorizer_string_object_as_input(Vectorizer):
     message = "Iterable over raw text documents expected, string object received."
     vec = Vectorizer()
@@ -1293,7 +1337,10 @@ def test_vectorizers_invalid_ngram_range(vec):
     # vectorizers could be initialized with invalid ngram range
     # test for raising error message
     invalid_range = vec.ngram_range
-    message = re.escape(f"Invalid value for ngram_range={invalid_range} lower boundary larger than the upper boundary.")
+    message = re.escape(
+        f"Invalid value for ngram_range={invalid_range} "
+        "lower boundary larger than the upper boundary."
+    )
     if isinstance(vec, HashingVectorizer) and IS_PYPY:
         pytest.xfail(reason="HashingVectorizer is not supported on PyPy")
 
@@ -1369,7 +1416,9 @@ def test_countvectorizer_sort_features_64bit_sparse_indices():
 
 
 @fails_if_pypy
-@pytest.mark.parametrize("Estimator", [CountVectorizer, TfidfVectorizer, HashingVectorizer])
+@pytest.mark.parametrize(
+    "Estimator", [CountVectorizer, TfidfVectorizer, HashingVectorizer]
+)
 def test_stop_word_validation_custom_preprocessor(Estimator):
     data = [{"text": "some text"}]
 
@@ -1389,11 +1438,15 @@ def test_stop_word_validation_custom_preprocessor(Estimator):
     vec = CustomEstimator(stop_words=["and"])
     assert _check_stop_words_consistency(vec) == "error"
 
-    vec = Estimator(tokenizer=lambda doc: re.compile(r"\w{1,}").findall(doc), stop_words=["and"])
+    vec = Estimator(
+        tokenizer=lambda doc: re.compile(r"\w{1,}").findall(doc), stop_words=["and"]
+    )
     assert _check_stop_words_consistency(vec) is True
 
 
-@pytest.mark.parametrize("Estimator", [CountVectorizer, TfidfVectorizer, HashingVectorizer])
+@pytest.mark.parametrize(
+    "Estimator", [CountVectorizer, TfidfVectorizer, HashingVectorizer]
+)
 @pytest.mark.parametrize(
     "input_type, err_type, err_msg",
     [
@@ -1417,7 +1470,9 @@ def test_callable_analyzer_error(Estimator, input_type, err_type, err_msg):
         pytest.param(HashingVectorizer, marks=fails_if_pypy),
     ],
 )
-@pytest.mark.parametrize("analyzer", [lambda doc: open(doc, "r"), lambda doc: doc.read()])
+@pytest.mark.parametrize(
+    "analyzer", [lambda doc: open(doc, "r"), lambda doc: doc.read()]
+)
 @pytest.mark.parametrize("input_type", ["file", "filename"])
 def test_callable_analyzer_change_behavior(Estimator, analyzer, input_type):
     data = ["this is text, not file or filename"]
@@ -1425,7 +1480,9 @@ def test_callable_analyzer_change_behavior(Estimator, analyzer, input_type):
         Estimator(analyzer=analyzer, input=input_type).fit_transform(data)
 
 
-@pytest.mark.parametrize("Estimator", [CountVectorizer, TfidfVectorizer, HashingVectorizer])
+@pytest.mark.parametrize(
+    "Estimator", [CountVectorizer, TfidfVectorizer, HashingVectorizer]
+)
 def test_callable_analyzer_reraise_error(tmpdir, Estimator):
     # check if a custom exception from the analyzer is shown to the user
     def analyzer(doc):
@@ -1441,9 +1498,14 @@ def test_callable_analyzer_reraise_error(tmpdir, Estimator):
         Estimator(analyzer=analyzer, input="file").fit_transform([f])
 
 
-@pytest.mark.parametrize("Vectorizer", [CountVectorizer, HashingVectorizer, TfidfVectorizer])
 @pytest.mark.parametrize(
-    "stop_words, tokenizer, preprocessor, ngram_range, token_pattern,analyzer, unused_name, ovrd_name, ovrd_msg",
+    "Vectorizer", [CountVectorizer, HashingVectorizer, TfidfVectorizer]
+)
+@pytest.mark.parametrize(
+    (
+        "stop_words, tokenizer, preprocessor, ngram_range, token_pattern,"
+        "analyzer, unused_name, ovrd_name, ovrd_msg"
+    ),
     [
         (
             ["you've", "you'll"],
@@ -1577,7 +1639,9 @@ def test_nonnegative_hashing_vectorizer_result_indices():
     assert indices[0] >= 0
 
 
-@pytest.mark.parametrize("Estimator", [CountVectorizer, TfidfVectorizer, TfidfTransformer, HashingVectorizer])
+@pytest.mark.parametrize(
+    "Estimator", [CountVectorizer, TfidfVectorizer, TfidfTransformer, HashingVectorizer]
+)
 def test_vectorizers_do_not_have_set_output(Estimator):
     """Check that vectorizers do not define set_output."""
     est = Estimator()

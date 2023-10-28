@@ -6,13 +6,12 @@ of hard-coded contributors.
 The table should be updated for each new inclusion in the teams.
 Generating the table requires admin rights.
 """
-import getpass
 import sys
-import time
-from os import path
-from pathlib import Path
-
 import requests
+import getpass
+import time
+from pathlib import Path
+from os import path
 
 print("user:", file=sys.stderr)
 user = input()
@@ -26,7 +25,10 @@ REPO_FOLDER = Path(path.abspath(__file__)).parent.parent
 def get(url):
     for sleep_time in [10, 30, 0]:
         reply = requests.get(url, auth=auth)
-        api_limit = "message" in reply.json() and "API rate limit exceeded" in reply.json()["message"]
+        api_limit = (
+            "message" in reply.json()
+            and "API rate limit exceeded" in reply.json()["message"]
+        )
         if not api_limit:
             break
         print("API rate limit exceeded, waiting..")
@@ -74,7 +76,9 @@ def get_contributors():
     members |= {"Angel Soler Gollonet"}
     # remove CI bots
     members -= {"sklearn_fork-ci", "sklearn_fork-wheels", "sklearn_fork-lgtm"}
-    contributor_experience_team -= core_devs  # remove ogrisel from contributor_experience_team
+    contributor_experience_team -= (
+        core_devs  # remove ogrisel from contributor_experience_team
+    )
 
     emeritus = members - core_devs - contributor_experience_team - comm_team
 
@@ -86,7 +90,9 @@ def get_contributors():
     # get profiles from GitHub
     core_devs = [get_profile(login) for login in core_devs]
     emeritus = [get_profile(login) for login in emeritus]
-    contributor_experience_team = [get_profile(login) for login in contributor_experience_team]
+    contributor_experience_team = [
+        get_profile(login) for login in contributor_experience_team
+    ]
     comm_team = [get_profile(login) for login in comm_team]
     emeritus_comm_team = [get_profile(login) for login in emeritus_comm_team]
 
@@ -177,14 +183,22 @@ if __name__ == "__main__":
     with open(REPO_FOLDER / "doc" / "authors.rst", "w+", encoding="utf-8") as rst_file:
         rst_file.write(generate_table(core_devs))
 
-    with open(REPO_FOLDER / "doc" / "authors_emeritus.rst", "w+", encoding="utf-8") as rst_file:
+    with open(
+        REPO_FOLDER / "doc" / "authors_emeritus.rst", "w+", encoding="utf-8"
+    ) as rst_file:
         rst_file.write(generate_list(emeritus))
 
-    with open(REPO_FOLDER / "doc" / "contributor_experience_team.rst", "w+", encoding="utf-8") as rst_file:
+    with open(
+        REPO_FOLDER / "doc" / "contributor_experience_team.rst", "w+", encoding="utf-8"
+    ) as rst_file:
         rst_file.write(generate_table(contributor_experience_team))
 
-    with open(REPO_FOLDER / "doc" / "communication_team.rst", "w+", encoding="utf-8") as rst_file:
+    with open(
+        REPO_FOLDER / "doc" / "communication_team.rst", "w+", encoding="utf-8"
+    ) as rst_file:
         rst_file.write(generate_table(comm_team))
 
-    with open(REPO_FOLDER / "doc" / "communication_team_emeritus.rst", "w+", encoding="utf-8") as rst_file:
+    with open(
+        REPO_FOLDER / "doc" / "communication_team_emeritus.rst", "w+", encoding="utf-8"
+    ) as rst_file:
         rst_file.write(generate_list(emeritus_comm_team))

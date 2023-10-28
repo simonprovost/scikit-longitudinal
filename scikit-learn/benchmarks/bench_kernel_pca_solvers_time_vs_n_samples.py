@@ -41,11 +41,13 @@ of examples is fixed, and the desired number of components varies.
 
 import time
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from numpy.testing import assert_array_almost_equal
-from sklearn_fork.datasets import make_circles
 from sklearn_fork.decomposition import KernelPCA
+from sklearn_fork.datasets import make_circles
+
 
 print(__doc__)
 
@@ -56,7 +58,8 @@ min_n_samples, max_n_samples = 101, 4000  # min and max n_samples to try
 n_samples_grid_size = 4  # nb of positions in the grid to try
 # generate the grid
 n_samples_range = [
-    min_n_samples + np.floor((x / (n_samples_grid_size - 1)) * (max_n_samples - min_n_samples))
+    min_n_samples
+    + np.floor((x / (n_samples_grid_size - 1)) * (max_n_samples - min_n_samples))
     for x in range(0, n_samples_grid_size)
 ]
 
@@ -90,7 +93,9 @@ for j, n_samples in enumerate(n_samples_range):
     print("  - dense")
     for i in range(n_iter):
         start_time = time.perf_counter()
-        ref_pred = KernelPCA(n_components, eigen_solver="dense").fit(X_train).transform(X_test)
+        ref_pred = (
+            KernelPCA(n_components, eigen_solver="dense").fit(X_train).transform(X_test)
+        )
         ref_time[j, i] = time.perf_counter() - start_time
 
     # B- arpack
@@ -98,7 +103,11 @@ for j, n_samples in enumerate(n_samples_range):
         print("  - arpack")
         for i in range(n_iter):
             start_time = time.perf_counter()
-            a_pred = KernelPCA(n_components, eigen_solver="arpack").fit(X_train).transform(X_test)
+            a_pred = (
+                KernelPCA(n_components, eigen_solver="arpack")
+                .fit(X_train)
+                .transform(X_test)
+            )
             a_time[j, i] = time.perf_counter() - start_time
             # check that the result is still correct despite the approx
             assert_array_almost_equal(np.abs(a_pred), np.abs(ref_pred))
@@ -107,7 +116,11 @@ for j, n_samples in enumerate(n_samples_range):
     print("  - randomized")
     for i in range(n_iter):
         start_time = time.perf_counter()
-        r_pred = KernelPCA(n_components, eigen_solver="randomized").fit(X_train).transform(X_test)
+        r_pred = (
+            KernelPCA(n_components, eigen_solver="randomized")
+            .fit(X_train)
+            .transform(X_test)
+        )
         r_time[j, i] = time.perf_counter() - start_time
         # check that the result is still correct despite the approximation
         assert_array_almost_equal(np.abs(r_pred), np.abs(ref_pred))

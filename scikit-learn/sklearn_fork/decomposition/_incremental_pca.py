@@ -5,14 +5,13 @@
 # License: BSD 3 clause
 
 from numbers import Integral
-
 import numpy as np
 from scipy import linalg, sparse
 
+from ._base import _BasePCA
 from ..utils import gen_batches
 from ..utils._param_validation import Interval
-from ..utils.extmath import _incremental_mean_and_var, svd_flip
-from ._base import _BasePCA
+from ..utils.extmath import svd_flip, _incremental_mean_and_var
 
 
 class IncrementalPCA(_BasePCA):
@@ -234,7 +233,9 @@ class IncrementalPCA(_BasePCA):
         else:
             self.batch_size_ = self.batch_size
 
-        for batch in gen_batches(n_samples, self.batch_size_, min_batch_size=self.n_components or 0):
+        for batch in gen_batches(
+            n_samples, self.batch_size_, min_batch_size=self.n_components or 0
+        ):
             X_batch = X[batch]
             if sparse.issparse(X_batch):
                 X_batch = X_batch.toarray()
@@ -274,7 +275,9 @@ class IncrementalPCA(_BasePCA):
                     "sparse input. Either convert data to dense "
                     "or use IncrementalPCA.fit to do so in batches."
                 )
-            X = self._validate_data(X, copy=self.copy, dtype=[np.float64, np.float32], reset=first_pass)
+            X = self._validate_data(
+                X, copy=self.copy, dtype=[np.float64, np.float32], reset=first_pass
+            )
         n_samples, n_features = X.shape
         if first_pass:
             self.components_ = None
@@ -286,22 +289,27 @@ class IncrementalPCA(_BasePCA):
                 self.n_components_ = self.components_.shape[0]
         elif not self.n_components <= n_features:
             raise ValueError(
-                "n_components=%r invalid for n_features=%d, need more rows than columns for IncrementalPCA processing"
-                % (self.n_components, n_features)
+                "n_components=%r invalid for n_features=%d, need "
+                "more rows than columns for IncrementalPCA "
+                "processing" % (self.n_components, n_features)
             )
         elif not self.n_components <= n_samples:
             raise ValueError(
-                "n_components=%r must be less or equal to the batch number of samples %d."
-                % (self.n_components, n_samples)
+                "n_components=%r must be less or equal to "
+                "the batch number of samples "
+                "%d." % (self.n_components, n_samples)
             )
         else:
             self.n_components_ = self.n_components
 
-        if (self.components_ is not None) and (self.components_.shape[0] != self.n_components_):
+        if (self.components_ is not None) and (
+            self.components_.shape[0] != self.n_components_
+        ):
             raise ValueError(
                 "Number of input features has changed from %i "
                 "to %i between calls to partial_fit! Try "
-                "setting n_components to a fixed value." % (self.components_.shape[0], self.n_components_)
+                "setting n_components to a fixed value."
+                % (self.components_.shape[0], self.n_components_)
             )
 
         # This is the first partial_fit
@@ -327,9 +335,9 @@ class IncrementalPCA(_BasePCA):
             col_batch_mean = np.mean(X, axis=0)
             X -= col_batch_mean
             # Build matrix of combined previous basis and new data
-            mean_correction = np.sqrt((self.n_samples_seen_ / n_total_samples) * n_samples) * (
-                self.mean_ - col_batch_mean
-            )
+            mean_correction = np.sqrt(
+                (self.n_samples_seen_ / n_total_samples) * n_samples
+            ) * (self.mean_ - col_batch_mean)
             X = np.vstack(
                 (
                     self.singular_values_.reshape((-1, 1)) * self.components_,
@@ -390,7 +398,9 @@ class IncrementalPCA(_BasePCA):
         if sparse.issparse(X):
             n_samples = X.shape[0]
             output = []
-            for batch in gen_batches(n_samples, self.batch_size_, min_batch_size=self.n_components or 0):
+            for batch in gen_batches(
+                n_samples, self.batch_size_, min_batch_size=self.n_components or 0
+            ):
                 output.append(super().transform(X[batch].toarray()))
             return np.vstack(output)
         else:

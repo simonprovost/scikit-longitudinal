@@ -6,8 +6,6 @@ a base estimator to be provided in their constructor. The meta-estimator
 extends single output estimators to multioutput estimators.
 """
 
-from abc import ABCMeta, abstractmethod
-
 # Author: Tim Head <betatim@gmail.com>
 # Author: Hugo Bowne-Anderson <hugobowne@gmail.com>
 # Author: Chris Rivera <chris.richard.rivera@gmail.com>
@@ -20,14 +18,20 @@ from numbers import Integral
 import numpy as np
 import scipy.sparse as sp
 
-from .base import BaseEstimator, ClassifierMixin, MetaEstimatorMixin, RegressorMixin, clone, is_classifier
+from abc import ABCMeta, abstractmethod
+from .base import BaseEstimator, clone, MetaEstimatorMixin
+from .base import RegressorMixin, ClassifierMixin, is_classifier
 from .model_selection import cross_val_predict
-from .utils import _print_elapsed_time, check_random_state
-from .utils._param_validation import HasMethods, StrOptions
+from .utils import check_random_state, _print_elapsed_time
 from .utils.metaestimators import available_if
 from .utils.multiclass import check_classification_targets
-from .utils.parallel import Parallel, delayed
-from .utils.validation import _check_fit_params, check_is_fitted, has_fit_parameter
+from .utils.validation import (
+    check_is_fitted,
+    has_fit_parameter,
+    _check_fit_params,
+)
+from .utils.parallel import delayed, Parallel
+from .utils._param_validation import HasMethods, StrOptions
 
 __all__ = [
     "MultiOutputRegressor",
@@ -46,7 +50,9 @@ def _fit_estimator(estimator, X, y, sample_weight=None, **fit_params):
     return estimator
 
 
-def _partial_fit_estimator(estimator, X, y, classes=None, sample_weight=None, first_time=True):
+def _partial_fit_estimator(
+    estimator, X, y, classes=None, sample_weight=None, first_time=True
+):
     if first_time:
         estimator = clone(estimator)
 
@@ -70,7 +76,9 @@ def _available_if_estimator_has(attr):
     """
 
     def _check(self):
-        return hasattr(self.estimator, attr) or all(hasattr(est, attr) for est in self.estimators_)
+        return hasattr(self.estimator, attr) or all(
+            hasattr(est, attr) for est in self.estimators_
+        )
 
     return available_if(_check)
 
@@ -125,9 +133,14 @@ class _MultiOutputEstimator(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta
         y = self._validate_data(X="no_validation", y=y, multi_output=True)
 
         if y.ndim == 1:
-            raise ValueError("y must have at least two dimensions for multi-output regression but has only one.")
+            raise ValueError(
+                "y must have at least two dimensions for "
+                "multi-output regression but has only one."
+            )
 
-        if sample_weight is not None and not has_fit_parameter(self.estimator, "sample_weight"):
+        if sample_weight is not None and not has_fit_parameter(
+            self.estimator, "sample_weight"
+        ):
             raise ValueError("Underlying estimator does not support sample weights.")
 
         self.estimators_ = Parallel(n_jobs=self.n_jobs)(
@@ -187,15 +200,22 @@ class _MultiOutputEstimator(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta
             check_classification_targets(y)
 
         if y.ndim == 1:
-            raise ValueError("y must have at least two dimensions for multi-output regression but has only one.")
+            raise ValueError(
+                "y must have at least two dimensions for "
+                "multi-output regression but has only one."
+            )
 
-        if sample_weight is not None and not has_fit_parameter(self.estimator, "sample_weight"):
+        if sample_weight is not None and not has_fit_parameter(
+            self.estimator, "sample_weight"
+        ):
             raise ValueError("Underlying estimator does not support sample weights.")
 
         fit_params_validated = _check_fit_params(X, fit_params)
 
         self.estimators_ = Parallel(n_jobs=self.n_jobs)(
-            delayed(_fit_estimator)(self.estimator, X, y[:, i], sample_weight, **fit_params_validated)
+            delayed(_fit_estimator)(
+                self.estimator, X, y[:, i], sample_weight, **fit_params_validated
+            )
             for i in range(y.shape[1])
         )
 
@@ -224,7 +244,9 @@ class _MultiOutputEstimator(MetaEstimatorMixin, BaseEstimator, metaclass=ABCMeta
         if not hasattr(self.estimators_[0], "predict"):
             raise ValueError("The base estimator should implement a predict method")
 
-        y = Parallel(n_jobs=self.n_jobs)(delayed(e.predict)(X) for e in self.estimators_)
+        y = Parallel(n_jobs=self.n_jobs)(
+            delayed(e.predict)(X) for e in self.estimators_
+        )
 
         return np.asarray(y).T
 
@@ -486,10 +508,14 @@ class MultiOutputClassifier(ClassifierMixin, _MultiOutputEstimator):
         check_is_fitted(self)
         n_outputs_ = len(self.estimators_)
         if y.ndim == 1:
-            raise ValueError("y must have at least two dimensions for multi target classification but has only one")
+            raise ValueError(
+                "y must have at least two dimensions for "
+                "multi target classification but has only one"
+            )
         if y.shape[1] != n_outputs_:
             raise ValueError(
-                "The number of outputs of Y for fit {0} and score {1} should be same".format(n_outputs_, y.shape[1])
+                "The number of outputs of Y for fit {0} and"
+                " score {1} should be same".format(n_outputs_, y.shape[1])
             )
         y_pred = self.predict(X)
         return np.mean(np.all(y == y_pred, axis=1))
@@ -506,7 +532,9 @@ def _available_if_base_estimator_has(attr):
     """
 
     def _check(self):
-        return hasattr(self.base_estimator, attr) or all(hasattr(est, attr) for est in self.estimators_)
+        return hasattr(self.base_estimator, attr) or all(
+            hasattr(est, attr) for est in self.estimators_
+        )
 
     return available_if(_check)
 
@@ -520,7 +548,9 @@ class _BaseChain(BaseEstimator, metaclass=ABCMeta):
         "verbose": ["boolean"],
     }
 
-    def __init__(self, base_estimator, *, order=None, cv=None, random_state=None, verbose=False):
+    def __init__(
+        self, base_estimator, *, order=None, cv=None, random_state=None, verbose=False
+    ):
         self.base_estimator = base_estimator
         self.order = order
         self.cv = cv
@@ -600,7 +630,9 @@ class _BaseChain(BaseEstimator, metaclass=ABCMeta):
                 estimator.fit(X_aug[:, : (X.shape[1] + chain_idx)], y, **fit_params)
             if self.cv is not None and chain_idx < len(self.estimators_) - 1:
                 col_idx = X.shape[1] + chain_idx
-                cv_result = cross_val_predict(self.base_estimator, X_aug[:, :col_idx], y=y, cv=self.cv)
+                cv_result = cross_val_predict(
+                    self.base_estimator, X_aug[:, :col_idx], y=y, cv=self.cv
+                )
                 if sp.issparse(X_aug):
                     X_aug[:, col_idx] = np.expand_dims(cv_result, 1)
                 else:
@@ -777,7 +809,9 @@ class ClassifierChain(MetaEstimatorMixin, ClassifierMixin, _BaseChain):
         self._validate_params()
 
         super().fit(X, Y)
-        self.classes_ = [estimator.classes_ for chain_idx, estimator in enumerate(self.estimators_)]
+        self.classes_ = [
+            estimator.classes_ for chain_idx, estimator in enumerate(self.estimators_)
+        ]
         return self
 
     @_available_if_base_estimator_has("predict_proba")

@@ -22,9 +22,10 @@ from collections import defaultdict
 
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.stats import spearmanr
 from scipy.cluster import hierarchy
 from scipy.spatial.distance import squareform
-from scipy.stats import spearmanr
+
 from sklearn_fork.datasets import load_breast_cancer
 from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.inspection import permutation_importance
@@ -90,7 +91,9 @@ np.fill_diagonal(corr, 1)
 # hierarchical clustering using Ward's linkage.
 distance_matrix = 1 - np.abs(corr)
 dist_linkage = hierarchy.ward(squareform(distance_matrix))
-dendro = hierarchy.dendrogram(dist_linkage, labels=data.feature_names.tolist(), ax=ax1, leaf_rotation=90)
+dendro = hierarchy.dendrogram(
+    dist_linkage, labels=data.feature_names.tolist(), ax=ax1, leaf_rotation=90
+)
 dendro_idx = np.arange(0, len(dendro["ivl"]))
 
 ax2.imshow(corr[dendro["leaves"], :][:, dendro["leaves"]])
@@ -118,4 +121,8 @@ X_test_sel = X_test[:, selected_features]
 
 clf_sel = RandomForestClassifier(n_estimators=100, random_state=42)
 clf_sel.fit(X_train_sel, y_train)
-print("Accuracy on test data with features removed: {:.2f}".format(clf_sel.score(X_test_sel, y_test)))
+print(
+    "Accuracy on test data with features removed: {:.2f}".format(
+        clf_sel.score(X_test_sel, y_test)
+    )
+)

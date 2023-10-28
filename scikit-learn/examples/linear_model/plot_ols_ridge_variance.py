@@ -25,8 +25,9 @@ of the standard linear regression
 # License: BSD 3 clause
 
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from sklearn_fork import linear_model
 
 X_train = np.c_[0.5, 1].T
@@ -35,7 +36,9 @@ X_test = np.c_[0, 2].T
 
 np.random.seed(0)
 
-classifiers = dict(ols=linear_model.LinearRegression(), ridge=linear_model.Ridge(alpha=0.1))
+classifiers = dict(
+    ols=linear_model.LinearRegression(), ridge=linear_model.Ridge(alpha=0.1)
+)
 
 for name, clf in classifiers.items():
     fig, ax = plt.subplots(figsize=(4, 3))

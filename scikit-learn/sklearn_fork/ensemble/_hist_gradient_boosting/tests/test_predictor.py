@@ -1,24 +1,25 @@
 import numpy as np
-import pytest
 from numpy.testing import assert_allclose
 from sklearn_fork.datasets import make_regression
-from sklearn_fork.ensemble._hist_gradient_boosting._bitset import (
-    set_bitset_memoryview,
-    set_raw_bitset_from_binned_bitset,
-)
+from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.metrics import r2_score
+import pytest
+
 from sklearn_fork.ensemble._hist_gradient_boosting.binning import _BinMapper
+from sklearn_fork.ensemble._hist_gradient_boosting.grower import TreeGrower
+from sklearn_fork.ensemble._hist_gradient_boosting.predictor import TreePredictor
 from sklearn_fork.ensemble._hist_gradient_boosting.common import (
-    ALMOST_INF,
     G_H_DTYPE,
     PREDICTOR_RECORD_DTYPE,
+    ALMOST_INF,
     X_BINNED_DTYPE,
     X_BITSET_INNER_DTYPE,
     X_DTYPE,
 )
-from sklearn_fork.ensemble._hist_gradient_boosting.grower import TreeGrower
-from sklearn_fork.ensemble._hist_gradient_boosting.predictor import TreePredictor
-from sklearn_fork.metrics import r2_score
-from sklearn_fork.model_selection import train_test_split
+from sklearn_fork.ensemble._hist_gradient_boosting._bitset import (
+    set_bitset_memoryview,
+    set_raw_bitset_from_binned_bitset,
+)
 from sklearn_fork.utils._openmp_helpers import _openmp_effective_n_threads
 
 n_threads = _openmp_effective_n_threads()
@@ -26,7 +27,9 @@ n_threads = _openmp_effective_n_threads()
 
 @pytest.mark.parametrize("n_bins", [200, 256])
 def test_regression_dataset(n_bins):
-    X, y = make_regression(n_samples=500, n_features=10, n_informative=5, random_state=42)
+    X, y = make_regression(
+        n_samples=500, n_features=10, n_informative=5, random_state=42
+    )
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
 
     mapper = _BinMapper(n_bins=n_bins, random_state=42)
@@ -144,12 +147,16 @@ def test_categorical_predictor(bins_go_left, expected_predictions):
     for go_left in bins_go_left:
         set_bitset_memoryview(binned_cat_bitsets[0], go_left)
 
-    set_raw_bitset_from_binned_bitset(raw_categorical_bitsets[0], binned_cat_bitsets[0], categories)
+    set_raw_bitset_from_binned_bitset(
+        raw_categorical_bitsets[0], binned_cat_bitsets[0], categories
+    )
 
     predictor = TreePredictor(nodes, binned_cat_bitsets, raw_categorical_bitsets)
 
     # Check binned data gives correct predictions
-    prediction_binned = predictor.predict_binned(X_binned, missing_values_bin_idx=6, n_threads=n_threads)
+    prediction_binned = predictor.predict_binned(
+        X_binned, missing_values_bin_idx=6, n_threads=n_threads
+    )
     assert_allclose(prediction_binned, expected_predictions)
 
     # manually construct bitset
@@ -158,12 +165,16 @@ def test_categorical_predictor(bins_go_left, expected_predictions):
     f_idx_map = np.array([0], dtype=np.uint32)
 
     # Check with un-binned data
-    predictions = predictor.predict(categories.reshape(-1, 1), known_cat_bitsets, f_idx_map, n_threads)
+    predictions = predictor.predict(
+        categories.reshape(-1, 1), known_cat_bitsets, f_idx_map, n_threads
+    )
     assert_allclose(predictions, expected_predictions)
 
     # Check missing goes left because missing_values_bin_idx=6
     X_binned_missing = np.array([[6]], dtype=X_BINNED_DTYPE).T
-    predictions = predictor.predict_binned(X_binned_missing, missing_values_bin_idx=6, n_threads=n_threads)
+    predictions = predictor.predict_binned(
+        X_binned_missing, missing_values_bin_idx=6, n_threads=n_threads
+    )
     assert_allclose(predictions, [1])
 
     # missing and unknown go left

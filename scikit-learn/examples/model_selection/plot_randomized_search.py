@@ -20,13 +20,14 @@ simultaneously using grid search, but pick only the ones deemed most important.
 
 """
 
-from time import time
-
 import numpy as np
+
+from time import time
 import scipy.stats as stats
+
+from sklearn_fork.model_selection import GridSearchCV, RandomizedSearchCV
 from sklearn_fork.datasets import load_digits
 from sklearn_fork.linear_model import SGDClassifier
-from sklearn_fork.model_selection import GridSearchCV, RandomizedSearchCV
 
 # get some data
 X, y = load_digits(return_X_y=True, n_class=3)
@@ -60,11 +61,16 @@ param_dist = {
 
 # run randomized search
 n_iter_search = 15
-random_search = RandomizedSearchCV(clf, param_distributions=param_dist, n_iter=n_iter_search)
+random_search = RandomizedSearchCV(
+    clf, param_distributions=param_dist, n_iter=n_iter_search
+)
 
 start = time()
 random_search.fit(X, y)
-print("RandomizedSearchCV took %.2f seconds for %d candidates parameter settings." % ((time() - start), n_iter_search))
+print(
+    "RandomizedSearchCV took %.2f seconds for %d candidates parameter settings."
+    % ((time() - start), n_iter_search)
+)
 report(random_search.cv_results_)
 
 # use a full grid over all parameters

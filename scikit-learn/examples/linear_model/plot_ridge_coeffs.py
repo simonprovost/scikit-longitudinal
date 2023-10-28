@@ -42,13 +42,16 @@ it is possible to extract the exact coefficients.
 
 import matplotlib.pyplot as plt
 import numpy as np
+
 from sklearn_fork.datasets import make_regression
 from sklearn_fork.linear_model import Ridge
 from sklearn_fork.metrics import mean_squared_error
 
 clf = Ridge()
 
-X, y, w = make_regression(n_samples=10, n_features=10, coef=True, random_state=1, bias=3.5)
+X, y, w = make_regression(
+    n_samples=10, n_features=10, coef=True, random_state=1, bias=3.5
+)
 
 coefs = []
 errors = []

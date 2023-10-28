@@ -1,16 +1,21 @@
-import numpy as np
 import pytest
+import numpy as np
 from numpy.testing import assert_allclose
+
 from sklearn_fork.datasets import load_iris
 from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import DetCurveDisplay, det_curve
+
+from sklearn_fork.metrics import det_curve
+from sklearn_fork.metrics import DetCurveDisplay
 
 
 @pytest.mark.parametrize("constructor_name", ["from_estimator", "from_predictions"])
 @pytest.mark.parametrize("response_method", ["predict_proba", "decision_function"])
 @pytest.mark.parametrize("with_sample_weight", [True, False])
 @pytest.mark.parametrize("with_strings", [True, False])
-def test_det_curve_display(pyplot, constructor_name, response_method, with_sample_weight, with_strings):
+def test_det_curve_display(
+    pyplot, constructor_name, response_method, with_sample_weight, with_strings
+):
     X, y = load_iris(return_X_y=True)
     # Binarize the data with only the two first classes
     X, y = X[y < 2], y[y < 2]

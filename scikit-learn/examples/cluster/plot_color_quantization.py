@@ -26,14 +26,13 @@ randomly) is also shown.
 #
 # License: BSD 3 clause
 
-from time import time
-
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork.cluster import KMeans
-from sklearn_fork.datasets import load_sample_image
 from sklearn_fork.metrics import pairwise_distances_argmin
+from sklearn_fork.datasets import load_sample_image
 from sklearn_fork.utils import shuffle
+from time import time
 
 n_colors = 64
 
@@ -53,7 +52,9 @@ image_array = np.reshape(china, (w * h, d))
 print("Fitting model on a small sub-sample of the data")
 t0 = time()
 image_array_sample = shuffle(image_array, random_state=0, n_samples=1_000)
-kmeans = KMeans(n_clusters=n_colors, n_init="auto", random_state=0).fit(image_array_sample)
+kmeans = KMeans(n_clusters=n_colors, n_init="auto", random_state=0).fit(
+    image_array_sample
+)
 print(f"done in {time() - t0:0.3f}s.")
 
 # Get labels for all points

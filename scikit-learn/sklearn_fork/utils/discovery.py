@@ -1,5 +1,5 @@
-import inspect
 import pkgutil
+import inspect
 from importlib import import_module
 from operator import itemgetter
 from pathlib import Path
@@ -38,9 +38,15 @@ def all_estimators(type_filter=None):
         and ``class`` is the actual type of the class.
     """
     # lazy import to avoid circular imports from sklearn_fork.base
-    from ..base import BaseEstimator, ClassifierMixin, ClusterMixin, RegressorMixin, TransformerMixin
     from . import IS_PYPY
     from ._testing import ignore_warnings
+    from ..base import (
+        BaseEstimator,
+        ClassifierMixin,
+        RegressorMixin,
+        TransformerMixin,
+        ClusterMixin,
+    )
 
     def is_abstract(c):
         if not (hasattr(c, "__abstractmethods__")):
@@ -54,24 +60,39 @@ def all_estimators(type_filter=None):
     # Ignore deprecation warnings triggered at import time and from walking
     # packages
     with ignore_warnings(category=FutureWarning):
-        for _, module_name, _ in pkgutil.walk_packages(path=[root], prefix="sklearn_fork."):
+        for _, module_name, _ in pkgutil.walk_packages(
+            path=[root], prefix="sklearn_fork."
+        ):
             module_parts = module_name.split(".")
-            if any(part in _MODULE_TO_IGNORE for part in module_parts) or "._" in module_name:
+            if (
+                any(part in _MODULE_TO_IGNORE for part in module_parts)
+                or "._" in module_name
+            ):
                 continue
             module = import_module(module_name)
             classes = inspect.getmembers(module, inspect.isclass)
-            classes = [(name, est_cls) for name, est_cls in classes if not name.startswith("_")]
+            classes = [
+                (name, est_cls) for name, est_cls in classes if not name.startswith("_")
+            ]
 
             # TODO: Remove when FeatureHasher is implemented in PYPY
             # Skips FeatureHasher for PYPY
             if IS_PYPY and "feature_extraction" in module_name:
-                classes = [(name, est_cls) for name, est_cls in classes if name == "FeatureHasher"]
+                classes = [
+                    (name, est_cls)
+                    for name, est_cls in classes
+                    if name == "FeatureHasher"
+                ]
 
             all_classes.extend(classes)
 
     all_classes = set(all_classes)
 
-    estimators = [c for c in all_classes if (issubclass(c[1], BaseEstimator) and c[0] != "BaseEstimator")]
+    estimators = [
+        c
+        for c in all_classes
+        if (issubclass(c[1], BaseEstimator) and c[0] != "BaseEstimator")
+    ]
     # get rid of abstract base classes
     estimators = [c for c in estimators if not is_abstract(c[1])]
 
@@ -90,7 +111,9 @@ def all_estimators(type_filter=None):
         for name, mixin in filters.items():
             if name in type_filter:
                 type_filter.remove(name)
-                filtered_estimators.extend([est for est in estimators if issubclass(est[1], mixin)])
+                filtered_estimators.extend(
+                    [est for est in estimators if issubclass(est[1], mixin)]
+                )
         estimators = filtered_estimators
         if type_filter:
             raise ValueError(
@@ -123,9 +146,14 @@ def all_displays():
     # Ignore deprecation warnings triggered at import time and from walking
     # packages
     with ignore_warnings(category=FutureWarning):
-        for _, module_name, _ in pkgutil.walk_packages(path=[root], prefix="sklearn_fork."):
+        for _, module_name, _ in pkgutil.walk_packages(
+            path=[root], prefix="sklearn_fork."
+        ):
             module_parts = module_name.split(".")
-            if any(part in _MODULE_TO_IGNORE for part in module_parts) or "._" in module_name:
+            if (
+                any(part in _MODULE_TO_IGNORE for part in module_parts)
+                or "._" in module_name
+            ):
                 continue
             module = import_module(module_name)
             classes = inspect.getmembers(module, inspect.isclass)
@@ -170,14 +198,23 @@ def all_functions():
     # Ignore deprecation warnings triggered at import time and from walking
     # packages
     with ignore_warnings(category=FutureWarning):
-        for _, module_name, _ in pkgutil.walk_packages(path=[root], prefix="sklearn_fork."):
+        for _, module_name, _ in pkgutil.walk_packages(
+            path=[root], prefix="sklearn_fork."
+        ):
             module_parts = module_name.split(".")
-            if any(part in _MODULE_TO_IGNORE for part in module_parts) or "._" in module_name:
+            if (
+                any(part in _MODULE_TO_IGNORE for part in module_parts)
+                or "._" in module_name
+            ):
                 continue
 
             module = import_module(module_name)
             functions = inspect.getmembers(module, _is_checked_function)
-            functions = [(func.__name__, func) for name, func in functions if not name.startswith("_")]
+            functions = [
+                (func.__name__, func)
+                for name, func in functions
+                if not name.startswith("_")
+            ]
             all_functions.extend(functions)
 
     # drop duplicates, sort for reproducibility

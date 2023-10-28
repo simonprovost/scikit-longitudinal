@@ -6,11 +6,10 @@
 #
 # License: BSD 3 clause
 
+from libc.math cimport fabs, sqrt, isnan
+
 cimport numpy as cnp
-from libc.math cimport fabs, isnan, sqrt
-
 import numpy as np
-
 from cython cimport floating
 
 cnp.import_array()

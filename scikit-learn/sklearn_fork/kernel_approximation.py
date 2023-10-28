@@ -8,8 +8,8 @@ approximate kernel feature maps based on Fourier transforms and Count Sketches.
 
 # License: BSD 3 clause
 
-import warnings
 from numbers import Integral, Real
+import warnings
 
 import numpy as np
 import scipy.sparse as sp
@@ -20,15 +20,24 @@ try:
 except ImportError:  # scipy < 1.4
     from scipy.fftpack import fft, ifft
 
-from .base import BaseEstimator, ClassNamePrefixFeaturesOutMixin, TransformerMixin
-from .metrics.pairwise import KERNEL_PARAMS, PAIRWISE_KERNEL_FUNCTIONS, pairwise_kernels
-from .utils import check_random_state, deprecated
-from .utils._param_validation import Interval, StrOptions
+from .base import BaseEstimator
+from .base import TransformerMixin
+from .base import ClassNamePrefixFeaturesOutMixin
+from .utils import check_random_state
+from .utils import deprecated
 from .utils.extmath import safe_sparse_dot
-from .utils.validation import _check_feature_names_in, check_is_fitted, check_non_negative
+from .utils.validation import check_is_fitted
+from .utils.validation import _check_feature_names_in
+from .metrics.pairwise import pairwise_kernels, KERNEL_PARAMS
+from .utils.validation import check_non_negative
+from .utils._param_validation import Interval
+from .utils._param_validation import StrOptions
+from .metrics.pairwise import PAIRWISE_KERNEL_FUNCTIONS
 
 
-class PolynomialCountSketch(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
+class PolynomialCountSketch(
+    ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
+):
     """Polynomial kernel approximation via Tensor Sketch.
 
     Implements Tensor Sketch, which approximates the feature map
@@ -121,7 +130,9 @@ class PolynomialCountSketch(ClassNamePrefixFeaturesOutMixin, TransformerMixin, B
         "random_state": ["random_state"],
     }
 
-    def __init__(self, *, gamma=1.0, degree=2, coef0=0, n_components=100, random_state=None):
+    def __init__(
+        self, *, gamma=1.0, degree=2, coef0=0, n_components=100, random_state=None
+    ):
         self.gamma = gamma
         self.degree = degree
         self.coef0 = coef0
@@ -158,7 +169,9 @@ class PolynomialCountSketch(ClassNamePrefixFeaturesOutMixin, TransformerMixin, B
         if self.coef0 != 0:
             n_features += 1
 
-        self.indexHash_ = random_state.randint(0, high=self.n_components, size=(self.degree, n_features))
+        self.indexHash_ = random_state.randint(
+            0, high=self.n_components, size=(self.degree, n_features)
+        )
 
         self.bitHash_ = random_state.choice(a=[-1, 1], size=(self.degree, n_features))
         self._n_features_out = self.n_components
@@ -191,10 +204,15 @@ class PolynomialCountSketch(ClassNamePrefixFeaturesOutMixin, TransformerMixin, B
             )
 
         elif not sp.issparse(X_gamma) and self.coef0 != 0:
-            X_gamma = np.hstack([X_gamma, np.sqrt(self.coef0) * np.ones((X_gamma.shape[0], 1))])
+            X_gamma = np.hstack(
+                [X_gamma, np.sqrt(self.coef0) * np.ones((X_gamma.shape[0], 1))]
+            )
 
         if X_gamma.shape[1] != self.indexHash_.shape[1]:
-            raise ValueError("Number of features of test samples does not match that of training samples.")
+            raise ValueError(
+                "Number of features of test samples does not"
+                " match that of training samples."
+            )
 
         count_sketches = np.zeros((X_gamma.shape[0], self.degree, self.n_components))
 
@@ -203,7 +221,9 @@ class PolynomialCountSketch(ClassNamePrefixFeaturesOutMixin, TransformerMixin, B
                 for d in range(self.degree):
                     iHashIndex = self.indexHash_[d, j]
                     iHashBit = self.bitHash_[d, j]
-                    count_sketches[:, d, iHashIndex] += (iHashBit * X_gamma[:, j]).toarray().ravel()
+                    count_sketches[:, d, iHashIndex] += (
+                        (iHashBit * X_gamma[:, j]).toarray().ravel()
+                    )
 
         else:
             for j in range(X_gamma.shape[1]):
@@ -350,7 +370,9 @@ class RBFSampler(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimato
             self._gamma = 1.0 / (n_features * X_var) if X_var != 0 else 1.0
         else:
             self._gamma = self.gamma
-        self.random_weights_ = (2.0 * self._gamma) ** 0.5 * random_state.normal(size=(n_features, self.n_components))
+        self.random_weights_ = (2.0 * self._gamma) ** 0.5 * random_state.normal(
+            size=(n_features, self.n_components)
+        )
 
         self.random_offset_ = random_state.uniform(0, 2 * np.pi, size=self.n_components)
 
@@ -390,7 +412,9 @@ class RBFSampler(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimato
         return {"preserves_dtype": [np.float64, np.float32]}
 
 
-class SkewedChi2Sampler(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator):
+class SkewedChi2Sampler(
+    ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator
+):
     """Approximate feature map for "skewed chi-squared" kernel.
 
     Read more in the :ref:`User Guide <skewed_chi_kernel_approx>`.
@@ -528,7 +552,9 @@ class SkewedChi2Sampler(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseE
             Returns the instance itself.
         """
         check_is_fitted(self)
-        X = self._validate_data(X, copy=True, dtype=[np.float64, np.float32], reset=False)
+        X = self._validate_data(
+            X, copy=True, dtype=[np.float64, np.float32], reset=False
+        )
         if (X <= -self.skewedness).any():
             raise ValueError("X may not contain entries smaller than -skewedness.")
 
@@ -677,7 +703,10 @@ class AdditiveChi2Sampler(TransformerMixin, BaseEstimator):
             elif self.sample_steps == 3:
                 self._sample_interval = 0.4
             else:
-                raise ValueError("If sample_steps is not in [1, 2, 3], you need to provide sample_interval")
+                raise ValueError(
+                    "If sample_steps is not in [1, 2, 3],"
+                    " you need to provide sample_interval"
+                )
         else:
             self._sample_interval = self.sample_interval
 
@@ -685,7 +714,8 @@ class AdditiveChi2Sampler(TransformerMixin, BaseEstimator):
 
     # TODO(1.5): remove
     @deprecated(  # type: ignore
-        "The ``sample_interval_`` attribute was deprecated in version 1.3 and will be removed 1.5."
+        "The ``sample_interval_`` attribute was deprecated in version 1.3 and "
+        "will be removed 1.5."
     )
     @property
     def sample_interval_(self):
@@ -728,7 +758,10 @@ class AdditiveChi2Sampler(TransformerMixin, BaseEstimator):
                 elif self.sample_steps == 3:
                     sample_interval = 0.4
                 else:
-                    raise ValueError("If sample_steps is not in [1, 2, 3], you need to provide sample_interval")
+                    raise ValueError(
+                        "If sample_steps is not in [1, 2, 3],"
+                        " you need to provide sample_interval"
+                    )
             else:
                 sample_interval = self.sample_interval
 
@@ -752,7 +785,9 @@ class AdditiveChi2Sampler(TransformerMixin, BaseEstimator):
             Transformed feature names.
         """
         check_is_fitted(self, "n_features_in_")
-        input_features = _check_feature_names_in(self, input_features, generate_names=True)
+        input_features = _check_feature_names_in(
+            self, input_features, generate_names=True
+        )
         est_name = self.__class__.__name__.lower()
 
         names_list = [f"{est_name}_{name}_sqrt" for name in input_features]
@@ -796,7 +831,9 @@ class AdditiveChi2Sampler(TransformerMixin, BaseEstimator):
         indptr = X.indptr.copy()
 
         data_step = np.sqrt(X.data * sample_interval)
-        X_step = sp.csr_matrix((data_step, indices, indptr), shape=X.shape, dtype=X.dtype, copy=False)
+        X_step = sp.csr_matrix(
+            (data_step, indices, indptr), shape=X.shape, dtype=X.dtype, copy=False
+        )
         X_new = [X_step]
 
         log_step_nz = sample_interval * np.log(X.data)
@@ -806,11 +843,15 @@ class AdditiveChi2Sampler(TransformerMixin, BaseEstimator):
             factor_nz = np.sqrt(step_nz / np.cosh(np.pi * j * sample_interval))
 
             data_step = factor_nz * np.cos(j * log_step_nz)
-            X_step = sp.csr_matrix((data_step, indices, indptr), shape=X.shape, dtype=X.dtype, copy=False)
+            X_step = sp.csr_matrix(
+                (data_step, indices, indptr), shape=X.shape, dtype=X.dtype, copy=False
+            )
             X_new.append(X_step)
 
             data_step = factor_nz * np.sin(j * log_step_nz)
-            X_step = sp.csr_matrix((data_step, indices, indptr), shape=X.shape, dtype=X.dtype, copy=False)
+            X_step = sp.csr_matrix(
+                (data_step, indices, indptr), shape=X.shape, dtype=X.dtype, copy=False
+            )
             X_new.append(X_step)
 
         return sp.hstack(X_new)
@@ -1069,9 +1110,15 @@ class Nystroem(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator)
                 if getattr(self, param) is not None:
                     params[param] = getattr(self, param)
         else:
-            if self.gamma is not None or self.coef0 is not None or self.degree is not None:
+            if (
+                self.gamma is not None
+                or self.coef0 is not None
+                or self.degree is not None
+            ):
                 raise ValueError(
-                    "Don't pass gamma, coef0 or degree to Nystroem if using a callable or precomputed kernel"
+                    "Don't pass gamma, coef0 or degree to "
+                    "Nystroem if using a callable "
+                    "or precomputed kernel"
                 )
 
         return params
@@ -1079,7 +1126,9 @@ class Nystroem(ClassNamePrefixFeaturesOutMixin, TransformerMixin, BaseEstimator)
     def _more_tags(self):
         return {
             "_xfail_checks": {
-                "check_transformer_preserve_dtypes": "dtypes are preserved but not at a close enough precision"
+                "check_transformer_preserve_dtypes": (
+                    "dtypes are preserved but not at a close enough precision"
+                )
             },
             "preserves_dtype": [np.float64, np.float32],
         }

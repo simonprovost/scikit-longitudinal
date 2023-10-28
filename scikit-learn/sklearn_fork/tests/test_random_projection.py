@@ -1,26 +1,25 @@
 import functools
+from typing import List, Any
 import warnings
-from typing import Any, List
 
 import numpy as np
-import pytest
 import scipy.sparse as sp
-from sklearn_fork.exceptions import DataDimensionalityWarning
+import pytest
+
 from sklearn_fork.metrics import euclidean_distances
-from sklearn_fork.random_projection import (
-    GaussianRandomProjection,
-    SparseRandomProjection,
-    _gaussian_random_matrix,
-    _sparse_random_matrix,
-    johnson_lindenstrauss_min_dim,
-)
-from sklearn_fork.utils._testing import (
-    assert_allclose,
-    assert_allclose_dense_sparse,
-    assert_almost_equal,
-    assert_array_almost_equal,
-    assert_array_equal,
-)
+
+from sklearn_fork.random_projection import johnson_lindenstrauss_min_dim
+from sklearn_fork.random_projection import _gaussian_random_matrix
+from sklearn_fork.random_projection import _sparse_random_matrix
+from sklearn_fork.random_projection import SparseRandomProjection
+from sklearn_fork.random_projection import GaussianRandomProjection
+
+from sklearn_fork.utils._testing import assert_allclose
+from sklearn_fork.utils._testing import assert_allclose_dense_sparse
+from sklearn_fork.utils._testing import assert_array_equal
+from sklearn_fork.utils._testing import assert_almost_equal
+from sklearn_fork.utils._testing import assert_array_almost_equal
+from sklearn_fork.exceptions import DataDimensionalityWarning
 
 all_sparse_random_matrix: List[Any] = [_sparse_random_matrix]
 all_dense_random_matrix: List[Any] = [_gaussian_random_matrix]
@@ -82,7 +81,9 @@ def test_input_size_jl_min_dim():
     with pytest.raises(ValueError):
         johnson_lindenstrauss_min_dim(3 * [100], eps=2 * [0.9])
 
-    johnson_lindenstrauss_min_dim(np.random.randint(1, 10, size=(10, 10)), eps=np.full((10, 10), 0.5))
+    johnson_lindenstrauss_min_dim(
+        np.random.randint(1, 10, size=(10, 10)), eps=np.full((10, 10), 0.5)
+    )
 
 
 ###############################################################################
@@ -161,7 +162,9 @@ def test_sparse_random_matrix():
     for density in [0.3, 1.0]:
         s = 1 / density
 
-        A = _sparse_random_matrix(n_components, n_features, density=density, random_state=0)
+        A = _sparse_random_matrix(
+            n_components, n_features, density=density, random_state=0
+        )
         A = densify(A)
 
         # Check possible values
@@ -183,8 +186,12 @@ def test_sparse_random_matrix():
         # - +sqrt(s) / sqrt(n_components)   with probability 1 / 2s
         #
         assert_almost_equal(np.mean(A == 0.0), 1 - 1 / s, decimal=2)
-        assert_almost_equal(np.mean(A == np.sqrt(s) / np.sqrt(n_components)), 1 / (2 * s), decimal=2)
-        assert_almost_equal(np.mean(A == -np.sqrt(s) / np.sqrt(n_components)), 1 / (2 * s), decimal=2)
+        assert_almost_equal(
+            np.mean(A == np.sqrt(s) / np.sqrt(n_components)), 1 / (2 * s), decimal=2
+        )
+        assert_almost_equal(
+            np.mean(A == -np.sqrt(s) / np.sqrt(n_components)), 1 / (2 * s), decimal=2
+        )
 
         assert_almost_equal(np.var(A == 0.0, ddof=1), (1 - 1 / s) * 1 / s, decimal=2)
         assert_almost_equal(
@@ -340,8 +347,12 @@ def test_works_with_sparse_data():
 
     for RandomProjection in all_RandomProjection:
         rp_dense = RandomProjection(n_components=3, random_state=1).fit(data)
-        rp_sparse = RandomProjection(n_components=3, random_state=1).fit(sp.csr_matrix(data))
-        assert_array_almost_equal(densify(rp_dense.components_), densify(rp_sparse.components_))
+        rp_sparse = RandomProjection(n_components=3, random_state=1).fit(
+            sp.csr_matrix(data)
+        )
+        assert_array_almost_equal(
+            densify(rp_dense.components_), densify(rp_sparse.components_)
+        )
 
 
 def test_johnson_lindenstrauss_min_dim():
@@ -396,7 +407,9 @@ def test_inverse_transform(
         with warnings.catch_warnings():
             warnings.filterwarnings(
                 "ignore",
-                message="The number of components is higher than the number of features",
+                message=(
+                    "The number of components is higher than the number of features"
+                ),
                 category=DataDimensionalityWarning,
             )
             projected = random_projection.fit_transform(X)
@@ -425,7 +438,9 @@ def test_inverse_transform(
         (np.int64, np.float64),
     ),
 )
-def test_random_projection_dtype_match(random_projection_cls, input_dtype, expected_dtype):
+def test_random_projection_dtype_match(
+    random_projection_cls, input_dtype, expected_dtype
+):
     # Verify output matrix dtype
     rng = np.random.RandomState(42)
     X = rng.rand(25, 3000)

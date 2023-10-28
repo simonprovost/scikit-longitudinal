@@ -32,13 +32,13 @@ around 0.7.
 # Authors: Oliver Rausch <rauscho@ethz.ch>
 # License: BSD
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn_fork import datasets
-from sklearn_fork.metrics import accuracy_score
+from sklearn_fork.svm import SVC
 from sklearn_fork.model_selection import StratifiedKFold
 from sklearn_fork.semi_supervised import SelfTrainingClassifier
-from sklearn_fork.svm import SVC
+from sklearn_fork.metrics import accuracy_score
 from sklearn_fork.utils import shuffle
 
 n_splits = 3
@@ -73,7 +73,10 @@ for i, threshold in enumerate(x_values):
         self_training_clf.fit(X_train, y_train)
 
         # The amount of labeled samples that at the end of fitting
-        amount_labeled[i, fold] = total_samples - np.unique(self_training_clf.labeled_iter_, return_counts=True)[1][0]
+        amount_labeled[i, fold] = (
+            total_samples
+            - np.unique(self_training_clf.labeled_iter_, return_counts=True)[1][0]
+        )
         # The last iteration the classifier labeled a sample in
         amount_iterations[i, fold] = np.max(self_training_clf.labeled_iter_)
 
@@ -82,7 +85,9 @@ for i, threshold in enumerate(x_values):
 
 
 ax1 = plt.subplot(211)
-ax1.errorbar(x_values, scores.mean(axis=1), yerr=scores.std(axis=1), capsize=2, color="b")
+ax1.errorbar(
+    x_values, scores.mean(axis=1), yerr=scores.std(axis=1), capsize=2, color="b"
+)
 ax1.set_ylabel("Accuracy", color="b")
 ax1.tick_params("y", colors="b")
 

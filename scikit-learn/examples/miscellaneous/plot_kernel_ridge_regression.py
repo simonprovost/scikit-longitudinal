@@ -40,9 +40,9 @@ X_plot = np.linspace(0, 5, 100000)[:, None]
 # Construct the kernel-based regression models
 # --------------------------------------------
 
-from sklearn_fork.kernel_ridge import KernelRidge
 from sklearn_fork.model_selection import GridSearchCV
 from sklearn_fork.svm import SVR
+from sklearn_fork.kernel_ridge import KernelRidge
 
 train_size = 100
 
@@ -110,7 +110,9 @@ plt.plot(
     c="r",
     label="SVR (fit: %.3fs, predict: %.3fs)" % (svr_fit, svr_predict),
 )
-plt.plot(X_plot, y_kr, c="g", label="KRR (fit: %.3fs, predict: %.3fs)" % (kr_fit, kr_predict))
+plt.plot(
+    X_plot, y_kr, c="g", label="KRR (fit: %.3fs, predict: %.3fs)" % (kr_fit, kr_predict)
+)
 plt.xlabel("data")
 plt.ylabel("target")
 plt.title("SVR versus Kernel Ridge")
