@@ -1,0 +1,9 @@
+[run]
+branch = True
+source = sklearn_fork
+parallel = True
+omit =
+    */sklearn_fork/externals/*
+    */sklearn_fork/_build_utils/*
+    */benchmarks/*
+    **/setup.py
