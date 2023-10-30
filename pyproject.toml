@@ -59,6 +59,7 @@ _build_scikit_tree = {shell = "cd ./scikit-learn/ && pip install --verbose --no-
 _check_env = {call = "scripts.pdm.pdm_pre_install:check_environment_variables"}
 _check_pdm_vars = {call = "scripts.pdm.pdm_pre_install:check_pdm_variables"}
 install_project = {composite = ["_check_pdm_vars", "_check_env", "_install_deps", "_build_scikit_tree"]}
+view_env = {cmd = "pdm venv list"}
 
 # Testing and linting (Note: This has only been tested on Linux && OSX)
 tests = {cmd = "pytest scikit_longitudinal/ --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/scikit_longitudinal -s -vv --capture=no"}
@@ -74,6 +75,9 @@ docformatter = {cmd = "docformatter --in-place --recursive --wrap-summaries 120 
 lint = {composite = ["flake8", "pylint"]}
 format = {composite = ["isort", "autopep8", "black", "autoflake", "docformatter"]}
 lint_format_tests = {composite = ["format", "lint", "tests"]}
+
+#Documentation
+docs = {shell = "rm -rf docs && pdoc --html --output-dir docs scikit_longitudinal/ --force --template-dir pdoc/template/ && mv docs/scikit_longitudinal/* docs/ && rm -rf docs/scikit_longitudinal"}
 
 [tool.flake8]
 max-line-length = 120
