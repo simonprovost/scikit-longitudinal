@@ -120,12 +120,11 @@
       <li><a href="#citation">📝 How to Cite?</a></li>
       <li><a href="#related">🔗 Related</a></li>
       <li><a href="#license">🔐 License</a></li>
-      <li><a href="#contact">📞 Contact</a></li>
    </ol>
 </details>
 
 
-## 💡 About The Project
+## <a id="about-the-project"></a>💡 About The Project
 
 Scikit-longitudinal is a machine learning library designed specifically for the analysis
 of longitudinal data. It provides a collection of tools and models for processing,
@@ -136,29 +135,29 @@ For Neural Networks based models, we
 recommend to look in the related projecs available in the [Related](#related) section - therefore,
 this current project will not provide any Neural Networks based models as of today.
 
-## ⭐️Key Features
+## <a id="key-features"></a>⭐️Key Features
 
 We recommend you to open the [scikit_longitudinal folder's readme](scikit_longitudinal/README.md) file to see the table of key features.
 
-## 🛠️ Installation
+## <a id="installation"></a>🛠️ Installation
 
 **ON-HOLD until the first public release**
 
 _TODO: Describe how to install the package, including any dependencies._
 
-## 🚀 Getting Started
+## <a id="how-to-use"></a></a>🚀 Getting Started
 
 ON-HOLD until the first public release
 
 _TODO: Describe how to easily use the package with a code snippet._
 
-## 📖 Documentation
+## <a id="documentation"></a>📖 Documentation
 
 ON-HOLD until the first public release
 
 _TODO: Describe how to access the documentation. Try Sphinx and Pdoc3._
 
-## 🤝 Contributing (developers)
+## <a id="contributing"></a>🤝 Contributing (developers)
 
 > ⚠️ **DISCLAIMER**: This project is still under development, and the setup is not yet fully automated. It has been tested on macOS and Linux distributions. The assurance of Windows compatibility is currently not guaranteed. However, our Project Packages and Dependencies Manager (PDM) enables cross-compatibility.
 
@@ -180,7 +179,7 @@ _TODO: Describe how to access the documentation. Try Sphinx and Pdoc3._
 - [Homebrew](https://brew.sh/)
 - `SDKROOT` environment variable, typically located at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`
 
-### 🛠 Manual Setup (macOS or Linux)
+### <a id="setup"></a>🛠 Manual Setup (macOS or Linux)
 
 Follow these steps for manual setup:
 
@@ -223,7 +222,7 @@ pdm run install_project
 
 🎉 Voilà! You are ready to contribute!
 
-### ✒️ Coding Conventions
+### <a id="code-convention"></a>✒️ Coding Conventions
 We follow the [Karma Git Commit Convention](http://karma-runner.github.io/6.4/dev/git-commit-msg.html) for commit
 messages and a modified version of the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
 with fewer restrictions for naming conventions and coding style. Please familiarize yourself with these conventions
@@ -235,7 +234,7 @@ before contributing.
 - **Class names**: The PascalCase (or UpperCamelCase) convention is employed (e.g., `ClassName`).
 - **Function and method names:** The snake_case naming convention is also used for function and method names. These names should be lowercase with words separated by underscores (e.g., `function_name()` or `method_name()`).
 
-### Pull Request Process
+### <a id="pull-request-process"></a>📥 Pull Request Process
 
 To submit a pull request, please follow these steps:
 
@@ -247,7 +246,7 @@ To submit a pull request, please follow these steps:
 
 * Once your pull request is submitted, maintainers will review your changes and provide feedback. Be prepared to make any necessary adjustments, and collaborate with the maintainers to get your contribution merged.
 
-## ❓ FAQ
+## <a id="faq"></a>❓ FAQ
 
 Explore the properties of Longitudinal Data and Time-Series Data in this comprehensive FAQ.
 
@@ -267,7 +266,7 @@ A: Time-Series Data and Longitudinal Data both involve observations made over ti
 
 In summary, the main differences between Time-Series and Longitudinal Data lie in the focus, nature, and the length of the time intervals considered.
 
-## 📝 How to Cite?
+## <a id="citation"></a>📝 How to Cite?
 
 If you use Scikit-Longitudinal in your research, please cite our paper and our repoitiory:
 
@@ -277,11 +276,11 @@ For the paper, use the following BibTeX entry:
 
 _TODO: Add citation information for the paper we should publish about this library._
 
-## 🔗 Related
+## <a id="related"></a>🔗 Related
 
 - Auto-prognosis: [GitHub](https://github.com/vanderschaarlab/autoprognosis)
 - Clairvoyance: [GitHub](https://github.com/vanderschaarlab/clairvoyance)
 
-## 🔐 License
+## <a id="license"></a>🔐 License
 
-MIT License
+[MIT License](./LICENSE)
