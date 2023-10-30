@@ -123,6 +123,7 @@
    </ol>
 </details>
 
+> 🌟 **Exciting Update**: We're delighted to introduce the brand new v0.1 documentation for Scikit-longitudinal! For a deep dive into the library's capabilities and features, please [visit here](https://simonprovost.github.io/scikit-longitudinal/).
 
 ## <a id="about-the-project"></a>💡 About The Project
 

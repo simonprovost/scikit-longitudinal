@@ -11,6 +11,9 @@
    <h4 align="center">A specialised Python library for longitudinal data analysis built on Scikit-learn</h4>
 </div>
 
+> 🌟 **Exciting Update**: We're delighted to introduce the brand new v0.1 documentation for Scikit-longitudinal! For a deep dive into the library's capabilities and features, please [visit here](https://simonprovost.github.io/scikit-longitudinal/).
+
+
 > ⚠️ **DISCLAIMER**: This README pertains specifically to the primary features of the library. For a comprehensive
 > introduction to the library, including its setup, please refer to the [main readme](./../README.md). Furthermore,
 > this README is intended for developers contributing to the library.
@@ -103,9 +106,9 @@ represented as:
 \mathcal{G} = \{ \mathcal{F}_1, \mathcal{F}_2, \ldots, \mathcal{F}_M \}
 ```
 
-Where each feature set $`\mathcal{F}_x`$ is a list of features corresponding to a particular longitudinal variable,
-and $`\text{Feature}_{x_{\text{wave}_i}}`$ is the feature for that longitudinal variable at wave $`i`$. Where $i$ goes
-from $`1 \ldots N`$. Hence, $\mathcal{G}$ being what we denote as `features group`.
+Where each feature set $`\mathcal{F}_x`$, where $`x`$ goes from $`1 \ldots M`$, is a list of features corresponding to a particular longitudinal variable,
+and $`\text{Feature}_{x_{\text{wave}_i}}`$ is the feature for that longitudinal variable at wave $`i`$. Where $`i`$ goes
+from $`1 \ldots N`$, $`N`$ being the total number of waves. Hence, $`\mathcal{G}`$ being what we denote as `features group`.
 
 Next, let's provide a visual representation of this structure:
 
@@ -119,8 +122,8 @@ Below is a representation of a mock dataset:
 | 2          | 115                     | 118                     | 119                     | 78                  | 74                  | 50  | F      |
 | 3          | 123                     | 127                     | 125                     | 74                  | 76                  | 52  | M      |
 
-Where each column represents a different patient. Therefore, columns delineate characteristics for each wave, organised
-so that similar characteristics across waves are placed adjacently for clarity. However, it is essential to note that in
+Where each row represents a different patient. Therefore, some columns delineate characteristics for each wave, while others delineate static characteristics. 
+For the mock exemple, it is organised so that similar characteristics across waves are placed adjacently for clarity. However, it is essential to note that in
 practice, features could be arranged in any order. In addition, observe that _Heart Rate (Wave 2)_ is absent for every
 patient.
 
