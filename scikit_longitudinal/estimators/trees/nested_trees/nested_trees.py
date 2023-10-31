@@ -385,7 +385,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         else:
             for i, group in enumerate(self.features_group):
                 subset_X_temp = X[:, group]
-                print(f"Group {i}: {group}\nSubset X: {subset_X_temp}\n")
                 tree, _, gini = _fit_inner_tree_and_calculate_gini(
                     subset_X_temp,
                     y,
