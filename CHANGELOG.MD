@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.0.3] - 2023-10-31 - Usability, Maintainability, and Compliance Enhancements
+
+### Added
+
+- Features Group Missing Waves Handling: Introduced mechanisms for gracefully handling missing waves in features groups.
+- Readiness Descriptions: New readiness indicators provide detailed descriptions of temporal data management across the library.
+- AutoLD Compliance: The library is now compliant with AutoLD standards.
+- Package Management Transition: Switched from Poetry to PDM for improved package and dependency management.
+- Docker Support: Linux-based Docker environment setup for streamlined installation and deployment.
+- Platform Testing: Library is tested on both Mac and Linux, with Windows support nearing completion.
+- Documentation: Comprehensive version 0.0.1 of the documentation is available on GitHub Pages.
+- Pipeline Manager: Refactored the pipeline into a more maintainable and flexible pipeline manager.
+- CFS Classes Refactoring: Separated CFS and CFS Per Group algorithms into distinct classes for better management.
+
+### Removed
+
+- Irrelevant Scripts: Removed scripts related to visualisations not core to the library's functionality.
+- Experiments Branch: Moved all experiment-related codes to a dedicated `Experiments` branch.
+
 ## [v0.0.2] - 2023-05-17 - Enhanced Longitudinal Analysis and Parallelization Features
 
 ### Added
@@ -27,6 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Correlation-based Feature Selection (CFS) algorithm with improved typing and testing.
 - CFS per Group for Longitudinal Data: Python implementation with parallelism for better performance.
 
-[Unreleased]: https://github.com/simonprovost/scikit-longitudinal/compare/v0.0.2...HEAD
+[Unreleased]: https://github.com/simonprovost/scikit-longitudinal/compare/v0.0.3...HEAD
+[v0.0.3]: https://github.com/simonprovost/scikit-longitudinal/releases/tag/v0.0.3
 [v0.0.2]: https://github.com/simonprovost/scikit-longitudinal/releases/tag/v0.0.2
 [v0.0.1]: https://github.com/simonprovost/scikit-longitudinal/releases/tag/v0.0.1
+
