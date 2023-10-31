@@ -179,6 +179,10 @@ _TODO: Describe how to access the documentation. Try Sphinx and Pdoc3._
 - [Xcode](https://developer.apple.com/xcode/) - Make sure to open XCODE and accept the license agreement.
 - [Homebrew](https://brew.sh/)
 - `SDKROOT` environment variable, typically located at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`
+- `libomp` from `brew`:
+  ```bash
+  brew install libomp
+  ```
 
 ### <a id="setup"></a>🛠 Manual Setup (macOS or Linux)
 
@@ -216,7 +220,7 @@ pdm run install_project
    # conda activate the returned path
    ```
 2. You can now execute your scripts or modify the Dockerfile to include them.
-3. For testing purposes, run:
+3. For testing purposes, run _(Note: If you do not have the entire ELSA Databases, you can contact us, or ignore the failed tests because of missing data)_
    ```bash
    pdm run tests
    ```
