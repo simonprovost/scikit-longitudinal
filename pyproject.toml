@@ -31,12 +31,12 @@ dependencies = [
     "pylint>=2.17.1",
     "isort>=5.12.0",
     "autopep8>=2.0.2",
-    "black>=23.1.0",
+    "black>=23.10.1",
     "pre-commit>=3.2.0",
     "autoflake>=2.1.1",
     "docformatter>=1.6.4",
     "rich>=13.6.0",
-    "stopit>=1.1.2"
+    "stopit>=1.1.2",
 ]
 requires-python = ">=3.8.1,<3.10"
 readme = "README.md"

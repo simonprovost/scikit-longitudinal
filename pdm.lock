@@ -6,7 +6,7 @@ groups = ["default"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:d9c01e33e655874469ba362d30ac15a4586b279eeff5025896a66c4f93fcbe1f"
+content_hash = "sha256:bc8ec4c33d6040b44cdd332fc75613c1d9b3d1114064a12c71b5c9236e91efa4"
 
 [[package]]
 name = "aiosignal"
