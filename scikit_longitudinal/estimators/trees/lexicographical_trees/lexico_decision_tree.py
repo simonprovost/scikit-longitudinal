@@ -1,4 +1,4 @@
-# pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member,R0801,R0401
+# pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member,R0801
 
 from typing import List, Optional
 
