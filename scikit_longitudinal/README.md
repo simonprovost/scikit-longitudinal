@@ -27,7 +27,7 @@
 |    **Nested Trees Classifier** 🌲    |         [View Code](./estimators/trees/nested_trees/nested_trees.py)          |
 | **Lexicographical Random Forest** 🌳 | [View Code](./estimators/trees/lexicographical_trees/lexico_random_forest.py) |
 | **Lexicographical Decision Tree** 🌲 | [View Code](./estimators/trees/lexicographical_trees/lexico_decision_tree.py) |
-
+|   **Longitudinal Deep Forest** 🏕️   |   [View Code](./estimators/trees/deep_forest/deep_forest.py)  |
 ### 🚀📉 Pre Processing Estimators
 
 |                               Key Feature                                |                                      Location in Code                                       |

@@ -36,7 +36,7 @@
                            <img alt="pytest" src="https://img.shields.io/badge/pytest-passing-green?style=for-the-badge&logo=pytest">
                            </a><br />
                            <a href="https://codecov.io/gh/Scikit-Longitudinal/Scikit-Longitudinal">
-                           <img alt="Codecov" src="https://img.shields.io/badge/coverage-95%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
+                           <img alt="Codecov" src="https://img.shields.io/badge/coverage-85%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
                            </a>
                         </td>
                      </tr>
@@ -178,26 +178,94 @@ _TODO: Describe how to access the documentation. Try Sphinx and Pdoc3._
 #### macOS-specific Requirements
 - [Xcode](https://developer.apple.com/xcode/) - Make sure to open XCODE and accept the license agreement.
 - [Homebrew](https://brew.sh/)
-- `SDKROOT` environment variable, typically located at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`
+- `SDKROOT` environment variable, typically located at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`. Or what also works is to run:
+  ```bash
+  export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+  ```
 - `libomp` from `brew`:
   ```bash
   brew install libomp
   ```
 
-### <a id="setup"></a>🛠 Manual Setup (macOS or Linux)
+### <a id="setup"></a>🛠 Manual Setup Instructions for macOS or Linux Environments
 
-Follow these steps for manual setup:
+To manually configure your environment, please adhere to the following procedure meticulously:
 
-```bash
-pdm config venv.backend conda
-pdm use 3.9
-pdm run setup_project # You might be asked to export some variables, gcc/clang, etc. Follow the instructions if so.
-export PDM_IN_ENV=in-project
-conda init bash # or zsh if you use zsh / fish if you use fish
-source ~/.bashrc # or ~/.zshrc if you use zsh / ~/.config/fish/config.fish if you use fish
-eval $(pdm venv activate $PDM_IN_ENV)
-pdm run install_project
-```
+1. **Setting up the package manager:**
+    - Initialize the package manager with Conda as the backend for virtual environments:
+      ```bash
+      pdm config venv.backend conda
+      ```
+
+2. **Selecting Python version:**
+    - Specify the Python version for the project. Here, we are selecting Python 3.9:
+      ```bash
+      pdm use 3.9
+      ```
+
+3. **Project Setup:**
+    - Execute the setup script. This step may prompt you to export certain variables or configure compilers like GCC or Clang. Please comply with the on-screen instructions:
+      ```bash
+      pdm run setup_project
+      ```
+
+4. **Environment Variables Configuration:**
+    - Set the `PDM_IN_ENV` variable to `in-project` to ensure that the package manager operates within the project directory:
+      ```bash
+      export PDM_IN_ENV=in-project
+      ```
+
+5. **Conda Initialization:**
+    - Initialize Conda for your shell. Replace `bash` with `zsh` or `fish` as per your shell preference:
+      ```bash
+      conda init bash 
+      ```
+
+6. **Shell Configuration:**
+    - Source your shell configuration file to apply the changes. Again, replace `.bashrc` with the appropriate file name corresponding to your shell:
+      ```bash
+      source ~/.bashrc # Replace with ~/.zshrc or ~/.config/fish/config.fish accordingly
+      ```
+
+7. **Activating Virtual Environment:**
+    - Activate the virtual environment with the following command:
+      ```bash
+      eval $(pdm venv activate $PDM_IN_ENV)
+      ```
+
+8. **Project Dependencies Installation:**
+    - Install all the project dependencies by running:
+      ```bash
+      pdm run install_project
+      ```
+
+#### Troubleshooting Errors
+
+If you encounter any errors during the setup process and are unsure how to resolve them, please follow these troubleshooting steps:
+
+1. **Deactivate Conda Environment**:
+   ```bash
+   conda deactivate
+   ```
+   
+2. **Clear PDM Cache**:
+   ```bash
+   pdm cache clear
+   ```
+   
+3. **Remove Pypackages Directory (subject of many errors from time to time)**:
+   ```bash
+   rm -rf __pypackages__/
+   ```
+   
+4. **Remove PDM Virtual Environment**:
+   ```bash
+   pdm venv remove_env
+   ```
+   
+After following these steps, try to reinstall the project dependencies. If the issue persists, 
+feel free to open an issue on the GitHub repository for additional support.
+
 ### 🐳 Docker Setup (Linux, Python 3.9.8)
 
 #### Prerequisites
