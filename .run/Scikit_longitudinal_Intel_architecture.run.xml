@@ -1,0 +1,32 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Scikit_longitudinal_Intel_architecture" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+    <deployment type="dockerfile">
+      <settings>
+        <option name="buildArgs">
+          <list>
+            <DockerEnvVarImpl>
+              <option name="name" value="OS_TYPE" />
+              <option name="value" value="x86_64" />
+            </DockerEnvVarImpl>
+          </list>
+        </option>
+        <option name="containerName" value="scikit_longitudinal" />
+        <option name="commandLineOptions" value="--interactive" />
+        <option name="sourceFilePath" value="dockerfile" />
+        <option name="volumeBindings">
+          <list>
+            <DockerVolumeBindingImpl>
+              <option name="containerPath" value="/scikit_longitudinal/scikit_longitudinal" />
+              <option name="hostPath" value="$PROJECT_DIR$/scikit_longitudinal/" />
+            </DockerVolumeBindingImpl>
+            <DockerVolumeBindingImpl>
+              <option name="containerPath" value="/scikit_longitudinal/data" />
+              <option name="hostPath" value="$PROJECT_DIR$/data/" />
+            </DockerVolumeBindingImpl>
+          </list>
+        </option>
+      </settings>
+    </deployment>
+    <method v="2" />
+  </configuration>
+</component>
