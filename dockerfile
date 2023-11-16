@@ -59,6 +59,9 @@ ARG CONDA_VER
 ARG OS_TYPE
 RUN if [ -z "${OS_TYPE}" ]; then echo "OS_TYPE argument not provided"; exit 1; fi
 RUN wget -q "https://repo.anaconda.com/archive/Anaconda3-${CONDA_VER}-Linux-${OS_TYPE}.sh" -O ~/Anaconda.sh
+RUN dpkg --add-architecture arm64
+RUN apt update -y
+RUN apt install -y libc6:arm64
 RUN bash ~/Anaconda.sh -b -p /anaconda
 RUN rm ~/Anaconda.sh
 ENV PATH=/anaconda/bin:${PATH}
