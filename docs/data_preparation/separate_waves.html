@@ -143,7 +143,7 @@ Decorated function.</p>
 <dl>
 <dt id="scikit_longitudinal.data_preparation.separate_waves.SepWav"><code class="flex name class">
 <span>class <span class="ident">SepWav</span></span>
-<span>(</span><span>features_group: List[List[int]] = None, classifier: ['BaseEstimator'] = None, non_longitudinal_features: List[Union[str, int]] = None, feature_list_names: List[str] = None, ensemble_strategy: str = 'voting', voting_weights: List[float] = None, voting_strategy: str = 'soft', n_jobs: int = None, stacking_final_estimator: BaseEstimator = None, stacking_cv: int = None, stacking_stack_method: str = 'auto', stacking_passthrough: bool = False, parallel: bool = False, num_cpus: int = -1)</span>
+<span>(</span><span>estimator: Union[sklearn_fork.base.ClassifierMixin, scikit_longitudinal.templates.custom_classifier_mixin_estimator.CustomClassifierMixinEstimator] = None, features_group: List[List[int]] = None, non_longitudinal_features: List[Union[str, int]] = None, feature_list_names: List[str] = None, voting: <a title="scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting.LongitudinalEnsemblingStrategy" href="../estimators/ensemble/longitudinal_voting/longitudinal_voting.html#scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting.LongitudinalEnsemblingStrategy">LongitudinalEnsemblingStrategy</a> = LongitudinalEnsemblingStrategy.MAJORITY_VOTING, stacking_meta_learner: Union[scikit_longitudinal.templates.custom_classifier_mixin_estimator.CustomClassifierMixinEstimator, sklearn_fork.base.ClassifierMixin, ForwardRef(None)] = LogisticRegression(), n_jobs: int = None, parallel: bool = False, num_cpus: int = -1)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>The SepWav (Separate Waves) class for data transformation in longitudinal data analysis.</p>
@@ -156,7 +156,8 @@ an ensemble model or employ them in alternative manners according to methods def
 Predict function is called, the ensemble model will be utilised to make predictions on the class variable. To
 facilitate the prediction of the class variable for a specific wave, the user can utilise the predict_wave
 method. Alternatively, users can incorporate the list of classifiers into their script and manipulate them
-accordingly. The supported ensemble strategies encompass voting and stacking methodologies.</p>
+accordingly. The supported ensemble strategies encompass longitudinal voting and longitudinal stacking
+methodologies.</p>
 <h2 id="attributes">Attributes</h2>
 <p>dataset (LongitudinalDataset):
 The dataset to be used.
@@ -164,50 +165,45 @@ classifier (BaseEstimator):
 The classifier to be used.
 classifiers (List):
 A list of classifiers for each wave.
-ensemble_strategy (str):
-The strategy for combining the classifiers ('voting' or 'stacking').
+voting (LongitudinalEnsemblingStrategy):
+The ensemble strategy to be used. The supported strategies are available in the EnsemblingStrategy enum.
+stacking_meta_learner (Union[CustomClassifierMixinEstimator, ClassifierMixin]):
+The final estimator to be used in stacking.
 clf_ensemble (BaseEstimator):
 The combined classifier.
-voting_weights (List[float]):
-The weights for the voting classifier.
-voting_strategy (str):
-The voting strategy for the voting classifier ('hard' or 'soft').
 n_jobs (int):
 The number of jobs to run in parallel.
-stacking_final_estimator (BaseEstimator):
-The final estimator to be used in the stacking classifier.
-stacking_cv (int):
-The cross-validation strategy for the stacking classifier.
-stacking_stack_method (str):
-The method to be used for the stacking classifier.
-stacking_passthrough (bool):
-Whether to pass the inputs to the final estimator for the stacking classifier.
 parallel (bool):
 Whether to run the fit waves in parallel.
 num_cpus (int):
 The number of cpus to use for parallel processing.</p>
 <h2 id="example">Example</h2>
 <pre><code class="language-python">from sklearn_fork.ensemble import RandomForestClassifier
-from sklearn_fork.linear_model import LogisticRegression
+from scikit_longitudinal.data_preparation import LongitudinalDataset
 
 # Initialize the longitudinal data
-longitudinal_data = LongitudinalDataset(&quot;dementia_dataset.csv&quot;)
+longitudinal_data = LongitudinalDataset(&quot;path/to/dataset.csv&quot;)
 longitudinal_data.load_data_target_train_test_split(
-    target_column=&quot;class_dementia_w8&quot;,
+    target_column=&quot;target_column_name&quot;,
     remove_target_waves=True,
 )
 longitudinal_data.setup_features_group(input_data=&quot;elsa&quot;)
 
-# Initialize the classifier
+# Initialise the classifier
 classifier = RandomForestClassifier()
 
 # Initialize the SepWav instance
-sepwav = SepWav(dataset=longitudinal_data, classifier=classifier)
+sepwav = SepWav(
+    estimator=classifier,
+    features_group=longitudinal_data.feature_groups(),
+    non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
+    feature_list_names=longitudinal_data.data.columns.tolist(),
+    voting=LongitudinalEnsemblingStrategy.MAJORITY_VOTING
+)
 
 # Fit and predict
 sepwav.fit(longitudinal_data.X_train, longitudinal_data.y_train)
 y_pred = sepwav.predict(longitudinal_data.X_test)
-print(classification_report(longitudinal_data.y_test, y_pred))
 </code></pre></div>
 <h3>Instance variables</h3>
 <dl>

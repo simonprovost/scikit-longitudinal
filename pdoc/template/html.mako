@@ -470,7 +470,7 @@
                            <img alt="pytest" src="https://img.shields.io/badge/pytest-passing-green?style=for-the-badge&logo=pytest">
                            </a><br />
                            <a href="https://codecov.io/gh/Scikit-Longitudinal/Scikit-Longitudinal">
-                           <img alt="Codecov" src="https://img.shields.io/badge/coverage-95%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
+                           <img alt="Codecov" src="https://img.shields.io/badge/coverage-85%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
                            </a>
                         </td>
                      </tr>
