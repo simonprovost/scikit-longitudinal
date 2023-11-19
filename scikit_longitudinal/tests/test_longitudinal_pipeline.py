@@ -10,7 +10,11 @@ from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 from scikit_longitudinal.data_preparation.merwav_time_minus import MerWavTimeMinus
 from scikit_longitudinal.data_preparation.merwav_time_plus import MerWavTimePlus
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
-from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier, LexicoRFClassifier, NestedTreesClassifier
+from scikit_longitudinal.estimators.ensemble import LexicoRFClassifier, NestedTreesClassifier
+from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import (
+    LongitudinalEnsemblingStrategy,
+)
+from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 from scikit_longitudinal.pipeline import LongitudinalPipeline
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import (
     CorrelationBasedFeatureSelection,
@@ -27,7 +31,7 @@ def SepWavStandardCFSDecisionTreeClassifierVoting(longitudinal_data):
                 features_group=longitudinal_data.feature_groups(),
                 non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
                 feature_list_names=longitudinal_data.data.columns.tolist(),
-                ensemble_strategy="voting",
+                voting=LongitudinalEnsemblingStrategy.MAJORITY_VOTING,
             ),
         ),
         (
@@ -53,7 +57,7 @@ def SepWavStandardCFSDecisionTreeClassifierStacking(longitudinal_data):
                 features_group=longitudinal_data.feature_groups(),
                 non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
                 feature_list_names=longitudinal_data.data.columns.tolist(),
-                ensemble_strategy="stacking",
+                voting=LongitudinalEnsemblingStrategy.STACKING,
             ),
         ),
         (
@@ -79,7 +83,7 @@ def SepWavDecisionTreeClassifierVoting(longitudinal_data):
                 features_group=longitudinal_data.feature_groups(),
                 non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
                 feature_list_names=longitudinal_data.data.columns.tolist(),
-                ensemble_strategy="voting",
+                voting=LongitudinalEnsemblingStrategy.DECAY_EXPONENTIAL_VOTING,
             ),
         ),
         (
@@ -101,7 +105,8 @@ def SepWavDecisionTreeClassifierStacking(longitudinal_data):
                 features_group=longitudinal_data.feature_groups(),
                 non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
                 feature_list_names=longitudinal_data.data.columns.tolist(),
-                ensemble_strategy="stacking",
+                voting=LongitudinalEnsemblingStrategy.STACKING,
+                stacking_meta_learner=DecisionTreeClassifier(),
             ),
         ),
         (

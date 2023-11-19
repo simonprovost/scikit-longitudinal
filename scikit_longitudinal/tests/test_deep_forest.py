@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 from sklearn_fork.datasets import make_classification
 
-from scikit_longitudinal.estimators.trees.deep_forest.deep_forest import (
+from scikit_longitudinal.estimators.ensemble.deep_forest.deep_forest import (
     DeepForestsLongitudinalClassifier,
     LongitudinalClassifierType,
     LongitudinalEstimatorConfig,

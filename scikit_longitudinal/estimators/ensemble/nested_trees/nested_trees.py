@@ -7,7 +7,7 @@ from sklearn_fork.tree import DecisionTreeClassifier
 from sklearn_fork.utils.multiclass import unique_labels
 
 from scikit_longitudinal.data_preparation.longitudinal_dataset import clean_padding
-from scikit_longitudinal.estimators.trees.nested_trees.utils import (
+from scikit_longitudinal.estimators.ensemble.nested_trees.utils import (
     _fit_inner_tree_and_calculate_gini,
     _fit_inner_tree_plus_calculate_gini_ray,
     _remove_consecutive_duplicates,
