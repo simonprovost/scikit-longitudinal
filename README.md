@@ -268,7 +268,7 @@ feel free to open an issue on the GitHub repository for additional support.
 
 ### WINDOWS KNOWN ISSUES
 
-- Git Handling Lines Ending: We recommend that you setup the following git configuration to avoid Windows to automatically add `\r\n` ending symbol line that Linux/MacOS do not understand. To configure, use [this command](https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings#global-settings-for-line-endings):
+- Git Handling Lines Ending: We recommend that you setup the following git configuration to avoid Windows to automatically add `\r\n` ending symbol line that Linux/MacOS do not support. To configure, use [this command](https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings#global-settings-for-line-endings):
   ```bash
   git config --global core.autocrlf true
   ```

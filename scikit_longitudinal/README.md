@@ -22,18 +22,29 @@
 
 ### 📈 Classifier estimators
 
-|             Key Feature              |                               Location in Code                                |
-|:------------------------------------:|:-----------------------------------------------------------------------------:|
-|    **Nested Trees Classifier** 🌲    |         [View Code](./estimators/trees/nested_trees/nested_trees.py)          |
-| **Lexicographical Random Forest** 🌳 | [View Code](./estimators/trees/lexicographical_trees/lexico_random_forest.py) |
-| **Lexicographical Decision Tree** 🌲 | [View Code](./estimators/trees/lexicographical_trees/lexico_decision_tree.py) |
-|   **Longitudinal Deep Forest** 🏕️   |   [View Code](./estimators/trees/deep_forest/deep_forest.py)  |
+|             Key Feature              |                                 Location in Code                                 |
+|:------------------------------------:|:--------------------------------------------------------------------------------:|
+|    **Nested Trees Classifier** 🌲    |         [View Code](./estimators/ensemble/nested_trees/nested_trees.py)          |
+| **Lexicographical Random Forest** 🌳 | [View Code](./estimators/ensemble/lexicographical_trees/lexico_random_forest.py) |
+| **Lexicographical Decision Tree** 🌲 |  [View Code](./estimators/trees/lexicographical_trees/lexico_decision_tree.py)   |
+|   **Longitudinal Deep Forest** 🏕️   |          [View Code](./estimators/ensemble/deep_forest/deep_forest.py)           |
 ### 🚀📉 Pre Processing Estimators
 
 |                               Key Feature                                |                                      Location in Code                                       |
 |:------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|
 | **Correlation-based Feature Selection Per Group (CFS-PerGroup v1 & v2)** | [View Code](preprocessors/feature_selection/correlation_feature_selection/cfs_per_group.py) |
 |              **Correlation-based Feature Selection (CFS)**               |      [View Code](preprocessors/feature_selection/correlation_feature_selection/cfs.py)      |
+
+### 🪛 Data Preparation techniques
+
+|         Key Feature         |                    Location in Code                     |
+|:---------------------------:|:-------------------------------------------------------:|
+| **Longitudinal Dataset** 📊 | [View Code](./data_preparation/longitudinal_dataset.py) |
+| **Aggregation Function** 🪢 | [View Code](./data_preparation/aggregation_function.py) |
+|   **MerWavTime Minus** ➖   |  [View Code](./data_preparation/merwav_time_minus.py)   |
+|    **MerWavTime Plus** ➕   |  [View Code](./data_preparation/merwav_time_plus.py)   |
+|    **Separate Waves** 🖖    |  [View Code](./data_preparation/separate_waves.py)   |
+
 
 ### 🛠️ Additional Tools and Metrics
 
