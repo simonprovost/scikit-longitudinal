@@ -358,8 +358,9 @@ _TODO: Add citation information for the paper we should publish about this libra
 
 ## <a id="related"></a>🔗 Related
 
-- Auto-prognosis: [GitHub](https://github.com/vanderschaarlab/autoprognosis)
-- Clairvoyance: [GitHub](https://github.com/vanderschaarlab/clairvoyance)
+- Auto-prognosis (Open-Source: ✅): [GitHub](https://github.com/vanderschaarlab/autoprognosis)
+- Clairvoyance (Open-Source: ✅): [GitHub](https://github.com/vanderschaarlab/clairvoyance)
+- LongiTools (Open-Source: ⏳): [Official Website](https://longitools.org/)
 
 ## <a id="license"></a>🔐 License
 
