@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>scikit_longitudinal.estimators.trees.nested_trees.nested_trees API documentation</title>
+<title>scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,7 +19,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>scikit_longitudinal.estimators.trees.nested_trees.nested_trees</code></h1>
+<h1 class="title">Module <code>scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees</code></h1>
 </header>
 <section id="section-intro">
 </section>
@@ -32,7 +32,7 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier"><code class="flex name class">
+<dt id="scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier"><code class="flex name class">
 <span>class <span class="ident">NestedTreesClassifier</span></span>
 <span>(</span><span>features_group: List[List[int]] = None, non_longitudinal_features: List[Union[str, int]] = None, max_outer_depth: int = 3, max_inner_depth: int = 2, min_outer_samples: int = 5, inner_estimator_hyperparameters: Optional[Dict[str, Any]] = None, save_nested_trees: bool = False, parallel: bool = False, num_cpus: int = -1)</span>
 </code></dt>
@@ -111,7 +111,7 @@ save_nested_trees : bool, optional (default=False)
 If True, save inner decision tree visualizations as image files.</p></div>
 <h3>Class variables</h3>
 <dl>
-<dt id="scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier.Node"><code class="name">var <span class="ident">Node</span></code></dt>
+<dt id="scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier.Node"><code class="name">var <span class="ident">Node</span></code></dt>
 <dd>
 <div class="desc"><p>A node in the outer decision tree of the Nested Trees Classifier.</p>
 <p>Each node in the outer tree contains an inner decision tree. Leaf nodes
@@ -154,8 +154,8 @@ If tree is not provided, or if node_name is an empty string.</p>
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier.print_nested_tree"><code class="name flex">
-<span>def <span class="ident">print_nested_tree</span></span>(<span>self, node: Optional[ForwardRef('<a title="scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier.Node" href="#scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier.Node">NestedTreesClassifier.Node</a>')] = None, depth: int = 0, prefix: str = '', parent_name: str = '') ‑> None</span>
+<dt id="scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier.print_nested_tree"><code class="name flex">
+<span>def <span class="ident">print_nested_tree</span></span>(<span>self, node: Optional[ForwardRef('<a title="scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier.Node" href="#scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier.Node">NestedTreesClassifier.Node</a>')] = None, depth: int = 0, prefix: str = '', parent_name: str = '') ‑> None</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Print the structure of the nested tree classifier.</p>
@@ -182,16 +182,16 @@ The name of the parent node in the outer decision tree. Default is "".</p></div>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="scikit_longitudinal.estimators.trees.nested_trees" href="index.html">scikit_longitudinal.estimators.trees.nested_trees</a></code></li>
+<li><code><a title="scikit_longitudinal.estimators.ensemble.nested_trees" href="index.html">scikit_longitudinal.estimators.ensemble.nested_trees</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier" href="#scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier">NestedTreesClassifier</a></code></h4>
+<h4><code><a title="scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier" href="#scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier">NestedTreesClassifier</a></code></h4>
 <ul class="">
-<li><code><a title="scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier.Node" href="#scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier.Node">Node</a></code></li>
-<li><code><a title="scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier.print_nested_tree" href="#scikit_longitudinal.estimators.trees.nested_trees.nested_trees.NestedTreesClassifier.print_nested_tree">print_nested_tree</a></code></li>
+<li><code><a title="scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier.Node" href="#scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier.Node">Node</a></code></li>
+<li><code><a title="scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier.print_nested_tree" href="#scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier.print_nested_tree">print_nested_tree</a></code></li>
 </ul>
 </li>
 </ul>
