@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from sklearn_fork.tree import DecisionTreeClassifier
 
-from scikit_longitudinal.estimators.trees import NestedTreesClassifier
+from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
 
 
 @pytest.fixture

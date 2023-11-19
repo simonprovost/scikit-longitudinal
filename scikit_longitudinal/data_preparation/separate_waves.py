@@ -7,10 +7,18 @@ import pandas as pd
 import ray
 from overrides import override
 from sklearn_fork.base import BaseEstimator, ClassifierMixin, clone
-from sklearn_fork.ensemble import StackingClassifier, VotingClassifier
 from sklearn_fork.exceptions import NotFittedError
+from sklearn_fork.linear_model import LogisticRegression
 
 from scikit_longitudinal.data_preparation.longitudinal_dataset import clean_padding
+from scikit_longitudinal.estimators.ensemble.longitudinal_stacking.longitudinal_stacking import (
+    LongitudinalStackingClassifier,
+)
+from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import (
+    LongitudinalEnsemblingStrategy,
+    LongitudinalVotingClassifier,
+)
+from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
 
 
@@ -30,10 +38,12 @@ def validate_extract_wave_input(func):
 
     """
 
-    def wrapper(self, wave: int):
+    def wrapper(self, wave: int, extract_indices: bool = False):
+        if not isinstance(extract_indices, bool):
+            raise TypeError(f"Invalid type for extract_indices: {type(extract_indices)}. It should be a boolean.")
         if wave < 0:
             raise ValueError(f"Invalid wave number: {wave}. It should be more than 0")
-        return func(self, wave)
+        return func(self, wave, extract_indices)
 
     return wrapper
 
@@ -54,13 +64,18 @@ def validate_extract_wave_output(func):  # pragma: no cover
 
     """
 
-    def wrapper(self, wave: int):
-        X_wave, y_wave = func(self, wave)
+    def wrapper(self, wave: int, extract_indices: bool = False):
+        if extract_indices:
+            X_wave, y_wave, extracted_indices = func(self, wave, extract_indices)
+        else:
+            X_wave, y_wave = func(self, wave, extract_indices)
         expected_features = len([group[wave] for group in self.features_group if wave < len(group)]) + len(
             self.non_longitudinal_features
         )
         if X_wave.shape[1] != expected_features:
             raise ValueError(f"Invalid number of features in X_wave: {X_wave.shape[1]}. Expected {expected_features}.")
+        if extract_indices:
+            return X_wave, y_wave, extracted_indices
         return X_wave, y_wave
 
     return wrapper
@@ -82,7 +97,7 @@ def validate_fit_input(func):
     """
 
     def wrapper(self, X, y):
-        if self.classifier is None or self.dataset is None or self.features_group is None:
+        if self.estimator is None or self.dataset is None or self.features_group is None:
             raise ValueError("The classifier, dataset, and feature groups must not be None.")
         return func(self, X, y)
 
@@ -157,12 +172,12 @@ def validate_predict_wave_input(func):
     """
 
     def wrapper(self, wave, X):
-        if self.classifiers is None or len(self.classifiers) == 0:
+        if self.estimators is None or len(self.estimators) == 0:
             raise NotFittedError(
                 "This SepWav instance is not fitted yet. Call 'fit' with appropriate arguments "
                 "before using this estimator."
             )
-        if not 0 <= wave < len(self.classifiers):
+        if not 0 <= wave < len(self.estimators):
             raise IndexError(f"Invalid wave number: {wave}.")
         return func(self, wave, X)
 
@@ -193,6 +208,9 @@ def train_classifier(classifier, X_wave, y_wave, wave):  # pragma: no cover
 
     """
     clf_wave = clone(classifier)
+    if hasattr(X_wave, "values") and hasattr(y_wave, "values"):
+        X_wave = X_wave.values
+        y_wave = y_wave.values
     clf_wave.fit(X_wave, y_wave)
     return f"wave_{wave}", clf_wave
 
@@ -210,7 +228,8 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
     Predict function is called, the ensemble model will be utilised to make predictions on the class variable. To
     facilitate the prediction of the class variable for a specific wave, the user can utilise the predict_wave
     method. Alternatively, users can incorporate the list of classifiers into their script and manipulate them
-    accordingly. The supported ensemble strategies encompass voting and stacking methodologies.
+    accordingly. The supported ensemble strategies encompass longitudinal voting and longitudinal stacking
+    methodologies.
 
     Attributes:
         dataset (LongitudinalDataset):
@@ -219,24 +238,14 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
             The classifier to be used.
         classifiers (List):
             A list of classifiers for each wave.
-        ensemble_strategy (str):
-            The strategy for combining the classifiers ('voting' or 'stacking').
+        voting (LongitudinalEnsemblingStrategy):
+            The ensemble strategy to be used. The supported strategies are available in the EnsemblingStrategy enum.
+        stacking_meta_learner (Union[CustomClassifierMixinEstimator, ClassifierMixin]):
+            The final estimator to be used in stacking.
         clf_ensemble (BaseEstimator):
             The combined classifier.
-        voting_weights (List[float]):
-            The weights for the voting classifier.
-        voting_strategy (str):
-            The voting strategy for the voting classifier ('hard' or 'soft').
         n_jobs (int):
             The number of jobs to run in parallel.
-        stacking_final_estimator (BaseEstimator):
-            The final estimator to be used in the stacking classifier.
-        stacking_cv (int):
-            The cross-validation strategy for the stacking classifier.
-        stacking_stack_method (str):
-            The method to be used for the stacking classifier.
-        stacking_passthrough (bool):
-            Whether to pass the inputs to the final estimator for the stacking classifier.
         parallel (bool):
             Whether to run the fit waves in parallel.
         num_cpus (int):
@@ -245,66 +254,63 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
     Example:
         ```python
         from sklearn_fork.ensemble import RandomForestClassifier
-        from sklearn_fork.linear_model import LogisticRegression
+        from scikit_longitudinal.data_preparation import LongitudinalDataset
 
         # Initialize the longitudinal data
-        longitudinal_data = LongitudinalDataset("dementia_dataset.csv")
+        longitudinal_data = LongitudinalDataset("path/to/dataset.csv")
         longitudinal_data.load_data_target_train_test_split(
-            target_column="class_dementia_w8",
+            target_column="target_column_name",
             remove_target_waves=True,
         )
         longitudinal_data.setup_features_group(input_data="elsa")
 
-        # Initialize the classifier
+        # Initialise the classifier
         classifier = RandomForestClassifier()
 
         # Initialize the SepWav instance
-        sepwav = SepWav(dataset=longitudinal_data, classifier=classifier)
+        sepwav = SepWav(
+            estimator=classifier,
+            features_group=longitudinal_data.feature_groups(),
+            non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
+            feature_list_names=longitudinal_data.data.columns.tolist(),
+            voting=LongitudinalEnsemblingStrategy.MAJORITY_VOTING
+        )
 
         # Fit and predict
         sepwav.fit(longitudinal_data.X_train, longitudinal_data.y_train)
         y_pred = sepwav.predict(longitudinal_data.X_test)
-        print(classification_report(longitudinal_data.y_test, y_pred))
         ```
 
     """
 
     def __init__(
         self,
+        estimator: Union[ClassifierMixin, CustomClassifierMixinEstimator] = None,
         features_group: List[List[int]] = None,
-        classifier: ["BaseEstimator"] = None,
         non_longitudinal_features: List[Union[int, str]] = None,
         feature_list_names: List[str] = None,
-        ensemble_strategy: str = "voting",
-        voting_weights: List[float] = None,
-        voting_strategy: str = "soft",
+        voting: LongitudinalEnsemblingStrategy = LongitudinalEnsemblingStrategy.MAJORITY_VOTING,
+        stacking_meta_learner: Union[CustomClassifierMixinEstimator, ClassifierMixin, None] = LogisticRegression(),
         n_jobs: int = None,
-        stacking_final_estimator: "BaseEstimator" = None,
-        stacking_cv: int = None,
-        stacking_stack_method: str = "auto",
-        stacking_passthrough: bool = False,
         parallel: bool = False,
         num_cpus: int = -1,
     ):
-        self.dataset = pd.DataFrame([])
-        self.target = np.ndarray([])
         self.features_group = features_group
         self.non_longitudinal_features = non_longitudinal_features
         self.feature_list_names = feature_list_names
 
-        self.classifier = classifier
-        self.classifiers = []
-        self.ensemble_strategy = ensemble_strategy
-        self.clf_ensemble = None
-        self.voting_weights = voting_weights
-        self.voting_strategy = voting_strategy
+        self.estimator = estimator
+        self.voting = voting
+        self.stacking_meta_learner = stacking_meta_learner
+
         self.n_jobs = n_jobs
-        self.stacking_final_estimator = stacking_final_estimator
-        self.stacking_cv = stacking_cv
-        self.stacking_stack_method = stacking_stack_method
-        self.stacking_passthrough = stacking_passthrough
         self.parallel = parallel
         self.num_cpus = num_cpus
+
+        self.estimators = []
+        self.dataset = pd.DataFrame([])
+        self.target = np.ndarray([])
+        self.clf_ensemble = None
 
         if self.parallel and ray.is_initialized() is False:  # pragma: no cover
             if self.num_cpus != -1:
@@ -329,7 +335,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
     @validate_extract_wave_input
     @validate_extract_wave_output
-    def _extract_wave(self, wave: int) -> tuple:
+    def _extract_wave(self, wave: int, extract_indices: bool = False) -> Union[pd.DataFrame, pd.Series, list]:
         """Extracts a specific wave from the dataset for training.
 
         This method uses the wave number to select specific features from the dataset for training.
@@ -339,9 +345,16 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         Args:
             wave (int):
                 The wave number to extract. This should be a non-negative integer.
+            extract_indices (bool):
+                Whether to return the indices of the features that were extracted.
 
         Returns:
-            tuple: A tuple containing two elements:
+            A set of three elements is returned if extract_indices is True:
+                - X_wave (DataFrame): The input samples for the wave. Each row represents an observation,
+                    and each column represents a feature.
+                - y_wave (Series): The target values for the wave.
+                - feature_indices (list): The indices of the features that were extracted.
+            Otherwise, a tuple containing two elements is returned:
                 - X_wave (DataFrame): The input samples for the wave. Each row represents an observation,
                   and each column represents a feature.
                 - y_wave (Series): The target values for the wave.
@@ -357,6 +370,8 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         X_wave = self.dataset.iloc[:, feature_indices]
         y_wave = self.target
 
+        if extract_indices and feature_indices:
+            return X_wave, y_wave, feature_indices
         return X_wave, y_wave
 
     # pylint: disable=unused-argument
@@ -395,31 +410,33 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
         if self.parallel:
             futures = [
-                train_classifier.remote(self.classifier, X_train, y_train, wave)
+                train_classifier.remote(self.estimator, X_train, y_train, wave)
                 for wave, (X_train, y_train) in enumerate(
                     self._extract_wave(wave=i) for i in range(max(len(group) for group in self.features_group))
                 )
             ]
-
-            self.classifiers = ray.get(futures)
+            self.estimators = ray.get(futures)
         else:
             for i in range(max(len(group) for group in self.features_group)):
                 X_wave, y_wave = self._extract_wave(wave=i)
-                clf_wave = clone(self.classifier)
+                clf_wave = clone(self.estimator)
+                if hasattr(X_wave, "values") and hasattr(y_wave, "values"):
+                    X_wave = X_wave.values
+                    y_wave = y_wave.values
                 clf_wave.fit(X_wave, y_wave)
-                self.classifiers.append((f"wave_{i}", clf_wave))
+                self.estimators.append((f"wave_{i}", clf_wave))
 
-        if self.ensemble_strategy == "voting":
-            self.clf_ensemble = VotingClassifier(
-                self.classifiers,
-                voting=self.voting_strategy,
-                weights=self.voting_weights,
+        if self.voting == LongitudinalEnsemblingStrategy.STACKING:
+            self.clf_ensemble = LongitudinalStackingClassifier(
+                estimators=self.estimators, meta_learner=self.stacking_meta_learner, n_jobs=self.n_jobs
+            )
+        else:
+            self.clf_ensemble = LongitudinalVotingClassifier(
+                estimators=self.estimators,
+                voting=self.voting,
+                extract_wave=self._extract_wave,
                 n_jobs=self.n_jobs,
             )
-        elif self.ensemble_strategy == "stacking":
-            self.clf_ensemble = StackingClassifier(self.classifiers, final_estimator=self.classifier)
-        else:
-            raise ValueError(f"Invalid ensemble strategy: {self.ensemble_strategy}")
 
         X_data = self.dataset.values
 
@@ -449,7 +466,11 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
                 The predicted classes.
 
         """
-        return self.clf_ensemble.predict(X)
+        if hasattr(self.clf_ensemble, "predict"):
+            return self.clf_ensemble.predict(X)
+        raise NotImplementedError(
+            f"predict is not implemented for this classifier: {self.clf_ensemble} / type: {type(self.clf_ensemble)}"
+        )
 
     @validate_predict_input
     def predict_proba(self, X: Union[List[List[float]], "np.ndarray"]) -> Union[List[List[float]], "np.ndarray"]:
@@ -489,4 +510,4 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
                 The predicted classes.
 
         """
-        return self.classifiers[wave][1].predict(X)
+        return self.estimators[wave][1].predict(X)

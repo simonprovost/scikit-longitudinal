@@ -10,7 +10,7 @@ from deepforest import CascadeForestClassifier
 from overrides import override
 from sklearn_fork.base import ClassifierMixin
 
-from scikit_longitudinal.estimators.trees.lexicographical_trees.lexico_random_forest import LexicoRFClassifier
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import LexicoRFClassifier
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 

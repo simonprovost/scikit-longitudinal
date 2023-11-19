@@ -1,10 +1,17 @@
 import pytest
 from numpy import ndarray
-from sklearn_fork.ensemble import RandomForestClassifier, StackingClassifier, VotingClassifier
+from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.exceptions import NotFittedError
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
+from scikit_longitudinal.estimators.ensemble.longitudinal_stacking.longitudinal_stacking import (
+    LongitudinalStackingClassifier,
+)
+from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import (
+    LongitudinalEnsemblingStrategy,
+    LongitudinalVotingClassifier,
+)
 
 
 class TestSeparateWaves:
@@ -16,6 +23,8 @@ class TestSeparateWaves:
             remove_target_waves=True,
             target_wave_prefix="target_",
         )
+        longitudinal_data.sety_train([0 if y == " A" else 1 for y in longitudinal_data.y_train])
+        longitudinal_data.sety_test([0 if y == " A" else 1 for y in longitudinal_data.y_test])
         longitudinal_data.setup_features_group(input_data="elsa")
 
         return longitudinal_data
@@ -27,7 +36,7 @@ class TestSeparateWaves:
     @pytest.fixture
     def sepwav(self, data, classifier):
         return SepWav(
-            classifier=classifier,
+            estimator=classifier,
             features_group=data.feature_groups(),
             non_longitudinal_features=data.non_longitudinal_features(),
             feature_list_names=data.data.columns.tolist(),
@@ -38,7 +47,7 @@ class TestSeparateWaves:
 
         y_pred = sepwav.predict(data.X_test)
         assert isinstance(y_pred, ndarray)
-        assert all(y_pred == " B") or all(y_pred == " A")
+        assert all(y_pred == 0) or all(y_pred == 1)
 
     def test_unfitted_predict(self, data, sepwav):
         with pytest.raises(NotFittedError):
@@ -51,39 +60,47 @@ class TestSeparateWaves:
             sepwav.predict("invalid_X")
 
     def test_fit_ensemble_strategy(self, data, classifier):
+        y_train = data.y_train.copy()
+        for i in range(len(y_train) // 2):
+            y_train[i] += 1
+
+        x_test = data.X_test.copy()
+        for i in range(len(x_test) // 2):
+            x_test.iloc[i, 0] += 1
+
         sepwav_voting = SepWav(
-            classifier=classifier,
+            estimator=classifier,
             features_group=data.feature_groups(),
             non_longitudinal_features=data.non_longitudinal_features(),
             feature_list_names=data.data.columns.tolist(),
-            ensemble_strategy="voting",
+            voting=LongitudinalEnsemblingStrategy.MAJORITY_VOTING,
         )
-        sepwav_voting.fit(data.X_train, data.y_train)
-        assert isinstance(sepwav_voting.clf_ensemble, VotingClassifier)
+        sepwav_voting.fit(data.X_train, y_train)
+        assert isinstance(sepwav_voting.clf_ensemble, LongitudinalVotingClassifier)
 
         sepwav_stacking = SepWav(
-            classifier=classifier,
+            estimator=classifier,
             features_group=data.feature_groups(),
             non_longitudinal_features=data.non_longitudinal_features(),
             feature_list_names=data.data.columns.tolist(),
-            ensemble_strategy="stacking",
+            voting=LongitudinalEnsemblingStrategy.STACKING,
         )
-        sepwav_stacking.fit(data.X_train, data.y_train)
-        assert isinstance(sepwav_stacking.clf_ensemble, StackingClassifier)
+        sepwav_stacking.fit(data.X_train, y_train)
+        assert isinstance(sepwav_stacking.clf_ensemble, LongitudinalStackingClassifier)
 
         sepwav_invalid = SepWav(
-            classifier=classifier,
+            estimator=classifier,
             features_group=data.feature_groups(),
             non_longitudinal_features=data.non_longitudinal_features(),
             feature_list_names=data.data.columns.tolist(),
-            ensemble_strategy="invalid",
+            voting="invalid",
         )
         with pytest.raises(ValueError, match=r".*Invalid ensemble strategy:*"):
-            sepwav_invalid.fit(data.X_train, data.y_train)
+            sepwav_invalid.fit(data.X_train, y_train)
 
     def test_parallelization(self, data, classifier):
         sepwav_parallel = SepWav(
-            classifier=classifier,
+            estimator=classifier,
             features_group=data.feature_groups(),
             non_longitudinal_features=data.non_longitudinal_features(),
             feature_list_names=data.data.columns.tolist(),
@@ -103,27 +120,26 @@ class TestSeparateWaves:
             X_test = data.X_test.iloc[:, feature_indices]
             y_pred = sepwav.predict_wave(i, X_test)
             assert isinstance(y_pred, ndarray)
-            assert all(y_pred == " B") or all(y_pred == " A")
+            assert all(y_pred == 0) or all(y_pred == 1)
 
         with pytest.raises(IndexError):
             sepwav.predict_wave(-1, data.X_test)
 
         with pytest.raises(IndexError):
-            sepwav.predict_wave(len(sepwav.classifiers), data.X_test)
+            sepwav.predict_wave(len(sepwav.estimators), data.X_test)
 
         with pytest.raises(NotFittedError):
-            sepwav.classifiers = None
+            sepwav.estimators = None
             sepwav.predict_wave(3, data.X_test)
 
         with pytest.raises(NotFittedError):
-            sepwav.classifiers = []
+            sepwav.estimators = []
             sepwav.predict_wave(3, data.X_test)
 
     def test_invalid_wave_number_predict_wave(self, data, sepwav):
         sepwav.fit(data.X_train, data.y_train)
-
         with pytest.raises(IndexError, match=r"Invalid wave number:.*"):
-            sepwav.predict_wave(len(sepwav.classifiers), data.X_test)
+            sepwav.predict_wave(len(sepwav.estimators), data.X_test)
 
     def test_validate_extract_wave_input(self, sepwav):
         with pytest.raises(ValueError, match=r".*more than 0"):
@@ -131,5 +147,5 @@ class TestSeparateWaves:
 
     def test_validate_fit_input(self, data, sepwav):
         with pytest.raises(ValueError, match=r"The classifier, dataset, and feature groups must not be None."):
-            sepwav.classifier = None
+            sepwav.estimator = None
             sepwav.fit(data.X_train, data.y_train)
