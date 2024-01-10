@@ -50,9 +50,6 @@ def ensure_valid_state(method):
         if hasattr(self, "features_group") and (self.features_group is None or len(self.features_group) <= 1):
             raise ValueError("features_group must contain more than one feature group.")
 
-        if hasattr(self, "longitudinal_base_estimators") and not self.longitudinal_base_estimators:
-            raise ValueError("longitudinal_base_estimators must be provided.")
-
         if hasattr(self, "diversity_estimators") and self.diversity_estimators is None:
             raise ValueError("diversity_estimators must be provided. True or False.")
 
@@ -226,14 +223,18 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
     def __init__(
         self,
-        features_group: List[List[int]],
-        longitudinal_base_estimators: List[LongitudinalEstimatorConfig],
+        features_group: List[List[int]] = None,
+        longitudinal_base_estimators: Optional[List[LongitudinalEstimatorConfig]] = None,
         non_longitudinal_features: List[Union[int, str]] = None,
         diversity_estimators: bool = True,
         random_state: int = None,
+        single_classifier_type: Optional[Union[LongitudinalClassifierType, str]] = None,
+        single_count: Optional[int] = None,
     ):
         self.features_group = features_group
         self.non_longitudinal_features = non_longitudinal_features
+        self.single_classifier_type = single_classifier_type
+        self.single_count = single_count
         self.longitudinal_base_estimators = longitudinal_base_estimators
         self.diversity_estimators = diversity_estimators
         self.random_state = random_state
@@ -258,11 +259,11 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         return estimators
 
     def _create_longitudinal_estimator(
-        self, classifier_type: LongitudinalClassifierType, **hyperparameters: Any
+        self, classifier_type: Union[str, LongitudinalClassifierType], **hyperparameters: Any
     ) -> ClassifierMixin:
-        if classifier_type == LongitudinalClassifierType.LEXICO_RF:
+        if classifier_type == LongitudinalClassifierType.LEXICO_RF or classifier_type == LongitudinalClassifierType.LEXICO_RF.value:
             return LexicoRFClassifier(features_group=self.features_group, **hyperparameters)
-        if classifier_type == LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF:
+        if classifier_type == LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF or classifier_type == LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF.value:
             return LexicoRFClassifier(features_group=self.features_group, max_features=1, **hyperparameters)
         raise ValueError(f"Unsupported classifier type: {classifier_type.value}")
 
@@ -285,6 +286,18 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
                 If there are less than or equal to 1 feature group.
 
         """
+        if self.single_classifier_type is not None and self.single_count is not None:
+            self.longitudinal_base_estimators = [
+                LongitudinalEstimatorConfig(
+                    classifier_type=self.single_classifier_type,
+                    count=self.single_count,
+                )
+            ]
+        else:
+            if self.longitudinal_base_estimators is None:
+                raise ValueError("longitudinal_base_estimators must be provided.")
+        if self.features_group is None or len(self.features_group) <= 1:
+            raise ValueError("features_group must contain more than one feature group.")
         self._deep_forest = CascadeForestClassifier(
             random_state=self.random_state,
         )
