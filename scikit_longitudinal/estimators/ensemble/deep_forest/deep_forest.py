@@ -12,6 +12,7 @@ from sklearn_fork.base import ClassifierMixin
 
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import LexicoRFClassifier
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
+from sklearn_fork.utils.multiclass import unique_labels
 
 
 def ensure_valid_state(method):
@@ -239,6 +240,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         self.diversity_estimators = diversity_estimators
         self.random_state = random_state
         self._deep_forest = None
+        self.classes_ = None
 
     @property
     def base_longitudinal_estimators(self) -> List[ClassifierMixin]:
@@ -302,6 +304,8 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
             random_state=self.random_state,
         )
         self._deep_forest.set_estimator(self.base_longitudinal_estimators)
+        if self.classes_ is None:
+            self.classes_ = unique_labels(y)
         self._deep_forest.fit(X, y)
         return self
 
