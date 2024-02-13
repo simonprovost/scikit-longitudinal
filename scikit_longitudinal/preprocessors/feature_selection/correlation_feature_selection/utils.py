@@ -5,6 +5,7 @@ from math import log
 from typing import List
 
 import numpy as np
+import ray
 
 
 def discrete_entropy(samples, base=2):
@@ -187,8 +188,63 @@ def merit_calculation(X: np.ndarray, y: np.ndarray) -> float:
     return 0 if denominator == 0 else class_feature_correlation_sum / denominator
 
 
-def _exhaustive_search(X: np.ndarray, y: np.ndarray) -> List[int]:
+@ray.remote
+def symmetrical_uncertainty_parallel(feature1, feature2):
+    return symmetrical_uncertainty(feature1, feature2)
+
+
+def merit_calculation_parallel(X: np.ndarray, y: np.ndarray) -> float:
+    _, n_features = X.shape
+    feature_feature_correlation_sum = 0  # Dummy initialization to avoid memory leak
+    class_feature_correlation_sum = 0  # Dummy initialization to avoid memory leak
+
+    futures_class_feature = [symmetrical_uncertainty_parallel.remote(X[:, i], y) for i in range(n_features)]
+    class_feature_correlation_results = ray.get(futures_class_feature)
+    class_feature_correlation_sum = sum(class_feature_correlation_results)
+
+    futures_feature_feature = []
+    for i in range(n_features):
+        for j in range(i + 1, n_features):
+            futures_feature_feature.append(symmetrical_uncertainty_parallel.remote(X[:, i], X[:, j]))
+
+    feature_feature_correlation_results = ray.get(futures_feature_feature)
+    feature_feature_correlation_sum = sum(feature_feature_correlation_results) * 2
+
+    denominator = np.sqrt(n_features + feature_feature_correlation_sum)
+
+    return 0 if denominator == 0 else class_feature_correlation_sum / denominator
+
+
+@ray.remote
+def evaluate_remote_candidate(X_subset, y):
+    return merit_calculation(X_subset, y)
+
+
+def _exhaustive_search(X: np.ndarray, y: np.ndarray, parallel: bool = False) -> List[int]:
+    """Perform an exhaustive search to select the best feature subset.
+
+    Args:
+        X:
+            A numpy array of shape (n_samples, n_features) representing the input data.
+        y:
+            A numpy array of shape (n_samples) representing the input class labels.
+        parallel:
+            A boolean that indicates whether to use parallel computation. It means that the search will be performed
+            using Ray, for each candidate feature subset it will calculate the merit in parallel.
+
+    Returns:
+        A list of integers that represents the indices of the selected features.
+
+    """
+    if parallel and not ray.is_initialized():
+        ray.init()
     n_features = X.shape[1]
+    if parallel:
+        return max(
+            (feature_set for r in range(1, n_features + 1) for feature_set in combinations(range(n_features), r)),
+            key=lambda feature_set: evaluate_remote_candidate.remote(X[:, feature_set], y),
+            default=[],
+        )
     return max(
         (feature_set for r in range(1, n_features + 1) for feature_set in combinations(range(n_features), r)),
         key=lambda feature_set: merit_calculation(X[:, feature_set], y),
@@ -196,53 +252,63 @@ def _exhaustive_search(X: np.ndarray, y: np.ndarray) -> List[int]:
     )
 
 
-def _greedy_search(X: np.ndarray, y: np.ndarray) -> List[int]:
-    """Performs greedy search for feature selection.
+def _greedy_search(X: np.ndarray, y: np.ndarray, parallel: bool = False) -> List[int]:
+    """Perform a greedy search to select the best feature subset.
 
-     This method starts with an empty set of features and iteratively adds
-     or removes a feature based on the merit score, which takes into account
-     the correlation with the target variable and the inter-feature correlations.
-     The process continues until no further improvement in the merit score is achieved.
+    Type of search: forward selection.
 
     Args:
-        X (np.ndarray):
-            Input data of shape (n_samples, n_features).
-        y (np.ndarray):
-            Target variable of shape (n_samples).
+        X:
+            A numpy array of shape (n_samples, n_features) representing the input data.
+        y:
+            A numpy array of shape (n_samples) representing the input class labels.
+        parallel:
+            A boolean that indicates whether to use parallel computation. It means that the search will be performed
+            using Ray, for each candidate feature subset it will calculate the merit in parallel.
 
     Returns:
-        List[int]: A list of selected feature indices.
+        A list of integers that represents the indices of the selected features.
 
     """
+    if parallel and not ray.is_initialized():
+        ray.init()
     n_features = X.shape[1]
     selected_features: List[int] = []
     merit_scores: List[float] = []
 
     while True:
-        current_merit = merit_calculation(X[:, selected_features], y)
+        if parallel:
+            current_merit = merit_calculation_parallel(X[:, selected_features], y)
+        else:
+            current_merit = merit_calculation(X[:, selected_features], y)
         merit_scores.append(current_merit)
 
-        add_candidates = [
-            (merit_calculation(X[:, selected_features + [i]], y), i)
-            for i in range(n_features)
-            if i not in selected_features
-        ]
-        remove_candidates = [
-            (merit_calculation(X[:, [i for i in selected_features if i != j]], y), j) for j in selected_features
-        ]
+        if parallel:
+            add_candidates_futures = [
+                evaluate_remote_candidate.remote(X[:, selected_features + [i]], y)
+                for i in range(n_features)
+                if i not in selected_features
+            ]
+            add_candidates = ray.get(add_candidates_futures)
+        else:
+            add_candidates = [
+                merit_calculation(X[:, selected_features + [i]], y)
+                for i in range(n_features) if i not in selected_features
+            ]
 
-        all_candidates = add_candidates + remove_candidates
-        best_merit, best_idx = max(all_candidates, key=lambda x: x[0], default=(-np.inf, -1))
+        candidate_indices = [i for i in range(n_features) if i not in selected_features]
+        add_candidates_with_indices = list(zip(add_candidates, candidate_indices))
+        best_merit, best_idx = max(add_candidates_with_indices, key=lambda x: x[0], default=(-np.inf, -1))
 
-        if len(merit_scores) > 5:
-            if all(merit_scores[-(i + 1)] <= merit_scores[-(i + 2)] for i in range(5)):
-                break
+        if (
+                len(merit_scores) > 5
+                and all(merit_scores[-(i + 1)] <= merit_scores[-(i + 2)] for i in range(1, 5))
+        ):
+            break
 
         if best_merit <= current_merit:
             break
 
-        if best_idx in selected_features:
-            selected_features.remove(best_idx)
-        else:
-            selected_features.append(best_idx)
+        selected_features.append(best_idx)
+
     return selected_features

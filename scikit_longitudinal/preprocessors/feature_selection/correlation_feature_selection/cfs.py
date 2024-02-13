@@ -1,4 +1,5 @@
 import numpy as np
+import ray
 from overrides import override
 
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.utils import (
@@ -23,6 +24,12 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
     Args:
         search_method : str, default="greedySearch"
             The search method to use. Options are "exhaustiveSearch", and "greedySearch".
+        parrallel : bool, default=False
+            A boolean that indicates whether to use parallel computation. It means that the search will be performed
+            using Ray, for each candidate feature subset it will calculate the merit in parallel. Further details
+            are provided in the search algorithms themselves, in the utils.py file.
+        num_cpus : int, default=0
+            The number of CPUs to use for parallel computation. Used only if parrallel is True. If 0, it has no effect.
 
     Attributes:
         selected_features_ : ndarray of shape (n_features,)
@@ -57,12 +64,26 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
     def __init__(
         self,
         search_method: str = "greedySearch",
+            parallel: bool = False,
+            num_cpus: int = -1,
     ):
-        assert search_method in {
+        if search_method not in {
             "exhaustiveSearch",
             "greedySearch",
-        }, "search_method must be: 'exhaustiveSearch', or 'greedySearch'"
+        }:
+            raise ValueError("search_method must be: 'exhaustiveSearch', or 'greedySearch'")
 
+        if not isinstance(parallel, bool):
+            raise ValueError("parallel must be a boolean.")
+        if not isinstance(num_cpus, int):
+            raise ValueError("num_cpus must be an integer.")
+        if parallel and num_cpus <= 0:
+            raise ValueError("num_cpus must be greater than 0.")
+
+        if parallel and not ray.is_initialized():
+            ray.init(num_cpus=num_cpus)
+
+        self._parallel = parallel
         self.search_method = search_method
         self.selected_features_ = []
 
@@ -81,9 +102,9 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
 
         """
         if self.search_method == "exhaustiveSearch":
-            self.selected_features_ = _exhaustive_search(X, y)
+            self.selected_features_ = _exhaustive_search(X, y, self._parallel)
         elif self.search_method == "greedySearch":
-            self.selected_features_ = _greedy_search(X, y)
+            self.selected_features_ = _greedy_search(X, y, self._parallel)
         else:
             raise ValueError(f"Search method {self.search_method} is not supported.")
         return self
