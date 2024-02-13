@@ -136,10 +136,13 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         version=1,
         num_cpus: int = -1,
     ):
-        assert search_method in {
+        if search_method not in {
             "exhaustiveSearch",
             "greedySearch",
-        }, "search_method must be: 'exhaustiveSearch', or 'greedySearch'"
+        }:
+            raise ValueError(
+                "search_method must be: 'exhaustiveSearch', or 'greedySearch'"
+            )
 
         self.search_method = search_method
         self.features_group = features_group
@@ -210,9 +213,9 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
                 raise ValueError(f"Version {self.version} is not supported. Please choose version 1 or 2.")
         else:
             if self.search_method == "exhaustiveSearch":
-                self.selected_features_ = _exhaustive_search(X, y)
+                self.selected_features_ = _exhaustive_search(X, y, parallel=False)
             elif self.search_method == "greedySearch":
-                self.selected_features_ = _greedy_search(X, y)
+                self.selected_features_ = _greedy_search(X, y, parallel=False)
             else:
                 raise ValueError(f"Search method {self.search_method} is not supported.")
 
@@ -221,6 +224,10 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
     @override
     def _transform(self, X: np.ndarray) -> np.ndarray:
         """Reduces the input data to only the selected features.
+
+        Note: This method is not used in the current implementation of the CFS algorithm with the CFS per group.
+        Instead, the apply_selected_features_and_rename method is used to apply the selected features and rename
+        non-longitudinal features accordingly.
 
         Args:
             X:
