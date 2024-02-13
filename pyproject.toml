@@ -52,13 +52,14 @@ _create_env = {shell = "pdm venv create --with-pip 3.9 --force"}
 _set_env_var = {shell = "echo 'could you please run `export PDM_IN_ENV=in-project`'"}
 _activate_env = {cmd = "echo 'could you please activate the environment via `eval $(pdm venv activate (dollar-sign)PDM_IN_ENV)`'"}
 setup_project = {composite = ["_use_python39", "_create_env", "_set_env_var", "_activate_env"]}
-remove_env = {cmd = "pdm venv remove $PDM_IN_ENV"}
+remove_env = { cmd = "pdm venv remove ${PDM_IN_ENV}" }
 _clean_project = {cmd = "echo could you please deactivate the environment via `conda deactivate` then run `pdm run remove_env`"}
 clean = {composite = ["_check_pdm_vars", "_clean_project"]}
-_install_deps = {cmd = "pdm install --venv $PDM_IN_ENV"}
+_install_deps = { cmd = "pdm install --venv ${PDM_IN_ENV}" }
 _build_scikit_tree = {shell = "cd ./scikit-learn/ && pip install --verbose --no-build-isolation --editable ./ && cd .."}
 _check_env = {call = "scripts.pdm.pdm_pre_install:check_environment_variables"}
 _check_pdm_vars = {call = "scripts.pdm.pdm_pre_install:check_pdm_variables"}
+_risky_clean = { shell = "rm -rf pdm.lock __pypackages__" }
 install_project = {composite = ["_check_pdm_vars", "_check_env", "_install_deps", "_build_scikit_tree"]}
 view_env = {cmd = "pdm venv list"}
 
