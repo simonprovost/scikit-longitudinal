@@ -297,9 +297,8 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
                     count=self.single_count,
                 )
             ]
-        else:
-            if self.longitudinal_base_estimators is None:
-                raise ValueError("longitudinal_base_estimators must be provided.")
+        elif self.longitudinal_base_estimators is None:
+            raise ValueError("longitudinal_base_estimators must be provided.")
         if self.features_group is None or len(self.features_group) <= 1:
             raise ValueError("features_group must contain more than one feature group.")
         self._deep_forest = CascadeForestClassifier(

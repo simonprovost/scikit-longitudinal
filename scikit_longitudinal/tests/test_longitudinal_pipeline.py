@@ -348,14 +348,12 @@ pipelines_dict = {
     "MerWavTimePlusLexicoRFClassifier": MerWavTimePlusLexicoRFClassifier,
     "MerWavTimePlusLexicoDTClassifier": MerWavTimePlusLexicoDTClassifier,
     "MerWavTimePlusNestedTree": MerWavTimePlusNestedTree,
-    # The following tests are commented out because they take too long to run
-    # Feel free to uncomment them if you want to run them
-    # "MerWavTimeMinusStandardCFSDecisionTreeClassifier": MerWavTimeMinusStandardCFSDecisionTreeClassifier,
-    # "AggrFuncStandardCFSDecisionTreeClassifier": AggrFuncStandardCFSDecisionTreeClassifier,
-    # "SepWavStandardCFSDecisionTreeClassifierVoting": SepWavStandardCFSDecisionTreeClassifierVoting,
-    # "SepWavStandardCFSDecisionTreeClassifierStacking": SepWavStandardCFSDecisionTreeClassifierStacking,
-    # "MerWavTimePlusExhaustiveCFSNestedTree": MerWavTimePlusExhaustiveCFSNestedTree,
-    # "MerWavTimePlusExhaustiveCFSLexicoRFClassifier": MerWavTimePlusExhaustiveCFSLexicoRFClassifier,
+    "MerWavTimeMinusStandardCFSDecisionTreeClassifier": MerWavTimeMinusStandardCFSDecisionTreeClassifier,
+    "AggrFuncStandardCFSDecisionTreeClassifier": AggrFuncStandardCFSDecisionTreeClassifier,
+    "SepWavStandardCFSDecisionTreeClassifierVoting": SepWavStandardCFSDecisionTreeClassifierVoting,
+    "SepWavStandardCFSDecisionTreeClassifierStacking": SepWavStandardCFSDecisionTreeClassifierStacking,
+    "MerWavTimePlusExhaustiveCFSNestedTree": MerWavTimePlusExhaustiveCFSNestedTree,
+    "MerWavTimePlusExhaustiveCFSLexicoRFClassifier": MerWavTimePlusExhaustiveCFSLexicoRFClassifier,
 }
 
 

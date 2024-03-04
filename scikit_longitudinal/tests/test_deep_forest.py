@@ -155,7 +155,7 @@ class TestDeepForest:
 
     def test_missing_longitudinal_base_estimators(self, synthetic_data):
         X, y, features_group, _ = synthetic_data
-        classifier = DeepForestsLongitudinalClassifier(features_group=features_group, longitudinal_base_estimators=[])
+        classifier = DeepForestsLongitudinalClassifier(features_group=features_group)
         with pytest.raises(ValueError) as e:
             classifier.fit(X, y)
         assert str(e.value) == "longitudinal_base_estimators must be provided."
