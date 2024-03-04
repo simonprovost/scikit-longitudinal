@@ -9,10 +9,10 @@ import numpy as np
 from deepforest import CascadeForestClassifier
 from overrides import override
 from sklearn_fork.base import ClassifierMixin
+from sklearn_fork.utils.multiclass import unique_labels
 
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import LexicoRFClassifier
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
-from sklearn_fork.utils.multiclass import unique_labels
 
 
 def ensure_valid_state(method):
@@ -231,6 +231,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         random_state: int = None,
         single_classifier_type: Optional[Union[LongitudinalClassifierType, str]] = None,
         single_count: Optional[int] = None,
+        max_layers: int = 5,
     ):
         self.features_group = features_group
         self.non_longitudinal_features = non_longitudinal_features
@@ -241,6 +242,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         self.random_state = random_state
         self._deep_forest = None
         self.classes_ = None
+        self.max_layers = max_layers
 
     @property
     def base_longitudinal_estimators(self) -> List[ClassifierMixin]:
@@ -302,8 +304,9 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
             raise ValueError("features_group must contain more than one feature group.")
         self._deep_forest = CascadeForestClassifier(
             random_state=self.random_state,
+            max_layers=self.max_layers,
         )
-        self._deep_forest.set_estimator(self.base_longitudinal_estimators)
+        self._deep_forest.set_estimator(self.base_longitudinal_estimators, n_splits=2)
         if self.classes_ is None:
             self.classes_ = unique_labels(y)
         self._deep_forest.fit(X, y)
