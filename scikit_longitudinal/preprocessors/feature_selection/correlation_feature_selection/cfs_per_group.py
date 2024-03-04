@@ -7,10 +7,8 @@ import pandas as pd
 import ray
 from overrides import override
 
-from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.utils import (
-    _exhaustive_search,
-    _greedy_search,
-)
+from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.algorithms import \
+    _exhaustive_search, _greedy_search
 from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 
 
@@ -65,19 +63,20 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
     Examples:
         >>> # With the longitudinal component:
-        >>> group_features = [(0, 1, 2), (3, 4, 5), (6, 7, 8, 9)]
+        >>> features_group = [(0, 1, 2), (3, 4, 5), (6, 7, 8, 9)]
         >>> cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
-        ...     group_features=group_features)
+        ...     features_group=features_group
+        ... )
         >>> cfs_longitudinal.fit(X, y)
         >>> X_longitudinal_selected = cfs_longitudinal.transform(X)
         >>> X_longitudinal_selected.shape
         >>> # (100, N) ; N is the number of selected features
 
         >>> # With the longitudinal component and parallel processing:
-        >>> group_features = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19)]
+        >>> features_group = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19)]
         >>> cfs_longitudinal  = CorrelationBasedFeatureSelectionPerGroup(
         ...     search_method="greedySearch",
-        ...     group_features=group_features,
+        ...     features_group=features_group,
         ...     parallel=True,
         ...     num_cpus=4
         ... )
@@ -88,14 +87,18 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         >>> # Example of using the apply_selected_features_and_rename method (alternative to transform):
         >>> data = np.random.random((100, 20))
         >>> df = pd.DataFrame(data, columns=[f'feature{i}_w1' for i in range(10)] +
-            [f'feature{i}_w2' for i in range(10)])
+        ...     [f'feature{i}_w2' for i in range(10)]
+        ... )
         >>> y = np.random.randint(0, 2, 100)
         >>> non_longitudinal_features = [0, 1, 2]  # First three features are non-longitudinal
-        >>> cfs = CorrelationBasedFeatureSelectionPerGroup(non_longitudinal_features=non_longitudinal_features)
+        >>> cfs = CorrelationBasedFeatureSelectionPerGroup(
+        ...     # features_group=<your_features_group>,
+        ...     non_longitudinal_features=non_longitudinal_features
+        ... )
         >>> cfs.fit(df, y)
         >>> df_selected = cfs.apply_selected_features_and_rename(df)
         >>> df_selected.columns
-        >>> # Index([...]) ; Selected features and updated column names
+        >>> # Index([...]) ; Selected features and ** updated column names **
 
     Notes:
         The improved CFS algorithm is based on the following references:
@@ -297,10 +300,9 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
                 The regex pattern to use for renaming non-longitudinal features. Follow by default the
                 Elsa naming convention for longitudinal features.
 
-        Returns
-        -------
-        pd.DataFrame
-            The modified DataFrame with selected features applied and non-longitudinal features renamed.
+        Returns:
+            pd.DataFrame
+                The modified DataFrame with selected features applied and non-longitudinal features renamed.
 
         """
         # Apply selected features
