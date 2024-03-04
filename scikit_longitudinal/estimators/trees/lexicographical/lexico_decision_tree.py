@@ -1,6 +1,6 @@
 # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member,R0801
 
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from sklearn_fork.tree import DecisionTreeClassifier
 
@@ -107,7 +107,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
         min_samples_split: int = 2,
         min_samples_leaf: int = 1,
         min_weight_fraction_leaf: float = 0.0,
-        max_features: Optional[int] = None,
+            max_features: Optional[Union[int, str]] = None,
         random_state: Optional[int] = None,
         max_leaf_nodes: Optional[int] = None,
         min_impurity_decrease: float = 0.0,
