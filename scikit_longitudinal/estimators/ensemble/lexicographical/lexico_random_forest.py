@@ -1,6 +1,6 @@
 # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member,R0801,R0901,R0902,W0221,R0401
 
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from sklearn_fork.ensemble import RandomForestClassifier
 
@@ -92,7 +92,7 @@ class LexicoRFClassifier(RandomForestClassifier):
         min_samples_split: int = 2,
         min_samples_leaf: int = 1,
         min_weight_fraction_leaf: float = 0.0,
-        max_features: Optional[int] = None,
+            max_features: Optional[Union[int, str]] = 'sqrt',
         max_leaf_nodes: Optional[int] = None,
         min_impurity_decrease: float = 0.0,
         class_weight: Optional[str] = None,
