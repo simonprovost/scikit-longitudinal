@@ -80,10 +80,16 @@ def all_scikit_longitudinal_estimators(type_filter=None):
         c
         for c in all_classes
         if (
-            (issubclass(c[1], CustomTransformerMixinEstimator) and c[0] != "CustomTransformerMixinEstimator") or
-            (issubclass(c[1], CustomClassifierMixinEstimator) and c[0] != "CustomClassifierMixinEstimator") or
-            (issubclass(c[1], DataPreparationMixin) and c[0] != "DataPreparationMixin") or
-            (issubclass(c[1], BaseEstimator) and c[0] in ["LexicoRFClassifier", "LexicoDecisionTreeClassifier"])
+                (issubclass(c[1], CustomTransformerMixinEstimator) and c[0] != "CustomTransformerMixinEstimator") or
+                (issubclass(c[1], CustomClassifierMixinEstimator) and c[0] != "CustomClassifierMixinEstimator") or
+                (issubclass(c[1], DataPreparationMixin) and c[0] != "DataPreparationMixin") or
+                (issubclass(c[1], BaseEstimator) and c[0] in [
+                    "LexicoGradientBoostingClassifier",
+                    "LexicoRandomForestClassifier",
+                    "LexicoDecisionTreeClassifier",
+                    "LexicoDecisionTreeRegressor",
+                    "LexicoDeepForestClassifier",
+                ])
         )
     ]
     # get rid of abstract base classes
@@ -106,8 +112,14 @@ def all_scikit_longitudinal_estimators(type_filter=None):
                 if name == "classifier":
                     filtered_estimators.extend(
                         [est for est in estimators if (
-                            issubclass(est[1], mixin) or
-                            (issubclass(est[1], BaseEstimator) and est[0] in ["LexicoRFClassifier", "LexicoDecisionTreeClassifier"])
+                                issubclass(est[1], mixin) or
+                                (issubclass(est[1], BaseEstimator) and est[0] in [
+                                    "LexicoGradientBoostingClassifier",
+                                    "LexicoRandomForestClassifier",
+                                    "LexicoDecisionTreeClassifier",
+                                    "LexicoDecisionTreeRegressor",
+                                    "LexicoDeepForestClassifier",
+                                ])
                         )]
                     )
                 else:
