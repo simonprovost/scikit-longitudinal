@@ -10,7 +10,7 @@ from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 from scikit_longitudinal.data_preparation.merwav_time_minus import MerWavTimeMinus
 from scikit_longitudinal.data_preparation.merwav_time_plus import MerWavTimePlus
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
-from scikit_longitudinal.estimators.ensemble import LexicoRFClassifier, NestedTreesClassifier
+from scikit_longitudinal.estimators.ensemble import LexicoRandomForestClassifier, NestedTreesClassifier
 from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import (
     LongitudinalEnsemblingStrategy,
 )
@@ -234,8 +234,8 @@ def MerWavTimePlusExhaustiveCFSLexicoRFClassifier(longitudinal_data):
             ),
         ),
         (
-            "LexicoRFClassifier",
-            LexicoRFClassifier(
+            "LexicoRandomForestClassifier",
+            LexicoRandomForestClassifier(
                 n_estimators=5,
                 features_group=longitudinal_data.feature_groups(),
                 random_state=42,
@@ -256,8 +256,8 @@ def MerWavTimePlusLexicoRFClassifier(longitudinal_data):
             ),
         ),
         (
-            "LexicoRFClassifier",
-            LexicoRFClassifier(
+            "LexicoRandomForestClassifier",
+            LexicoRandomForestClassifier(
                 n_estimators=5,
                 features_group=longitudinal_data.feature_groups(),
                 random_state=42,

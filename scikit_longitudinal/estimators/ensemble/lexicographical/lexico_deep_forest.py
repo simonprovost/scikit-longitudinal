@@ -11,7 +11,7 @@ from overrides import override
 from sklearn_fork.base import ClassifierMixin
 from sklearn_fork.utils.multiclass import unique_labels
 
-from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import LexicoRFClassifier
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import LexicoRandomForestClassifier
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 
@@ -63,7 +63,7 @@ class LongitudinalClassifierType(Enum):
     """Enumeration of classifier types that are adapted for longitudinal data analysis.
 
     This enumeration provides identifiers for longitudinal-adapted classifiers that can be used within the
-    DeepForestsLongitudinalClassifier ensemble.
+    LexicoDeepForestClassifier ensemble.
 
     Attributes:
         LEXICO_RF: Identifier for a Lexico Random Forest Classifier.
@@ -71,13 +71,13 @@ class LongitudinalClassifierType(Enum):
 
     """
 
-    LEXICO_RF = "LexicoRFClassifier"
+    LEXICO_RF = "LexicoRandomForestClassifier"
     COMPLETE_RANDOM_LEXICO_RF = "LexicoCompleteRFClassifier"
 
 
 @dataclass
 class LongitudinalEstimatorConfig:
-    """Configuration for a longitudinal base estimator within the DeepForestsLongitudinalClassifier ensemble.
+    """Configuration for a longitudinal base estimator within the LexicoDeepForestClassifier ensemble.
 
     This configuration class is used to specify the type of longitudinal classifier, the number of times it should be
     instantiated within the ensemble, and any hyperparameters for the individual classifiers.
@@ -97,7 +97,7 @@ class LongitudinalEstimatorConfig:
     hyperparameters: Optional[Dict[str, Any]] = None
 
 
-class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
+class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
     """Deep Forest Classifier adapted for longitudinal data analysis.
 
     Deep Forests Longitudinal Classifier is an advanced ensemble algorithm designed specifically for longitudinal
@@ -110,7 +110,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
     1. Accurate Learners (longitudinal base estimators): These are the primary estimators that form the backbone
        of the ensemble. They are adapted from conventional machine learning algorithms to better handle the
        temporal aspect of longitudinal data. Currently, the following base estimators are supported:
-       - LexicoRFClassifier
+       - LexicoRandomForestClassifier
        - LexicoCompleteRFClassifier
     2. Weak Learners (diversity estimators): In addition to the accurate learners, the ensemble includes
        diversity estimators to enhance the overall diversity of the model. These estimators, which are typically
@@ -142,7 +142,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
             enabled, diversity estimators, which function as weak learners, are added to the ensemble to enhance
             its diversity and, by extension, its predictive performance. Disabling this option results in an ensemble
             comprising solely of the specified base longitudinal-adapted algorithms. The diversity is achieved by
-            integrating two additional completely random LexicoRFClassifier instances into the ensemble.
+            integrating two additional completely random LexicoRandomForestClassifier instances into the ensemble.
         random_state (int, optional):
             The seed used by the random number generator. Defaults to None.
 
@@ -158,7 +158,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         ...     count=3,
         ...     hyperparameters={'max_depth': 5, 'n_estimators': 10}
         ... )
-        >>> clf = DeepForestsLongitudinalClassifier(
+        >>> clf = LexicoDeepForestClassifier(
         ...     features_group=features_group,
         ...     non_longitudinal_features=non_longitudinal_features,
         ...     longitudinal_base_estimators=[lexico_rf_config],
@@ -173,7 +173,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         ...     count=2,
         ...     hyperparameters={'max_depth': 3, 'n_estimators': 5}
         ... )
-        >>> clf = DeepForestsLongitudinalClassifier(
+        >>> clf = LexicoDeepForestClassifier(
         ...     features_group=features_group,
         ...     non_longitudinal_features=non_longitudinal_features,
         ...     longitudinal_base_estimators=[lexico_rf_config, complete_random_lexico_rf],
@@ -183,7 +183,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         >>> clf.predict(X)
 
         # Example without specifying count and hyperparameters, using default values
-        >>> clf = DeepForestsLongitudinalClassifier(
+        >>> clf = LexicoDeepForestClassifier(
         ...     features_group=features_group,
         ...     non_longitudinal_features=non_longitudinal_features,
         ...     longitudinal_base_estimators=[
@@ -196,7 +196,7 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         >>> clf.predict(X)
 
         # Example with diversity estimators disabled
-        >>> clf = DeepForestsLongitudinalClassifier(
+        >>> clf = LexicoDeepForestClassifier(
         ...     features_group=features_group,
         ...     non_longitudinal_features=non_longitudinal_features,
         ...     longitudinal_base_estimators=[lexico_rf_config],
@@ -266,14 +266,14 @@ class DeepForestsLongitudinalClassifier(CustomClassifierMixinEstimator):
         self, classifier_type: Union[str, LongitudinalClassifierType], **hyperparameters: Any
     ) -> ClassifierMixin:
         if classifier_type == LongitudinalClassifierType.LEXICO_RF or classifier_type == LongitudinalClassifierType.LEXICO_RF.value:
-            return LexicoRFClassifier(features_group=self.features_group, **hyperparameters)
+            return LexicoRandomForestClassifier(features_group=self.features_group, **hyperparameters)
         if classifier_type == LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF or classifier_type == LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF.value:
-            return LexicoRFClassifier(features_group=self.features_group, max_features=1, **hyperparameters)
+            return LexicoRandomForestClassifier(features_group=self.features_group, max_features=1, **hyperparameters)
         raise ValueError(f"Unsupported classifier type: {classifier_type.value}")
 
     @ensure_valid_state
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray) -> "DeepForestsLongitudinalClassifier":
+    def _fit(self, X: np.ndarray, y: np.ndarray) -> "LexicoDeepForestClassifier":
         """Fit the Deep Forest Longitudinal Classifier model according to the given training data.
 
         Args:
