@@ -11,13 +11,21 @@
 
 # See _splitter.pyx for details.
 
-from ._criterion cimport BaseCriterion, Criterion
+from ._criterion cimport
 
-from ._tree cimport DTYPE_t          # Type of X
-from ._tree cimport DOUBLE_t         # Type of y, sample_weight
-from ._tree cimport SIZE_t           # Type for indices and counters
-from ._tree cimport INT32_t          # Signed 32 bit integer
-from ._tree cimport UINT32_t         # Unsigned 32 bit integer
+Criterion
+from ._tree cimport
+
+DOUBLE_t  # Type of y, sample_weight
+from ._tree cimport
+
+DTYPE_t  # Type of X
+from ._tree cimport
+
+SIZE_t  # Type for indices and counters
+from ._tree cimport
+
+UINT32_t  # Unsigned 32 bit integer
 
 cdef struct SplitRecord:
     # Data to track sample split
@@ -97,7 +105,7 @@ cdef class Splitter(BaseSplitter):
     cdef const DOUBLE_t[:, ::1] y
 
     cdef float threshold_gain
-    cdef list features_group
+    cdef dict feature_index_map
 
     cdef int init(
         self,
@@ -105,7 +113,7 @@ cdef class Splitter(BaseSplitter):
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight,
         float threshold_gain,
-        list features_group
+        dict feature_index_map,
     ) except -1
 
     # Methods that allow modifications to stopping conditions

@@ -13,23 +13,41 @@
 #
 # License: BSD 3 clause
 
-from cpython cimport Py_INCREF, PyObject, PyTypeObject
-
-from libc.stdlib cimport free
-from libc.string cimport memcpy
-from libc.string cimport memset
-from libc.stdint cimport INTPTR_MAX
-from libcpp.vector cimport vector
-from libcpp.algorithm cimport pop_heap
-from libcpp.algorithm cimport push_heap
-from libcpp cimport bool
-from cython.operator cimport dereference as deref
-from libc.stdlib cimport malloc, free
-
 import struct
 
+cimport
+numpy as cnp
 import numpy as np
-cimport numpy as cnp
+from cpython cimport
+
+Py_INCREF, PyObject, PyTypeObject
+from cython.operator cimport
+
+dereference as deref
+from libc.stdint cimport
+
+INTPTR_MAX
+from libc.stdlib cimport
+
+malloc, free
+from libc.string cimport
+
+memcpy
+from libc.string cimport
+
+memset
+from libcpp cimport
+
+bool
+from libcpp.algorithm cimport
+
+pop_heap
+from libcpp.algorithm cimport
+
+push_heap
+from libcpp.vector cimport
+
+vector
 cnp.import_array()
 
 from scipy.sparse import issparse
@@ -149,13 +167,14 @@ cdef struct StackRecord:
 
 cdef class DepthFirstTreeBuilder(TreeBuilder):
     """Build a decision tree in depth-first fashion."""
-    cdef float threshold_gain  # Add this line
-    cdef list features_group   # Add this line
+    cdef float threshold_gain
+    cdef dict feature_index_map
+
 
     def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
                   SIZE_t max_depth, double min_impurity_decrease,
-                  float threshold_gain, list features_group):
+                  float threshold_gain, dict feature_index_map):
         self.splitter = splitter
         self.min_samples_split = min_samples_split
         self.min_samples_leaf = min_samples_leaf
@@ -163,7 +182,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         self.max_depth = max_depth
         self.min_impurity_decrease = min_impurity_decrease
         self.threshold_gain = threshold_gain
-        self.features_group = features_group
+        self.feature_index_map = feature_index_map
 
     cpdef build(
         self,
@@ -171,7 +190,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         object X,
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight=None,
-        float threshold_gain=0.15, list features_group=None
+        float threshold_gain=0.0015, dict feature_index_map=None,
     ):
         """Build a decision tree from the training set (X, y)."""
 
@@ -197,7 +216,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef double min_impurity_decrease = self.min_impurity_decrease
 
         # Recursive partition (without actual recursion)
-        splitter.init(X, y, sample_weight, self.threshold_gain, self.features_group)
+        splitter.init(X, y, sample_weight, self.threshold_gain, self.feature_index_map)
 
         cdef SIZE_t start
         cdef SIZE_t end
@@ -360,13 +379,13 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
     highest impurity improvement.
     """
     cdef SIZE_t max_leaf_nodes
-    cdef float threshold_gain  # Add this line
-    cdef list features_group   # Add this line
+    cdef float threshold_gain
+    cdef dict feature_index_map
 
     def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
                   SIZE_t min_samples_leaf,  min_weight_leaf,
                   SIZE_t max_depth, SIZE_t max_leaf_nodes,
-                  double min_impurity_decrease, float threshold_gain, list feature_groups):
+                  double min_impurity_decrease, float threshold_gain, dict feature_index_map):
         self.splitter = splitter
         self.min_samples_split = min_samples_split
         self.min_samples_leaf = min_samples_leaf
@@ -375,7 +394,7 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
         self.max_leaf_nodes = max_leaf_nodes
         self.min_impurity_decrease = min_impurity_decrease
         self.threshold_gain = threshold_gain
-        self.feature_groups = feature_groups
+        self.feature_index_map = feature_index_map
 
     cpdef build(
         self,
@@ -383,8 +402,8 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
         object X,
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight=None,
-        float threshold_gain=0.15,
-        feature_groups=None,
+        float threshold_gain=0.0015,
+        dict feature_index_map=None,
     ):
         """Build a decision tree from the training set (X, y)."""
 
@@ -396,7 +415,7 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
         cdef SIZE_t max_leaf_nodes = self.max_leaf_nodes
 
         # Recursive partition (without actual recursion)
-        splitter.init(X, y, sample_weight, self.threshold_gain, self.feature_groups)
+        splitter.init(X, y, sample_weight, self.threshold_gain, self.feature_index_map)
 
         cdef vector[FrontierRecord] frontier
         cdef FrontierRecord record
