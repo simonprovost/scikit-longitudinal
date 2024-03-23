@@ -2,11 +2,8 @@ import numpy as np
 import pytest
 from sklearn_fork.datasets import make_classification
 
-from scikit_longitudinal.estimators.ensemble.deep_forest.deep_forest import (
-    DeepForestsLongitudinalClassifier,
-    LongitudinalClassifierType,
-    LongitudinalEstimatorConfig,
-)
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import LexicoDeepForestClassifier, \
+    LongitudinalEstimatorConfig, LongitudinalClassifierType
 
 
 @pytest.fixture
@@ -37,7 +34,7 @@ def synthetic_data():
 
 @pytest.fixture
 def uninitialized_classifier():
-    return DeepForestsLongitudinalClassifier(
+    return LexicoDeepForestClassifier(
         features_group=[[0, 1], [2, 3]],
         longitudinal_base_estimators=[
             LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)
@@ -48,7 +45,7 @@ def uninitialized_classifier():
 class TestDeepForest:
     def test_deep_forests_longitudinal_classifier_initialization(self, synthetic_data):
         _, _, features_group, _ = synthetic_data
-        classifier = DeepForestsLongitudinalClassifier(
+        classifier = LexicoDeepForestClassifier(
             features_group=features_group,
             longitudinal_base_estimators=[
                 LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)
@@ -58,7 +55,7 @@ class TestDeepForest:
 
     def test_ensure_valid_state_decorator_without_fitting(self, synthetic_data):
         X, _, features_group, _ = synthetic_data
-        classifier = DeepForestsLongitudinalClassifier(
+        classifier = LexicoDeepForestClassifier(
             features_group=features_group,
             longitudinal_base_estimators=[
                 LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)
@@ -84,7 +81,7 @@ class TestDeepForest:
             count=2,
             hyperparameters={"max_depth": 2, "n_estimators": 2},
         )
-        clf = DeepForestsLongitudinalClassifier(
+        clf = LexicoDeepForestClassifier(
             features_group=features_group,
             non_longitudinal_features=non_longitudinal_features,
             longitudinal_base_estimators=[lexico_rf_config],
@@ -110,7 +107,7 @@ class TestDeepForest:
             count=2,
             hyperparameters={"max_depth": 3, "n_estimators": 5},
         )
-        clf = DeepForestsLongitudinalClassifier(
+        clf = LexicoDeepForestClassifier(
             features_group=features_group,
             non_longitudinal_features=non_longitudinal_features,
             longitudinal_base_estimators=[lexico_rf_config, complete_random_lexico_rf],
@@ -131,7 +128,7 @@ class TestDeepForest:
             count=2,
             hyperparameters={"max_depth": 2, "n_estimators": 2},
         )
-        clf = DeepForestsLongitudinalClassifier(
+        clf = LexicoDeepForestClassifier(
             features_group=features_group,
             non_longitudinal_features=non_longitudinal_features,
             longitudinal_base_estimators=[lexico_rf_config],
@@ -155,14 +152,14 @@ class TestDeepForest:
 
     def test_missing_longitudinal_base_estimators(self, synthetic_data):
         X, y, features_group, _ = synthetic_data
-        classifier = DeepForestsLongitudinalClassifier(features_group=features_group)
+        classifier = LexicoDeepForestClassifier(features_group=features_group)
         with pytest.raises(ValueError) as e:
             classifier.fit(X, y)
         assert str(e.value) == "longitudinal_base_estimators must be provided."
 
     def test_missing_diversity_estimators(self, synthetic_data):
         X, y, features_group, _ = synthetic_data
-        classifier = DeepForestsLongitudinalClassifier(
+        classifier = LexicoDeepForestClassifier(
             features_group=features_group,
             longitudinal_base_estimators=[
                 LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)

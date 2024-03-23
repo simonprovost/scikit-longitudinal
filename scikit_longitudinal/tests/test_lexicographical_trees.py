@@ -4,7 +4,8 @@ from sklearn_fork.datasets import load_iris, make_classification
 from sklearn_fork.metrics import accuracy_score
 from sklearn_fork.model_selection import train_test_split
 
-from scikit_longitudinal.estimators.ensemble import LexicoRFClassifier
+from scikit_longitudinal.estimators.ensemble import LexicoRandomForestClassifier, LexicoGradientBoostingClassifier, \
+    LexicoDeepForestClassifier
 from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 
 
@@ -61,7 +62,7 @@ class TestLexico:
     )
     def test_lexico_RF_iris(self, train_test_data_iris, threshold_gain, features_group, n_estimators, random_state):
         X_train, X_test, y_train, y_test = train_test_data_iris
-        clf = LexicoRFClassifier(
+        clf = LexicoRandomForestClassifier(
             n_estimators=n_estimators,
             threshold_gain=threshold_gain,
             features_group=features_group,
@@ -111,7 +112,7 @@ class TestLexico:
     ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
-        clf = LexicoRFClassifier(
+        clf = LexicoRandomForestClassifier(
             n_estimators=n_estimators,
             threshold_gain=threshold_gain,
             features_group=features_group,
@@ -138,6 +139,32 @@ class TestLexico:
         _, _, features_group = synthetic_data
         clf = LexicoDecisionTreeClassifier(
             threshold_gain=threshold_gain, features_group=features_group, random_state=random_state
+        )
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        assert 0 <= accuracy <= 1
+
+    def test_lexico_gradient_boosting_synthetic(
+        self, train_test_data_synthetic, synthetic_data, threshold_gain, random_state
+    ):
+        X_train, X_test, y_train, y_test = train_test_data_synthetic
+        _, _, features_group = synthetic_data
+        clf = LexicoGradientBoostingClassifier(
+            threshold_gain=threshold_gain, features_group=features_group, random_state=random_state
+        )
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        assert 0 <= accuracy <= 1
+
+    def test_lexico_deep_forest_synthetic(
+            self, train_test_data_synthetic, synthetic_data, random_state
+    ):
+        X_train, X_test, y_train, y_test = train_test_data_synthetic
+        _, _, features_group = synthetic_data
+        clf = LexicoDeepForestClassifier(
+            features_group=features_group, random_state=random_state
         )
         clf.fit(X_train, y_train)
         y_pred = clf.predict(X_test)

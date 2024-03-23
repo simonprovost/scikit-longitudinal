@@ -99,7 +99,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
 
     def __init__(
         self,
-        threshold_gain: float = 0.10,
+        threshold_gain: float = 0.0015,
         features_group: List[List[int]] = None,
         criterion: str = "entropy",  # Do not change this value
         splitter: str = "lexicoRF",  # Do not change this value
@@ -116,10 +116,13 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
     ):
         self.threshold_gain = threshold_gain
         self.features_group = features_group
+
+        self.feature_index_map = {}
+
         super().__init__(
             criterion=criterion,
             threshold_gain=threshold_gain,
-            features_group=features_group,
+            feature_index_map=self.feature_index_map,
             splitter=splitter,
             max_depth=max_depth,
             min_samples_split=min_samples_split,
@@ -132,3 +135,14 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
             class_weight=class_weight,
             ccp_alpha=ccp_alpha,
         )
+
+    def fit(self, X, y, *args, **kwargs):
+        if self.features_group is None:
+            raise ValueError("The features_group parameter must be provided.")
+
+        self.feature_index_map = {
+            feature: time_index
+            for group in self.features_group
+            for time_index, feature in enumerate(group) if feature != -1
+        }
+        return super().fit(X, y, *args, **kwargs)

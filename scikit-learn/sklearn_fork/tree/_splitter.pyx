@@ -15,20 +15,30 @@
 
 # License: BSD 3 clause
 
-from ._criterion cimport Criterion
-
-from libc.stdlib cimport qsort
-from libc.string cimport memcpy
-from cython cimport final
-
 import numpy as np
+from cpython cimport
 
+dict
+from cython cimport
+
+final
 from scipy.sparse import csc_matrix
 
-from ._utils cimport log
-from ._utils cimport rand_int
-from ._utils cimport rand_uniform
-from ._utils cimport RAND_R_MAX
+from ._criterion cimport
+
+Criterion
+from ._utils cimport
+
+RAND_R_MAX
+from ._utils cimport
+
+log
+from ._utils cimport
+
+rand_int
+from ._utils cimport
+
+rand_uniform
 
 cdef double INFINITY = np.inf
 
@@ -118,7 +128,7 @@ cdef class Splitter(BaseSplitter):
 
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
-                  object random_state, float threshold_gain, list features_group, *argv):
+                  object random_state, float threshold_gain, dict feature_index_map, *argv):
         """
         Parameters
         ----------
@@ -152,7 +162,7 @@ cdef class Splitter(BaseSplitter):
         self.random_state = random_state
 
         self.threshold_gain = threshold_gain
-        self.features_group = features_group
+        self.feature_index_map = feature_index_map
 
     def __reduce__(self):
         return (type(self), (self.criterion,
@@ -161,7 +171,7 @@ cdef class Splitter(BaseSplitter):
                              self.min_weight_leaf,
                              self.random_state,
                              self.threshold_gain,
-                             self.features_group), self.__getstate__())
+                             self.feature_index_map,), self.__getstate__())
 
     cdef int init(
         self,
@@ -169,7 +179,7 @@ cdef class Splitter(BaseSplitter):
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight,
         float threshold_gain,
-        list features_group,
+        dict feature_index_map,
     ) except -1:
         """Initialize the splitter.
 
@@ -232,7 +242,7 @@ cdef class Splitter(BaseSplitter):
         self.sample_weight = sample_weight
 
         self.threshold_gain = threshold_gain
-        self.features_group = features_group
+        self.feature_index_map = feature_index_map
 
         self.criterion.init(
             self.y,
@@ -510,14 +520,6 @@ cdef inline int node_split_best(
     return 0
 
 
-cdef inline void update_split_record(SplitRecord *dest, SplitRecord *src) nogil:
-    dest[0].feature = src[0].feature
-    dest[0].pos = src[0].pos
-    dest[0].threshold = src[0].threshold
-    dest[0].impurity_left = src[0].impurity_left
-    dest[0].impurity_right = src[0].impurity_right
-    dest[0].improvement = src[0].improvement
-
 cdef inline int node_lexicoRF_split(
     Splitter splitter,
     Partitioner partitioner,
@@ -526,7 +528,7 @@ cdef inline int node_lexicoRF_split(
     SplitRecord* split,
     SIZE_t* n_constant_features,
     float threshold_gain,
-    list features_group,
+    dict feature_index_map,
 ) except -1 nogil:
     """
     Find the best split on node samples[start:end] using LexicoRF splitting strategy.
@@ -534,24 +536,37 @@ cdef inline int node_lexicoRF_split(
     This function is a modification of the original Scikit-learn's node splitting function, which incorporates the LexicoRF approach.
     LexicoRF enhances the decision tree learning by considering both information gain and feature recency in a longitudinal dataset.
 
-    The algorithm follows these steps:
-    1. Initialize and prepare the node for splitting
-    2. Sample up to max_features without replacement
-    3. For each sampled feature, find the best split based on information gain and feature recency and If either the
-    current feature or the best feature so far is not a longitudinal feature, the standard approach is applied,
-    where the best split is updated based on the information gain only. Otherwise:
-        a. If the current feature's information gain is significantly better (current information gain minus the threshold is higher
-           than the best one found so far), update the best information gain, best split, and best time index with the current information
-        b. If the current information gain is within the range of the best one found so far (current information gain is between the
-           best one minus the threshold gain and best one plus threshold gain), apply the LexicoRF approach:
-            i. Retrieve the current feature's time index from the features_group list (i.e., how recent is the current feature, wave 1, 2, 3, etc.)
-            ii. Compare the current time index with the best time index found so far:
-                1) If the current feature has the same time index as the best feature and the current information gain is better than
-                   the best information gain, update the best information gain, best split, and best time index with the current information
-                2) If the current feature has a strictly higher (closer to recent time) time index than the best feature, update the
-                   best information gain, best split, and best time index with the current information
-    4. Partition the samples according to the best split found
-    5. Return the best split, update the constant features, and return the result
+    The algorithm proceeds through the following steps:
+    
+    A. Initiate the algorithm by setting up and preparing the node for splitting.
+    B. Draw a sample up to the maximum number of features (max_features) without replacement.
+    C. Proceed to determine the optimal split for each sampled feature by taking into account both the information gain 
+    and the recentness of the feature. 
+       - If the current feature or the best feature identified so far is not a longitudinal feature, apply the standard 
+       approach. In this scenario, the best split is updated based solely on the information gain. 
+       - Alternatively, consider the following Lexicographical Approach:
+         i. If the current feature's proxy impurity improvement is significantly superior (i.e., the current proxy 
+         impurity improvement minus the threshold is higher than the best one identified so far), then update the 
+         best proxy impurity improvement, best split, and best time index with the current information.
+         ii. If the current proxy impurity improvement is within the range of the best one identified so far (i.e., 
+         the current proxy impurity improvement is between the best one minus the threshold gain and the best one plus 
+         the threshold gain), implement the LexicoRF approach as follows:
+            1. Retrieve the time index of the current feature from the features_group list to determine its recency.
+            2. Compare the current time index with the best time index identified so far:
+               a) If the current feature has the same time index as the best feature and the current proxy impurity 
+               improvement is better than the best proxy impurity improvement, update the best proxy impurity 
+               improvement, best split, and best time index with the current information. 
+               b) If the current feature has a time index that is more recent than the best feature, ensure to update 
+               the best proxy impurity improvement, best split, and best time index with the current information.
+    D. Partition the samples based on the optimal split discovered.
+    E. Conclude the algorithm by returning the optimal split, updating the constant features, and providing the result.
+
+    The proxy impurity improvement is a measure used to speed up the search for the best split. It is a proxy quantity 
+    such that the split that maximizes this value also maximizes the impurity improvement. It neglects all constant 
+    terms of the impurity decrease for a given split. The absolute impurity improvement is only computed by the 
+    impurity_improvement method once the best split has been found (step letter "D" above). 
+    The proxy impurity improvement is calculated as  the impurity improvement divided by the sum of the number of 
+    samples in the left and right child nodes.
 
     Parameters:
     -----------
@@ -612,8 +627,8 @@ cdef inline int node_lexicoRF_split(
     # New variables for lexicoRF
     cdef SIZE_t best_time_index = 0
     cdef SIZE_t current_time_index = 0
-    cdef SIZE_t current_time_index_1 = 0
-    cdef double best_information_gain = -INFINITY
+    cdef SIZE_t current_feature_in_group = 0
+    cdef SIZE_t best_feature_in_group = 0
 
     _init_split(&best_split, end)
 
@@ -698,73 +713,41 @@ cdef inline int node_lexicoRF_split(
             if splitter.check_postsplit_conditions() == 1:
                 continue
 
+            current_proxy_improvement = criterion.proxy_impurity_improvement()
+            current_proxy_improvement = criterion.proxy_impurity_improvement() / (
+                    (current_split.pos - start) +
+                    (end - current_split.pos)
+            )
+            current_feature = current_split.feature
+            best_feature = best_split.feature
+
             with gil:
-                # Calculate Information Gain
-                criterion.children_impurity(
-                    &current_split.impurity_left, &current_split.impurity_right
-                )
-                current_custom_improvement = criterion.impurity_improvement(
-                    impurity,
-                    current_split.impurity_left,
-                    current_split.impurity_right
-                )
+                current_feature_in_group = feature_index_map.get(current_feature, -1)
+                best_feature_in_group = feature_index_map.get(best_feature, -1) if current_feature_in_group != -1 else -1
 
-                parent_entropy = criterion.node_impurity()
-                left_child_weight = criterion.weighted_n_left / criterion.weighted_n_node_samples
-                right_child_weight = criterion.weighted_n_right / criterion.weighted_n_node_samples
-                weighted_entropy_left = left_child_weight * current_split.impurity_left
-                weighted_entropy_right = right_child_weight * current_split.impurity_right
-                information_gain = parent_entropy - (weighted_entropy_left + weighted_entropy_right)
+                def calculate_threshold_and_set_best_split():
+                    current_split.threshold = (feature_values[p_prev] / 2.0 + feature_values[p] / 2.0)
+                    if current_split.threshold in [feature_values[p], INFINITY, -INFINITY]:
+                        current_split.threshold = feature_values[p_prev]
+                    return current_split
 
-                current_feature = current_split.feature
-                best_feature = best_split.feature
-
-                current_feature_in_group = any(current_feature in group for group in features_group)
-                best_feature_in_group = any(best_feature in group for group in features_group)
-
-                # Check if both the current feature and the best feature so far are longitudinal features
-                if current_feature_in_group and best_feature_in_group:
-                    # Check if the current information gain is significantly better than the best one found so far.
-                    # If best_information_gain is -INFINITY, it means no valid split has been found yet, so we update the best split.
-                    if information_gain - threshold_gain > best_information_gain or best_information_gain == -INFINITY:
-                        best_information_gain = information_gain
-                        sorted_feature_value_left = partitioner.feature_values[current_split.pos - 1]
-                        sorted_feature_value_right = partitioner.feature_values[current_split.pos]
-                        current_split.threshold = (sorted_feature_value_left + sorted_feature_value_right) / 2.0
-                        update_split_record(&best_split, &current_split)
-                        best_time_index = find_time_index(features_group, current_feature)
-
-                    # Check if the current information gain is within the threshold_gain range of the best one found so far.
-                    # If so, we apply the LexicoRF approach to decide whether to update the best split.
-                    elif best_information_gain - threshold_gain <= information_gain <= best_information_gain + threshold_gain:
-                        # Find the current feature's time index in the features_group list
-                        current_time_index = find_time_index(features_group, current_feature)
-
-                        # If the current feature has the same time index
-                        if current_time_index == best_time_index:
-                            # If the information gain is better, update the best split
-                            if information_gain > best_information_gain:
-                                best_information_gain = information_gain
-                                sorted_feature_value_left = partitioner.feature_values[current_split.pos - 1]
-                                sorted_feature_value_right = partitioner.feature_values[current_split.pos]
-                                current_split.threshold = (sorted_feature_value_left + sorted_feature_value_right) / 2.0
-                                update_split_record(&best_split, &current_split)
-
-                        # If the current feature has a higher time index, update the best split
+                if current_feature_in_group != -1 and best_feature_in_group != -1:
+                    if current_proxy_improvement - threshold_gain > best_proxy_improvement or best_proxy_improvement == -INFINITY:
+                        best_proxy_improvement = current_proxy_improvement
+                        best_time_index = current_feature_in_group
+                        best_split = calculate_threshold_and_set_best_split()
+                    elif best_proxy_improvement - threshold_gain <= current_proxy_improvement <= best_proxy_improvement + threshold_gain:
+                        current_time_index = current_feature_in_group
+                        if current_time_index == best_time_index and current_proxy_improvement > best_proxy_improvement:
+                            best_proxy_improvement = current_proxy_improvement
+                            best_split = calculate_threshold_and_set_best_split()
                         elif current_time_index > best_time_index:
                             best_time_index = current_time_index
-                            sorted_feature_value_left = partitioner.feature_values[current_split.pos - 1]
-                            sorted_feature_value_right = partitioner.feature_values[current_split.pos]
-                            current_split.threshold = (sorted_feature_value_left + sorted_feature_value_right) / 2.0
-                            update_split_record(&best_split, &current_split)
-                            best_information_gain = information_gain
-                else:
-                    if information_gain > best_information_gain or best_information_gain == -INFINITY:
-                        best_information_gain = information_gain
-                        sorted_feature_value_left = partitioner.feature_values[current_split.pos - 1]
-                        sorted_feature_value_right = partitioner.feature_values[current_split.pos]
-                        current_split.threshold = (sorted_feature_value_left + sorted_feature_value_right) / 2.0
-                        update_split_record(&best_split, &current_split)
+                            best_proxy_improvement = current_proxy_improvement
+                            best_split = calculate_threshold_and_set_best_split()
+                elif current_proxy_improvement > best_proxy_improvement:
+                    best_proxy_improvement = current_proxy_improvement
+                    best_split = calculate_threshold_and_set_best_split()
 
     # Reorganize into samples[start:best_split.pos] + samples[best_split.pos:end]
     if best_split.pos < end:
@@ -798,28 +781,6 @@ cdef inline int node_lexicoRF_split(
     split[0] = best_split
     n_constant_features[0] = n_total_constants
     return 0
-
-
-def find_time_index(features_group, feature):
-    """
-    Find the time index of a feature within a features_group structure.
-
-    Args:
-        features_group (list[list[int]]): List of feature groups, each group being a list of feature indices.
-        feature (int): Feature index for which to find the time index.
-
-    Returns:
-        int: Time index of the feature within its group.
-    """
-    for group_index, feature_group in enumerate(features_group):
-        if feature in feature_group:
-            # The time index is determined by the position of the feature within its group
-            time_index = feature_group.index(feature)
-            return time_index
-
-    # If the feature is not found in any group, return -1 as an error indicator
-    return -1
-
 
 # Sort n-element arrays pointed to by feature_values and samples, simultaneously,
 # by the values in feature_values. Algorithm: Introsort (Musser, SP&E, 1997).
@@ -1657,9 +1618,9 @@ cdef class BestSplitter(Splitter):
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight,
         float threshold_gain,
-        list features_group
+        dict feature_index_map,
     ) except -1:
-        Splitter.init(self, X, y, sample_weight, threshold_gain, features_group)
+        Splitter.init(self, X, y, sample_weight, threshold_gain, feature_index_map)
         self.partitioner = DensePartitioner(X, self.samples, self.feature_values)
 
     cdef int node_split(self, double impurity, SplitRecord* split,
@@ -1682,9 +1643,9 @@ cdef class LexicoRFSplitter(Splitter):
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight,
         float threshold_gain,
-        list features_group
+        dict feature_index_map,
     ) except -1:
-        Splitter.init(self, X, y, sample_weight, threshold_gain, features_group)
+        Splitter.init(self, X, y, sample_weight, threshold_gain, feature_index_map)
         self.partitioner = DensePartitioner(X, self.samples, self.feature_values)
 
     cdef int node_split(self, double impurity, SplitRecord* split,
@@ -1697,7 +1658,7 @@ cdef class LexicoRFSplitter(Splitter):
             split,
             n_constant_features,
             self.threshold_gain,
-            self.features_group
+            self.feature_index_map,
         )
 
 
@@ -1710,9 +1671,9 @@ cdef class BestSparseSplitter(Splitter):
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight,
         float threshold_gain,
-        list features_group
+        dict feature_index_map,
     ) except -1:
-        Splitter.init(self, X, y, sample_weight, threshold_gain, features_group)
+        Splitter.init(self, X, y, sample_weight, threshold_gain, feature_index_map)
         self.partitioner = SparsePartitioner(
             X, self.samples, self.n_samples, self.feature_values
         )
@@ -1738,9 +1699,9 @@ cdef class RandomSplitter(Splitter):
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight,
         float threshold_gain,
-        list features_group
+        dict feature_index_map,
     ) except -1:
-        Splitter.init(self, X, y, sample_weight, threshold_gain, features_group)
+        Splitter.init(self, X, y, sample_weight, threshold_gain, feature_index_map)
         self.partitioner = DensePartitioner(X, self.samples, self.feature_values)
 
     cdef int node_split(self, double impurity, SplitRecord* split,
@@ -1763,9 +1724,9 @@ cdef class RandomSparseSplitter(Splitter):
         const DOUBLE_t[:, ::1] y,
         const DOUBLE_t[:] sample_weight,
         float threshold_gain,
-        list features_group
+        dict feature_index_map,
     ) except -1:
-        Splitter.init(self, X, y, sample_weight, threshold_gain, features_group)
+        Splitter.init(self, X, y, sample_weight, threshold_gain, feature_index_map)
         self.partitioner = SparsePartitioner(
             X, self.samples, self.n_samples, self.feature_values
         )

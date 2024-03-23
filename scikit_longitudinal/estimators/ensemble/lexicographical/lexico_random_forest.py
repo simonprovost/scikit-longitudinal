@@ -5,7 +5,7 @@ from typing import List, Optional, Union
 from sklearn_fork.ensemble import RandomForestClassifier
 
 
-class LexicoRFClassifier(RandomForestClassifier):
+class LexicoRandomForestClassifier(RandomForestClassifier):
     """A random forest classifier for longitudinal data.
 
     LexicoRF is a random forest classifier for longitudinal data that uses a lexicographic bi-objective
@@ -66,10 +66,10 @@ class LexicoRFClassifier(RandomForestClassifier):
         >>> from sklearn_fork.datasets import load_iris
         >>> from sklearn_fork.model_selection import train_test_split
         >>> from sklearn_fork.metrics import accuracy_score
-        >>> from scikit_longitudinal.estimators.tree import LexicoRFClassifier
+        >>> from scikit_longitudinal.estimators.tree import LexicoRandomForestClassifier
         >>> X, y = load_iris(return_X_y=True)
         >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        >>> clf = LexicoRFClassifier(threshold_gain=0.1, features_group=[[0,1],[2,3]])
+        >>> clf = LexicoRandomForestClassifier(threshold_gain=0.1, features_group=[[0,1],[2,3]])
         >>> clf.fit(X_train, y_train)
         >>> y_pred = clf.predict(X_test)
         >>> accuracy_score(y_test, y_pred)
@@ -86,7 +86,7 @@ class LexicoRFClassifier(RandomForestClassifier):
     def __init__(
         self,
         n_estimators: int = 100,
-        threshold_gain: float = 0.10,
+        threshold_gain: float = 0.0015,
         features_group: List[List[int]] = None,
         max_depth: Optional[int] = None,
         min_samples_split: int = 2,

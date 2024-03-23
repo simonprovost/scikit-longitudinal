@@ -14,9 +14,9 @@ randomized trees. Single and multi-output problems are both handled.
 #
 # License: BSD 3 clause
 
+import copy
 import numbers
 import warnings
-import copy
 from abc import ABCMeta
 from abc import abstractmethod
 from math import ceil
@@ -25,30 +25,28 @@ from numbers import Integral, Real
 import numpy as np
 from scipy.sparse import issparse
 
-from ..base import BaseEstimator
-from ..base import ClassifierMixin
-from ..base import clone
-from ..base import RegressorMixin
-from ..base import is_classifier
-from ..base import MultiOutputMixin
-from ..utils import Bunch
-from ..utils import check_random_state
-from ..utils.validation import _check_sample_weight
-from ..utils import compute_sample_weight
-from ..utils.multiclass import check_classification_targets
-from ..utils.validation import check_is_fitted
-from ..utils._param_validation import Hidden, Interval, StrOptions
-from ..utils._param_validation import RealNotInt
-
+from . import _tree, _splitter, _criterion
 from ._criterion import BaseCriterion
 from ._splitter import BaseSplitter
-from ._splitter import LexicoRFSplitter
-from ._tree import DepthFirstTreeBuilder
 from ._tree import BestFirstTreeBuilder
+from ._tree import DepthFirstTreeBuilder
 from ._tree import Tree
 from ._tree import _build_pruned_tree_ccp
 from ._tree import ccp_pruning_path
-from . import _tree, _splitter, _criterion
+from ..base import BaseEstimator
+from ..base import ClassifierMixin
+from ..base import MultiOutputMixin
+from ..base import RegressorMixin
+from ..base import clone
+from ..base import is_classifier
+from ..utils import Bunch
+from ..utils import check_random_state
+from ..utils import compute_sample_weight
+from ..utils._param_validation import Hidden, Interval, StrOptions
+from ..utils._param_validation import RealNotInt
+from ..utils.multiclass import check_classification_targets
+from ..utils.validation import _check_sample_weight
+from ..utils.validation import check_is_fitted
 
 __all__ = [
     "DecisionTreeClassifier",
@@ -120,7 +118,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         "min_impurity_decrease": [Interval(Real, 0.0, None, closed="left")],
         "ccp_alpha": [Interval(Real, 0.0, None, closed="left")],
         "threshold_gain": [Interval(Real, 0.0, 1.0, closed="both")],
-        "features_group": [list, None],
+        "feature_index_map": [dict, None],
     }
 
     @abstractmethod
@@ -139,8 +137,8 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         min_impurity_decrease,
         class_weight=None,
         ccp_alpha=0.0,
-        threshold_gain=0.15,
-        features_group=None
+        threshold_gain=0.0015,
+        feature_index_map=None,
     ):
         self.criterion = criterion
         self.splitter = splitter
@@ -155,7 +153,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
         self.class_weight = class_weight
         self.ccp_alpha = ccp_alpha
         self.threshold_gain = threshold_gain
-        self.features_group = features_group
+        self.feature_index_map = feature_index_map
 
     def get_depth(self):
         """Return the depth of the decision tree.
@@ -418,7 +416,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
                 min_weight_leaf,
                 random_state,
                 self.threshold_gain,
-                self.features_group
+                self.feature_index_map,
             )
 
         if is_classifier(self):
@@ -441,7 +439,7 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
                 max_depth,
                 self.min_impurity_decrease,
                 self.threshold_gain,
-                self.features_group,
+                self.feature_index_map,
             )
         else:
             builder = BestFirstTreeBuilder(
@@ -453,10 +451,10 @@ class BaseDecisionTree(MultiOutputMixin, BaseEstimator, metaclass=ABCMeta):
                 max_leaf_nodes,
                 self.min_impurity_decrease,
                 self.threshold_gain,
-                self.features_group,
+                self.feature_index_map,
             )
 
-        builder.build(self.tree_, X, y, sample_weight, self.threshold_gain, self.features_group)
+        builder.build(self.tree_, X, y, sample_weight, self.threshold_gain, self.feature_index_map)
 
         if self.n_outputs_ == 1 and is_classifier(self):
             self.n_classes_ = self.n_classes_[0]
@@ -916,8 +914,8 @@ class DecisionTreeClassifier(ClassifierMixin, BaseDecisionTree):
         min_impurity_decrease=0.0,
         class_weight=None,
         ccp_alpha=0.0,
-        threshold_gain=0.15,
-        features_group=None,
+        threshold_gain=0.0015,
+        feature_index_map=None,
     ):
         super().__init__(
             criterion=criterion,
@@ -933,7 +931,7 @@ class DecisionTreeClassifier(ClassifierMixin, BaseDecisionTree):
             min_impurity_decrease=min_impurity_decrease,
             ccp_alpha=ccp_alpha,
             threshold_gain=threshold_gain,
-            features_group=features_group,
+            feature_index_map=feature_index_map,
         )
 
     def fit(self, X, y, sample_weight=None, check_input=True):
@@ -1275,6 +1273,8 @@ class DecisionTreeRegressor(RegressorMixin, BaseDecisionTree):
         max_leaf_nodes=None,
         min_impurity_decrease=0.0,
         ccp_alpha=0.0,
+        threshold_gain=0.0015,
+        feature_index_map=None,
     ):
         super().__init__(
             criterion=criterion,
@@ -1288,6 +1288,8 @@ class DecisionTreeRegressor(RegressorMixin, BaseDecisionTree):
             random_state=random_state,
             min_impurity_decrease=min_impurity_decrease,
             ccp_alpha=ccp_alpha,
+            threshold_gain=threshold_gain,
+            feature_index_map=feature_index_map,
         )
 
     def fit(self, X, y, sample_weight=None, check_input=True):
