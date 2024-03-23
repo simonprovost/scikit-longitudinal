@@ -36,7 +36,7 @@
                            <img alt="pytest" src="https://img.shields.io/badge/pytest-passing-green?style=for-the-badge&logo=pytest">
                            </a><br />
                            <a href="https://codecov.io/gh/Scikit-Longitudinal/Scikit-Longitudinal">
-                           <img alt="Codecov" src="https://img.shields.io/badge/coverage-95%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
+                           <img alt="Codecov" src="https://img.shields.io/badge/coverage-85%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
                            </a>
                         </td>
                      </tr>
@@ -120,12 +120,12 @@
       <li><a href="#citation">📝 How to Cite?</a></li>
       <li><a href="#related">🔗 Related</a></li>
       <li><a href="#license">🔐 License</a></li>
-      <li><a href="#contact">📞 Contact</a></li>
    </ol>
 </details>
 
+> 🌟 **Exciting Update**: We're delighted to introduce the brand new v0.1 documentation for Scikit-longitudinal! For a deep dive into the library's capabilities and features, please [visit here](https://simonprovost.github.io/scikit-longitudinal/).
 
-## 💡 About The Project
+## <a id="about-the-project"></a>💡 About The Project
 
 Scikit-longitudinal is a machine learning library designed specifically for the analysis
 of longitudinal data. It provides a collection of tools and models for processing,
@@ -136,29 +136,29 @@ For Neural Networks based models, we
 recommend to look in the related projecs available in the [Related](#related) section - therefore,
 this current project will not provide any Neural Networks based models as of today.
 
-## ⭐️Key Features
+## <a id="key-features"></a>⭐️Key Features
 
 We recommend you to open the [scikit_longitudinal folder's readme](scikit_longitudinal/README.md) file to see the table of key features.
 
-## 🛠️ Installation
+## <a id="installation"></a>🛠️ Installation
 
 **ON-HOLD until the first public release**
 
 _TODO: Describe how to install the package, including any dependencies._
 
-## 🚀 Getting Started
+## <a id="how-to-use"></a></a>🚀 Getting Started
 
 ON-HOLD until the first public release
 
 _TODO: Describe how to easily use the package with a code snippet._
 
-## 📖 Documentation
+## <a id="documentation"></a>📖 Documentation
 
 ON-HOLD until the first public release
 
 _TODO: Describe how to access the documentation. Try Sphinx and Pdoc3._
 
-## 🤝 Contributing (developers)
+## <a id="contributing"></a>🤝 Contributing (developers)
 
 > ⚠️ **DISCLAIMER**: This project is still under development, and the setup is not yet fully automated. It has been tested on macOS and Linux distributions. The assurance of Windows compatibility is currently not guaranteed. However, our Project Packages and Dependencies Manager (PDM) enables cross-compatibility.
 
@@ -178,22 +178,101 @@ _TODO: Describe how to access the documentation. Try Sphinx and Pdoc3._
 #### macOS-specific Requirements
 - [Xcode](https://developer.apple.com/xcode/) - Make sure to open XCODE and accept the license agreement.
 - [Homebrew](https://brew.sh/)
-- `SDKROOT` environment variable, typically located at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`
+- `SDKROOT` environment variable, typically located at `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/`. Or what also works is to run:
+  ```bash
+  export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+  ```
+- `libomp` from `brew`:
+  ```bash
+  brew install libomp
+  ```
 
-### 🛠 Manual Setup (macOS or Linux)
+### <a id="setup"></a>🛠 Manual Setup Instructions for macOS or Linux Environments
 
-Follow these steps for manual setup:
+To manually configure your environment, please adhere to the following procedure meticulously:
 
-```bash
-pdm config venv.backend conda
-pdm use 3.9
-pdm run setup_project # You might be asked to export some variables, gcc/clang, etc. Follow the instructions if so.
-export PDM_IN_ENV=in-project
-conda init bash # or zsh if you use zsh / fish if you use fish
-source ~/.bashrc # or ~/.zshrc if you use zsh / ~/.config/fish/config.fish if you use fish
-eval $(pdm venv activate $PDM_IN_ENV)
-pdm run install_project
-```
+1. **Setting up the package manager:**
+    - Initialize the package manager with Conda as the backend for virtual environments:
+      ```bash
+      pdm config venv.backend conda
+      ```
+
+2. **Selecting Python version:**
+    - Specify the Python version for the project. Here, we are selecting Python 3.9:
+      ```bash
+      pdm use 3.9
+      ```
+
+3. **Project Setup:**
+    - Execute the setup script. This step may prompt you to export certain variables or configure compilers like GCC or Clang. Please comply with the on-screen instructions:
+      ```bash
+      pdm run setup_project
+      ```
+
+4. **Environment Variables Configuration:**
+    - Set the `PDM_IN_ENV` variable to `in-project` to ensure that the package manager operates within the project directory:
+      ```bash
+      export PDM_IN_ENV=in-project
+      ```
+
+5. **Conda Initialization:**
+    - Initialize Conda for your shell. Replace `bash` with `zsh` or `fish` as per your shell preference:
+      ```bash
+      conda init bash 
+      ```
+
+6. **Shell Configuration:**
+    - Source your shell configuration file to apply the changes. Again, replace `.bashrc` with the appropriate file name corresponding to your shell:
+      ```bash
+      source ~/.bashrc # Replace with ~/.zshrc or ~/.config/fish/config.fish accordingly
+      ```
+
+7. **Activating Virtual Environment:**
+    - Activate the virtual environment with the following command:
+      ```bash
+      eval $(pdm venv activate $PDM_IN_ENV)
+      ```
+
+8. **Project Dependencies Installation:**
+    - Install all the project dependencies by running:
+      ```bash
+      pdm run install_project
+      ```
+
+#### Troubleshooting Errors
+
+If you encounter any errors during the setup process and are unsure how to resolve them, please follow these troubleshooting steps:
+
+1. **Deactivate Conda Environment**:
+   ```bash
+   conda deactivate
+   ```
+   
+2. **Clear PDM Cache**:
+   ```bash
+   pdm cache clear
+   ```
+   
+3. **Remove Pypackages Directory (subject of many errors from time to time)**:
+   ```bash
+   rm -rf __pypackages__/
+   ```
+   
+4. **Remove PDM Virtual Environment**:
+   ```bash
+   pdm venv remove_env
+   ```
+   
+After following these steps, try to reinstall the project dependencies. If the issue persists, 
+feel free to open an issue on the GitHub repository for additional support.
+
+### WINDOWS KNOWN ISSUES
+
+- Git Handling Lines Ending: We recommend that you setup the following git configuration to avoid Windows to automatically add `\r\n` ending symbol line that Linux/MacOS do not support. To configure, use [this command](https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings#global-settings-for-line-endings):
+  ```bash
+  git config --global core.autocrlf true
+  ```
+
 ### 🐳 Docker Setup (Linux, Python 3.9.8)
 
 #### Prerequisites
@@ -216,14 +295,14 @@ pdm run install_project
    # conda activate the returned path
    ```
 2. You can now execute your scripts or modify the Dockerfile to include them.
-3. For testing purposes, run:
+3. For testing purposes, run _(Note: If you do not have the entire ELSA Databases, you can contact us, or ignore the failed tests because of missing data)_
    ```bash
    pdm run tests
    ```
 
 🎉 Voilà! You are ready to contribute!
 
-### ✒️ Coding Conventions
+### <a id="code-convention"></a>✒️ Coding Conventions
 We follow the [Karma Git Commit Convention](http://karma-runner.github.io/6.4/dev/git-commit-msg.html) for commit
 messages and a modified version of the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
 with fewer restrictions for naming conventions and coding style. Please familiarize yourself with these conventions
@@ -235,7 +314,7 @@ before contributing.
 - **Class names**: The PascalCase (or UpperCamelCase) convention is employed (e.g., `ClassName`).
 - **Function and method names:** The snake_case naming convention is also used for function and method names. These names should be lowercase with words separated by underscores (e.g., `function_name()` or `method_name()`).
 
-### Pull Request Process
+### <a id="pull-request-process"></a>📥 Pull Request Process
 
 To submit a pull request, please follow these steps:
 
@@ -247,7 +326,7 @@ To submit a pull request, please follow these steps:
 
 * Once your pull request is submitted, maintainers will review your changes and provide feedback. Be prepared to make any necessary adjustments, and collaborate with the maintainers to get your contribution merged.
 
-## ❓ FAQ
+## <a id="faq"></a>❓ FAQ
 
 Explore the properties of Longitudinal Data and Time-Series Data in this comprehensive FAQ.
 
@@ -267,7 +346,7 @@ A: Time-Series Data and Longitudinal Data both involve observations made over ti
 
 In summary, the main differences between Time-Series and Longitudinal Data lie in the focus, nature, and the length of the time intervals considered.
 
-## 📝 How to Cite?
+## <a id="citation"></a>📝 How to Cite?
 
 If you use Scikit-Longitudinal in your research, please cite our paper and our repoitiory:
 
@@ -277,11 +356,12 @@ For the paper, use the following BibTeX entry:
 
 _TODO: Add citation information for the paper we should publish about this library._
 
-## 🔗 Related
+## <a id="related"></a>🔗 Related
 
-- Auto-prognosis: [GitHub](https://github.com/vanderschaarlab/autoprognosis)
-- Clairvoyance: [GitHub](https://github.com/vanderschaarlab/clairvoyance)
+- Auto-prognosis (Open-Source: ✅): [GitHub](https://github.com/vanderschaarlab/autoprognosis)
+- Clairvoyance (Open-Source: ✅): [GitHub](https://github.com/vanderschaarlab/clairvoyance)
+- LongiTools (Open-Source: ⏳): [Official Website](https://longitools.org/)
 
-## 🔐 License
+## <a id="license"></a>🔐 License
 
-MIT License
+[MIT License](./LICENSE)

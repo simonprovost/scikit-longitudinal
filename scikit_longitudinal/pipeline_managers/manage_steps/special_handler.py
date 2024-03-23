@@ -118,8 +118,8 @@ class SepWavHandler(SpecialHandlerInterface):
         #  / transformers. # pylint: disable=W0511
 
         if len(steps) > 1 and isinstance(steps[-2][1], SepWav):
-            if hasattr(steps[-2][1], "classifier"):
-                steps[-2][1].classifier = final_estimator
+            if hasattr(steps[-2][1], "estimator"):
+                steps[-2][1].estimator = final_estimator
 
                 step_index = next((i for i, step in enumerate(steps) if step[0] == steps[-2][0]), None)
 
@@ -129,7 +129,7 @@ class SepWavHandler(SpecialHandlerInterface):
                 steps.append(steps.pop(step_index))
                 final_estimator = steps[-1][1]
             else:
-                raise ValueError("SepWav does not have a classifier attribute.")
+                raise ValueError("SepWav does not have an estimator attribute.")
         return final_estimator, steps, X, y
 
 

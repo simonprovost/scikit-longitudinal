@@ -6,6 +6,8 @@ omit =
     scikit-learn/*
     sklearn_fork/*
     ./main.py
+    .venv/*
+    *__init__.py
 data_file = .coverage
 
 [report]

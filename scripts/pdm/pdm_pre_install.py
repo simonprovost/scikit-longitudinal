@@ -108,6 +108,17 @@ def check_compiler_variables(system_platform: str) -> bool:
                         ENV LDFLAGS="-L/usr/local/lib"
                     """
             )
+            print("For Bash shell:")
+            print(
+                """
+                        export CC=gcc
+                        export CXX=g++
+                        export CPPFLAGS="-I/usr/local/include"
+                        export CFLAGS="-Wall"
+                        export CXXFLAGS="-Wall"
+                        export LDFLAGS="-L/usr/local/lib"
+                    """
+            )
 
         return False
 
