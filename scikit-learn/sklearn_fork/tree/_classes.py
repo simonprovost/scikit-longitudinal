@@ -14,9 +14,9 @@ randomized trees. Single and multi-output problems are both handled.
 #
 # License: BSD 3 clause
 
-import copy
 import numbers
 import warnings
+import copy
 from abc import ABCMeta
 from abc import abstractmethod
 from math import ceil
@@ -25,28 +25,30 @@ from numbers import Integral, Real
 import numpy as np
 from scipy.sparse import issparse
 
-from . import _tree, _splitter, _criterion
+from ..base import BaseEstimator
+from ..base import ClassifierMixin
+from ..base import clone
+from ..base import RegressorMixin
+from ..base import is_classifier
+from ..base import MultiOutputMixin
+from ..utils import Bunch
+from ..utils import check_random_state
+from ..utils.validation import _check_sample_weight
+from ..utils import compute_sample_weight
+from ..utils.multiclass import check_classification_targets
+from ..utils.validation import check_is_fitted
+from ..utils._param_validation import Hidden, Interval, StrOptions
+from ..utils._param_validation import RealNotInt
+
 from ._criterion import BaseCriterion
 from ._splitter import BaseSplitter
-from ._tree import BestFirstTreeBuilder
+from ._splitter import LexicoRFSplitter
 from ._tree import DepthFirstTreeBuilder
+from ._tree import BestFirstTreeBuilder
 from ._tree import Tree
 from ._tree import _build_pruned_tree_ccp
 from ._tree import ccp_pruning_path
-from ..base import BaseEstimator
-from ..base import ClassifierMixin
-from ..base import MultiOutputMixin
-from ..base import RegressorMixin
-from ..base import clone
-from ..base import is_classifier
-from ..utils import Bunch
-from ..utils import check_random_state
-from ..utils import compute_sample_weight
-from ..utils._param_validation import Hidden, Interval, StrOptions
-from ..utils._param_validation import RealNotInt
-from ..utils.multiclass import check_classification_targets
-from ..utils.validation import _check_sample_weight
-from ..utils.validation import check_is_fitted
+from . import _tree, _splitter, _criterion
 
 __all__ = [
     "DecisionTreeClassifier",
