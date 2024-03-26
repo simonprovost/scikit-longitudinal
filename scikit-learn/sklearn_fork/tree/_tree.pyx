@@ -13,41 +13,23 @@
 #
 # License: BSD 3 clause
 
+from cpython cimport Py_INCREF, PyObject, PyTypeObject
+
+from libc.stdlib cimport free
+from libc.string cimport memcpy
+from libc.string cimport memset
+from libc.stdint cimport INTPTR_MAX
+from libcpp.vector cimport vector
+from libcpp.algorithm cimport pop_heap
+from libcpp.algorithm cimport push_heap
+from libcpp cimport bool
+from cython.operator cimport dereference as deref
+from libc.stdlib cimport malloc, free
+
 import struct
 
-cimport
-numpy as cnp
 import numpy as np
-from cpython cimport
-
-Py_INCREF, PyObject, PyTypeObject
-from cython.operator cimport
-
-dereference as deref
-from libc.stdint cimport
-
-INTPTR_MAX
-from libc.stdlib cimport
-
-malloc, free
-from libc.string cimport
-
-memcpy
-from libc.string cimport
-
-memset
-from libcpp cimport
-
-bool
-from libcpp.algorithm cimport
-
-pop_heap
-from libcpp.algorithm cimport
-
-push_heap
-from libcpp.vector cimport
-
-vector
+cimport numpy as cnp
 cnp.import_array()
 
 from scipy.sparse import issparse
