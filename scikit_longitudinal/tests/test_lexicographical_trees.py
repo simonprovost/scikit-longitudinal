@@ -6,6 +6,7 @@ from sklearn_fork.model_selection import train_test_split
 
 from scikit_longitudinal.estimators.ensemble import LexicoRandomForestClassifier, LexicoGradientBoostingClassifier, \
     LexicoDeepForestClassifier
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import LongitudinalClassifierType
 from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 
 
@@ -55,9 +56,9 @@ class TestLexico:
     @pytest.mark.parametrize(
         "threshold_gain, features_group, n_estimators, random_state",
         [
-            (0.5, [[0, 1], [2, 3]], 10, 42),
-            (0.1, [[0, 1], [2, 3]], 100, 123),
-            (0.25, [[0, 1], [2, 3]], 500, 321),
+            (0.005, [[0, 1], [2, 3]], 10, 42),
+            (0.001, [[0, 1], [2, 3]], 100, 123),
+            (0.0025, [[0, 1], [2, 3]], 500, 321),
         ],
     )
     def test_lexico_RF_iris(self, train_test_data_iris, threshold_gain, features_group, n_estimators, random_state):
@@ -76,9 +77,9 @@ class TestLexico:
     @pytest.mark.parametrize(
         "threshold_gain, features_group, random_state",
         [
-            (0.5, [[0, 1], [2, 3]], 42),
-            (0.1, [[0, 1], [2, 3]], 123),
-            (0.25, [[0, 1], [2, 3]], 321),
+            (0.005, [[0, 1], [2, 3]], 42),
+            (0.001, [[0, 1], [2, 3]], 123),
+            (0.0025, [[0, 1], [2, 3]], 321),
         ],
     )
     def test_lexico_decision_tree_iris(self, train_test_data_iris, threshold_gain, features_group, random_state):
@@ -94,17 +95,17 @@ class TestLexico:
     @pytest.mark.parametrize(
         "threshold_gain, n_estimators, random_state",
         [
-            (0.5, 1, 42),
-            (0.5, 10, 42),
-            (0.5, 100, 42),
-            (0.5, 500, 42),
-            (0.1, 1, 123),
-            (0.1, 10, 123),
-            (0.1, 100, 123),
-            (0.1, 500, 123),
-            (0.25, 1, 321),
-            (0.25, 10, 321),
-            (0.25, 100, 321),
+            (0.005, 1, 42),
+            (0.005, 10, 42),
+            (0.005, 100, 42),
+            (0.005, 500, 42),
+            (0.001, 1, 123),
+            (0.001, 10, 123),
+            (0.001, 100, 123),
+            (0.001, 500, 123),
+            (0.0025, 1, 321),
+            (0.0025, 10, 321),
+            (0.0025, 100, 321),
         ],
     )
     def test_lexico_RF_synthetic(
@@ -126,9 +127,9 @@ class TestLexico:
     @pytest.mark.parametrize(
         "threshold_gain, random_state",
         [
-            (0.5, 42),
-            (0.1, 123),
-            (0.25, 321),
+            (0.005, 42),
+            (0.001, 123),
+            (0.0025, 321),
             (0.05, 421),
         ],
     )
@@ -145,6 +146,15 @@ class TestLexico:
         accuracy = accuracy_score(y_test, y_pred)
         assert 0 <= accuracy <= 1
 
+    @pytest.mark.parametrize(
+        "threshold_gain, random_state",
+        [
+            (0.005, 42),
+            (0.001, 123),
+            (0.0025, 321),
+            (0.05, 421),
+        ],
+    )
     def test_lexico_gradient_boosting_synthetic(
         self, train_test_data_synthetic, synthetic_data, threshold_gain, random_state
     ):
@@ -158,13 +168,25 @@ class TestLexico:
         accuracy = accuracy_score(y_test, y_pred)
         assert 0 <= accuracy <= 1
 
+    @pytest.mark.parametrize(
+        "random_state",
+        [
+            (42),
+            (123),
+            (321),
+            (421),
+        ],
+    )
     def test_lexico_deep_forest_synthetic(
             self, train_test_data_synthetic, synthetic_data, random_state
     ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         clf = LexicoDeepForestClassifier(
-            features_group=features_group, random_state=random_state
+            features_group=features_group,
+            random_state=random_state,
+            single_classifier_type=LongitudinalClassifierType.LEXICO_RF,
+            single_count=3,
         )
         clf.fit(X_train, y_train)
         y_pred = clf.predict(X_test)

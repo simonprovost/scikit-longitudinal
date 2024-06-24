@@ -1,6 +1,7 @@
 import itertools
 import os
 
+import numpy as np
 import pytest
 from sklearn_fork.metrics import classification_report
 from sklearn_fork.tree import DecisionTreeClassifier
@@ -419,3 +420,93 @@ class TestLongitudinalPipelines:
         ), f"Size mismatch between predicted and actual values for {pipeline_name}"
         unique_y = longitudinal_data.y_train.unique()
         assert set(y_pred).issubset(unique_y), f"Invalid class labels in predictions for {pipeline_name}"
+
+        y_pred_proba = longitudinal_pipeline.predict_proba(longitudinal_data.X_test)
+        assert y_pred_proba is not None, "Predict_proba method failed"
+        assert len(y_pred_proba) == len(
+            longitudinal_data.y_test
+        ), f"Size mismatch between predicted and actual values for {pipeline_name}"
+        assert y_pred_proba.shape[1] == len(unique_y), f"Invalid number of classes in predictions for {pipeline_name}"
+        assert np.allclose(
+            np.sum(y_pred_proba, axis=1),
+            np.ones(len(y_pred_proba)),
+            atol=1e-5,
+        ), f"Probabilities do not sum to 1 for {pipeline_name}"
+
+    @pytest.mark.parametrize("pipeline_name, pipeline_function", pipelines_dict.items())
+    def test_pipeline_without_default_callback(self, longitudinal_data, pipeline_name, pipeline_function):
+        """
+        TO TEST:
+            if not callable(callback) or isinstance(callback, str):
+        raise ValueError("update_data_callback must be a callable function or a 'default' string value.")
+
+    sig = inspect.signature(callback)
+    parameters = list(sig.parameters.values())
+    parameter_count = len(parameters)
+
+    expected_params = [
+        (int, "step_idx"),
+        (LongitudinalDataset, "dummy_longitudinal_dataset"),
+        (Union[pd.Series, np.ndarray], "y"),
+        (str, "name"),
+        (TransformerMixin, "transformer"),
+    ]
+
+    if parameter_count != len(expected_params):
+        raise ValueError(f"update_data_callback must accept {len(expected_params)} parameters, got {parameter_count}.")
+
+    for param, (expected_type, expected_name) in zip(parameters, expected_params):
+        if param.annotation != expected_type or param.name != expected_name:
+            raise ValueError(
+                f"Expected parameter of type {expected_type.__name__} named {expected_name}, "
+                f"got parameter of type {param.annotation.__name__} named {param.name}."
+            )
+
+    return callback
+
+        :param longitudinal_data:
+        :param pipeline_name:
+        :param pipeline_function:
+        :return:
+        """
+        dummy_callable_wrong_parameters = lambda step_idx, dummy_longitudinal_dataset, y, name: (
+            dummy_longitudinal_dataset.data.to_numpy(),
+            dummy_longitudinal_dataset.feature_groups(),
+            dummy_longitudinal_dataset.non_longitudinal_features(),
+            dummy_longitudinal_dataset.data.columns.tolist(),
+        )
+
+        with pytest.raises(
+                ValueError,
+                match="update_data_callback must be a callable function or a 'default' string value."
+        ):
+            longitudinal_pipeline = LongitudinalPipeline(
+                steps=pipeline_function(longitudinal_data),
+                features_group=longitudinal_data.feature_groups(),
+                non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
+                update_feature_groups_callback="DUMMY_CALLBACK",
+                feature_list_names=longitudinal_data.data.columns.tolist(),
+            )
+
+            longitudinal_pipeline.fit(
+                longitudinal_data.X_train,
+                longitudinal_data.y_train,
+            )
+
+        with pytest.raises(
+                ValueError,
+                match="update_data_callback must accept 5 parameters, got 4."
+        ):
+            longitudinal_pipeline = LongitudinalPipeline(
+                steps=pipeline_function(longitudinal_data),
+                features_group=longitudinal_data.feature_groups(),
+                non_longitudinal_features=longitudinal_data.non_longitudinal_features(),
+                update_feature_groups_callback=dummy_callable_wrong_parameters,
+                feature_list_names=longitudinal_data.data.columns.tolist(),
+            )
+            longitudinal_pipeline.fit(
+                longitudinal_data.X_train,
+                longitudinal_data.y_train,
+            )
+
+
