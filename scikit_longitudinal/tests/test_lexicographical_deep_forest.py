@@ -2,8 +2,11 @@ import numpy as np
 import pytest
 from sklearn_fork.datasets import make_classification
 
-from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import LexicoDeepForestClassifier, \
-    LongitudinalEstimatorConfig, LongitudinalClassifierType
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import (
+    LexicoDeepForestClassifier,
+    LongitudinalClassifierType,
+    LongitudinalEstimatorConfig,
+)
 
 
 @pytest.fixture

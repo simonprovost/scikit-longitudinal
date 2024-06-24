@@ -1,3 +1,4 @@
+# pylint: disable=W0222
 from enum import Enum
 from typing import Any, Callable, List, Optional
 
@@ -170,8 +171,7 @@ class LongitudinalCustomVoting(CustomClassifierMixinEstimator):
 
         if self.weights is not None:  # Weighted average of probabilities
             return np.average(prob_predictions, axis=0, weights=self.weights)
-        else:  # Simple average of probabilities
-            return np.mean(prob_predictions, axis=0)
+        return np.mean(prob_predictions, axis=0)
 
     def _extract_wave(self, X: np.ndarray, wave: int) -> np.ndarray:
         """Reduce the input data to a specific wave if a wave extractor is provided.
@@ -205,12 +205,11 @@ class LongitudinalCustomVoting(CustomClassifierMixinEstimator):
         """
         if self.tie_breaker == TieBreaker.LAST:
             return votes[-1]
-        elif self.tie_breaker == TieBreaker.FIRST:
+        if self.tie_breaker == TieBreaker.FIRST:
             return votes[0]
-        elif self.tie_breaker == TieBreaker.RANDOM:
+        if self.tie_breaker == TieBreaker.RANDOM:
             return np.random.choice(votes)
-        else:
-            raise ValueError(f"Invalid tie breaker: {self.tie_breaker}")
+        raise ValueError(f"Invalid tie breaker: {self.tie_breaker}")
 
     @staticmethod
     def majority_voting(column: np.ndarray) -> np.ndarray:

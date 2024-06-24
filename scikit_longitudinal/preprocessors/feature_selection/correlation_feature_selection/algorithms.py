@@ -3,8 +3,10 @@ from typing import List
 
 import numpy as np
 
-from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.operations import \
-    _FeatureSelectorCache, merit_calculation
+from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.operations import (
+    _FeatureSelectorCache,
+    merit_calculation,
+)
 
 
 def _exhaustive_search(X: np.ndarray, y: np.ndarray) -> List[int]:
@@ -29,6 +31,7 @@ def _exhaustive_search(X: np.ndarray, y: np.ndarray) -> List[int]:
 
     Returns:
         List[int]: The indices of the features in the best-performing set based on the merit score.
+
     """
     cache = _FeatureSelectorCache(X, y)
     n_features = X.shape[1]
@@ -58,6 +61,7 @@ def _greedy_search(X: np.ndarray, y: np.ndarray) -> List[int]:
 
     Returns:
         List[int]: The indices of the features in the selected set based on the greedy forward search.
+
     """
     cache = _FeatureSelectorCache(X, y)
     n_features = X.shape[1]
@@ -69,7 +73,8 @@ def _greedy_search(X: np.ndarray, y: np.ndarray) -> List[int]:
         merit_scores.append(current_merit)
         add_candidates = [
             (merit_calculation(tuple(selected_features + [i]), cache), i)
-            for i in range(n_features) if i not in selected_features
+            for i in range(n_features)
+            if i not in selected_features
         ]
         best_merit, best_feature_to_add = max(add_candidates, key=lambda x: x[0], default=(-np.inf, -1))
         if best_merit <= current_merit:

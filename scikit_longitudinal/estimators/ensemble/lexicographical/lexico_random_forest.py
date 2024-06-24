@@ -92,7 +92,7 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
         min_samples_split: int = 2,
         min_samples_leaf: int = 1,
         min_weight_fraction_leaf: float = 0.0,
-            max_features: Optional[Union[int, str]] = 'sqrt',
+        max_features: Optional[Union[int, str]] = "sqrt",
         max_leaf_nodes: Optional[int] = None,
         min_impurity_decrease: float = 0.0,
         class_weight: Optional[str] = None,

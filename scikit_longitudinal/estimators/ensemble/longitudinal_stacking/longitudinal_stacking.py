@@ -1,3 +1,4 @@
+# pylint: disable=W0222,R0801
 from typing import List, Optional, Union
 
 import numpy as np
