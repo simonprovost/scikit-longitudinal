@@ -1,4 +1,4 @@
-# pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member,R0801
+# pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member,R0801,protected-access
 from functools import wraps
 from typing import List, Optional, Union
 
@@ -7,8 +7,9 @@ from overrides import override
 from sklearn_fork.utils.multiclass import unique_labels
 from starboost import BoostingClassifier
 
-from scikit_longitudinal.estimators.trees.lexicographical.lexico_decision_tree_regressor import \
-    LexicoDecisionTreeRegressor
+from scikit_longitudinal.estimators.trees.lexicographical.lexico_decision_tree_regressor import (
+    LexicoDecisionTreeRegressor,
+)
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 
@@ -38,7 +39,6 @@ def ensure_valid_state(method):
 
     """
 
-
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         if method.__name__ in ["_predict", "_predict_proba"] and self._lexico_gradient_boosting is None:
@@ -50,6 +50,7 @@ def ensure_valid_state(method):
         return method(self, *args, **kwargs)
 
     return wrapper
+
 
 class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
     """Gradient Boosting Classifier adapted for longitudinal data analysis.
@@ -117,6 +118,7 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
             customized so that the original scikit-learn "check_x_y" is performed all the time.
 
     """
+
     def __init__(
         self,
         threshold_gain: float = 0.0015,

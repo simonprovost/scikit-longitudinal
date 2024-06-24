@@ -107,7 +107,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
         min_samples_split: int = 2,
         min_samples_leaf: int = 1,
         min_weight_fraction_leaf: float = 0.0,
-            max_features: Optional[Union[int, str]] = None,
+        max_features: Optional[Union[int, str]] = None,
         random_state: Optional[int] = None,
         max_leaf_nodes: Optional[int] = None,
         min_impurity_decrease: float = 0.0,
@@ -143,6 +143,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
         self.feature_index_map = {
             feature: time_index
             for group in self.features_group
-            for time_index, feature in enumerate(group) if feature != -1
+            for time_index, feature in enumerate(group)
+            if feature != -1
         }
         return super().fit(X, y, *args, **kwargs)

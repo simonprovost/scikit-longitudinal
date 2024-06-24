@@ -1,11 +1,14 @@
 # flake8: noqa
 
-from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import \
-    LexicoDeepForestClassifier  # noqa
-from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting import \
-    LexicoGradientBoostingClassifier  # noqa
-from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import \
-    LexicoRandomForestClassifier  # noqa
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import (  # noqa
+    LexicoDeepForestClassifier,
+)
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting import (  # noqa
+    LexicoGradientBoostingClassifier,
+)
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import (  # noqa
+    LexicoRandomForestClassifier,
+)
 from scikit_longitudinal.estimators.ensemble.longitudinal_stacking.longitudinal_stacking import (  # noqa
     LongitudinalStackingClassifier,
 )
@@ -20,5 +23,5 @@ _all_ = [
     "LexicoDeepForestClassifier",
     "LongitudinalVotingClassifier",
     "LongitudinalStackingClassifier",
-    "LexicoGradientBoostingClassifier"
+    "LexicoGradientBoostingClassifier",
 ]

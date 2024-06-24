@@ -1,8 +1,10 @@
 import numpy as np
 from overrides import override
 
-from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.algorithms import \
-    _exhaustive_search, _greedy_search
+from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.algorithms import (
+    _exhaustive_search,
+    _greedy_search,
+)
 from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 
 

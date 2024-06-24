@@ -21,10 +21,13 @@ class _FeatureSelectorCache:
             The feature matrix.
         y (np.ndarray):
             The target variable array.
+
     """
 
     def __init__(self, X: np.ndarray, y: np.ndarray):
-        """Initialises the cache with feature matrix and target variable."""
+        """
+        Initialises the cache with feature matrix and target variable.
+        """
         self.X = X
         self.y = y
 
@@ -42,6 +45,7 @@ class _FeatureSelectorCache:
         Returns:
             float: The absolute value of the correlation coefficient between the feature
             and the class variable.
+
         """
         correlation, _ = pointbiserialr(self.X[:, feature_index], self.y)
         return abs(correlation)
@@ -61,6 +65,7 @@ class _FeatureSelectorCache:
         Returns:
             float: The absolute value of the Pearson correlation coefficient between
             the two specified features.
+
         """
         correlation = np.corrcoef(self.X[:, feature_index_1], self.X[:, feature_index_2])[0, 1]
         return abs(correlation)
@@ -82,6 +87,7 @@ def merit_calculation(feature_indices: Tuple[int], cache: _FeatureSelectorCache)
 
     Returns:
         float: The calculated merit of the given feature set.
+
     """
     feature_to_class_correlations = [cache.feature_class_correlation(index) for index in feature_indices]
     avg_feature_to_class_correlation = np.mean(feature_to_class_correlations) if feature_to_class_correlations else 0
@@ -91,9 +97,9 @@ def merit_calculation(feature_indices: Tuple[int], cache: _FeatureSelectorCache)
         for i in range(len(feature_indices))
         for j in range(i + 1, len(feature_indices))
     ]
-    avg_feature_to_feature_correlation = np.mean(
-        feature_to_feature_correlations
-    ) if feature_to_feature_correlations else 0
+    avg_feature_to_feature_correlation = (
+        np.mean(feature_to_feature_correlations) if feature_to_feature_correlations else 0
+    )
 
     total_features = len(feature_indices)
     if total_features == 0:

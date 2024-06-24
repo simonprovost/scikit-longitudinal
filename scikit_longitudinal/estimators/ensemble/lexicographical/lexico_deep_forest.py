@@ -1,4 +1,4 @@
-# pylint: disable=R0902,R0903,R0914,,too-many-arguments,invalid-name,signature-differs,no-member, W0212
+# pylint: disable=R0902,R0903,R0914,R0801,too-many-arguments,invalid-name,signature-differs,no-member, W0212
 
 from dataclasses import dataclass
 from enum import Enum
@@ -265,9 +265,12 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
     def _create_longitudinal_estimator(
         self, classifier_type: Union[str, LongitudinalClassifierType], **hyperparameters: Any
     ) -> ClassifierMixin:
-        if classifier_type == LongitudinalClassifierType.LEXICO_RF or classifier_type == LongitudinalClassifierType.LEXICO_RF.value:
+        if classifier_type in {LongitudinalClassifierType.LEXICO_RF, LongitudinalClassifierType.LEXICO_RF.value}:
             return LexicoRandomForestClassifier(features_group=self.features_group, **hyperparameters)
-        if classifier_type == LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF or classifier_type == LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF.value:
+        if classifier_type in {
+            LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF,
+            LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF.value,
+        }:
             return LexicoRandomForestClassifier(features_group=self.features_group, max_features=1, **hyperparameters)
         raise ValueError(f"Unsupported classifier type: {classifier_type.value}")
 

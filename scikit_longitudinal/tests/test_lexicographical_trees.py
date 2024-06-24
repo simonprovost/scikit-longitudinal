@@ -4,8 +4,11 @@ from sklearn_fork.datasets import load_iris, make_classification
 from sklearn_fork.metrics import accuracy_score
 from sklearn_fork.model_selection import train_test_split
 
-from scikit_longitudinal.estimators.ensemble import LexicoRandomForestClassifier, LexicoGradientBoostingClassifier, \
-    LexicoDeepForestClassifier
+from scikit_longitudinal.estimators.ensemble import (
+    LexicoDeepForestClassifier,
+    LexicoGradientBoostingClassifier,
+    LexicoRandomForestClassifier,
+)
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import LongitudinalClassifierType
 from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 
@@ -177,9 +180,7 @@ class TestLexico:
             (421),
         ],
     )
-    def test_lexico_deep_forest_synthetic(
-            self, train_test_data_synthetic, synthetic_data, random_state
-    ):
+    def test_lexico_deep_forest_synthetic(self, train_test_data_synthetic, synthetic_data, random_state):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         clf = LexicoDeepForestClassifier(

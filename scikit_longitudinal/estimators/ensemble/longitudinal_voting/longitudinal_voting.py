@@ -1,3 +1,4 @@
+# pylint: disable=E1101,W0222,R0801
 from enum import Enum, auto
 from typing import Callable, List
 

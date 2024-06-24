@@ -7,8 +7,10 @@ import pandas as pd
 import ray
 from overrides import override
 
-from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.algorithms import \
-    _exhaustive_search, _greedy_search
+from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.algorithms import (
+    _exhaustive_search,
+    _greedy_search,
+)
 from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 
 
@@ -199,9 +201,9 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
                 group_selected_features = [self._fit_subset(X, y, group) for group in group_features_copy]
 
             if self.version == 2:
-                combined_features = [
-                    index for sublist in group_selected_features for index in sublist
-                ] + (self.non_longitudinal_features or [])
+                combined_features = [index for sublist in group_selected_features for index in sublist] + (
+                    self.non_longitudinal_features or []
+                )
                 self.search_method = self.outer_search_method
                 selected_indices = self._fit(X[:, combined_features], y).selected_features_
                 flattened_list = np.array(combined_features)
