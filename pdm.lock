@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:2063667c7942bc422fbf350b398bd39cf2b2f505689fd8e5c605f1312253a5f3"
+content_hash = "sha256:e92e66094bb950066e7740df7254749164d08bffb9696edccd0f5c8d50d3320e"
 
 [[package]]
 name = "aiosignal"
@@ -3011,6 +3011,22 @@ dependencies = [
 files = [
     {file = "stack_data-0.6.3-py3-none-any.whl", hash = "sha256:d5558e0c25a4cb0853cddad3d77da9891a08cb85dd9f9f91b9f8cd66e511e695"},
     {file = "stack_data-0.6.3.tar.gz", hash = "sha256:836a778de4fec4dcd1dcd89ed8abff8a221f58308462e1c4aa2a3cf30148f0b9"},
+]
+
+[[package]]
+name = "starboost"
+version = "0.0.2"
+requires_python = ">=3.5.0"
+summary = "A small machine learning library for doing gradient boosting"
+groups = ["default"]
+dependencies = [
+    "numpy>=1.14.0",
+    "scikit-learn>=0.19.0",
+    "scipy>=1.0.1",
+]
+files = [
+    {file = "starboost-0.0.2-py2.py3-none-any.whl", hash = "sha256:e35691117640b8dcfbeb3edc1b2ea5eddecfc33148775a2c7c04273457088249"},
+    {file = "starboost-0.0.2.tar.gz", hash = "sha256:10d88630ecef8b4442a667ede4dcf6c3d383f4f0f55af0d909726ae63ae9fd3e"},
 ]
 
 [[package]]
