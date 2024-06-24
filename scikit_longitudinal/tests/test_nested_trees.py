@@ -161,8 +161,27 @@ class TestNestedTreesClassifier:
         classifier = NestedTreesClassifier(features_group)
         classifier.fit(X_train, y_train)
         y_pred = classifier.predict(X)
+        y_pred_proba = classifier.predict_proba(X)
         assert y_pred is not None
         assert y_pred.shape == expected.shape
+        assert y_pred_proba is not None
+        assert y_pred_proba.shape == (1, 2)
+
+    @pytest.mark.parametrize(
+        "X",
+        [
+            (np.array([[0, 1, 2, 3, 4, 5]])),
+        ],
+    )
+    def test_predict_with_no_root(self, X, dummy_data, features_group):
+        X_train, y_train = dummy_data
+        classifier = NestedTreesClassifier(features_group)
+        classifier.fit(X_train, y_train)
+        classifier.root = None
+        with pytest.raises(ValueError, match="The classifier must be fitted before making predictions."):
+            classifier.predict(X)
+        with pytest.raises(ValueError, match="The classifier must be fitted before making predictions."):
+            classifier.predict_proba(X)
 
 
 def capture_print_nested_tree_output(classifier):

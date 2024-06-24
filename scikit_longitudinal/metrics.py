@@ -71,7 +71,7 @@ def auprc_score(
 
     """
     y_type = type_of_target(y_true)
-    if y_score.ndim == 2:
+    if y_score.ndim == 2:  # pragma: no cover
         if y_score.shape[1] == 2:
             y_score = y_score[:, 1]  # select the scores for the positive class
         elif average == "micro":

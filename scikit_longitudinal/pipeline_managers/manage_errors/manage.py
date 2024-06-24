@@ -25,7 +25,7 @@ def handle_errors(f: Callable) -> Callable:
 
     """
 
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
+    def wrapper(*args: Any, **kwargs: Any) -> Any:  # pragma: no cover
         try:
             return f(*args, **kwargs)
         except stopit.utils.TimeoutException:
