@@ -62,24 +62,35 @@ def check_compiler_variables(system_platform: str) -> bool:
             print("For fish shell:")
             print(
                 """
-                        set -x CC /usr/bin/clang
-                        set -x CXX /usr/bin/clang++
-                        set -x CPPFLAGS "$CPPFLAGS -I/usr/local/opt/libomp/include"
-                        set -x CFLAGS "$CFLAGS -I/opt/homebrew/opt/libomp/include"
-                        set -x CXXFLAGS "$CXXFLAGS -I/opt/homebrew/opt/libomp/include"
-                        set -x LDFLAGS "$LDFLAGS -L/usr/local/opt/libomp/lib"
-                   """
+                        set -x CC gcc
+                        set -x CXX g++
+                        set -x CPPFLAGS "$CPPFLAGS -I/usr/local/include"
+                        set -x CFLAGS "$CFLAGS -Wall"
+                        set -x CXXFLAGS "$CXXFLAGS -Wall"
+                        set -x LDFLAGS "$LDFLAGS -L/usr/local/lib"
+                    """
             )
             print("For ZSH shell:")
             print(
                 """
-                        export CC=/usr/bin/clang
-                        export CXX=/usr/bin/clang++
-                        export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libomp/include"
-                        export CFLAGS="$CFLAGS -I/opt/homebrew/opt/libomp/include"
-                        export CXXFLAGS="$CXXFLAGS -I/opt/homebrew/opt/libomp/include"
-                        export LDFLAGS="$LDFLAGS -L/usr/local/opt/libomp/lib"
-                   """
+                        ENV CC=gcc
+                        ENV CXX=g++
+                        ENV CPPFLAGS="-I/usr/local/include"
+                        ENV CFLAGS="-Wall"
+                        ENV CXXFLAGS="-Wall"
+                        ENV LDFLAGS="-L/usr/local/lib"
+                    """
+            )
+            print("For Bash shell:")
+            print(
+                """
+                        export CC=gcc
+                        export CXX=g++
+                        export CPPFLAGS="-I/usr/local/include"
+                        export CFLAGS="-Wall"
+                        export CXXFLAGS="-Wall"
+                        export LDFLAGS="-L/usr/local/lib"
+                    """
             )
         elif system_platform == "Linux":
             print("For Linux, you can install libomp via package manager, e.g.,")
