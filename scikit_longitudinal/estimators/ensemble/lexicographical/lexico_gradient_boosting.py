@@ -55,6 +55,9 @@ def ensure_valid_state(method):
 class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
     """Gradient Boosting Classifier adapted for longitudinal data analysis.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     Gradient Boosting Longitudinal Classifier is an advanced ensemble algorithm designed specifically for longitudinal
     datasets, which incorporates the fundamental principles of the Gradient Boosting framework itself. This classifier
     distinguishes itself through the implementation of longitudinal-adapted base estimators, which are intended to

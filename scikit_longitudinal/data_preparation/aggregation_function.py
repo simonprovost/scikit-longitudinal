@@ -196,6 +196,9 @@ def _aggregate(
 class AggrFunc(DataPreparationMixin):
     """Class for Aggregation Function method of data transformation in longitudinal data analysis.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     The AggrFunc class is designed to facilitate the application of an aggregation function to
     feature groups within a longitudinal dataset. This class encapsulates the necessary functionality to perform this
     operation efficiently and effectively. In software development, a feature group refers to a collection of

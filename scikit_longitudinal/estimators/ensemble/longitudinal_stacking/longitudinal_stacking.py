@@ -15,6 +15,9 @@ from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 class LongitudinalStackingClassifier(CustomClassifierMixinEstimator):
     """A classifier for longitudinal data classification using a stacking ensemble approach.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     This class implements a stacking ensemble method for longitudinal data, combining multiple (longitudinal-adapted)
     base estimators and a meta-learner. Each base estimator is fitted on the whole dataset, and their predictions are
     used as  input for the meta-learner, which makes the final prediction.

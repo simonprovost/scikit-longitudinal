@@ -19,6 +19,9 @@ from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 class NestedTreesClassifier(CustomClassifierMixinEstimator):
     """Nested Trees Classifier for longitudinal data.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     The Nested Trees Classifier is a unique and innovative classification algorithm specifically designed for
     longitudinal datasets. The algorithm in question is designed to create a model that bears resemblance to
     traditional decision tree algorithms. However, it distinguishes itself by employing a unique approach: instead of

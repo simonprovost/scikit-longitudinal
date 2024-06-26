@@ -55,6 +55,9 @@ def auprc_score(
 ) -> Union[float, List[float]]:
     """Calculate the Area Under the Precision-Recall Curve (AUPRC).
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     Args:
         y_true (Union[List[int], pd.Series]): Ground truth (correct) target values.
         y_score (np.ndarray): Estimated probabilities or decision function.

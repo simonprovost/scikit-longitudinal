@@ -28,6 +28,9 @@ class TieBreaker(Enum):
 class LongitudinalCustomVoting(CustomClassifierMixinEstimator):
     """A custom voting classifier duplicate to the one in scikit-learn.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     The only difference is that this class allows for ensemble learning using a custom longitudinal voting strategy. It
     aggregates predictions from multiple classifiers and determines the final output based on the specified strategy.
     Another difference is that the tie-breaking mechanism is favoring the last wave's prediction by default.
