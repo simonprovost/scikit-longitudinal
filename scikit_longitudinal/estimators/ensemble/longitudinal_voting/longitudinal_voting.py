@@ -50,6 +50,9 @@ class LongitudinalEnsemblingStrategy(Enum):
 class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
     """A classifier for longitudinal data analysis using various voting strategies.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     This class allows for ensemble learning using different longitudinal voting strategies. It aggregates
     predictions from multiple classifiers and determines the final output based on the chosen voting strategy.
     It incorporates a longitudinal custom voting classifier under the hood. This cutom voting, do proceed as

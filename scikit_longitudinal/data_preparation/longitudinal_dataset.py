@@ -114,6 +114,9 @@ def check_extension(allowed_extensions: List[str]):  # pragma: no cover
 class LongitudinalDataset:
     """LongitudinalDataset class for managing and preparing longitudinal datasets.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     The present's class purpose is a container designed particularly for longitudinal data. It provides
     fundamental data management and transformation capabilities, thereby facilitating the development and
     application of machine learning algorithms tailored to longitudinal data classification tasks.

@@ -8,6 +8,9 @@ from sklearn_fork.tree import DecisionTreeRegressor
 class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
     """LexicoDecisionTreeRegressor.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     This implementation provides the LexicoDecisionTreeRegressor, an adaptation of the sklearn decision tree
     algorithm for longitudinal data regression. The lexicographic approach considers both information gain ratios
     and time points (wave ids) when selecting split features in a decision-tree node, optimising the primary

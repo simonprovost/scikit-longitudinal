@@ -16,6 +16,9 @@ from scikit_longitudinal.pipeline_managers.manage_steps import configure_and_fit
 class LongitudinalPipeline(Pipeline):
     """Custom pipeline for handling and processing longitudinal techniques (preprocessors, classifier, etc.).
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     This class extends the scikit-learn's Pipeline to offer specialised methods and
     attributes for working with longitudinal data. It ensures that the longitudinal features
     and their structure are updated throughout the pipeline's transformations.

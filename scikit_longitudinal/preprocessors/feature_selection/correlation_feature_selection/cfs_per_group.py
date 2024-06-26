@@ -16,7 +16,10 @@ from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 
 # pylint: disable=R0902, R0801, R0912, W0511
 class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
-    """Correlation-based Feature Selection (CFS) per group (CFS Per Group)..
+    """Correlation-based Feature Selection (CFS) per group (CFS Per Group).
+
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
 
     This class performs feature selection using the correlation-based feature selection (CFS) algorithm on given data.
     The CFS algorithm is a filter method that selects features based on their correlation with the target variable and

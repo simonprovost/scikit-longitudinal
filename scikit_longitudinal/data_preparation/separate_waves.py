@@ -219,6 +219,9 @@ def train_classifier(classifier, X_wave, y_wave, wave):  # pragma: no cover
 class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
     """The SepWav (Separate Waves) class for data transformation in longitudinal data analysis.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     The proposed methodology entails the provision of a user-defined algorithm in a sequential manner, wave by wave.
     The algorithm is designed to predict a class variable by being trained on a dataset that exclusively consists of
     the current wave, starting from the first wave. The algorithm undergoes training for each subsequent wave by
