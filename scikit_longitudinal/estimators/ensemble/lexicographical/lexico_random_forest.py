@@ -8,6 +8,9 @@ from sklearn_fork.ensemble import RandomForestClassifier
 class LexicoRandomForestClassifier(RandomForestClassifier):
     """A random forest classifier for longitudinal data.
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     LexicoRF is a random forest classifier for longitudinal data that uses a lexicographic bi-objective
     approach to select the best split at each node. Refer to the LexicoDecisionTree documentation for
     more information.

@@ -12,6 +12,9 @@ from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
     """Correlation-based Feature Selection (CFS).
 
+    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
+    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+
     This class performs feature selection using the correlation-based feature selection (CFS) algorithm on given data.
     The CFS algorithm is a filter method that selects features based on their correlation with the target variable and
     their mutual correlation with each other. This implementation supports the following search methods:
