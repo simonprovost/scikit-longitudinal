@@ -1,4 +1,3 @@
-
 <!--suppress HtmlDeprecatedAttribute -->
 <div align="center">
    <p align="center">
@@ -69,17 +68,19 @@
                      <table>
                         <tr>
                            <td>
-                              <a href="mailto:s.g.provost@kent.ac.uk">
-                              <img alt="Microsoft Outlook" src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white">
-                              </a><br />
-                              <a href="https://linkedin.com/in/simonprovostdev/">
-                              <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
-                            <a href="https://stackoverflow.com/users/9814037/simon-provost">
-                              <img alt="Stack Overflow" src="https://img.shields.io/badge/Stack_Overflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white">
-                              <a href="https://scholar.google.com/citations?user=Lv_LddYAAAAJ">
-                              <img alt="Google Scholar" src="https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white">
-                              </a>
-                           </td>
+                                <a href="mailto:s.g.provost@kent.ac.uk">
+                                    <img alt="Microsoft Outlook" src="https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg" width="40" height="40">
+                                </a><br />
+                                <a href="https://linkedin.com/in/simonprovostdev/">
+                                    <img alt="LinkedIn" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" width="40" height="40">
+                                </a><br />
+                                <a href="https://stackoverflow.com/users/9814037/simon-provost">
+                                    <img alt="Stack Overflow" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Stack_Overflow_icon.svg" width="40" height="40">
+                                </a><br />
+                                <a href="https://scholar.google.com/citations?user=Lv_LddYAAAAJ">
+                                    <img alt="Google Scholar" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg" width="40" height="40">
+                                </a>
+                            </td>
                         </tr>
                      </table>
                   </td>
@@ -90,13 +91,15 @@
    </table>
 </div>
 
-> 🌟 **Exciting Update**: We're delighted to introduce the brand new v0.1 documentation for Scikit-longitudinal! For a deep dive into the library's capabilities and features, please [visit here](https://simonprovost.github.io/scikit-longitudinal/).
+> 🌟 **Exciting Update**: We're delighted to introduce the brand new v0.1 documentation for Scikit-longitudinal! For a
+> deep dive into the library's capabilities and features,
+> please [visit here](https://simonprovost.github.io/scikit-longitudinal/).
 
 ## <a id="about-the-project"></a>💡 About The Project
 
 `Scikit-longitudinal` is a machine learning library designed to analyse
-longitudinal data (Classification tasks focussed as of today). It offers tools and models for processing, analysing, 
-and predicting longitudinal data, with a user-friendly interface that 
+longitudinal data (Classification tasks focussed as of today). It offers tools and models for processing, analysing,
+and predicting longitudinal data, with a user-friendly interface that
 integrates with the `Scikit-learn` ecosystem.
 
 Please for further information, visit the [official documentation](https://simonprovost.github.io/scikit-longitudinal/).
@@ -110,12 +113,13 @@ of the [official documentation](https://simonprovost.github.io/scikit-longitudin
 
 ## <a id="how-to-use"></a></a>🚀 Getting Started
 
-To perform longitudinal analysis with `Scikit-Longitudinal`, use the 
-`LongitudinalDataset` class to prepare the dataset. To analyse your 
-data, use the `LexicoGradientBoostingClassifier` _(i.e. Gradient Boosting variant for Longitudinal Data)_ or another available 
+To perform longitudinal analysis with `Scikit-Longitudinal`, use the
+`LongitudinalDataset` class to prepare the dataset. To analyse your
+data, use the `LexicoGradientBoostingClassifier` _(i.e. Gradient Boosting variant for Longitudinal Data)_ or another
+available
 estimator/preprocessor.
 
-Following that, you can apply the popular _fit_, _predict_, _prodict_proba_, or _transform_ 
+Following that, you can apply the popular _fit_, _predict_, _prodict_proba_, or _transform_
 methods in the same way that `Scikit-learn` does, as shown in the example below.
 
 ``` py
@@ -141,7 +145,8 @@ y_pred = model.predict(dataset.X_test)
 
 ## <a id="citation"></a>📝 How to Cite?
 
-Paper's citation information will be added here once published. Currently, it has been submitted to a conference. In the meantime,
+Paper's citation information will be added here once published. Currently, it has been submitted to a conference. In the
+meantime,
 for the repository, utilise the button top right corner of the repository "How to cite?".
 Or open the following citation file: [CITATION.cff](./CITATION.cff).
 
