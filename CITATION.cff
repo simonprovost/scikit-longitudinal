@@ -1,10 +1,9 @@
 cff-version: 1.2.0
-message: If you use this software, please cite it as below 🙏
+message: If you use this library, please cite it as below 🙏
 authors:
   - family-names: "Provost"
     given-names: "Simon"
     orcid: "0000-0001-8402-5464"
-supervisors:
   - family-names: "Freitas"
     given-names: "Alex"
     orcid: "0000-0001-9825-4700"
