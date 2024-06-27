@@ -1,0 +1,82 @@
+name: ci-tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Testing:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: [ 3.9 ]
+        os: [ ubuntu-latest ]
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9' # Set according to your needs
+      # Checkout the repository
+      - name: Checkout this repository
+        uses: actions/checkout@v2
+      # Install PDM
+      - uses: pdm-project/setup-pdm@main
+        name: Setup PDM
+        with:
+          python-version: 3.9  # Version range or exact version of a Python version to use, the same as actions/setup-python
+          architecture: x64    # The target architecture (x86, x64) of the Python interpreter. the same as actions/setup-python
+          prerelease: false    # Allow prerelease versions to be installed
+          enable-pep582: true  # Enable PEP 582 package loading globally
+      # Install dependencies in the first place
+      - name: Install dependencies from pdm.lock & Print the list of installed packages & Run a pdm rule called `_build_scikit_tree` yet it needs to be done in the Pdm environment
+        run: |
+            pdm install
+            pdm list
+            uname -m
+#        run: |
+#          pdm run _use_python39
+#
+#          export PDM_IN_ENV=in-project
+#          echo "PDM_IN_ENV=in-project" >> $GITHUB_ENV
+#
+#          export CC=gcc
+#          echo "CC=gcc" >> $GITHUB_ENV
+#
+#          export CXX=g++
+#          echo "CXX=g++" >> $GITHUB_ENV
+#
+#          export CPPFLAGS="-I/usr/local/include"
+#          echo "CPPFLAGS=-I/usr/local/include" >> $GITHUB_ENV
+#
+#          export CFLAGS="-Wall"
+#          echo "CFLAGS=-Wall" >> $GITHUB_ENV
+#
+#          export CXXFLAGS="-Wall"
+#          echo "CXXFLAGS=-Wall" >> $GITHUB_ENV
+#
+#          export LDFLAGS="-L/usr/local/lib"
+#          echo "LDFLAGS=-L/usr/local/lib" >> $GITHUB_ENV
+#
+#          export PDM_IN_ENV=in-project
+#          echo "PDM_IN_ENV=in-project" >> $GITHUB_ENV
+#
+#          source "$(pdm venv activate $PDM_IN_ENV)"
+#          pdm run install_project
+##          ARCHFLAGS="-arch x86_64" pip install numpy==1.23.3
+##          ARCHFLAGS="-arch x86_64" pip install scipy==1.10.1
+##          ARCHFLAGS="-arch x86_64" pip install Cython==0.29.33
+##          ARCHFLAGS="-arch x86_64" pip install wheel==0.43.0
+##          ARCHFLAGS="-arch x86_64" pip install --verbose --no-build-isolation --editable ./scikit-learn
+##          pdm run tests
+#
+#      - name: List installed packages
+#        run: |
+#          export PDM_IN_ENV=in-project
+#          echo "PDM_IN_ENV=in-project" >> $GITHUB_ENV
+#
+#          source "$(pdm venv activate $PDM_IN_ENV)"
+#          pip --version
+#          pip list
+
