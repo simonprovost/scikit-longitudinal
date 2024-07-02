@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Tuple
 import numpy as np
 import ray
 from matplotlib import pyplot as plt
-from sklearn_fork.tree import DecisionTreeClassifier, plot_tree
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 # pylint: disable=R0913
 

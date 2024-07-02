@@ -79,7 +79,7 @@ To manually configure your environment, please adhere to the following procedure
 3. **Project Setup:**
     - Execute the setup script. This step may prompt you to export certain variables or configure compilers like GCC or Clang. Please comply with the on-screen instructions:
       ```bash
-      pdm run setup_project
+      pdm run setup_sklong
       ```
 
 4. **Environment Variables Configuration:**

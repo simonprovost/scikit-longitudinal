@@ -4,7 +4,7 @@ from typing import List, Optional, Union
 
 import numpy as np
 from overrides import override
-from sklearn_fork.utils.multiclass import unique_labels
+from sklearn.utils.multiclass import unique_labels
 from starboost import BoostingClassifier
 
 from scikit_longitudinal.estimators.trees.lexicographical.lexico_decision_tree_regressor import (

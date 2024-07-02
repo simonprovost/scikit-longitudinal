@@ -1,7 +1,7 @@
 import pytest
 from numpy import ndarray
-from sklearn_fork.ensemble import RandomForestClassifier
-from sklearn_fork.exceptions import NotFittedError
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.exceptions import NotFittedError
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.separate_waves import SepWav

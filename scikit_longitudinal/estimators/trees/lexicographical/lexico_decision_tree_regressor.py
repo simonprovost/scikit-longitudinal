@@ -2,7 +2,7 @@
 
 from typing import List, Optional, Union
 
-from sklearn_fork.tree import DecisionTreeRegressor
+from sklearn.tree import DecisionTreeRegressor
 
 
 class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
@@ -74,9 +74,9 @@ class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
             The underlying Tree object.
 
     Examples:
-        >>> from sklearn_fork.datasets import load_boston
-        >>> from sklearn_fork.model_selection import train_test_split
-        >>> from sklearn_fork.metrics import mean_squared_error
+        >>> from sklearn.datasets import load_boston
+        >>> from sklearn.model_selection import train_test_split
+        >>> from sklearn.metrics import mean_squared_error
         >>> from scikit_longitudinal.estimators.tree import LexicoDecisionTreeRegressor
         >>> X, y = load_boston(return_X_y=True)
         >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -109,16 +109,16 @@ class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
         max_leaf_nodes: Optional[int] = None,
         min_impurity_decrease: float = 0.0,
         ccp_alpha: float = 0.0,
+        store_leaf_values: bool = False,
+        monotonic_cst: Optional[List[int]] = None,
     ):
         self.threshold_gain = threshold_gain
         self.features_group = features_group
 
-        self.feature_index_map = {}
-
         super().__init__(
             criterion=criterion,
             threshold_gain=threshold_gain,
-            feature_index_map=self.feature_index_map,
+            features_group=self.features_group,
             splitter=splitter,
             max_depth=max_depth,
             min_samples_split=min_samples_split,
@@ -129,16 +129,12 @@ class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
             max_leaf_nodes=max_leaf_nodes,
             min_impurity_decrease=min_impurity_decrease,
             ccp_alpha=ccp_alpha,
+            store_leaf_values=store_leaf_values,
+            monotonic_cst=monotonic_cst,
         )
 
     def fit(self, X, y, *args, **kwargs):
         if self.features_group is None:
             raise ValueError("The features_group parameter must be provided.")
 
-        self.feature_index_map = {
-            feature: time_index
-            for group in self.features_group
-            for time_index, feature in enumerate(group)
-            if feature != -1
-        }
         return super().fit(X, y, *args, **kwargs)

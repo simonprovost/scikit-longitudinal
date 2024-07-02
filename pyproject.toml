@@ -3,9 +3,14 @@ name = "Scikit-longitudinal"
 version = "0.0.2"
 description = "Scikit-longitudinal, an open-source Python lib for longitudinal data analysis, builds on Scikit-learn's foundation. It offers specialized tools to tackle challenges of repeated measures data, ideal for researchers, data scientists, & analysts."
 authors = [
-    {name = "Simon Provost",email = "sgp28@kent.ac.uk"},
+    {name = "Provost Simon", email = "simon.gilbert.provost@gmail.com"},
+    {name = "Alex Freitas", email = "a.a.freitas@kent.ac.uk"},
 ]
+
 dependencies = [
+    "deep-forest>=0.1.7",
+    "starboost==0.0.2",
+    "scipy>=1.5.0",
     "pandas<2.0.0,>=1.5.3",
     "matplotlib<4.0.0,>=3.7.0",
     "jupyter<2.0.0,>=1.0.0",
@@ -14,65 +19,75 @@ dependencies = [
     "statsmodels<1.0.0,>=0.14.0",
     "numpy==1.23.3",
     "graphviz<1.0.0,>=0.20.1",
-    "autoflake<3.0.0,>=2.1.1",
-    "docformatter[tomli]<2.0.0,>=1.6.4",
     "arff<1.0,>=0.9",
     "threadpoolctl<4.0.0,>=3.1.0",
     "configspace<1.0.0,>=0.7.1",
-    "smac<3.0.0,>=2.0.2",
-    "deep-forest>=0.1.7",
     "Cython==0.29.33",
-    "scipy>=1.5.0",
-    "pytest-cov>=4.0.0",
-    "flake8-docstrings>=1.7.0",
-    "pydocstyle>=6.3.0",
-    "genbadge>=1.1.0",
-    "flake8>=6.0.0",
-    "pylint>=2.17.1",
-    "isort>=5.12.0",
-    "autopep8>=2.0.2",
-    "black>=23.10.1",
-    "pre-commit>=3.2.0",
-    "autoflake>=2.1.1",
-    "docformatter>=1.6.4",
-    "rich>=13.6.0",
     "stopit>=1.1.2",
-    "starboost==0.0.2",
-    "mkdocs==1.6.0",
-    "mkdocs-get-deps==0.2.0",
-    "mkdocs-material==9.5.27",
-    "mkdocs-material[imaging]=*",
-    "mkdocs-material[imaging]",
-    "mkdocs-material-extensions==1.3.1",
-    "mkdocs-minify-plugin==0.8.0",
+    "scikit-lexicographical-trees==0.0.2",
+    "rich>=13.6.0",
 ]
-requires-python = ">=3.8.1,<3.10"
+requires-python = ">=3.9,<3.10"
 readme = "README.md"
 license = {text = "MIT"}
 
-[tool.pdm.scripts]
-_.env_file = ".env"
+[tool.pdm]
+distribution = false
 
+[tool.pdm.dev-dependencies]
+lint = [
+    "autoflake<3.0.0,>=2.1.1",
+    "flake8-docstrings>=1.7.0",
+    "pydocstyle>=6.3.0",
+    "flake8>=6.0.0",
+    "pylint>=2.17.1",
+    "isort>=5.12.0",
+    "black>=23.10.1",
+    "autopep8>=2.0.2",
+    "docformatter[tomli]<2.0.0,>=1.6.4",
+]
+test = [
+    "pytest-cov>=4.0.0",
+    "genbadge>=1.1.0"
+]
+doc = [
+    "mkdocs==1.6.0",
+    "mkdocs-get-deps==0.2.0",
+    "mkdocs-material==9.5.27",
+    "mkdocs-material[imaging]",
+    "mkdocs-material-extensions==1.3.1",
+    "mkdocs-minify-plugin==0.8.0"
+]
+
+
+[tool.pdm.scripts]
 # Project setup (Note: This has only been tested on Linux && OSX)
-_use_python39 = {shell = "pdm use -f python3.9"}
-_create_env = {shell = "pdm venv create --with-pip 3.9 --force"}
+_set_pdm_use_venv = { cmd = "pdm use --venv ${PDM_IN_ENV}" }
+_use_python39.shell = "pdm use \"${SKLONG_PYTHON_PATH}\""
+_use_python39.env_file = ".env"
+_create_env.shell = "pdm venv create --with-pip ${SKLONG_PYTHON_VERSION} --force"
+_create_env.env_file = ".env"
+_check_sklong_vars = {shell = "echo 'Make sure to set the SKLONG_PYTHON_PATH and SKLONG_PYTHON_VERSION environment variables'"}
 _set_env_var = {shell = "echo 'could you please run `export PDM_IN_ENV=in-project`'"}
 _activate_env = {cmd = "echo 'could you please activate the environment via `eval $(pdm venv activate (dollar-sign)PDM_IN_ENV)`'"}
-setup_project = {composite = ["_use_python39", "_create_env", "_set_env_var", "_activate_env"]}
+setup_sklong = {composite = ["_check_sklong_vars", "_use_python39", "_create_env", "_set_env_var", "_activate_env"]}
 remove_env = { cmd = "pdm venv remove ${PDM_IN_ENV}" }
 _clean_project = {cmd = "echo could you please deactivate the environment via `conda deactivate` then run `pdm run remove_env`"}
-clean = {composite = ["_check_pdm_vars", "_clean_project"]}
-_install_deps = { cmd = "pdm install --venv ${PDM_IN_ENV}" }
-_build_scikit_tree = {shell = "cd ./scikit-learn/ && pip install --verbose --no-build-isolation --editable ./ && cd .."}
-_build_scikit_tree_osx = {shell = "cd ./scikit-learn/ && ARCHFLAGS=\"-arch x86_64\" pip install --verbose --no-build-isolation --editable ./ && cd .."}
+clean = {composite = ["_check_pdm_vars", "_clean_project"] }
+_install_deps = { cmd = "pdm install --venv ${PDM_IN_ENV} --prod", env_file.override = ".env" }
 _check_env = {call = "scripts.pdm.pdm_pre_install:check_environment_variables"}
 _check_pdm_vars = {call = "scripts.pdm.pdm_pre_install:check_pdm_variables"}
 _risky_clean = { shell = "rm -rf pdm.lock __pypackages__" }
-install_project = {composite = ["_check_pdm_vars", "_check_env", "_install_deps", "_build_scikit_tree"]}
+install_prod = {composite = ["_check_pdm_vars", "_check_env", "_set_pdm_use_venv", "_install_deps",]}
 view_env = {cmd = "pdm venv list"}
 build_dist = {cmd = "pdm build"}
+update_lock = {cmd = "pdm lock", env_file.override = ".env"}
+update_lock_dev = {cmd = "pdm lock -d", env_file.override = ".env"}
 
 # Testing and linting (Note: This has only been tested on Linux && OSX)
+_install_dev = { cmd = "pdm install -G lint -G test -G doc --no-default", env_file.override = ".env" }
+install_dev = {composite = ["_set_pdm_use_venv", "_install_dev"]}
+
 tests = {cmd = "pytest scikit_longitudinal/ --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/scikit_longitudinal -s -vv --capture=no"}
 clean_cache = {shell = "rm -rf htmlcov .pytest_cache .*_cache && find . -type d -name '__pycache__' -exec rm -r {} +"}
 isort = {cmd = "isort --skip=scikit-learn scikit_longitudinal"}
@@ -128,8 +143,3 @@ ignore_patterns = [
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
-
-[tool]
-[tool.pdm]
-[tool.pdm.build]
-includes = ["scikit_longitudinal"]

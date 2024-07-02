@@ -4,9 +4,9 @@ from typing import Callable, List
 
 import numpy as np
 from overrides import override
-from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.model_selection import cross_val_score
-from sklearn_fork.utils.validation import check_is_fitted
+from sklearn.exceptions import NotFittedError
+from sklearn.model_selection import cross_val_score
+from sklearn.utils.validation import check_is_fitted
 
 from scikit_longitudinal.estimators.ensemble.longitudinal_voting.custom_voting import LongitudinalCustomVoting
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator

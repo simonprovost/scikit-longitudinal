@@ -6,7 +6,7 @@ from typing import Any, Callable, List, Optional, Tuple, Union
 import arff
 import numpy as np
 import pandas as pd
-from sklearn_fork.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 
 
 # pylint: disable=W0212, R0902, W1514, E1101, R0904

@@ -93,7 +93,7 @@ COPY scikit_longitudinal/ /scikit_longitudinal/scikit_longitudinal/
 COPY scikit-learn/ /scikit_longitudinal/scikit-learn/
 COPY data/ /scikit_longitudinal/data/
 COPY scripts/ /scikit_longitudinal/scripts/
-COPY README.md .coveragerc /scripts/linux/docker_scikit_longitudinal_installs.sh /scripts/linux/docker_start_pdm_env.sh /scikit_longitudinal/
+COPY .env README.md .coveragerc /scripts/linux/docker_scikit_longitudinal_installs.sh /scripts/linux/docker_start_pdm_env.sh /scikit_longitudinal/
 
 # -------------------------------
 # 🚀 Scikit Longitudinal Installation 🚀

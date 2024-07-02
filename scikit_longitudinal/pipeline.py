@@ -3,8 +3,8 @@ from typing import Any, Callable, Dict, List, Optional, Tuple, Union  # pragma: 
 import numpy as np  # pragma: no cover
 import pandas as pd  # pragma: no cover
 from rich import print  # pylint: disable=W0622
-from sklearn_fork.base import TransformerMixin
-from sklearn_fork.pipeline import Pipeline  # pragma: no cover
+from sklearn.base import TransformerMixin
+from sklearn.pipeline import Pipeline  # pragma: no cover
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset  # pragma: no cover
 from scikit_longitudinal.pipeline_managers.manage_callbacks.manage import validate_update_feature_groups_callback
