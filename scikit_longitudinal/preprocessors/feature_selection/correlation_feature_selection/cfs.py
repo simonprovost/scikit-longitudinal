@@ -34,7 +34,7 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
     Examples:
         >>>  # Without the longitudinal component (original CFS):
         >>> import numpy as np
-        >>> from sklearn_fork.datasets import make_classification
+        >>> from sklearn.datasets import make_classification
         >>> from scikit_longitudinal import CorrelationBasedFeatureSelection
         >>> X, y = make_classification(n_samples=100, n_features=20, random_state=42)
         >>> cfs = CorrelationBasedFeatureSelection()

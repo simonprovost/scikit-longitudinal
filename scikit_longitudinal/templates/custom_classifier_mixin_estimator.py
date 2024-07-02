@@ -5,15 +5,15 @@ from typing import Any, Callable
 
 import numpy as np
 from overrides import EnforceOverrides, final
-from sklearn_fork.base import BaseEstimator, ClassifierMixin
-from sklearn_fork.utils.validation import check_array, check_X_y
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_array, check_X_y
 
 
 class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOverrides):
     """CustomClassifierMixinEstimator is a custom base class for scikit longitudinal estimators.
 
     A custom base class for scikit-learn estimators that automatically checks input data
-    using the check_X_y and check_array functions from sklearn_fork.utils.validation.
+    using the check_X_y and check_array functions from sklearn.utils.validation.
 
     Subclasses should implement the _fit and _predict methods.
 

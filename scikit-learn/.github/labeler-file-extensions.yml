@@ -1,8 +1,0 @@
-cython:
-- sklearn_fork/**/*.pyx
-- sklearn_fork/**/*.pxd
-- sklearn_fork/**/*.pxi
-# Tempita templates
-- sklearn_fork/**/*.pyx.tp
-- sklearn_fork/**/*.pxd.tp
-- sklearn_fork/**/*.pxi.tp

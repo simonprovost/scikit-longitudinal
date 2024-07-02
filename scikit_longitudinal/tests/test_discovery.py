@@ -1,5 +1,5 @@
 import pytest
-from sklearn_fork.base import BaseEstimator
+from sklearn.base import BaseEstimator
 
 from scikit_longitudinal.discovery import all_scikit_longitudinal_estimators
 from scikit_longitudinal.templates import (

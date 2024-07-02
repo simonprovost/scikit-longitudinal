@@ -3,7 +3,7 @@ from typing import Callable, List, Tuple, Union
 
 import numpy as np
 import pandas as pd
-from sklearn_fork.base import TransformerMixin
+from sklearn.base import TransformerMixin
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import (

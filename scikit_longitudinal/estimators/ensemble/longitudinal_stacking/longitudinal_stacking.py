@@ -3,11 +3,11 @@ from typing import List, Optional, Union
 
 import numpy as np
 from overrides import override
-from sklearn_fork.base import ClassifierMixin
-from sklearn_fork.ensemble import StackingClassifier
-from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.utils.validation import check_is_fitted
+from sklearn.base import ClassifierMixin
+from sklearn.ensemble import StackingClassifier
+from sklearn.exceptions import NotFittedError
+from sklearn.linear_model import LogisticRegression
+from sklearn.utils.validation import check_is_fitted
 
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 

@@ -4,8 +4,8 @@ from typing import Any, Callable, List, Optional
 
 import numpy as np
 from overrides import override
-from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.utils.validation import check_is_fitted
+from sklearn.exceptions import NotFittedError
+from sklearn.utils.validation import check_is_fitted
 
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 

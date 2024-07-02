@@ -3,8 +3,8 @@ import os
 
 import numpy as np
 import pytest
-from sklearn_fork.metrics import classification_report
-from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn.metrics import classification_report
+from sklearn.tree import DecisionTreeClassifier
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc

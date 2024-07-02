@@ -8,8 +8,8 @@ from typing import Any, Dict, List, Optional, Union
 import numpy as np
 from deepforest import CascadeForestClassifier
 from overrides import override
-from sklearn_fork.base import ClassifierMixin
-from sklearn_fork.utils.multiclass import unique_labels
+from sklearn.base import ClassifierMixin
+from sklearn.utils.multiclass import unique_labels
 
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import LexicoRandomForestClassifier
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
@@ -262,7 +262,6 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
                 )
                 for _ in range(2)
             )
-
         return estimators
 
     def _create_longitudinal_estimator(

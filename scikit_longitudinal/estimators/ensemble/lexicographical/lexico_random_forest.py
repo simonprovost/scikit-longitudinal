@@ -2,7 +2,7 @@
 
 from typing import List, Optional, Union
 
-from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 
 class LexicoRandomForestClassifier(RandomForestClassifier):
@@ -66,9 +66,9 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
             The collection of fitted sub-estimators.
 
     Examples:
-        >>> from sklearn_fork.datasets import load_iris
-        >>> from sklearn_fork.model_selection import train_test_split
-        >>> from sklearn_fork.metrics import accuracy_score
+        >>> from sklearn.datasets import load_iris
+        >>> from sklearn.model_selection import train_test_split
+        >>> from sklearn.metrics import accuracy_score
         >>> from scikit_longitudinal.estimators.tree import LexicoRandomForestClassifier
         >>> X, y = load_iris(return_X_y=True)
         >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -152,3 +152,9 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
             class_weight=self.class_weight,
             ccp_alpha=self.ccp_alpha,
         )
+
+    def fit(self, X, y, *args, **kwargs):
+        if self.features_group is None:
+            raise ValueError("The features_group parameter must be provided.")
+
+        return super().fit(X, y, *args, **kwargs)

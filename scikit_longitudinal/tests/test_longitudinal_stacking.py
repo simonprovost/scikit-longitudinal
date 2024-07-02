@@ -1,8 +1,8 @@
 import pytest
 from numpy import ndarray
-from sklearn_fork.ensemble import RandomForestClassifier
-from sklearn_fork.exceptions import NotFittedError
-from sklearn_fork.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.exceptions import NotFittedError
+from sklearn.linear_model import LogisticRegression
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.estimators.ensemble.longitudinal_stacking.longitudinal_stacking import (

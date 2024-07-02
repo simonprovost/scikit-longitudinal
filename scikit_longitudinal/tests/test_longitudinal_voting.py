@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 from numpy import ndarray
-from sklearn_fork.ensemble import RandomForestClassifier
-from sklearn_fork.exceptions import NotFittedError
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.exceptions import NotFittedError
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import (

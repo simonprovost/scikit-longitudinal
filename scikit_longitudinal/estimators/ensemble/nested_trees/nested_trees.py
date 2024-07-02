@@ -3,8 +3,8 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import numpy as np
 import ray
 from overrides import override
-from sklearn_fork.tree import DecisionTreeClassifier
-from sklearn_fork.utils.multiclass import unique_labels
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.utils.multiclass import unique_labels
 
 from scikit_longitudinal.data_preparation.longitudinal_dataset import clean_padding
 from scikit_longitudinal.estimators.ensemble.nested_trees.utils import (
@@ -181,7 +181,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 If tree is not provided, or if node_name is an empty string.
 
         Examples:
-            >>> from sklearn_fork.tree import DecisionTreeClassifier
+            >>> from sklearn.tree import DecisionTreeClassifier
             >>> inner_tree = DecisionTreeClassifier()
             >>> node = Node(is_leaf=False, tree=inner_tree, node_name="dummy_node")
 

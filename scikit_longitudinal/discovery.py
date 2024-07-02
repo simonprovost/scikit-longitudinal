@@ -45,7 +45,7 @@ def all_scikit_longitudinal_estimators(type_filter: Union[str, List[str], None] 
 
     """
     # lazy import to avoid circular imports from sklearn.base
-    from sklearn_fork.base import BaseEstimator  # pylint: disable=C0415
+    from sklearn.base import BaseEstimator  # pylint: disable=C0415
 
     from .templates import (  # pylint: disable=C0415
         CustomClassifierMixinEstimator,

@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
-from sklearn_fork.datasets import load_iris, make_classification
-from sklearn_fork.metrics import accuracy_score
-from sklearn_fork.model_selection import train_test_split
+from sklearn.datasets import load_iris, make_classification
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 
 from scikit_longitudinal.estimators.ensemble import (
     LexicoDeepForestClassifier,
