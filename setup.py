@@ -22,7 +22,6 @@ setup(  # pragma: no cover
         "arff<1.0,>=0.9",
         "threadpoolctl<4.0.0,>=3.1.0",
         "configspace<1.0.0,>=0.7.1",
-        "Cython==0.29.33",
         "stopit>=1.1.2",
         "scikit-lexicographical-trees==0.0.2",
         "rich>=13.6.0",
