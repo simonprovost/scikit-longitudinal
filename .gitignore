@@ -1,6 +1,7 @@
 # .gitignore
 
 main.py
+.python-version
 
 # PDM
 .pdm-python
