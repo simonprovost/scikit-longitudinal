@@ -8,8 +8,6 @@ authors = [
 ]
 
 dependencies = [
-    "deep-forest>=0.1.7",
-    "starboost==0.0.2",
     "scipy>=1.5.0",
     "pandas<2.0.0,>=1.5.3",
     "matplotlib<4.0.0,>=3.7.0",
@@ -22,14 +20,20 @@ dependencies = [
     "arff<1.0,>=0.9",
     "threadpoolctl<4.0.0,>=3.1.0",
     "configspace<1.0.0,>=0.7.1",
-    "Cython==0.29.33",
     "stopit>=1.1.2",
-    "scikit-lexicographical-trees==0.0.2",
     "rich>=13.6.0",
+    "joblib>=0.11",
+    "deep-forest>=0.1.7",
+    "starboost==0.0.2",
+    "scikit-lexicographical-trees>=0.0.2",
 ]
 requires-python = ">=3.9,<3.10"
 readme = "README.md"
 license = {text = "MIT"}
+
+[tool.pdm.resolution]
+respect-source-order = true
+excludes = ["scikit-learn"]
 
 [tool.pdm]
 distribution = false
@@ -75,10 +79,9 @@ remove_env = { cmd = "pdm venv remove ${PDM_IN_ENV}" }
 _clean_project = {cmd = "echo could you please deactivate the environment via `conda deactivate` then run `pdm run remove_env`"}
 clean = {composite = ["_check_pdm_vars", "_clean_project"] }
 _install_deps = { cmd = "pdm install --venv ${PDM_IN_ENV} --prod", env_file.override = ".env" }
-_check_env = {call = "scripts.pdm.pdm_pre_install:check_environment_variables"}
 _check_pdm_vars = {call = "scripts.pdm.pdm_pre_install:check_pdm_variables"}
 _risky_clean = { shell = "rm -rf pdm.lock __pypackages__" }
-install_prod = {composite = ["_check_pdm_vars", "_check_env", "_set_pdm_use_venv", "_install_deps",]}
+install_prod = {composite = ["_check_pdm_vars", "_set_pdm_use_venv", "_install_deps",]}
 view_env = {cmd = "pdm venv list"}
 build_dist = {cmd = "pdm build"}
 update_lock = {cmd = "pdm lock", env_file.override = ".env"}
