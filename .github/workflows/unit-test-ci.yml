@@ -5,13 +5,32 @@ on:
     branches:
       - main
 
+
 jobs:
+  check_tests_trigger:
+    name: Check Tests trigger
+    runs-on: ubuntu-latest
+    outputs:
+      tests: ${{ steps.check_tests_trigger.outputs.tests }}
+
+    steps:
+      - name: Checkout scikit-longitudinal
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - id: check_tests_trigger
+        name: Check tests trigger
+        run: bash build_tools/github/check_tests_trigger.sh
+
   Testing:
     runs-on: ${{ matrix.os }}
+    needs: check_tests_trigger
+    if: needs.check_tests_trigger.outputs.tests
     strategy:
       matrix:
-        python-version: [ 3.9 ]
-        os: [ ubuntu-latest ]
+        python-version: [3.9]
+        os: [ubuntu-latest]
 
     steps:
       - name: Set up Python
