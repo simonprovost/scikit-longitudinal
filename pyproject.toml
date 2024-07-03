@@ -29,14 +29,20 @@ dependencies = [
 ]
 requires-python = ">=3.9,<3.10"
 readme = "README.md"
-license = {text = "MIT"}
+license = { file = "LICENSE" }
+
+[project.urls]
+Homepage = "https://github.com/simonprovost/scikit-longitudinal"
+Documentation = "https://simonprovost.github.io/scikit-longitudinal/"
+Source = "https://github.com/simonprovost/scikit-longitudinal/tree/main/scikit_longitudinal"
+Tracker = "https://github.com/simonprovost/scikit-longitudinal/issues/"
 
 [tool.pdm.resolution]
 respect-source-order = true
 excludes = ["scikit-learn"]
 
 [tool.pdm]
-distribution = false
+distribution = true
 
 [tool.pdm.dev-dependencies]
 lint = [
