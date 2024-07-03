@@ -1,0 +1,41 @@
+include *.rst
+include LICENSE
+include README.md
+include pyproject.toml
+include setup.py
+include .coveragerc
+include .flake8
+include .dockerignore
+include .gitignore
+include .nojekyll
+include .pre-commit-config.yaml
+include CHANGELOG.MD
+include CITATION.cff
+include dockerfile
+include logo.png
+include mkdocs.yml
+include mkgendocs.yml
+include pdm.lock
+include pylintrc
+include pytest.ini
+
+recursive-include scikit_longitudinal *.py *.c *.cpp *.h *.pyx *.pxd *.pxi *.tp
+recursive-include docs *
+
+# Exclude unnecessary directories and files
+recursive-exlude scikit_longitudinal/tests *
+recursive-exclude .cache *
+recursive-exclude .github *
+recursive-exclude __pypackages__ *
+recursive-exclude dist *
+recursive-exclude .pdm-build *
+recursive-exclude .pytest_cache *
+recursive-exclude .run *
+recursive-exclude .venv *
+recursive-exclude htmlcov *
+recursive-exclude .coverage *
+recursive-exclude .coverage.* *
+recursive-exclude workflows *
+exclude .unit-test-ci.yml
+exclude documentation-deploy.yml
+exclude publish-pypi.yml

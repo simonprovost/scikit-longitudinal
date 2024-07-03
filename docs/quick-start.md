@@ -16,20 +16,75 @@ It offers tools and models for processing, analysing,
 and classify longitudinal data, with a user-friendly interface that 
 integrates with the `Scikit-learn` ecosystem.
 
-# 🛠️ Installation
+For further information, visit the [official documentation](https://simonprovost.github.io/scikit-longitudinal/).
 
-**ON-HOLD until the first public release**
+## 🛠️ Installation
 
-!!! tip "Developers Installation" 
-    You should follow up onto the `Contributing` tab
-    of the documentation.
+To install `Sklong`, follow these two easy steps:
+
+1. ✅ **Install the latest version of `Sklong`**:
+
+    ```shell
+    pip install Scikit-longitudinal
+    ```
+    !!! info "Different Versions?"
+        You can also install different versions of the library by specifying the version number, e.g., `pip install Scikit-longitudinal==0.0.1`. 
+        Refer to the [Release Notes](https://github.com/simonprovost/scikit-longitudinal/releases).
+
+2. 📦 **[MANDATORY] Update the required dependencies**
+
+    !!! info "Why is this necessary?"
+        See [this explanation](https://github.com/pdm-project/pdm/issues/1316#issuecomment-2106457708).
+
+    `Scikit-longitudinal` includes a modified version of `Scikit-Learn` called `Scikit-Lexicographical-Trees`, which can be found at [this Pypi link](https://pypi.org/project/scikit-lexicographical-trees/).
+
+    This revised version ensures compatibility with the unique features of `Scikit-longitudinal`. However, conflicts may occur with other dependencies that also require `Scikit-Learn`. Follow these steps to prevent any issues when running your project.
+
+    <details>
+    <summary><strong>🫵 Simple Setup: Command Line Installation</strong></summary>
+
+    If you want to try `Sklong` in a simple environment without a proper `pyproject.toml` file (such as using `Poetry`, `PDM`, etc.), run the following command:
+
+    ```shell
+    pip uninstall scikit-learn && pip install scikit-lexicographical-trees
+    ```
+    </details>
+
+    <details>
+    <summary><strong>🫵 Project Setup: Using `PDM` (or any other package manager such as `Poetry`, etc.)</strong></summary>
+
+    If you have a project managed by `PDM`, or any other package manager, the example below demonstrates `PDM`. The process is similar for `Poetry` and others. Consult their documentation for instructions on excluding a package.
+
+    To prevent dependency conflicts, you can exclude `Scikit-Learn` by adding the following configuration to your `pyproject.toml` file:
+
+    ```toml
+    [tool.pdm.resolution]
+    excludes = ["scikit-learn"]
+    ```
+
+    *This exclusion ensures `Scikit-Lexicographical-Trees` (used as `Scikit-Learn`) is used seamlessly within your project.*
+    </details>
+
+### 💻 Developer Notes
+
+For developers looking to contribute, please refer to the `Contributing` section of the [documentation](https://simonprovost.github.io/scikit-longitudinal/).
+
+## 🛠️ Supported Operating Systems
+
+`Scikit-longitudinal` is compatible with the following operating systems:
+
+- MacOS  
+- Linux 🐧
+- Windows via Docker only (Docker uses Linux containers) 🪟 
+
+!!! warning
+    We haven't tested it on Windows without Docker.
 
 ## 🚀 Getting Started
 
 To perform longitudinal machine learning classification using `Sklong`, start by employing the
 `LongitudinalDataset` class to prepare your dataset (i.e, data itself, temporal vector, etc.). To analyse your data, 
 you can utilise for instance the `LexicoGradientBoostingClassifier` or any other available estimator/preprocessor. 
-
 
 > "The `LexicoGradientBoostingClassifier` in a nutshell: is a variant of 
 > [Gradient Boosting](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)

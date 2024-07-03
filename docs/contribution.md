@@ -6,6 +6,12 @@ hide:
 # 🤝 Contributing to Scikit-longitudinal
 # 🤝 Contributing to Scikit-longitudinal
 
+## Table of Contents
+2. [📋 Contributing Guidelines](#contribution-guidelines)
+3. [💻 Installation for Developers](#installation-for-developers)
+
+# 📋 Contribution Guidelines
+
 We welcome contributions from the community and are pleased to have them. Please follow this guide when logging issues or making code changes.
 For the developer installation, please scroll down to the bottom of the page.
 
@@ -60,7 +66,8 @@ Please follow the instructions below for setting up your development environment
 
 ### Step by Step Installation Guide
 
-!!! warning "Fully-working environment setup is not guaranteed on Windows. We recommend using a Unix-based system for development. Such as MacOS or Linux. On Windows, Docker is recommended having been tested on Windows 10 & 11."
+!!! warning "Fully-working environment setup is not guaranteed on Windows. We recommend using a Unix-based system for
+development. Such as MacOS or Linux. On Windows, Docker is recommended having been tested on Windows 10 & 11."
 
 To manually configure your environment, please adhere to the following procedure meticulously:
 
@@ -75,9 +82,10 @@ To manually configure your environment, please adhere to the following procedure
       ```bash
       pdm use 3.9
       ```
+      *Here if you have more than one python version installed, you can select the desired version.*
 
 3. **Project Setup:**
-    - Execute the setup script. This step may prompt you to export certain variables or configure compilers like GCC or Clang. Please comply with the on-screen instructions:
+    - Execute the setup script.
       ```bash
       pdm run setup_sklong
       ```
@@ -93,12 +101,14 @@ To manually configure your environment, please adhere to the following procedure
       ```bash
       conda init bash
       ```
+      *It can appears capricious, if it does not work, you can try to go ahead anyway.*
 
 6. **Shell Configuration:**
     - Source your shell configuration file to apply the changes. Again, replace `.bashrc` with the appropriate file name corresponding to your shell:
       ```bash
       source ~/.bashrc # Replace with ~/.zshrc or ~/.config/fish/config.fish accordingly
       ```
+      *It can appears capricious, if it does not work, you can try to go ahead anyway.*
 
 7. **Activating Virtual Environment:**
     - Activate the virtual environment with the following command:
@@ -111,6 +121,28 @@ To manually configure your environment, please adhere to the following procedure
       ```bash
       pdm run install_project
       ```
+    !!! note "Install Prod only"
+          If you want to install only the production dependencies, you can run:
+          ```bash
+          pdm run install_prod
+          ```
+    !!! note "Install Dev only"
+          If you want to install only the development dependencies, you can run:
+          ```bash
+          pdm run install_dev
+          ```
+   *See further information in the `pyproject.toml` file.*
+
+9. **Running Tests:**
+    - To run the tests, execute the following command:
+      ```bash
+      pdm run tests
+      ```
+    !!! warning "You need to have the dev dependencies installed to run the tests."
+          If you want to install only the development dependencies, you can run:
+          ```bash
+          pdm run install_dev
+          ```
 
 ### ❌ Troubleshooting Errors
 
@@ -135,7 +167,7 @@ If you encounter any errors during the setup process and are unsure how to resol
    
 4. **Remove PDM Virtual Environment**:
    ```bash
-   pdm venv remove_env
+   pdm run remove_env
    ``` 
 
 After following these steps, try to reinstall the project dependencies. If the issue persists, 

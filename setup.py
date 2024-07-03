@@ -2,11 +2,32 @@ from setuptools import find_packages, setup  # pragma: no cover
 
 setup(  # pragma: no cover
     name="Scikit-longitudinal",
-    version="0.0.2",
-    description="Scikit-longitudinal, an open-source Python lib for longitudinal data analysis, builds on Scikit-learn's foundation. It offers specialized tools to tackle challenges of repeated measures data, ideal for researchers, data scientists, & analysts.",
+    version="0.0.22",
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    url="https://github.com/simonprovost/scikit-longitudinal",
+    description="""
+        Scikit-longitudinal (Sklong) is a machine learning library designed to analyse
+        longitudinal data (Classification tasks focussed as of today). It offers tools and models for processing, analysing,
+        and predicting longitudinal data, with a user-friendly interface that
+        integrates with the `Scikit-learn` ecosystem.
+    """,
     author="Provost Simon, Alex Freitas",
     author_email="simon.gilbert.provost@gmail.com, a.a.freitas@kent.ac.uk",
     packages=find_packages(),
+    project_urls={
+        'Homepage': 'https://github.com/simonprovost/scikit-longitudinal',
+        'Documentation': 'https://simonprovost.github.io/scikit-longitudinal/',
+        'Source': 'https://github.com/simonprovost/scikit-longitudinal/tree/main/scikit_longitudinal',
+        'Tracker': 'https://github.com/simonprovost/scikit-longitudinal/issues/',
+    },
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+    ],
     install_requires=[
         "deep-forest>=0.1.7",
         "starboost==0.0.2",
@@ -49,6 +70,4 @@ setup(  # pragma: no cover
     },
     python_requires=">=3.9,<3.10",
     license="MIT",
-    long_description=open('README.md').read(),
-    long_description_content_type='text/markdown',
 )
