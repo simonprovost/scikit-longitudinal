@@ -95,6 +95,8 @@
 > deep dive into the library's capabilities and features,
 > please [visit here](https://simonprovost.github.io/scikit-longitudinal/).
 
+> 🎉 **PyPi is available!**: We published Scikit-Longitudinal, [here](https://pypi.org/project/Scikit-longitudinal/)!
+
 ## <a id="about-the-project"></a>💡 About The Project
 
 `Scikit-longitudinal` (Sklong) is a machine learning library designed to analyse
