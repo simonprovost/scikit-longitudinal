@@ -69,7 +69,13 @@ Please follow the instructions below for setting up your development environment
 !!! warning "Fully-working environment setup is not guaranteed on Windows. We recommend using a Unix-based system for
 development. Such as MacOS or Linux. On Windows, Docker is recommended having been tested on Windows 10 & 11."
 
-To manually configure your environment, please adhere to the following procedure meticulously:
+Prior-all, you need to open the `.env` file at the root and set:
+```bash
+SKLONG_PYTHON_VERSION=<your_python_version> # e.g. 3.9.8
+SKLONG_PYTHON_PATH=<your_python_path> # e.g. /usr/bin/python3.9
+```
+
+Next, to manually configure your environment, please adhere to the following procedure meticulously:
 
 1. **Setting up the package manager:**
     - Initialise the package manager with Conda as the backend for virtual environments:
@@ -208,7 +214,38 @@ feel free to open an issue on the GitHub repository for additional support.
         ```bash
         git config --global core.autocrlf true
         ```
-   
+
+!!! tip "Docker and Jetbrains"
+    If you are using JetBrains, you should be able to leverage the `.run/` configurations at the root of the folder.
+    They should be automatically detected by your Jetbrains IDE (e.g PyCharm) and you can run the tests from there.
+    Make sure to edit the configuration to adapt to your use-case.
+
+    Configs available:
+    - `Scikit_longitudinal_ARM_architecture.run.xml`: If you are on an ARM architecture. Such as Macbook with Apple Silicon chips.
+    - `Scikit_longitudinal_Intel_architecture.run.xml`: If you are on an Intel architecture. Such as most of the Windows and Linux machines or Macbook with Intel chips. 
+
+!!! warning "Docker with Apple Silicon"
+    If you are on an Apple Silicon chip, the current library is `x86_64` based. Therefore, you should configure Docker
+    so that it runs on such architecture.  Be at the root of the project and run the following commands: 
+
+    1. **Prepare [QUS](https://github.com/dbhi/qus) for Docker:**
+        ```bash
+        docker run --rm --privileged aptman/qus -- -r
+        docker run --rm --privileged aptman/qus -s -- -p x86_64
+        ```
+    2. **Build the Docker Image:**
+        ```bash
+        docker buildx create --use
+        docker buildx build --platform linux/amd64 -t scikit_longitudinal:latest .
+        ```
+    3. **Run the Docker Container:**
+        ```bash
+        docker run -it scikit_longitudinal:latest /bin/bash
+        ```
+    4. **Run the tests:**
+        ```bash
+        pytest scikit_longitudinal/ --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/scikit_longitudinal -s -vv --capture=no
+        ```
 ## ⚙️ How To Build The Distribution Packages
 
 To build the distribution packages for the project, follow these steps:

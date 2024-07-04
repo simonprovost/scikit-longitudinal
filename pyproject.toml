@@ -1,6 +1,6 @@
 [project]
 name = "Scikit-longitudinal"
-version = "0.0.2"
+version = "0.0.4"
 description = "Scikit-longitudinal, an open-source Python lib for longitudinal data analysis, builds on Scikit-learn's foundation. It offers specialized tools to tackle challenges of repeated measures data, ideal for researchers, data scientists, & analysts."
 authors = [
     {name = "Provost Simon", email = "simon.gilbert.provost@gmail.com"},
@@ -25,11 +25,10 @@ dependencies = [
     "joblib>=0.11",
     "deep-forest>=0.1.7",
     "starboost==0.0.2",
-    "scikit-lexicographical-trees>=0.0.2",
+    "scikit-lexicographical-trees==0.0.2",
 ]
 requires-python = ">=3.9,<3.10"
 readme = "README.md"
-license = { file = "LICENSE" }
 
 [project.urls]
 Homepage = "https://github.com/simonprovost/scikit-longitudinal"
@@ -75,12 +74,12 @@ doc = [
 _set_pdm_use_venv = { cmd = "pdm use --venv ${PDM_IN_ENV}" }
 _use_python39.shell = "pdm use \"${SKLONG_PYTHON_PATH}\""
 _use_python39.env_file = ".env"
-_create_env.shell = "pdm venv create --with-pip ${SKLONG_PYTHON_VERSION} --force"
+_create_env.shell = "pdm venv create --with-pip ${SKLONG_PYTHON_VERSION}"
 _create_env.env_file = ".env"
 _check_sklong_vars = {shell = "echo 'Make sure to set the SKLONG_PYTHON_PATH and SKLONG_PYTHON_VERSION environment variables'"}
 _set_env_var = {shell = "echo 'could you please run `export PDM_IN_ENV=in-project`'"}
 _activate_env = {cmd = "echo 'could you please activate the environment via `eval $(pdm venv activate (dollar-sign)PDM_IN_ENV)`'"}
-setup_sklong = {composite = ["_check_sklong_vars", "_use_python39", "_create_env", "_set_env_var", "_activate_env"]}
+setup_sklong = {composite = ["_check_sklong_vars", "_create_env", "_set_env_var", "_activate_env"]}
 remove_env = { cmd = "pdm venv remove ${PDM_IN_ENV}" }
 _clean_project = {cmd = "echo could you please deactivate the environment via `conda deactivate` then run `pdm run remove_env`"}
 clean = {composite = ["_check_pdm_vars", "_clean_project"] }
