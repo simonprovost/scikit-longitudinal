@@ -135,7 +135,7 @@ Say you want to try `Sklong` in a very simple environment. Such as without a pro
 Run the following command:
 
 ```shell
-pip uninstall scikit-learn && pip install scikit-lexico-trees
+pip uninstall scikit-learn && pip install scikit-lexicographical-trees
 ```
 
 *Note: Although the main installation command install both, yet it’s advisable to verify the correct versions used is 
