@@ -159,7 +159,7 @@ The Lexico Decision Tree Regressor is an advanced regression model specifically 
     Key Features:
     
     1. **Lexicographic Optimisation:** The approach prioritizes features based on both their information gain ratios and the recency of the data, favoring splits with more recent information.
-    2. **Cython Adaptation**: This implementation leverages a fork of Scikit-learn’s fast C++-powered decision tree to ensure that the Lexico Decision Tree is fast and efficient, avoiding the potential slowdown of a from-scratch Python implementation. Further details on the algorithm can be found in the Cython adaptation available at `/scikit-longitudinal/scikit-learn/sklearn/tree/_splitter.pyx`, specifically in the `node_lexicoRF_split` function.
+    2. **Cython Adaptation**: This implementation leverages a fork of Scikit-learn’s fast C++-powered decision tree to ensure that the Lexico Decision Tree is fast and efficient, avoiding the potential slowdown of a from-scratch Python implementation. Further details on the algorithm can be found in the Cython adaptation available [here at Scikit-Lexicographical-Trees](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695) specifically in the `node_lexicoRF_split` function.
 
     For further scientific references, please refer to the Notes section.
 
