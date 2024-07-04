@@ -1,6 +1,6 @@
 [project]
 name = "Scikit-longitudinal"
-version = "0.0.2"
+version = "0.0.4"
 description = "Scikit-longitudinal, an open-source Python lib for longitudinal data analysis, builds on Scikit-learn's foundation. It offers specialized tools to tackle challenges of repeated measures data, ideal for researchers, data scientists, & analysts."
 authors = [
     {name = "Provost Simon", email = "simon.gilbert.provost@gmail.com"},
@@ -29,7 +29,6 @@ dependencies = [
 ]
 requires-python = ">=3.9,<3.10"
 readme = "README.md"
-license = { file = "LICENSE" }
 
 [project.urls]
 Homepage = "https://github.com/simonprovost/scikit-longitudinal"
