@@ -3,7 +3,7 @@
    <p align="center">
    <h1 align="center">
       <br>
-      <a href="https://raw.githubusercontent.com/simonprovost/scikit-longitudinal/main/logo.png?token=GHSAT0AAAAAACIVGTU4VMW5XBIL6ITAYXJSZUFEX2Q"><img src="https://raw.githubusercontent.com/simonprovost/scikit-longitudinal/main/logo.png?token=GHSAT0AAAAAACIVGTU4VMW5XBIL6ITAYXJSZUFEX2Q" alt="Scikit-longitudinal" width="200"></a>
+      <a href="https://i.imgur.com/jCtPpTF.png"><img src="https://i.imgur.com/jCtPpTF.png" alt="Scikit-longitudinal" width="200"></a>
       <br>
       Scikit-longitudinal
       <br>
