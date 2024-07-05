@@ -307,6 +307,32 @@ Set the test target data attribute.
 
 ## Examples
 
+### Dummy Longitudinal Dataset
+
+!!! example "Consider the following dataset: `stroke.csv`"
+    Features:
+    
+    - `smoke` (longitudinal) with two waves/time-points
+    - `cholesterol` (longitudinal) with two waves/time-points
+    - `age` (non-longitudinal)
+    - `gender` (non-longitudinal)
+
+    Target:
+    
+    - `stroke` (binary classification) at wave/time-point 2 only for the sake of the example
+    
+    The dataset is shown below (`w` stands for `wave` in ELSA):
+
+    | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | age | gender | stroke_w2 |
+    |--------------|--------------|--------------------|--------------------|-----|--------|---------------|
+    | 0            | 1            | 0                  | 1                  | 45  | 1      | 0             |
+    | 1            | 1            | 1                  | 1                  | 50  | 0      | 1             |
+    | 0            | 0            | 0                  | 0                  | 55  | 1      | 0             |
+    | 1            | 1            | 1                  | 1                  | 60  | 0      | 1             |
+    | 0            | 1            | 0                  | 1                  | 65  | 1      | 0             |
+
+
+
 ### Example 1: Basic Usage
 
 ``` py title="Example 1: Basic Usage" linenums="1" hl_lines="7-20"
@@ -314,7 +340,7 @@ from scikit_longitudinal.data_preparation import LongitudinalDataset
 from sklearn_fork.metrics import accuracy_score
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 
 # Initialise the LongitudinalDataset
 dataset = LongitudinalDataset(input_file)
@@ -323,7 +349,7 @@ dataset = LongitudinalDataset(input_file)
 dataset.load_data()
 
 # Set up feature groups
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 
 # Load target
 dataset.load_target(target_column="stroke_wave_2")
@@ -347,6 +373,9 @@ y_pred = clf.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 ```
 
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.
+
+
 ### Exemple 2: Use faster setup with `load_data_target_train_test_split`
 
 ``` py title="Example 2: Use faster setup with load_data_target_train_test_split " linenums="1" hl_lines="7-18"
@@ -354,7 +383,7 @@ from scikit_longitudinal.data_preparation import LongitudinalDataset
 from sklearn_fork.metrics import accuracy_score
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 
 # Initialise the LongitudinalDataset
 dataset = LongitudinalDataset(input_file)
@@ -367,7 +396,7 @@ dataset.load_data_target_train_test_split(
 )
 
 # Set up feature groups
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 
 # Access the properties
 X_train = dataset.X_train
@@ -384,6 +413,9 @@ y_pred = clf.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
 ```
+
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.
+
 ### Example 2: Using Custom Feature Groups (different data to Elsa for exemple)
 
 ``` py title="Example 2: Using Custom Feature Groups" linenums="1" hl_lines="7-24"
@@ -391,7 +423,7 @@ from scikit_longitudinal.data_preparation import LongitudinalDataset
 from sklearn_fork.metrics import accuracy_score
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 
 # Initialise the LongitudinalDataset
 dataset = LongitudinalDataset(input_file)
@@ -405,8 +437,8 @@ dataset.load_data_target_train_test_split(
 
 # Define custom feature groups
 custom_feature_groups = [
-    [0, 1, 2],  # Example group for a longitudinal attribute
-    [3, 4, 5]   # Another example group for a different longitudinal attribute
+    [0, 1],  # Example group for a longitudinal attribute
+    [2, 3]   # Another example group for a different longitudinal attribute
 ]
 
 # Set up custom feature groups
@@ -435,7 +467,7 @@ accuracy = accuracy_score(y_test, y_pred)
 ``` py title="Example 3: Print my feature groups and non-longitudinal features" linenums="1" hl_lines="17-23"
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 
 # Initialise the LongitudinalDataset
 dataset = LongitudinalDataset(input_file)
@@ -448,7 +480,7 @@ dataset.load_data_target_train_test_split(
 )
 
 # Set up feature groups
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 
 # Print feature groups and non-longitudinal features (indices-focused)
 print(f"Feature groups (indices): {dataset.feature_groups()}")
@@ -458,3 +490,5 @@ print(f"Non-longitudinal features (indices): {dataset.non_longitudinal_features(
 print(f"Feature groups (names): {dataset.feature_groups(names=True)}")
 print(f"Non-longitudinal features (names): {dataset.non_longitudinal_features(names=True)}")
 ```
+
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.

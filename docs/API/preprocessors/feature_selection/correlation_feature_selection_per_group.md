@@ -133,7 +133,7 @@ grouping.
 
 ### Dummy Longitudinal Dataset
 
-!!! example "Consider the following dataset"
+!!! example "Consider the following dataset: `stroke.csv`"
     Features:
     
     - `smoke` (longitudinal) with two waves/time-points
@@ -145,9 +145,9 @@ grouping.
     
     - `stroke` (binary classification) at wave/time-point 2 only for the sake of the example
     
-    The dataset is shown below:
+    The dataset is shown below (`w` stands for `wave` in ELSA):
 
-    | smoke_wave_1 | smoke_wave_2 | cholesterol_wave_1 | cholesterol_wave_2 | age | gender | stroke_wave_2 |
+    | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | age | gender | stroke_w2 |
     |--------------|--------------|--------------------|--------------------|-----|--------|---------------|
     | 0            | 1            | 0                  | 1                  | 45  | 1      | 0             |
     | 1            | 1            | 1                  | 1                  | 50  | 0      | 1             |
@@ -160,31 +160,30 @@ grouping.
 ``` py title="Example_1: Default Parameters" linenums="1" hl_lines="6-9"
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
 
-features_group = [(0,1), (2,3)]
-non_longitudinal_features = [4,5]
+features_group = [(0,1), (2,3)] # (1)
+non_longitudinal_features = [4,5] # (2)
 
 cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
-    features_group=features_group # (1)
-    non_longitudinal_features=non_longitudinal_features # (2)
+    features_group=features_group
+    non_longitudinal_features=non_longitudinal_features
 )
 cfs_longitudinal.fit(X, y)
 ```
 
-1. Either define the features_group manually or use a pre-set from the LongitudinalDataset class.
-2. Either define the non-longitudinal features manually or use a pre-set from the LongitudinalDataset class.
-
+1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`.
+2. Define the non-longitudinal features manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`, then the non-longitudinal features would have been automatically set.
 
 ### Example 2: Play with the Hyperparameters
 
 ``` py title="Example_2: Custom Parameters: different search methods etc." linenums="1" hl_lines="6-12"
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
 
-features_group = [(0,1), (2,3)]
-non_longitudinal_features = [4,5]
+features_group = [(0,1), (2,3)] # (1)
+non_longitudinal_features = [4,5] # (2)
 
 cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
-    features_group=features_group # (1)
-    non_longitudinal_features=non_longitudinal_features, # (2)
+    features_group=features_group
+    non_longitudinal_features=non_longitudinal_features,
     search_method="greedySearch", # (3)
     parallel=True, # (4)
     num_cpus=4, # (5)
@@ -192,8 +191,9 @@ cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
 cfs_longitudinal.fit(X, y)
 ```
 
-1. Either define the features_group manually or use a pre-set from the LongitudinalDataset class.
-2. Either define the non-longitudinal features manually or use a pre-set from the LongitudinalDataset class.
+
+1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`.
+2. Define the non-longitudinal features manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`, then the non-longitudinal features would have been automatically set.
 3. Choose among the search methods: "greedySearch" or "exhaustiveSearch" (default).
 4. Enable parallel processing or not.
 5. Set the number of CPUs to use for parallel processing. Here we use 4 CPUs. This means that the CFS algorithm will use 4 CPUs for parallel processing. Or in another word, that each CFS running on each set of longitudinal attributes waves will have as much as dedicated CPUs available. If not enough CPUs, the algorithm will wait for the next available CPU to start the next CFS.
@@ -203,20 +203,21 @@ cfs_longitudinal.fit(X, y)
 ``` py title="Example_3: Custom Parameters: different versions of the CFS Per Group" linenums="1" hl_lines="6-10"
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
 
-features_group = [(0,1), (2,3)]
-non_longitudinal_features = [4,5]
+features_group = [(0,1), (2,3)] # (1)
+non_longitudinal_features = [4,5] # (2)
 
 cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
-    features_group=features_group # (1)
-    non_longitudinal_features=non_longitudinal_features, # (2)
+    features_group=features_group
+    non_longitudinal_features=non_longitudinal_features,
     version=2, # (3)
 )
 
 cfs_longitudinal.fit(X, y)
 ```
 
-1. Either define the features_group manually or use a pre-set from the LongitudinalDataset class.
-2. Either define the non-longitudinal features manually or use a pre-set from the LongitudinalDataset class.
+
+1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`.
+2. Define the non-longitudinal features manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`, then the non-longitudinal features would have been automatically set.
 3. Choose among the two versions of the CFS Per Group: "1" or "2" (default). See beginning of the documentation for more information on the versions.
 
 ### Example 4: How to transform (acquire the final feature sets) the data
@@ -224,12 +225,12 @@ cfs_longitudinal.fit(X, y)
 ``` py title="Example_4: Transform the data" linenums="1" hl_lines="13-15"
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
 
-features_group = [(0,1), (2,3)]
-non_longitudinal_features = [4,5]
+features_group = [(0,1), (2,3)] # (1)
+non_longitudinal_features = [4,5] # (2)
 
 cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
-    features_group=features_group # (1)
-    non_longitudinal_features=non_longitudinal_features # (2)
+    features_group=features_group
+    non_longitudinal_features=non_longitudinal_features
 )
 
 cfs_longitudinal.fit(X, y)
@@ -239,8 +240,9 @@ print(f"Reduced X: {X_reduced}")
 print(f"Selected features: {cfs_longitudinal.selected_features_}")
 ```
 
-1. Either define the features_group manually or use a pre-set from the LongitudinalDataset class.
-2. Either define the non-longitudinal features manually or use a pre-set from the LongitudinalDataset class.
+
+1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`.
+2. Define the non-longitudinal features manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`, then the non-longitudinal features would have been automatically set.
 3. Print the number of selected features after fitting the CFS-Per-Group algorithm.
 
 

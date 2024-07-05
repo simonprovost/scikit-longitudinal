@@ -137,7 +137,7 @@ The predicted class probabilities of an input sample are computed as the mean pr
 
 ### Dummy Longitudinal Dataset
 
-!!! example "Consider the following dataset"
+!!! example "Consider the following dataset: `stroke.csv`"
     Features:
     
     - `smoke` (longitudinal) with two waves/time-points
@@ -149,9 +149,9 @@ The predicted class probabilities of an input sample are computed as the mean pr
     
     - `stroke` (binary classification) at wave/time-point 2 only for the sake of the example
     
-    The dataset is shown below:
+    The dataset is shown below (`w` stands for `wave` in ELSA):
 
-    | smoke_wave_1 | smoke_wave_2 | cholesterol_wave_1 | cholesterol_wave_2 | age | gender | stroke_wave_2 |
+    | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | age | gender | stroke_w2 |
     |--------------|--------------|--------------------|--------------------|-----|--------|---------------|
     | 0            | 1            | 0                  | 1                  | 45  | 1      | 0             |
     | 1            | 1            | 1                  | 1                  | 50  | 0      | 1             |
@@ -174,7 +174,8 @@ y_pred = clf.predict(X)
 
 accuracy_score(y, y_pred) # (2)
 ```
-1. Either define the features_group manually or use a pre-set from the LongitudinalDataset class. It is unnecessary to include "non-longitudinal" features in this algorithm because they are not used in the lexicographical technique approach but are obviously used in the standard decision tree procedure.
+
+1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. It is unnecessary to include "non-longitudinal" features in this algorithm because they are not used in the lexicographical technique approach but are obviously used in the standard decision tree procedure.  If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`.
 2. Calculate the accuracy score for the predictions. Can use other metrics as well.
 
 ### Example 2: How-To Set Threshold Gain of the Lexicographical Approach?
@@ -196,7 +197,7 @@ y_pred = clf.predict(X)
 accuracy_score(y, y_pred) # (3)
 ```
 
-1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. It is unnecessary to include "non-longitudinal" features in this algorithm because they are not used in the lexicographical technique approach but are obviously used in the standard decision tree procedure.
+1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. It is unnecessary to include "non-longitudinal" features in this algorithm because they are not used in the lexicographical technique approach but are obviously used in the standard decision tree procedure.  If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`.
 2. Set the threshold gain for the lexicographical approach. The lower the value, the closer will need the gain ratio to be between the two features to be considered equal before employing the lexicographical approach (i.e, the more recent wave will be chosen under certain conditions). The higher the value, the larger the gap needs can be between the gain ratios of the two features for the lexicographical approach to be employed.
 3. Calculate the accuracy score for the predictions. Can use other metrics as well.
 

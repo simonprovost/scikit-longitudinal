@@ -131,7 +131,7 @@ Predict probabilities using the ensemble model.
 
 ### Dummy Longitudinal Dataset
 
-!!! example "Consider the following dataset"
+!!! example "Consider the following dataset: `stroke.csv`"
     Features:
     
     - `smoke` (longitudinal) with two waves/time-points
@@ -143,9 +143,9 @@ Predict probabilities using the ensemble model.
     
     - `stroke` (binary classification) at wave/time-point 2 only for the sake of the example
     
-    The dataset is shown below:
+    The dataset is shown below (`w` stands for `wave` in ELSA):
 
-    | smoke_wave_1 | smoke_wave_2 | cholesterol_wave_1 | cholesterol_wave_2 | age | gender | stroke_wave_2 |
+    | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | age | gender | stroke_w2 |
     |--------------|--------------|--------------------|--------------------|-----|--------|---------------|
     | 0            | 1            | 0                  | 1                  | 45  | 1      | 0             |
     | 1            | 1            | 1                  | 1                  | 50  | 0      | 1             |
@@ -185,8 +185,9 @@ y_pred = clf.predict(X)
 accuracy_score(y, y_pred) # (5)
 ```
 
-1. Define the features_group manually or use a pre-set from the LongitudinalDataset class.
-2. Define the non-longitudinal features or use a pre-set from the LongitudinalDataset class.
+
+1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`.
+2. Define the non-longitudinal features or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')` which therefore automatically sets the non-longitudinal features.
 3. Define the base estimators for the ensemble. Longitudinal-based or non-longitudinal-based estimators can be used. However, what is important is that the estimators are trained prior to being passed to the LongitudinalVotingClassifier.
 4. Lexico Random Forest does not require the non-longitudinal features to be passed. However, if an algorithm does, then it would have been used.
 5. Calculate the accuracy score for the predictions.
@@ -221,8 +222,9 @@ y_pred = clf.predict(X)
 accuracy_score(y, y_pred) # (6)
 ```
 
-1. Define the features_group manually or use a pre-set from the LongitudinalDataset class.
-2. Define the non-longitudinal features or use a pre-set from the LongitudinalDataset class.
+
+1. Define the features_group manually or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')`.
+2. Define the non-longitudinal features or use a pre-set from the LongitudinalDataset class. If the data was from the ELSA database, you could have used the pre-sets such as `.setup_features_group('elsa')` which therefore automatically sets the non-longitudinal features.
 3. Define the base estimators for the ensemble. Longitudinal-based or non-longitudinal-based estimators can be used. However, what is important is that the estimators are trained prior to being passed to the LongitudinalVotingClassifier.
 4. Lexico Random Forest does not require the non-longitudinal features to be passed. However, if an algorithm does, then it would have been used.
 5. Use the cross-validation-based weighted voting strategy. See further in the LongitudinalEnsemblingStrategy enum for more information.

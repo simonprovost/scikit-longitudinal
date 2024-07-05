@@ -158,6 +158,31 @@ Predict class for X, using the classifier for the specified wave number.
 
 ## Examples
 
+### Dummy Longitudinal Dataset
+
+!!! example "Consider the following dataset: `stroke.csv`"
+    Features:
+    
+    - `smoke` (longitudinal) with two waves/time-points
+    - `cholesterol` (longitudinal) with two waves/time-points
+    - `age` (non-longitudinal)
+    - `gender` (non-longitudinal)
+
+    Target:
+    
+    - `stroke` (binary classification) at wave/time-point 2 only for the sake of the example
+    
+    The dataset is shown below (`w` stands for `wave` in ELSA):
+
+    | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | age | gender | stroke_w2 |
+    |--------------|--------------|--------------------|--------------------|-----|--------|---------------|
+    | 0            | 1            | 0                  | 1                  | 45  | 1      | 0             |
+    | 1            | 1            | 1                  | 1                  | 50  | 0      | 1             |
+    | 0            | 0            | 0                  | 0                  | 55  | 1      | 0             |
+    | 1            | 1            | 1                  | 1                  | 60  | 0      | 1             |
+    | 0            | 1            | 0                  | 1                  | 65  | 1      | 0             |
+
+
 ### Example 1: Basic Usage with Majority Voting
 
 ``` py title="Example 1: Basic Usage with Majority Voting" linenums="1" hl_lines="16-26"
@@ -167,12 +192,12 @@ from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.metrics import accuracy_score
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 dataset = LongitudinalDataset(input_file)
 
 # Load the data
 dataset.load_data()
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 dataset.load_target(target_column="stroke_wave_2")
 dataset.load_train_test_split(test_size=0.2, random_state=42)
 
@@ -185,7 +210,7 @@ sepwav = SepWav(
     features_group=dataset.feature_groups(),
     non_longitudinal_features=dataset.non_longitudinal_features(),
     feature_list_names=dataset.data.columns.tolist(),
-    voting=LongitudinalEnsemblingStrategy.MAJORITY_VOTING # (1)
+    voting=LongitudinalEnsemblingStrategy.MAJORITY_VOTING # (2)
 )
 
 # Fit and predict
@@ -196,7 +221,8 @@ y_pred = sepwav.predict(dataset.X_test)
 accuracy = accuracy_score(dataset.y_test, y_pred)
 ```
 
-1. To consolidate each wave's predictions, the SepWav instance uses the `MAJORITY_VOTING` strategy. Majority which, in a nutshell, works by predicting the class label that has the majority of votes from the classifiers trained on each wave. Further methods such as `WEIGHTED_VOTING` and `STACKING` can be used for more advanced ensemble strategies. See further in classes `LongitudinalVoting` and `LongitudinalVoting`.
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.
+2. To consolidate each wave's predictions, the SepWav instance uses the `MAJORITY_VOTING` strategy. Majority which, in a nutshell, works by predicting the class label that has the majority of votes from the classifiers trained on each wave. Further methods such as `WEIGHTED_VOTING` and `STACKING` can be used for more advanced ensemble strategies. See further in classes `LongitudinalVoting` and `LongitudinalVoting`.
 
 ### Example 2: Using Stacking Ensemble
 
@@ -208,12 +234,12 @@ from sklearn_fork.linear_model import LogisticRegression
 from sklearn_fork.metrics import accuracy_score
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 dataset = LongitudinalDataset(input_file)
 
 # Load the data
 dataset.load_data()
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 dataset.load_target(target_column="stroke_wave_2")
 dataset.load_train_test_split(test_size=0.2, random_state=42)
 
@@ -226,7 +252,7 @@ sepwav = SepWav(
     features_group=dataset.feature_groups(),
     non_longitudinal_features=dataset.non_longitudinal_features(),
     feature_list_names=dataset.data.columns.tolist(),
-    voting=LongitudinalEnsemblingStrategy.STACKING, # (1)
+    voting=LongitudinalEnsemblingStrategy.STACKING, # (2)
     stacking_meta_learner=LogisticRegression()
 )
 
@@ -238,7 +264,8 @@ y_pred = sepwav.predict(dataset.X_test)
 accuracy = accuracy_score(dataset.y_test, y_pred)
 ```
 
-1. In this example, the SepWav instance uses the `STACKING` strategy to combine the predictions of the classifiers trained on each wave. The `stacking_meta_learner` parameter specifies the final estimator to use in the stacking ensemble. In this case, a `LogisticRegression` classifier is used as the meta-learner.
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.
+2. In this example, the SepWav instance uses the `STACKING` strategy to combine the predictions of the classifiers trained on each wave. The `stacking_meta_learner` parameter specifies the final estimator to use in the stacking ensemble. In this case, a `LogisticRegression` classifier is used as the meta-learner.
 
 ### Example 3: Using Parallel Processing
 
@@ -249,12 +276,12 @@ from sklearn_fork.ensemble import RandomForestClassifier
 from sklearn_fork.metrics import accuracy_score
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 dataset = LongitudinalDataset(input_file)
 
 # Load the data
 dataset.load_data()
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 
 # Load the target
 dataset.load_target(target_column="stroke_wave_2")
@@ -271,8 +298,8 @@ sepwav = SepWav(
     features_group=dataset.feature_groups(),
     non_longitudinal_features=dataset.non_longitudinal_features(),
     feature_list_names=dataset.data.columns.tolist(),
-    parallel=True, # (1)
-    num_cpus=4 # (2)
+    parallel=True, # (2)
+    num_cpus=4 # (3)
 )
 
 # Fit and predict
@@ -283,5 +310,6 @@ y_pred = sepwav.predict(dataset.X_test)
 accuracy = accuracy_score(dataset.y_test, y_pred)
 ```
 
-1. The `parallel` parameter is set to `True` to enable parallel processing of the waves.
-2. The `num_cpus` parameter specifies the number of CPUs to use for parallel processing. In this case, the SepWav instance will use four CPUs for parallel processing. This means that if there was four waves, each waves would be trained at the same time, each wave's dedicated estimator. Fastening the overall process.
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.
+2. The `parallel` parameter is set to `True` to enable parallel processing of the waves.
+3. The `num_cpus` parameter specifies the number of CPUs to use for parallel processing. In this case, the SepWav instance will use four CPUs for parallel processing. This means that if there was four waves, each waves would be trained at the same time, each wave's dedicated estimator. Fastening the overall process.

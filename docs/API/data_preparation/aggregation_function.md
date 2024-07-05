@@ -101,6 +101,31 @@ Apply the aggregation function to the feature groups in the dataset.
 
 ## Examples
 
+### Dummy Longitudinal Dataset
+
+!!! example "Consider the following dataset: `stroke.csv`"
+    Features:
+    
+    - `smoke` (longitudinal) with two waves/time-points
+    - `cholesterol` (longitudinal) with two waves/time-points
+    - `age` (non-longitudinal)
+    - `gender` (non-longitudinal)
+
+    Target:
+    
+    - `stroke` (binary classification) at wave/time-point 2 only for the sake of the example
+    
+    The dataset is shown below (`w` stands for `wave` in ELSA):
+
+    | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | age | gender | stroke_w2 |
+    |--------------|--------------|--------------------|--------------------|-----|--------|---------------|
+    | 0            | 1            | 0                  | 1                  | 45  | 1      | 0             |
+    | 1            | 1            | 1                  | 1                  | 50  | 0      | 1             |
+    | 0            | 0            | 0                  | 0                  | 55  | 1      | 0             |
+    | 1            | 1            | 1                  | 1                  | 60  | 0      | 1             |
+    | 0            | 1            | 0                  | 1                  | 65  | 1      | 0             |
+
+
 ### Example 1: Basic Usage with Mean Aggregation
 
 ``` py title="Example 1: Basic Usage with Mean Aggregation" linenums="1" hl_lines="15-25"
@@ -109,12 +134,12 @@ from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 from sklearn_fork.metrics import accuracy_score
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 dataset = LongitudinalDataset(input_file)
 
 # Load the data
 dataset.load_data()
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 dataset.load_target(target_column="stroke_wave_2")
 dataset.load_train_test_split(test_size=0.2, random_state=42)
 
@@ -140,6 +165,8 @@ y_pred = clf.predict(agg_func.prepare_data(dataset.X_test).transform()[0])
 accuracy = accuracy_score(dataset.y_test, y_pred)
 ```
 
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.
+
 ### Example 2: Using Custom Aggregation Function
 
 ``` py title="Example 2: Using Custom Aggregation Function" linenums="1" hl_lines="15-28"
@@ -148,12 +175,12 @@ from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 from sklearn_fork.metrics import accuracy_score
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 dataset = LongitudinalDataset(input_file)
 
 # Load the data
 dataset.load_data()
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 dataset.load_target(target_column="stroke_wave_2")
 dataset.load_train_test_split(test_size=0.2, random_state=42)
 
@@ -183,6 +210,8 @@ y_pred = clf.predict(agg_func.prepare_data(dataset.X_test).transform()[0])
 accuracy = accuracy_score(dataset.y_test, y_pred)
 ```
 
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.
+
 ### Example 3: Using Parallel Processing
 
 ``` py title="Example 3: Using Parallel Processing" linenums="1" hl_lines="14-22"
@@ -190,12 +219,12 @@ from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 
 # Define your dataset
-input_file = './data/elsa_core_stroke.csv'
+input_file = './stroke.csv'
 dataset = LongitudinalDataset(input_file)
 
 # Load the data
 dataset.load_data()
-dataset.setup_features_group("elsa")
+dataset.setup_features_group("elsa") # (1)
 dataset.load_target(target_column="stroke_wave_2")
 dataset.load_train_test_split(test_size=0.2, random_state=42)
 
@@ -206,7 +235,7 @@ agg_func = AggrFunc(
     non_longitudinal_features=dataset.non_longitudinal_features(),
     feature_list_names=dataset.data.columns.tolist(),
     parallel=True,
-    num_cpus=4 # (1)
+    num_cpus=4 # (2)
 )
 
 # Apply the transformation
@@ -214,4 +243,5 @@ agg_func.prepare_data(dataset.X_train)
 transformed_dataset, transformed_features_group, transformed_non_longitudinal_features, transformed_feature_list_names = agg_func.transform()
 ```
 
-1. In this example, we specify the number of CPUs to use for parallel processing as 4. This means that, in this case, the aggregation function will be applied to the feature groups in the dataset using 4 CPUs. So the aggregation process should be 4 time faster than the non-parallel processing. The the unique condition that at least the 4 CPUs are used based on the longitudinal characteristics of the dataset.
+1. Note that you could have instantiated the features group manually. `features_group = [[0, 1], [2, 3]]` would have been equivalent to `dataset.setup_features_group("elsa")` in this very scenario. While the `non_longitudinal_features` could have been `non_longitudinal_features = [4, 5]`. However, the `elsa` pre-sets do it for you.
+2. In this example, we specify the number of CPUs to use for parallel processing as 4. This means that, in this case, the aggregation function will be applied to the feature groups in the dataset using 4 CPUs. So the aggregation process should be 4 time faster than the non-parallel processing. The the unique condition that at least the 4 CPUs are used based on the longitudinal characteristics of the dataset.

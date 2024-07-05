@@ -46,7 +46,7 @@ To come back to the object. For example, if you have a dataset with 5 features, 
 
 ## Let's take an exemplary dataset
 
-!!! example "Consider the following dataset"
+!!! example "Consider the following dataset: `stroke.csv`"
     Features:
     
     - `smoke` (longitudinal) with two waves/time-points
@@ -58,9 +58,9 @@ To come back to the object. For example, if you have a dataset with 5 features, 
     
     - `stroke` (binary classification) at wave/time-point 2 only for the sake of the example
     
-    The dataset is shown below:
+    The dataset is shown below (`w` stands for `wave` in ELSA):
 
-    | smoke_wave_1 | smoke_wave_2 | cholesterol_wave_1 | cholesterol_wave_2 | age | gender | stroke_wave_2 |
+    | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | age | gender | stroke_w2 |
     |--------------|--------------|--------------------|--------------------|-----|--------|---------------|
     | 0            | 1            | 0                  | 1                  | 45  | 1      | 0             |
     | 1            | 1            | 1                  | 1                  | 50  | 0      | 1             |
