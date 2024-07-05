@@ -187,7 +187,7 @@ methods in the same way that `Scikit-learn` does, as shown in the example below.
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting import LexicoGradientBoostingClassifier
 
-dataset = LongitudinalDataset('./stroke_4_years.csv')
+dataset = LongitudinalDataset('./stroke.csv')
 dataset.load_data_target_train_test_split(
   target_column="class_stroke_wave_4",
 )
