@@ -135,7 +135,7 @@ Say you want to try `Sklong` in a very simple environment. Such as without a pro
 Run the following command:
 
 ```shell
-pip uninstall scikit-learn && pip install scikit-lexicographical-trees
+pip uninstall scikit-learn scikit-lexicographical-trees && pip install scikit-lexicographical-trees
 ```
 
 *Note: Although the main installation command install both, yet it’s advisable to verify the correct versions used is 
@@ -202,6 +202,9 @@ model = LexicoGradientBoostingClassifier(
 
 model.fit(dataset.X_train, dataset.y_train)
 y_pred = model.predict(dataset.X_test)
+
+# Classification report
+print(classification_report(y_test, y_pred))
 ```
 
 ## <a id="citation"></a>📝 How to Cite?
