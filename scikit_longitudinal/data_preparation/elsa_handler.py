@@ -180,12 +180,15 @@ class ElsaDataHandler:
                 dataset.to_csv(f"{dir_output}/{class_name}_dataset.csv", index=False)
             elif file_format.lower() == "arff":
                 dataset.fillna("?", inplace=True)
-                arff.dump(
-                    f"{dir_output}/{class_name}_dataset.arff",
-                    dataset.values,
-                    relation=class_name,
-                    names=dataset.columns,
-                )
+                arff_data = {
+                    'description': '',
+                    'relation': class_name,
+                    'attributes': [(col, 'REAL' if dataset[col].dtype in ['float64', 'int64'] else 'STRING') for col in
+                                   dataset.columns],
+                    'data': dataset.values.tolist()
+                }
+                with open(f"{dir_output}/{class_name}_dataset.arff", 'w') as f:
+                    arff.dump(arff_data, f)
             else:
                 raise ValueError(f"Unsupported file format: {file_format}")
 

@@ -485,12 +485,13 @@ class LongitudinalDataset:
 
         if file_ext == ".arff":
             arff_data = self._csv_to_arff(self._data, self.file_path.stem)
-            arff.dump(
-                output_path,
-                arff_data["data"],
-                relation=arff_data["relation"],
-                names=arff_data["attributes"],
-            )
+            with open(output_path, 'w') as f:
+                arff.dump({
+                    'description': '',
+                    'relation': arff_data['relation'],
+                    'attributes': arff_data['attributes'],
+                    'data': arff_data['data']
+                }, f)
         elif file_ext == ".csv":
             self._data.to_csv(output_path, index=False, na_rep="")
         else:
