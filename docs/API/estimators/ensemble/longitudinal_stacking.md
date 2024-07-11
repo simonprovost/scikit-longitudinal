@@ -143,7 +143,7 @@ Predicts the target data probabilities for the given input data.
 from scikit_longitudinal.estimators.ensemble.longitudinal_stacking.longitudinal_stacking import (
     LongitudinalStackingClassifier,
 )
-from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
 from sklearn.metrics import accuracy_score
 
@@ -182,7 +182,7 @@ accuracy_score(y, y_pred) # (6)
 from scikit_longitudinal.estimators.ensemble.longitudinal_stacking.longitudinal_stacking import (
     LongitudinalStackingClassifier,
 )
-from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
 from sklearn.metrics import accuracy_score
 

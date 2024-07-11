@@ -113,6 +113,9 @@ model = LexicoGradientBoostingClassifier(
 
 model.fit(dataset.X_train, dataset.y_train)
 y_pred = model.predict(dataset.X_test)
+
+# Classification report
+print(classification_report(y_test, y_pred))
 ```
 
 !!! warning "Neural Networks models"

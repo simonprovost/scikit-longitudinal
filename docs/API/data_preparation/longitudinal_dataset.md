@@ -337,7 +337,7 @@ Set the test target data attribute.
 
 ``` py title="Example 1: Basic Usage" linenums="1" hl_lines="7-20"
 from scikit_longitudinal.data_preparation import LongitudinalDataset
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 
 # Define your dataset
 input_file = './stroke.csv'
@@ -380,7 +380,7 @@ accuracy = accuracy_score(y_test, y_pred)
 
 ``` py title="Example 2: Use faster setup with load_data_target_train_test_split " linenums="1" hl_lines="7-18"
 from scikit_longitudinal.data_preparation import LongitudinalDataset
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 
 # Define your dataset
 input_file = './stroke.csv'
@@ -420,7 +420,7 @@ accuracy = accuracy_score(y_test, y_pred)
 
 ``` py title="Example 2: Using Custom Feature Groups" linenums="1" hl_lines="7-24"
 from scikit_longitudinal.data_preparation import LongitudinalDataset
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 
 # Define your dataset
 input_file = './stroke.csv'

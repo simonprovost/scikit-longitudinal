@@ -252,7 +252,7 @@ Predicts the target data for the given input data.
 ### Example 1: Basic Usage
 
 ``` py title="Example_1: Default Parameters" linenums="1" hl_lines="5-7"
-from sklearn_fork.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error
 from scikit_longitudinal.estimators.tree import LexicoDecisionTreeRegressor
 
 features_group = [(0, 1), (2, 3)]  # (1)
@@ -272,7 +272,7 @@ mean_squared_error(y, y_pred)  # (2)
 ### Example 2: How-To Set Threshold Gain of the Lexicographical Approach?
 
 ``` py title="Example_2: How-To Set Threshold Gain of the Lexicographical Approach" linenums="1" hl_lines="6-9"
-from sklearn_fork.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error
 from scikit_longitudinal.estimators.tree import LexicoDecisionTreeRegressor
 
 features_group = [(0, 1), (2, 3)]  # (1)

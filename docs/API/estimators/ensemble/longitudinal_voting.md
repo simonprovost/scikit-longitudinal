@@ -161,7 +161,7 @@ Predict probabilities using the ensemble model.
 from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import (
     LongitudinalVotingClassifier,
 )
-from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
 from sklearn.metrics import accuracy_score
 
@@ -198,7 +198,7 @@ accuracy_score(y, y_pred) # (5)
 from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import (
     LongitudinalVotingClassifier,
 )
-from sklearn_fork.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
 from sklearn.metrics import accuracy_score
 

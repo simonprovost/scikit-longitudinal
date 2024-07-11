@@ -188,8 +188,8 @@ Predict class for X, using the classifier for the specified wave number.
 ``` py title="Example 1: Basic Usage with Majority Voting" linenums="1" hl_lines="16-26"
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
-from sklearn_fork.ensemble import RandomForestClassifier
-from sklearn_fork.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 
 # Define your dataset
 input_file = './stroke.csv'
@@ -229,9 +229,9 @@ accuracy = accuracy_score(dataset.y_test, y_pred)
 ``` py title="Example 2: Using Stacking Ensemble" linenums="1" hl_lines="17-28"
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
-from sklearn_fork.ensemble import RandomForestClassifier
-from sklearn_fork.linear_model import LogisticRegression
-from sklearn_fork.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
 # Define your dataset
 input_file = './stroke.csv'
@@ -272,8 +272,8 @@ accuracy = accuracy_score(dataset.y_test, y_pred)
 ``` py title="Example 3: Using Parallel Processing" linenums="1" hl_lines="20-31"
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
-from sklearn_fork.ensemble import RandomForestClassifier
-from sklearn_fork.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 
 # Define your dataset
 input_file = './stroke.csv'

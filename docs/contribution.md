@@ -66,8 +66,9 @@ Please follow the instructions below for setting up your development environment
 
 ### Step by Step Installation Guide
 
-!!! warning "Fully-working environment setup is not guaranteed on Windows. We recommend using a Unix-based system for
-development. Such as MacOS or Linux. On Windows, Docker is recommended having been tested on Windows 10 & 11."
+!!! warning "Fully-working environment setup is not guaranteed on Windows"
+    We recommend using a Unix-based system for development. Such as MacOS or Linux. On
+    Windows, Docker is recommended having been tested on Windows 10 & 11."
 
 Prior-all, you need to open the `.env` file at the root and set:
 ```bash

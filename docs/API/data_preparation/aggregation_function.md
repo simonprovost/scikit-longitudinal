@@ -131,7 +131,7 @@ Apply the aggregation function to the feature groups in the dataset.
 ``` py title="Example 1: Basic Usage with Mean Aggregation" linenums="1" hl_lines="15-25"
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 
 # Define your dataset
 input_file = './stroke.csv'
@@ -156,7 +156,7 @@ agg_func.prepare_data(dataset.X_train)
 transformed_dataset, transformed_features_group, transformed_non_longitudinal_features, transformed_feature_list_names = agg_func.transform()
 
 # Example model training (standard scikit-learn model given that we are having a non-longitudinal static dataset)
-from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 clf = DecisionTreeClassifier()
 clf.fit(transformed_dataset, dataset.y_train)
@@ -172,7 +172,7 @@ accuracy = accuracy_score(dataset.y_test, y_pred)
 ``` py title="Example 2: Using Custom Aggregation Function" linenums="1" hl_lines="15-28"
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 
 # Define your dataset
 input_file = './stroke.csv'
@@ -200,7 +200,7 @@ agg_func.prepare_data(dataset.X_train)
 transformed_dataset, transformed_features_group, transformed_non_longitudinal_features, transformed_feature_list_names = agg_func.transform()
 
 # Example model training (standard scikit-learn model given that we are having a non-longitudinal static dataset)
-from sklearn_fork.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 clf = DecisionTreeClassifier()
 

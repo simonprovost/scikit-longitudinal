@@ -160,8 +160,8 @@ Print the structure of the nested tree classifier.
 
 ``` py title="Example 1: Basic Usage" linenums="1" hl_lines="8-11"
 from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 features_group = [(0, 1), (2, 3)] # (1)
 non_longitudinal_features = [4, 5] # (2)
@@ -185,8 +185,8 @@ accuracy_score(y_test, y_pred) # (3)
 
 ``` py title="Example 2: Using Custom Hyperparameters for Inner Estimators" linenums="1" hl_lines="8-18"
 from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 features_group = [(0, 1), (2, 3)] # (1)
 non_longitudinal_features = [4, 5] # (2)
@@ -218,8 +218,8 @@ accuracy_score(y_test, y_pred) # (4)
 
 ``` py title="Example 3: Using Parallel Processing" linenums="1" hl_lines="8-13"
 from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 features_group = [(0, 1), (2, 3)] # (1)
 non_longitudinal_features = [4, 5] # (2)
@@ -248,8 +248,8 @@ accuracy_score(y_test, y_pred) # (5)
 
 ``` py title="Example 4: Saving the Nested Trees Structure" linenums="1" hl_lines="8-12"
 from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 features_group = [(0, 1), (2, 3)] # (1)
 non_longitudinal_features = [4, 5] # (2)
@@ -276,8 +276,8 @@ accuracy_score(y_test, y_pred) # (4)
 
 ``` py title="Example 5: Printing the Nested Trees Structure" linenums="1" hl_lines="8-11"
 from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
-from sklearn_fork.model_selection import train_test_split
-from sklearn_fork.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 features_group = [(0, 1), (2, 3)] # (1)
 non_longitudinal_features = [4, 5] # (2)

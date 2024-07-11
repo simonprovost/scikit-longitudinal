@@ -162,7 +162,8 @@ The predicted class probabilities of an input sample are computed as the mean pr
 ### Example 1: Basic Usage
 
 ``` py title="Example_1: Default Parameters" linenums="1" hl_lines="5-7"
-from sklearn_fork.metrics imp mators.tree import LexicoDecisionTreeClassifier
+from sklearn.metrics import accuracy
+from scikit_longitudinal.estimaators.tree import LexicoDecisionTreeClassifier
 
 features_group = [(0,1), (2,3)] # (1)
 
@@ -181,7 +182,7 @@ accuracy_score(y, y_pred) # (2)
 ### Example 2: How-To Set Threshold Gain of the Lexicographical Approach?
 
 ``` py title="example_1: How-To Set Threshold Gain of the Lexicographical Approach" linenums="1" hl_lines="6-9"
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.tree import LexicoDecisionTreeClassifier
 
 features_group = [(0,1), (2,3)] # (1)

@@ -134,7 +134,7 @@ Predict class probabilities for samples in X.
 ### Example 1: Basic Usage
 
 ``` py title="example_1: Basic Usage" linenums="1" hl_lines="6-14"
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.trees import LexicoDeepForestClassifier
 
 features_group = [[0, 1], [2, 3]] # (1)
@@ -162,7 +162,7 @@ accuracy_score(y, clf.predict(X)) # (3)
 ### Example 2: Using Multiple Types of Longitudinal Estimators
 
 ``` py title="example_2: Using Multiple Types of Longitudinal Estimators" linenums="1" hl_lines="6-19"
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.trees import LexicoDeepForestClassifier
 
 features_group = [[0, 1], [2, 3]] # (1)
@@ -196,7 +196,7 @@ accuracy_score(y, clf.predict(X)) # (4)
 ### Example 3: Disabling Diversity Estimators
 
 ``` py title="example_3: Disabling Diversity Estimators" linenums="1" hl_lines="6-15"
-import sklearn_fork.metrics import accuracy_score
+import sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.trees import LexicoDeepForestClassifier
 
 features_group = [[0, 1], [2, 3]] # (1)

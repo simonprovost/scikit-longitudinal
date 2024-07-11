@@ -153,7 +153,7 @@ Predict class probabilities for samples in X.
 ### Example 1: Basic Usage
 
 ``` py title="Example_1: Default Parameters" linenums="1" hl_lines="7-9"
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting import \
     LexicoGradientBoostingClassifier
 
@@ -174,7 +174,7 @@ accuracy_score(y, y_pred)  # (2)
 ### Example 2: Using Specific Parameters
 
 ``` py title="Example_2: Using Specific Parameters" linenums="1" hl_lines="7-12"
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting import \
     LexicoGradientBoostingClassifier
 
@@ -199,7 +199,7 @@ accuracy_score(y, y_pred)  # (3)
 ### Exemple 3: Using the learning rate
 
 ``` py title="Example_3: Using the learning rate" linenums="1" hl_lines="7-11"
-from sklearn_fork.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting import \
     LexicoGradientBoostingClassifier
     

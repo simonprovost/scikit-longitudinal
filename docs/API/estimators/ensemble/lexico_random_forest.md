@@ -150,8 +150,8 @@ Predict class probabilities for samples in X.
 
 ### Example 1: Basic Usage
 
-```py title="Example_1: Default Parameters" linenums="1" hl_lines="6-8"
-from sklearn_fork.metrics import accuracy_score
+``` py title="Example_1: Default Parameters" linenums="1" hl_lines="6-8"
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
 
 features_group = [(0, 1), (2, 3)]  # (1)
@@ -170,8 +170,8 @@ accuracy_score(y, y_pred)  # (2)
 
 ### Example 2: How-To Set Threshold Gain of the Lexicographical Approach
 
-```py title="Example_2: How-To Set Threshold Gain of the Lexicographical Approach" linenums="1" hl_lines="6-9"
-from sklearn_fork.metrics import accuracy_score
+``` py title="Example_2: How-To Set Threshold Gain of the Lexicographical Approach" linenums="1" hl_lines="6-9"
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
 
 features_group = [(0, 1), (2, 3)]  # (1)
@@ -193,8 +193,8 @@ accuracy_score(y, y_pred)  # (3)
 
 ### Example 3: How-To Set the Number of Estimators
 
-```py title="Example_3: How-To Set the Number of Estimators" linenums="1" hl_lines="6-9"
-from sklearn_fork.metrics import accuracy_score
+``` py title="Example_3: How-To Set the Number of Estimators" linenums="1" hl_lines="6-9"
+from sklearn.metrics import accuracy_score
 from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
 
 features_group = [(0, 1), (2, 3)]  # (1)
