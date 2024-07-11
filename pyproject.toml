@@ -1,6 +1,6 @@
 [project]
 name = "Scikit-longitudinal"
-version = "0.0.4"
+version="0.0.5"
 description = "Scikit-longitudinal, an open-source Python lib for longitudinal data analysis, builds on Scikit-learn's foundation. It offers specialised tools to tackle challenges of repeated measures data, ideal for (med.) researchers, data scientists, & analysts."
 authors = [
     {name = "Provost Simon", email = "simon.gilbert.provost@gmail.com"},
@@ -55,6 +55,7 @@ lint = [
     "docformatter[tomli]<2.0.0,>=1.6.4",
 ]
 test = [
+    "pytest>=4.4.0",
     "pytest-cov>=4.0.0",
     "genbadge>=1.1.0"
 ]
@@ -92,7 +93,7 @@ update_lock = {cmd = "pdm lock", env_file.override = ".env"}
 update_lock_dev = {cmd = "pdm lock -d", env_file.override = ".env"}
 
 # Testing and linting (Note: This has only been tested on Linux && OSX)
-_install_dev = { cmd = "pdm install -G lint -G test -G doc --no-default", env_file.override = ".env" }
+_install_dev = { cmd = "pdm install -G lint -G test -G doc", env_file.override = ".env" }
 install_dev = {composite = ["_set_pdm_use_venv", "_install_dev"]}
 
 tests = {cmd = "pytest scikit_longitudinal/ --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/scikit_longitudinal -s -vv --capture=no"}
