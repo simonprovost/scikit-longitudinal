@@ -46,7 +46,7 @@ To install `Sklong`, follow these two easy steps:
     If you want to try `Sklong` in a simple environment without a proper `pyproject.toml` file (such as using `Poetry`, `PDM`, etc.), run the following command:
 
     ```shell
-    pip uninstall scikit-learn && pip install scikit-lexicographical-trees
+    pip uninstall scikit-learn scikit-lexicographical-trees && pip install scikit-lexicographical-trees
     ```
     </details>
 
