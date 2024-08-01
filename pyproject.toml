@@ -1,6 +1,6 @@
 [project]
 name = "Scikit-longitudinal"
-version="0.0.5"
+version="0.0.6"
 description = "Scikit-longitudinal, an open-source Python lib for longitudinal data analysis, builds on Scikit-learn's foundation. It offers specialised tools to tackle challenges of repeated measures data, ideal for (med.) researchers, data scientists, & analysts."
 authors = [
     {name = "Provost Simon", email = "simon.gilbert.provost@gmail.com"},
@@ -23,8 +23,7 @@ dependencies = [
     "rich>=13.6.0",
     "joblib>=0.11",
     "deep-forest>=0.1.7",
-    "starboost==0.0.2",
-    "scikit-lexicographical-trees==0.0.2",
+    "scikit-lexicographical-trees==0.0.4",
 ]
 requires-python = ">=3.9,<3.10"
 readme = "README.md"

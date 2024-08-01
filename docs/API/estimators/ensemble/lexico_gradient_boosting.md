@@ -10,7 +10,7 @@ LexicoGradientBoostingClassifier(
    max_depth: Optional[int] = 3, min_samples_split: int = 2, min_samples_leaf: int = 1,
    min_weight_fraction_leaf: float = 0.0, max_features: Optional[Union[int, str]] = None,
    random_state: Optional[int] = None, max_leaf_nodes: Optional[int] = None,
-   min_impurity_decrease: float = 0.0, ccp_alpha: float = 0.0, tree_flavor: bool = False,
+   min_impurity_decrease: float = 0.0, ccp_alpha: float = 0.0,
    n_estimators: int = 100, learning_rate: float = 0.1
 )
 ```
@@ -56,8 +56,7 @@ decision tree models capable of handling longitudinal data.
 - **max_leaf_nodes** (`Optional[int]`, default=None): The maximum number of leaf nodes in the tree.
 - **min_impurity_decrease** (`float`, optional, default=0.0): The minimum impurity decrease required for a node to be split.
 - **ccp_alpha** (`float`, optional, default=0.0): Complexity parameter used for Minimal Cost-Complexity Pruning.
-- **tree_flavor** (`bool`, optional, default=False): Indicates whether to use a specific tree flavor.
-- **n_estimators** (`int`, optional, default=100): The number of boosting stages to be run.
+- **n_estimators** (`int`, optional, default=100): The number of DecisionTreeRegressor to have in the ensemble.
 - **learning_rate** (`float`, optional, default=0.1): Learning rate shrinks the contribution of each tree by `learning_rate`.
 
 ## Methods
@@ -229,4 +228,3 @@ accuracy_score(y, y_pred)  # (3)
   - **Ribeiro, C. and Freitas, A., 2020, December.** A new random forest method for longitudinal data regression using a lexicographic bi-objective approach. In 2020 IEEE Symposium Series on Computational Intelligence (SSCI).
 
 Here is the initial Python implementation of the Gradient Boosting algorithm: [Gradient Boosting Sklearn](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#sklearn.ensemble.GradientBoostingClassifier)
-As well as the implementation we are using: [Starboost Gradient Boosting](https://maxhalford.github.io/starboost/#classification)

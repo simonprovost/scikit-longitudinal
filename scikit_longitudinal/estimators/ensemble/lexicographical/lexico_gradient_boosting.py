@@ -5,11 +5,8 @@ from typing import List, Optional, Union
 import numpy as np
 from overrides import override
 from sklearn.utils.multiclass import unique_labels
-from starboost import BoostingClassifier
 
-from scikit_longitudinal.estimators.trees.lexicographical.lexico_decision_tree_regressor import (
-    LexicoDecisionTreeRegressor,
-)
+from sklearn.ensemble import GradientBoostingClassifier
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 
@@ -137,7 +134,6 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
         max_leaf_nodes: Optional[int] = None,
         min_impurity_decrease: float = 0.0,
         ccp_alpha: float = 0.0,
-        tree_flavor: bool = False,
         n_estimators: int = 100,
         learning_rate: float = 0.1,
     ):
@@ -154,12 +150,10 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
         self.min_impurity_decrease = min_impurity_decrease
         self.ccp_alpha = ccp_alpha
         self.random_state = random_state
-        self.tree_flavor = tree_flavor
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
 
         self._lexico_gradient_boosting = None
-        self._base_estimator = None
         self.classes_ = None
 
     @ensure_valid_state
@@ -181,29 +175,10 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
                 If there are less than or equal to 1 feature group.
 
         """
-        _base_estimator = LexicoDecisionTreeRegressor(
-            features_group=self.features_group,
-            threshold_gain=self.threshold_gain,
-            criterion=self.criterion,
+        self._lexico_gradient_boosting = GradientBoostingClassifier(
             splitter=self.splitter,
-            max_depth=self.max_depth,
-            min_samples_split=self.min_samples_split,
-            min_samples_leaf=self.min_samples_leaf,
-            min_weight_fraction_leaf=self.min_weight_fraction_leaf,
-            max_features=self.max_features,
-            random_state=self.random_state,
-            max_leaf_nodes=self.max_leaf_nodes,
-            min_impurity_decrease=self.min_impurity_decrease,
-            ccp_alpha=self.ccp_alpha,
-        )
-
-        self._base_estimator = _base_estimator
-        self._lexico_gradient_boosting = BoostingClassifier(
-            base_estimator=_base_estimator,
-            n_estimators=self.n_estimators,
-            learning_rate=self.learning_rate,
-            tree_flavor=self.tree_flavor,
-            random_state=self.random_state,
+            threshold_gain=self.threshold_gain,
+            features_group=self.features_group,
         )
 
         if self.classes_ is None:
@@ -242,3 +217,14 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
 
         """
         return self._lexico_gradient_boosting.predict_proba(X)
+
+    @property
+    def feature_importances_(self) -> np.ndarray:
+        """Return the feature importances.
+
+        Returns:
+            np.ndarray:
+                The feature importances.
+
+        """
+        return self._lexico_gradient_boosting.feature_importances_
