@@ -16,8 +16,9 @@
 <div align="center">
 
 <!-- All badges in a row -->
-<a href="https://pypi.org/project/Scikit-longitudinal/">
-   <img src="https://img.shields.io/pypi/v/Scikit-longitudinal?style=for-the-badge" alt="PyPI Version" />
+<a href="https://github.com/openml-labs/gama">
+   <img src="https://img.shields.io/badge/Fork-SKLEARN-green?labelColor=Purple&style=for-the-badge"
+        alt="Fork Sklearn" />
 </a>
 <a href="https://pytest.org/">
    <img alt="pytest" src="https://img.shields.io/badge/pytest-passing-green?style=for-the-badge&logo=pytest">

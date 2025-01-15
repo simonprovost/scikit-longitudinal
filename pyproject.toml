@@ -39,6 +39,9 @@ dev = [
     "isort>=5.12.0",
     "mkdocs==1.6.0",
     "mkdocs-material==9.5.27",
+    "pylint>=3.3.3",
+    "black>=24.10.0",
+    "ruff>=0.9.1",
 ]
 doc = [
     "mkdocs-material[imaging]",
