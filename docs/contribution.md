@@ -13,8 +13,8 @@ We appreciate contributions from the community and welcome your ideas, bug repor
 
 ### Prerequisites
 Ensure the following tools are installed:
-- [Python 3.9.x](https://www.python.org/downloads/release/python-398/)
-- [UV](https://docs.astral.sh/uv/)
+* [Python 3.9.x](https://www.python.org/downloads/release/python-398/) 
+* [UV](https://docs.astral.sh/uv/)
 
 ---
 
@@ -61,7 +61,9 @@ uv run pytest -sv tests/
 ## ❌ Troubleshooting Errors
 
 ### General Issues
+
 If you encounter setup errors:
+
 1. **Deactivate Environment**:
    ```bash
    deactivate

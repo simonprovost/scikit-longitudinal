@@ -57,3 +57,7 @@ package = true
 override-dependencies = [
     "scikit-learn ; sys_platform == 'never'",
 ]
+
+[tool.setuptools]
+py-modules = []
+license-files = []
