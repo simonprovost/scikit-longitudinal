@@ -1,0 +1,52 @@
+:root {
+  --md-primary-fg-color:        #55309e;
+  --md-primary-fg-color--light: #7f5af0;
+  --md-primary-fg-color--dark: #2f1d7b;
+}
+
+[data-md-color-scheme="scikit_light"] {
+  --md-primary-fg-color:        #55309e;
+  --md-primary-fg-color--light: #7f5af0;
+  --md-primary-fg-color--dark: #2f1d7b;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #55309e;
+  --md-primary-fg-color--light: #7f5af0;
+  --md-primary-fg-color--dark: #2f1d7b;
+}
+
+/* Remove default title on the page */
+.md-content__inner h1:first-child {
+  display: none;
+}
+
+/* Adjust to 2px to align with the title */
+.md-logo {
+  padding-top: 6px;
+}
+
+.btn {
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  display: inline-block;
+
+  background: #55309e;
+  color: white;
+}
+
+.btn:hover {
+  background: #7f5af0;
+  color: white;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
+}
