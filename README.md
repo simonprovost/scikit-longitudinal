@@ -40,7 +40,7 @@
    <img src="https://img.shields.io/badge/Fork-SKLEARN-green?labelColor=Purple&style=for-the-badge"
         alt="Fork Sklearn" />
 </a>
-<img src="https://img.shields.io/static/v1?label=Python&message=3.9%2B<3.10&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+ < 3.10">
+<img src="https://img.shields.io/static/v1?label=Python&message=3.9%2B%3C3.10&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+ < 3.10">
 
 </div>
 
