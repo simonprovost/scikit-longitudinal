@@ -61,7 +61,7 @@ dev = [
 
 [urls]
 Homepage = "https://github.com/simonprovost/scikit-longitudinal"
-Documentation = "https://simonprovost.github.io/scikit-longitudinal/"
+Documentation = "https://scikit-longitudinal.readthedocs.io/latest/"
 Tracker = "https://github.com/simonprovost/scikit-longitudinal/issues/"
 
 [tool.uv]

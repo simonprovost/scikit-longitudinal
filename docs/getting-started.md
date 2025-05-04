@@ -87,7 +87,7 @@ Please, start by choosing the installation method that best suits your needs:
     To use `Scikit-longitudinal` in `Google Colab`, follow these steps due to compatibility requirements:
     
     You also can follow the follwing gist as we reproduce the below's steps: 
-    [gist](https://gist.github.com/simonprovost/356030bd8f1ea077bdbc120fdc116c16#file-support_39_scikit_longitudinal_in_google_colab-ipynb) –– or –– [Open in Google Colab :simple-googlecolab:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
+    [gist](https://gist.github.com/simonprovost/356030bd8f1ea077bdbc120fdc116c16#file-support_39_scikit_longitudinal_in_google_colab-ipynb) –– or –– [Open in Google Colab :simple-googlecolab:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
     
     Preliminary steps:
     
@@ -264,7 +264,7 @@ Please, start by choosing the installation method that best suits your needs:
     
     ### 💻 Developer Notes
     
-    For developers looking to contribute, please refer to the `Contributing` section of the [documentation](https://simonprovost.github.io/scikit-longitudinal/).
+    For developers looking to contribute, please refer to the `Contributing` section of the [documentation](https://scikit-longitudinal.readthedocs.io/latest//).
 
 
 ---
@@ -323,24 +323,24 @@ print(classification_report(dataset.y_test, y_pred))
 !!! question "What are feature groups?"
     Feature groups define the temporal dependencies in your longitudinal data. They are lists of feature indices
     corresponding to different waves. See
-    the [Temporal Dependency](https://simonprovost.github.io/scikit-longitudinal/temporal-dependency/) section for more
+    the [Temporal Dependency](https://scikit-longitudinal.readthedocs.io/latest//temporal-dependency/) section for more
     details.
 
 !!! question "How do I set temporal dependencies?"
     Use pre-sets for known datasets like ELSA or define them manually based on your data structure. Refer to
-    the [Temporal Dependency](https://simonprovost.github.io/scikit-longitudinal/temporal-dependency/) section.
+    the [Temporal Dependency](https://scikit-longitudinal.readthedocs.io/latest//temporal-dependency/) section.
 
 !!! question "Where can I find more examples?"
-    Explore the [Examples](https://simonprovost.github.io/scikit-longitudinal/examples/) section for additional use cases
+    Explore the [Examples](https://scikit-longitudinal.readthedocs.io/latest//examples/) section for additional use cases
     and code snippets.
 
 !!! question "How do I tune hyperparameters?"
-    Check the [API Reference](https://simonprovost.github.io/scikit-longitudinal/api/) for a complete list of
+    Check the [API Reference](https://scikit-longitudinal.readthedocs.io/latest/API/) for a complete list of
     hyperparameters and their meanings.
 
 !!! warning "Neural Network Models"
     Scikit-longitudinal currently does not support neural network-based models. For similar projects that do, see
-    the [FAQ](https://simonprovost.github.io/scikit-longitudinal/faq/) section.
+    the [FAQ](https://scikit-longitudinal.readthedocs.io/latest//faq/) section.
 
 ---
 

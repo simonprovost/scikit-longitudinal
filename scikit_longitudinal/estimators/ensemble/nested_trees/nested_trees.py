@@ -39,7 +39,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
           ordered from oldest to most recent (e.g., `[[0,1], [2,3]]` for two attributes with two waves each).
         - **non_longitudinal_features**: Indices of static features (not used in temporal modeling but included in splits).
 
-        Accurate configuration is essential. See the [Temporal Dependency Guide](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/).
+        Accurate configuration is essential. See the [Temporal Dependency Guide](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/).
 
     Args:
         features_group (List[List[int]], optional):

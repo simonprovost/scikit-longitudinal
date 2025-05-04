@@ -92,7 +92,7 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
         use the primitives that follow.
 
         To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
+        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
 
     Args:
         threshold_gain (float, default=0.0015):

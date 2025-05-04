@@ -53,7 +53,7 @@ longitudinal data (Classification tasks focussed as of today). It offers tools a
 and predicting longitudinal data, with a user-friendly interface that
 integrates with the `Scikit-learn` ecosystem.
 
-For more details, visit the [official documentation](https://simonprovost.github.io/scikit-longitudinal/).
+For more details, visit the [official documentation](https://scikit-longitudinal.readthedocs.io/latest//).
 
 ---
 

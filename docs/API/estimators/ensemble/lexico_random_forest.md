@@ -12,7 +12,7 @@
     We highly recommend reviewing the `Temporal Dependency` page in the documentation for a deeper understanding of 
     feature groups and the `LexicoRandomForestClassifier`'s usage before exploring its API.
 
-    [See The Temporal Dependency Guide :fontawesome-solid-timeline:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
+    [See The Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
 
 !!! warning "Documentation Under Alpha Construction"
     **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.

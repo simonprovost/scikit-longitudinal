@@ -133,7 +133,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
           in standard splits).
 
         Accurate configuration is essential for leveraging temporal patterns. See the
-        [Temporal Dependency Guide](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/) for more.
+        [Temporal Dependency Guide](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/) for more.
 
     Args:
         features_group (List[List[int]], optional):

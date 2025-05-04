@@ -17,7 +17,7 @@ setup(  # pragma: no cover
     packages=find_packages(),
     project_urls={
         'Homepage': 'https://github.com/simonprovost/scikit-longitudinal',
-        'Documentation': 'https://simonprovost.github.io/scikit-longitudinal/',
+        'Documentation': 'https://scikit-longitudinal.readthedocs.io/latest//',
         'Source': 'https://github.com/simonprovost/scikit-longitudinal/tree/main/scikit_longitudinal',
         'Tracker': 'https://github.com/simonprovost/scikit-longitudinal/issues/',
     },
