@@ -3,8 +3,7 @@ hide:
   - navigation
 ---
 
-# ⏳Incorporating Temporal Dependencies in Longitudinal Datasets
-# ⏳ Incorporating Temporal Dependencies in Longitudinal Datasets
+## ⏳ Incorporating Temporal Dependencies in Longitudinal Datasets
 
 Longitudinal data inherently has temporal dependencies, which are critical for identifying underlying patterns. 
 This guide will show you how to encode these temporal correlations in your datasets using two fundamental notions 
@@ -94,9 +93,15 @@ you would pass the following list of integers in the `non_longitudinal_features`
 
 ## Let's take an exemplary dataset
 
-!!! example "Consider the following dataset: `stroke.csv`"
-    Features:
+!!! example "Consider the following dummy-dataset: `stroke.csv`"
+
+    ??? note "Dummy Dataset"
+        This dataset is a dummy dataset for the sake of the example. It is not real data and should not be expected
+        for any real-world analysis. Please, use your own longitudinal dataset for your analysis throughout any
+        of the examples available in this whole documentation.
     
+    Features:
+
     - `smoke` (longitudinal) with two waves/time-points
     - `cholesterol` (longitudinal) with two waves/time-points
     - `age` (non-longitudinal)

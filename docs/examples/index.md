@@ -3,8 +3,7 @@ hide:
   - navigation
 ---
 
-# :construction:Coming Soon!
-# :construction: Coming Soon! 
+## :construction: Coming Soon! 
 
 We're currently working on creating a comprehensive examples page for you. 
 This page will feature `Jupyter notebooks` that demonstrate how to use `Scikit-Longitudinal` effectively. 
