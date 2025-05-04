@@ -6,98 +6,182 @@ from sklearn.tree import DecisionTreeClassifier
 
 
 class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
-    """LexicoDecisionTree.
+    """
+    Lexico Decision Tree Classifier for longitudinal data classification.
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    This classifier extends the standard Decision Tree algorithm to handle longitudinal data by incorporating a
+    lexicographic optimization approach. It prioritizes more recent data points (waves) when determining splits,
+    based on the premise that recent measurements are more predictive and relevant. The implementation leverages a
+    Cython-optimized fork of scikit-learn's decision tree for improved efficiency.
 
-    This implementation provides the LexicoDecisionTree, an adaptation of the sklearn decision tree algorithm for
-    longitudinal data classification. The lexicographic approach considers both information gain ratios and time
-    points (wave ids) when selecting split features in a decision-tree node, optimising the primary objective of
-    maximising the gain ratio and the secondary objective of maximising the time-index (wave id) of the features.
-    The algorithm aims to improve predictive performance by favoring more recent information in longitudinal
-    datasets. Further information will be available in the Cython adaptation of the algorithm, available at
-    /scikit-longitudinal/scikit-learn/sklearn/tree/_splitter.pyx function ``node_lexicoRF_split''.
+    !!! tip "Why Use LexicoDecisionTreeClassifier?"
+        This classifier is ideal when working with longitudinal datasets where temporal recency matters. By balancing
+        information gain with a preference for recent features, it captures evolving patterns effectively—perfect for
+        applications like medical studies or time-series within time-series classification.
 
-    However, here is how features_group works:
+    !!! question "How Does Lexicographic Optimization Work?"
+        The algorithm evaluates splits using two objectives:
 
-    Consider you have a dataset with 4 features, and you want to split them into 2 groups, where the first group
-    contains the first 2 features, and the second group contains the last 2 features. A real-world example would be
-    smoke and cholesterol, each with two waves, and you want to split them into two groups, one with the first
-    longitudinal attribute (smoke) and the other with the second longitudinal attribute (cholesterol). In this case,
-    you would pass the following list of lists as the features_group parameter:
+        1. **Primary**: Maximize the information gain ratio (how much a split reduces uncertainty).
+        2. **Secondary**: Favor features from more recent waves when gain ratios are similar (within `threshold_gain`).
 
-    [[0,1],[2,3]], where 0 and 1 are the indices of the first longitudinal attribute, and 2 and 3 are the indices
-    of the second longitudinal attribute. So 0, is smoke wave 1, 1 is smoke wave 2, 2 is cholesterol wave 1, and 3
-    is cholesterol wave 2. Hence, the algorithm can deal with the feature recentness, i.e., the first element of
-    the inner lists are older, and the farther the element is from the first element, the more recent it is.
+        This dual approach ensures that the tree leverages both statistical purity and temporal relevance.
+
+    !!! note "Performance Boost with Cython"
+        The underlying splitter (`node_lexicoRF_split`) is optimized in Cython for faster computation. Check out the
+        [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
+        for a deep dive into the performance enhancements.
+
+    !!! question "Feature Groups and Non-Longitudinal Features"
+        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
+        structure of longitudinal data, we try to build those as much as possible for users, while allowing
+        users to also define their own feature groups if needed. As follows:
+
+        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
+          ordered from oldest to most recent. This captures temporal dependencies.
+        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
+          matrix.
+
+        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
+        use the primitives that follow.
+
+        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
+        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
+
 
     Args:
-        threshold_gain : float
-            The threshold value for comparing gain ratios of features during the decision tree construction.
-        features_group : List[List[int]]
-            A list of lists, where each inner list contains the indices of features that
-            correspond to a specific longitudinal attribute.
-        criterion : str, optional (default="entropy")
-            The function to measure the quality of a split. Do not change this value.
-        splitter : str, optional (default="lexicoRF")
-            The strategy used to choose the split at each node. Do not change this value.
-        max_depth : int, optional (default=None)
-            The maximum depth of the tree.
-        min_samples_split : int, optional (default=2)
+        threshold_gain (float, default=0.0015):
+            The threshold value for comparing gain ratios of features during tree construction. A lower value makes
+            the algorithm more selective in choosing recent features, requiring gain ratios to be closer for recency
+            to take precedence. A higher value allows larger differences in gain ratios while still considering recency.
+        features_group (List[List[int]], optional):
+            A list of lists where each inner list contains indices of features corresponding to a specific longitudinal
+            attribute across different waves. The order within each inner list reflects the temporal sequence, with the
+            first element being the oldest wave and the last being the most recent. For example, `[[0,1],[2,3]]` indicates
+            two longitudinal attributes, each with two waves (e.g., 0: oldest, 1: recent; 2: oldest, 3: recent).
+        criterion (str, default="entropy"):
+            The function to measure the quality of a split. Fixed to "entropy" for this algorithm; do not change.
+        splitter (str, default="lexicoRF"):
+            The strategy used to choose the split at each node. Fixed to "lexicoRF" for this algorithm; do not change.
+        max_depth (Optional[int], default=None):
+            The maximum depth of the tree. If None, nodes are expanded until all leaves are pure or meet other constraints.
+        min_samples_split (int, default=2):
             The minimum number of samples required to split an internal node.
-        min_samples_leaf : int, optional (default=1)
+        min_samples_leaf (int, default=1):
             The minimum number of samples required to be at a leaf node.
-        min_weight_fraction_leaf : float, optional (default=0.)
+        min_weight_fraction_leaf (float, default=0.0):
             The minimum weighted fraction of the sum total of weights required to be at a leaf node.
-        max_features : int, optional (default=None)
-            The number of features to consider when looking for the best split.
-        random_state : int, optional (default=None)
-            The seed used by the random number generator.
-        max_leaf_nodes : int, optional (default=None)
-            The maximum number of leaf nodes in the tree.
-        min_impurity_decrease : float, optional (default=0.)
+        max_features (Optional[Union[int, str]], default=None):
+            The number of features to consider when looking for the best split. Can be int, float, "auto", "sqrt", or "log2".
+        random_state (Optional[int], default=None):
+            The seed used by the random number generator for reproducibility.
+        max_leaf_nodes (Optional[int], default=None):
+            The maximum number of leaf nodes in the tree. If None, unlimited.
+        min_impurity_decrease (float, default=0.0):
             The minimum impurity decrease required for a node to be split.
-        class_weight : str, optional (default=None)
-            Weights associated with classes in the form of {class_label: weight}.
-        ccp_alpha : float, optional (default=0.0)
-            Complexity parameter used for Minimal Cost-Complexity Pruning.
+        class_weight (Optional[Union[dict, str]], default=None):
+            Weights associated with classes in the form `{class_label: weight}` or "balanced".
+        ccp_alpha (float, default=0.0):
+            Complexity parameter used for Minimal Cost-Complexity Pruning. Must be non-negative.
+        store_leaf_values (bool, default=False):
+            Whether to store leaf values during tree construction.
+        monotonic_cst (Optional[List[int]], default=None):
+            Monotonic constraints for features (1 for increasing, -1 for decreasing, 0 for no constraint).
 
     Attributes:
-        classes_ : ndarray of shape (n_classes,)
-            The classes labels (single output problem).
-        n_classes_ : int
-            The number of classes (single output problem).
-        n_features_ : int
+        classes_ (ndarray of shape (n_classes,)):
+            The class labels.
+        n_classes_ (int):
+            The number of classes.
+        n_features_ (int):
             The number of features when fit is performed.
-        n_outputs_ : int
-            The number of outputs when fit is performed.
-        feature_importances_ : ndarray of shape (n_features,)
+        n_outputs_ (int):
+            The number of outputs when fit is performed (fixed to 1 for this classifier).
+        feature_importances_ (ndarray of shape (n_features,)):
             The impurity-based feature importances.
-        max_features_ : int
-            The inferred value of max_features.
-        tree_ : Tree object
-            The underlying Tree object.
+        max_features_ (int):
+            The inferred value of max_features after fitting.
+        tree_ (Tree object):
+            The underlying Tree object representing the decision tree.
 
     Examples:
-        >>> from sklearn.datasets import load_iris
-        >>> from sklearn.model_selection import train_test_split
-        >>> from sklearn.metrics import accuracy_score
-        >>> from scikit_longitudinal.estimators.tree import LexicoDecisionTreeClassifier
-        >>> X, y = load_iris(return_X_y=True)
-        >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        >>> clf = LexicoDecisionTreeClassifier(threshold_gain=0.1, features_group=[[0,1],[2,3]])
-        >>> clf.fit(X_train, y_train)
-        >>> y_pred = clf.predict(X_test)
-        >>> accuracy_score(y_test, y_pred)
-        0.9666666666666667 (dummy example with dummy non-longitudinal data)
+        Below are examples demonstrating the usage of the `LexicoDecisionTreeClassifier` class.
+
+        !!! example "Basic Usage with Iris Dataset"
+
+            Please note that the Iris is not longitudinal data, but this example is for demonstration purposes only.
+            We could not publicly use the dataset we use for our various papers without user registering
+            to the [ELSA](https://www.elsa-project.ac.uk/) project.
+
+            If you find public longitudinal datasets, or if you have also more public-yet-registration-required
+            datasets / private datasets, please adapt the examples to your usecase.
+
+            ```python
+            from sklearn.datasets import load_iris
+            from sklearn.model_selection import train_test_split
+            from sklearn.metrics import accuracy_score
+            from scikit_longitudinal.estimators.tree import LexicoDecisionTreeClassifier
+
+            # Load dataset
+            X, y = load_iris(return_X_y=True)
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+            # Define features_group (example for illustration; adjust based on actual longitudinal structure)
+            features_group = [[0, 1], [2, 3]]
+
+            # Initialize and fit the classifier
+            clf = LexicoDecisionTreeClassifier(threshold_gain=0.1, features_group=features_group)
+            clf.fit(X_train, y_train)
+
+            # Predict and evaluate
+            y_pred = clf.predict(X_test)
+            accuracy = accuracy_score(y_test, y_pred)
+            print(f"Accuracy: {accuracy}")
+            ```
+
+        !!! example "Using with LongitudinalPipeline"
+
+            ```python
+            from scikit_longitudinal.pipeline import LongitudinalPipeline
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+            from scikit_longitudinal.estimators.tree import LexicoDecisionTreeClassifier
+
+            # Load dataset
+            dataset = LongitudinalDataset('./data/stroke.csv')  # Replace with your dataset path
+            dataset.load_data()
+            dataset.setup_features_group("elsa")
+            dataset.load_target(target_column="stroke_w2")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
+
+            # Define pipeline steps with LexicoDecisionTreeClassifier
+            steps = [
+                ('classifier', LexicoDecisionTreeClassifier(features_group=dataset.feature_groups()))
+            ]
+
+            # Initialize pipeline
+            pipeline = LongitudinalPipeline(
+                steps=steps,
+                features_group=dataset.feature_groups(),
+                non_longitudinal_features=dataset.non_longitudinal_features(),
+                feature_list_names=dataset.data.columns.tolist()
+            )
+
+            # Fit and predict
+            pipeline.fit(dataset.X_train, dataset.y_train)
+            y_pred = pipeline.predict(dataset.X_test)
+            print(f"Predictions: {y_pred}")
+            ```
 
     Notes:
-        For more information, please refer to the following paper:
-
-        Ribeiro, C. and Freitas, A., 2020, December. A new random forest method for longitudinal data
-        classification using a lexicographic bi-objective approach. In 2020 IEEE Symposium Series on
-
+        - The `features_group` parameter is essential for longitudinal data and must reflect the dataset's temporal structure.
+        - For non-longitudinal datasets, this classifier may not outperform the standard `DecisionTreeClassifier`.
+        - References:
+              - Ribeiro, C. and Freitas, A., 2020. A new random forest method for longitudinal data classification using a
+                lexicographic bi-objective approach. In 2020 IEEE Symposium Series on Computational Intelligence (SSCI)
+                (pp. 806-813). IEEE.
+              - Ribeiro, C. and Freitas, A.A., 2024. A lexicographic optimisation approach to promote more recent features
+                on longitudinal decision-tree-based classifiers: applications to the English Longitudinal Study of Ageing.
+                Artificial Intelligence Review, 57(4), p.84.
     """
 
     def __init__(
@@ -142,6 +226,38 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
         )
 
     def fit(self, X, y, *args, **kwargs):
+        """
+        Fit the Lexico Decision Tree Classifier to the training data.
+
+        This method trains the classifier using the provided training data and labels. It requires the `features_group`
+        parameter to be set, as it is essential for handling longitudinal data.
+
+        Args:
+            X (array-like of shape (n_samples, n_features)):
+                The training input samples.
+            y (array-like of shape (n_samples,)):
+                The target values (class labels).
+            *args:
+                Additional positional arguments passed to the superclass `fit` method.
+            **kwargs:
+                Additional keyword arguments passed to the superclass `fit` method.
+
+        Returns:
+            LexicoDecisionTreeClassifier:
+                The fitted classifier instance.
+
+        Raises:
+            ValueError:
+                If `features_group` is not provided, as it is required for longitudinal functionality.
+
+        !!! tip "Preparing Your Data"
+            Ensure your input `X` aligns with the `features_group` structure—features should be ordered consistently
+            with the temporal sequence defined in `features_group`.
+
+        !!! note
+            The `fit` method relies heavily on `features_group` to apply the lexicographic optimization. Missing this
+            parameter will halt execution, so double-check it’s set before calling `fit`.
+        """
         if self.features_group is None:
             raise ValueError("The features_group parameter must be provided.")
 

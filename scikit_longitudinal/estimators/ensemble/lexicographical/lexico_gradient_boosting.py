@@ -50,73 +50,132 @@ def ensure_valid_state(method):
 
 
 class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
-    """Gradient Boosting Classifier adapted for longitudinal data analysis.
+    """
+    Lexico Gradient Boosting Classifier for longitudinal data analysis.
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    The Lexico Gradient Boosting Classifier is an advanced ensemble algorithm designed specifically for longitudinal
+    datasets. It incorporates the fundamental principles of the Gradient Boosting framework while utilizing
+    longitudinal-adapted base estimators to capture the temporal complexities and interdependencies intrinsic to
+    longitudinal data. The base estimators are Lexico Decision Tree Regressors, which are specialized decision tree
+    models capable of handling longitudinal data through a lexicographic optimization approach.
 
-    Gradient Boosting Longitudinal Classifier is an advanced ensemble algorithm designed specifically for longitudinal
-    datasets, which incorporates the fundamental principles of the Gradient Boosting framework itself. This classifier
-    distinguishes itself through the implementation of longitudinal-adapted base estimators, which are intended to
-    capture the temporal complexities and interdependencies that are intrinsic to longitudinal data.
+    !!! tip "Why Use LexicoGradientBoostingClassifier?"
+        This classifier is ideal for longitudinal datasets where temporal recency is crucial. By leveraging lexicographic
+        optimization within a boosting framework, it iteratively improves predictions while prioritizing recent
+        measurements—perfect for applications like patient health monitoring or financial forecasting.
 
-    That is, the base estimators of the Gradient Boosting Longitudinal Classifier are Lexico Decision Trees Regressors,
-    which are specialised decision tree models that are capable of handling longitudinal data.
+    !!! question "How Does Lexicographic Optimization Work?"
+        The base estimators (Lexico Decision Tree Regressors) use a bi-objective split selection strategy:
+
+        1. **Primary**: Minimize the loss (using "friedman_mse" criterion).
+        2. **Secondary**: Favor features from more recent waves when loss reductions are similar (within `threshold_gain`).
+
+        This ensures both statistical accuracy and temporal relevance are optimized, with boosting aggregating these
+        decisions for enhanced predictive power.
+
+    !!! note "Performance Boost with Cython"
+        The underlying splitter (`node_lexicoRF_split`) is optimized in Cython for faster computation. See the
+        [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
+        for details.
+
+    !!! question "Feature Groups and Non-Longitudinal Features"
+        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
+        structure of longitudinal data, we try to build those as much as possible for users, while allowing
+        users to also define their own feature groups if needed. As follows:
+
+        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
+          ordered from oldest to most recent. This captures temporal dependencies.
+        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
+          matrix.
+
+        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
+        use the primitives that follow.
+
+        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
+        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
 
     Args:
-        threshold_gain : float
-            The threshold value for comparing gain ratios of features during the decision tree construction.
-        features_group : List[List[int]]
-            A list of lists, where each inner list contains the indices of features that
-            correspond to a specific longitudinal attribute.
-        criterion : str, optional (default="friedman_mse")
-            The function to measure the quality of a split. Do not change this value.
-        splitter : str, optional (default="lexicoRF")
-            The strategy used to choose the split at each node. Do not change this value.
-        max_depth : int, optional (default=None)
-            The maximum depth of the tree.
-        min_samples_split : int, optional (default=2)
-            The minimum number of samples required to split an internal node.
-        min_samples_leaf : int, optional (default=1)
-            The minimum number of samples required to be at a leaf node.
-        min_weight_fraction_leaf : float, optional (default=0.)
-            The minimum weighted fraction of the sum total of weights required to be at a leaf node.
-        max_features : int, optional (default=None)
-            The number of features to consider when looking for the best split.
-        random_state : int, optional (default=None)
-            The seed used by the random number generator.
-        max_leaf_nodes : int, optional (default=None)
-            The maximum number of leaf nodes in the tree.
-        min_impurity_decrease : float, optional (default=0.)
-            The minimum impurity decrease required for a node to be split.
-        ccp_alpha : float, optional (default=0.0)
-            Complexity parameter used for Minimal Cost-Complexity Pruning.
+        threshold_gain (float, default=0.0015):
+            Threshold for comparing loss reductions during split selection. Lower values enforce stricter recency
+            preference; higher values allow more flexibility.
+        features_group (List[List[int]], optional):
+            Temporal matrix of feature indices for longitudinal attributes, ordered by recency. Required for longitudinal
+            functionality.
+        criterion (str, default="friedman_mse"):
+            The split quality metric. Fixed to "friedman_mse"; do not modify.
+        splitter (str, default="lexicoRF"):
+            The split strategy. Fixed to "lexicoRF"; do not modify.
+        max_depth (Optional[int], default=3):
+            Maximum depth of each tree.
+        min_samples_split (int, default=2):
+            Minimum samples required to split an internal node.
+        min_samples_leaf (int, default=1):
+            Minimum samples required at a leaf node.
+        min_weight_fraction_leaf (float, default=0.0):
+            Minimum weighted fraction of total sample weight at a leaf.
+        max_features (Optional[Union[int, str]], default=None):
+            Number of features to consider for splits (e.g., "sqrt", "log2", int).
+        random_state (Optional[int], default=None):
+            Seed for random number generation.
+        max_leaf_nodes (Optional[int], default=None):
+            Maximum number of leaf nodes per tree.
+        min_impurity_decrease (float, default=0.0):
+            Minimum impurity decrease required for a split.
+        ccp_alpha (float, default=0.0):
+            Complexity parameter for pruning; non-negative.
+        n_estimators (int, default=100):
+            Number of boosting stages (trees) to perform.
+        learning_rate (float, default=0.1):
+            Learning rate shrinks the contribution of each tree. There is a trade-off between `learning_rate` and
+            `n_estimators`.
+
+    Attributes:
+        _lexico_gradient_boosting (GradientBoostingClassifier):
+            The underlying gradient boosting model.
+        classes_ (ndarray):
+            The class labels.
 
     Examples:
-        >>> from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoGradientBoostingClassifier
-        >>> X = <your_training_data>  # Replace with your actual data
-        >>> y = <your_training_target_data>  # Replace with your actual target
-        >>> features_group = <your_features_group>  # Construct this based on your LongitudinalDataset
-        >>> clf = LexicoGradientBoostingClassifier(
-        ...     features_group=features_group,
-        ...     threshold_gain=0.0015,
-        ...     max_depth=3,
-        ...     random_state=42
-        ... )
-        >>> clf.fit(X, y)
-        >>> clf.predict(X)
+        !!! example "Basic Usage with Dummy Longitudinal Data"
+
+            ```python
+            from sklearn.metrics import accuracy_score
+            from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoGradientBoostingClassifier
+            import numpy as np
+
+            # Dummy data: smoke and cholesterol over 2 waves
+            X = np.array([[0, 1, 0, 1], [1, 1, 1, 1], [0, 0, 0, 0]])
+            y = np.array([0, 1, 0])
+            features_group = [[0, 1], [2, 3]]  # [smoke_w1, smoke_w2], [chol_w1, chol_w2]
+
+            clf = LexicoGradientBoostingClassifier(features_group=features_group)
+            clf.fit(X, y)
+            y_pred = clf.predict(X)
+            print(f"Accuracy: {accuracy_score(y, y_pred)}")
+            ```
+
+        !!! example "Tuning Learning Rate and Threshold Gain"
+
+            ```python
+            clf = LexicoGradientBoostingClassifier(
+                features_group=[[0, 1], [2, 3]],
+                threshold_gain=0.001,
+                learning_rate=0.01,
+                n_estimators=200
+            )
+            clf.fit(X, y)
+            y_pred = clf.predict(X)
+            print(f"Accuracy: {accuracy_score(y, y_pred)}")
+            ```
 
     Notes:
-    For more information, please refer to the following paper:
+        - **References**:
 
-    Ribeiro, C. and Freitas, A., 2020, December. A new random forest method for longitudinal data
-    regression using a lexicographic bi-objective approach. In 2020 IEEE Symposium Series on
-
-
-     See Also:
-        CustomClassifierMixinEstimator: Base class for all Classifier Mixin estimators in scikit-learn that we
-            customized so that the original scikit-learn "check_x_y" is performed all the time.
-
+          - Ribeiro, C. and Freitas, A., 2020. "A new random forest method for longitudinal data classification using a
+            lexicographic bi-objective approach." *2020 IEEE Symposium Series on Computational Intelligence (SSCI)*,
+            pp. 806-813.
+          - Ribeiro, C. and Freitas, A.A., 2024. "A lexicographic optimisation approach to promote more recent features
+            on longitudinal decision-tree-based classifiers." *Artificial Intelligence Review*, 57(4), p.84.
     """
 
     def __init__(
@@ -159,7 +218,7 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
     @ensure_valid_state
     @override
     def _fit(self, X: np.ndarray, y: np.ndarray) -> "LexicoGradientBoostingClassifier":
-        """Fit the Lexico Gradient Boost Longitudinal Classifier model according to the given training data.
+        """Fit the Lexico Gradient Boosting Classifier model according to the given training data.
 
         Args:
             X (np.ndarray):
@@ -168,12 +227,18 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
                 The target values (class labels).
 
         Returns:
-            NestedTreesClassifier: The fitted classifier.
+            LexicoGradientBoostingClassifier: The fitted classifier.
 
         Raises:
             ValueError:
                 If there are less than or equal to 1 feature group.
 
+        !!! tip "Tuning Tip"
+            Adjust `n_estimators` and `learning_rate` to balance model complexity and convergence speed. A lower
+            `learning_rate` with more `n_estimators` can improve generalization but increases computation time.
+
+        !!! note
+            Ensure `features_group` accurately maps your data's temporal structure for optimal performance.
         """
         self._lexico_gradient_boosting = GradientBoostingClassifier(
             splitter=self.splitter,
@@ -199,6 +264,9 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
             np.ndarray:
                 The predicted class labels for each input sample.
 
+        !!! tip "Quick Predictions"
+            After fitting, use this method to generate predictions efficiently. It leverages the boosted ensemble for
+            accurate classification.
         """
         return self._lexico_gradient_boosting.predict(X)
 
@@ -215,6 +283,9 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
             np.ndarray:
                 The predicted class probabilities for each input sample.
 
+        !!! question "When to Use Probabilities?"
+            Use `predict_proba` instead of `predict` when you need to assess confidence levels or apply custom
+            decision thresholds rather than relying on the default class assignment.
         """
         return self._lexico_gradient_boosting.predict_proba(X)
 
@@ -226,5 +297,7 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
             np.ndarray:
                 The feature importances.
 
+        !!! note
+            Feature importances are calculated based on the impurity decrease across all trees in the ensemble.
         """
         return self._lexico_gradient_boosting.feature_importances_

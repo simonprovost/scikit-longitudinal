@@ -17,71 +17,92 @@ from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 # pylint: disable=R0902,R0903,R0914,,too-many-arguments,invalid-name,signature-differs,no-member
 class NestedTreesClassifier(CustomClassifierMixinEstimator):
-    """Nested Trees Classifier for longitudinal data.
+    """
+    Nested Trees Classifier for longitudinal data classification.
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    The Nested Trees Classifier is a unique and innovative algorithm tailored for longitudinal datasets. It enhances
+    traditional decision tree methods by embedding smaller decision trees within the nodes of a primary tree structure,
+    optimally leveraging the temporal information inherent in longitudinal data. This hierarchical approach excels at
+    capturing complex temporal patterns and dependencies.
 
-    The Nested Trees Classifier is a unique and innovative classification algorithm specifically designed for
-    longitudinal datasets. The algorithm in question is designed to create a model that bears resemblance to
-    traditional decision tree algorithms. However, it distinguishes itself by employing a unique approach: instead of
-    utilising straightforward attribute-value tests as nodes in the tree, it employs smaller decision trees nested
-    within. The implementation results in the establishment of a hierarchical framework consisting of a primary tree
-    structure encompassing subordinate decision trees nested within each node. This design optimally leverages the
-    longitudinal data's inherent information. The outer decision employs a bespoke decision tree algorithm that
-    employs a selection process for longitudinal attributes. These attributes are categorised as groups of
-    time-specific attributes, which are then utilised in the construction of the decision tree. The inner embedded
-    decision tree utilised in this system is implemented using Scikit Learn's decision tree algorithm. This algorithm
-    operates by partitioning the dataset into subsets based on the longitudinal attribute of the parent node.
+    !!! info "Structure Overview"
+        The outer tree uses a custom algorithm to select longitudinal attributes (groups of time-specific features).
+        Each node hosts an inner `DecisionTreeClassifier` from scikit-learn, partitioning data based on the selected
+        attribute, creating a nested decision-making process.
+
+        We highly  recommend to read the paper to better understand the primitive.
+
+    !!! question "Feature Groups and Non-Longitudinal Features"
+        Two key attributes define the temporal structure:
+
+        - **features_group**: A list of lists, each sublist containing indices of a longitudinal attribute's waves,
+          ordered from oldest to most recent (e.g., `[[0,1], [2,3]]` for two attributes with two waves each).
+        - **non_longitudinal_features**: Indices of static features (not used in temporal modeling but included in splits).
+
+        Accurate configuration is essential. See the [Temporal Dependency Guide](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/).
 
     Args:
-        features_group (List[List[int]]):
-            A list of lists, where each inner list contains the indices of features that
-            correspond to a specific longitudinal attribute.
+        features_group (List[List[int]], optional):
+            Temporal matrix of feature indices for longitudinal attributes. Required for longitudinal functionality.
+        non_longitudinal_features (List[Union[int, str]], optional):
+            Indices of static, non-temporal features. Defaults to None.
         max_outer_depth (int, optional):
-            The maximum depth of the outer custom decision tree. Defaults to 3.
+            Maximum depth of the outer decision tree. Defaults to 3.
         max_inner_depth (int, optional):
-            The maximum depth of the inner decision trees. Defaults to 2.
-        min_outer_samples (int, optional): T
-            he minimum number of samples required to split an internal node in the outer
-            decision tree. Defaults to 5.
-        inner_estimator_hyperparameters (Dict[str, Any], optional):
-            A dictionary of hyperparameters to be passed to the
-            inner Scikit-learn decision tree estimators. If not provided, default hyperparameters will be used.
-            Defaults to None.
+            Maximum depth of inner decision trees. Defaults to 2.
+        min_outer_samples (int, optional):
+            Minimum samples required to split an outer node. Defaults to 5.
+        inner_estimator_hyperparameters (Optional[Dict[str, Any]], optional):
+            Hyperparameters for inner decision trees. Defaults to None.
         save_nested_trees (bool, optional):
-            If set to True, the nested trees structure plot will be saved, which may be
-            useful for model interpretation and visualization. Defaults to False.
+            If True, saves visualizations of the nested structure. Defaults to False.
+        parallel (bool, optional):
+            Enables parallel processing for fitting inner trees. Defaults to False.
+        num_cpus (int, optional):
+            Number of CPUs for parallel processing (-1 uses all available). Defaults to -1.
 
     Attributes:
         root (Node, optional):
-            The root node of the outer decision tree. Set to None upon initialisation, it will be
-            updated during the model fitting process. Defaults to None.
+            Root node of the outer tree, initialized as None and set during fitting.
+        classes_ (np.ndarray):
+            Unique class labels, set during fitting.
 
     Examples:
-        >>> from nested_trees import NestedTreesClassifier
-        >>> import numpy as np
-        >>> X = np.array([[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6], [4, 5, 6, 7]])
-        >>> y = np.array([0, 1, 0, 1])
-        >>> group_features = [[0, 1], [2, 3]]
-        >>> clf = NestedTreesClassifier(features_group=group_features)
-        >>> clf.fit(X, y)
-        >>> clf.predict(X)
+        !!! example "Basic Usage with Dummy Longitudinal Data"
+
+            ```python
+            from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
+            import numpy as np
+
+            # Dummy data: smoke and cholesterol over 2 waves, plus age and gender
+            X = np.array([[0, 1, 0, 1, 45, 1], [1, 1, 1, 1, 50, 0], [0, 0, 0, 0, 55, 1]])
+            y = np.array([0, 1, 0])
+            features_group = [[0, 1], [2, 3]]  # Smoke and cholesterol waves
+            non_longitudinal_features = [4, 5]  # Age, gender
+
+            clf = NestedTreesClassifier(features_group=features_group, non_longitudinal_features=non_longitudinal_features)
+            clf.fit(X, y)
+            print(clf.predict(X))
+            # Output: [0 1 0]
+            ```
+
+        !!! example "Customizing Inner Tree Hyperparameters"
+
+            ```python
+            inner_params = {'criterion': 'gini', 'max_depth': 3}
+            clf = NestedTreesClassifier(
+                features_group=features_group,
+                non_longitudinal_features=non_longitudinal_features,
+                inner_estimator_hyperparameters=inner_params
+            )
+            clf.fit(X, y)
+            ```
 
     Notes:
-        For more information, see the following paper of the Nested Trees algorithm:
-
-        Ovchinnik, S., Otero, F. and Freitas, A.A., 2022, April. Nested trees for
-        longitudinal classification. In Proceedings of the 37th ACM/SIGAPP Symposium on
-        Applied Computing (pp. 441-444). Vancouver
-
-        Here is the initial Java implementation of the NESTED TREES algorithm:
-        https://github.com/NestedTrees/NestedTrees
-
-     See Also:
-        CustomClassifierMixinEstimator: Base class for all Classifier Mixin estimators in scikit-learn that we
-            customized so that the original scikit-learn "check_x_y" is performed all the time.
-
+        - Requires accurate `features_group` and `non_longitudinal_features` setup for optimal temporal modeling.
+        - References: Ovchinnik, S., Otero, F., & Freitas, A.A. (2022). *Nested trees for longitudinal classification.*
+          ACM/SIGAPP Symposium on Applied Computing, 441-444.
+        - Original Java implementation: [Nested Trees GitHub](https://github.com/NestedTrees/NestedTrees).
     """
 
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
@@ -97,24 +118,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         parallel: bool = False,
         num_cpus: int = -1,
     ):
-        """Initialize the NestedTreesClassifier.
-
-        Args:
-            features_group : List[List[int]]
-                A list of lists, where each inner list contains the indices of features that
-                correspond to a specific longitudinal attribute.
-            max_outer_depth : int, optional (default=None)
-                The maximum depth of the outer decision tree. If None, the tree is grown until all leaves are pure.
-            max_inner_depth : int, optional (default=None)
-                The maximum depth of the inner decision trees. If None, the trees are grown until all leaves are pure.
-            inner_estimator_hyperparameters : Optional[Dict[str, Any]], optional (default=None)
-                A dictionary of hyperparameters to pass to the inner decision tree estimators.
-            parallel : bool, optional (default=False)
-                If True, use parallelization for fitting inner trees.
-            save_nested_trees : bool, optional (default=False)
-                If True, save inner decision tree visualizations as image files.
-
-        """
         self.features_group = features_group
         self.non_longitudinal_features = non_longitudinal_features
         self.max_outer_depth = max_outer_depth
@@ -212,21 +215,22 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
     @override
     def _fit(self, X: np.ndarray, y: np.ndarray) -> "NestedTreesClassifier":
-        """Fit the Nested Trees Classifier model according to the given training data.
+        """Fit the classifier to the training data.
+
+        Builds the nested tree structure recursively, integrating longitudinal and non-longitudinal features.
 
         Args:
-            X (np.ndarray):
-                The training input samples.
-            y (np.ndarray):
-                The target values (class labels).
+            X (np.ndarray): Training input samples.
+            y (np.ndarray): Target class labels.
 
         Returns:
-            NestedTreesClassifier: The fitted classifier.
+            NestedTreesClassifier: Fitted classifier instance.
 
         Raises:
-            ValueError:
-                If there are less than or equal to 1 feature group.
+            ValueError: If `features_group` has fewer than 2 groups.
 
+        !!! tip "Tuning Advice"
+            Increase `max_outer_depth` for complex datasets, but monitor for overfitting with validation data.
         """
         if self.non_longitudinal_features is not None:
             self.features_group.append(self.non_longitudinal_features)
@@ -244,16 +248,21 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
     @override
     def _predict(self, X: np.ndarray) -> np.ndarray:
-        """Predict class labels for samples in X.
+        """Predict class labels for input samples.
+
+        Traverses the nested tree structure to assign labels based on outer and inner tree decisions.
 
         Args:
-            X (np.ndarray):
-                The input samples.
+            X (np.ndarray): Input samples.
 
         Returns:
-            np.ndarray:
-                The predicted class labels for each input sample.
+            np.ndarray: Predicted class labels.
 
+        Raises:
+            ValueError: If the classifier isn’t fitted (root is None).
+
+        !!! tip "Quick Predictions"
+            After fitting, use this method to generate predictions efficiently leveraging the nested structure.
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")
@@ -261,16 +270,22 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
     @override
     def _predict_proba(self, X: np.ndarray) -> np.ndarray:
-        """Predict class probabilities for samples in X.
+        """Predict class probabilities for input samples.
+
+        Provides probability estimates by traversing the nested structure.
 
         Args:
-            X (np.ndarray):
-                The input samples.
+            X (np.ndarray): Input samples.
 
         Returns:
-            np.ndarray:
-                The predicted class probabilities for each input sample.
+            np.ndarray: Predicted class probabilities.
 
+        Raises:
+            ValueError: If the classifier isn’t fitted or probability shapes are inconsistent.
+
+        !!! question "When to Use Probabilities?"
+            Use `predict_proba` instead of `predict` when you need confidence scores or custom thresholds, such as in
+            medical diagnostics.
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")
@@ -504,18 +519,17 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         prefix: str = "",
         parent_name: str = "",
     ) -> None:
-        """Print the structure of the nested tree classifier.
+        """Print the nested tree structure for interpretation.
 
         Args:
-            node (Optional[NestedTreesClassifier.Node], optional):
-                The current node in the outer decision tree. If None, start from the root node. Default is None.
-            depth (int, optional):
-                The current depth of the node in the outer decision tree. Default is 0.
-            prefix (str, optional):
-                A string to prepend before the node's name in the output. Default is "".
-            parent_name (str, optional):
-                The name of the parent node in the outer decision tree. Default is "".
+            node (Optional[Node]): Starting node (defaults to root if None).
+            depth (int): Current depth (defaults to 0).
+            prefix (str): String to prepend to node names (defaults to "").
+            parent_name (str): Parent node name (defaults to "").
 
+        !!! tip "Debugging Aid"
+            Use this to visualize the tree hierarchy and verify model construction.
+            Careful, it could be very verbose for large trees.
         """
         if node is None:
             node = self.root
