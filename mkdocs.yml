@@ -3,7 +3,7 @@ edit_uri: blob/main/docs/
 
 site_name: Scikit-Longitudinal
 site_author: Simon Provost
-copyright: © Simon Provost 2024-present
+copyright: Maintained by Simon Provost © Under Prof. Alex Freitas Supervision @ University of Kent, 2023-present
 site_description: >
   Scikit-Longitudinal is a machine learning library tailored to cope with
   longitudinal data in Longitudinal ML classification context. It is built on top of scikit-learn and provides
@@ -61,6 +61,16 @@ plugins:
   - social
   - search
   - minify
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            selection:
+              docstring_style: google
+            heading_level: 3
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
 
 extra:
   social:
@@ -120,18 +130,17 @@ markdown_extensions:
 
 nav:
   - "Home": index.md
-  - "Quick Start": quick-start.md
+  - "Getting Started": getting-started.md
   - "Temporal Dependency": temporal_dependency.md
   - "API Reference":
     - "Overview": API/index.md
     - "Data Preparation":
         - "Longitudinal Dataset": API/data_preparation/longitudinal_dataset.md
-        - "Aggregation Function (AggrFunc)": API/data_preparation/aggregation_function.md
-        - "Separate Waves (SepWav)": API/data_preparation/sepwav.md
+    - "Data Transformation":
         - "Merge Waves and discard features 'MervWavTime(-)'" : API/data_preparation/merwav_time_minus.md
         - "Merge Waves and keep features' Time indices 'MervWavTime(+)'": API/data_preparation/merwav_time_plus.md
-    - "Pipeline":
-      - "Longitudinal Pipeline": API/pipeline.md
+        - "Aggregation Function (AggrFunc)": API/data_preparation/aggregation_function.md
+        - "Separate Waves (SepWav)": API/data_preparation/sepwav.md
     - "Preprocessors":
         - "Feature Selection":
             - "Correlation Feature Selection Per Group": API/preprocessors/feature_selection/correlation_feature_selection_per_group.md
@@ -140,12 +149,14 @@ nav:
         - "Lexicographical Decision Tree Classifier": API/estimators/trees/lexico_decision_tree_classifier.md
         - "Lexicographical Decision Tree Regressor": API/estimators/trees/lexico_decision_tree_regressor.md
       - "Ensemble":
+        - "Lexicographical Random Forest": API/estimators/ensemble/lexico_random_forest.md
         - "Lexicographical Deep Forest": API/estimators/ensemble/lexico_deep_forest.md
         - "Lexicographical Gradient Boosting": API/estimators/ensemble/lexico_gradient_boosting.md
-        - "Lexicographical Random Forest": API/estimators/ensemble/lexico_random_forest.md
         - "Nested Trees": API/estimators/ensemble/nested_trees.md
         - "Longitudinal Stacking": API/estimators/ensemble/longitudinal_stacking.md
         - "Longitudinal Voting": API/estimators/ensemble/longitudinal_voting.md
+    - "Pipeline":
+      - "Longitudinal Pipeline": API/pipeline.md
   - "Examples": examples/index.md
   - "Contributing": contribution.md
   - "Release History": https://github.com/simonprovost/scikit-longitudinal/releases
