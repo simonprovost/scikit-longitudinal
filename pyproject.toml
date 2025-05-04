@@ -30,6 +30,7 @@ dependencies = [
     "deep-forest>=0.1.7",
     "scikit-lexicographical-trees==0.0.4",
     "ray>=2.40.0",
+    "docstr-coverage>=2.3.2",
 ]
 [dependency-groups]
 dev = [

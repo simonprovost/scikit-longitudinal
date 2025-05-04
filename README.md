@@ -43,6 +43,7 @@
 <img src="https://img.shields.io/static/v1?label=Python&message=3.9%2B%3C3.10&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+ < 3.10">
 
 </div>
+![docstr_coverage]("https://github.com/simonprovost/scikit-longitudinal/docs/docstr_coverage_badge.svg")
 
 ---
 
