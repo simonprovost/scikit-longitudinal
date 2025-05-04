@@ -194,74 +194,131 @@ def _aggregate(
 
 # pylint: disable=R0903
 class AggrFunc(DataPreparationMixin):
-    """Class for Aggregation Function method of data transformation in longitudinal data analysis.
+    """AggrFunc stands for Aggregation Functions, aggregation on feature groups in longitudinal datasets.
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    The `AggrFunc` facilitates the application of aggregation functions to feature groups within a longitudinal
+    dataset, enabling the use of `temporal information` before applying traditional machine learning algorithms like
+    those in Scikit-Learn or any other alike machine learning-based libarires.
 
-    The AggrFunc class is designed to facilitate the application of an aggregation function to
-    feature groups within a longitudinal dataset. This class encapsulates the necessary functionality to perform this
-    operation efficiently and effectively. In software development, a feature group refers to a collection of
-    features that possess a common base feature while originating from distinct waves of data collection. In the given
-    scenario, it is observed that a dataset comprises three distinct features, namely "income_wave1", "income_wave2",
-    and "income_wave3". It is noteworthy that these features collectively constitute a group within the dataset.
 
-    The application of the aggregation function occurs iteratively across the waves, specifically targeting each
-    feature group. As a result, an aggregated feature is produced for every group. In the context of data
-    aggregation, when the designated aggregation function is the mean, it follows that the individual features
-    "income_wave1", "income_wave2", and "income_wave3" would undergo a transformation resulting in the creation of a
-    consolidated feature named "mean_income".
+    !!! question "What is a feature group?"
+        In a nutshell, a feature group is a collection of features sharing a common base longitudinal attribute
+        across different waves of data collection (e.g., "income_wave1", "income_wave2", "income_wave3"). Note that
+        aggregation reduces the dataset's temporal information significantly.
 
-    The latest update to the class incorporates enhanced functionality to accommodate custom aggregation functions,
-    as long as they adhere to the callable interface. The user has the ability to provide a function as an argument,
-    which is expected to accept a pandas Series as input and produce a singular value as output.
+        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
 
-    Furthermore, the provided class has been designed to facilitate parallel processing for the aggregation task by
-    leveraging the capabilities of the Ray library. The utilisation of this technique can yield a notable enhancement
-    in the efficiency of data transformation processes, particularly when dealing with substantial datasets.
+        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
+
+
+    The aggregation function is applied iteratively across waves for each feature group, producing a single aggregated
+    feature per group (e.g., "mean_income" from "income_wave1", "income_wave2", "income_wave3" using the "mean"
+    function). Supported aggregation functions include "mean", "median", "mode", and custom callable functions that
+    take a pandas Series as input and return a single value. Parallel processing is also supported via the Ray library
+    for enhanced efficiency on large datasets.
+
+    Args:
+        features_group (List[List[int]], optional): A temporal matrix representing the temporal dependency of a
+            longitudinal dataset. Each sublist contains indices of a longitudinal attribute's waves. Defaults to None.
+            See the "Temporal Dependency" page in the documentation for details.
+        non_longitudinal_features (List[Union[int, str]], optional): A list of indices or names of non-longitudinal
+            features. Defaults to None.
+        feature_list_names (List[str], optional): A list of feature names in the dataset. Defaults to None.
+        aggregation_func (Union[str, Callable], optional): The aggregation function to apply. Options are "mean",
+            "median", "mode", or a custom callable function. Defaults to "mean". See further in
+            the `aggregation_function.py` file at the object `AGG_FUNCS` for those supported.
+        parallel (bool, optional): Whether to use parallel processing for aggregation. Defaults to False.
+        num_cpus (int, optional): Number of CPUs for parallel processing. Defaults to -1 (uses all available CPUs).
 
     Attributes:
-        dataset (LongitudinalDataset):
-            The longitudinal dataset to apply the transformation to.
-        aggregation_func (Union[str, Callable]):
-            The aggregation function to apply to the feature groups. Can be "mean", "median", "mode", or a custom
-            function. If providing a custom function, it should be a function that takes a pandas Series and returns
-            a single value. If the function is not callable, a ValueError will be raised during validation. If the
-            aggregation function is "mean" or "median" and the feature group is categorical, the function is switched
-            to "mode" and a warning is issued.
-        parallel (bool):
-            Whether to use parallel processing for the aggregation.
-        num_cpus (int):
-            The number of CPUs to use for parallel processing. Defaults to -1, which uses all available CPUs.
+        dataset (pd.DataFrame): The longitudinal dataset to transform.
+        aggregation_func (Union[str, Callable]): The aggregation function applied to feature groups.
+        parallel (bool): Whether parallel processing is enabled.
+        num_cpus (int): Number of CPUs used for parallel processing.
 
-    Example:
-        ```python
-        # Create a LongitudinalDataset object
-        dataset = LongitudinalDataset(data)
+    Examples:
+        Below are examples demonstrating the usage of the `AggrFunc` class with the "stroke.csv" dataset.
+        Please, note that "stroke.csv" is a placeholder and should be replaced with the actual path to your dataset.
 
-        # Initialise the AggrFunc object with "mean" as the aggregation function
-        agg_func = AggrFunc(
-            aggregation_func="mean",
-            features_group=dataset.feature_groups(),
-            non_longitudinal_features=dataset.non_longitudinal_features(),
-            feature_list_names=dataset.data.columns.tolist()
-        )
+        !!! example "Basic Usage with Mean Aggregation"
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+            from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 
-        # Initialise the AggrFunc object with a custom aggregation function
-        custom_func = lambda x: x.quantile(0.25) # returns the first quartile
-        agg_func = AggrFunc(
-            aggregation_func=custom_func
-            features_group=dataset.feature_groups(),
-            non_longitudinal_features=dataset.non_longitudinal_features(),
-            feature_list_names=dataset.data.columns.tolist()
-        ),
+            # Load dataset
+            dataset = LongitudinalDataset('./stroke.csv')
+            dataset.load_data()
+            dataset.setup_features_group("elsa")
+            dataset.load_target(target_column="stroke_wave_2")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
 
-        # Apply the transformation
-        agg_func.prepare_data(dataset.data)
-        transformed_dataset, transformed_features_group, transformed_non_longitudinal_features, \
-            transformed_feature_list_names = agg_func.transform()
-        ```
+            # Initialize AggrFunc
+            agg_func = AggrFunc(
+                aggregation_func="mean",
+                features_group=dataset.feature_groups(),
+                non_longitudinal_features=dataset.non_longitudinal_features(),
+                feature_list_names=dataset.data.columns.tolist()
+            )
 
+            # Apply transformation
+            agg_func.prepare_data(dataset.X_train)
+            transformed_dataset, _, _, _ = agg_func.transform()
+            ```
+
+        !!! example "Using Custom Aggregation Function"
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+            from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
+
+            # Load dataset
+            dataset = LongitudinalDataset('./stroke.csv')
+            dataset.load_data()
+            dataset.setup_features_group("elsa")
+            dataset.load_target(target_column="stroke_wave_2")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
+
+            # Define custom function
+            custom_func = lambda x: x.quantile(0.25)  # First quartile
+
+            # Initialize AggrFunc
+            agg_func = AggrFunc(
+                aggregation_func=custom_func,
+                features_group=dataset.feature_groups(),
+                non_longitudinal_features=dataset.non_longitudinal_features(),
+                feature_list_names=dataset.data.columns.tolist()
+            )
+
+            # Apply transformation
+            agg_func.prepare_data(dataset.X_train)
+            transformed_dataset, _, _, _ = agg_func.transform()
+            ```
+
+        !!! example "Using Parallel Processing"
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+            from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
+
+            # Load dataset
+            dataset = LongitudinalDataset('./stroke.csv')
+            dataset.load_data()
+            dataset.setup_features_group("elsa")
+            dataset.load_target(target_column="stroke_wave_2")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
+
+            # Initialize AggrFunc with parallel processing
+            agg_func = AggrFunc(
+                aggregation_func="mean",
+                features_group=dataset.feature_groups(),
+                non_longitudinal_features=dataset.non_longitudinal_features(),
+                feature_list_names=dataset.data.columns.tolist(),
+                parallel=True,
+                num_cpus=4
+            )
+
+            # Apply transformation
+            agg_func.prepare_data(dataset.X_train)
+            transformed_dataset, _, _, _ = agg_func.transform()
+            ```
     """
 
     @validate_aggregation_func
@@ -289,6 +346,17 @@ class AggrFunc(DataPreparationMixin):
             self.agg_func = aggregation_func
 
     def get_params(self, deep: bool = True):  # pylint: disable=W0613
+        """Get the parameters of the AggrFunc instance.
+
+        This method retrieves the configuration parameters of the `AggrFunc` instance, useful for inspection or
+        hyperparameter tuning.
+
+        Args:
+            deep (bool, optional): Unused parameter but kept for consistency with the scikit-learn API.
+
+        Returns:
+            dict: The parameters of the AggrFunc instance.
+        """
         return {
             "aggregation_func": self.aggregation_func,
             "parallel": self.parallel,
@@ -297,24 +365,17 @@ class AggrFunc(DataPreparationMixin):
 
     @override
     def _prepare_data(self, X: np.ndarray, y: np.ndarray = None) -> "AggrFunc":
-        """Prepare the data for the transformation.
+        """Prepare the data for transformation.
 
-        The present method has been overridden in accordance with the inheritance from the DataPreparationMixin
-        class. The input to this function is expected to be numpy arrays. These arrays are then transformed into
-        pandas DataFrame and numpy array formats. This transformation is performed to facilitate subsequent
-        processing, as described in the class documentation.
+        This method, overridden from `DataPreparationMixin`, converts input numpy arrays into a pandas DataFrame and
+        stores the target data for compatibility, though the target is not used in the transformation.
 
         Args:
-            X (np.ndarray):
-                The input data.
-            y (np.ndarray):
-                The target data. Not particularly relevant for this class. We store the target but do not
-                use it for the transformation.
+            X (np.ndarray): The input data.
+            y (np.ndarray, optional): The target data. Defaults to None.
 
         Returns:
-            AggrFunc:
-                The instance of the class with prepared data.
-
+            AggrFunc: The instance with prepared data.
         """
         self.dataset = pd.DataFrame(X, columns=self.feature_list_names)
         self.target = y
@@ -323,27 +384,24 @@ class AggrFunc(DataPreparationMixin):
 
     @validate_feature_group_indices
     def _transform(self):
-        """Apply the aggregation function to the feature groups in the dataset.
+        """Apply the aggregation function to feature groups in the dataset.
 
-        The present method implements the application of the aggregation function to every feature group within the
-        dataset, thereby substituting the group with a solitary aggregated feature. When the parallel processing
-        feature is enabled, the aggregation process is executed concurrently by leveraging the Ray framework.
+        This method applies the specified aggregation function to each feature group, replacing it with a single
+        aggregated feature.
 
-        When the aggregation function specified by the user is either "mean" or "median" and the feature group
-        consists of categorical data, the aggregation function is automatically changed to "mode". Additionally,
-        a warning message is displayed to inform the user about this change.
+        !!! tip "Parallel Processing"
+            If parallel processing is enabled, it uses the Ray library.
+
+        !!! note "Categorical Data Handling"
+            For "mean" or "median" functions
+            with categorical data, it switches to "mode" and issues a warning automatically.
 
         Returns:
-            - pd.DataFrame:
-                The transformed dataset.
-            - List[List[int]]:
-                The feature groups in the transformed dataset. Obviously, this is None since the feature groups
-                are removed during the transformation.
-            - List[Union[int, str]]:
-                The non-longitudinal features in the transformed dataset. Obviously, this is None.
-            - List[str]:
-                The names of the features in the transformed dataset.
-
+            tuple:
+                - [x] pd.DataFrame: The transformed dataset.
+                - [x] List[List[int]]: Feature groups in the transformed dataset (None, as they are aggregated).
+                - [x] List[Union[int, str]]: Non-longitudinal features in the transformed dataset (None).
+                - [x] List[str]: Names of features in the transformed dataset.
         """
         if self.features_group is not None:
             self.features_group = clean_padding(self.features_group)

@@ -13,33 +13,91 @@ from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 
 class LongitudinalStackingClassifier(CustomClassifierMixinEstimator):
-    """A classifier for longitudinal data classification using a stacking ensemble approach.
+    """
+    Longitudinal Stacking Classifier for ensemble learning on longitudinal data.
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    The Longitudinal Stacking Classifier is a sophisticated ensemble method designed to handle the unique challenges posed
+    by longitudinal data. It leverages a stacking approach where multiple base estimators are trained, and their predictions
+    are used as input features for a meta-learner, which generates the final prediction. This method excels at capturing
+    complex temporal patterns by learning from the combined strengths of diverse base models.
 
-    This class implements a stacking ensemble method for longitudinal data, combining multiple (longitudinal-adapted)
-    base estimators and a meta-learner. Each base estimator is fitted on the whole dataset, and their predictions are
-    used as  input for the meta-learner, which makes the final prediction.
+    !!! warning "When to Use?"
+        This classifier is primarily used with the "SepWav" (Separate Waves) strategy but can also be applied with
+        longitudinal-based estimators that do not follow the SepWav approach if preferred.
 
-    Note: This class is a wrapper around the sklearn StackingClassifier, and it is not intended to be used directly
-    given that nothing is longitudinal-adapted nor proofed for longitudinal data by a scientific paper. However,
-    this class is currently used by the separate waves data longitudinal-adapted preparation technique.
+    !!! info "SepWav (Separate Waves) Strategy"
+        The SepWav strategy involves training separate classifiers for each wave's features and the class variable.
+        The predictions from these classifiers are then combined using stacking, where a meta-learner (e.g., Logistic
+        Regression, Decision Tree, or Random Forest) learns to make the final prediction based on the base classifiers'
+        outputs.
+
+    !!! info "Wrapper Around Sklearn StackingClassifier"
+        This class wraps the `sklearn` StackingClassifier, offering a familiar interface while incorporating enhancements
+        for longitudinal data.
+
+    Args:
+        estimators (List[CustomClassifierMixinEstimator]):
+            The base estimators for the ensemble. These must be pre-trained before passing to the classifier.
+        meta_learner (Optional[Union[CustomClassifierMixinEstimator, ClassifierMixin]], default=LogisticRegression()):
+            The meta-learner to be used in stacking. Can be any scikit-learn compliant classifier.
+        n_jobs (int, default=1):
+            The number of jobs to run in parallel for fitting base estimators.
 
     Attributes:
-        estimators (List[CustomClassifierMixinEstimator]):
-            The base estimators for the ensemble.
-        meta_learner (Optional[Union[CustomClassifierMixinEstimator, ClassifierMixin]]):
-            The meta-learner to be used in stacking.
-        n_jobs (int):
-            The number of jobs to run in parallel for fitting base estimators.
         clf_ensemble (StackingClassifier):
-            The underlying sklearn StackingClassifier instance.
+            The underlying scikit-learn StackingClassifier instance.
 
     Raises:
-        ValueError: If no base estimators are provided or the meta learner is not suitable.
-        NotFittedError: If attempting to predict or predict_proba before fitting the model.
+        ValueError: If no base estimators are provided or if the meta-learner is not suitable.
+        NotFittedError: If attempting to predict or predict_proba before fitting the model or if base estimators are not fitted.
 
+    Examples:
+        !!! example "Basic Usage with Dummy Longitudinal Data"
+
+            ```python
+            from scikit_longitudinal.estimators.ensemble.longitudinal_stacking import LongitudinalStackingClassifier
+            from sklearn.ensemble import RandomForestClassifier
+            from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
+            from sklearn.linear_model import LogisticRegression
+            import numpy as np
+
+            # Dummy data
+            X = np.array([[0, 1, 0, 1, 45, 1], [1, 1, 1, 1, 50, 0], [0, 0, 0, 0, 55, 1]])
+            y = np.array([0, 1, 0])
+            features_group = [[0, 1], [2, 3]]
+
+            # Train base estimators
+            rf = RandomForestClassifier().fit(X, y)
+            lexico_rf = LexicoRandomForestClassifier(features_group=features_group).fit(X, y)
+
+            # Create and fit the stacking classifier
+            clf = LongitudinalStackingClassifier(
+                estimators=[('rf', rf), ('lexico_rf', lexico_rf)],
+                meta_learner=LogisticRegression()
+            )
+            clf.fit(X, y)
+            y_pred = clf.predict(X)
+            print(f"Predictions: {y_pred}")
+            ```
+
+        !!! example "Using a Decision Tree as Meta-Learner with Parallel Processing"
+
+            ```python
+            from sklearn.tree import DecisionTreeClassifier
+            clf = LongitudinalStackingClassifier(
+                estimators=[('rf', rf), ('lexico_rf', lexico_rf)],
+                meta_learner=DecisionTreeClassifier(),
+                n_jobs=-1  # Use all available CPUs
+            )
+            clf.fit(X, y)
+            y_pred = clf.predict(X)
+            print(f"Predictions: {y_pred}")
+            ```
+
+    Notes:
+        - **References**:
+
+          - Ribeiro, C. and Freitas, A.A., 2019. "A mini-survey of supervised machine learning approaches for coping with ageing-related longitudinal datasets." *3rd Workshop on AI for Aging, Rehabilitation and Independent Assisted Living (ARIAL)*, held as part of IJCAI-2019.
     """
 
     def __init__(
@@ -63,9 +121,12 @@ class LongitudinalStackingClassifier(CustomClassifierMixinEstimator):
 
     @override
     def _fit(self, X: np.ndarray, y: np.ndarray) -> "LongitudinalStackingClassifier":
-        """Fits the ensemble model.
+        """
+        Fit the ensemble model.
 
-        Attributes:
+        Trains the stacking ensemble by combining predictions from pre-trained base estimators and fitting the meta-learner.
+
+        Args:
             X (np.ndarray):
                 The input data.
             y (np.ndarray):
@@ -74,6 +135,13 @@ class LongitudinalStackingClassifier(CustomClassifierMixinEstimator):
         Returns:
             LongitudinalStackingClassifier: The fitted model.
 
+        Raises:
+            ValueError: If no base estimators are provided or if the meta-learner is not suitable.
+            NotFittedError: If any base estimators are not fitted.
+
+        !!! tip "Meta-Learner Selection"
+            Choose a meta-learner that complements your base estimators. For example, use Logistic Regression for linear
+            decision boundaries or a Decision Tree for more complex interactions.
         """
         if self.estimators:
             for _, estimator in self.estimators:
@@ -93,15 +161,20 @@ class LongitudinalStackingClassifier(CustomClassifierMixinEstimator):
 
     @override
     def _predict(self, X: np.ndarray) -> np.ndarray:
-        """Predicts the target data for the given input data.
+        """
+        Predict using the ensemble model.
 
-        Attributes:
+        Generates predictions by passing the base estimators' predictions to the meta-learner.
+
+        Args:
             X (np.ndarray):
                 The input data.
 
         Returns:
             np.ndarray: The predicted target data.
 
+        Raises:
+            NotFittedError: If attempting to predict before fitting the model.
         """
         if self.clf_ensemble:
             return self.clf_ensemble.predict(X)
@@ -109,15 +182,24 @@ class LongitudinalStackingClassifier(CustomClassifierMixinEstimator):
 
     @override
     def _predict_proba(self, X: np.ndarray) -> np.ndarray:
-        """Predicts the target data probabilities for the given input data.
+        """
+        Predict probabilities using the ensemble model.
 
-        Attributes:
+        Generates probability estimates from the meta-learner based on base estimators' predictions.
+
+        Args:
             X (np.ndarray):
                 The input data.
 
         Returns:
             np.ndarray: The predicted target data probabilities.
 
+        Raises:
+            NotFittedError: If attempting to predict before fitting the model.
+
+        !!! tip "Probability Calibration"
+            If your meta-learner supports probability calibration (e.g., Logistic Regression), consider calibrating
+            probabilities for better confidence estimates.
         """
         if self.clf_ensemble:
             return self.clf_ensemble.predict_proba(X)

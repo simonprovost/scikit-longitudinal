@@ -8,7 +8,8 @@ import pandas as pd
 
 
 class ElsaDataHandler:
-    """A class to handle ELSA (English Longitudinal Study of Ageing) data.
+    """
+    A class to handle ELSA (English Longitudinal Study of Ageing) data.
 
     The ELSA dataset is a comprehensive collection of longitudinal data that has been meticulously gathered from a
     carefully selected and representative sample of individuals within the English population. This dataset
@@ -19,7 +20,7 @@ class ElsaDataHandler:
     destination directory.
 
     Refer to the UK data service to obtain the ELSA dataset:
-     https://beta.ukdataservice.ac.uk/datacatalogue/series/series?id=200011
+    https://beta.ukdataservice.ac.uk/datacatalogue/series/series?id=200011
 
     Attributes:
         df (pd.DataFrame):
@@ -30,17 +31,23 @@ class ElsaDataHandler:
             A dictionary containing datasets for each unique class.
 
     Examples:
-        # Initialize the handler with a CSV file path and ELSA dataset type - Note that Core here refers to the core
-        ELSA dataset to distinguish it from other ELSA datasets such as Nurse, etc. hence, the preprocessing step is
-        different for each dataset type.
-        >>>> elsa_data_handler = ElsaDataHandler("path/to/csv_file.csv", "core")
-        # Preprocess the data and create datasets for each unique class
-        >>>> elsa_data_handler.create_datasets()
-        # Save the datasets in the desired file format
-        >>>> elsa_data_handler.save_datasets(dir_output="output/directory", file_format="csv")
-        # Get a specific dataset by its class name
-        >>>> dataset = elsa_data_handler.get_dataset("class_name")
+        !!! example "Basic Usage with ELSA Core Dataset"
+            ```python
+            from elsadatahandler import ElsaDataHandler  # Replace with actual import path
 
+            # Initialize the handler with a CSV file path and ELSA dataset type
+            elsa_data_handler = ElsaDataHandler("path/to/csv_file.csv", "core")
+
+            # Preprocess the data and create datasets for each unique class
+            elsa_data_handler.create_datasets()
+
+            # Save the datasets in CSV format to the specified directory
+            elsa_data_handler.save_datasets(dir_output="output/directory", file_format="csv")
+
+            # Retrieve a specific dataset by its class name
+            dataset = elsa_data_handler.get_dataset("class_name")
+            print(f"Dataset for class_name: {dataset}")
+            ```
     """
 
     def __init__(self, csv_path: str, elsa_type: str):

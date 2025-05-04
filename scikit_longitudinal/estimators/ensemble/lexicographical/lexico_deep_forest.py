@@ -23,6 +23,7 @@ def ensure_valid_state(method):
     and that all necessary configurations are set.
 
     The following checks are performed:
+
     - If the method name is 'predict' or 'predict_proba', it checks if the classifier has been fitted.
     - Checks if 'features_group' is set and contains more than one feature group.
     - Ensures that 'longitudinal_base_estimators' has been provided.
@@ -98,130 +99,126 @@ class LongitudinalEstimatorConfig:
 
 
 class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
-    """Deep Forest Classifier adapted for longitudinal data analysis.
+    """
+    Lexico Deep Forest Classifier for longitudinal data analysis.
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    The Lexico Deep Forest Classifier is an advanced ensemble algorithm designed specifically for longitudinal data
+    analysis. It extends the fundamental principles of the Deep Forest framework by incorporating longitudinal-adapted
+    base estimators to capture the temporal complexities and interdependencies inherent in longitudinal data. The
+    classifier combines accurate learners (longitudinal base estimators) and weak learners (diversity estimators) to
+    improve robustness and generalization.
 
-    Deep Forests Longitudinal Classifier is an advanced ensemble algorithm designed specifically for longitudinal
-    datasets, which incorporates the fundamental principles of the Deep Forests framework itself. This classifier
-    distinguishes itself through the implementation of longitudinal-adapted base estimators, which are intended to
-    capture the temporal complexities and interdependencies that are intrinsic to longitudinal data.
+    !!! tip "Why Use LexicoDeepForestClassifier?"
+        This classifier is ideal for longitudinal datasets where temporal structure is crucial. By leveraging a deep
+        forest architecture with longitudinal-adapted estimators, it captures complex patterns and temporal dependencies
+        effectively—perfect for applications like medical studies or time-series classification.
 
-    The classifier ensemble is composed of two types of estimators:
+    !!! question "How Does It Work?"
+        The classifier builds a cascade of forests, where each layer uses the predictions from the previous layer as
+        additional features. The base estimators are longitudinal-adapted classifiers like `LexicoRandomForestClassifier`,
+        which use lexicographic optimization to prioritize recent data points. Diversity estimators (weak learners) are
+        optionally included to enhance the ensemble's diversity and predictive performance.
 
-    1. Accurate Learners (longitudinal base estimators): These are the primary estimators that form the backbone
-       of the ensemble. They are adapted from conventional machine learning algorithms to better handle the
-       temporal aspect of longitudinal data. Currently, the following base estimators are supported:
-       - LexicoRandomForestClassifier
-       - LexicoCompleteRFClassifier
-    2. Weak Learners (diversity estimators): In addition to the accurate learners, the ensemble includes
-       diversity estimators to enhance the overall diversity of the model. These estimators, which are typically
-       less complex and may have a higher bias, contribute unique perspectives to the decision-making process,
-       thereby improving the ensemble's robustness and generalization capabilities. When enabled, the diversity
-       estimators include two completely random LexicoRFClassifiers. Readers are referred to the paper for more
-       information on the diversity estimators.
+    !!! note "Performance Boost with Cython"
+        The underlying decision trees use a Cython-optimized splitter (`node_lexicoRF_split`) for faster computation.
+        See the [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
+        for details.
 
-    The combination of these accurate and weak learners aims to exploit the strengths of each estimator type,
-    leading to a more effective and reliable classification performance on longitudinal datasets.
+    !!! question "Feature Groups and Non-Longitudinal Features"
+        Two key attributes define the temporal structure:
+
+        - **features_group**: A list of lists, each sublist containing indices of a longitudinal attribute's waves,
+          ordered from oldest to most recent (e.g., `[[0,1], [2,3]]` for two attributes with two waves each).
+        - **non_longitudinal_features**: Indices of static features (not used in lexicographic optimization but included
+          in standard splits).
+
+        Accurate configuration is essential for leveraging temporal patterns. See the
+        [Temporal Dependency Guide](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/) for more.
 
     Args:
-        features_group (List[List[int]]):
-            A list of lists, where each inner list contains the indices of features that
-            correspond to a specific longitudinal attribute. This parameter will be forwarded to the base
-            longitudinal-based(-adapted) algorithms, if required.
-        longitudinal_base_estimators (List[LongitudinalEstimatorConfig]):
-            A list of `LongitudinalEstimatorConfig` objects that define the configuration for each base estimator
-            within the ensemble. Each configuration specifies the type of longitudinal classifier, the number of
-            times it should be instantiated within the ensemble, and an optional dictionary of hyperparameters
-            for finer control over the individual classifiers' behavior. Available longitudinal classifiers are:
-            - LEXICO_RF
-            - COMPLETE_RANDOM_LEXICO_RF
+        features_group (List[List[int]], optional):
+            Temporal matrix of feature indices for longitudinal attributes, ordered by recency. Required for longitudinal
+            functionality.
+        longitudinal_base_estimators (Optional[List[LongitudinalEstimatorConfig]], optional):
+            List of configurations for longitudinal base estimators. Each config specifies the classifier type, count,
+            and optional hyperparameters. Available types: `LEXICO_RF`, `COMPLETE_RANDOM_LEXICO_RF`.
         non_longitudinal_features (List[Union[int, str]], optional):
-            A list of indices of features that are not longitudinal attributes. Defaults to None. This parameter will be
-            forwarded to the base longitudinal-based(-adapted) algorithms if required.
-        diversity_estimators (bool, optional):
-            A flag indicating whether the ensemble should include diversity estimators, defaulting to True. When
-            enabled, diversity estimators, which function as weak learners, are added to the ensemble to enhance
-            its diversity and, by extension, its predictive performance. Disabling this option results in an ensemble
-            comprising solely of the specified base longitudinal-adapted algorithms. The diversity is achieved by
-            integrating two additional completely random LexicoRandomForestClassifier instances into the ensemble.
+            Indices of non-longitudinal features. Defaults to None.
+        diversity_estimators (bool, default=True):
+            Whether to include diversity estimators (weak learners) in the ensemble. If True, two completely random
+            `LexicoRandomForestClassifier` instances are added.
         random_state (int, optional):
-            The seed used by the random number generator. Defaults to None.
+            Seed for random number generation. Defaults to None.
+        single_classifier_type (Optional[Union[LongitudinalClassifierType, str]], optional):
+            Type of a single classifier to use if `longitudinal_base_estimators` is not provided.
+        single_count (Optional[int], optional):
+            Number of instances of the single classifier type.
+        max_layers (int, default=5):
+            Maximum number of cascade layers in the deep forest.
+
+    Attributes:
+        _deep_forest (CascadeForestClassifier):
+            The underlying deep forest model.
+        classes_ (ndarray):
+            The class labels.
 
     Examples:
-        # Example with specific count and hyperparameters for a single type of longitudinal estimator
-        >>> from deep_forest import DeepForestsClassifier
-        >>> X = <your_training_data>  # Replace with your actual data
-        >>> y = <your_training_target_data>  # Replace with your actual target
-        >>> features_group = <your_features_group>  # Construct this based on your LongitudinalDataset
-        >>> non_longitudinal_features = <your_non_longitudinal_features>  # Similarly here
-        >>> lexico_rf_config = LongitudinalEstimatorConfig(
-        ...     classifier_type=LongitudinalClassifierType.LEXICO_RF,
-        ...     count=3,
-        ...     hyperparameters={'max_depth': 5, 'n_estimators': 10}
-        ... )
-        >>> clf = LexicoDeepForestClassifier(
-        ...     features_group=features_group,
-        ...     non_longitudinal_features=non_longitudinal_features,
-        ...     longitudinal_base_estimators=[lexico_rf_config],
-        ...     random_state=42
-        ... )
-        >>> clf.fit(X, y)
-        >>> clf.predict(X)
+        !!! example "Basic Usage with LexicoRandomForestClassifier"
 
-        # Example with multiple types of longitudinal estimators
-        >>> complete_random_lexico_rf = LongitudinalEstimatorConfig(
-        ...     classifier_type=LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF,
-        ...     count=2,
-        ...     hyperparameters={'max_depth': 3, 'n_estimators': 5}
-        ... )
-        >>> clf = LexicoDeepForestClassifier(
-        ...     features_group=features_group,
-        ...     non_longitudinal_features=non_longitudinal_features,
-        ...     longitudinal_base_estimators=[lexico_rf_config, complete_random_lexico_rf],
-        ...     random_state=42
-        ... )
-        >>> clf.fit(X, y)
-        >>> clf.predict(X)
+            ```python
+            from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoDeepForestClassifier, LongitudinalEstimatorConfig, LongitudinalClassifierType
+            import numpy as np
 
-        # Example without specifying count and hyperparameters, using default values
-        >>> clf = LexicoDeepForestClassifier(
-        ...     features_group=features_group,
-        ...     non_longitudinal_features=non_longitudinal_features,
-        ...     longitudinal_base_estimators=[
-        ...         LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF),
-        ...         LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF)
-        ...     ],
-        ...     random_state=42
-        ... )
-        >>> clf.fit(X, y)
-        >>> clf.predict(X)
+            # Dummy data
+            X = np.array([[0, 1, 0, 1], [1, 1, 1, 1], [0, 0, 0, 0]])
+            y = np.array([0, 1, 0])
+            features_group = [[0, 1], [2, 3]]
 
-        # Example with diversity estimators disabled
-        >>> clf = LexicoDeepForestClassifier(
-        ...     features_group=features_group,
-        ...     non_longitudinal_features=non_longitudinal_features,
-        ...     longitudinal_base_estimators=[lexico_rf_config],
-        ...     diversity_estimators=False,
-        ...     random_state=42
-        ... )
-        >>> clf.fit(X, y)
-        >>> clf.predict(X)
+            # Configure base estimators
+            lexico_rf_config = LongitudinalEstimatorConfig(
+                classifier_type=LongitudinalClassifierType.LEXICO_RF,
+                count=3,
+            )
+
+            clf = LexicoDeepForestClassifier(
+                features_group=features_group,
+                longitudinal_base_estimators=[lexico_rf_config],
+            )
+            clf.fit(X, y)
+            y_pred = clf.predict(X)
+            print(f"Predictions: {y_pred}")
+            ```
+
+        !!! example "Using Multiple Estimator Types"
+
+            ```python
+            complete_random_lexico_rf = LongitudinalEstimatorConfig(
+                classifier_type=LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF,
+                count=2,
+            )
+            clf = LexicoDeepForestClassifier(
+                features_group=features_group,
+                longitudinal_base_estimators=[lexico_rf_config, complete_random_lexico_rf],
+            )
+            clf.fit(X, y)
+            ```
+
+        !!! example "Disabling Diversity Estimators"
+
+            ```python
+            clf = LexicoDeepForestClassifier(
+                features_group=features_group,
+                longitudinal_base_estimators=[lexico_rf_config],
+                diversity_estimators=False,
+            )
+            clf.fit(X, y)
+            ```
 
     Notes:
-        For more information, see the following paper of the Deep Forest algorithm:
+        - **References**:
 
-        Zhou, Z.H. and Feng, J., 2019. Deep forest. National science review, 6(1), pp.74-86.
-
-
-        Here is the initial Python implementation of the Deep Forest algorithm:
-        https://github.com/LAMDA-NJU/Deep-Forest
-
-     See Also:
-        CustomClassifierMixinEstimator: Base class for all Classifier Mixin estimators in scikit-learn that we
-            customized so that the original scikit-learn "check_x_y" is performed all the time.
-
+          - Zhou, Z.H. and Feng, J., 2019. "Deep forest." *National Science Review*, 6(1), pp.74-86.
+          - [Deep Forest GitHub](https://github.com/LAMDA-NJU/Deep-Forest)
     """
 
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
@@ -279,7 +276,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
     @ensure_valid_state
     @override
     def _fit(self, X: np.ndarray, y: np.ndarray) -> "LexicoDeepForestClassifier":
-        """Fit the Deep Forest Longitudinal Classifier model according to the given training data.
+        """Fit the Lexico Deep Forest Classifier model according to the given training data.
 
         Args:
             X (np.ndarray):
@@ -288,12 +285,18 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
                 The target values (class labels).
 
         Returns:
-            NestedTreesClassifier: The fitted classifier.
+            LexicoDeepForestClassifier: The fitted classifier.
 
         Raises:
             ValueError:
                 If there are less than or equal to 1 feature group.
 
+        !!! tip "Configuration Tip"
+            Experiment with different combinations of `longitudinal_base_estimators` and `diversity_estimators` to
+            find the optimal balance between accuracy and diversity for your dataset.
+
+        !!! note
+            Ensure `features_group` accurately maps your data's temporal structure for optimal performance.
         """
         if self.single_classifier_type is not None and self.single_count is not None:
             self.longitudinal_base_estimators = [
@@ -329,6 +332,9 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
             np.ndarray:
                 The predicted class labels for each input sample.
 
+        !!! tip "Quick Predictions"
+            After fitting, use this method to generate predictions efficiently. It leverages the deep forest ensemble for
+            accurate classification.
         """
         return self._deep_forest.predict(X)
 
@@ -345,5 +351,8 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
             np.ndarray:
                 The predicted class probabilities for each input sample.
 
+        !!! question "When to Use Probabilities?"
+            Use `predict_proba` instead of `predict` when you need to assess confidence levels or apply custom
+            decision thresholds rather than relying on the default class assignment.
         """
         return self._deep_forest.predict_proba(X)

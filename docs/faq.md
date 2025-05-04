@@ -3,8 +3,7 @@ hide:
   - navigation
 ---
 
-# 👀 Frequently Asked Questions
-# 👀 Frequently Asked Questions
+## 👀 Frequently Asked Questions
 
 Here are some common questions about `Scikit-Longitudinal` and their answers.
 

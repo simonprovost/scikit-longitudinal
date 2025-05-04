@@ -112,75 +112,94 @@ def check_extension(allowed_extensions: List[str]):  # pragma: no cover
 
 
 class LongitudinalDataset:
-    """LongitudinalDataset class for managing and preparing longitudinal datasets.
+    """LongitudinalDataset is the entry-point to manage longitudinal datasets for machine learning tasks in `Sklong`.
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    The `LongitudinalDataset` class handles longitudinal data, offering robust data management and transformation tools
+    to support machine learning algorithms designed for longitudinal classification tasks. Recall,
+    Longitudinal datasets are, yes tabular, but in a sense that temporal information exists and live throughout.
+    Therefore, the class is designed to manage this temporal information and provide a clean interface for
+    machine learning tasks throughout the `Sklong` library.
 
-    The present's class purpose is a container designed particularly for longitudinal data. It provides
-    fundamental data management and transformation capabilities, thereby facilitating the development and
-    application of machine learning algorithms tailored to longitudinal data classification tasks.
+    !!! question "Feature Groups and Non-Longitudinal Features"
+        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
+        structure of longitudinal data, we try to build those as much as possible for users, while allowing
+        users to also define their own feature groups if needed. As follows:
 
-    Feature Groups and Non-Longitudinal Characteristics
+        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
+          ordered from oldest to most recent. This captures temporal dependencies.
+        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
+          matrix.
 
-        The class employs two crucial attributes, `feature_groups` and `non_longitudinal_features`, which play a
-        crucial role in enabling adapted/newly-designed machine learning algorithms to comprehend the temporal
-        structure of longitudinal datasets. Here's why and how:
+        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
+        use the primitives that follow.
 
-        `feature_groups` is a list of lists, with each inner list representing a group of features corresponding to a
-        particular longitudinal variable. The indices within these inner lists are ordered according to the wave
-        sequence, encapsulating the temporal dependencies that are essential for algorithms aiming at longitudinal data.
-        On the other hand, the `non_longitudinal_features` is a list of indices for non-temporal features that could
-        be treated separately by the algorithms but this is dependent on the algorithm designer's choice.
-
-        The correct configuration of these two attributes is crucial for algorithm designers, as it enables them to
-        leverage the temporal structure of longitudinal data as well as the non-temporal features in order to capture
-        the underlying patterns in the data with their adapted/newly-designed algorithms for longitudinal data
-        classification tasks. Therefore, without having to create an algorithm that works only on one dataset by
-        e.g., hard-coding the temporal structure of the dataset, or another one could also be, e.g., relying on the
-        features' names making it not generalisable to other datasets.
+        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
+        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
 
     Args:
-        file_path (Union[str, Path]):
-            Path to the dataset file. Supports both ARFF and CSV formats.
-        data_frame (Optional[pd.DataFrame], optional):
-            If provided, this pandas DataFrame will serve as the dataset, and the file_path parameter will be ignored.
+        file_path (Union[str, Path]): Path to the dataset file (supports ARFF and CSV formats).
+        data_frame (Optional[pd.DataFrame], optional): If provided, uses this DataFrame as the dataset, ignoring
+            `file_path`.
 
-    Properties:
-        data (pd.DataFrame):
-            A read-only property that returns the loaded dataset as a pandas DataFrame.
-        target (pd.Series):
-            A read-only property that returns the target variable (class variable) as a pandas Series.
-        X_train (np.ndarray):
-            A read-only property that returns the training data as a numpy array.
-        X_test (np.ndarray):
-            A read-only property that returns the test data as a numpy array.
-        y_train (pd.Series):
-            A read-only property that returns the training target data as a pandas Series.
-        y_test (pd.Series):
-            A read-only property that returns the test target data as a pandas Series.
+    Attributes:
+        data (pd.DataFrame): Read-only access to the loaded dataset.
+        target (pd.Series): Read-only access to the target variable.
+        X_train (np.ndarray): Read-only access to the training data.
+        X_test (np.ndarray): Read-only access to the test data.
+        y_train (pd.Series): Read-only access to the training target.
+        y_test (pd.Series): Read-only access to the test target.
 
-    Methods:
-        feature_groups(names: bool = False) -> List[List[Union[int, str]]]:
-            A list of lists where each inner list represents a group of features corresponding to a
-            specific longitudinal variable. The indices in an inner list are ordered by wave, such that
-            the first index corresponds to the oldest wave (e.g., wave 1), and the last index corresponds
-            to the most recent wave (e.g., wave N if there are N waves). This order encapsulates temporal
-            dependencies and waves recency. Therefore, this attribute should be set using the
-            setup_features_group method. If names is True, the feature names will be returned instead of the indices.
-        non_longitudinal_features(names: bool = False) -> List[Union[int, str]]:
-            A list of indices of the non-longitudinal features. This attribute should be set using the
-            setup_features_group method. If names is True, the feature names will be returned instead of the indices.
+    Examples:
+        Below are examples illustrating the class's usage.
 
-    Example:
-        >>> from scikit_longitudinal.data_preparation import LongitudinalDataset
-        >>> input_file = './data/elsa_core_dd.arff'
-        >>> output_file = './data/elsa_core_dd.csv'
-        >>> dataset = LongitudinalDataset(input_file)
-        >>> dataset.load_data()
-        >>> dataset.setup_features_group("Elsa")
-        >>> dataset.convert(output_file)
+        !!! example "Loading and Preparing Data"
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
 
+            # Initialize with a file path
+            dataset = LongitudinalDataset('./data/stroke.csv') # Replace with your file path
+
+            # Load the data
+            dataset.load_data()
+
+            # Set up feature groups with the "elsa" strategy
+            dataset.setup_features_group("elsa")
+
+            # Load the target variable
+            dataset.load_target(target_column="stroke_w2")
+
+            # Split into train and test sets –– Uses sklearn's train_test_split
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
+            ```
+
+        !!! example "Using Custom Feature Groups"
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+
+            # Initialize with a file path
+            dataset = LongitudinalDataset('./data/stroke.csv')
+
+            # Load data and target in one step
+            dataset.load_data_target_train_test_split(target_column="stroke_w2", test_size=0.2, random_state=42)
+
+            # Define custom feature groups
+            custom_groups = [[0, 1], [2, 3]]  # Indices for smoke and cholesterol waves
+
+            # Set up feature groups
+            dataset.setup_features_group(custom_groups)
+            ```
+
+        !!! example "Converting File Formats"
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+
+            # Initialize and load an ARFF file
+            dataset = LongitudinalDataset('./data/elsa_core_dd.arff')
+            dataset.load_data()
+
+            # Convert to CSV
+            dataset.convert('./data/elsa_core_dd.csv')
+            ```
     """
 
     @check_extension([".csv", ".arff"])
@@ -206,14 +225,13 @@ class LongitudinalDataset:
             raise ValueError("Either file_path or data_frame must be provided.")
 
     def load_data(self) -> None:
-        """Load the data from the specified file into a pandas DataFrame.
+        """Load data from the file into a pandas DataFrame.
+
+        Supports `ARFF` and `CSV` formats. If a DataFrame was provided at initialization, this method does nothing.
 
         Raises:
-            ValueError:
-                If the file format is not supported. Only ARFF and CSV are supported.
-            FileNotFoundError:
-                If the file specified in the file_path parameter does not exist.
-
+            ValueError: If the file format is unsupported (only ARFF and CSV are allowed).
+            FileNotFoundError: If the file specified in `file_path` does not exist.
         """
         if self._data is not None:
             return
@@ -233,20 +251,18 @@ class LongitudinalDataset:
         target_wave_prefix: str = "class_",
         remove_target_waves: bool = False,
     ) -> None:
-        """Load the target from the dataset loaded in the object.
+        """Extract the target variable from the dataset.
+
+        Optionally removes other target-related columns (e.g., from different waves) if specified.
 
         Args:
-            target_column (str):
-                The name of the column in the dataset to be used as the target variable.
-            target_wave_prefix (str, optional):
-                The prefix of the columns that represent different waves of the target variable. Defaults to "class_".
-            remove_target_waves (bool, optional):
-                If True, all the columns with target_wave_prefix and the target_column will be removed from the dataset
-                after extracting the target variable. Defaults to False.
+            target_column (str): Name of the target column in the dataset.
+            target_wave_prefix (str, optional): Prefix for target columns across waves. Defaults to "class_".
+            remove_target_waves (bool, optional): If True, removes all columns with `target_wave_prefix` except
+                `target_column`. Defaults to False.
 
         Raises:
-            ValueError: If no data is loaded or the target_column is not found in the dataset.
-
+            ValueError: If no data is loaded or `target_column` is not in the dataset.
         """
         if self._data is None:
             raise ValueError("No data is loaded. Load data first.")
@@ -263,15 +279,16 @@ class LongitudinalDataset:
         self._data.drop(columns=[target_column], inplace=True)
 
     def load_train_test_split(self, test_size: float = 0.2, random_state: int = None) -> None:
-        """Splits the data into training and testing sets and saves them as attributes.
+        """Split the dataset into training and testing sets.
+
+        Utilises `sklearn.model_selection.train_test_split` for the split.
 
         Args:
-            test_size (float, optional):
-                The proportion of the dataset to include in the test split. Defaults to 0.2.
-            random_state (int, optional):
-                Controls the shuffling applied to the data before applying the split. Pass an int for reproducible
-                output across multiple function calls. Defaults to None.
+            test_size (float, optional): Proportion of data for the test set. Defaults to 0.2.
+            random_state (int, optional): Seed for reproducible splitting. Defaults to None.
 
+        Raises:
+            ValueError: If data or target is not loaded.
         """
         if self._data is None or self._target is None:
             raise ValueError("No data or target is loaded. Load them first.")
@@ -288,22 +305,19 @@ class LongitudinalDataset:
         test_size: float = 0.2,
         random_state: int = None,
     ) -> None:
-        """Loads data, target, and train-test split in one call.
+        """Load data, extract target, and split into train/test sets in one call.
+
+        Combines `load_data`, `load_target`, and `load_train_test_split` for streamlined setup.
 
         Args:
-            target_column (str):
-                The name of the column in the dataset to be used as the target variable.
-            target_wave_prefix (str, optional):
-                The prefix of the columns that represent different waves of the target variable. Defaults to "class_".
-            remove_target_waves (bool, optional):
-                If True, all the columns with target_wave_prefix and the target_column will be removed from the
-                dataset after extracting the target variable. Defaults to False.
-            test_size (float, optional):
-                The proportion of the dataset to include in the test split. Defaults to 0.2.
-            random_state (int, optional):
-                Controls the shuffling applied to the data before applying the split. Pass an int for reproducible
-                output across multiple function calls. Defaults to None.
+            target_column (str): Name of the target column.
+            target_wave_prefix (str, optional): Prefix for target columns across waves. Defaults to "class_".
+            remove_target_waves (bool, optional): If True, removes other target wave columns. Defaults to False.
+            test_size (float, optional): Proportion of data for the test set. Defaults to 0.2.
+            random_state (int, optional): Seed for reproducible splitting. Defaults to None.
 
+        Raises:
+            ValueError: If data or target loading fails due to invalid inputs.
         """
         self.load_data()
         self.load_target(target_column, target_wave_prefix, remove_target_waves)
@@ -311,87 +325,75 @@ class LongitudinalDataset:
 
     @property
     def data(self) -> pd.DataFrame:
-        """Returns the loaded dataset as a pandas DataFrame.
+        """Access the loaded dataset.
 
         Returns:
-            pd.DataFrame: The loaded dataset.
-
+            pd.DataFrame: The dataset as a pandas DataFrame.
         """
         return self._data
 
     @property
     def target(self) -> pd.Series:
-        """Returns the target.
+        """Access the target variable.
 
         Returns:
-            pd.Series: The target.
-
+            pd.Series: The target variable as a pandas Series.
         """
         return self._target
 
     @property
     def X_train(self) -> np.ndarray:
-        """Get the training data.
+        """Access the training data.
 
         Returns:
-            np.ndarray: The training data.
-
+            np.ndarray: The training data as a NumPy array.
         """
         return self._X_train
 
     @property
     def X_test(self) -> np.ndarray:
-        """Get the test data.
+        """Access the test data.
 
         Returns:
-            np.ndarray: The test data.
-
+            np.ndarray: The test data as a NumPy array.
         """
         return self._X_test
 
     @property
     def y_train(self) -> pd.Series:
-        """Get the training target data.
+        """Access the training target.
 
         Returns:
-            pd.Series: The training target data.
-
+            pd.Series: The training target as a pandas Series.
         """
         return self._y_train
 
     @property
     def y_test(self) -> pd.Series:
-        """Get the test target data.
+        """Access the test target.
 
         Returns:
-            pd.Series: The test target data.
-
+            pd.Series: The test target as a pandas Series.
         """
         return self._y_test
 
     @staticmethod
     def _arff_to_csv(input_path: Union[str, Path]) -> pd.DataFrame:
-        """Converts an ARFF file to a DataFrame.
+        """Convert an ARFF file to a pandas DataFrame.
+
+        !!! note "Disclaimer: This is handmade"
+            If new libraries handle such conversion, we highly recommend using them instead of this
+            handmade conversion. This is a neat and quick solution, but it is not the most efficient one, in
+            our humble opinion.
 
         Args:
-            input_path (Union[str, Path]): Path to the input ARFF file.
+            input_path (Union[str, Path]): Path to the ARFF file.
 
         Returns:
-            pd.DataFrame: Converted DataFrame.
-
+            pd.DataFrame: The converted DataFrame.
         """
 
         def parse_row(line: str, row_len: int) -> List[Any]:
-            """Parses a row of data from an ARFF file.
-
-            Args:
-                line (str): A row from the ARFF file.
-                row_len (int): Length of the row.
-
-            Returns:
-                List[Any]: Parsed row as a list of values.
-
-            """
             line = line.strip()  # Strip the newline character
             if "{" in line and "}" in line:
                 # Sparse data row
@@ -417,15 +419,6 @@ class LongitudinalDataset:
             return row
 
         def extract_columns_and_data_start_index(file_content: List[str]) -> Tuple[List[str], int]:
-            """Extracts column names and the index of the @data line from ARFF file content.
-
-            Args:
-                file_content (List[str]): List of lines from the ARFF file.
-
-            Returns:
-                Tuple[List[str], int]: List of column names and the index of the @data line.
-
-            """
             columns = []
             len_attr = len("@attribute")
 
@@ -448,17 +441,19 @@ class LongitudinalDataset:
 
     @staticmethod
     def _csv_to_arff(df: pd.DataFrame, relation_name: str) -> dict:  # pragma: no cover
-        """Converts a DataFrame to an ARFF dictionary.
+        """Convert a DataFrame to an ARFF dictionary.
+
+        !!! note "Disclaimer: This is handmade"
+            If new libraries handle such conversion, we highly recommend using them instead of this
+            handmade conversion. This is a neat and quick solution, but it is not the most efficient one, in
+            our humble opinion.
 
         Args:
-            df (pd.DataFrame):
-                Input DataFrame.
-            relation_name (str):
-                Relation name for the ARFF file.
+            df (pd.DataFrame): Input DataFrame.
+            relation_name (str): Name for the ARFF relation.
 
         Returns:
-            dict: ARFF dictionary.
-
+            dict: ARFF dictionary with relation, attributes, and data.
         """
         df.fillna("?", inplace=True)
 
@@ -471,12 +466,18 @@ class LongitudinalDataset:
     @ensure_data_loaded
     @check_extension([".csv", ".arff"])
     def convert(self, output_path: Union[str, Path]) -> None:  # pragma: no cover
-        """Converts the dataset between ARFF or CSV formats.
+        """Convert the dataset to another format (ARFF or CSV).
+
+        !!! note "Disclaimer: This is handmade"
+            If new libraries handle such conversion, we highly recommend using them instead of this
+            handmade conversion. This is a neat and quick solution, but it is not the most efficient one, in
+            our humble opinion.
 
         Args:
-            output_path (Union[str, Path]):
-                Path to store the resulting file.
+            output_path (Union[str, Path]): Path to save the converted file.
 
+        Raises:
+            ValueError: If no data is loaded or the output format is unsupported.
         """
         if self._data is None:
             raise ValueError("No data to convert. Load data first.")
@@ -499,12 +500,15 @@ class LongitudinalDataset:
 
     @ensure_data_loaded
     def save_data(self, output_path: Union[str, Path]) -> None:  # pragma: no cover
-        """Saves the DataFrame to the specified file format.
+        """Save the dataset to a file.
+
+        Wraps the `convert` method to save in the specified format.
 
         Args:
-            output_path (Union[str, Path]):
-                Path to store the resulting file.
+            output_path (Union[str, Path]): Path to save the file.
 
+        Raises:
+            ValueError: If no data is loaded.
         """
         if self._data is None:
             raise ValueError("No data to save. Load or convert data first.")
@@ -513,20 +517,146 @@ class LongitudinalDataset:
 
     @validate_feature_groups
     def setup_features_group(self, input_data: Union[str, List[List[Union[str, int]]]]) -> None:
-        """Sets up the feature groups based on the input data and populates the non-longitudinal features attribute.
+        """Configure feature groups and non-longitudinal features for longitudinal analysis.
+
+        !!! question "What is a feature group? What's the structure really?"
+            In a nutshell, a feature group is a collection of features sharing a common base longitudinal attribute
+            across different waves of data collection (e.g., "income_wave1", "income_wave2", "income_wave3"). Note that
+            aggregation reduces the dataset's temporal information significantly.
+
+            Each sublist in `feature_groups` represents a longitudinal attribute across waves, ordered oldest to most
+            recent (e.g., `[index_w1, index_w2]`). Use -1 for missing waves to align groups.
+
+            To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
+
+            [Temporal Dependency Guide :fontawesome-solid-timeline:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
+
+        This method defines how features are grouped to capture temporal dependencies across waves. It supports three
+        distinct input types, each suited to different use cases, with detailed examples and explanations below.
+
+        === "Using `elsa` for Automatic Grouping"
+
+            Automatically groups features based on wave suffixes (e.g., "_w1", "_w2") found in column
+            names. This is ideal for datasets like the English Longitudinal Study of Ageing (ELSA), where features are
+            consistently named with wave indicators. The ELSA dataset, focused on individuals aged 50+ in England,
+            includes longitudinal data such as "smoke_w1", "smoke_w2", etc., which this method organizes into groups.
+
+            !!! tip "Where to find those datasets"
+                To find those datasets, feel free to open an issue and question us!
+
+                [Open An Issue! :fontawesome-brands-square-github:](https://simonprovost.github.io/scikit-longitudinal/issues){ .md-button }
+
+            How It Works:
+
+            - [x] Identifies base feature names (e.g., "smoke") and their wave suffixes (e.g., "_w1", "_w2").
+            - [x] Creates groups with indices ordered from oldest to most recent wave, padding with -1 for missing waves.
+            - [x] Non-longitudinal features (e.g., "age_wave8") are excluded from groups unless explicitly renamed.
+
+            Example:
+
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+
+            # Load an ELSA dataset
+            dataset = LongitudinalDataset('./data/elsa_core.csv')
+            dataset.load_data()
+
+            # Automatically group features by wave suffixes
+            dataset.setup_features_group("elsa")
+
+            # Resulting groups might look like:
+            # [[0, 1], [2, 3, -1]]  # e.g., [smoke_w1, smoke_w2], [chol_w1, chol_w2, N/A]
+            print(dataset.feature_groups())  # Indices
+            print(dataset.feature_groups(names=True))  # Names
+            ```
+
+            Use Case:
+
+            Best for ELSA or similarly structured datasets with clear wave-based naming conventions.
+
+        === "List of Lists of Integers for Direct Indices"
+
+            Allows manual specification of feature indices for each group. This provides precise control
+            over which columns are grouped together, useful when wave patterns are irregular or known in advance.
+
+            How It Works:
+
+            - [x] Each sublist contains integer indices corresponding to columns in the DataFrame.
+            - [x] Order matters: indices should reflect temporal sequence (oldest to newest).
+            - [x] Use -1 to pad groups if waves are missing, ensuring alignment across groups.
+
+            Example:
+
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+
+            # Load a dataset
+            dataset = LongitudinalDataset('./data/health.csv')
+            dataset.load_data()
+
+            # Define groups manually with indices
+            custom_groups = [[0, 1], [2, 3, -1]]  # e.g., [bp_w1, bp_w2], [weight_w1, weight_w2, N/A]
+            dataset.setup_features_group(custom_groups)
+
+            # Verify setup
+            print(dataset.feature_groups())  # [[0, 1], [2, 3, -1]]
+            ```
+
+            Use Case:
+
+            Ideal when you have specific knowledge of column indices and need fine-grained control.
+
+        === "List of Lists of Strings for Feature Names"
+
+            Specifies feature groups using column names, which are then converted to indices. This is
+            intuitive for users familiar with dataset feature names, enhancing readability and reducing errors.
+
+            How It Works:
+
+            - [x] Each sublist contains strings matching DataFrame column names.
+            - [x] Names are mapped to their respective indices internally.
+            - [x] No padding is needed in the input; alignment is handled post-conversion.
+
+            Example:
+
+            ```python
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+
+            # Load a dataset
+            dataset = LongitudinalDataset('./data/stroke.csv')
+            dataset.load_data()
+
+            # Define groups with feature names
+            custom_names = [['smoke_w1', 'smoke_w2'], ['chol_w1', 'chol_w2']]
+            dataset.setup_features_group(custom_names)
+
+            # Verify setup
+            print(dataset.feature_groups(names=True))  # [['smoke_w1', 'smoke_w2'], ['chol_w1', 'chol_w2']]
+            print(dataset.feature_groups())  # Corresponding indices, e.g., [[0, 1], [2, 3]]
+            ```
+
+            Use Case:
+
+            Perfect for datasets where feature names are meaningful and users prefer working with names
+            over indices.
+
+        ––––––––––––––––––––––––––––
+
+        !!! question "Want more automatic handlers?"
+            If you want more automatic handlers, like for the ELSA databases, feel free to open an issue and
+            question us!
+
+            [Open An Issue! :fontawesome-brands-square-github:](https://simonprovost.github.io/scikit-longitudinal/issues){ .md-button }
 
         Args:
-            input_data (Union[str, List[List[Union[str, int]]]]):
-                The input data for setting up the feature groups:
-                    * If "elsa" is passed, it groups features based on their name and suffix "_w1", "_w2", etc.
-                    * If a list of lists of integers is passed, it assigns the input directly to the feature groups
-                    without modification.
-                    * If a list of lists of strings (feature names) is passed, it converts the names to
-                    indices and creates feature groups.
+            input_data (Union[str, List[List[Union[str, int]]]]): Input to define feature groups:
+
+                - [x] "elsa": Auto-groups based on wave suffixes.
+                - [x] List[List[int]]: Feature indices.
+                - [x] List[List[str]]: Feature names.
 
         Raises:
-            ValueError: If input_data is not one of the expected types or if a feature name is not found in the dataset.
-
+            ValueError: If `input_data` is invalid, feature names are missing, or groups lack sufficient waves.
         """
         if isinstance(input_data, str) and input_data.lower() == "elsa":
             self._feature_groups = self._create_elsa_feature_groups()
@@ -552,21 +682,16 @@ class LongitudinalDataset:
 
     @validate_feature_groups
     def _convert_feature_names_to_indices(self, feature_groups: List[List[str]]) -> List[List[int]]:
-        """Converts feature names to indices in the dataset's columns and returns the feature groups as lists of
-        indices.
+        """Convert feature names to their column indices.
 
         Args:
-            feature_groups (List[List[str]]):
-                A list of lists of feature names.
+            feature_groups (List[List[str]]): Feature groups as lists of feature names.
 
         Returns:
-            List[List[int]]:
-                The corresponding feature groups represented as lists of column indices.
+            List[List[int]]: Feature groups as lists of indices.
 
         Raises:
-            ValueError:
-                If a feature name is not found in the dataset.
-
+            ValueError: If a feature name is not in the dataset.
         """
         column_indices = {col: i for i, col in enumerate(self._data.columns)}
         index_groups = []
@@ -581,19 +706,12 @@ class LongitudinalDataset:
         return index_groups
 
     def _create_elsa_feature_groups(self) -> List[List[int]]:
-        """create_elsa_feature_groups creates feature groups for the "Elsa" case.
+        """Generate feature groups for the "elsa" strategy.
 
-        To facilitate the organisation and management of features within the "Elsa" case, it is recommended to create
-        feature groups. These feature groups will be based on the names of the features, along with any suffixes
-        present, such as "_w1", "_w2", and so on. By grouping features in this manner, it becomes easier to identify
-        and categorise them, leading to improved efficiency and clarity in the development process. Furthermore, an
-        extra step is taken to ensure that the feature groups are appropriately padded to align with the maximum wave
-        number found among all groups.
+        Groups features by base name and wave suffix (e.g., "_w1", "_w2"), padding with -1 for alignment.
 
         Returns:
-            List[List[int]]:
-                Feature groups using column indices, padded to include placeholders for missing waves.
-
+            List[List[int]]: Feature groups as indices, padded where necessary.
         """
         wave_columns = {}
         wave_suffix_pattern = re.compile(r"_w(\d+)$")
@@ -620,37 +738,28 @@ class LongitudinalDataset:
         return feature_groups
 
     def feature_groups(self, names: bool = False) -> List[List[Union[int, str]]]:
-        """feature_groups is a list of lists containing the indices of the feature groups of the longitudinal dataset.
+        """Retrieve the feature groups.
 
-        The function returns the feature groups, wherein any placeholders ("-1") are substituted with "N/A" when the
-        names parameter is set to True.
+        Returns -1 placeholders as "N/A" when `names=True`.
 
         Args:
-            names (bool, optional):
-                If True, the feature names will be returned instead of the indices. Defaults to False.
+            names (bool, optional): If True, returns feature names instead of indices. Defaults to False.
 
         Returns:
-            List[List[Union[int, str]]]:
-                The feature groups as a list of lists of feature names or indices.
-
+            List[List[Union[int, str]]]: Feature groups as indices or names.
         """
         if names:
             return [[self._data.columns[i] if i != -1 else "N/A" for i in group] for group in self._feature_groups]
         return self._feature_groups
 
     def non_longitudinal_features(self, names: bool = False) -> List[Union[int, str]]:
-        """non_longitudinal_features is a list of indices of the non-longitudinal features of the longitudinal dataset.
-
-        Returns the non-longitudinal features.
+        """Retrieve the non-longitudinal features.
 
         Args:
-            names (bool, optional):
-                If True, the feature names will be returned instead of the indices. Defaults to False.
+            names (bool, optional): If True, returns feature names instead of indices. Defaults to False.
 
         Returns:
-            List[Union[int, str]]:
-                The non-longitudinal features as a list of feature names or indices.
-
+            List[Union[int, str]]: Non-longitudinal features as indices or names.
         """
         if names:
             return [self._data.columns[i] for i in self._non_longitudinal_features]
