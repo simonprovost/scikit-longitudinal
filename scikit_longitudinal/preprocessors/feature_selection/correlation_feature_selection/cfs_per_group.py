@@ -18,118 +18,139 @@ from scikit_longitudinal.templates import CustomTransformerMixinEstimator
 class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
     """Correlation-based Feature Selection (CFS) per group (CFS Per Group).
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    The `CorrelationBasedFeatureSelectionPerGroup` class implements the CFS-Per-Group algorithm, a longitudinal variant
+    of the standard CFS method. It is designed to handle feature selection in longitudinal datasets by considering
+    temporal variations across multiple waves (time points). The algorithm operates in two phases:
 
-    This class performs feature selection using the correlation-based feature selection (CFS) algorithm on given data.
-    The CFS algorithm is a filter method that selects features based on their correlation with the target variable and
-    their mutual correlation with each other. This implementation supports the following search methods:
-    exhaustiveSearch, or greedySearch. This implementation concern the support for the longitudinal component to
-    handle feature selection for longitudinal data. Hence, the CFS per group. If no longitudinal component is needed,
-    refer to the CorrelationBasedFeatureSelection class.
+    1. **Phase 1**: For each longitudinal feature group, CFS with a specified search method (e.g., exhaustive or greedy)
+       is applied to select relevant and non-redundant features across waves. The selected features are then aggregated.
+    2. **Phase 2**: The aggregated features from Phase 1 are combined with non-longitudinal features, and a standard CFS
+       is applied to further refine the selection by removing redundant features.
 
-    Read more in the Notes below for implementation details.
+    !!! quote "CFS-Per-Group: A Longitudinal Variation of CFS"
+        CFS-Per-Group, also known as `Exh-CFS-Gr` in the literature, adapts the standard CFS method to longitudinal data.
+        It is particularly useful for datasets where features are collected over multiple time points, such as in ageing
+        studies or health monitoring.
+
+        For scientific references, see the Notes section below.
+
+    !!! note "Standard CFS Implementation"
+        For the standard CFS algorithm without the longitudinal component, refer to the `CorrelationBasedFeatureSelection`
+        class.
+
+    !!! question "Feature Groups and Non-Longitudinal Features"
+        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
+        structure of longitudinal data, we try to build those as much as possible for users, while allowing
+        users to also define their own feature groups if needed. As follows:
+
+        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
+          ordered from oldest to most recent. This captures temporal dependencies.
+        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
+          matrix.
+
+        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
+        use the primitives that follow.
+
+        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
+        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://simonprovost.github.io/scikit-longitudinal/temporal_dependency/){ .md-button }
 
     Args:
-        non_longitudinal_features : Optional[List[int]] = None
-            A list of feature indices that are not considered longitudinal. These features will not be affected by
-            the longitudinal component of the algorithm.
-
-        search_method : str, default="greedySearch"
-            The search method to use. Options are "exhaustiveSearch", and "greedySearch".
-
-        features_group : Optional[List[Tuple[int, ...]]], default=None
-            A list of tuples of feature indices that represent the groups of features to be considered for feature
-            selection per group (longitudinal component). If None, the CFS per group will not be used (no longitudinal
-            component).
-
-        parallel : bool, default=False
-            Whether to use parallel processing for the CFS algorithm (especially useful for the exhaustive search method
-            with the CFS per group, i.e. longitudinal component).
-
-        outer_search_method : str, default=None
-            The outer (to the final aggregated list of features) search method to use for the CFS per group
-            (longitudinal component). If None, it defaults to the same as the `search_method`.
-
-        inner_search_method : str, default="exhaustiveSearch"
-            The inner (to each group) search method to use for the CFS per group (longitudinal component).
-
-        version : str, default=2
-            The version of the CFS per group algorithm to use. Options are "1" and "2". Version 2 is the improved with
-            an outer search out of the final aggregated list of features of the first phase. Refer to the paper proposed
-            below for more details.
-
-        num_cpus : int, default=-1
-            The number of CPUs to use for parallel processing. If -1, all available CPUs will be used.
+        non_longitudinal_features (Optional[List[int]], optional): List of indices for non-longitudinal features.
+            These features are not part of the temporal matrix and are treated separately. Defaults to None.
+        search_method (str, optional): The search method for Phase 1. Options are "exhaustiveSearch" or "greedySearch".
+            Defaults to "greedySearch".
+        features_group (Optional[List[List[int]]], optional): A temporal matrix where each sublist contains indices of a
+            longitudinal attribute's waves. Required for the longitudinal component. Defaults to None.
+        parallel (bool, optional): Whether to use parallel processing for CFS (useful for exhaustive search with multiple
+            groups). Defaults to False.
+        outer_search_method (str, optional): The search method for Phase 2 (outer search). If None, defaults to
+            `search_method`. Defaults to None.
+        inner_search_method (str, optional): The search method for Phase 1 (inner search). Defaults to "exhaustiveSearch".
+        version (int, optional): The version of the CFS-Per-Group algorithm to use. Version 1 applies CFS per group
+            without an outer search, while Version 2 includes an outer CFS on the aggregated features. Defaults to 1.
+        num_cpus (int, optional): Number of CPUs for parallel processing. If -1, uses all available CPUs. Defaults to -1.
 
     Attributes:
-        selected_features_ : ndarray of shape (n_features,)
-            The indices of the selected features.
+        selected_features_ (ndarray): Indices of the selected features after fitting.
 
     Examples:
-        >>> # With the longitudinal component:
-        >>> features_group = [(0, 1, 2), (3, 4, 5), (6, 7, 8, 9)]
-        >>> cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
-        ...     features_group=features_group
-        ... )
-        >>> cfs_longitudinal.fit(X, y)
-        >>> X_longitudinal_selected = cfs_longitudinal.transform(X)
-        >>> X_longitudinal_selected.shape
-        >>> # (100, N) ; N is the number of selected features
+        Below are examples demonstrating the usage of the `CorrelationBasedFeatureSelectionPerGroup` class.
 
-        >>> # With the longitudinal component and parallel processing:
-        >>> features_group = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19)]
-        >>> cfs_longitudinal  = CorrelationBasedFeatureSelectionPerGroup(
-        ...     search_method="greedySearch",
-        ...     features_group=features_group,
-        ...     parallel=True,
-        ...     num_cpus=4
-        ... )
-        >>> X_longitudinal_selected = cfs_longitudinal.fit_transform(X, y)
-        >>> X_longitudinal_selected.shape
-        >>> # (100, N) ; N is the number of selected features
+        !!! example "Basic Usage with Longitudinal Component"
+            ```python
+            from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
 
-        >>> # Example of using the apply_selected_features_and_rename method (alternative to transform):
-        >>> data = np.random.random((100, 20))
-        >>> df = pd.DataFrame(data, columns=[f'feature{i}_w1' for i in range(10)] +
-        ...     [f'feature{i}_w2' for i in range(10)]
-        ... )
-        >>> y = np.random.randint(0, 2, 100)
-        >>> non_longitudinal_features = [0, 1, 2]  # First three features are non-longitudinal
-        >>> cfs = CorrelationBasedFeatureSelectionPerGroup(
-        ...     # features_group=<your_features_group>,
-        ...     non_longitudinal_features=non_longitudinal_features
-        ... )
-        >>> cfs.fit(df, y)
-        >>> df_selected = cfs.apply_selected_features_and_rename(df)
-        >>> df_selected.columns
-        >>> # Index([...]) ; Selected features and ** updated column names **
+            # Define feature groups (e.g., for smoke and cholesterol across waves)
+            features_group = [[0, 1], [2, 3]]  # smoke_w1, smoke_w2; chol_w1, chol_w2
+            non_longitudinal_features = [4, 5]  # age, gender
+
+            # Initialize CFS-Per-Group
+            cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
+                features_group=features_group,
+                non_longitudinal_features=non_longitudinal_features
+            )
+
+            # Fit to data
+            cfs_longitudinal.fit(X, y)
+
+            # Transform data
+            X_selected = cfs_longitudinal.apply_selected_features_and_rename(pd.DataFrame(X), cfs_longitudinal.selected_features_)
+            ```
+
+        !!! example "Using Parallel Processing"
+            ```python
+            from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
+
+            # Define feature groups
+            features_group = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+
+            # Initialize with parallel processing
+            cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
+                features_group=features_group,
+                search_method="exhaustiveSearch",
+                parallel=True,
+                num_cpus=4
+            )
+
+            # Fit and transform
+            X_selected = cfs_longitudinal.fit_transform(X, y)
+            ```
+
+        !!! example "Using Version 2 with Outer Search"
+            ```python
+            from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
+
+            # Define feature groups and non-longitudinal features
+            features_group = [[0, 1], [2, 3]]
+            non_longitudinal_features = [4, 5]
+
+            # Initialize with version 2 and outer search method
+            cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
+                features_group=features_group,
+                non_longitudinal_features=non_longitudinal_features,
+                version=2,
+                outer_search_method="greedySearch"
+            )
+
+            # Fit to data
+            cfs_longitudinal.fit(X, y)
+            ```
 
     Notes:
-        The improved CFS algorithm is based on the following references:
+        The CFS-Per-Group algorithm is based on the following references:
 
-        * Zixiao. S. (2019, August 11). GitHub - ZixiaoShen
-        /Correlation-based-Feature-Selection, available at:
-        https://github.com/ZixiaoShen/Correlation-based-Feature-Selection
-
-        The longitudinal component is based on the following paper and the original implementation, which is in JAVA
-        that was reproduced in Python:
-
-        * [VERSION-1 of the CFS Per Group] Pomsuwan, T. and Freitas, A.A., 2017, November.
-          Feature selection for the classification of longitudinal human ageing data.
-          In 2017 IEEE International Conference on Data Mining Workshops (ICDMW) (pp. 739-746). IEEE.
-
-        * [VERSION-2 of the CFS Per Group] T. Pomsuwan and A. Freitas, “Feature selection for the classification of
-          longitudinal human ageing data,” Master’s thesis, University of Kent, Feb 2018. [Online]. Available:
-          https://kar.kent.ac.uk/66568/
-
-        * Pomsuwan, T. (2023, February 24). GitHub - mastervii/CSF_2-phase-variant, avaiable at:
-          https://github.com/mastervii/CSF_2-phase-variant
+        - **Zixiao Shen's CFS Implementation**:
+          - *Zixiao. S.* (2019, August 11). GitHub - ZixiaoShen/Correlation-based-Feature-Selection. Available at: [GitHub](https://github.com/ZixiaoShen/Correlation-based-Feature-Selection)
+        - **Mastervii's CFS 2-Phase Variant**:
+          - *Pomsuwan, T.* (2023, February 24). GitHub - mastervii/CSF_2-phase-variant. Available at: [GitHub](https://github.com/mastervii/CSF_2-phase-variant)
+        - **Longitudinal Component References**:
+          - **Version 1**:
+            - *Pomsuwan, T. and Freitas, A.A.* (2017, November). Feature selection for the classification of longitudinal human ageing data. In *2017 IEEE International Conference on Data Mining Workshops (ICDMW)* (pp. 739-746). IEEE.
+          - **Version 2**:
+            - *Pomsuwan, T. and Freitas, A.A.* (2018, February). Feature selection for the classification of longitudinal human ageing data. Master's thesis, University of Kent. Available at: [University of Kent](https://kar.kent.ac.uk/66568/)
 
     See also:
-        * CustomTransformerMixinEstimator: Base class for all Transformer Mixin estimators in scikit-learn that we
-        customed so that the original scikit-learn "check_x_y" is performed all the time.
-
+        - `CorrelationBasedFeatureSelection`: For the standard CFS algorithm without the longitudinal component.
     """
 
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
@@ -162,21 +183,17 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
     @override
     def _fit(self, X: np.ndarray, y: np.ndarray) -> "CorrelationBasedFeatureSelectionPerGroup":
-        """Fits the CFS algorithm on the input data and target variable.
+        """Fit the CFS-Per-Group algorithm to the data.
 
-        This method applies the CFS algorithm to the input data, selecting the features that are correlated with the
-        target variable, while having low mutual correlation with each other. It supports different search methods
-        and an optional longitudinal component.
+        This method applies the CFS-Per-Group algorithm, selecting features that are highly correlated with the target
+        while minimizing redundancy within feature groups.
 
         Args:
-            X (np.ndarray):
-                The input data of shape (n_samples, n_features).
-            y (np.ndarray):
-                The target variable of shape (n_samples).
+            X (np.ndarray): Input data of shape (n_samples, n_features).
+            y (np.ndarray): Target variable of shape (n_samples,).
 
         Returns:
-            CorrelationBasedFeatureSelectionPerGroup: The fitted instance of the CFS algorithm.
-
+            CorrelationBasedFeatureSelectionPerGroup: The fitted instance.
         """
         if self.features_group is not None and ray.is_initialized() is False and self.parallel is True:
             if self.num_cpus != -1:
@@ -228,35 +245,38 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
     @override
     def _transform(self, X: np.ndarray) -> np.ndarray:
-        """Reduces the input data to only the selected features.
+        """Transform the data by selecting the chosen features.
+
+        This method is overridden from `CustomTransformerMixinEstimator` and selects the features based on
+        `selected_features_`.
+
+        !!! warning "Usage Note"
+            Not to be used directly. Use the `apply_selected_features_and_rename` method instead.
+            CFS Per Group has a specific behavior for longitudinal features, and this method does not
+            account for that. It is recommended to use the `apply_selected_features_and_rename` method
+            for proper handling of longitudinal features.
 
         Args:
-            X:
-                A numpy array of shape (n_samples, n_features) representing the input data.
+            X (np.ndarray): Input data of shape (n_samples, n_features).
 
         Returns:
-            The reduced input data as a numpy array of shape (n_samples, n_selected_features).
-
+            np.ndarray: Transformed data with selected features.
         """
         return X
 
     def _fit_subset(self, X: np.ndarray, y: np.ndarray, group: Tuple[int]) -> List[int]:
-        """Fits the CFS algorithm on a subset of the input data specified by the group.
+        """Fit CFS on a specific feature group.
 
-        This method applies the CFS algorithm to a specific group of features in the input data.
-        It is called during the computation of the longitudinal component of the CFS algorithm.
+        This method applies the CFS algorithm to a subset of features defined by the group, selecting the most relevant
+        features within that group.
 
         Args:
-            X (np.ndarray):
-                The input data of shape (n_samples, n_features).
-            y (np.ndarray):
-                The target variable of shape (n_samples).
-            group (Tuple[int]):
-                A tuple of feature indices representing the group of features to fit the CFS algorithm on.
+            X (np.ndarray): Input data.
+            y (np.ndarray): Target variable.
+            group (Tuple[int]): Indices of features in the group.
 
         Returns:
-            List[int]: A list of selected feature indices for the given group.
-
+            List[int]: Selected feature indices from the group.
         """
         X_group = X[:, group]
         self._fit(X_group, y)
@@ -264,23 +284,18 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
     @ray.remote
     def _ray_fit_subset(self, X: np.ndarray, y: np.ndarray, group: Tuple[int]) -> List[int]:
-        """Ray remote function for fitting the CFS algorithm on a subset of the input data specified by the group.
+        """Ray remote function for parallel fitting of CFS on a feature group.
 
-        This method applies the CFS algorithm to a specific group of features in the input data, using Ray for
-        parallel computation. It is called during the computation of the longitudinal component of the CFS algorithm
-        when parallel processing is enabled.
+        This method enables parallel processing of feature groups using Ray, which is particularly useful for large
+        datasets or computationally intensive search methods.
 
         Args:
-            X (np.ndarray):
-                The input data of shape (n_samples, n_features).
-            y (np.ndarray):
-                The target variable of shape (n_samples).
-            group (Tuple[int]):
-                A tuple of feature indices representing the group of features to fit the CFS algorithm on.
+            X (np.ndarray): Input data.
+            y (np.ndarray): Target variable.
+            group (Tuple[int]): Indices of features in the group.
 
         Returns:
-            List[int]: A list of selected feature indices for the given group.
-
+            List[int]: Selected feature indices from the group.
         """
         return self._fit_subset(X, y, group)
 
@@ -289,26 +304,36 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
     def apply_selected_features_and_rename(
         df: pd.DataFrame, selected_features: List, regex_match=r"^(.+)_w(\d+)$"
     ) -> [pd.DataFrame, None]:
-        """Apply selected features to the input DataFrame and rename non-longitudinal features.
+        """Apply selected features to the DataFrame and rename non-longitudinal features.
 
-        This function applies the selected features using the `selected_features_` attribute of the class.
-        It also renames the non-longitudinal features that may have become non-longitudinal if only
-        one wave remains after the feature selection process, to avoid them being considered as
-        longitudinal attributes during future automatic feature grouping.
+        This method selects the specified features from the DataFrame and renames any features that, after selection,
+        appear as single-wave features (i.e., non-longitudinal). This ensures that such features are not misinterpreted
+        as longitudinal in future processing.
+
+        !!! warning "Usage Note"
+            This method should be used instead of the standard `transform` method to handle both feature selection and
+            renaming in one step, especially in pipelines where the temporal structure needs to be preserved.
+
+        !!! question "Regex Match, what is that all about?"
+            The regex match is used to identify features that are longitudinal in nature. The default pattern
+            `^(.+)_w(\d+)$` captures features with a base name followed by a wave number (e.g., `feature_w1`, `feature_w2`).
+            Working by default with the ELSA databases in a nutshell.
+
+            The first group `(.+)` captures the base name of the feature, while the second group `(\d+)` captures the wave
+            number. This allows the method to identify and rename features that are longitudinal in nature, ensuring that
+            they are treated correctly in subsequent analyses.
+
+            Why is that important? Because we want to make sure that the features are not misinterpreted as longitudinal
+            when they are actually single-wave features. This is particularly important in longitudinal datasets where
+            features are collected over multiple time points.
 
         Args:
-            df : pd.DataFrame
-                The input DataFrame to apply the selected features and perform renaming.
-            selected_features : List
-                The list of selected features to apply to the input DataFrame.
-            regex_match : str
-                The regex pattern to use for renaming non-longitudinal features. Follow by default the
-                Elsa naming convention for longitudinal features.
+            df (pd.DataFrame): Input DataFrame.
+            selected_features (List): List of selected feature indices.
+            regex_match (str, optional): Regex pattern to identify wave-based features. Defaults to "^(.+)_w(\d+)$".
 
         Returns:
-            pd.DataFrame
-                The modified DataFrame with selected features applied and non-longitudinal features renamed.
-
+            pd.DataFrame: DataFrame with selected features and renamed non-longitudinal features.
         """
         # Apply selected features
         if selected_features:
