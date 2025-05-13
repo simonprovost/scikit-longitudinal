@@ -1,0 +1,29 @@
+{
+    "root_placeholder": "DATA_PREP",
+    "datasets": [
+        "ANGINA",
+        "ARTHRITIS",
+        "CATARACT",
+        "ANGINA_CORE",
+        "ARTHRITIS_CORE",
+        "CATARACT_CORE",
+        "DEMENTIA_CORE",
+        "DIABETES_CORE",
+        "HEARTATTACK_CORE",
+        "HBP_CORE",
+        "OSTEOPOROSIS_CORE",
+        "PARKINSONS_CORE",
+        "STROKE_CORE",
+        "DEMENTIA",
+        "DIABETES",
+        "HEARTATTACK",
+        "HBP",
+        "OSTEOPOROSIS",
+        "PARKINSONS",
+        "STROKE"
+    ],
+    "techniques": [
+        "<NAME_OF_DIRECTORY_RESULTS>"
+    ],
+    "metric": "<NAME_OF_METRIC_TO_USE_FOR_REPORT>"
+}
