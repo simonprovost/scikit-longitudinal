@@ -87,43 +87,9 @@ class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
             The underlying decision tree structure.
 
     Examples:
-        !!! example "Basic Usage with Dummy Longitudinal Data"
-
-            ```python
-            from sklearn.metrics import mean_squared_error
-            from scikit_longitudinal.estimators.tree import LexicoDecisionTreeRegressor
-            import numpy as np
-
-            # Dummy longitudinal data: 2 attributes, 2 waves each
-            X = np.array([[0, 1, 0, 1], [1, 1, 1, 1], [0, 0, 0, 0]])
-            y = np.array([0.5, 0.8, 0.2])
-            features_group = [[0, 1], [2, 3]]  # [smoke_w1, smoke_w2], [chol_w1, chol_w2]
-
-            reg = LexicoDecisionTreeRegressor(threshold_gain=0.1, features_group=features_group)
-            reg.fit(X, y)
-            y_pred = reg.predict(X)
-            print(f"MSE: {mean_squared_error(y, y_pred)}")
-            ```
-
-        !!! example "Using with Boston Housing (Non-Longitudinal Example)"
-
-            Note that we give dummy-based examples, adapt to your use cases with your own longitudinal dataset.
-
-            ```python
-            from sklearn.datasets import load_boston
-            from sklearn.model_selection import train_test_split
-            from sklearn.metrics import mean_squared_error
-            from scikit_longitudinal.estimators.tree import LexicoDecisionTreeRegressor
-
-            X, y = load_boston(return_X_y=True)
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            features_group = [[0, 1], [2, 3]]  # Hypothetical grouping for illustration
-
-            reg = LexicoDecisionTreeRegressor(threshold_gain=0.1, features_group=features_group)
-            reg.fit(X_train, y_train)
-            y_pred = reg.predict(X_test)
-            print(f"MSE: {mean_squared_error(y_test, y_pred)}")
-            ```
+        While `Sklong` focussed classification tasks only as of now. This regressor model is used by
+        our LexicographicalGradientBoosting primitive. Feel free to experiment with it in your own
+        longitudinal regression tasks but we do not guarantee its performance.
 
     Notes:
         - **Performance**: Best suited for longitudinal data; may not outperform standard regressors on non-temporal data.

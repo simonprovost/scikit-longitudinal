@@ -71,24 +71,29 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         !!! example "Basic Usage with Dummy Longitudinal Data"
 
             ```python
+            from sklearn.metrics import accuracy_score
             from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
             import numpy as np
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
 
-            # Dummy data: smoke and cholesterol over 2 waves, plus age and gender
-            X = np.array([[0, 1, 0, 1, 45, 1], [1, 1, 1, 1, 50, 0], [0, 0, 0, 0, 55, 1]])
-            y = np.array([0, 1, 0])
-            features_group = [[0, 1], [2, 3]]  # Smoke and cholesterol waves
-            non_longitudinal_features = [4, 5]  # Age, gender
+            # Load dataset
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
+            dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
+            dataset.setup_features_group("elsa")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
 
-            clf = NestedTreesClassifier(features_group=features_group, non_longitudinal_features=non_longitudinal_features)
-            clf.fit(X, y)
-            print(clf.predict(X))
-            # Output: [0 1 0]
+            clf = NestedTreesClassifier(features_group=dataset.feature_groups())
+            clf.fit(dataset.X_train, dataset.y_train)
+            y_pred = clf.predict(dataset.X_test)
+            print(f"Accuracy: {accuracy_score(dataset.y_test, y_pred)}")
             ```
 
         !!! example "Customizing Inner Tree Hyperparameters"
 
             ```python
+            # ... Similar setup as above ...
+
             inner_params = {'criterion': 'gini', 'max_depth': 3}
             clf = NestedTreesClassifier(
                 features_group=features_group,
@@ -96,6 +101,8 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 inner_estimator_hyperparameters=inner_params
             )
             clf.fit(X, y)
+
+            # ... Similar prediction and evaluation as above ...
             ```
 
     Notes:

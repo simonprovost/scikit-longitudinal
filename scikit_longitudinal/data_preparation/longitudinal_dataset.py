@@ -162,11 +162,11 @@ class LongitudinalDataset:
             # Load the data
             dataset.load_data()
 
-            # Set up feature groups with the "elsa" strategy
-            dataset.setup_features_group("elsa")
-
             # Load the target variable
             dataset.load_target(target_column="stroke_w2")
+
+            # Set up feature groups with the "elsa" strategy
+            dataset.setup_features_group("elsa")
 
             # Split into train and test sets –– Uses sklearn's train_test_split
             dataset.load_train_test_split(test_size=0.2, random_state=42)
@@ -560,6 +560,7 @@ class LongitudinalDataset:
             # Load an ELSA dataset
             dataset = LongitudinalDataset('./data/elsa_core.csv')
             dataset.load_data()
+            dataset.load_target("stroke_w2")
 
             # Automatically group features by wave suffixes
             dataset.setup_features_group("elsa")

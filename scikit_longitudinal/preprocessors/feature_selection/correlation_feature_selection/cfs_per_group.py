@@ -79,61 +79,60 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         !!! example "Basic Usage with Longitudinal Component"
             ```python
             from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+            from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import LongitudinalEnsemblingStrategy
 
-            # Define feature groups (e.g., for smoke and cholesterol across waves)
-            features_group = [[0, 1], [2, 3]]  # smoke_w1, smoke_w2; chol_w1, chol_w2
-            non_longitudinal_features = [4, 5]  # age, gender
+
+            # Load dataset
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
+            dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
+            dataset.setup_features_group("elsa")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
 
             # Initialize CFS-Per-Group
             cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
-                features_group=features_group,
-                non_longitudinal_features=non_longitudinal_features
+                features_group=dataset.feature_groups(),
+                non_longitudinal_features=dataset.non_longitudinal_features()
             )
 
             # Fit to data
-            cfs_longitudinal.fit(X, y)
+            cfs_longitudinal.fit(dataset.X_train, dataset.y_train)
 
             # Transform data
-            X_selected = cfs_longitudinal.apply_selected_features_and_rename(pd.DataFrame(X), cfs_longitudinal.selected_features_)
+            X_selected = cfs_longitudinal.apply_selected_features_and_rename(dataset.X_train, cfs_longitudinal.selected_features_)
+            print(X_selected)
             ```
 
         !!! example "Using Parallel Processing"
             ```python
-            from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
-
-            # Define feature groups
-            features_group = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+            # ... Same as above, but with parallel processing enabled ...
 
             # Initialize with parallel processing
             cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
                 features_group=features_group,
                 search_method="exhaustiveSearch",
-                parallel=True,
-                num_cpus=4
+                parallel=True, # Enable parallel processing
+                num_cpus=4 # Specify number of CPUs to use, -1 for all available CPUs
             )
 
-            # Fit and transform
-            X_selected = cfs_longitudinal.fit_transform(X, y)
+            # ... Same as above, but with parallel processing enabled ...
             ```
 
         !!! example "Using Version 2 with Outer Search"
             ```python
-            from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
+            # ... Same as above, but with parallel processing enabled ...
 
-            # Define feature groups and non-longitudinal features
-            features_group = [[0, 1], [2, 3]]
-            non_longitudinal_features = [4, 5]
 
             # Initialize with version 2 and outer search method
             cfs_longitudinal = CorrelationBasedFeatureSelectionPerGroup(
                 features_group=features_group,
                 non_longitudinal_features=non_longitudinal_features,
-                version=2,
-                outer_search_method="greedySearch"
+                version=2, # Use version 2 of CFS-Per-Group
+                outer_search_method="greedySearch" # Specify outer search method
             )
 
-            # Fit to data
-            cfs_longitudinal.fit(X, y)
+            # ... Same as above, but with parallel processing enabled ...
             ```
 
     Notes:
