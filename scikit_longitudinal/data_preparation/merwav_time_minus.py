@@ -47,14 +47,13 @@ class MerWavTimeMinus(DataPreparationMixin):
 
         !!! example "Basic Usage"
             ```python
-            from scikit_longitudinal.data_preparation import LongitudinalDataset
-            from scikit_longitudinal.data_preparation.mer_wav_time_minus import MerWavTimeMinus
+            from scikit_longitudinal.data_preparation import MerWavTimeMinus
 
             # Load dataset
-            dataset = LongitudinalDataset('./stroke.csv')
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
             dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
             dataset.setup_features_group("elsa")
-            dataset.load_target(target_column="stroke_wave_2")
             dataset.load_train_test_split(test_size=0.2, random_state=42)
 
             # Initialize MerWavTimeMinus
@@ -64,9 +63,10 @@ class MerWavTimeMinus(DataPreparationMixin):
                 feature_list_names=dataset.data.columns.tolist()
             )
 
-            # Apply transformation
-            mer_wav.prepare_data(dataset.X_train)
-            transformed_dataset, _, _, _ = mer_wav.transform()
+            # No need to apply any transformation, MerWavTimeMinus takes the dataset as it is
+            # Meaning that it does not care about any of the temporal dependency.
+
+            # We let this there for compatibility but it has little value alone.
             ```
     """
     def __init__(

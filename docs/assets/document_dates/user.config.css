@@ -1,0 +1,69 @@
+/* 1. Plug-in styles
+    including icons, fonts, colors, etc
+    */
+/* 
+.document-dates-plugin {
+    color: rgba(109, 157, 204, 0.7);
+    font-size: 0.75rem;
+}
+.document-dates-plugin .material-icons {
+    font-size: 0.9rem;
+} */
+
+/* Customized icons, just change the icon name.
+    Google Fonts Icons (2500+): https://fonts.google.com/icons
+
+    add_circle: add_circle, add_circle, note_add, more_time
+    update:     update, check_circle, task, refresh
+    person:     person, account_circle
+    group:      group, groups */
+/* 
+.document-dates-plugin .material-icons[data-icon="doc_created"]::before {
+    content: "add_circle";
+}
+.document-dates-plugin .material-icons[data-icon="doc_modified"]::before {
+    content: "update";
+}
+.document-dates-plugin .material-icons[data-icon="doc_author"]::before {
+    content: "person";
+}
+.document-dates-plugin .material-icons[data-icon="doc_authors"]::before {
+    content: "group";
+} */
+
+
+
+/* 2. Plug-in wrapper styles
+    including divider, margin, padding, etc
+    */
+/* 
+.document-dates-plugin-wrapper.document-dates-top {
+    border-bottom: 1px solid rgba(142, 142, 142, 0.15);
+}
+.document-dates-plugin-wrapper.document-dates-bottom {
+    border-bottom: none;
+} */
+
+
+
+/* 3. Tooltip styles
+    including theme, arrow, font, color, background color, etc
+    */
+
+/* Demo of the custom theme 'sorrel' and 'sublime', you can configure it in user.config.js (optional) */
+/* 
+.tippy-box[data-theme~='sorrel'] {
+    background-color: #F7E6E2;
+    color: #B1402A;
+}
+.tippy-box[data-theme~='sorrel'] > .tippy-arrow::before {
+    color: #F7E6E2;
+}
+
+.tippy-box[data-theme~='sublime'] {
+    background-color: #474747;
+    color: #F19D38;
+}
+.tippy-box[data-theme~='sublime'] > .tippy-arrow::before {
+    color: #474747;
+} */

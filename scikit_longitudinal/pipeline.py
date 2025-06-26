@@ -69,7 +69,7 @@ class LongitudinalPipeline(Pipeline):
         features are updated after each transformation in the pipeline. This is crucial for maintaining the temporal
         structure of longitudinal data as it passes through various preprocessing steps.
 
-        By default? (accessible via the string `"default"`) We cover it up for you, but you can also define your own logic to handle specific cases or
+        What should I put when I am not sure — What'ss the default? literally, `"default"`. We cover it up for you, but you can also define your own logic to handle specific cases or
         transformations that may alter the structure of the data. This flexibility is particularly useful when dealing
         with complex datasets or when using custom transformers that may not conform to the standard behaviour expected
         by the pipeline.
@@ -152,31 +152,45 @@ class LongitudinalPipeline(Pipeline):
             ```python
             from scikit_longitudinal.pipeline import LongitudinalPipeline
             from scikit_longitudinal.data_preparation import LongitudinalDataset
-            from scikit_longitudinal.estimators.tree import LexicoDecisionTreeClassifier
+            from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+            from scikit_longitudinal.data_preparation import MerWavTimePlus
 
             # Load dataset
-            dataset = LongitudinalDataset('./data/stroke.csv') # Replace with your dataset path
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
             dataset.load_data()
-            dataset.setup_features_group("elsa")
             dataset.load_target(target_column="stroke_w2")
+            dataset.setup_features_group("elsa")
             dataset.load_train_test_split(test_size=0.2, random_state=42)
 
-            # Define pipeline steps
+            # Define pipeline steps with LexicoDecisionTreeClassifier
             steps = [
-                ('classifier', LexicoDecisionTreeClassifier(feature_groups=dataset.feature_groups()))
+                ('MerWavTime Plus', MerWavTimePlus()), # Recall, a pipeline is at least two steps and the first one being a Data Transformation step. Here as we use a Longitudinal classifier, we need to use MerWavTimePlus, retaining the temporal dependency.
+                # Feel free to add more steps like a feature selection step.
+                ('classifier', LexicoDecisionTreeClassifier(features_group=dataset.feature_groups()))
             ]
+
+            # Note if you would like to do a pipeline of non-longitudinal classifier like RandomForestClassifier,
+            # rather than LexicoRandomForestClassifier, you can always use `Sklearn` pipeline directly, as follows:
+            # from sklearn.ensemble import RandomForestClassifier
+            # steps = [
+            #     ('AggrFunc', AggrFunc()),
+            #     ('classifier', RandomForestClassifier())
+            # ]
 
             # Initialize pipeline
             pipeline = LongitudinalPipeline(
                 steps=steps,
                 features_group=dataset.feature_groups(),
                 non_longitudinal_features=dataset.non_longitudinal_features(),
-                feature_list_names=dataset.data.columns.tolist()
+                feature_list_names=dataset.data.columns.tolist(),
+                update_feature_groups_callback="default"
             )
 
             # Fit and predict
             pipeline.fit(dataset.X_train, dataset.y_train)
             y_pred = pipeline.predict(dataset.X_test)
+            print(f"Predictions: {y_pred}")
             ```
 
         !!! example "Using a Custom Callback"

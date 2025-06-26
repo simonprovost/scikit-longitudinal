@@ -268,15 +268,16 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         !!! example "Basic Usage with Majority Voting"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
-            from scikit_longitudinal.data_preparation.sepwav import SepWav
+            from scikit_longitudinal.data_preparation import SepWav
             from sklearn.ensemble import RandomForestClassifier
             from sklearn.metrics import accuracy_score
+            from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import LongitudinalEnsemblingStrategy
 
             # Load dataset
-            dataset = LongitudinalDataset('./stroke.csv')
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
             dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
             dataset.setup_features_group("elsa")
-            dataset.load_target(target_column="stroke_wave_2")
             dataset.load_train_test_split(test_size=0.2, random_state=42)
 
             # Initialize classifier
@@ -303,16 +304,18 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         !!! example "Using Stacking Ensemble"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
-            from scikit_longitudinal.data_preparation.sepwav import SepWav
+            from scikit_longitudinal.data_preparation import SepWav
             from sklearn.ensemble import RandomForestClassifier
-            from sklearn.linear_model import LogisticRegression
             from sklearn.metrics import accuracy_score
+            from sklearn.linear_model import LogisticRegression
+            from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import LongitudinalEnsemblingStrategy
+
 
             # Load dataset
-            dataset = LongitudinalDataset('./stroke.csv')
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
             dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
             dataset.setup_features_group("elsa")
-            dataset.load_target(target_column="stroke_wave_2")
             dataset.load_train_test_split(test_size=0.2, random_state=42)
 
             # Initialize classifier
@@ -339,20 +342,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
         !!! example "Using Parallel Processing"
             ```python
-            from scikit_longitudinal.data_preparation import LongitudinalDataset
-            from scikit_longitudinal.data_preparation.sepwav import SepWav
-            from sklearn.ensemble import RandomForestClassifier
-            from sklearn.metrics import accuracy_score
-
-            # Load dataset
-            dataset = LongitudinalDataset('./stroke.csv')
-            dataset.load_data()
-            dataset.setup_features_group("elsa")
-            dataset.load_target(target_column="stroke_wave_2")
-            dataset.load_train_test_split(test_size=0.2, random_state=42)
-
-            # Initialize classifier
-            classifier = RandomForestClassifier()
+            # ... Similar to the previous example, but with parallel processing enabled ...
 
             # Initialize SepWav with parallel processing
             sepwav = SepWav(
@@ -360,17 +350,11 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
                 features_group=dataset.feature_groups(),
                 non_longitudinal_features=dataset.non_longitudinal_features(),
                 feature_list_names=dataset.data.columns.tolist(),
-                parallel=True,
-                num_cpus=4
+                parallel=True, # Enable parallel processing
+                num_cpus=4 # Specify number of CPUs to use (or -1 for all available CPUs)
             )
 
-            # Fit and predict
-            sepwav.fit(dataset.X_train, dataset.y_train)
-            y_pred = sepwav.predict(dataset.X_test)
-
-            # Evaluate
-            accuracy = accuracy_score(dataset.y_test, y_pred)
-            print(f"Accuracy: {accuracy}")
+            # ... Similar to the previous example, but with parallel processing enabled ...
             ```
     """
 

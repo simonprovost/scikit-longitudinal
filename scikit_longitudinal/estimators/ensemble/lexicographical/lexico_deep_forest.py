@@ -166,13 +166,19 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
         !!! example "Basic Usage with LexicoRandomForestClassifier"
 
             ```python
-            from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoDeepForestClassifier, LongitudinalEstimatorConfig, LongitudinalClassifierType
+            from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import LexicoDeepForestClassifier, \
+                LongitudinalEstimatorConfig, LongitudinalClassifierType
             import numpy as np
+            from sklearn.metrics import accuracy_score
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
 
-            # Dummy data
-            X = np.array([[0, 1, 0, 1], [1, 1, 1, 1], [0, 0, 0, 0]])
-            y = np.array([0, 1, 0])
-            features_group = [[0, 1], [2, 3]]
+            # Load dataset
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
+            dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
+            dataset.setup_features_group("elsa")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
+
 
             # Configure base estimators
             lexico_rf_config = LongitudinalEstimatorConfig(
@@ -181,17 +187,20 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
             )
 
             clf = LexicoDeepForestClassifier(
-                features_group=features_group,
+                features_group=dataset.feature_groups(),
                 longitudinal_base_estimators=[lexico_rf_config],
             )
-            clf.fit(X, y)
-            y_pred = clf.predict(X)
+
+            clf.fit(dataset.X_train, dataset.y_train)
+            y_pred = clf.predict(dataset.X_train)
             print(f"Predictions: {y_pred}")
             ```
 
         !!! example "Using Multiple Estimator Types"
 
             ```python
+            # ... Similar setup as above ...
+
             complete_random_lexico_rf = LongitudinalEstimatorConfig(
                 classifier_type=LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF,
                 count=2,
@@ -201,17 +210,23 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
                 longitudinal_base_estimators=[lexico_rf_config, complete_random_lexico_rf],
             )
             clf.fit(X, y)
+
+            # ... Similar prediction and evaluation as above ...
             ```
 
         !!! example "Disabling Diversity Estimators"
 
             ```python
+            # ... Similar setup as above ...
+
             clf = LexicoDeepForestClassifier(
                 features_group=features_group,
                 longitudinal_base_estimators=[lexico_rf_config],
-                diversity_estimators=False,
+                diversity_estimators=False, # Disable diversity estimators
             )
             clf.fit(X, y)
+
+            # ... Similar prediction and evaluation as above ...
             ```
 
     Notes:

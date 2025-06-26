@@ -1,6 +1,6 @@
 # :book: API Reference :book:
 
-# Welcome to `Scikit-Longitudinal`'s API reference :toolbox:
+# API reference :toolbox:
 
 ## :book: Overview of each module
 
@@ -58,7 +58,6 @@ ___________________
 - [Aggregation Function (AggrFunc)](data_preparation/aggregation_function.md)
 - [Separate Waves (SepWav)](data_preparation/sepwav.md)
 
-
 ## :wrench: Preprocessors
 ### :material-selection-search: Feature Selection
 - [Correlation Feature Selection Per Group](preprocessors/feature_selection/correlation_feature_selection_per_group.md) 
@@ -76,5 +75,35 @@ ___________________
 - [Longitudinal Stacking](estimators/ensemble/longitudinal_stacking.md) 
 - [Longitudinal Voting](estimators/ensemble/longitudinal_voting.md) 
 
-## :simple-jfrogpipelines:Pipeline
+## :simple-jfrogpipelines: Pipeline
 - [Longitudinal Pipeline](pipeline.md)
+
+<details>
+<summary>Dataset Used in Examples</summary>
+
+The following is a made-up longitudinal dataset (ELSA-style) used in the examples throughout this documentation. 
+It is not based on real data and is provided for illustrative purposes only:
+
+```csv
+smoke_w1,smoke_w2,cholesterol_w1,cholesterol_w2,age,gender,stroke_w2
+0,1,0,1,45,1,0
+1,1,1,1,50,0,1
+0,0,0,0,55,1,0
+1,1,1,1,60,0,1
+0,1,0,1,65,1,0
+0,1,0,1,45,1,0
+1,1,1,1,50,0,1
+0,0,0,0,55,1,0
+1,1,1,1,60,0,1
+0,1,0,1,65,1,0
+0,1,0,1,45,1,0
+1,1,1,1,50,0,1
+0,0,0,0,55,1,0
+1,1,1,1,60,0,1
+0,1,0,1,65,1,0
+0,1,0,1,45,1,0
+1,1,1,1,50,0,1
+0,0,0,0,55,1,0
+1,1,1,1,60,0,1
+```
+</details>

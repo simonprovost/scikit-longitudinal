@@ -120,7 +120,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
             from sklearn.datasets import load_iris
             from sklearn.model_selection import train_test_split
             from sklearn.metrics import accuracy_score
-            from scikit_longitudinal.estimators.tree import LexicoDecisionTreeClassifier
+            from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 
             # Load dataset
             X, y = load_iris(return_X_y=True)
@@ -144,17 +144,20 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
             ```python
             from scikit_longitudinal.pipeline import LongitudinalPipeline
             from scikit_longitudinal.data_preparation import LongitudinalDataset
-            from scikit_longitudinal.estimators.tree import LexicoDecisionTreeClassifier
+            from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+            from scikit_longitudinal.data_preparation import MerWavTimePlus
 
             # Load dataset
-            dataset = LongitudinalDataset('./data/stroke.csv')  # Replace with your dataset path
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
             dataset.load_data()
-            dataset.setup_features_group("elsa")
             dataset.load_target(target_column="stroke_w2")
+            dataset.setup_features_group("elsa")
             dataset.load_train_test_split(test_size=0.2, random_state=42)
 
             # Define pipeline steps with LexicoDecisionTreeClassifier
             steps = [
+                ('MerWavTime Plus', MerWavTimePlus()), # Recall, a pipeline is at least two steps and the first one being a Data Transformation step. Here as we use a Longitudinal classifier, we need to use MerWavTimePlus, retaining the temporal dependency.
                 ('classifier', LexicoDecisionTreeClassifier(features_group=dataset.feature_groups()))
             ]
 
@@ -163,7 +166,8 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
                 steps=steps,
                 features_group=dataset.feature_groups(),
                 non_longitudinal_features=dataset.non_longitudinal_features(),
-                feature_list_names=dataset.data.columns.tolist()
+                feature_list_names=dataset.data.columns.tolist(),
+                update_feature_groups_callback="default"
             )
 
             # Fit and predict

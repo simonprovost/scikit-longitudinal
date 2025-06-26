@@ -103,23 +103,46 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
 
             ```python
             from sklearn.metrics import accuracy_score
-            from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
+            from scikit_longitudinal.estimators.ensemble import LexicoRandomForestClassifier
             import numpy as np
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
 
-            # Dummy data: smoke and cholesterol over 2 waves
-            X = np.array([[0, 1, 0, 1], [1, 1, 1, 1], [0, 0, 0, 0]])
-            y = np.array([0, 1, 0])
-            features_group = [[0, 1], [2, 3]]  # [smoke_w1, smoke_w2], [chol_w1, chol_w2]
+            # Load dataset
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
+            dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
+            dataset.setup_features_group("elsa")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
 
-            clf = LexicoRandomForestClassifier(features_group=features_group)
-            clf.fit(X, y)
-            y_pred = clf.predict(X)
-            print(f"Accuracy: {accuracy_score(y, y_pred)}")
+            clf = LexicoRandomForestClassifier(features_group=dataset.feature_groups())
+            clf.fit(dataset.X_train, dataset.y_train)
+            y_pred = clf.predict(dataset.X_test)
+            print(f"Accuracy: {accuracy_score(dataset.y_test, y_pred)}")
             ```
 
         !!! example "Tuning Threshold Gain"
 
             ```python
+            from sklearn.metrics import accuracy_score
+            from scikit_longitudinal.estimators.ensemble import LexicoRandomForestClassifier
+            import numpy as np
+            from scikit_longitudinal.data_preparation import LongitudinalDataset
+
+            # Load dataset
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
+            dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
+            dataset.setup_features_group("elsa")
+            dataset.load_train_test_split(test_size=0.2, random_state=42)
+
+            clf = LexicoRandomForestClassifier(
+                features_group=dataset.feature_groups(),
+                threshold_gain=0.001 # Change this value to tune the model
+            )
+            clf.fit(dataset.X_train, dataset.y_train)
+            y_pred = clf.predict(dataset.X_test)
+            print(f"Accuracy: {accuracy_score(dataset.y_test, y_pred)}")
+
             clf = LexicoRandomForestClassifier(threshold_gain=0.001, features_group=[[0, 1], [2, 3]])
             clf.fit(X, y)
             y_pred = clf.predict(X)
@@ -132,12 +155,17 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
 
                 ```python
                 from sklearn.model_selection import GridSearchCV
+
+                # ... Similar setup as above ...
+
                 param_grid = {
                     'threshold_gain': [0.001, 0.002, 0.003],
                     'n_estimators': [50, 100, 200],
                 }
                 grid_search = GridSearchCV(
-                    LexicoRandomForestClassifier(features_group=[[0, 1], [2, 3]]),
+                    LexicoRandomForestClassifier(
+                        # features_group = ... Same as previous example ...
+                    )
                     param_grid,
                     cv=5,
                     scoring='accuracy',

@@ -246,10 +246,10 @@ class AggrFunc(DataPreparationMixin):
             from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 
             # Load dataset
-            dataset = LongitudinalDataset('./stroke.csv')
+            dataset = LongitudinalDataset('./stroke_longitudinal.csv')
             dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
             dataset.setup_features_group("elsa")
-            dataset.load_target(target_column="stroke_wave_2")
             dataset.load_train_test_split(test_size=0.2, random_state=42)
 
             # Initialize AggrFunc
@@ -262,7 +262,7 @@ class AggrFunc(DataPreparationMixin):
 
             # Apply transformation
             agg_func.prepare_data(dataset.X_train)
-            transformed_dataset, _, _, _ = agg_func.transform()
+            transformed_dataset, _, _, _ = agg_func._transform()
             ```
 
         !!! example "Using Custom Aggregation Function"
@@ -271,10 +271,10 @@ class AggrFunc(DataPreparationMixin):
             from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 
             # Load dataset
-            dataset = LongitudinalDataset('./stroke.csv')
+            dataset = LongitudinalDataset("./stroke_longitudinal.csv")
             dataset.load_data()
+            dataset.load_target(target_column="stroke_w2")
             dataset.setup_features_group("elsa")
-            dataset.load_target(target_column="stroke_wave_2")
             dataset.load_train_test_split(test_size=0.2, random_state=42)
 
             # Define custom function
@@ -285,25 +285,17 @@ class AggrFunc(DataPreparationMixin):
                 aggregation_func=custom_func,
                 features_group=dataset.feature_groups(),
                 non_longitudinal_features=dataset.non_longitudinal_features(),
-                feature_list_names=dataset.data.columns.tolist()
+                feature_list_names=dataset.data.columns.tolist(),
             )
 
             # Apply transformation
             agg_func.prepare_data(dataset.X_train)
-            transformed_dataset, _, _, _ = agg_func.transform()
+            transformed_dataset, _, _, _ = agg_func._transform()
             ```
 
         !!! example "Using Parallel Processing"
             ```python
-            from scikit_longitudinal.data_preparation import LongitudinalDataset
-            from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
-
-            # Load dataset
-            dataset = LongitudinalDataset('./stroke.csv')
-            dataset.load_data()
-            dataset.setup_features_group("elsa")
-            dataset.load_target(target_column="stroke_wave_2")
-            dataset.load_train_test_split(test_size=0.2, random_state=42)
+            # ... similar to the previous example, prepare data and transform ...
 
             # Initialize AggrFunc with parallel processing
             agg_func = AggrFunc(
@@ -311,13 +303,11 @@ class AggrFunc(DataPreparationMixin):
                 features_group=dataset.feature_groups(),
                 non_longitudinal_features=dataset.non_longitudinal_features(),
                 feature_list_names=dataset.data.columns.tolist(),
-                parallel=True,
-                num_cpus=4
+                parallel=True, # Enable parallel processing
+                num_cpus=4 # Specify number of CPUs (optional, -1 for all available)
             )
 
-            # Apply transformation
-            agg_func.prepare_data(dataset.X_train)
-            transformed_dataset, _, _, _ = agg_func.transform()
+            # ... similar to the previous example, prepare data and transform ...
             ```
     """
 

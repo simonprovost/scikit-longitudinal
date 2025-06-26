@@ -3,11 +3,15 @@ hide:
   - navigation
 ---
 
-## ⏳ Incorporating Temporal Dependencies in Longitudinal Datasets
+# Temporal Dependency
+# ⏳ Understanding Temporal Dependencies in Longitudinal Datasets
 
-Longitudinal data inherently has temporal dependencies, which are critical for identifying underlying patterns. 
-This guide will show you how to encode these temporal correlations in your datasets using two fundamental notions 
-introduced by `Scikit-Longitudinal`.
+In the following, we will look at the only component of `Sklong` that is completely novel compared to previous
+libraries. Our explanation covers how we generalise the use of temporal dependencies in longitudinal datasets across 
+all `Sklong` algorithms, methods, and primitives.
+
+This reading aims to help you establish up longitudinal datasets in 'Sklong' that allow you to utilise any algorithm
+without worrying about temporal dependencies. The primitives will handle this based on their design.
 
 !!! quote "Common Shared Objects"
 
@@ -28,7 +32,7 @@ introduced by `Scikit-Longitudinal`.
     The following sections will explain how to configure these objects for your datasets.
 
 
-!!! tip "Representing Longitudinal Data Linearly"
+!!! tip "Representing Longitudinal Data Linearly —— Wide format instead of Long format"
 
     Instead of representing the same subject across multiple rows—where, for example, row two for a subject 
     represents wave 2 for each features, and row three represents wave 3, we represent the same subject across columns. In this format, the column names define the wave/time-point for the data features of each subject.
@@ -133,8 +137,7 @@ dataset.load_train_test_split()
 
 # Manually set your temporal dependencies
 dataset.setup_features_group(
-    features_group=[[0,1],[2,3]],
-    non_longitudinal_features=[4,5]
+    input_data=[[0,1],[2,3]],
 )
 
 print(f"Features group: {dataset.feature_groups(names=True)}")
@@ -145,8 +148,12 @@ print(f"Non-longitudinal features: {dataset.non_longitudinal_features(names=True
 
 # Pre-set `features_group` and `non_longitudinal_features`
 
-We currently have a pre-set configuration for the `features_group` and `non_longitudinal_features` in the [English Longitudinal Study of Ageing (ELSA)](https://www.elsa-project.ac.uk/) database. 
-The `ELSA` database is an ageing-related diseases longitudinal database that can be accessed via this link: [ELSA](https://www.elsa-project.ac.uk/). 
+Presets are configurations that can be used to quickly set up the `features_group` and `non_longitudinal_features`
+based on a given popular database.
+
+We currently have a pre-set configuration for the `features_group` and `non_longitudinal_features` in 
+the [English Longitudinal Study of Ageing (ELSA)](https://www.elsa-project.ac.uk/) database. The `ELSA` database is an ageing-related diseases 
+longitudinal database that can be accessed via this link: [ELSA](https://www.elsa-project.ac.uk/). 
 
 > The `ELSA` database tracks core participants, who are 50 years of age or older and reside in the United Kingdom, 
 > through repeated interviews. For instance, biomedical data collected every four years by a nurse or health

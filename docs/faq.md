@@ -3,11 +3,10 @@ hide:
   - navigation
 ---
 
-## 👀 Frequently Asked Questions
+# 👀 Frequently Asked Questions
+# 👀 Frequently Asked Questions
 
-Here are some common questions about `Scikit-Longitudinal` and their answers.
-
-!!! info "What is Longitudinal Data?"
+!!! info "What is a Longitudinal Data?"
     Longitudinal Data refers to observations made on multiple variables of interest for the same subject 
     over an extended period of time. This type of data is particularly valuable for studying 
     changes and trends, as well as making predictions about future outcomes. For example, in 
@@ -34,7 +33,7 @@ Here are some common questions about `Scikit-Longitudinal` and their answers.
     [GitHub](https://github.com/simonprovost/scikit-longitudinal).
 
 !!! note "Where can I find more resources?"
-    If you're looking for more information on how to use Scikit-Longitudinal, check out our [API Reference](API/index.md) and [Examples](examples/index.md) pages.
+    If you're looking for more information on how to use Scikit-Longitudinal, check out our [API Reference](API/index.md).
 
 !!! question "What if I have a question that isn't answered here?"
     If you have a question that isn't answered here, feel free to reach out to us on 
@@ -47,7 +46,7 @@ Here are some common questions about `Scikit-Longitudinal` and their answers.
     -    _Authors:_ [Simon Provost](https://github.com/simonprovost) & [Alex Freitas](https://www.kent.ac.uk/computing/people/3057/freitas-alex)
     -    _Github Link:_ [Auto-Sklong](https://github.com/simonprovost/Auto-Sklong)
     -   _Description:_ Auto-Sklong - An automated machine learning pipeline for longitudinal data. Leveraging Scikit-Longitudinal and Auto-Sklearn with a novel Search Space tailored to the Longitudinal ML classification task.
-    -   _Note:_: Sklong authors are Auto-Sklong authors.
+    -   _Note_: Sklong authors are Auto-Sklong authors.
 !!! quote "Auto-prognosis"
     -    _Open-source:_ ✅
     -    _Authors:_ [VanderSchaar Lab](https://www.vanderschaar-lab.com/)
@@ -65,3 +64,10 @@ Here are some common questions about `Scikit-Longitudinal` and their answers.
     -    _Authors:_ [LongiTools](https://longitools.org/)
     -    _Official Website:_ [LongiTools](https://longitools.org/)
     -   _Description:_ A European research project studying the interactions between environmental, lifestyle and biological factors to determine the risks of chronic cardiovascular and metabolic diseases.
+
+!!! quote "Want your project to be featured here?"
+    -    _Open-source:_ ✅ or ⏳ or ❌
+    -    _Authors:_ ``Your Name(s)``
+    -    _Github Link:_: ``Your Project Link``
+    -   _Description:_ ``A brief description of your project``
+    -   _How To?_: Open An Issue and We'll Add It Here!
