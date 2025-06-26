@@ -1,0 +1,98 @@
+
+/* 1. Plug-in styles
+    including icons, fonts, colors, etc
+    */
+.document-dates-plugin {
+    color: rgba(142, 142, 142, 0.7);
+    font-size: 0.75rem;
+    padding: 0.2rem 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+.document-dates-plugin span:not(:first-child) {
+    margin-left: 1.5rem;
+}
+.document-dates-plugin span {
+    display: inline-flex;
+    align-items: center;
+}
+.document-dates-plugin .material-icons {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-right: 0.3rem;
+}
+
+/* Customized icons, just change the icon name.
+    Google Fonts Icons (2500+): https://fonts.google.com/icons  */
+.document-dates-plugin .material-icons[data-icon="doc_created"]::before {
+    /* add_circle, add_circle, note_add, add */
+    content: "add_circle";
+}
+.document-dates-plugin .material-icons[data-icon="doc_modified"]::before {
+    /* update, check_circle, task, refresh */
+    content: "update";
+}
+.document-dates-plugin .material-icons[data-icon="doc_author"]::before {
+    /* person, account_circle */
+    content: "person";
+}
+.document-dates-plugin .material-icons[data-icon="doc_authors"]::before {
+    /* group, groups */
+    content: "group";
+}
+
+
+
+/* 2. Plug-in wrapper styles
+    including divider, margin, padding, etc
+    */
+.document-dates-plugin-wrapper.document-dates-top {
+    margin: -1rem 0 1rem 0;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(142, 142, 142, 0.15);
+}
+.document-dates-plugin-wrapper.document-dates-bottom {
+    margin: 1rem 0;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(142, 142, 142, 0.15);
+}
+
+/* Hide the footnote divider immediately following the date information with the CSS adjacent sibling selector */
+.document-dates-plugin-wrapper + .footnote hr {
+    display: none;
+}
+
+
+
+/* 3. Tooltip styles
+    including theme, arrow, font, color, background color, etc
+    */
+
+/* .tippy-box {
+    font-size: 12px;
+} */
+
+/* Demo of the custom theme 'tomato' (optional) */
+.tippy-box[data-theme~='tomato'] {
+    background-color: tomato;
+    color: white;
+}
+/* Customize the arrow corresponding to the theme tomato */
+.tippy-box[data-theme~='tomato'] > .tippy-arrow::before {
+    color: tomato;
+}
+/* 
+Recommended Colors:
+    tomato: rgb(241, 112, 91);
+    mung_bean: rgb(122, 145, 109);
+    cloisonné: rgb(15, 89, 164);
+    soft_blue: rgb(16, 104, 152);
+*/
+
+/* Customize arrows, resize */
+.tippy-arrow::before {
+    -webkit-transform: scale(0.75);
+    -ms-transform: scale(0.75);
+    transform: scale(0.75);
+}
