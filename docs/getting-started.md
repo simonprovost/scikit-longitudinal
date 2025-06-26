@@ -3,34 +3,64 @@ hide:
   - navigation
 ---
 
-## 💡 Getting Started with `Scikit-longitudinal`
+# 💡 `Scikit-longitudinal`, in a nutshell!
+# 💡 `Scikit-longitudinal`, in a nutshell!
 
-Longitudinal datasets contain information about the same cohort of individuals (instances) over time, with the same set
-of features (variables) repeatedly measured across different time points (also called `waves`)[^1][^2][^3].
+Biomedical research often uses longitudinal data with repeated measurements of variables across time (e.g. cholesterol
+measured across time), which is challenging for standard machine learning algorithms due to intrinsic temporal
+dependencies. 
 
-`Scikit-longitudinal` (Sklong) is a machine learning library designed to analyse longitudinal data, also known as _Panel
-data_ in certain fields. Today, Sklong focuses on Longitudinal Machine Learning _Classification_ tasks. It offers tools
-and models for `processing`, `analysing`, and `classifying` longitudinal tabular data, with a user-friendly 
-interface that integrates with the `Scikit-learn` ecosystem.
+`Scikit-longitudinal` (abbreviated `Sklong`, pronounced /ˌɛs keɪ ˈlɒŋ/ or "Ess-kay-long" and /ˌsaɪ kɪt
+ˌlɒndʒɪˈtjuːdɪnəl/ or "Sky-kit lon-ji-TOO-din-ul") is a machine learning library helping out in anlysing longitudinal 
+data, also known as _panel data_ in some fields. `Sklong` specialises in longitudinal machine learning _classification_ tasks,
+offering user-friendly tools for `processing`, `analyzing`, and `classifying` longitudinal tabular data, seamlessly
+integrating with the `Scikit-learn` ecosystem.
 
-Let's first jump into the installation, and then we will explore the first steps with code and some common questions.
-We then suggest to explore the API reference and the examples to get a better understanding of the library.
+Note that while Longitudinal datasets have a temporal component, other types of datasets, such as time series,
+also have a temporal component but are not considered longitudinal datasets. Time series data typically involves
+a single variable measured at regular intervals over time, while longitudinal datasets involve multiple variables
+measured across the same cohort of individuals at different time points. More is discussed in the [FAQ](https://scikit-longitudinal.readthedocs.io/latest//faq/).
+However, I would like to highlight that time points are therefore considered as `waves` in `Sklong` [^1][^2][^3].
+
+To start your Longitudinal Machine Learning journey with `Sklong`, you first will have to install the library.
 
 ---
 
 ## 🛠️ Installation
 
 !!! warning "Operating System Support"
-    `Scikit-longitudinal` is currently supported on `OSX` (MacOS) and `Linux`. `Windows` users should use `notebooks` or `Docker` with a `Linux` (
-    Ubuntu) distribution due to limitations with a dependency library. For more details, see
-    the [Scikit-Lexicographical-Trees GitHub repository](https://github.com/simonprovost/scikit-lexicographical-trees). Feel
-    free to contribute a Windows-based wheel to unlock this potential!
+    `Scikit-longitudinal` is currently supported on `OSX` (MacOS) and `Linux`. 
+    `Windows` users should use `notebooks` or `Docker` with a `Linux` (
+    Ubuntu) distribution due to limitations with a dependency library. For more details, open an issue, I would be 
+    happy to discuss this out further.
 
-### Installation Methods
+!!! important "Python Version Compatibility"
+    `Scikit-longitudinal` is currently compatible with Python versions `3.9` and `3.10`.
+    Ensure you have one of these versions installed before proceeding with the installation.
+
+    below we discuss within some installation methods how to run with a specific Python version, such as `3.9`.
 
 Please, start by choosing the installation method that best suits your needs:
 
-=== ":simple-jupyter: Jupyter Notebook (~ 1 line)"
+=== ":simple-pypi: PyPi (Classic Install)"
+
+    To install `Scikit-longitudinal`, you can use `pip`:
+
+    ```bash
+    pip install scikit-longitudinal
+    ```
+
+    This will install the latest version of `Scikit-longitudinal` from the Python Package Index (PyPI).
+
+    If you want to install a specific version, you can specify it like this:
+
+    ```bash
+    pip install scikit-longitudinal==0.1.0  # Replace with the desired version
+    ```
+
+    Please note that here we assume you have a compatible Python version installed (3.9 or 3.10). 
+
+=== ":simple-jupyter: Jupyter Notebook (~ 1 line) via `UV`"
 
     To run `Jupyter lab` with `Scikit-longitudinal`, we recommend using `UV`, a fast and efficient Python package 
     manager that simplifies environment and dependency management.
@@ -54,6 +84,7 @@ Please, start by choosing the installation method that best suits your needs:
 
         ```bash
         uv python install 3.9
+        uv python pin 3.9
         ```
         This command will install Python 3.9 and set it as the default version for your environment.
 
@@ -87,7 +118,8 @@ Please, start by choosing the installation method that best suits your needs:
     To use `Scikit-longitudinal` in `Google Colab`, follow these steps due to compatibility requirements:
     
     You also can follow the follwing gist as we reproduce the below's steps: 
-    [gist](https://gist.github.com/simonprovost/356030bd8f1ea077bdbc120fdc116c16#file-support_39_scikit_longitudinal_in_google_colab-ipynb) –– or –– [Open in Google Colab :simple-googlecolab:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
+    [gist](https://gist.github.com/simonprovost/356030bd8f1ea077bdbc120fdc116c16#file-support_39_scikit_longitudinal_in_google_colab-ipynb) 
+    –– or –– [Open in Google Colab :simple-googlecolab:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
     
     Preliminary steps:
     
@@ -131,6 +163,13 @@ Please, start by choosing the installation method that best suits your needs:
 
        ```bash
        !pip uninstall scikit-learn -y
+       ```
+
+    5. Remove & Re-Install `Scikit-lexicographical-trees`, which is the modified version of `Scikit-learn` used by `Scikit-longitudinal`:
+
+       ```bash
+       !pip uninstall scikit-lexicographical-trees -y
+       !pip install scikit-lexicographical-trees
        ```
 
     After these steps, you can use `Scikit-longitudinal` in your Colab notebook 🎉
@@ -269,18 +308,24 @@ Please, start by choosing the installation method that best suits your needs:
 
 ---
 
-## 🚀 First Steps with Code
+## 🚀 Quick Start (Code)
 
-To perform longitudinal machine learning classification with `Sklong`, use the `LongitudinalDataset` class to prepare
-your dataset (data, temporal vectors, etc.). Then, analyse your data with estimators like
-`LexicoGradientBoostingClassifier`.
+`Sklong` has numerous primitives to deal with longitudinal machine learning classification tasks. To begin, use the
+`LongitudinalDataset` class to prepare your dataset, including `data` and `temporal vectors`. To train a machine learning
+classifier on your data, use estimators such as `LexicoGradientBoostingClassifier`.
 
 > "The `LexicoGradientBoostingClassifier` in a nutshell: a variant
 > of [Gradient Boosting](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)
 > tailored for longitudinal data, using a lexicographical approach that prioritises recent `waves` over older ones in
 > certain scenarios[^3]."
 
-Here's a basic example:
+!!! tip "Where's the data at?"
+    The `scikit-longitudinal` library does not include datasets by default. Mainly due to the privacy reason.
+    You can use your own longitudinal datasets
+    or download publicly available ones, such as the [ELSA dataset](https://www.elsa-project.ac.uk/). 
+    If synthetic datasets is of interest, open an issue, I would be happy to discuss this out further.
+
+Here's our basic workflow example:
 
 ```python
 from scikit_longitudinal.data_preparation import LongitudinalDataset
@@ -330,19 +375,25 @@ print(classification_report(dataset.y_test, y_pred))
     Use pre-sets for known datasets like ELSA or define them manually based on your data structure. Refer to
     the [Temporal Dependency](https://scikit-longitudinal.readthedocs.io/latest//temporal-dependency/) section.
 
-!!! question "Where can I find more examples?"
-    Explore the [Examples](https://scikit-longitudinal.readthedocs.io/latest//examples/) section for additional use cases
-    and code snippets.
-
 !!! question "How do I tune hyperparameters?"
     Check the [API Reference](https://scikit-longitudinal.readthedocs.io/latest/API/) for a complete list of
     hyperparameters and their meanings.
 
-!!! warning "Neural Network Models"
+!!! question "Neural Network Models?"
     Scikit-longitudinal currently does not support neural network-based models. For similar projects that do, see
     the [FAQ](https://scikit-longitudinal.readthedocs.io/latest//faq/) section.
 
 ---
+
+## What's Next?
+
+Next, we highly recommend that you explore the `Temporal Dependency` section, which provides a comprehensive
+understanding of how to set up temporal dependencies in your longitudinal datasets. This is crucial for
+building effective longitudinal machine learning models with `Scikit-longitudinal`.
+
+Following that? You could play it all by walking through the `API Reference` section, which provides detailed
+information on the various estimators, primitives, and hyperparameters available in `Scikit-longitudinal`.
+___
 
 [^1]: Kelloway, E.K. and Francis, L., 2012. Longitudinal research and data analysis. In Research methods in occupational
 health psychology (pp. 374-394). Routledge.

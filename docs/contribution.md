@@ -3,9 +3,8 @@ hide:
   - navigation
 ---
 
-## 🤝 Contributing to Scikit-longitudinal
-
-Welcome to the contributing guide for **Scikit-longitudinal**! We're thrilled to have you join us in enhancing this machine learning library tailored for longitudinal data analysis. This guide walks you through setting up your environment, adding new components, and submitting your contributions effectively.
+# 🤝 Contributing to `Sklong`
+# 🤝 Contributing to `Sklong`
 
 !!! important "Project Status"
     Scikit-longitudinal is actively evolving. Expect changes, and if you encounter issues, please open a [GitHub Issue](https://github.com/simonprovost/scikit-longitudinal/issues).
@@ -249,7 +248,3 @@ Validate your changes:
 ```bash
 uv run pytest -sv tests/
 ```
-
----
-
-## 🎉 Cheeeers!
