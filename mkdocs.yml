@@ -55,12 +55,22 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - custom.js
 
 plugins:
   - privacy
   - social
   - search
   - minify
+  - document-dates:
+      position: bottom
+      type: date
+      locale: en
+      date_format: '%Y-%m-%d'
+      time_format: '%H:%M:%S'
+      exclude:
+        - index.md
+      show_author: true
   - mkdocstrings:
       handlers:
         python:
@@ -133,7 +143,7 @@ nav:
   - "Getting Started": getting-started.md
   - "Temporal Dependency": temporal_dependency.md
   - "API Reference":
-    - "Overview": API/index.md
+    - "API Reference": API/index.md
     - "Data Preparation":
         - "Longitudinal Dataset": API/data_preparation/longitudinal_dataset.md
     - "Data Transformation":
@@ -153,12 +163,9 @@ nav:
         - "Lexicographical Deep Forest": API/estimators/ensemble/lexico_deep_forest.md
         - "Lexicographical Gradient Boosting": API/estimators/ensemble/lexico_gradient_boosting.md
         - "Nested Trees": API/estimators/ensemble/nested_trees.md
-        - "Longitudinal Stacking": API/estimators/ensemble/longitudinal_stacking.md
-        - "Longitudinal Voting": API/estimators/ensemble/longitudinal_voting.md
     - "Pipeline":
       - "Longitudinal Pipeline": API/pipeline.md
-  - "Examples": examples/index.md
   - "Contributing": contribution.md
-  - "Experiments": experiments.md
-  - "Release History": https://github.com/simonprovost/scikit-longitudinal/releases
+  - "Releases": https://github.com/simonprovost/scikit-longitudinal/releases
   - "FAQ": faq.md
+  - "Publications": publications.md
