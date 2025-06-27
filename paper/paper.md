@@ -32,7 +32,7 @@ working with longitudinal datasets.
 # Summary
 
 `Scikit-Longitudinal` is an open-source Python library that enhances machine learning for longitudinal data
-classification and integrates flawlessly with the `Scikit-Learn` environment [@pedregosa2011scikit].
+classification and integrates with the `Scikit-Learn` environment [@pedregosa2011scikit].
 
 Longitudinal data, which consists of repeated measurements of variables across time points (referred to as
 `waves` [@ribeiro2019mini]), is extensively utilised in fields such as medicine, social sciences, and economics. Unlike
@@ -53,7 +53,8 @@ processing [@kelloway2012longitudinal].
 - **Preprocessing**: Longitudinal-data-aware feature selection primitives, such
   as
   `CFS-Per-Group` [@pomsuwan2017feature],
-  utilising the temporal information in the data to proceed with feature selection techniques (see feature selection review in [@theng2024feature]).
+  utilising the temporal information in the data to proceed with feature selection techniques (see feature selection
+  review in [@theng2024feature]).
 
 - **Estimators**: Longitudinal-data-aware classifiers [@kotsiantis2007supervised] [@ribeiro2019mini],
   such as
@@ -72,8 +73,8 @@ longitudinal data analysis.
 
 Finally, `Scikit-Longitudinal` can also be abbreviated `Sklong`, and is available
 on [PyPI](https://pypi.org/project/Scikit-longitudinal/). Feel free to explore the
-[official documentation](https://scikit-longitudinal.readthedocs.io/latest/getting-started/) for various
-installation methods, including locally, via `Colab`, `Marimo`, and others.
+[official documentation](https://scikit-longitudinal.readthedocs.io/latest/) for various
+installation methods, including locally, via `Jupyter`, `Colab`, and others.
 
 # Longitudinal Classification
 
@@ -98,77 +99,51 @@ different features directly. Note that, in the type of longitudinal classificati
 the features are longitudinal, but the class variable is not; i.e.,
 the goal is to predict the class label of an instance at a single time point (usually the most recent wave).
 
-## Approaches to Longitudinal Classification
-
-There are two broad approaches for coping with longitudinal data [@ribeiro2019mini]:
-
-1. **Data Transformation**  
-   This approach involves preprocessing methods that convert longitudinal data into a standard, "flattened"
-   non-longitudinal format. This transformation enables the use of any standard, non-longitudinal classification
-   algorithm on the data. However, this approach may result in the loss of relevant information regarding how a
-   feature's values change over time.
-
-2. **Algorithm Adaptation**  
-   This approach entails modifying classification algorithms to directly handle temporal dependencies inherent in
-   longitudinal datasets. This preserves the temporal dynamics of the data but may require more complex modelling
-   techniques.
+There are two broad approaches for coping with longitudinal data [@ribeiro2019mini]: (1) **Data Transformation**:
+this approach involves preprocessing methods that convert longitudinal data into a standard, "flattened"
+non-longitudinal format. This transformation enables the use of any standard, non-longitudinal classification
+algorithm on the data. However, this approach may result in the loss of relevant information regarding how a
+feature's values change over time. (2) **Algorithm Adaptation**: this approach entails modifying classification
+algorithms to directly handle temporal dependencies inherent in
+longitudinal datasets. This preserves the temporal dynamics of the data but may require more complex tooling.
 
 # Statement of Need
 
-The temporal nature of longitudinal data poses significant challenges for conventional machine learning techniques,
-which typically assume independence among observations. Standard libraries such as `Scikit-learn` do not inherently
-support longitudinal data, resulting in inefficient or inaccurate analyses. Consequently, there is a pressing need for a
-dedicated library that offers a comprehensive suite of tools for longitudinal data, encompassing data preparation,
-transformation, preprocessing, and estimation (model learning).
+The temporal aspect of longitudinal data complicates conventional machine learning techniques, which presume observation
+independence. Standard libraries, such as `Scikit-learn`, lack support for longitudinal data, resulting in inefficient
+or inaccurate analysis.
+To the best of our knowledge, there is no package in the `Scikit-learn` ecosystem that offers a straightforward solution
+for longitudinal classification.
 
-The R programming language (compared to the Python sphere) has seen the development of numerous statistical packages for longitudinal data
-over the years, including `nlme` [@pinheiro2000mixed] and `GPBoost` [@GPBoost]. However, these packages are primarily
-tailored for statistical models like linear mixed-effects models and do not seamlessly integrate with machine learning
-workflows. Furthermore, they often lack the flexibility and modularity characteristic of `Scikit-learn`, complicating
-their incorporation into existing machine learning pipelines (which are predominantly developed in Python). This underscores the need for a library (primarily in Python) that not only
-provides tools for longitudinal data but also ensures compatibility with established machine learning frameworks.
+On one hand, compared to Python, the R programming language community has developed many statistical packages for
+longitudinal data,
+such as `nlme` [@pinheiro2000mixed] and `GPBoost` [@GPBoost]. However, these packages are primarily designed for
+statistical models, such as linear mixed-effects models, and do not fully interact with machine learning workflows.
+Additionally, they often lack the flexibility and modularity of `Scikit-learn`, making them difficult to integrate
+into existing machine learning pipelines (often created in Python). Now back to Python, while other machine learning
+systems, like
+Auto-Prognosis [@autoprognosis], focus on longitudinal classification among many other things,
+`Scikit-learn` offers simplicity and convenience of use that these systems are often lacking.
 
-Additionally, although there are a handful of machine learning-centric tools like Auto-Prognosis [@autoprognosis] that
-to some extent address longitudinal classification, they often do not match the simplicity and out-of-the-box usability
-of `Scikit-learn`. This gap
-motivated the development of `Scikit-Longitudinal`, which aims to provide a straightforward and integrated solution for
-longitudinal classification within the `Scikit-learn` ecosystem.
-
-As a result, the introduction of `Scikit-longitudinal` creates an ecosystem for the longitudinal data analysis
-community,
-providing longitudinal-data-processing primitives that can be used for implementing existing and new longitudinal
-classification algorithms or pipelines, in a fast and reliable way (from a software development perspective),
-whilst also providing compatibility with the well-known `Scikit-Learn` library.
-
-# The story behind `Scikit-Longitudinal`
-
-`Scikit-Longitudinal` (`Sklong`) was initially developed as part of a PhD project at the University of Kent, United
-Kingdom. Specifically, it was created as a library to be used as part of an Automated Machine Learning (AutoML) system
-for longitudinal classification, called `Auto-Sklong` [@provost2024auto].
-
-`Auto-Sklong` is among the first AutoML systems designed for longitudinal classification. It offers a user-friendly
-interface, and it leverages the functionality of both `Sklong` and `Scikit-learn` for automating the choice of the best
-longitudinal classification pipeline (and its best hyperparameter settings) for a given input longitudinal
-classification dataset.
-
-Although `Auto-Sklong` successfully utilises both the `Sklong` and the `Scikit-learn` libraries, the `Sklong` library
-can also be used stand alone as an out-of-the-box software tool for longitudinal data analysis.
+As a result, given the lack of Python-based libraries, integration with the popular `Scikit-Learn` API, and
+the absence of out-of-the-box solutions for longitudinal classification, there is a clear need for a library that
+provides tools for longitudinal data preparation, transformation, preprocessing, and estimation (model learning).
 
 # Limitations and Future Work
 
 At present, `Scikit-Longitudinal` primarily focuses on the classification task and does not yet include support
-for regression or neural network models. Future development could expand the library to encompass these areas, thereby
-broadening its applicability.
+for regression or neural network models. Future development could expand the library to encompass these areas.
 
 # Acknowledgements
 
-We extend our gratitude to the authors and contributors of `Scikit-learn` for their pioneering work in the machine
-learning
-community. We also acknowledge the NeuroData team for their contributions to
-`Scikit-Tree` [@Li_treeple_Modern_decision-trees], which facilitates the customisation of `Scikit-learn`'s Cython trees.
-Furthermore, we are indebted to the researchers whose work on longitudinal machine learning primitives has been
-instrumental in the development of `Scikit-Longitudinal`, including Dr. Tossapol
-Pomsuwan [@pomsuwan2017feature; @pomsuwan2018featureversion2], Dr. Sergey Ovchinnik and Dr. Fernando
-Otero [@ovchinnik2022nested], and Dr. Caio Ribeiro [@ribeiro2019mini; @ribeiro2022new; @Ribeiro2024].
+We thank the authors and contributors of `Scikit-learn` for their pioneering work in machine learning. We thank the
+NeuroData team for their contributions to `Scikit-Tree` [@Li_treeple_Modern_decision-trees], which enables modification
+of `Scikit-learn`'s Cython trees for optimisation performance. We are grateful to the researchers who contributed to the
+development of many primitives within `Scikit-Longitudinal`, including Dr. Tossapol
+Pomsuwan [@pomsuwan2017feature; @pomsuwan2018featureversion2], Dr. Sergey Ovchinnik & Dr. Fernando Otero [@ovchinnik2022nested],
+and Dr. Caio Ribeiro [@ribeiro2019mini; @ribeiro2022new; @Ribeiro2024].
+
+This work was completed as part of a PhD project [@provost2024auto] at the University of Kent, UK, 
+under the supervision of Prof. Alex A. Freitas.
 
 # References
