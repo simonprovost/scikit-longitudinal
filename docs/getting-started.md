@@ -4,6 +4,7 @@ hide:
 ---
 
 # 💡 `Scikit-longitudinal`, in a nutshell!
+
 # 💡 `Scikit-longitudinal`, in a nutshell!
 
 Biomedical research often uses longitudinal data with repeated measurements of variables across time (e.g. cholesterol
@@ -60,10 +61,35 @@ Please, start by choosing the installation method that best suits your needs:
     If you want to install a specific version, you can specify it like this:
 
     ```bash
-    pip install scikit-longitudinal==0.1.0  # Replace with the desired version
+    pip install scikit-longitudinal==0.0.8  # Replace with the desired version
     ```
 
-    Please note that here we assume you have a compatible Python version installed (3.9 or 3.10). 
+    Please note that here we assume you have a compatible Python version installed (3.9) and a working environment (e.g Conda).
+
+=== ":simple-python: Conda (CondaForge)"
+
+    To install `Scikit-longitudinal` using `Conda`, follow these steps:
+
+    1. Open your terminal or Anaconda Prompt.
+    2. Create a new Conda environment with Python 3.9:
+
+       ```bash
+       conda create --name sklong -c conda-forge python=3.9 
+       ```
+
+    3. Activate the environment:
+
+       ```bash
+       conda activate sklong
+       ```
+
+    4. Install `Scikit-longitudinal`:
+
+       ```bash
+       pip install scikit-longitudinal
+       ```
+
+    This will install `Scikit-longitudinal` in your newly created Conda environment.
 
 === ":simple-jupyter: Jupyter Notebook (~ 1 line) via `UV`"
 
@@ -116,7 +142,6 @@ Please, start by choosing the installation method that best suits your needs:
         - [UV Is All You Need](https://dev.to/astrojuanlu/python-packaging-is-great-now-uv-is-all-you-need-4i2d)
         - [State of the Art Python 2024](https://4zm.org/2024/10/28/state-of-the-art-python-in-2024.html)
         - [Data Scientist, From School to Work](https://towardsdatascience.com/data-scientist-from-school-to-work-part-i/)
-
 
 === ":simple-googlecolab: Google Colab (~5 lines)"
 
@@ -264,52 +289,9 @@ Please, start by choosing the installation method that best suits your needs:
     
     ---
     
-    #### 🐾 Installing `Scikit-longitudinal` on Apple Silicon Macs – Troubleshooting
-    
-    Apple Silicon-based Macs require running under an `x86_64` architecture to ensure proper installation and
-    functioning of `Scikit-longitudinal`. This is primarily due to the `Deep-Forest` dependency being incompatible 
-    with Apple Silicon.
-    
-    Note below we us **UV** yet you can use any other virtual environment manager of interest as long as you are able 
-    to switch between architectures (see step 1).
-    
-    **Steps to Configure:**
-    
-    1. **Start a Terminal Session Under `x86_64` Architecture**:
-       ```bash
-       arch -x86_64 zsh
-       ```
-    
-    2. **Install an `x86_64` Compatible Python Version with UV**:
-       ```bash
-       uv python install cpython-3.9.21-macos-x86_64-none
-       uv python pin cpython-3.9.21-macos-x86_64-none
-       ```
-    
-    3. **Create and Activate a Virtual Environment**:
-       ```bash
-       uv venv
-       source .venv/bin/activate
-       ```
-    
-    4. **Install `Scikit-longitudinal`**:
-       ```bash
-       uv pip install scikit-longitudinal # Can try uv add scikit-longitudinal at this point!
-       ```
-    
-    5. **Run Tests**:
-       ```bash
-       uv run pytest scikit_longitudinal/ --cov=./ --cov-report=html --cov-config=.coveragerc --cov-report=html:htmlcov/scikit_longitudinal -s -vv --capture=no
-       ```
-    
-    Refer to [UV documentation](https://docs.astral.sh/uv/) for further details.
-    
-    ---
-    
     ### 💻 Developer Notes
     
     For developers looking to contribute, please refer to the `Contributing` section of the [documentation](https://scikit-longitudinal.readthedocs.io/latest//).
-
 
 ---
 
@@ -410,3 +392,43 @@ ARIAL), held as part of IJCAI-2019 (num. of pages: 5).
 [^3]: Ribeiro, C. and Freitas, A.A., 2024. A lexicographic optimisation approach to promote more recent features on
 longitudinal decision-tree-based classifiers: applications to the English Longitudinal Study of Ageing. Artificial
 Intelligence Review, 57(4), p.84.
+
+
+## 🚨 Troubleshooting
+
+=== ":simple-apple: Install On Apple Silicon Chips"
+    Apple Silicon-based Macs require running under an `x86_64` architecture to ensure proper installation and
+    functioning of `Scikit-longitudinal`. This is primarily due to the `Deep-Forest` dependency being incompatible
+    with Apple Silicon (ref Github Issue with `Deep Forest`
+    authors [here](https://github.com/LAMDA-NJU/Deep-Forest/issues/133)).
+
+    The following steps are somehow extracted & adapted
+    from [https://apple.stackexchange.com/a/408379](https://apple.stackexchange.com/a/408379).
+
+    1. **Install Rosetta 2**
+       Rosetta 2 allows your Apple Silicon Mac (M1, M2, etc.) to run apps built for the `x86_64` architecture,
+       which is needed for `Scikit-longitudinal` due to its `Deep-Forest` dependency.
+        ```bash
+        softwareupdate --install-rosetta
+        ```
+       Note: When prompted, press `'A'` and `Enter` to agree to the license terms.
+    
+    2. **Launch Terminal in `x86_64` Mode**
+       Restart your terminal (close and reopen it), then start a new shell session under the `x86_64` architecture.
+       ```bash
+       arch -x86_64 zsh
+       ```
+       Note: To verify so you can run `uname -m` and it should output `x86_64`.
+    
+    3. **Install `Scikit-longitudinal` via `Conda` with `Pip`**
+       ```bash
+       conda create --name sklong python=3.9
+       conda activate sklong
+       pip install scikit-longitudinal
+       ```
+    4. **Verify Installation**
+       ```bash
+       python -c "import scikit_longitudinal"
+       ```
+    
+    And voila! You should now have `Scikit-longitudinal` installed and running on your Apple Silicon Mac.
