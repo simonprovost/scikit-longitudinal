@@ -76,6 +76,16 @@ To install Scikit-longitudinal:
    ```
 
 > [!CAUTION]
+> `Scikit-longitudinal` is currently compatible with Python versions `3.9` only. 
+> Ensure you have one of these versions installed before proceeding with the installation. 
+> 
+> Now, while we understand that this is a limitation, we are tied for the time being because of `Deep Forest`.
+> `Deep Forest` is a dependency of `Scikit-longitudinal` that is not compatible with Python versions greater than `3.9`.
+> `Deep Forest` helps us with the `Deep Forest` algorithm, to which we have made some modifications to 
+> welcome `Lexicographical Deep Forest`. 
+> 
+> To follow up on this discussion, please refer to [this github issue](https://github.com/LAMDA-NJU/Deep-Forest/issues/124).
+> 
 > If you encounter any errors, feel free to explore further the `installation` section in the `Getting Started` of the documentation.
 > If it still doesn't work, please open an issue on GitHub.
 

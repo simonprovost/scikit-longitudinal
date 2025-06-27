@@ -35,10 +35,15 @@ To start your Longitudinal Machine Learning journey with `Sklong`, you first wil
     happy to discuss this out further.
 
 !!! important "Python Version Compatibility"
-    `Scikit-longitudinal` is currently compatible with Python versions `3.9` and `3.10`.
+    `Scikit-longitudinal` is currently compatible with Python versions `3.9` only.
     Ensure you have one of these versions installed before proceeding with the installation.
 
-    below we discuss within some installation methods how to run with a specific Python version, such as `3.9`.
+    Now, while we understand that this is a limitation, we are tied for the time being because of `Deep Forest`.
+    `Deep Forest` is a dependency of `Scikit-longitudinal` that is not compatible with Python versions greater than `3.9`.
+    `Deep Forest` helps us with the `Deep Forest` algorithm, to which we have made some modifications to
+    welcome `Lexicographical Deep Forest`.
+
+    To follow up on this discussion, please refer to [this github issue](https://github.com/LAMDA-NJU/Deep-Forest/issues/124).
 
 Please, start by choosing the installation method that best suits your needs:
 
