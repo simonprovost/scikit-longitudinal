@@ -1241,7 +1241,7 @@ wheels = [
 
 [[package]]
 name = "mkdocs"
-version = "1.6.0"
+version = "1.6.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -1259,9 +1259,9 @@ dependencies = [
     { name = "pyyaml-env-tag" },
     { name = "watchdog" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cc/6b/26b33cc8ad54e8bc0345cddc061c2c5c23e364de0ecd97969df23f95a673/mkdocs-1.6.0.tar.gz", hash = "sha256:a73f735824ef83a4f3bcb7a231dcab23f5a838f88b7efc54a0eef5fbdbc3c512", size = 3888392, upload-time = "2024-04-20T17:55:45.205Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bc/c6/bbd4f061bd16b378247f12953ffcb04786a618ce5e904b8c5a01a0309061/mkdocs-1.6.1.tar.gz", hash = "sha256:7b432f01d928c084353ab39c57282f29f92136665bdd6abf7c1ec8d822ef86f2", size = 3889159, upload-time = "2024-08-30T12:24:06.899Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b8/c0/930dcf5a3e96b9c8e7ad15502603fc61d495479699e2d2c381e3d37294d1/mkdocs-1.6.0-py3-none-any.whl", hash = "sha256:1eb5cb7676b7d89323e62b56235010216319217d4af5ddc543a91beb8d125ea7", size = 3862264, upload-time = "2024-04-20T17:55:42.126Z" },
+    { url = "https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl", hash = "sha256:db91759624d1647f3f34aa0c3f327dd2601beae39a366d6e064c03468d35c20e", size = 3864451, upload-time = "2024-08-30T12:24:05.054Z" },
 ]
 
 [[package]]
@@ -1289,6 +1289,15 @@ sdist = { url = "https://files.pythonhosted.org/packages/93/64/a9fe7d953d6b02944
 wheels = [
     { url = "https://files.pythonhosted.org/packages/eb/f0/96851f1d9809e1cbd1f1545948d3c4bde7abfa3af5965b7ba8d88ec37c11/mkdocs_coverage-1.1.0-py3-none-any.whl", hash = "sha256:168ca4ebc35ba48309c1f734d0cab0359cd95b205d0d18030d27e73b6a4590d9", size = 6853, upload-time = "2024-06-11T18:47:20.649Z" },
 ]
+
+[[package]]
+name = "mkdocs-document-dates"
+version = "3.1.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mkdocs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fe/97/dffb02f00e213e6e3806028a2b96d25d1074b25afc18223203eac0c9ee64/mkdocs_document_dates-3.1.5.tar.gz", hash = "sha256:b1b1e37b424a44470544f943348d86c766e4e117b777ebd46db2447847193c8b", size = 48921, upload-time = "2025-06-22T06:03:47.598Z" }
 
 [[package]]
 name = "mkdocs-gen-files"
@@ -2170,7 +2179,7 @@ wheels = [
 
 [[package]]
 name = "scikit-longitudinal"
-version = "0.0.7"
+version = "0.0.8"
 source = { editable = "." }
 dependencies = [
     { name = "deep-forest" },
@@ -2199,6 +2208,7 @@ dev = [
     { name = "markdown-exec" },
     { name = "mkdocs" },
     { name = "mkdocs-coverage" },
+    { name = "mkdocs-document-dates" },
     { name = "mkdocs-gen-files" },
     { name = "mkdocs-git-revision-date-localized-plugin" },
     { name = "mkdocs-jupyter" },
@@ -2243,9 +2253,9 @@ dev = [
     { name = "isort", specifier = ">=5.12.0" },
     { name = "markdown-callouts", specifier = ">=0.4" },
     { name = "markdown-exec", specifier = ">=1.8" },
-    { name = "mkdocs", specifier = "==1.6.0" },
-    { name = "mkdocs", specifier = ">=1.6" },
+    { name = "mkdocs", specifier = ">=1.6.1" },
     { name = "mkdocs-coverage", specifier = ">=1.0" },
+    { name = "mkdocs-document-dates", specifier = ">=3.1.5" },
     { name = "mkdocs-gen-files", specifier = ">=0.5" },
     { name = "mkdocs-git-revision-date-localized-plugin", specifier = ">=1.2" },
     { name = "mkdocs-jupyter", specifier = ">=0.25.1" },
