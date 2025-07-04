@@ -25,8 +25,8 @@ bibliography: paper.bib
 Longitudinal data, characterised by repeated measurements of variables over time, presents unique challenges and
 opportunities in
 machine learning. This paper introduces `Scikit-Longitudinal`, a Python library designed to address these challenges by
-providing a comprehensive set of tools for longitudinal data classification. Built to integrate flawlessly with the
-widely-used `Scikit-Learn` library, `Scikit-Longitudinal` offers a robust solution for researchers and practitioners
+providing a comprehensive set of tools for longitudinal data classification. Built to integrate with the
+popular `Scikit-Learn` library, `Scikit-Longitudinal` offers a robust solution for researchers and practitioners
 working with longitudinal datasets.
 
 # Summary
@@ -35,7 +35,7 @@ working with longitudinal datasets.
 classification and integrates with the `Scikit-Learn` environment [@pedregosa2011scikit].
 
 Longitudinal data, which consists of repeated measurements of variables across time points (referred to as
-`waves` [@ribeiro2019mini]), is extensively utilised in fields such as medicine, social sciences, and economics. Unlike
+`waves` [@ribeiro2019mini]), is extensively utilised in fields such as medicine, and social sciences. Unlike
 standard tabular datasets, it contains temporal relationships that necessitate specialised
 processing [@kelloway2012longitudinal].
 
@@ -68,13 +68,12 @@ In total, the library implements 1 data preparation method, 4 data transformatio
 `LexicoRandomForestClassifier` and `NestedTreesClassifier` methods).
 
 `Scikit-Longitudinal` emphasises highly-typed, Pythonic code, with substantial test coverage (over 88%) and
-comprehensive documentation (over 72%), ensuring reliability and extensibility for researchers and practitioners in
-longitudinal data analysis.
+comprehensive documentation (over 72%).
 
 Finally, `Scikit-Longitudinal` can also be abbreviated `Sklong`, and is available
 on [PyPI](https://pypi.org/project/Scikit-longitudinal/). Feel free to explore the
 [official documentation](https://scikit-longitudinal.readthedocs.io/latest/) for various
-installation methods, including locally, via `Jupyter`, `Colab`, and others.
+installation methods.
 
 # Longitudinal Classification
 
@@ -97,7 +96,7 @@ standard machine learning algorithms, or handle the temporal dependencies betwee
 between
 different features directly. Note that, in the type of longitudinal classification task for which `Sklong` was designed,
 the features are longitudinal, but the class variable is not; i.e.,
-the goal is to predict the class label of an instance at a single time point (usually the most recent wave).
+the goal is to predict the class label of an instance at a single time point (usually the last wave).
 
 There are two broad approaches for coping with longitudinal data [@ribeiro2019mini]: (1) **Data Transformation**:
 this approach involves preprocessing methods that convert longitudinal data into a standard, "flattened"
@@ -109,41 +108,33 @@ longitudinal datasets. This preserves the temporal dynamics of the data but may 
 
 # Statement of Need
 
-The temporal aspect of longitudinal data complicates conventional machine learning techniques, which presume observation
-independence. Standard libraries, such as `Scikit-learn`, lack support for longitudinal data, resulting in inefficient
-or inaccurate analysis.
-To the best of our knowledge, there is no package in the `Scikit-learn` ecosystem that offers a straightforward solution
-for longitudinal classification.
+To the best of our knowledge, no package in the `Scikit-learn` ecosystem provides an easy solution for longitudinal
+classification.
+Standard Python libraries, such as `Scikit-learn` itself, lack support for longitudinal data, leading to inefficient and
+inaccurate analysis. `R` includes
+statistical packages for longitudinal data (e.g., `nlme` [@pinheiro2000mixed], `GPBoost` [@GPBoost]). However, they
+often are not suitable for machine learning workflows often created in Python. On the other hand, systems such as
+Auto-Prognosis [@autoprognosis] focusses on longitudinal classification, but
+lack the simplicity of `Scikit-learn` and convenience of use out of the box that these systems are often lacking.
 
-On one hand, compared to Python, the R programming language community has developed many statistical packages for
-longitudinal data,
-such as `nlme` [@pinheiro2000mixed] and `GPBoost` [@GPBoost]. However, these packages are primarily designed for
-statistical models, such as linear mixed-effects models, and do not fully interact with machine learning workflows.
-Additionally, they often lack the flexibility and modularity of `Scikit-learn`, making them difficult to integrate
-into existing machine learning pipelines (often created in Python). Now back to Python, while other machine learning
-systems, like
-Auto-Prognosis [@autoprognosis], focus on longitudinal classification among many other things,
-`Scikit-learn` offers simplicity and convenience of use that these systems are often lacking.
-
-As a result, given the lack of Python-based libraries, integration with the popular `Scikit-Learn` API, and
+Given the lack of Python libraries, integration with the popular `Scikit-Learn` API, and
 the absence of out-of-the-box solutions for longitudinal classification, there is a clear need for a library that
 provides tools for longitudinal data preparation, transformation, preprocessing, and estimation (model learning).
 
 # Limitations and Future Work
 
 At present, `Scikit-Longitudinal` primarily focuses on the classification task and does not yet include support
-for regression or neural network models. Future development could expand the library to encompass these areas.
+for regression or neural networks. Future development could expand the library in these directions.
 
 # Acknowledgements
 
 We thank the authors and contributors of `Scikit-learn` for their pioneering work in machine learning. We thank the
 NeuroData team for their contributions to `Scikit-Tree` [@Li_treeple_Modern_decision-trees], which enables modification
 of `Scikit-learn`'s Cython trees for optimisation performance. We are grateful to the researchers who contributed to the
-development of many primitives within `Scikit-Longitudinal`, including Dr. Tossapol
+design of many primitives within `Scikit-Longitudinal`, including Dr. Tossapol
 Pomsuwan [@pomsuwan2017feature; @pomsuwan2018featureversion2], Dr. Sergey Ovchinnik & Dr. Fernando Otero [@ovchinnik2022nested],
 and Dr. Caio Ribeiro [@ribeiro2019mini; @ribeiro2022new; @Ribeiro2024].
 
-This work was completed as part of a PhD project [@provost2024auto] at the University of Kent, UK, 
-under the supervision of Prof. Alex A. Freitas.
+This work was completed during a PhD project [@provost2024auto] at the University of Kent.
 
 # References
