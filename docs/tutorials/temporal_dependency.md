@@ -1,10 +1,9 @@
 ---
-hide:
-  - navigation
 ---
 
-# Temporal Dependency
+
 # ⏳ Understanding Temporal Dependencies in Longitudinal Datasets
+## ⏳ Understanding Temporal Dependencies in Longitudinal Datasets
 
 In the following, we will look at the only component of `Sklong` that is completely novel compared to previous
 libraries. Our explanation covers how we generalise the use of temporal dependencies in longitudinal datasets across 
@@ -97,7 +96,7 @@ you would pass the following list of integers in the `non_longitudinal_features`
 
 ## Let's take an exemplary dataset
 
-!!! example "Consider the following dummy-dataset: `stroke.csv`"
+!!! example "Consider the following dummy-dataset: `stroke_longitudinal.csv`"
 
     ??? note "Dummy Dataset"
         This dataset is a dummy dataset for the sake of the example. It is not real data and should not be expected
@@ -108,40 +107,42 @@ you would pass the following list of integers in the `non_longitudinal_features`
 
     - `smoke` (longitudinal) with two waves/time-points
     - `cholesterol` (longitudinal) with two waves/time-points
+    - `blood_pressure` (longitudinal) with two waves/time-points
+    - `diabetes` (longitudinal) with two waves/time-points
+    - `exercise` (longitudinal) with two waves/time-points
+    - `obesity` (longitudinal) with two waves/time-points
     - `age` (non-longitudinal)
     - `gender` (non-longitudinal)
 
-    Target:
-    
-    - `stroke` (binary classification) at wave/time-point 2 only for the sake of the example
-    
     The dataset is shown below (`w` stands for `wave` in ELSA):
 
-    | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | age | gender | stroke_w2 |
-    |--------------|--------------|--------------------|--------------------|-----|--------|---------------|
-    | 0            | 1            | 0                  | 1                  | 45  | 1      | 0             |
-    | 1            | 1            | 1                  | 1                  | 50  | 0      | 1             |
-    | 0            | 0            | 0                  | 0                  | 55  | 1      | 0             |
-    | 1            | 1            | 1                  | 1                  | 60  | 0      | 1             |
-    | 0            | 1            | 0                  | 1                  | 65  | 1      | 0             |
+    | age | gender | smoke_w1 | smoke_w2 | cholesterol_w1 | cholesterol_w2 | blood_pressure_w1 | blood_pressure_w2 | diabetes_w1 | diabetes_w2 | exercise_w1 | exercise_w2 | obesity_w1 | obesity_w2 | stroke_w2 |
+    |-----|--------|----------|----------|----------------|----------------|-------------------|-------------------|-------------|-------------|-------------|-------------|------------|------------|-----------|
+    | 66  | 0      | 0        | 1        | 0              | 0              | 0                 | 0                 | 1           | 1           | 0           | 1           | 0          | 0          | 0         |
+    | 59  | 0      | 0        | 0        | 1              | 1              | 0                 | 0                 | 1           | 1           | 1           | 1           | 1          | 1          | 1         |
+    | 63  | 0      | 0        | 0        | 1              | 1              | 0                 | 0                 | 0           | 0           | 0           | 0           | 0          | 0          | 1         |
+    | 47  | 0      | 0        | 0        | 1              | 1              | 0                 | 0                 | 0           | 0           | 0           | 0           | 1          | 0          | 0         |
+    | 44  | 0      | 0        | 0        | 1              | 1              | 1                 | 1                 | 0           | 0           | 0           | 0           | 1          | 1          | 1         |
+    | 69  | 1      | 0        | 0        | 0              | 0              | 1                 | 1                 | 0           | 0           | 0           | 0           | 0          | 0          | 0         |
+    | 63  | 0      | 0        | 0        | 0              | 0              | 0                 | 0                 | 0           | 0           | 0           | 0           | 0          | 0          | 0         |
+    | 48  | 1      | 0        | 0        | 0              | 0              | 0                 | 0                 | 0           | 0           | 0           | 1           | 0          | 0          | 0         |
+    | 49  | 1      | 0        | 0        | 0              | 0              | 0                 | 0                 | 0           | 0           | 0           | 1           | 0          | 1          | 0         |
 
 Now let's set up the `features_group` and `non_longitudinal_features` for this dataset for Sklong:
 
 ``` py
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 
-dataset = LongitudinalDataset('./stroke.csv')
+dataset = LongitudinalDataset('./stroke_longitudinal.csv')
 dataset.load_data()
-dataset.load_target(target_column="stroke_w2")
-dataset.load_train_test_split()
 
 # Manually set your temporal dependencies
 dataset.setup_features_group(
-    input_data=[[0,1],[2,3]],
+    input_data=[[2,3],[4,5],[6,7],[8,9],[10,11],[12,13]],
 )
 
 print(f"Features group: {dataset.feature_groups(names=True)}")
->$ Features group: [['smoke_wave_1', 'smoke_wave_2'], ['cholesterol_wave_1', 'cholesterol_wave_2']]
+>$ Features group: [['smoke_w1', 'smoke_w2'], ['cholesterol_w1', 'cholesterol_w2'], ['blood_pressure_w1', 'blood_pressure_w2'], ['diabetes_w1', 'diabetes_w2'], ['exercise_w1', 'exercise_w2'], ['obesity_w1', 'obesity_w2']]
 print(f"Non-longitudinal features: {dataset.non_longitudinal_features(names=True)}")
 >$ Non-longitudinal features: ['age', 'gender']
 ```
@@ -169,10 +170,8 @@ for you based on how the data is constructed. An exemplary usage is shown below:
 ``` py
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 
-dataset = LongitudinalDataset('./stroke.csv')
+dataset = LongitudinalDataset('./extended_stroke_longitudinal.csv')
 dataset.load_data()
-dataset.load_target(target_column="stroke_w2")
-dataset.load_train_test_split()
 
 # Pre-set your temporal dependencies
 dataset.setup_features_group(input_data="elsa")
