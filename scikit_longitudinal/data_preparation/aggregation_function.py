@@ -208,7 +208,7 @@ class AggrFunc(DataPreparationMixin):
 
         To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
 
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
+        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
 
 
     The aggregation function is applied iteratively across waves for each feature group, producing a single aggregated

@@ -47,7 +47,7 @@ Within each paper's tab, we will point to which Git branch to see the experiment
 
 !!! tip "Before You Begin"
     Ensure you have your dataset ready in a compatible format (e.g., CSV) and are familiar with the basic usage of
-    Scikit-Longitudinal. Check out the [Getting Started](../getting-started.md) page if you need a refresher!
+    Scikit-Longitudinal. Check out the [Getting Started](getting-started.md) page if you need a refresher!
 
 ## 📰 Scientific Papers Sklong Reimplemented
 
