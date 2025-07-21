@@ -62,6 +62,17 @@ plugins:
   - social
   - search
   - minify
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+      auto_caption: false
+      caption_position: bottom
   - document-dates:
       position: bottom
       type: date
@@ -128,6 +139,7 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.blocks.caption
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -141,7 +153,12 @@ markdown_extensions:
 nav:
   - "Home": index.md
   - "Getting Started": getting-started.md
-  - "Temporal Dependency": temporal_dependency.md
+  - "Tutorials":
+      - "Overview": tutorials/overview.md
+      - "Temporal Dependency": tutorials/temporal_dependency.md
+      - "Wide/Long Data Format": tutorials/sklong_longitudinal_data_format.md
+      - "Sklong Explore Your First Estimator": tutorials/sklong_explore_your_first_estimator.md
+      - "Sklong Explore Your First Pipeline": tutorials/sklong_explore_your_first_pipeline.md
   - "API Reference":
     - "API Reference": API/index.md
     - "Data Preparation":

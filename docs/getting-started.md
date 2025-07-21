@@ -149,7 +149,7 @@ Please, start by choosing the installation method that best suits your needs:
     
     You also can follow the follwing gist as we reproduce the below's steps: 
     [gist](https://gist.github.com/simonprovost/356030bd8f1ea077bdbc120fdc116c16#file-support_39_scikit_longitudinal_in_google_colab-ipynb) 
-    –– or –– [Open in Google Colab :simple-googlecolab:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
+    –– or –– [Open in Google Colab :simple-googlecolab:](tutorials/temporal_dependency.md){ .md-button }
     
     Preliminary steps:
     

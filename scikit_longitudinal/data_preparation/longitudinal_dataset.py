@@ -134,7 +134,7 @@ class LongitudinalDataset:
         use the primitives that follow.
 
         To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
+        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
 
     Args:
         file_path (Union[str, Path]): Path to the dataset file (supports ARFF and CSV formats).
@@ -529,7 +529,7 @@ class LongitudinalDataset:
 
             To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
 
-            [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
+            [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
 
         This method defines how features are grouped to capture temporal dependencies across waves. It supports three
         distinct input types, each suited to different use cases, with detailed examples and explanations below.
