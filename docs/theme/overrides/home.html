@@ -583,6 +583,97 @@
         transform: translateX(-50%);
     }
 
+    .audio-container {
+        margin: 1rem auto;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .audio-container audio:hover {
+        border-radius: 50px;
+        box-shadow: 0 0 30px 10px rgba(255, 135, 141, 0.5);
+        transform: scale(1.02);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    @keyframes glow {
+        0% {
+            box-shadow: 0 0 20px 5px rgba(255, 135, 141, 0.4);
+        }
+        50% {
+            box-shadow: 0 0 40px 15px rgba(255, 135, 141, 0.6);
+        }
+        100% {
+            box-shadow: 0 0 20px 5px rgba(255, 135, 141, 0.4);
+        }
+    }
+
+    .audio-container audio.playing {
+        border-radius: 50px;
+        animation: glow 2s ease-in-out infinite;
+    }
+
+    audio::-webkit-media-controls-panel {
+        background-color: rgb(45, 42, 38);
+        color: #fff6eb;
+    }
+
+    audio::-webkit-media-controls-play-button {
+        background-color: rgba(255, 246, 235, 0.1);
+        border-radius: 50%;
+        color: #fff6eb;
+        transition: background-color 0.3s ease;
+    }
+
+    audio::-webkit-media-controls-play-button:hover {
+        background-color: rgba(255, 246, 235, 0.2);
+    }
+
+    audio::-webkit-media-controls-timeline {
+        background-color: rgba(255, 246, 235, 0.2);
+        border-radius: 5px;
+        padding: 0;
+        margin: 0 15px 0 5px;
+    }
+
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display {
+        color: #fff6eb;
+        text-shadow: none;
+    }
+
+    audio::-webkit-media-controls-volume-slider {
+        background-color: rgba(255, 246, 235, 0.2);
+        border-radius: 5px;
+        padding: 0;
+        margin: 0 5px;
+    }
+
+    audio::-webkit-media-controls-mute-button {
+        background-color: rgba(255, 246, 235, 0.1);
+        border-radius: 50%;
+        color: #fff6eb;
+    }
+
+    audio::-moz-media-controls {
+        background-color: rgb(45, 42, 38);
+    }
+
+    .sub-caption {
+        font-size: 0.675rem;
+        color: #666;
+        margin-top: 0.5rem;
+    }
+
+    .audio-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #252121;
+        margin-bottom: 1rem;
+        text-align: center;
+
+    }
+
 </style>
 
 <body class="homepage">
@@ -657,6 +748,34 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const audioElement = document.querySelector('audio');
+    if (audioElement) {
+        audioElement.playbackRate = 1.25;
+
+        audioElement.addEventListener('play', function() {
+            audioElement.classList.add('playing');
+        });
+
+        audioElement.addEventListener('pause', function() {
+            audioElement.classList.remove('playing');
+        });
+    }
+});
+</script>
+
+
+
+<div class="audio-container">
+    <h2 class="audio-title title-klack-style"><mark>Sklong</mark> Podcast <mark>Explained</mark></h2>
+    <audio controls>
+        <source src="assets/audio/sklong.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <p class="sub-caption">Generated with NotebookLM</p>
+</div>
 
 <div class="feature-grid">
     <div class="grid-item">
