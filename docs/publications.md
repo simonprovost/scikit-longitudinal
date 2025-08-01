@@ -15,12 +15,10 @@ Within each paper's tab, we will point to which Git branch to see the experiment
 
     **Dataset Source**: No datasets. No experiments.
 
+    **Paper Link**: [https://doi.org/10.21105/joss.08481](https://doi.org/10.21105/joss.08481)
+
     **Git branch**: No branch.
 
-    !!! success "Status"
-        Paper has been submitted to the Journal of Open Source Software (JOSS) and is currently under review.
-
-        Follow the review at [https://github.com/openjournals/joss-reviews/issues/8189](https://github.com/openjournals/joss-reviews/issues/8189).
 
 === "SepWav paper"
 
