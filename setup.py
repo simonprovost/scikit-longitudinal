@@ -2,7 +2,7 @@ from setuptools import find_packages, setup  # pragma: no cover
 
 setup(  # pragma: no cover
     name="Scikit-longitudinal",
-    version="0.0.10",
+    version="0.1.0",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url="https://github.com/simonprovost/scikit-longitudinal",
@@ -16,7 +16,7 @@ setup(  # pragma: no cover
         'Releases': 'https://github.com/simonprovost/scikit-longitudinal/releases',
         'Repository': 'https://github.com/simonprovost/scikit-longitudinal',
         'Issues': 'https://github.com/simonprovost/scikit-longitudinal/issues/',
-        'Scientific Paper': 'https://github.com/openjournals/joss-reviews/issues/8481',
+        'Scientific Paper': 'https://joss.theoj.org/papers/10.21105/joss.08481',
     },
     classifiers=[
         'License :: OSI Approved :: MIT License',

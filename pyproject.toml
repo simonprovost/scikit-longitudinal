@@ -1,6 +1,6 @@
 [project]
 name = "Scikit-longitudinal"
-version = "0.0.10"
+version = "0.1.0"
 description = "Scikit-longitudinal is an open-source Python library for longitudinal data analysis, building on Scikit-learn's foundation with tools tailored for repeated measures data."
 authors = [
     {name = "Provost Simon", email = "simon.gilbert.provost@gmail.com"},
@@ -66,7 +66,7 @@ Documentation = "https://scikit-longitudinal.readthedocs.io/latest/"
 Releases = "https://github.com/simonprovost/scikit-longitudinal/releases"
 Repository = "https://github.com/simonprovost/scikit-longitudinal"
 Issues = "https://github.com/simonprovost/scikit-longitudinal/issues/"
-"Scientific Paper" = "https://github.com/openjournals/joss-reviews/issues/8481"
+"Scientific Paper" = "https://joss.theoj.org/papers/10.21105/joss.08481"
 
 [tool.uv]
 default-groups = []

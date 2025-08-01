@@ -42,7 +42,10 @@
 </a>
 <img src="https://img.shields.io/static/v1?label=Python&message=3.9%2B%3C3.10&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+ < 3.10">
 
+<img src="https://joss.theoj.org/papers/10.21105/joss.08481/status.svg" alt="DOI badge" >
+
 </div>
+
 
 ---
 
@@ -53,7 +56,9 @@ longitudinal data (Classification tasks focussed as of today). It offers tools a
 and predicting longitudinal data, with a user-friendly interface that
 integrates with the `Scikit-learn` ecosystem.
 
-For more details, visit the [official documentation](https://scikit-longitudinal.readthedocs.io/latest//).
+For more scientific details, you can refer to our [paper](https://doi.org/10.21105/joss.08481) published in the [Journal of Open Source Software (JOSS)](https://joss.theoj.org/).
+
+For more technical details, visit the [official documentation](https://scikit-longitudinal.readthedocs.io/latest//).
 
 ---
 
@@ -123,7 +128,22 @@ print(classification_report(y_test, y_pred))
 
 ## <a id="citation"></a>📝 How to Cite
 
-We are currently cooking a JOSS submission, wait a bit for it! Meanwhile, click on `Cite This Repository` on the top right corner of this page to get a BibTeX entry.
+If you use Sklong in your research, please cite our paper:
+
+```bibtex
+@article{Provost2025, 
+   doi = {10.21105/joss.08481}, 
+   url = {https://doi.org/10.21105/joss.08481}, 
+   year = {2025}, 
+   publisher = {The Open Journal}, 
+   volume = {10}, 
+   number = {112}, 
+   pages = {8481}, 
+   author = {Provost, Simon and Freitas, Alex A.}, 
+   title = {Scikit-Longitudinal: A Machine Learning Library for Longitudinal Classification in Python}, 
+   journal = {Journal of Open Source Software}
+}
+```
 
 ---
 
