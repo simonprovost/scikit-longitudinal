@@ -44,8 +44,6 @@
 
 </div>
 
-![docstr_coverage]("docs/docstr_coverage_badge.svg")
-
 ---
 
 ## <a id="about-the-project"></a>💡 About The Project
@@ -59,66 +57,9 @@ For more details, visit the [official documentation](https://scikit-longitudinal
 
 ---
 
-## <a id="installation"></a>🛠️ Installation
+## <a id="paper"></a>🗞️ Paper
 
-> [!NOTE]
-> Want to be using `Jupyter Notebook`, `Marimo`, `Google Colab`, or `JupyterLab`?
-> Head to the `Getting Started` section of the documentation, we explain it all! 🎉
+The following branch is solely for the purpose of hosting the paper for the Journal of Open Source Software (JOSS).
 
-To install Scikit-longitudinal:
-
-1. ✅ Install the latest version:
-   ```bash
-   pip install Scikit-longitudinal
-   ```
-
-   To install a specific version:
-   ```bash
-   pip install Scikit-longitudinal==0.1.0
-   ```
-
-> [!CAUTION]
-> If you encounter any errors, feel free to explore further the `installation` section in the `Getting Started` of the documentation.
-> If it still doesn't work, please open an issue on GitHub.
-
----
-
-## <a id="getting-started"></a>🚀 Getting Started
-
-Here's how to analyse longitudinal data with Scikit-longitudinal:
-
-``` py
-from scikit_longitudinal.data_preparation import LongitudinalDataset
-from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting import LexicoGradientBoostingClassifier
-
-dataset = LongitudinalDataset('./stroke.csv') # Note this is a fictional dataset. Use yours!
-dataset.load_data_target_train_test_split(
-  target_column="class_stroke_wave_4",
-)
-
-# Pre-set or manually set your temporal dependencies 
-dataset.setup_features_group(input_data="elsa")
-
-model = LexicoGradientBoostingClassifier(
-  features_group=dataset.feature_groups(),
-  threshold_gain=0.00015 # Refer to the API for more hyper-parameters and their meaning
-)
-
-model.fit(dataset.X_train, dataset.y_train)
-y_pred = model.predict(dataset.X_test)
-
-# Classification report
-print(classification_report(y_test, y_pred))
-```
-
----
-
-## <a id="citation"></a>📝 How to Cite
-
-We are currently cooking a JOSS submission, wait a bit for it! Meanwhile, click on `Cite This Repository` on the top right corner of this page to get a BibTeX entry.
-
----
-
-## <a id="license"></a>🔐 License
-
-Scikit-longitudinal is licensed under the [MIT License](./LICENSE).
+- Public Peer Review: [JOSS Review](https://github.com/openjournals/joss-reviews/issues/8481)
+- Published Paper: [JOSS Paper](https://doi.org/10.21105/joss.08481)
