@@ -57,7 +57,7 @@ processing [@kelloway2012longitudinal].
   utilising the temporal information in the data to proceed with feature selection techniques (see feature selection
   review in [@theng2024feature]).
 
-- **Estimators**: Longitudinal-data-aware classifiers [@kotsiantis2007supervised] [@ribeiro2019mini],
+- **Estimators**: Longitudinal-data-aware classifiers [@kotsiantis2007supervised; @ribeiro2019mini],
   such as
   `LexicoRandomForestClassifier` [@Ribeiro2024],
   `LexicoGradientBoostingClassifier`, and `NestedTreesClassifier` [@ovchinnik2022nested], which leverage the temporal
