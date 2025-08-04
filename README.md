@@ -56,9 +56,19 @@ longitudinal data (Classification tasks focussed as of today). It offers tools a
 and predicting longitudinal data, with a user-friendly interface that
 integrates with the `Scikit-learn` ecosystem.
 
-For more scientific details, you can refer to our [paper](https://doi.org/10.21105/joss.08481) published in the [Journal of Open Source Software (JOSS)](https://joss.theoj.org/).
+**Wait, what is Longitudinal Data — In layman's terms ?**
 
-For more technical details, visit the [official documentation](https://scikit-longitudinal.readthedocs.io/latest//).
+Longitudinal data is a "time-lapse" snapshot of the same subject, entity, or group tracked over time-periods,
+similar to checking in on patients to see how they change. For instance, doctors may monitor a patient's blood pressure,
+weight, and cholesterol every year for a decade to identify health trends or risk factors. This data is more useful for
+predicting future results than a one-time survey because it captures evolution, patterns, and cause-effect throughout
+time.
+
+**Not enough?**
+
+* For more scientific details, you can refer to our [paper](https://doi.org/10.21105/joss.08481) published in
+  the [Journal of Open Source Software (JOSS)](https://joss.theoj.org/).
+* For more technical details, visit the [official documentation](https://scikit-longitudinal.readthedocs.io/latest//).
 
 ---
 
@@ -81,17 +91,19 @@ To install Scikit-longitudinal:
    ```
 
 > [!CAUTION]
-> `Scikit-longitudinal` is currently compatible with Python versions `3.9` only. 
-> Ensure you have one of these versions installed before proceeding with the installation. 
-> 
+> `Scikit-longitudinal` is currently compatible with Python versions `3.9` only.
+> Ensure you have one of these versions installed before proceeding with the installation.
+>
 > Now, while we understand that this is a limitation, we are tied for the time being because of `Deep Forest`.
 > `Deep Forest` is a dependency of `Scikit-longitudinal` that is not compatible with Python versions greater than `3.9`.
-> `Deep Forest` helps us with the `Deep Forest` algorithm, to which we have made some modifications to 
-> welcome `Lexicographical Deep Forest`. 
-> 
-> To follow up on this discussion, please refer to [this github issue](https://github.com/LAMDA-NJU/Deep-Forest/issues/124).
-> 
-> If you encounter any errors, feel free to explore further the `installation` section in the `Getting Started` of the documentation.
+> `Deep Forest` helps us with the `Deep Forest` algorithm, to which we have made some modifications to
+> welcome `Lexicographical Deep Forest`.
+>
+> To follow up on this discussion, please refer
+> to [this github issue](https://github.com/LAMDA-NJU/Deep-Forest/issues/124).
+>
+> If you encounter any errors, feel free to explore further the `installation` section in the `Getting Started` of the
+> documentation.
 > If it still doesn't work, please open an issue on GitHub.
 
 ---
@@ -131,17 +143,17 @@ print(classification_report(y_test, y_pred))
 If you use Sklong in your research, please cite our paper:
 
 ```bibtex
-@article{Provost2025, 
-   doi = {10.21105/joss.08481}, 
-   url = {https://doi.org/10.21105/joss.08481}, 
-   year = {2025}, 
-   publisher = {The Open Journal}, 
-   volume = {10}, 
-   number = {112}, 
-   pages = {8481}, 
-   author = {Provost, Simon and Freitas, Alex A.}, 
-   title = {Scikit-Longitudinal: A Machine Learning Library for Longitudinal Classification in Python}, 
-   journal = {Journal of Open Source Software}
+@article{Provost2025,
+    doi = {10.21105/joss.08481},
+    url = {https://doi.org/10.21105/joss.08481},
+    year = {2025},
+    publisher = {The Open Journal},
+    volume = {10},
+    number = {112},
+    pages = {8481},
+    author = {Provost, Simon and Freitas, Alex A.},
+    title = {Scikit-Longitudinal: A Machine Learning Library for Longitudinal Classification in Python},
+    journal = {Journal of Open Source Software}
 }
 ```
 
