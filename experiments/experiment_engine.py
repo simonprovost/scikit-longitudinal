@@ -548,23 +548,8 @@ class ExperimentEngine:
 
             print(f"Custom system loaded: {self._system}")
         else:
-            from gama.GamaLongitudinalClassifier import GamaLongitudinalClassifier
-
-            self._system = GamaLongitudinalClassifier(
-                features_group=self._features_group,
-                non_longitudinal_features=self._non_longitudinal_features,
-                feature_list_names=self._feature_list_names,
-                max_total_time=self.system_hyperparameters["max_total_time"],
-                max_eval_time=self.system_hyperparameters["max_eval_time"],
-                scoring=self.system_hyperparameters["scoring"],
-                verbosity=self.system_hyperparameters["verbosity"],
-                search=self.system_hyperparameters["search"],
-                n_jobs=self.system_hyperparameters["n_inner_jobs"],
-                store=self.system_hyperparameters["store"],
-                random_state=self.setup_data_parameters["random_state"],
-                output_directory=f"{self.output_path}/fold_{self.fold_number}_"
-                + time.strftime("%Y%m%d-%H%M%S"),
-                max_memory_mb=self.system_hyperparameters["max_memory_mb"],
+            raise ValueError(
+                "The system_hyperparameters must contain a 'custom_system' key with the system to be used."
             )
 
         if type(self._system) is None:
