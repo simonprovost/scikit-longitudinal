@@ -17,7 +17,7 @@ Within each paper's tab, we will point to which Git branch to see the experiment
 
     **Paper Link**: [https://doi.org/10.21105/joss.08481](https://doi.org/10.21105/joss.08481)
 
-    **Git branch**: No branch.
+    **Git branch**: No experiments, but `joss-paper` for the markdown original.
 
 
 === "SepWav paper"
@@ -26,7 +26,7 @@ Within each paper's tab, we will point to which Git branch to see the experiment
 
     **Dataset Source**: https://www.elsa-project.ac.uk/
 
-    **Git branch**: To be announced.
+    **Git branch**: `papers/sepwav`, then navigate to `experiments/`.
 
     !!! success "Status"
         Paper has been submitted to a conference (cannot be disclosed yet) and is currently under review.
