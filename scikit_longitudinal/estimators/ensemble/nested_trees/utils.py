@@ -36,6 +36,7 @@ def _fit_inner_tree_and_calculate_gini(
     max_inner_depth: int,
     inner_estimator_hyperparameters: Dict[str, Any],
     save_nested_trees: bool,
+    sample_weight: np.ndarray = None,
 ) -> Tuple[DecisionTreeClassifier, np.ndarray, float]:
     """Copy of _fit_inner_tree_plus_calculate_gini to be used with Ray parallelization.
 
@@ -61,7 +62,10 @@ def _fit_inner_tree_and_calculate_gini(
 
     """
     tree = DecisionTreeClassifier(max_depth=max_inner_depth, **inner_estimator_hyperparameters)
-    tree.fit(subset_X, y)
+    if sample_weight is not None:
+        tree.fit(subset_X, y, sample_weight=sample_weight)
+    else:
+        tree.fit(subset_X, y)
     if save_nested_trees:  # pragma: no cover
         _save_inner_tree(tree, f"inner_tree_{outer_node_name}_group_{group_index}.png")
     y_pred = tree.predict(subset_X)

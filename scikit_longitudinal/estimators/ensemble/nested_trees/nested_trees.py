@@ -221,7 +221,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             return self.node_name
 
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray) -> "NestedTreesClassifier":
+    def _fit(self, X: np.ndarray, y: np.ndarray, sample_weight: Optional[np.ndarray] = None) -> "NestedTreesClassifier":
         """Fit the classifier to the training data.
 
         Builds the nested tree structure recursively, integrating longitudinal and non-longitudinal features.
@@ -250,7 +250,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             self.inner_estimator_hyperparameters = {}
         if self.classes_ is None:
             self.classes_ = unique_labels(y)
-        self.root = self._build_outer_tree(X, y, 0, "outer_root")
+        self.root = self._build_outer_tree(X, y, 0, "outer_root", sample_weight=sample_weight)
         return self
 
     @override
@@ -322,6 +322,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         outer_node_name: str,
         tree: Optional[DecisionTreeClassifier] = None,
         group: Optional[List[int]] = None,
+        sample_weight: Optional[np.ndarray] = None,
     ) -> "NestedTreesClassifier.Node":
         """Build the outer decision tree recursively.
 
@@ -348,6 +349,8 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 The inner decision tree associated with this node. Defaults to None.
             group (Optional[List[int]], optional):
                 The group of features associated with this node. Defaults to None.
+            sample_weight (Optional[np.ndarray], optional):
+                Sample weights for the training instances. Defaults to None.
 
         Returns:
             NestedTreesClassifier.Node: A node in the outer decision tree.
@@ -356,7 +359,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         if depth == (self.max_outer_depth - 1) or len(self.features_group) < 2 or len(X) < self.min_outer_samples:
             return self.Node(is_leaf=True, tree=tree, node_name=outer_node_name, group=group)
 
-        best_tree, best_split, best_group = self._find_best_tree_and_split(X, y, outer_node_name)
+        best_tree, best_split, best_group = self._find_best_tree_and_split(X, y, outer_node_name, sample_weight)
 
         if len(best_split) == 1:
             return self.Node(is_leaf=True, node_name=outer_node_name, tree=best_tree, group=best_group)
@@ -366,7 +369,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         return node
 
     def _find_best_tree_and_split(
-        self, X: np.ndarray, y: np.ndarray, outer_node_name: str
+        self, X: np.ndarray, y: np.ndarray, outer_node_name: str, sample_weight: Optional[np.ndarray] = None
     ) -> Tuple[DecisionTreeClassifier, List[Tuple[np.ndarray, np.ndarray, int]], List[int]]:
         """Find the best inner decision tree and the associated split (i.e., the competition).
 
@@ -392,6 +395,10 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         best_group = None
 
         if self.parallel:
+            if sample_weight is not None:
+                raise ValueError(
+                    "Sample weights are not supported in parallel mode. Please set parallel=False."
+                )
             tasks = [  # pragma: no cover
                 _fit_inner_tree_plus_calculate_gini_ray.remote(
                     X[:, group],
@@ -418,6 +425,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                     self.max_inner_depth,
                     self.inner_estimator_hyperparameters,
                     self.save_nested_trees,
+                    sample_weight=sample_weight,
                 )
 
                 if gini < min_gini:
