@@ -51,7 +51,7 @@ def configure_transformer(
         Check if the required attributes are set.
         """
         if not features_group:
-            raise ValueError(f"The transformer {name} requires 'features_group'.")
+            raise ValueError(f"The transformer {name} requires 'features_group' and, therefore, it must be provided (i.e. `features_group`.")
         if not feature_list_names:
             raise ValueError(
                 f"The features_group attribute of the transformer named {name} designates it as a "
@@ -77,8 +77,8 @@ def configure_transformer(
         Set the required attributes for the transformer.
         """
         transformer.features_group = features_group
-        if hasattr(transformer, "non_longitudinal_features") and non_longitudinal_features:
-            transformer.non_longitudinal_features = non_longitudinal_features
+        if hasattr(transformer, "non_longitudinal_features"):
+            transformer.non_longitudinal_features = non_longitudinal_features or []
 
     if isinstance(transformer, DataPreparationMixin):
         check_required_attributes()
