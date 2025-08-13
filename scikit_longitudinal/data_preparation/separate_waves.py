@@ -1,6 +1,6 @@
 # pylint: disable=R0801
 
-from typing import List, Union
+from typing import List, Union, Tuple
 
 import numpy as np
 import pandas as pd
@@ -417,7 +417,14 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
 
     @validate_extract_wave_input
     @validate_extract_wave_output
-    def _extract_wave(self, wave: int, extract_indices: bool = False) -> Union[pd.DataFrame, pd.Series, list]:
+    def _extract_wave(
+            self,
+            wave: int,
+            extract_indices: bool = False
+    ) -> Union[
+        Tuple[pd.DataFrame, pd.Series],
+        Tuple[pd.DataFrame, pd.Series, List[int]]
+    ]:
         """Extract a specific wave from the dataset for training.
 
         Args:
@@ -438,6 +445,11 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         if self.non_longitudinal_features is not None:
             feature_indices.extend(self.non_longitudinal_features)
 
+        if any(idx >= self.dataset.shape[1] or idx < 0 for idx in feature_indices):
+            raise IndexError(
+                f"Feature index out of bounds for wave {wave}: {feature_indices} (df.shape={self.dataset.shape})"
+            )
+
         X_wave = self.dataset.iloc[:, feature_indices]
         y_wave = self.target
 
@@ -448,7 +460,12 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
     # pylint: disable=unused-argument
     @validate_fit_input
     @validate_fit_output
-    def fit(self, X: Union[List[List[float]], "np.ndarray"], y: Union[List[float], "np.ndarray"]):
+    def fit(
+        self,
+        X: Union[List[List[float]], "np.ndarray"],
+        y: Union[List[float], "np.ndarray"],
+        sample_weight: Union[List[float], np.ndarray, None] = None,
+    ):
         """Fit the SepWav model to the training data.
 
         Trains a classifier for each wave and combines them using the specified ensemble strategy.
@@ -456,6 +473,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         Args:
             X (Union[List[List[float]], np.ndarray]): Input samples.
             y (Union[List[float], np.ndarray]): Target values.
+            sample_weight (Union[List[float], np.ndarray], optional): Sample weights. Defaults to None.
 
         Returns:
             SepWav: Fitted instance.
@@ -469,22 +487,37 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         if self.features_group is not None:
             self.features_group = clean_padding(self.features_group)
 
+        n_waves = max(len(group) for group in self.features_group)
+
         if self.parallel:
+            if sample_weight is not None:
+                raise ValueError(
+                    "Sample weights are not supported in parallel mode. "
+                    "Please set parallel=False or remove sample_weight."
+                )
             futures = [
                 train_classifier.remote(self.estimator, X_train, y_train, wave)
                 for wave, (X_train, y_train) in enumerate(
-                    self._extract_wave(wave=i) for i in range(max(len(group) for group in self.features_group))
+                    self._extract_wave(wave=i) for i in range(n_waves)
                 )
             ]
             self.estimators = ray.get(futures)
         else:
-            for i in range(max(len(group) for group in self.features_group)):
+            for i in range(n_waves):
                 X_wave, y_wave = self._extract_wave(wave=i)
                 clf_wave = clone(self.estimator)
                 if hasattr(X_wave, "values") and hasattr(y_wave, "values"):
                     X_wave = X_wave.values
                     y_wave = y_wave.values
-                clf_wave.fit(X_wave, y_wave)
+                fit_params = {}
+                if sample_weight is not None:
+                    try:
+                        from inspect import signature
+                        if "sample_weight" in signature(clf_wave.fit).parameters:
+                            fit_params["sample_weight"] = sample_weight
+                    except Exception:
+                        pass
+                clf_wave.fit(X_wave, y_wave, **fit_params)
                 self.estimators.append((f"wave_{i}", clf_wave))
 
         if self.voting == LongitudinalEnsemblingStrategy.STACKING:
