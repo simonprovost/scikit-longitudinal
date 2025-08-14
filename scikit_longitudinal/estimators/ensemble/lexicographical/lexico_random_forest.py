@@ -251,7 +251,7 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
             ccp_alpha=self.ccp_alpha,
         )
 
-    def fit(self, X, y, *args, **kwargs):
+    def fit(self, X, y, sample_weight=None, *args, **kwargs):
         """
         Fit the Lexico Random Forest Classifier to the training data.
 
@@ -284,4 +284,4 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
         if self.features_group is None:
             raise ValueError("The features_group parameter must be provided.")
 
-        return super().fit(X, y, *args, **kwargs)
+        return super().fit(X, y, sample_weight=sample_weight, *args, **kwargs)

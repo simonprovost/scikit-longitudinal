@@ -7,7 +7,7 @@ from sklearn.base import TransformerMixin
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import (
-    CorrelationBasedFeatureSelectionPerGroup,
+    CorrelationBasedFeatureSelectionPerGroup, CorrelationBasedFeatureSelection,
 )
 
 
@@ -40,7 +40,7 @@ def default_callback(
         - List of column names in the updated data.
 
     """
-    if isinstance(transformer, CorrelationBasedFeatureSelectionPerGroup):
+    if isinstance(transformer, CorrelationBasedFeatureSelectionPerGroup) or isinstance(transformer, CorrelationBasedFeatureSelection):
         data = transformer.apply_selected_features_and_rename(dummy_longitudinal_dataset.data, None)
         dummy_longitudinal_dataset.set_data(data)
         dummy_longitudinal_dataset.setup_features_group("elsa")

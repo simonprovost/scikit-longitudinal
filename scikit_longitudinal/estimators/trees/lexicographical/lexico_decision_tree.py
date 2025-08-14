@@ -229,7 +229,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
             monotonic_cst=monotonic_cst,
         )
 
-    def fit(self, X, y, *args, **kwargs):
+    def fit(self, X, y, sample_weight=None, *args, **kwargs):
         """
         Fit the Lexico Decision Tree Classifier to the training data.
 
@@ -265,4 +265,4 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
         if self.features_group is None:
             raise ValueError("The features_group parameter must be provided.")
 
-        return super().fit(X, y, *args, **kwargs)
+        return super().fit(X, y, sample_weight=sample_weight, *args, **kwargs)

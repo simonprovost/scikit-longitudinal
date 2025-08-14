@@ -7,6 +7,7 @@ import numpy as np
 from overrides import EnforceOverrides, final
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.validation import check_array, check_X_y
+import inspect
 
 
 class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOverrides):
@@ -32,10 +33,13 @@ class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOver
     @staticmethod
     def _check_X_y_decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
-        def wrapper(X: np.ndarray, y: np.ndarray, *args, **kwargs) -> Any:
+        def wrapper(X: np.ndarray, y: np.ndarray, sample_weight: np.ndarray = None, *args, **kwargs) -> Any:
             X, y = check_X_y(X, y)
-            return func(X, y, *args, **kwargs)
-
+            func_sig = inspect.signature(func)
+            if "sample_weight" in func_sig.parameters:
+                return func(X, y, sample_weight=sample_weight, *args, **kwargs)
+            else:
+                return func(X, y, *args, **kwargs)
         return wrapper
 
     @staticmethod
@@ -48,10 +52,14 @@ class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOver
         return wrapper
 
     @final
-    def fit(self, X: np.ndarray, y: np.ndarray = None) -> "CustomClassifierMixinEstimator":
+    def fit(self, X: np.ndarray, y: np.ndarray = None, sample_weight: np.ndarray = None) -> "CustomClassifierMixinEstimator":
         if y is None:
             return self._check_array_decorator(self._fit)(X)
-        return self._check_X_y_decorator(self._fit)(X, y)
+        _fit_sig = inspect.signature(self._fit)
+        if "sample_weight" in _fit_sig.parameters:
+            return self._check_X_y_decorator(self._fit)(X, y, sample_weight=sample_weight)
+        else:
+            return self._check_X_y_decorator(self._fit)(X, y)
 
     @final
     def predict(self, X: np.ndarray) -> np.ndarray:
@@ -61,7 +69,7 @@ class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOver
     def predict_proba(self, X: np.ndarray) -> np.ndarray:
         return self._check_array_decorator(self._predict_proba)(X)
 
-    def _fit(self, X: np.ndarray, y: np.ndarray = None) -> "CustomClassifierMixinEstimator":
+    def _fit(self, X: np.ndarray, y: np.ndarray = None, sample_weight: np.ndarray = None) -> "CustomClassifierMixinEstimator":
         raise NotImplementedError("Subclasses should implement _fit method")
 
     def _predict(self, X: np.ndarray) -> np.ndarray:

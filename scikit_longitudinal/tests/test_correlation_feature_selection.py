@@ -74,11 +74,6 @@ class TestCorrelationBasedFeatureSelectionPerGroup:
             version=1,
         )
 
-    def test_fit_transform_non_longitudinal(self, cfs_non_longitudinal, load_madelon_data_non_longitudinal):
-        X, y = load_madelon_data_non_longitudinal
-        X_transformed = cfs_non_longitudinal.fit_transform(X, y)
-        assert X_transformed.shape[1] == len(cfs_non_longitudinal.selected_features_)
-
     def test_fit_transform_longitudinal(self, cfs_longitudinal, load_madelon_data_longitudinal):
         X, y, group_features = load_madelon_data_longitudinal
         X_transformed = cfs_longitudinal.fit_transform(X, y)

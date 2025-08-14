@@ -1,4 +1,9 @@
+import re
+from collections import defaultdict
+from typing import List, Tuple, Dict
+
 import numpy as np
+import pandas as pd
 from overrides import override
 
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.algorithms import (
@@ -90,14 +95,54 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
 
     @override
     def _transform(self, X: np.ndarray) -> np.ndarray:
-        """Transforms the input data to the selected features.
+        """Transform the data by selecting the chosen features.
+
+        This method is overridden from `CustomTransformerMixinEstimator` and selects the features based on
+        `selected_features_`.
+
+        !!! warning "Usage Note"
+            Not to be used directly. Use the `apply_selected_features_and_rename` method instead.
+            CFS has a specific behavior for longitudinal features, and this method does not
+            account for that. It is recommended to use the `apply_selected_features_and_rename` method
+            for proper handling of longitudinal features.
 
         Args:
-            X (np.ndarray):
-                Input data of shape (n_samples, n_features).
+            X (np.ndarray): Input data of shape (n_samples, n_features).
 
         Returns:
-            np.ndarray: The transformed data of shape (n_samples, n_selected_features).
-
+            np.ndarray: Transformed data with selected features.
         """
-        return X[:, self.selected_features_]
+        return X
+
+    @staticmethod
+    def apply_selected_features_and_rename(
+        df: pd.DataFrame, selected_features: List, regex_match=r"^(.+)_w(\d+)$"
+    ) -> pd.DataFrame:
+        """
+        Apply selected features to the DataFrame and rename non-longitudinal features.
+
+        Args:
+            df (pd.DataFrame): Input DataFrame.
+            selected_features (List): List of selected feature indices.
+            regex_match (str, optional): Regex pattern to identify wave-based features.
+
+        Returns:
+            pd.DataFrame: DataFrame with selected features and renamed non-longitudinal features.
+        """
+        if selected_features:
+            df = df.iloc[:, selected_features].copy()
+
+        non_longitudinal_features: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
+        for col in df.columns:
+            if not isinstance(col, str):
+                continue
+            if match := re.match(regex_match, col):
+                feature_base_name, wave_number = match.groups()
+                non_longitudinal_features[feature_base_name].append((col, wave_number))
+
+        for base_name, columns in non_longitudinal_features.items():
+            if len(columns) == 1:
+                old_name, wave_number = columns[0]
+                new_name = f"{base_name}_wave{wave_number}"
+                df.rename(columns={old_name: new_name}, inplace=True)
+        return df

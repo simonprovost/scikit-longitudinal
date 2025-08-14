@@ -290,7 +290,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
 
     @ensure_valid_state
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray) -> "LexicoDeepForestClassifier":
+    def _fit(self, X: np.ndarray, y: np.ndarray, sample_weight=None) -> "LexicoDeepForestClassifier":
         """Fit the Lexico Deep Forest Classifier model according to the given training data.
 
         Args:
@@ -331,7 +331,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
         self._deep_forest.set_estimator(self.base_longitudinal_estimators, n_splits=2)
         if self.classes_ is None:
             self.classes_ = unique_labels(y)
-        self._deep_forest.fit(X, y)
+        self._deep_forest.fit(X, y, sample_weight=sample_weight)
         return self
 
     @ensure_valid_state

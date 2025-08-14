@@ -4,8 +4,10 @@ import numpy as np  # pragma: no cover
 import pandas as pd  # pragma: no cover
 from rich import print  # pylint: disable=W0622
 from sklearn.base import TransformerMixin
-from sklearn.pipeline import Pipeline  # pragma: no cover
+from sklearn.pipeline import Pipeline, _final_estimator_has  # pragma: no cover
+from sklearn.utils.metaestimators import available_if
 
+from scikit_longitudinal.data_preparation.separate_waves import SepWav
 from scikit_longitudinal.data_preparation import LongitudinalDataset  # pragma: no cover
 from scikit_longitudinal.pipeline_managers.manage_callbacks.manage import validate_update_feature_groups_callback
 from scikit_longitudinal.pipeline_managers.manage_errors.manage import handle_errors, validate_input
@@ -226,7 +228,7 @@ class LongitudinalPipeline(Pipeline):
         super().__init__(steps=steps)
         self._longitudinal_data: np.ndarray = np.array([])
         self.features_group: List[List[int]] = features_group
-        self.non_longitudinal_features: List[Union[int, str]] = non_longitudinal_features
+        self.non_longitudinal_features: List[Union[int, str]] = non_longitudinal_features or []
         self.feature_list_names: List[str] = feature_list_names
         self.selected_feature_indices_: np.ndarray = np.array([])
         self.final_estimator = self.steps[-1][1]
@@ -235,6 +237,8 @@ class LongitudinalPipeline(Pipeline):
             self.update_feature_groups_callback = validate_update_feature_groups_callback(
                 update_feature_groups_callback
             )
+        else:
+            self.update_feature_groups_callback = "default"
 
     @handle_errors
     @validate_input
@@ -264,10 +268,28 @@ class LongitudinalPipeline(Pipeline):
             y = y.copy()
 
         filtered_steps = [(name, transformer) for name, transformer in self.steps[:-1] if transformer is not None]
+
+        def is_sep_wav(transformer):
+            return isinstance(transformer, SepWav)
+
+        if any(is_sep_wav(transformer) for _, transformer in filtered_steps):
+            filtered_steps = [
+                (name, transformer)
+                for name, transformer in filtered_steps
+                if not is_sep_wav(transformer)
+            ]
+            sep_wav_transformers = [
+                (name, transformer)
+                for name, transformer in self.steps[:-1]
+                if is_sep_wav(transformer)
+            ]
+            filtered_steps.extend(sep_wav_transformers)
+
         for step_idx, (name, transformer) in enumerate(filtered_steps):
             (
                 transformer,
                 self._longitudinal_data,
+                y,
                 self.selected_feature_indices_,
                 self.feature_list_names,
             ) = configure_and_fit_transformer(
@@ -289,6 +311,7 @@ class LongitudinalPipeline(Pipeline):
                 self.feature_list_names,
             ) = self._update_longitudinal_data_callback(name, step_idx, transformer, y)
 
+        self.steps = filtered_steps + [self.steps[-1]]
         if self._final_estimator is not None:
             self._final_estimator = handle_final_estimator(
                 self._final_estimator,
@@ -304,34 +327,28 @@ class LongitudinalPipeline(Pipeline):
         return self
 
     def _update_longitudinal_data_callback(
-        self, name: str, step_idx: int, transformer: TransformerMixin, y: Optional[Union[pd.Series, np.ndarray]]
+        self,
+        name: str,
+        step_idx: int,
+        transformer: TransformerMixin,
+        y: Optional[Union[pd.Series, np.ndarray]],
     ) -> Tuple[np.ndarray, List[List[int]], List[Union[int, str]], List[str]]:
-        """Update the longitudinal data and feature groups using the callback function.
-
-        This method is called after each transformer to update the longitudinal data and feature groups, ensuring that
-        the temporal structure is maintained throughout the pipeline.
-
-        Args:
-            name (str): Name of the transformer.
-            step_idx (int): Index of the transformer in the pipeline.
-            transformer (TransformerMixin): The transformer.
-            y (Optional[Union[pd.Series, np.ndarray]]): Target variable.
-
-        Returns:
-            Tuple[np.ndarray, List[List[int]], List[Union[int, str]], List[str]]: Updated longitudinal data, feature
-                groups, non-longitudinal features, and feature list names.
-        """
         df = pd.DataFrame(self._longitudinal_data, columns=self.feature_list_names)
 
         dummy_longitudinal_dataset = LongitudinalDataset(file_path=None, data_frame=df)
         dummy_longitudinal_dataset._feature_groups = self.features_group  # pylint: disable=W0212
+        dummy_longitudinal_dataset._non_longitudinal_features = (
+            self.non_longitudinal_features
+        )
 
         (
             updated_longitudinal_data,
             updated_features_group,
             updated_non_longitudinal_features,
             updated_feature_list_names,
-        ) = self.update_feature_groups_callback(step_idx, dummy_longitudinal_dataset, y, name, transformer)
+        ) = self.update_feature_groups_callback(
+            step_idx, dummy_longitudinal_dataset, y, name, transformer
+        )
 
         return (
             updated_longitudinal_data,
@@ -362,6 +379,7 @@ class LongitudinalPipeline(Pipeline):
             return self._final_estimator.predict(X, **predict_params)
         raise NotImplementedError(f"predict is not implemented for this estimator: {type(self._final_estimator)}")
 
+    @available_if(_final_estimator_has("predict_proba"))
     @validate_input
     def predict_proba(self, X: np.ndarray, **predict_params: Dict[str, Any]) -> np.ndarray:
         """Predict class probabilities using the final estimator.
@@ -384,6 +402,7 @@ class LongitudinalPipeline(Pipeline):
             return self._final_estimator.predict_proba(X, **predict_params)
         raise NotImplementedError(f"predict_proba is not implemented for this estimator: {type(self._final_estimator)}")
 
+    @available_if(_final_estimator_has("transform"))
     @validate_input
     def transform(self, X: np.ndarray, **transform_params: Dict[str, Any]) -> np.ndarray:
         """Transform the input data using the final estimator.
@@ -402,6 +421,41 @@ class LongitudinalPipeline(Pipeline):
             return X
         X = X[:, self.selected_feature_indices_]
         return self._final_estimator.transform(X, **transform_params)
+
+    @available_if(_final_estimator_has("decision_function"))
+    @validate_input
+    def decision_function(self, X, **params):
+        """Compute the decision function of the final estimator.
+
+        Applies the selected feature indices and computes the decision function using the final estimator's `decision_function` method.
+
+        Args:
+            X (np.ndarray): Input data.
+            **params (Dict[str, Any]): Additional parameters for the decision function.
+
+        Returns:
+            np.ndarray: Decision function values.
+        """
+        X = X[:, self.selected_feature_indices_]
+        return self._final_estimator.decision_function(X, **params)
+
+    @available_if(_final_estimator_has("score"))
+    @validate_input
+    def score(self, X: np.ndarray, y: Union[pd.Series, np.ndarray], **score_params: Dict[str, Any]) -> float:
+        """Compute the score of the final estimator.
+
+        Applies the selected feature indices and computes the score using the final estimator's `score` method.
+
+        Args:
+            X (np.ndarray): Input data.
+            y (Union[pd.Series, np.ndarray]): True target values.
+            **score_params (Dict[str, Any]): Additional scoring parameters.
+
+        Returns:
+            float: Computed score.
+        """
+        X = X[:, self.selected_feature_indices_]
+        return self._final_estimator.score(X, y, **score_params)
 
     @property
     def _final_estimator(self):

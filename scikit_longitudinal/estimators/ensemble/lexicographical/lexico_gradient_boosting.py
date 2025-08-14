@@ -224,7 +224,7 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
 
     @ensure_valid_state
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray) -> "LexicoGradientBoostingClassifier":
+    def _fit(self, X: np.ndarray, y: np.ndarray, sample_weight=None,) -> "LexicoGradientBoostingClassifier":
         """Fit the Lexico Gradient Boosting Classifier model according to the given training data.
 
         Args:
@@ -256,7 +256,7 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
         if self.classes_ is None:
             self.classes_ = unique_labels(y)
 
-        return self._lexico_gradient_boosting.fit(X, y)
+        return self._lexico_gradient_boosting.fit(X, y, sample_weight=sample_weight)
 
     @ensure_valid_state
     @override
