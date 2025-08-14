@@ -1,0 +1,102 @@
+name: "🐛 Bug Report"
+description: Create a report to help us improve Scikit-Longitudinal.
+title: "🐛 [BUG] - <title>"
+labels:
+  - "bug"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <p align="center">
+          <img src="https://raw.githubusercontent.com/simonprovost/scikit-longitudinal/refs/heads/main/docs/assets/images/SklongBanner.png" alt="Scikit-Longitudinal Logo">
+          <br>
+          <em><a href="https://doi.org/10.21105/joss.08481">Sklong's Paper</a>—<a href="https://scikit-longitudinal.readthedocs.io/latest/">Sklong's Documentation</a>.</em>
+        </p>
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before Submitting"
+      description: Please confirm the following to help us process your issue in a timely manner.
+      options:
+        - label: I have tried the project on MacOS or Linux (Windows is not fully tested).
+          required: true
+        - label: I have considered using our Docker setup.
+          required: false
+        - label: I have checked the documentation and existing issues.
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: Please give us a detailed description of what's not working as expected.
+      placeholder: "Hint: ‘brevity is the soul of wit’, Hamlet — by William Shakespeare"
+    validations:
+      required: true
+  - type: textarea
+    id: reprod
+    attributes:
+      label: "Reproduction Steps"
+      description: Help us squash this bug by providing a step-by-step guide.
+      value: |
+        1. Navigate to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See the issue unfold
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected Behavior"
+      description: Tell us what you were expecting when the bug appeared.
+      placeholder: "Describe the expected outcome."
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots"
+      description: If possible, add some screenshots to help us see what you're seeing.
+      placeholder: "Hint: Optional, e.g., image links or descriptions."
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: "### Environment Information"
+  - type: dropdown
+    id: os
+    attributes:
+      label: "Operating System"
+      description: What operating system were you using when the bug occurred?
+      options:
+        - "MacOS"
+        - "Linux"
+        - "Windows (note: Windows is not supported! Look the doc!)"
+        - "Other"
+  - type: input
+    id: other-os
+    attributes:
+      label: "Other Operating System"
+      description: "Only fill this if you selected 'Other' in the Operating System dropdown."
+      placeholder: "e.g., Ubuntu 20.04"
+    validations:
+      required: false
+  - type: input
+    id: python-version
+    attributes:
+      label: "Python Version"
+      description: What version of Python are you using?
+      placeholder: "e.g., 3.9"
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: "Additional Information"
+      description: Got more to say? Feel free to provide additional information, including dependencies check (e.g., output of pdm list).
+      placeholder: "... write here ..."
+    validations:
+      required: false

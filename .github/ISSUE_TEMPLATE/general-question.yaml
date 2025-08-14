@@ -1,0 +1,79 @@
+name: "❓ Ask a Question"
+description: Ask a question about Scikit-Longitudinal.
+title: "❓ [QUESTION] - <title>"
+labels:
+  - "question"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <p align="center">
+          <img src="https://raw.githubusercontent.com/simonprovost/scikit-longitudinal/refs/heads/main/docs/assets/images/SklongBanner.png" alt="Scikit-Longitudinal Logo">
+          <br>
+          <em><a href="https://doi.org/10.21105/joss.08481">Sklong's Paper</a>—<a href="https://scikit-longitudinal.readthedocs.io/latest/">Sklong's Documentation</a>.</em>
+        </p>
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before Submitting"
+      description: Please confirm the following to help us answer your question efficiently.
+      options:
+        - label: I have read the project's README.md, especially the FAQ section.
+          required: true
+        - label: I have searched through the existing GitHub issues to check if my question has been asked before.
+          required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: "Question"
+      description: Please be as specific as possible. The more detailed you are, the easier it will be for us to provide a precise answer.
+      placeholder: "Hint: ‘brevity is the soul of wit’, Hamlet — by William Shakespeare"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: "Context"
+      description: Why are you asking this question? Are you facing any challenges or limitations? Understanding your context helps us give a more relevant answer.
+      placeholder: "Hint: Optional, e.g., code snippets, error messages, etc."
+    validations:
+      required: false
+  - type: textarea
+    id: examples
+    attributes:
+      label: "Screenshots or Additional Material"
+      description: If applicable, add screenshots, code snippets, or any other material that might help us understand your question better.
+      placeholder: "Hint: Optional, e.g., screenshots, links, etc."
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: "### Environment Information"
+  - type: dropdown
+    id: os
+    attributes:
+      label: "Operating System"
+      description: What operating system are you using?
+      options:
+        - "MacOS"
+        - "Linux"
+        - "Windows"
+        - "Other"
+  - type: input
+    id: other-os
+    attributes:
+      label: "Other Operating System"
+      description: "Only fill this if you selected 'Other' in the Operating System dropdown."
+      placeholder: "e.g., Ubuntu 20.04"
+    validations:
+      required: false
+  - type: input
+    id: python-version
+    attributes:
+      label: "Python Version"
+      description: What version of Python are you using?
+      placeholder: "e.g., 3.9"
+    validations:
+      required: true

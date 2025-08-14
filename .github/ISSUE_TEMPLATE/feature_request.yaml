@@ -1,0 +1,74 @@
+name: "💡 Feature Request"
+description: Suggest a new feature or enhancement for Scikit-Longitudinal.
+title: "💡 [FEAT] - <title>"
+labels:
+  - "feature"
+assignees:
+  - "simonprovost"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        <p align="center">
+          <img src="https://raw.githubusercontent.com/simonprovost/scikit-longitudinal/refs/heads/main/docs/assets/images/SklongBanner.png" alt="Scikit-Longitudinal Logo">
+          <br>
+          <em><a href="https://doi.org/10.21105/joss.08481">Sklong's Paper</a>—<a href="https://scikit-longitudinal.readthedocs.io/latest/">Sklong's Documentation</a>.</em>
+        </p>
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before Submitting"
+      description: Please confirm the following to help us process your request efficiently.
+      options:
+        - label: I have checked if this feature already exists or has been requested before.
+          required: true
+        - label: This feature aligns with the goals and scope of Scikit-Longitudinal.
+          required: false
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: "What's the Problem?"
+      description: Help us understand the problem you're facing or the limitation you're experiencing. For instance, is there something you're always finding challenging when using Scikit-Longitudinal?
+      placeholder: "Hint: ‘brevity is the soul of wit’, Hamlet — by William Shakespeare"
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: "The Dream Solution"
+      description: Describe what you'd love to see implemented. Be as specific as possible. Feel free to include code samples, mockups, or anything else that paints a clearer picture.
+      placeholder: "Explain how the feature should function."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives"
+      description: Have you considered other ways to solve this problem? Share them with us!
+      placeholder: "Hint: Optional, e.g., alternative approaches."
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: "Context & Relevance"
+      description: Give us some background. How will this feature be useful in the broader context of longitudinal data analysis? Can you provide examples of use-cases or studies where this feature would shine?
+      placeholder: "Hint: Optional, e.g., use-cases."
+    validations:
+      required: false
+  - type: textarea
+    id: examples
+    attributes:
+      label: "Screenshots or Additional Material"
+      description: If you have any screenshots, sketches, or any other material that can help us understand your feature request better, please include them here.
+      placeholder: "Hint: Optional, e.g., screenshots, links to similar features in other projects, etc."
+    validations:
+      required: false
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: "Willing to Contribute?"
+      description: Would you be willing to help implement this feature? If yes, review our Contributing section in the README.
+      options:
+        - "Yes"
+        - "No"
