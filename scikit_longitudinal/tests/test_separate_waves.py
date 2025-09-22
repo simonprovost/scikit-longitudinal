@@ -12,7 +12,7 @@ from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_vo
     LongitudinalEnsemblingStrategy,
     LongitudinalVotingClassifier,
 )
-
+import numpy as np
 
 class TestSeparateWaves:
     @pytest.fixture
@@ -149,3 +149,59 @@ class TestSeparateWaves:
         with pytest.raises(ValueError, match=r"The classifier, dataset, and feature groups must not be None."):
             sepwav.estimator = None
             sepwav.fit(data.X_train, data.y_train)
+
+    def test_fit_with_sample_weight_voting(self, data, sepwav):
+        w = np.ones(len(data.y_train), dtype=float)
+        w[: len(w) // 2] = 3.0  # non-uniform weights
+        sepwav.fit(data.X_train, data.y_train, sample_weight=w)
+        assert isinstance(sepwav.clf_ensemble, LongitudinalVotingClassifier)
+        y_pred = sepwav.predict(data.X_test)
+        assert isinstance(y_pred, ndarray)
+
+    def test_fit_with_sample_weight_stacking(self, data, classifier):
+        w = np.linspace(0.5, 2.0, num=len(data.y_train))
+        y_train = np.asarray(data.y_train).copy()
+        if len(np.unique(y_train)) < 2:
+            half = len(y_train) // 2
+            y_train[:half] = 1 - y_train[:half]
+
+        sepwav = SepWav(
+            estimator=classifier,
+            features_group=data.feature_groups(),
+            non_longitudinal_features=data.non_longitudinal_features(),
+            feature_list_names=data.data.columns.tolist(),
+            voting=LongitudinalEnsemblingStrategy.STACKING,
+        )
+        sepwav.fit(data.X_train, y_train, sample_weight=w)
+        assert isinstance(sepwav.clf_ensemble, LongitudinalStackingClassifier)
+        y_pred = sepwav.predict(data.X_test)
+        assert isinstance(y_pred, ndarray)
+
+    def test_fit_with_sample_weight_parallel_error(self, data, classifier):
+        w = np.ones(len(data.y_train), dtype=float)
+        sepwav = SepWav(
+            estimator=classifier,
+            features_group=data.feature_groups(),
+            non_longitudinal_features=data.non_longitudinal_features(),
+            feature_list_names=data.data.columns.tolist(),
+            parallel=True,
+        )
+        with pytest.raises(ValueError, match=r"Sample weights are not supported in parallel mode"):
+            sepwav.fit(data.X_train, data.y_train, sample_weight=w)
+
+    def test_fit_with_mismatched_sample_weight_raises(self, data, sepwav):
+        # Wrong length should bubble up from the underlying estimator
+        bad_w = np.ones(len(data.y_train) - 1, dtype=float)
+        with pytest.raises(ValueError):
+            sepwav.fit(data.X_train, data.y_train, sample_weight=bad_w)
+
+    def test_predict_proba_after_weighted_fit(self, data, sepwav):
+        w = np.ones(len(data.y_train), dtype=float)
+        w[len(w) // 3 : 2 * len(w) // 3] = 2.0
+        sepwav.fit(data.X_train, data.y_train, sample_weight=w)
+
+        proba = sepwav.predict_proba(data.X_test)
+        assert isinstance(proba, ndarray)
+        assert proba.ndim == 2
+        assert proba.shape[0] == len(data.X_test)
+        assert proba.shape[1] >= 1

@@ -193,3 +193,58 @@ class TestLexico:
         y_pred = clf.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
         assert 0 <= accuracy <= 1
+
+
+    def test_lexico_RF_iris_with_sample_weight(self, train_test_data_iris):
+        X_train, X_test, y_train, y_test = train_test_data_iris
+        w = np.where(y_train == y_train[0], 2.0, 1.0)
+        clf = LexicoRandomForestClassifier(
+            n_estimators=50, threshold_gain=0.005, features_group=[[0, 1], [2, 3]], random_state=42
+        )
+        clf.fit(X_train, y_train, sample_weight=w)
+        y_pred = clf.predict(X_test)
+        assert 0 <= accuracy_score(y_test, y_pred) <= 1
+
+    def test_lexico_decision_tree_iris_with_sample_weight(self, train_test_data_iris):
+        X_train, X_test, y_train, y_test = train_test_data_iris
+        w = np.ones_like(y_train, dtype=float)
+        clf = LexicoDecisionTreeClassifier(threshold_gain=0.005, features_group=[[0, 1], [2, 3]], random_state=42)
+        clf.fit(X_train, y_train, sample_weight=w)
+        y_pred = clf.predict(X_test)
+        assert 0 <= accuracy_score(y_test, y_pred) <= 1
+
+    def test_lexico_RF_synthetic_with_sample_weight(self, train_test_data_synthetic, synthetic_data):
+        X_train, X_test, y_train, y_test = train_test_data_synthetic
+        _, _, features_group = synthetic_data
+        w = np.linspace(0.5, 2.0, num=len(y_train))
+        clf = LexicoRandomForestClassifier(
+            n_estimators=100, threshold_gain=0.0025, features_group=features_group, random_state=123
+        )
+        clf.fit(X_train, y_train, sample_weight=w)
+        y_pred = clf.predict(X_test)
+        assert 0 <= accuracy_score(y_test, y_pred) <= 1
+
+    def test_lexico_gradient_boosting_synthetic_with_sample_weight(self, train_test_data_synthetic, synthetic_data):
+        X_train, X_test, y_train, y_test = train_test_data_synthetic
+        _, _, features_group = synthetic_data
+        w = np.where(y_train == 1, 2.0, 1.0)
+        clf = LexicoGradientBoostingClassifier(
+            threshold_gain=0.005, features_group=features_group, random_state=42
+        )
+        clf.fit(X_train, y_train, sample_weight=w)
+        y_pred = clf.predict(X_test)
+        assert 0 <= accuracy_score(y_test, y_pred) <= 1
+
+    def test_lexico_deep_forest_synthetic_with_sample_weight(self, train_test_data_synthetic, synthetic_data):
+        X_train, X_test, y_train, y_test = train_test_data_synthetic
+        _, _, features_group = synthetic_data
+        w = np.ones_like(y_train, dtype=float)
+        clf = LexicoDeepForestClassifier(
+            features_group=features_group,
+            random_state=321,
+            single_classifier_type=LongitudinalClassifierType.LEXICO_RF,
+            single_count=3,
+        )
+        clf.fit(X_train, y_train, sample_weight=w)
+        y_pred = clf.predict(X_test)
+        assert 0 <= accuracy_score(y_test, y_pred) <= 1
