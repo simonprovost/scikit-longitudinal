@@ -2,7 +2,7 @@ from setuptools import find_packages, setup  # pragma: no cover
 
 setup(  # pragma: no cover
     name="Scikit-longitudinal",
-    version="0.1.1",
+    version="0.1.2",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url="https://github.com/simonprovost/scikit-longitudinal",

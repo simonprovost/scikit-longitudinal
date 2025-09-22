@@ -1,6 +1,7 @@
 # pylint: disable=R0801
 
 from typing import List, Union, Tuple
+from functools import wraps
 
 import numpy as np
 import pandas as pd
@@ -96,10 +97,17 @@ def validate_fit_input(func):
 
     """
 
-    def wrapper(self, X, y):
-        if self.estimator is None or self.dataset is None or self.features_group is None:
-            raise ValueError("The classifier, dataset, and feature groups must not be None.")
-        return func(self, X, y)
+    @wraps(func)
+    def wrapper(self, X, y, *args, **kwargs):
+        if (
+            self.estimator is None
+            or self.dataset is None
+            or self.features_group is None
+        ):
+            raise ValueError(
+                "The classifier, dataset, and feature groups must not be None."
+            )
+        return func(self, X, y, *args, **kwargs)
 
     return wrapper
 
@@ -119,8 +127,9 @@ def validate_fit_output(func):  # pragma: no cover
 
     """
 
-    def wrapper(self, X, y):
-        result = func(self, X, y)
+    @wraps(func)
+    def wrapper(self, X, y, *args, **kwargs):
+        result = func(self, X, y, *args, **kwargs)
         if self.clf_ensemble is None:
             raise ValueError("Fit failed: clf_ensemble is None.")
         return result
