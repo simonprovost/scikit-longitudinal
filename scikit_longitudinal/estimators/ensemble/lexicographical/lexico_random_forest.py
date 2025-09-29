@@ -75,7 +75,7 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
             Maximum number of leaf nodes per tree.
         min_impurity_decrease (float, default=0.0):
             Minimum impurity decrease required for a split.
-        class_weight (Optional[Union[dict, str]], default=None):
+        class_weight (Optional[Union[dict, List[dict], str]], default=None):
             Class weights (e.g., `{class_label: weight}` or "balanced").
         ccp_alpha (float, default=0.0):
             Complexity parameter for pruning; non-negative.
@@ -196,7 +196,7 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
         max_features: Optional[Union[int, str]] = "sqrt",
         max_leaf_nodes: Optional[int] = None,
         min_impurity_decrease: float = 0.0,
-        class_weight: Optional[str] = None,
+        class_weight: Optional[Union[dict, List[dict], str]] = None,
         ccp_alpha: float = 0.0,
         random_state: int = None,
         **kwargs,

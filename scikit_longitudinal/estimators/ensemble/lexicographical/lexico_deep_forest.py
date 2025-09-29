@@ -147,6 +147,9 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
         diversity_estimators (bool, default=True):
             Whether to include diversity estimators (weak learners) in the ensemble. If True, two completely random
             `LexicoRandomForestClassifier` instances are added.
+        class_weight (Optional[Union[dict, List[dict], str]]):
+            Class weights passed to each longitudinal base estimator unless explicitly provided in the estimator's
+            hyperparameters.
         random_state (int, optional):
             Seed for random number generation. Defaults to None.
         single_classifier_type (Optional[Union[LongitudinalClassifierType, str]], optional):
@@ -243,6 +246,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
         longitudinal_base_estimators: Optional[List[LongitudinalEstimatorConfig]] = None,
         non_longitudinal_features: List[Union[int, str]] = None,
         diversity_estimators: bool = True,
+        class_weight: Optional[Union[dict, List[dict], str]] = None,
         random_state: int = None,
         single_classifier_type: Optional[Union[LongitudinalClassifierType, str]] = None,
         single_count: Optional[int] = None,
@@ -254,6 +258,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
         self.single_count = single_count
         self.longitudinal_base_estimators = longitudinal_base_estimators
         self.diversity_estimators = diversity_estimators
+        self.class_weight = class_weight
         self.random_state = random_state
         self._deep_forest = None
         self.classes_ = None
@@ -261,31 +266,44 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
 
     @property
     def base_longitudinal_estimators(self) -> List[ClassifierMixin]:
-        estimators = [
-            self._create_longitudinal_estimator(estimator_info.classifier_type, **estimator_info.hyperparameters or {})
-            for estimator_info in self.longitudinal_base_estimators
-            for _ in range(estimator_info.count)
-        ]
+        estimators: List[ClassifierMixin] = []
+        for estimator_info in self.longitudinal_base_estimators:
+            base_hyperparameters = estimator_info.hyperparameters or {}
+            for _ in range(estimator_info.count):
+                estimators.append(
+                    self._create_longitudinal_estimator(
+                        estimator_info.classifier_type, **dict(base_hyperparameters)
+                    )
+                )
 
         if self.diversity_estimators:
-            estimators.extend(
-                self._create_longitudinal_estimator(
-                    LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF,
+            for _ in range(2):
+                estimators.append(
+                    self._create_longitudinal_estimator(
+                        LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF
+                    )
                 )
-                for _ in range(2)
-            )
         return estimators
 
     def _create_longitudinal_estimator(
         self, classifier_type: Union[str, LongitudinalClassifierType], **hyperparameters: Any
     ) -> ClassifierMixin:
+        resolved_hyperparameters = dict(hyperparameters)
+        if "class_weight" not in resolved_hyperparameters and self.class_weight is not None:
+            resolved_hyperparameters["class_weight"] = self.class_weight
+
         if classifier_type in {LongitudinalClassifierType.LEXICO_RF, LongitudinalClassifierType.LEXICO_RF.value}:
-            return LexicoRandomForestClassifier(features_group=self.features_group, **hyperparameters)
+            return LexicoRandomForestClassifier(
+                features_group=self.features_group, **resolved_hyperparameters
+            )
         if classifier_type in {
             LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF,
             LongitudinalClassifierType.COMPLETE_RANDOM_LEXICO_RF.value,
         }:
-            return LexicoRandomForestClassifier(features_group=self.features_group, max_features=1, **hyperparameters)
+            resolved_hyperparameters.setdefault("max_features", 1)
+            return LexicoRandomForestClassifier(
+                features_group=self.features_group, **resolved_hyperparameters
+            )
         raise ValueError(f"Unsupported classifier type: {classifier_type.value}")
 
     @ensure_valid_state

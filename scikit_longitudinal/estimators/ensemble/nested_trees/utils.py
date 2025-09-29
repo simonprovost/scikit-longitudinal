@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import ray
@@ -15,7 +15,7 @@ def _fit_inner_tree_plus_calculate_gini_ray(
     group_index: int,
     outer_node_name: str,
     max_inner_depth: int,
-    inner_estimator_hyperparameters: Dict[str, Any],
+    inner_estimator_hyperparameters: Optional[Dict[str, Any]],
     save_nested_trees: bool,
     group: List[int],
 ) -> Tuple[DecisionTreeClassifier, Any, float, np.ndarray, List[int]]:
@@ -34,7 +34,7 @@ def _fit_inner_tree_and_calculate_gini(
     group_index: int,
     outer_node_name: str,
     max_inner_depth: int,
-    inner_estimator_hyperparameters: Dict[str, Any],
+    inner_estimator_hyperparameters: Optional[Dict[str, Any]],
     save_nested_trees: bool,
     sample_weight: np.ndarray = None,
 ) -> Tuple[DecisionTreeClassifier, np.ndarray, float]:
@@ -61,7 +61,8 @@ def _fit_inner_tree_and_calculate_gini(
         tree, the outer node name, the Gini impurity, the predicted labels, and the current group of features.
 
     """
-    tree = DecisionTreeClassifier(max_depth=max_inner_depth, **inner_estimator_hyperparameters)
+    hyperparameters = inner_estimator_hyperparameters or {}
+    tree = DecisionTreeClassifier(max_depth=max_inner_depth, **hyperparameters)
     if sample_weight is not None:
         tree.fit(subset_X, y, sample_weight=sample_weight)
     else:

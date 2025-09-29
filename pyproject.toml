@@ -1,6 +1,6 @@
 [project]
 name = "Scikit-longitudinal"
-version = "0.1.2"
+version = "0.1.3"
 description = "Scikit-longitudinal is an open-source Python library for longitudinal data analysis, building on Scikit-learn's foundation with tools tailored for repeated measures data."
 authors = [
     {name = "Provost Simon", email = "simon.gilbert.provost@gmail.com"},

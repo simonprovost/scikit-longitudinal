@@ -79,7 +79,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
             The maximum number of leaf nodes in the tree. If None, unlimited.
         min_impurity_decrease (float, default=0.0):
             The minimum impurity decrease required for a node to be split.
-        class_weight (Optional[Union[dict, str]], default=None):
+        class_weight (Optional[Union[dict, List[dict], str]], default=None):
             Weights associated with classes in the form `{class_label: weight}` or "balanced".
         ccp_alpha (float, default=0.0):
             Complexity parameter used for Minimal Cost-Complexity Pruning. Must be non-negative.
@@ -202,7 +202,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
         random_state: Optional[int] = None,
         max_leaf_nodes: Optional[int] = None,
         min_impurity_decrease: float = 0.0,
-        class_weight: Optional[str] = None,
+        class_weight: Optional[Union[dict, List[dict], str]] = None,
         ccp_alpha: float = 0.0,
         store_leaf_values: bool = False,
         monotonic_cst: Optional[List[int]] = None,
