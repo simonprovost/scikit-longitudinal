@@ -1,7 +1,7 @@
 # pylint: disable=R0801
 
-from typing import List, Union, Tuple
 from functools import wraps
+from typing import Any, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -193,8 +193,37 @@ def validate_predict_wave_input(func):
     return wrapper
 
 
+def _set_class_weight_if_supported(estimator: BaseEstimator, class_weight: Optional[Any]) -> BaseEstimator:
+    """Assign ``class_weight`` on estimators that declare the parameter.
+
+    The helper guards against estimators that do not expose the parameter and
+    avoids mutating estimators when the requested weight is ``None``.
+    """
+
+    if class_weight is None:
+        return estimator
+
+    params: Optional[Mapping[str, Any]] = None
+    try:
+        params = estimator.get_params(deep=False)
+    except Exception:  # pragma: no cover - defensive fallback for custom estimators
+        params = None
+
+    if params is not None and "class_weight" in params:
+        try:
+            estimator.set_params(class_weight=class_weight)
+            return estimator
+        except ValueError:
+            pass
+
+    if hasattr(estimator, "class_weight"):
+        setattr(estimator, "class_weight", class_weight)
+
+    return estimator
+
+
 @ray.remote
-def train_classifier(classifier, X_wave, y_wave, wave):  # pragma: no cover
+def train_classifier(classifier, X_wave, y_wave, wave, class_weight=None):  # pragma: no cover
     """Train a classifier on a specific wave.
 
     This function is used for parallel processing by leveraging Ray framework.
@@ -209,6 +238,8 @@ def train_classifier(classifier, X_wave, y_wave, wave):  # pragma: no cover
             The target values for the wave.
         wave (int):
             The wave number to use as for the returned classifier by denoting it as wave_{wave number}.
+        class_weight (Any, optional):
+            Requested class-weight configuration that should be applied when supported by the estimator.
 
     Returns:
         tuple: A tuple containing two elements:
@@ -217,6 +248,7 @@ def train_classifier(classifier, X_wave, y_wave, wave):  # pragma: no cover
 
     """
     clf_wave = clone(classifier)
+    clf_wave = _set_class_weight_if_supported(clf_wave, class_weight)
     if hasattr(X_wave, "values") and hasattr(y_wave, "values"):
         X_wave = X_wave.values
         y_wave = y_wave.values
@@ -259,6 +291,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         n_jobs (int, optional): Number of parallel jobs. Defaults to None.
         parallel (bool, optional): Whether to run wave fitting in parallel. Defaults to False.
         num_cpus (int, optional): Number of CPUs for parallel processing. Defaults to -1 (all available CPUs).
+        class_weight (Any, optional): Class-weight specification to forward to wave estimators when supported.
 
     Attributes:
         dataset (pd.DataFrame): Training dataset.
@@ -270,6 +303,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         n_jobs (int): Number of parallel jobs.
         parallel (bool): Whether parallel processing is enabled.
         num_cpus (int): Number of CPUs used.
+        class_weight (Any): Requested class-weight configuration applied to compatible estimators.
 
     Examples:
         Below are examples using the "stroke.csv" dataset. Replace "stroke.csv" with your actual dataset path.
@@ -378,6 +412,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         n_jobs: int = None,
         parallel: bool = False,
         num_cpus: int = -1,
+        class_weight: Optional[Any] = None,
     ):
         self.features_group = features_group
         self.non_longitudinal_features = non_longitudinal_features
@@ -390,6 +425,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         self.n_jobs = n_jobs
         self.parallel = parallel
         self.num_cpus = num_cpus
+        self.class_weight = class_weight
 
         self.estimators = []
         self.dataset = pd.DataFrame([])
@@ -505,7 +541,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
                     "Please set parallel=False or remove sample_weight."
                 )
             futures = [
-                train_classifier.remote(self.estimator, X_train, y_train, wave)
+                train_classifier.remote(self.estimator, X_train, y_train, wave, self.class_weight)
                 for wave, (X_train, y_train) in enumerate(
                     self._extract_wave(wave=i) for i in range(n_waves)
                 )
@@ -515,6 +551,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
             for i in range(n_waves):
                 X_wave, y_wave = self._extract_wave(wave=i)
                 clf_wave = clone(self.estimator)
+                clf_wave = _set_class_weight_if_supported(clf_wave, self.class_weight)
                 if hasattr(X_wave, "values") and hasattr(y_wave, "values"):
                     X_wave = X_wave.values
                     y_wave = y_wave.values
