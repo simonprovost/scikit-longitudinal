@@ -31,6 +31,7 @@ class TestNestedTreesClassifier:
         assert classifier.max_inner_depth == 2
         assert classifier.min_outer_samples == 5
         assert classifier.inner_estimator_hyperparameters is None
+        assert classifier.class_weight is None
         assert classifier.root is None
 
     def test_fit_and_predict(self, dummy_data, features_group):
@@ -41,6 +42,26 @@ class TestNestedTreesClassifier:
         y_pred = nested_trees.predict(X)
         accuracy = (y_pred == y).mean()
         assert accuracy >= 0
+
+    def test_nested_trees_propagates_class_weight(self, dummy_data, features_group):
+        X, y = dummy_data
+        nested_trees = NestedTreesClassifier(features_group, class_weight="balanced")
+        nested_trees.fit(X, y)
+
+        assert nested_trees.class_weight == "balanced"
+        assert nested_trees.root.tree.class_weight == "balanced"
+
+    def test_nested_trees_preserves_explicit_inner_class_weight(self, dummy_data, features_group):
+        X, y = dummy_data
+        custom_class_weight = {0: 3.0, 1: 1.0}
+        nested_trees = NestedTreesClassifier(
+            features_group,
+            inner_estimator_hyperparameters={"class_weight": custom_class_weight},
+            class_weight="balanced",
+        )
+        nested_trees.fit(X, y)
+
+        assert nested_trees.root.tree.class_weight == custom_class_weight
 
     def test_single_sample_prediction(self, dummy_data, features_group):
         X, y = dummy_data

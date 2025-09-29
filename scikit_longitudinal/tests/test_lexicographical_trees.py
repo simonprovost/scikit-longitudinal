@@ -171,6 +171,38 @@ class TestLexico:
         accuracy = accuracy_score(y_test, y_pred)
         assert 0 <= accuracy <= 1
 
+    def test_lexico_decision_tree_accepts_class_weight(self, train_test_data_iris):
+        X_train, _, y_train, _ = train_test_data_iris
+        features_group = [[0, 1], [2, 3]]
+        class_weight = {0: 2.0, 1: 1.0, 2: 1.0}
+
+        clf = LexicoDecisionTreeClassifier(
+            threshold_gain=0.001,
+            features_group=features_group,
+            class_weight=class_weight,
+            random_state=0,
+        )
+        clf.fit(X_train, y_train)
+
+        assert clf.class_weight == class_weight
+
+    def test_lexico_random_forest_propagates_class_weight(self, train_test_data_iris):
+        X_train, _, y_train, _ = train_test_data_iris
+        features_group = [[0, 1], [2, 3]]
+        class_weight = {0: 2.0, 1: 1.0, 2: 1.0}
+
+        clf = LexicoRandomForestClassifier(
+            n_estimators=5,
+            threshold_gain=0.001,
+            features_group=features_group,
+            class_weight=class_weight,
+            random_state=0,
+        )
+        clf.fit(X_train, y_train)
+
+        assert clf.class_weight == class_weight
+        assert all(tree.class_weight == class_weight for tree in clf.estimators_)
+
     @pytest.mark.parametrize(
         "random_state",
         [

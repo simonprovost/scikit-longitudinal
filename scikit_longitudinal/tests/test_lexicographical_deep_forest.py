@@ -146,6 +146,40 @@ class TestDeepForest:
         assert prediction_proba is not None
         assert len(predictions) == len(y)
 
+    def test_base_estimators_receive_class_weight(self, synthetic_data):
+        _, _, features_group, _ = synthetic_data
+        lexico_rf_config = LongitudinalEstimatorConfig(
+            classifier_type=LongitudinalClassifierType.LEXICO_RF,
+            count=2,
+        )
+        clf = LexicoDeepForestClassifier(
+            features_group=features_group,
+            longitudinal_base_estimators=[lexico_rf_config],
+            class_weight="balanced",
+            diversity_estimators=False,
+        )
+
+        estimators = clf.base_longitudinal_estimators
+        assert all(estimator.class_weight == "balanced" for estimator in estimators)
+
+    def test_explicit_estimator_class_weight_is_preserved(self, synthetic_data):
+        _, _, features_group, _ = synthetic_data
+        custom_class_weight = {0: 3.0, 1: 1.0}
+        lexico_rf_config = LongitudinalEstimatorConfig(
+            classifier_type=LongitudinalClassifierType.LEXICO_RF,
+            count=2,
+            hyperparameters={"class_weight": custom_class_weight},
+        )
+        clf = LexicoDeepForestClassifier(
+            features_group=features_group,
+            longitudinal_base_estimators=[lexico_rf_config],
+            class_weight="balanced",
+            diversity_estimators=False,
+        )
+
+        estimators = clf.base_longitudinal_estimators
+        assert all(estimator.class_weight == custom_class_weight for estimator in estimators)
+
     def test_invalid_features_group(self, synthetic_data, uninitialized_classifier):
         X, y, _, _ = synthetic_data
         uninitialized_classifier.features_group = None

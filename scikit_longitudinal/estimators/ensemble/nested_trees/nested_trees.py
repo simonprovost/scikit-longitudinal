@@ -54,6 +54,9 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             Minimum samples required to split an outer node. Defaults to 5.
         inner_estimator_hyperparameters (Optional[Dict[str, Any]], optional):
             Hyperparameters for inner decision trees. Defaults to None.
+        class_weight (Optional[Union[dict, List[dict], str]], optional):
+            Class weights applied to every inner decision tree unless explicitly provided through
+            `inner_estimator_hyperparameters`.
         save_nested_trees (bool, optional):
             If True, saves visualizations of the nested structure. Defaults to False.
         parallel (bool, optional):
@@ -121,6 +124,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         max_inner_depth: int = 2,
         min_outer_samples: int = 5,
         inner_estimator_hyperparameters: Optional[Dict[str, Any]] = None,
+        class_weight: Optional[Union[dict, List[dict], str]] = None,
         save_nested_trees: bool = False,
         parallel: bool = False,
         num_cpus: int = -1,
@@ -131,6 +135,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         self.max_inner_depth = max_inner_depth
         self.min_outer_samples = min_outer_samples
         self.inner_estimator_hyperparameters = inner_estimator_hyperparameters
+        self.class_weight = class_weight
         self.save_nested_trees = save_nested_trees
         self.root = None
         self.parallel = parallel
@@ -219,6 +224,14 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         def __str__(self):
             return self.node_name
+
+    def _get_inner_tree_hyperparameters(self) -> Dict[str, Any]:
+        """Return the hyperparameters for inner decision trees with class weights applied."""
+
+        params = dict(self.inner_estimator_hyperparameters or {})
+        if "class_weight" not in params and self.class_weight is not None:
+            params["class_weight"] = self.class_weight
+        return params
 
     @override
     def _fit(self, X: np.ndarray, y: np.ndarray, sample_weight: Optional[np.ndarray] = None) -> "NestedTreesClassifier":
@@ -394,6 +407,8 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         subset_X = None
         best_group = None
 
+        inner_tree_params = self._get_inner_tree_hyperparameters()
+
         if self.parallel:
             if sample_weight is not None:
                 raise ValueError(
@@ -406,7 +421,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                     i,
                     outer_node_name,
                     self.max_inner_depth,
-                    self.inner_estimator_hyperparameters,
+                    inner_tree_params,
                     self.save_nested_trees,
                     group,
                 )
@@ -423,7 +438,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                     i,
                     outer_node_name,
                     self.max_inner_depth,
-                    self.inner_estimator_hyperparameters,
+                    inner_tree_params,
                     self.save_nested_trees,
                     sample_weight=sample_weight,
                 )
