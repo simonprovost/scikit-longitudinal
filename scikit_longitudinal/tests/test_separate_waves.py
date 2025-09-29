@@ -2,6 +2,8 @@ import pytest
 from numpy import ndarray
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.exceptions import NotFittedError
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.data_preparation.separate_waves import SepWav
@@ -205,3 +207,33 @@ class TestSeparateWaves:
         assert proba.ndim == 2
         assert proba.shape[0] == len(data.X_test)
         assert proba.shape[1] >= 1
+
+    def test_class_weight_propagated_to_supported_estimators(self, data):
+        class_weight = {0: 1.0, 1: 3.5}
+        sepwav = SepWav(
+            estimator=DecisionTreeClassifier(random_state=0),
+            features_group=data.feature_groups(),
+            non_longitudinal_features=data.non_longitudinal_features(),
+            feature_list_names=data.data.columns.tolist(),
+            class_weight=class_weight,
+        )
+
+        sepwav.fit(data.X_train, data.y_train)
+
+        assert sepwav.class_weight == class_weight
+        assert all(getattr(estimator, "class_weight") == class_weight for _, estimator in sepwav.estimators)
+
+    def test_class_weight_skipped_for_unsupported_estimators(self, data):
+        class_weight = {0: 2.0, 1: 1.0}
+        sepwav = SepWav(
+            estimator=KNeighborsClassifier(),
+            features_group=data.feature_groups(),
+            non_longitudinal_features=data.non_longitudinal_features(),
+            feature_list_names=data.data.columns.tolist(),
+            class_weight=class_weight,
+        )
+
+        sepwav.fit(data.X_train, data.y_train)
+
+        assert sepwav.class_weight == class_weight
+        assert all(not hasattr(estimator, "class_weight") for _, estimator in sepwav.estimators)
