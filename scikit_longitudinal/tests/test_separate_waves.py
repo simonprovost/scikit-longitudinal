@@ -2,6 +2,7 @@ import pytest
 from numpy import ndarray
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.exceptions import NotFittedError
+from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 
@@ -237,3 +238,26 @@ class TestSeparateWaves:
 
         assert sepwav.class_weight == class_weight
         assert all(not hasattr(estimator, "class_weight") for _, estimator in sepwav.estimators)
+
+    def test_class_weight_propagated_to_stacking_meta_learner(self, data):
+        class_weight = "balanced"
+        meta_learner = LogisticRegression(max_iter=50)
+        sepwav = SepWav(
+            estimator=DecisionTreeClassifier(random_state=0),
+            features_group=data.feature_groups(),
+            non_longitudinal_features=data.non_longitudinal_features(),
+            feature_list_names=data.data.columns.tolist(),
+            voting=LongitudinalEnsemblingStrategy.STACKING,
+            stacking_meta_learner=meta_learner,
+            class_weight=class_weight,
+        )
+        y_train = data.y_train.copy()
+        for i in range(len(y_train) // 2):
+            y_train[i] += 1
+
+        sepwav.fit(data.X_train, y_train)
+
+        assert isinstance(sepwav.clf_ensemble, LongitudinalStackingClassifier)
+        assert sepwav.class_weight == class_weight
+        assert all(getattr(estimator, "class_weight") == class_weight for _, estimator in sepwav.estimators)
+        assert getattr(sepwav.clf_ensemble.meta_learner, "class_weight", None) == class_weight
