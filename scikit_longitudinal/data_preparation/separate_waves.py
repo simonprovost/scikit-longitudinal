@@ -567,8 +567,12 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
                 self.estimators.append((f"wave_{i}", clf_wave))
 
         if self.voting == LongitudinalEnsemblingStrategy.STACKING:
+            meta_learner = None
+            if self.stacking_meta_learner is not None:
+                meta_learner = clone(self.stacking_meta_learner)
+                meta_learner = _set_class_weight_if_supported(meta_learner, self.class_weight)
             self.clf_ensemble = LongitudinalStackingClassifier(
-                estimators=self.estimators, meta_learner=self.stacking_meta_learner, n_jobs=self.n_jobs
+                estimators=self.estimators, meta_learner=meta_learner, n_jobs=self.n_jobs
             )
         else:
             self.clf_ensemble = LongitudinalVotingClassifier(
