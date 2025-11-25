@@ -14,13 +14,6 @@
 
     [See The Temporal Dependency Guide :fontawesome-solid-timeline:](../../../tutorials/temporal_dependency.md){ .md-button }
 
-!!! warning "Documentation Under Alpha Construction"
-    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
-
-    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
-
-    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
-
 ## ::: scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest.LexicoRandomForestClassifier
     options:
         heading: "LexicoRandomForestClassifier"
@@ -30,3 +23,11 @@
 !!! note "Where are predict? and predict_proba?"
     The `predict` and `predict_proba` methods are inherited from the `RandomForestClassifier` class in `scikit-learn`. 
     They are not explicitly defined in `LexicoRandomForestClassifier` but can be called directly on the instance.
+
+!!! warning "Documentation Under Alpha Construction"
+    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
+
+    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
+
+    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
+

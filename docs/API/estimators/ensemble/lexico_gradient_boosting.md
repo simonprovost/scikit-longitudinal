@@ -9,13 +9,6 @@
     The classifier uses Lexico Decision Tree Regressors as base estimators, which are specialized to handle 
     the temporal structure of longitudinal data.
 
-!!! warning "Documentation Under Alpha Construction"
-    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
-
-    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
-
-    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
-
 ## ::: scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting.LexicoGradientBoostingClassifier
     options:
         heading: "LexicoGradientBoostingClassifier"
@@ -28,3 +21,11 @@
 !!! note "Use of underscore in method names"
     `_predict` should  be called via `predict` we handle the call to `_predict` in the `predict` method.
     The same applies to `_predict_proba` and `predict_proba`.
+
+!!! warning "Documentation Under Alpha Construction"
+    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
+
+    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
+
+    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
+

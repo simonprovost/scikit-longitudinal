@@ -9,6 +9,14 @@
 
     [See The Temporal Dependency Guide :fontawesome-solid-timeline:](../../tutorials/temporal_dependency.md){ .md-button }
 
+## ::: scikit_longitudinal.data_preparation.aggregation_function.AggrFunc
+    options:
+        heading: "AggrFunc"
+        members:
+            - get_params
+            - _prepare_data
+            - _transform
+
 !!! warning "Documentation Under Alpha Construction"
     **This documentation is in its early stages and still being developed.** The API may therefore change,
     and some parts might be incomplete or inaccurate.
@@ -17,10 +25,3 @@
 
     [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
 
-## ::: scikit_longitudinal.data_preparation.aggregation_function.AggrFunc
-    options:
-        heading: "AggrFunc"
-        members:
-            - get_params
-            - _prepare_data
-            - _transform
