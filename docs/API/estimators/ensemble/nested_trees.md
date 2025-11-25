@@ -10,13 +10,6 @@
 
     [See The Temporal Dependency Guide :fontawesome-solid-timeline:](../../../tutorials/temporal_dependency.md){ .md-button }
 
-!!! warning "Documentation Under Alpha Construction"
-    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
-
-    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
-
-    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
-
 ## ::: scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees.NestedTreesClassifier
     options:
         heading: "NestedTreesClassifier"
@@ -31,3 +24,11 @@
     class and can be called directly on the `NestedTreesClassifier` instance. 
 
     They internally call `_predict` and `_predict_proba` respectively.
+
+!!! warning "Documentation Under Alpha Construction"
+    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
+
+    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
+
+    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
+

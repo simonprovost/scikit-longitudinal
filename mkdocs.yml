@@ -36,7 +36,6 @@ theme:
     code: Roboto Mono
   features:
     - announce.dismiss
-    - content.tabs.link
     - content.code.copy
     - content.code.select
     - content.code.annotate
@@ -159,8 +158,8 @@ nav:
       - "Wide/Long Data Format": tutorials/sklong_longitudinal_data_format.md
       - "Sklong Explore Your First Estimator": tutorials/sklong_explore_your_first_estimator.md
       - "Sklong Explore Your First Pipeline": tutorials/sklong_explore_your_first_pipeline.md
-  - "API Reference":
-    - "API Reference": API/index.md
+  - "API":
+    - "API Overview": API/index.md
     - "Data Preparation":
         - "Longitudinal Dataset": API/data_preparation/longitudinal_dataset.md
     - "Data Transformation":
@@ -182,7 +181,9 @@ nav:
         - "Nested Trees": API/estimators/ensemble/nested_trees.md
     - "Pipeline":
       - "Longitudinal Pipeline": API/pipeline.md
-  - "Contributing": contribution.md
-  - "Releases": https://github.com/simonprovost/scikit-longitudinal/releases
-  - "FAQ": faq.md
-  - "Publications": publications.md
+  - "Community Hub":
+      - "Overview": community-hub.md
+      - "Related Projects": related-projects.md
+      - "Developers": developers.md
+      - "FAQ": faq.md
+      - "Publications & Credits": publications.md

@@ -8,13 +8,6 @@
 
     Mainly used within SepWav. Relate to this primitive.
 
-!!! warning "Documentation Under Alpha Construction"
-    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
-
-    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
-
-    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
-
 ## ::: scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting.LongitudinalVotingClassifier
     options:
         heading: "LongitudinalVotingClassifier"
@@ -29,3 +22,11 @@
     The same applies to `_predict_proba` and `predict_proba`.
 
 ## ::: scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting.LongitudinalEnsemblingStrategy
+
+!!! warning "Documentation Under Alpha Construction"
+    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
+
+    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
+
+    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
+

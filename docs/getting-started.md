@@ -5,22 +5,24 @@ hide:
 
 # 💡 `Scikit-longitudinal`, in a nutshell!
 
-# 💡 `Scikit-longitudinal`, in a nutshell!
-
 Biomedical research often uses longitudinal data with repeated measurements of variables across time (e.g. cholesterol
 measured across time), which is challenging for standard machine learning algorithms due to intrinsic temporal
 dependencies. 
 
 `Scikit-longitudinal` (abbreviated `Sklong`, pronounced /ˌɛs keɪ ˈlɒŋ/ or "Ess-kay-long" and /ˌsaɪ kɪt
-ˌlɒndʒɪˈtjuːdɪnəl/ or "Sky-kit lon-ji-TOO-din-ul") is a machine learning library helping out in anlysing longitudinal 
+ˌlɒndʒɪˈtjuːdɪnəl/ or "Sky-kit lon-ji-TOO-din-ul") is a machine learning library helping out in anlysing longitudinal
 data, also known as _panel data_ in some fields. `Sklong` specialises in longitudinal machine learning _classification_ tasks,
 offering user-friendly tools for `processing`, `analyzing`, and `classifying` longitudinal tabular data, seamlessly
 integrating with the `Scikit-learn` ecosystem.
 
+!!! example "Official paper"
+    The library is presented in [Scikit-Longitudinal: A Machine Learning Library for Longitudinal Classification in Python](https://doi.org/10.21105/joss.08481), published in the *Journal of Open Source Software (JOSS)*.
+    If you want a concise overview of the design decisions and capabilities, start there before diving into the examples below.
+
 Note that while Longitudinal datasets have a temporal component, other types of datasets, such as time series,
 also have a temporal component but are not considered longitudinal datasets. Time series data typically involves
 a single variable measured at regular intervals over time, while longitudinal datasets involve multiple variables
-measured across the same cohort of individuals at different time points. More is discussed in the [FAQ](https://scikit-longitudinal.readthedocs.io/latest//faq/).
+measured across the same cohort of individuals at different time points. More is discussed in the [FAQ](faq.md).
 However, I would like to highlight that time points are therefore considered as `waves` in `Sklong` [^1][^2][^3].
 
 To start your Longitudinal Machine Learning journey with `Sklong`, you first will have to install the library.
@@ -363,7 +365,7 @@ print(classification_report(dataset.y_test, y_pred))
     the [Temporal Dependency](https://scikit-longitudinal.readthedocs.io/latest//temporal-dependency/) section.
 
 !!! question "How do I tune hyperparameters?"
-    Check the [API Reference](https://scikit-longitudinal.readthedocs.io/latest/API/) for a complete list of
+    Check the [API](https://scikit-longitudinal.readthedocs.io/latest/API/) for a complete list of
     hyperparameters and their meanings.
 
 !!! question "Neural Network Models?"
@@ -378,7 +380,7 @@ Next, we highly recommend that you explore the `Temporal Dependency` section, wh
 understanding of how to set up temporal dependencies in your longitudinal datasets. This is crucial for
 building effective longitudinal machine learning models with `Scikit-longitudinal`.
 
-Following that? You could play it all by walking through the `API Reference` section, which provides detailed
+Following that? You could play it all by walking through the `API` section, which provides detailed
 information on the various estimators, primitives, and hyperparameters available in `Scikit-longitudinal`.
 ___
 
@@ -430,5 +432,15 @@ Intelligence Review, 57(4), p.84.
        ```bash
        python -c "import scikit_longitudinal"
        ```
-    
+
+    5. **Alternative (tested on macOS Sequoia, MacBook Pro M2, stable release)**
+       If Rosetta-based setups struggle, you can pin an Intel-compatible Python version with `uv` and resync dependencies:
+       ```bash
+       uv python install cpython-3.9.6-macos-x86_64-none
+
+       uv python pin cpython-3.9.6-macos-x86_64-none
+
+       uv sync
+       ```
+
     And voila! You should now have `Scikit-longitudinal` installed and running on your Apple Silicon Mac.

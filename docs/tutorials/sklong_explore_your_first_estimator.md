@@ -1,7 +1,4 @@
----
----
-
-## 🔍 Sklong: Explore Your First Estimator
+# 🔍 Sklong: Explore Your First Estimator
 
 
 !!! important "Dataset Used in Tutorials"

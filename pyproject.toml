@@ -30,6 +30,8 @@ dependencies = [
     "deep-forest>=0.1.7",
     "scikit-lexicographical-trees==0.0.4",
     "ray>=2.40.0",
+    "mkdocs>=1.6.1",
+    "mkdocs-material[all]>=9.6.12",
 ]
 [dependency-groups]
 dev = [

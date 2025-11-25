@@ -1,9 +1,3 @@
----
-hide:
-  - navigation
----
-
-# 👀 Frequently Asked Questions
 # 👀 Frequently Asked Questions
 
 !!! info "What is a Longitudinal Data?"
@@ -33,41 +27,11 @@ hide:
     [GitHub](https://github.com/simonprovost/scikit-longitudinal).
 
 !!! note "Where can I find more resources?"
-    If you're looking for more information on how to use Scikit-Longitudinal, check out our [API Reference](API/index.md).
+    If you're looking for more information on how to use Scikit-Longitudinal, check out our [API](API/index.md).
 
 !!! question "What if I have a question that isn't answered here?"
-    If you have a question that isn't answered here, feel free to reach out to us on 
+    If you have a question that isn't answered here, feel free to reach out to us on
     [GitHub Issues](https://github.com/simonprovost/scikit-longitudinal/issues).
 
-# Related Projects
-
-!!! quote "Auto-Sklong"
-    -    _Open-source:_ ✅
-    -    _Authors:_ [Simon Provost](https://github.com/simonprovost) & [Alex Freitas](https://www.kent.ac.uk/computing/people/3057/freitas-alex)
-    -    _Github Link:_ [Auto-Sklong](https://github.com/simonprovost/Auto-Sklong)
-    -   _Description:_ Auto-Sklong - An automated machine learning pipeline for longitudinal data. Leveraging Scikit-Longitudinal and Auto-Sklearn with a novel Search Space tailored to the Longitudinal ML classification task.
-    -   _Note_: Sklong authors are Auto-Sklong authors.
-!!! quote "Auto-prognosis"
-    -    _Open-source:_ ✅
-    -    _Authors:_ [VanderSchaar Lab](https://www.vanderschaar-lab.com/)
-    -    _Github Link:_ [Auto-prognosis](https://github.com/vanderschaarlab/autoprognosis)
-    -   _Description:_ AutoPrognosis - A system for automating the design of predictive modeling pipelines tailored for clinical prognosis.
-    - _Note:_ Auto-prognosis is highly correlated with the [StepWise Model Selection Via Deep Kernel Learning (SMS-DKL)](https://proceedings.mlr.press/v108/zhang20f.html) and the Clairvoyance projects. Worth reading the paper, [yet the project despite being open source is very limited.](https://github.com/vanderschaarlab/mlforhealthlabpub/tree/main/alg/smsdkl)
-!!! quote "Clairvoyance"
-    -    _Open-source:_ ✅
-    -    _Authors:_ [VanderSchaar Lab](https://www.vanderschaar-lab.com/)
-    -    _Github Link:_ [Clairvoyance](https://github.com/vanderschaarlab/clairvoyance)
-    -   _Description:_ Clairvoyance - A Pipeline Toolkit for Medical Time Series
-
-!!! quote "LongiTools"
-    -    _Open-source:_ ⏳
-    -    _Authors:_ [LongiTools](https://longitools.org/)
-    -    _Official Website:_ [LongiTools](https://longitools.org/)
-    -   _Description:_ A European research project studying the interactions between environmental, lifestyle and biological factors to determine the risks of chronic cardiovascular and metabolic diseases.
-
-!!! quote "Want your project to be featured here?"
-    -    _Open-source:_ ✅ or ⏳ or ❌
-    -    _Authors:_ ``Your Name(s)``
-    -    _Github Link:_: ``Your Project Link``
-    -   _Description:_ ``A brief description of your project``
-    -   _How To?_: Open An Issue and We'll Add It Here!
+!!! quote "More projects to explore"
+    Looking for complementary tooling? Visit our [Related Projects](related-projects.md) page for a curated list.

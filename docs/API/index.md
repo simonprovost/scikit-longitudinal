@@ -1,6 +1,7 @@
-# :book: API Reference :book:
+# API :toolbox:
 
-# API reference :toolbox:
+!!! note "Looking for credits and paper references?"
+    Algorithm-specific citations and contributor attributions now live in [Publications & Credits](../publications.md).
 
 ## :book: Overview of each module
 

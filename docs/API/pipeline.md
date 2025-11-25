@@ -11,13 +11,6 @@
 
     [See The Temporal Dependency Guide :fontawesome-solid-timeline:](../tutorials/temporal_dependency.md){ .md-button }
 
-!!! warning "Documentation Under Alpha Construction"
-    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
-
-    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
-
-    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
-
 ## ::: scikit_longitudinal.pipeline.LongitudinalPipeline
     options:
         heading: "LongitudinalPipeline"
@@ -27,3 +20,11 @@
             - predict_proba
             - transform
             - fit_transform
+
+!!! warning "Documentation Under Alpha Construction"
+    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
+
+    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
+
+    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
+

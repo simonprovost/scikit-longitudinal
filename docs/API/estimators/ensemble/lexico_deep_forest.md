@@ -10,13 +10,6 @@
     The classifier uses Lexico Random Forest classifiers as base estimators, which are specialized to handle 
     the temporal structure of longitudinal data.
 
-!!! warning "Documentation Under Alpha Construction"
-    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
-
-    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
-
-    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
-
 ## ::: scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest.LexicoDeepForestClassifier
     options:
         heading: "LexicoDeepForestClassifier"
@@ -32,3 +25,11 @@
 ## ::: scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest.LongitudinalClassifierType
 
 ## ::: scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest.LongitudinalEstimatorConfig
+
+!!! warning "Documentation Under Alpha Construction"
+    **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts might be incomplete or inaccurate.
+
+    **Use at your own risk**, and please report anything that seems `incorrect` / `outdated` you find.
+
+    [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
+

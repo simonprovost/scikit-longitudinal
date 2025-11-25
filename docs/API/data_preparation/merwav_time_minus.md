@@ -11,6 +11,13 @@
 
     [See The Temporal Dependency Guide :fontawesome-solid-timeline:](../../tutorials/temporal_dependency.md){ .md-button }
 
+## ::: scikit_longitudinal.data_preparation.merwav_time_minus.MerWavTimeMinus
+    options:
+        heading: "MerWavTimeMinus"
+        members:
+            - get_params
+            - _prepare_data
+
 !!! warning "Documentation Under Alpha Construction"
     **This documentation is in its early stages and still being developed.** The API may therefore change, and some parts
     might be incomplete or inaccurate.
@@ -19,9 +26,3 @@
 
     [Open An Issue! :fontawesome-brands-square-github:](https://github.com/simonprovost/scikit-longitudinal/issues){ .md-button }
 
-## ::: scikit_longitudinal.data_preparation.merwav_time_minus.MerWavTimeMinus
-    options:
-        heading: "MerWavTimeMinus"
-        members:
-            - get_params
-            - _prepare_data
