@@ -38,6 +38,13 @@ Explore other initiatives tackling longitudinal analysis, automation, or clinica
     -    _Official Website:_ [LongiTools](https://longitools.org/)
     -   _Description:_ LongITools is a European research consortium investigating how environmental exposures, lifestyle, and biology interact across the life course to shape cardiometabolic disease risk. The project curates a longitudinal datasets catalogue (via [Molgenis Catalogue](https://molgeniscatalogue.org)) and an exposome toolbox to make cohort harmonisation, risk-factor tracking, and early-life intervention research more reproducible.
 
+!!! quote "Atlas of Longitudinal Datasets"
+    -    _Open-source:_ ❌ (free-to-use web platform)
+    -    _Authors:_ [Louise Arseneault](https://kclpure.kcl.ac.uk/portal/en/persons/louise-arseneault) et al. on behalf of the Atlas of Longitudinal Datasets team
+    -    _Official Website:_ [Atlas of Longitudinal Datasets](https://atlaslongitudinaldatasets.ac.uk/)
+    -    _Reference:_ [Arseneault, L. (2025). *Atlas of Longitudinal Datasets*. King's College London.](https://doi.org/10.18742/pub01-231)
+    -   _Description:_ A free, searchable platform cataloguing thousands of longitudinal datasets worldwide. The Atlas provides rich metadata (sample, design, data types, data access, lived-experience involvement) plus map and list views, filters, and comparison tools to help researchers, funders, policymakers and lived-experience communities discover longitudinal resources—especially those relevant to mental health research.
+
 !!! quote "Want your project to be featured here?"
     -    _Open-source:_ ✅ or ⏳ or ❌
     -    _Authors:_ ``Your Name(s)``
