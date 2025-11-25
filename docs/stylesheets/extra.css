@@ -65,10 +65,6 @@
     color: #252121 !important;
 }
 
-.md-content__inner h1:first-child {
-    display: none;
-}
-
 .md-logo {
     padding-top: 6px;
 }
@@ -98,10 +94,69 @@
 }
 
 .blurry-tab {
-    filter: blur(2px);
-    transition: filter 0.2s ease;
+    filter: blur(3px);
+    animation: unblur-tab 4.5s ease-out forwards;
 }
 
-.blurry-tab:hover {
-    filter: none;
+@keyframes unblur-tab {
+    from {
+        filter: blur(3px);
+    }
+
+    to {
+        filter: blur(0);
+    }
+}
+
+[data-md-color-scheme="slate"] .md-search__form,
+[data-md-color-scheme="slate"] .md-search__inner {
+    background-color: #1b1b1b !important;
+    color: #f5f5f5 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__input {
+    background-color: transparent !important;
+    color: #fdfdfd !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__input::placeholder,
+[data-md-color-scheme="slate"] .md-search__icon {
+    color: #e0e0e0 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search-result__link,
+[data-md-color-scheme="slate"] .md-search-result__title,
+[data-md-color-scheme="slate"] .md-search-result__teaser,
+[data-md-color-scheme="slate"] .md-search-result__meta {
+    color: #f5f5f5 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__output,
+[data-md-color-scheme="slate"] .md-search__scrollwrap {
+    background-color: #0f0f0f !important;
+    color: #f5f5f5 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search-result__link:hover,
+[data-md-color-scheme="slate"] .md-search-result__link:focus {
+    background-color: #1f1f1f;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary,
+[data-md-color-scheme="slate"] .md-nav--primary,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav,
+[data-md-color-scheme="slate"] .md-nav__list {
+    background-color: #1c1c1c !important;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__title,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link,
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__title,
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link {
+    color: #f5f5f5 !important;
+}
+
+.md-typeset .pub-heading {
+    font-size: 1.35em;
+    font-weight: 700;
 }

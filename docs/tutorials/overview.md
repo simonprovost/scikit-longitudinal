@@ -1,5 +1,4 @@
 # Tutorials Overview :books:
-# Tutorials Overview :books:
 
 The following will guide you through the understanding of Scikit-Longitudinal (`Sklong`) through a series of tutorials.
 We aim at offering an understanding first to what is a Longitudinal dataset per our definition, how do we generalise its temporal

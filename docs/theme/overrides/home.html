@@ -84,7 +84,7 @@
     .tx-landing {
         display: flex;
         align-items: center;
-        padding: 4rem 1rem;
+        padding: 2rem 1rem;
     }
 
     @media (max-width: 1023px) {
@@ -583,95 +583,192 @@
         transform: translateX(-50%);
     }
 
-    .audio-container {
-        margin: 1rem auto;
+    .podcast-section {
+        margin: 0.5rem auto 3rem;
+        max-width: 1100px;
         text-align: center;
-        padding: 1rem;
     }
 
-    .audio-container audio:hover {
-        border-radius: 50px;
-        box-shadow: 0 0 30px 10px rgba(255, 135, 141, 0.5);
-        transform: scale(1.02);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .podcast-heading {
+        font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+        margin-bottom: 0.35rem;
     }
 
-    @keyframes glow {
-        0% {
-            box-shadow: 0 0 20px 5px rgba(255, 135, 141, 0.4);
-        }
-        50% {
-            box-shadow: 0 0 40px 15px rgba(255, 135, 141, 0.6);
-        }
-        100% {
-            box-shadow: 0 0 20px 5px rgba(255, 135, 141, 0.4);
-        }
+    .podcast-subtitle {
+        color: #5b5b5b;
+        margin-bottom: 1.25rem;
+        font-weight: 500;
     }
 
-    .audio-container audio.playing {
-        border-radius: 50px;
-        animation: glow 2s ease-in-out infinite;
+    .podcast-inline {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 0.75rem;
+        flex-wrap: wrap;
     }
 
-    audio::-webkit-media-controls-panel {
-        background-color: rgb(45, 42, 38);
-        color: #fff6eb;
+    .podcast-bubbles {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
-    audio::-webkit-media-controls-play-button {
-        background-color: rgba(255, 246, 235, 0.1);
+    .podcast-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        position: relative;
+    }
+
+    .podcast-spotlight {
+        display: none;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.6rem 1.15rem;
+        border-radius: 999px;
+        background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.35)),
+        linear-gradient(135deg, rgba(255, 203, 210, 0.7), rgba(128, 161, 255, 0.65));
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(18px) saturate(150%);
+        -webkit-backdrop-filter: blur(18px) saturate(150%);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        position: relative;
+        overflow: hidden;
+        min-width: 360px;
+    }
+
+    .podcast-item.active .podcast-spotlight {
+        display: inline-flex;
+        animation: slide-in 0.4s ease;
+    }
+
+    .podcast-spotlight::after {
+        content: '';
+        position: absolute;
+        inset: 4px;
+        border-radius: inherit;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+        pointer-events: none;
+        mix-blend-mode: screen;
+    }
+
+    .podcast-flag {
+        font-size: 1.9rem;
+        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+        flex-shrink: 0;
+    }
+
+    .podcast-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .podcast-audio {
+        max-width: 260px;
+        min-width: 220px;
+        height: 36px;
+        accent-color: #252121;
+        border-radius: 999px;
+        background: transparent;
+    }
+
+    .podcast-audio::-webkit-media-controls-panel {
+        background: transparent;
+    }
+
+    .podcast-audio.playing::-webkit-media-controls-play-button {
+        filter: drop-shadow(0 0 0.35rem rgba(0, 0, 0, 0.25));
+    }
+
+    .podcast-bubble {
+        width: 64px;
+        height: 64px;
         border-radius: 50%;
-        color: #fff6eb;
-        transition: background-color 0.3s ease;
+        border: none;
+        background: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)),
+        linear-gradient(135deg, rgba(255, 203, 210, 0.8), rgba(128, 161, 255, 0.75));
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(14px) saturate(150%);
+        -webkit-backdrop-filter: blur(14px) saturate(150%);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, width 0.25s ease, height 0.25s ease;
+        opacity: 0.95;
+        position: relative;
     }
 
-    audio::-webkit-media-controls-play-button:hover {
-        background-color: rgba(255, 246, 235, 0.2);
-    }
-
-    audio::-webkit-media-controls-timeline {
-        background-color: rgba(255, 246, 235, 0.2);
-        border-radius: 5px;
-        padding: 0;
-        margin: 0 15px 0 5px;
-    }
-
-    audio::-webkit-media-controls-current-time-display,
-    audio::-webkit-media-controls-time-remaining-display {
-        color: #fff6eb;
-        text-shadow: none;
-    }
-
-    audio::-webkit-media-controls-volume-slider {
-        background-color: rgba(255, 246, 235, 0.2);
-        border-radius: 5px;
-        padding: 0;
-        margin: 0 5px;
-    }
-
-    audio::-webkit-media-controls-mute-button {
-        background-color: rgba(255, 246, 235, 0.1);
-        border-radius: 50%;
-        color: #fff6eb;
-    }
-
-    audio::-moz-media-controls {
-        background-color: rgb(45, 42, 38);
-    }
-
-    .sub-caption {
-        font-size: 0.675rem;
-        color: #666;
-        margin-top: 0.5rem;
-    }
-
-    .audio-title {
+    .podcast-bubble .bubble-flag {
         font-size: 1.5rem;
-        font-weight: bold;
-        color: #252121;
-        margin-bottom: 1rem;
-        text-align: center;
+        pointer-events: none;
+    }
 
+    .podcast-item.active .podcast-bubble {
+        transform: scale(0.85);
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        opacity: 0;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+    }
+
+    .podcast-bubble:focus-visible {
+        outline: 2px solid #252121;
+        outline-offset: 3px;
+    }
+
+    .podcast-bubbles.intro .podcast-bubble { animation: bubble-slide 0.9s ease forwards; }
+    .podcast-bubbles.intro .podcast-item.active .podcast-bubble { animation: bubble-expand 0.9s ease forwards; }
+
+    @keyframes bubble-slide {
+        0% { opacity: 0; transform: translateY(-24px) scale(0.9); }
+        100% { opacity: 0.95; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes bubble-expand {
+        0% { opacity: 0; transform: translateY(-24px) scale(0.9); }
+        100% { opacity: 1; transform: translateY(0) scale(1.12); }
+    }
+
+    @keyframes slide-in {
+        0% { opacity: 0; transform: translateX(-12px); }
+        100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 860px) {
+        .podcast-inline {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .podcast-item {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .podcast-spotlight {
+            justify-content: center;
+        }
+
+        .podcast-controls {
+            justify-content: center;
+        }
+    }
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: max-height 0.55s ease, opacity 0.45s ease, transform 0.45s ease;
+        display: grid;
+        gap: 0.65rem;
+        text-align: left;
     }
 
 </style>
@@ -725,7 +822,7 @@
                         <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                         </svg>
-                        <span class="star-text"><span class="number">48+</span> Stars</span>
+                        <span class="star-text"><span class="number">70+</span> Stars</span>
                     </div>
                     <svg class="right-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" aria-hidden="true">
                         <path d="M11.867 24.571c-.703.047-1.511.387-2.027.868-.176.164-.164.363.023.492.575.433 1.43.656 2.145.562.68-.047 1.488-.41 2.027-.89.211-.188.176-.41-.07-.551-.574-.352-1.418-.54-2.098-.48Zm-2.46-3.96c-.153-.223-.364-.235-.54-.024-.468.54-.808 1.348-.855 2.027-.07.727.176 1.582.633 2.121.152.188.34.188.492.012.457-.504.785-1.324.82-2.039.035-.68-.187-1.523-.55-2.098Zm5.765.785c-.656.222-1.348.761-1.723 1.359-.129.21-.07.387.153.469.668.281 1.558.281 2.215.011.644-.234 1.335-.785 1.722-1.382.14-.235.07-.434-.187-.516-.657-.2-1.535-.176-2.18.059Zm-3.375-3.188c-.21-.2-.422-.164-.527.094-.317.633-.434 1.512-.305 2.18.129.726.586 1.488 1.148 1.898.188.140.387.105.48-.117.317-.598.411-1.477.27-2.18-.14-.668-.562-1.418-1.066-1.875Zm8.309-1.348c.046-.27-.094-.421-.375-.386-.68.082-1.454.457-1.957.937-.504.457-.915 1.219-1.032 1.934-.035.234.094.387.328.375.727-.024 1.536-.375 2.028-.89.504-.493.914-1.29 1.008-1.97Zm-6.727-1.007c-.258-.094-.434.023-.434.304-.046.692.2 1.524.598 2.121.375.61 1.113 1.114 1.817 1.278.222.035.386-.082.398-.305.035-.727-.223-1.559-.633-2.11a3.843 3.843 0 0 0-1.746-1.288Zm1.957-2.742c-.504-.446-1.312-.75-2.016-.81-.27-.01-.398.165-.363.423.152.68.61 1.441 1.149 1.898.515.469 1.359.785 2.086.762.21-.012.34-.176.304-.387a3.44 3.44 0 0 0-1.16-1.886Zm4.758-1.536c-.035-.28-.223-.386-.469-.280-.633.245-1.3.808-1.664 1.394-.375.609-.586 1.464-.504 2.132.024.235.2.352.422.282.68-.188 1.371-.739 1.723-1.371a3.69 3.69 0 0 0 .492-2.157Zm-5.39-2.402c-.634-.234-1.5-.246-2.169-.059-.258.082-.328.282-.199.493.352.597 1.043 1.16 1.734 1.418.657.27 1.547.27 2.215 0 .211-.094.27-.293.153-.480-.375-.61-1.067-1.138-1.735-1.372Zm3.925-3.07c-.117-.235-.34-.282-.539-.118-.48.47-.926 1.22-1.066 1.899-.153.691-.059 1.559.257 2.168.106.21.305.27.48.129.575-.422 1.032-1.172 1.161-1.887.14-.68.023-1.547-.293-2.191Zm-6.059-.305c-.68-.14-1.535-.035-2.156.246-.246.106-.304.316-.129.527.457.516 1.22.973 1.899 1.125.703.188 1.582.07 2.191-.293.2-.128.235-.328.094-.492a3.425 3.425 0 0 0-1.899-1.113Zm3.47-3.61c-.153-.21-.376-.234-.552-.023-.445.55-.773 1.348-.808 2.016-.07.68.164 1.535.562 2.133.13.187.328.21.504.046.516-.515.867-1.324.88-2.039.046-.68-.188-1.535-.587-2.132ZM9.991 1.006c-.28-.035-.422.117-.398.387.105.703.492 1.488.96 1.98.493.551 1.29.926 2.005.961.234.012.363-.129.34-.363-.082-.680-.47-1.488-.973-1.969-.48-.48-1.254-.89-1.934-.996Z"/>
@@ -751,30 +848,121 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    const audioElement = document.querySelector('audio');
-    if (audioElement) {
-        audioElement.playbackRate = 1.25;
+        const items = Array.from(document.querySelectorAll('.podcast-item'));
+        const bubbleTray = document.querySelector('.podcast-bubbles');
 
-        audioElement.addEventListener('play', function() {
-            audioElement.classList.add('playing');
+        const resetOthers = (activeItem) => {
+            items.forEach(item => {
+                const audioEl = item.querySelector('.podcast-audio');
+                const isActive = item === activeItem;
+                item.classList.toggle('active', isActive);
+                if (!isActive && audioEl) {
+                    audioEl.pause();
+                    audioEl.currentTime = 0;
+                }
+            });
+        };
+
+        items.forEach((item, index) => {
+            const bubble = item.querySelector('.podcast-bubble');
+            const audioEl = item.querySelector('.podcast-audio');
+
+            if (!bubble.style.getPropertyValue('--delay')) {
+                bubble.style.setProperty('--delay', (index * 0.12).toFixed(2));
+            }
+
+            if (audioEl) {
+                audioEl.playbackRate = 1.25;
+                audioEl.addEventListener('play', () => audioEl.classList.add('playing'));
+                audioEl.addEventListener('pause', () => audioEl.classList.remove('playing'));
+            }
+
+            bubble.addEventListener('click', () => {
+                resetOthers(item);
+                if (audioEl) {
+                    audioEl.pause();
+                    audioEl.currentTime = 0;
+                }
+            });
         });
 
-        audioElement.addEventListener('pause', function() {
-            audioElement.classList.remove('playing');
-        });
-    }
-});
+        if (items.length) {
+            resetOthers(items[0]);
+        }
+
+        if (bubbleTray) {
+            setTimeout(() => bubbleTray.classList.remove('intro'), 1200);
+        }
+    });
 </script>
 
+<div class="podcast-section">
+    <h2 class="podcast-heading title-klack-style"><mark>Sklong</mark> Podcast <mark>Explained</mark></h2>
+    <p class="podcast-subtitle">Generated with NotebookLM</p>
 
+    <div class="podcast-inline">
+        <div class="bubble-bar podcast-bubbles intro" role="list">
+            <div class="podcast-item active" data-language="English" data-flag="🇬🇧">
+                <button class="podcast-bubble" type="button" aria-label="English">
+                    <span class="bubble-flag" aria-hidden="true">🇬🇧</span>
+                </button>
+                <div class="podcast-spotlight" aria-live="polite">
+                    <span class="podcast-flag" aria-hidden="true">🇬🇧</span>
+                    <div class="podcast-controls">
+                        <audio class="podcast-audio" controls aria-label="Sklong Podcast — English">
+                            <source src="assets/audio/sklong_en.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
 
-<div class="audio-container">
-    <h2 class="audio-title title-klack-style"><mark>Sklong</mark> Podcast <mark>Explained</mark></h2>
-    <audio controls>
-        <source src="assets/audio/sklong.wav" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <p class="sub-caption">Generated with NotebookLM</p>
+            <div class="podcast-item" data-language="Français" data-flag="🇫🇷">
+                <button class="podcast-bubble" type="button" aria-label="Français">
+                    <span class="bubble-flag" aria-hidden="true">🇫🇷</span>
+                </button>
+                <div class="podcast-spotlight" aria-live="polite">
+                    <span class="podcast-flag" aria-hidden="true">🇫🇷</span>
+                    <div class="podcast-controls">
+                        <audio class="podcast-audio" controls aria-label="Sklong Podcast — Français">
+                            <source src="assets/audio/sklong_fr.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <div class="podcast-item" data-language="Español" data-flag="🇪🇸">
+                <button class="podcast-bubble" type="button" aria-label="Español">
+                    <span class="bubble-flag" aria-hidden="true">🇪🇸</span>
+                </button>
+                <div class="podcast-spotlight" aria-live="polite">
+                    <span class="podcast-flag" aria-hidden="true">🇪🇸</span>
+                    <div class="podcast-controls">
+                        <audio class="podcast-audio" controls aria-label="Sklong Podcast — Español">
+                            <source src="assets/audio/sklong_sp.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <div class="podcast-item" data-language="繁體中文" data-flag="🇹🇼">
+                <button class="podcast-bubble" type="button" aria-label="繁體中文">
+                    <span class="bubble-flag" aria-hidden="true">🇹🇼</span>
+                </button>
+                <div class="podcast-spotlight" aria-live="polite">
+                    <span class="podcast-flag" aria-hidden="true">🇹🇼</span>
+                    <div class="podcast-controls">
+                        <audio class="podcast-audio" controls aria-label="Sklong Podcast — 繁體中文">
+                            <source src="assets/audio/sklong_chtrad.wav" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="feature-grid">

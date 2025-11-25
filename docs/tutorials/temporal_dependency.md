@@ -1,9 +1,4 @@
----
----
-
-
 # ⏳ Understanding Temporal Dependencies in Longitudinal Datasets
-## ⏳ Understanding Temporal Dependencies in Longitudinal Datasets
 
 In the following, we will look at the only component of `Sklong` that is completely novel compared to previous
 libraries. Our explanation covers how we generalise the use of temporal dependencies in longitudinal datasets across 
@@ -185,7 +180,7 @@ print(f"Non-longitudinal features: {dataset.non_longitudinal_features(names=True
 !!! success "More Presets, stay tuned!"
     More presets may appear in the future; contribute yours if you believe they will benefit the community! If more
     than one pre-set configuration is available, we will open a new section in the 
-    `API Reference` to list them all.
+    `API` to list them all.
 
 
 To conclude, the appropriate configuration of `features_group` and `non_longitudinal_features` is critical 

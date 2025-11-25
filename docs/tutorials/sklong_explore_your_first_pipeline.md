@@ -1,7 +1,4 @@
----
----
-
-## 🔗 Sklong: Explore Your First Pipeline
+# 🔗 Sklong: Explore Your First Pipeline
 
 !!! important "Dataset Used in Tutorials"
     The tutorials use a synthetic dataset mimicking health-related longitudinal data. It's generated for illustrative
