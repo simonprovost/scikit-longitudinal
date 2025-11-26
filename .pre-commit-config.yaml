@@ -3,7 +3,9 @@ repos:
     rev: v4.4.0
     hooks:
       - id: check-yaml
+        exclude: ^mkdocs\.yml$
       - id: end-of-file-fixer
+
       - id: trailing-whitespace
 
   - repo: https://github.com/psf/black
@@ -22,8 +24,7 @@ repos:
     rev: 6.0.0
     hooks:
       - id: flake8
-        args: [--exclude, "./scikit-learn/*"]
-
+        args: [--exclude, "./scikit-learn/*", --max-line-length, "120"]
 
   - repo: https://github.com/PyCQA/autoflake
     rev: v2.1.1
