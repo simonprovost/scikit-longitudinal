@@ -41,17 +41,17 @@ jobs:
         uses: astral-sh/setup-uv@v5
         with:
           version: "latest"
-          enable-cache: true
+          enable-cache: false
           python-version: "${{ matrix.python-version }}"
 
-      - name: Lock and Sync Dependencies
+      - name: Install dependencies
         run: |
-          uv lock
           uv sync --all-groups
 
-      - name: Run Unit Tests
+      - name: Run Tests
         run: |
-          uv run pytest -sv scikit_longitudinal
+          . .venv/bin/activate
+          pytest -sv scikit_longitudinal
 
   pypi-publish:
     name: ☁️ Upload Release to PyPI
@@ -72,7 +72,7 @@ jobs:
         uses: astral-sh/setup-uv@v5
         with:
           version: "latest"
-          enable-cache: true
+          enable-cache: false
           python-version: "3.12"
 
       - name: Lock and Sync Dependencies
