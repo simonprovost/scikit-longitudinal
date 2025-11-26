@@ -32,21 +32,9 @@ To start your Longitudinal Machine Learning journey with `Sklong`, you first wil
 ## 🛠️ Installation
 
 !!! warning "Operating System Support"
-    `Scikit-longitudinal` is currently supported on `OSX` (MacOS) and `Linux`. 
-    `Windows` users should use `notebooks` or `Docker` with a `Linux` (
+    `Scikit-longitudinal` is currently supported on `OSX` (MacOS) and `Linux` (Almost any stable distributions). However, `Windows` users should use cloud-based `notebooks` or `Docker` with a `Linux` (
     Ubuntu) distribution due to limitations with a dependency library. For more details, open an issue, I would be 
     happy to discuss this out further.
-
-!!! important "Python Version Compatibility"
-    `Scikit-longitudinal` is currently compatible with Python versions `3.9` only.
-    Ensure you have one of these versions installed before proceeding with the installation.
-
-    Now, while we understand that this is a limitation, we are tied for the time being because of `Deep Forest`.
-    `Deep Forest` is a dependency of `Scikit-longitudinal` that is not compatible with Python versions greater than `3.9`.
-    `Deep Forest` helps us with the `Deep Forest` algorithm, to which we have made some modifications to
-    welcome `Lexicographical Deep Forest`.
-
-    To follow up on this discussion, please refer to [this github issue](https://github.com/LAMDA-NJU/Deep-Forest/issues/124).
 
 Please, start by choosing the installation method that best suits your needs:
 
@@ -66,17 +54,17 @@ Please, start by choosing the installation method that best suits your needs:
     pip install scikit-longitudinal==0.0.8  # Replace with the desired version
     ```
 
-    Please note that here we assume you have a compatible Python version installed (3.9) and a working environment (e.g Conda).
+    Please note that here we assume you have a supported Python version installed (3.10–3.12) and a working environment (e.g Conda).
 
 === ":simple-python: Conda (CondaForge)"
 
     To install `Scikit-longitudinal` using `Conda`, follow these steps:
 
     1. Open your terminal or Anaconda Prompt.
-    2. Create a new Conda environment with Python 3.9:
+    2. Create a new Conda environment with Python 3.10:
 
        ```bash
-       conda create --name sklong -c conda-forge python=3.9 
+       conda create --name sklong -c conda-forge python=3.10
        ```
 
     3. Activate the environment:
@@ -107,19 +95,19 @@ Please, start by choosing the installation method that best suits your needs:
        uv run --python /usr/bin/python3 --with scikit_longitudinal jupyter lab
        ```
 
-       Replace `/usr/bin/python3` with the path to your desired Python version, as long as it is `3.9` and less than `3.10`, it has been tested.
+       Replace `/usr/bin/python3` with the path to your desired Python version within the supported `3.10`–`3.12` range.
        For more options, refer to the [UV CLI documentation](https://docs.astral.sh/uv/reference/cli/#uv-python).
 
     You are ready to play with `Scikit-longitudinal` in `Jupyter lab`! 🎉
 
-    ??? question "How to install different version if we do not have `3.9`?"
-        You can install a different version of Python using `uv` by running:
+    ??? question "How do I install a supported Python version?"
+        You can install a supported version of Python using `uv` by running:
 
         ```bash
-        uv python install 3.9
-        uv python pin 3.9
+        uv python install 3.10
+        uv python pin 3.10
         ```
-        This command will install Python 3.9 and set it as the default version for your environment.
+        This command will install Python 3.10 and set it as the default version for your environment.
 
     ??? question "How do I get the path to my just installed Python version?"
         You can find the path to your installed Python version by running:
@@ -147,57 +135,22 @@ Please, start by choosing the installation method that best suits your needs:
 
 === ":simple-googlecolab: Google Colab (~5 lines)"
 
-    To use `Scikit-longitudinal` in `Google Colab`, follow these steps due to compatibility requirements:
-    
-    You also can follow the follwing gist as we reproduce the below's steps: 
-    [gist](https://gist.github.com/simonprovost/356030bd8f1ea077bdbc120fdc116c16#file-support_39_scikit_longitudinal_in_google_colab-ipynb) 
-    –– or –– [Open in Google Colab :simple-googlecolab:](tutorials/temporal_dependency.md){ .md-button }
-    
-    Preliminary steps:
-    
-    1. Open a new `Google Colab` notebook.
-    2. Open in a code / text editor the notebook you want to use `Scikit-longitudinal` in, and proceed with the following modifications.
-       
-        ```
-        "metadata": {
-            ...
-            "kernelspec": {
-              "name": "python3.9",
-              "display_name": "Python 3.9"
-            },
-            ...
-        },
-        ```
-    3. Save the notebook.
+    To use `Scikit-longitudinal` in `Google Colab`, follow these steps:
 
-    You are ready to add stuff in your notebook!
-
-    1. Downgrade the Python version to 3.9, as `Scikit-longitudinal` supports this version.
-         You can do this by running the following command in a code cell:
-
-         Shoutout to @J3soon for [this solution](https://github.com/j3soon/colab-python-version)!
-    
-         ```bash
-         !wget -O py39.sh https://raw.githubusercontent.com/j3soon/colab-python-version/main/scripts/py39.sh
-         !bash py39.sh
-         ```
-    
-         This command installs Python 3.9 on your Colab instance.
-
-    2. It'll automatically refresh the kernel to ensure it uses Python 3.9, no worries!
-    3. Install `Scikit-longitudinal`:
+    1. Open a new `Google Colab` notebook (the default runtime uses Python 3.10+, which is supported).
+    2. Install `Scikit-longitudinal`:
 
        ```bash
        !pip install scikit-longitudinal
        ```
 
-    4. Remove `Scikit-learn` if installed, as `Scikit-longitudinal` is a fork and may conflict:
+    3. Remove `Scikit-learn` if installed, as `Scikit-longitudinal` is a fork and may conflict:
 
        ```bash
        !pip uninstall scikit-learn -y
        ```
 
-    5. Remove & Re-Install `Scikit-lexicographical-trees`, which is the modified version of `Scikit-learn` used by `Scikit-longitudinal`:
+    4. Remove & Re-Install `Scikit-lexicographical-trees`, which is the modified version of `Scikit-learn` used by `Scikit-longitudinal`:
 
        ```bash
        !pip uninstall scikit-lexicographical-trees -y
@@ -269,7 +222,7 @@ Please, start by choosing the installation method that best suits your needs:
     
     2. **Pin the Required Python Version:**
        ```bash
-       uv python pin cpython-3.9.21 # Or any other version you want as long as it fits Sklon requiements.
+       uv python pin cpython-3.10.16 # Or any other version you want as long as it fits Sklong requirements.
        ```
     
     3. **Lock Dependencies:**
@@ -399,10 +352,9 @@ Intelligence Review, 57(4), p.84.
 ## 🚨 Troubleshooting
 
 === ":simple-apple: Install On Apple Silicon Chips"
-    Apple Silicon-based Macs require running under an `x86_64` architecture to ensure proper installation and
-    functioning of `Scikit-longitudinal`. This is primarily due to the `Deep-Forest` dependency being incompatible
-    with Apple Silicon (ref Github Issue with `Deep Forest`
-    authors [here](https://github.com/LAMDA-NJU/Deep-Forest/issues/133)).
+    Apple Silicon-based Macs may require running under an `x86_64` architecture to ensure proper installation and
+    functioning of `Scikit-longitudinal`, as some compiled dependencies (such as `deep-forest-py310`) distribute
+    x86_64-focused wheels.
 
     The following steps are somehow extracted & adapted
     from [https://apple.stackexchange.com/a/408379](https://apple.stackexchange.com/a/408379).
@@ -424,7 +376,7 @@ Intelligence Review, 57(4), p.84.
     
     3. **Install `Scikit-longitudinal` via `Conda` with `Pip`**
        ```bash
-       conda create --name sklong python=3.9
+       conda create --name sklong python=3.10
        conda activate sklong
        pip install scikit-longitudinal
        ```
@@ -436,9 +388,9 @@ Intelligence Review, 57(4), p.84.
     5. **Alternative (tested on macOS Sequoia, MacBook Pro M2, stable release)**
        If Rosetta-based setups struggle, you can pin an Intel-compatible Python version with `uv` and resync dependencies:
        ```bash
-       uv python install cpython-3.9.6-macos-x86_64-none
+       uv python install cpython-3.10.16-macos-x86_64-none
 
-       uv python pin cpython-3.9.6-macos-x86_64-none
+       uv python pin cpython-3.10.16-macos-x86_64-none
 
        uv sync
        ```
