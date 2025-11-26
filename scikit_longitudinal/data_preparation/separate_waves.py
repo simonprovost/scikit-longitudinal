@@ -5,7 +5,6 @@ from typing import Any, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
-import ray
 from overrides import override
 from sklearn.base import BaseEstimator, ClassifierMixin, clone
 from sklearn.exceptions import NotFittedError
@@ -21,6 +20,7 @@ from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_vo
 )
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
+from scikit_longitudinal.utils.parallel import get_ray_for_parallel
 
 
 def validate_extract_wave_input(func):
@@ -222,31 +222,11 @@ def _set_class_weight_if_supported(estimator: BaseEstimator, class_weight: Optio
     return estimator
 
 
-@ray.remote
-def train_classifier(classifier, X_wave, y_wave, wave, class_weight=None):  # pragma: no cover
-    """Train a classifier on a specific wave.
+def _train_classifier(
+    classifier, X_wave, y_wave, wave, class_weight=None
+):  # pragma: no cover
+    """Train a classifier on a specific wave."""
 
-    This function is used for parallel processing by leveraging Ray framework.
-
-    Args:
-        classifier (BaseEstimator):
-            The classifier to employ.
-        X_wave (DataFrame):
-            The input samples for the wave. Each row represents an observation,
-            and each column represents a feature.
-        y_wave (Series):
-            The target values for the wave.
-        wave (int):
-            The wave number to use as for the returned classifier by denoting it as wave_{wave number}.
-        class_weight (Any, optional):
-            Requested class-weight configuration that should be applied when supported by the estimator.
-
-    Returns:
-        tuple: A tuple containing two elements:
-            - wave (string): The wave number as a string.
-            - clf_wave (BaseEstimator): The trained classifier.
-
-    """
     clf_wave = clone(classifier)
     clf_wave = _set_class_weight_if_supported(clf_wave, class_weight)
     if hasattr(X_wave, "values") and hasattr(y_wave, "values"):
@@ -432,12 +412,6 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         self.target = np.ndarray([])
         self.clf_ensemble = None
 
-        if self.parallel and ray.is_initialized() is False:  # pragma: no cover
-            if self.num_cpus != -1:
-                ray.init(num_cpus=self.num_cpus)
-            else:
-                ray.init()
-
     @override
     def _prepare_data(self, X: np.ndarray, y: np.ndarray = None) -> "SepWav":
         """Prepare the data for transformation.
@@ -535,11 +509,13 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
         n_waves = max(len(group) for group in self.features_group)
 
         if self.parallel:
+            ray = get_ray_for_parallel(self.parallel, self.num_cpus)
             if sample_weight is not None:
                 raise ValueError(
                     "Sample weights are not supported in parallel mode. "
                     "Please set parallel=False or remove sample_weight."
                 )
+            train_classifier = ray.remote(_train_classifier)
             futures = [
                 train_classifier.remote(self.estimator, X_train, y_train, wave, self.class_weight)
                 for wave, (X_train, y_train) in enumerate(

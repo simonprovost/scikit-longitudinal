@@ -1,14 +1,12 @@
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
-import ray
 from matplotlib import pyplot as plt
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 # pylint: disable=R0913
 
 
-@ray.remote
 def _fit_inner_tree_plus_calculate_gini_ray(
     subset_X: np.ndarray,
     y: np.ndarray,

@@ -1,7 +1,6 @@
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
-import ray
 from overrides import override
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils.multiclass import unique_labels
@@ -13,6 +12,7 @@ from scikit_longitudinal.estimators.ensemble.nested_trees.utils import (
     _remove_consecutive_duplicates,
 )
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
+from scikit_longitudinal.utils.parallel import get_ray_for_parallel
 
 
 # pylint: disable=R0902,R0903,R0914,,too-many-arguments,invalid-name,signature-differs,no-member
@@ -141,12 +141,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         self.parallel = parallel
         self.num_cpus = num_cpus
         self.classes_ = None
-
-        if self.parallel and ray.is_initialized() is False:  # pragma: no cover
-            if num_cpus != -1:
-                ray.init(num_cpus=self.num_cpus)
-            else:
-                ray.init()
 
         if max_outer_depth <= 0:
             raise ValueError("max_outer_depth must be greater than 0.")
@@ -402,6 +396,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 A tuple containing the best inner decision tree, the associated split, and the best feature group.
 
         """
+        ray = get_ray_for_parallel(self.parallel, self.num_cpus)
         min_gini = float("inf")
         best_tree = None
         subset_X = None
@@ -409,13 +404,14 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         inner_tree_params = self._get_inner_tree_hyperparameters()
 
-        if self.parallel:
+        if self.parallel and ray is not None:
             if sample_weight is not None:
                 raise ValueError(
                     "Sample weights are not supported in parallel mode. Please set parallel=False."
                 )
+            parallel_fit = ray.remote(_fit_inner_tree_plus_calculate_gini_ray)
             tasks = [  # pragma: no cover
-                _fit_inner_tree_plus_calculate_gini_ray.remote(
+                parallel_fit.remote(
                     X[:, group],
                     y,
                     i,

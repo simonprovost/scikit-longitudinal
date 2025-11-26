@@ -29,11 +29,13 @@ dependencies = [
     "joblib>=0.11",
     "deep-forest>=0.1.7",
     "scikit-lexicographical-trees==0.0.4",
-    "ray>=2.40.0",
     "mkdocs>=1.6.1",
     "mkdocs-material[all]>=9.6.12",
 ]
 [dependency-groups]
+parallelisation = [
+    "ray>=2.40.0",
+]
 dev = [
     "pytest>=4.4.0",
     "pytest-cov>=4.0.0",
