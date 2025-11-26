@@ -1,3 +1,5 @@
+import importlib.util
+
 import pytest
 from numpy import ndarray
 from sklearn.ensemble import RandomForestClassifier
@@ -16,6 +18,9 @@ from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_vo
     LongitudinalVotingClassifier,
 )
 import numpy as np
+
+RAY_AVAILABLE = importlib.util.find_spec("ray") is not None
+
 
 class TestSeparateWaves:
     @pytest.fixture
@@ -102,6 +107,9 @@ class TestSeparateWaves:
             sepwav_invalid.fit(data.X_train, y_train)
 
     def test_parallelization(self, data, classifier):
+        if not RAY_AVAILABLE:
+            pytest.skip("Ray not installed; install Scikit-longitudinal[parallelisation] to run parallel tests.")
+
         sepwav_parallel = SepWav(
             estimator=classifier,
             features_group=data.feature_groups(),
@@ -181,6 +189,9 @@ class TestSeparateWaves:
         assert isinstance(y_pred, ndarray)
 
     def test_fit_with_sample_weight_parallel_error(self, data, classifier):
+        if not RAY_AVAILABLE:
+            pytest.skip("Ray not installed; install Scikit-longitudinal[parallelisation] to run parallel tests.")
+
         w = np.ones(len(data.y_train), dtype=float)
         sepwav = SepWav(
             estimator=classifier,

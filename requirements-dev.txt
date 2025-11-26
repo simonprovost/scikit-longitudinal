@@ -28,7 +28,7 @@ cssselect2==0.8.0
 cycler==0.12.1
 debugpy==1.8.14
 decorator==5.2.1
-deep-forest==0.1.7
+deep-forest-py310==0.1.8
 defusedxml==0.7.1
 dill==0.4.0
 exceptiongroup==1.2.2
@@ -113,11 +113,11 @@ nbformat==5.10.4
 nest-asyncio==1.6.0
 notebook==7.4.1
 notebook-shim==0.2.4
-numpy==1.23.3
+numpy==1.26.4
 overrides==7.7.0
 packaging==25.0
 paginate==0.5.7
-pandas==1.5.3
+pandas==2.2.3
 pandocfilters==1.5.1
 parso==0.8.4
 pathspec==0.12.1
@@ -155,6 +155,7 @@ rfc3986-validator==0.1.1
 rich==14.0.0
 rpds-py==0.24.0
 ruff==0.11.8
+pre-commit==4.0.1
 scikit-learn==1.6.1
 scikit-lexicographical-trees==0.0.4
 scipy==1.13.1

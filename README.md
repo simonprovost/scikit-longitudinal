@@ -40,7 +40,7 @@
    <img src="https://img.shields.io/badge/Fork-SKLEARN-green?labelColor=Purple&style=for-the-badge"
         alt="Fork Sklearn" />
 </a>
-<img src="https://img.shields.io/static/v1?label=Python&message=3.9%2B%3C3.10&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.9+ < 3.10">
+<img src="https://img.shields.io/static/v1?label=Python&message=3.10%E2%80%933.12&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10–3.12">
 
 <img src="https://joss.theoj.org/papers/10.21105/joss.08481/status.svg" alt="DOI badge" >
 
@@ -77,6 +77,7 @@ time.
 > [!NOTE]
 > Want to be using `Jupyter Notebook`, `Marimo`, `Google Colab`, or `JupyterLab`?
 > Head to the `Getting Started` section of the documentation, we explain it all! 🎉
+> Additionally, note that Scikit-longitudinal works on Python 3.10+ to 3.12.
 
 To install Scikit-longitudinal:
 
@@ -90,21 +91,13 @@ To install Scikit-longitudinal:
    pip install Scikit-longitudinal==0.1.0
    ```
 
-> [!CAUTION]
-> `Scikit-longitudinal` is currently compatible with Python versions `3.9` only.
-> Ensure you have one of these versions installed before proceeding with the installation.
->
-> Now, while we understand that this is a limitation, we are tied for the time being because of `Deep Forest`.
-> `Deep Forest` is a dependency of `Scikit-longitudinal` that is not compatible with Python versions greater than `3.9`.
-> `Deep Forest` helps us with the `Deep Forest` algorithm, to which we have made some modifications to
-> welcome `Lexicographical Deep Forest`.
->
-> To follow up on this discussion, please refer
-> to [this github issue](https://github.com/LAMDA-NJU/Deep-Forest/issues/124).
->
-> If you encounter any errors, feel free to explore further the `installation` section in the `Getting Started` of the
-> documentation.
-> If it still doesn't work, please open an issue on GitHub.
+Need Ray-backed parallelism? Install the optional extra:
+
+```bash
+pip install Scikit-longitudinal[parallelisation]
+```
+
+Parallel features automatically prompt you to install this extra when missing.
 
 ---
 

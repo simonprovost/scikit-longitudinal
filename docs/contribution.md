@@ -17,7 +17,7 @@ hide:
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Python 3.9.x**: [Download](https://www.python.org/downloads/release/python-398/)
+- **Python 3.10–3.12**: [Download](https://www.python.org/downloads/)
 - **UV**: [Installation Guide](https://docs.astral.sh/uv/)
 
 ### Environment Setup
@@ -31,12 +31,12 @@ hide:
        cd scikit-longitudinal
        ```
 
-    2. **Install and Pin Python Version**:
+      2. **Install and Pin Python Version**:
 
-       ```bash
-       uv python install cpython-3.9.21
-       uv python pin cpython-3.9.21
-       ```
+         ```bash
+         uv python install cpython-3.10.16  # or any other 3.10+ wheel
+         uv python pin cpython-3.10.16 # or any other 3.10+ wheel
+         ```
 
     3. **Create and Activate Virtual Environment**:
 

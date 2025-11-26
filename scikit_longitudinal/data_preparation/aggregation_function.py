@@ -6,12 +6,12 @@ from typing import Any, Callable, List, Union
 
 import numpy as np
 import pandas as pd
-import ray
 from overrides import override
 from scipy import stats
 
 from scikit_longitudinal.data_preparation.longitudinal_dataset import clean_padding
 from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
+from scikit_longitudinal.utils.parallel import get_ray_for_parallel
 
 
 def mode_with_keepdims(x, keepdims=True):
@@ -90,36 +90,6 @@ def validate_aggregation_func(func: Callable) -> Callable:
     return wrapper
 
 
-def init_ray(func: Callable) -> Callable:
-    """A decorator to initialise the Ray library for parallel processing.
-
-    The purpose of this decorator is to verify the initialisation status of the Ray framework. Init if it is not
-    already - Furthermore, if the specified number of CPUs is not provided, the system will proceed to initialise Ray
-    by utilising all available CPUs.
-
-    Args:
-        func (Callable):
-            The function to be decorated.
-
-    Returns:
-        Callable:
-            The decorated function.
-
-    """
-
-    def wrapper(self: "AggrFunc", *args: Any, **kwargs: Any) -> Any:
-        parallel = kwargs.get("parallel")
-        num_cpus = kwargs.get("num_cpus")
-        if parallel and not ray.is_initialized():
-            if num_cpus != -1:
-                ray.init(num_cpus=num_cpus)
-            else:
-                ray.init()
-        return func(self, *args, **kwargs)
-
-    return wrapper
-
-
 def get_agg_feature(
     data: pd.DataFrame, feature_group: List[str], agg_func: Callable, agg_func_name: str
 ) -> pd.DataFrame:
@@ -150,7 +120,6 @@ def get_agg_feature(
     return pd.DataFrame({feature_name: agg_feature})
 
 
-@ray.remote
 def _aggregate(
     feature_group: List[str], data: pd.DataFrame, agg_func: Callable, aggregation_func_name: str
 ) -> pd.DataFrame:  # pragma: no cover
@@ -312,7 +281,6 @@ class AggrFunc(DataPreparationMixin):
     """
 
     @validate_aggregation_func
-    @init_ray
     def __init__(
         self,
         features_group: List[List[int]] = None,
@@ -400,9 +368,11 @@ class AggrFunc(DataPreparationMixin):
         feature_groups = [transformed_data.columns[i].tolist() for i in self.features_group]
 
         if self.parallel:
+            ray = get_ray_for_parallel(self.parallel, self.num_cpus)
             non_grouped_data = transformed_data.iloc[:, self.non_longitudinal_features]
+            aggregate_remote = ray.remote(_aggregate)
             tasks = [
-                _aggregate.remote(feature_group, transformed_data, self.agg_func, self.aggregation_func)
+                aggregate_remote.remote(feature_group, transformed_data, self.agg_func, self.aggregation_func)
                 for feature_group in feature_groups
             ]
             results = ray.get(tasks)

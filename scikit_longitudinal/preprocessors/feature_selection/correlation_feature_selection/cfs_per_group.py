@@ -1,10 +1,8 @@
 import re
 from collections import defaultdict
 from typing import Dict, List, Optional, Tuple
-
 import numpy as np
 import pandas as pd
-import ray
 from overrides import override
 
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection.algorithms import (
@@ -12,6 +10,18 @@ from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_sel
     _greedy_search,
 )
 from scikit_longitudinal.templates import CustomTransformerMixinEstimator
+from scikit_longitudinal.utils.parallel import get_ray_for_parallel
+
+
+def _fit_subset_remote(
+    estimator: "CorrelationBasedFeatureSelectionPerGroup",
+    X: np.ndarray,
+    y: np.ndarray,
+    group: Tuple[int],
+) -> List[int]:
+    """Proxy function to fit a subset in a Ray worker."""
+
+    return estimator._fit_subset(X, y, group)
 
 
 # pylint: disable=R0902, R0801, R0912, W0511
@@ -194,11 +204,7 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         Returns:
             CorrelationBasedFeatureSelectionPerGroup: The fitted instance.
         """
-        if self.features_group is not None and ray.is_initialized() is False and self.parallel is True:
-            if self.num_cpus != -1:
-                ray.init(num_cpus=self.num_cpus)
-            else:
-                ray.init()
+        ray = get_ray_for_parallel(self.parallel and self.features_group is not None, self.num_cpus)
 
         # TODO: Make sure to rework the too many branches warning
         if self.features_group is not None:
@@ -209,8 +215,9 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
             self.features_group = None
 
-            if self.parallel:
-                futures = [self._ray_fit_subset.remote(self, X, y, group) for group in group_features_copy]
+            if self.parallel and ray is not None:
+                remote_fit_subset = ray.remote(_fit_subset_remote)
+                futures = [remote_fit_subset.remote(self, X, y, group) for group in group_features_copy]
                 while futures:
                     ready_futures, remaining_futures = ray.wait(futures)
                     result = ray.get(ready_futures[0])
@@ -280,23 +287,6 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         X_group = X[:, group]
         self._fit(X_group, y)
         return [group[i] for i in self.selected_features_]
-
-    @ray.remote
-    def _ray_fit_subset(self, X: np.ndarray, y: np.ndarray, group: Tuple[int]) -> List[int]:
-        """Ray remote function for parallel fitting of CFS on a feature group.
-
-        This method enables parallel processing of feature groups using Ray, which is particularly useful for large
-        datasets or computationally intensive search methods.
-
-        Args:
-            X (np.ndarray): Input data.
-            y (np.ndarray): Target variable.
-            group (Tuple[int]): Indices of features in the group.
-
-        Returns:
-            List[int]: Selected feature indices from the group.
-        """
-        return self._fit_subset(X, y, group)
 
     # pylint: disable=W9016
     @staticmethod

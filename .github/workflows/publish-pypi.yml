@@ -29,16 +29,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: check_build_trigger
     if: needs.check_build_trigger.outputs.build
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Install uv & Python
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v5
         with:
-          version: "0.5.11"
+          version: "latest"
           enable-cache: true
-          python-version: "cpython-3.9.21-linux-x86_64-gnu"
+          python-version: "${{ matrix.python-version }}"
 
       - name: Lock and Sync Dependencies
         run: |
@@ -65,11 +69,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install uv & Python
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v5
         with:
-          version: "0.5.11"
+          version: "latest"
           enable-cache: true
-          python-version: "cpython-3.9.21-linux-x86_64-gnu"
+          python-version: "3.12"
 
       - name: Lock and Sync Dependencies
         run: |
