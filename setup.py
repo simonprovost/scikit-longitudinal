@@ -24,6 +24,7 @@ setup(  # pragma: no cover
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
     ],
     install_requires=[
         "scipy>=1.11.0,<2.0.0",
@@ -39,7 +40,7 @@ setup(  # pragma: no cover
         "stopit>=1.1.2",
         "rich>=13.6.0",
         "joblib>=0.11",
-        "deep-forest-py310>=0.1.8",
+        "deep-forest-py310>=0.1.9",
         "scikit-lexicographical-trees==0.0.4",
     ],
     extras_require={
@@ -72,6 +73,6 @@ setup(  # pragma: no cover
         ],
         "parallelisation": ["ray>=2.40.0"],
     },
-    python_requires=">=3.10,<3.13",
+    python_requires=">=3.10,<3.14",
     license="MIT",
 )

@@ -11,7 +11,7 @@
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Python 3.10–3.12**: [Download](https://www.python.org/downloads/)
+- **Python 3.10–3.13**: [Download](https://www.python.org/downloads/)
 - **UV**: [Installation Guide](https://docs.astral.sh/uv/)
 
 ### Environment Setup
