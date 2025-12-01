@@ -85,8 +85,7 @@ plugins:
       handlers:
         python:
           options:
-            selection:
-              docstring_style: google
+            docstring_style: google
             heading_level: 3
             show_source: true
             show_root_heading: true
