@@ -352,47 +352,39 @@ Intelligence Review, 57(4), p.84.
 ## 🚨 Troubleshooting
 
 === ":simple-apple: Install On Apple Silicon Chips"
-    Apple Silicon-based Macs may require running under an `x86_64` architecture to ensure proper installation and
-    functioning of `Scikit-longitudinal`, as some compiled dependencies (such as `deep-forest-py310`) distribute
-    x86_64-focused wheels.
+    Apple Silicon users should install and run `Scikit-longitudinal` with an **x86_64** CPython via `uv`, because some
+    dependencies only distribute Intel wheels. The steps below rely entirely on `uv`—no Rosetta shell juggling or conda
+    environment needed.
 
-    The following steps are somehow extracted & adapted
-    from [https://apple.stackexchange.com/a/408379](https://apple.stackexchange.com/a/408379).
-
-    1. **Install Rosetta 2**
-       Rosetta 2 allows your Apple Silicon Mac (M1, M2, etc.) to run apps built for the `x86_64` architecture,
-       which is needed for `Scikit-longitudinal` due to its `Deep-Forest` dependency.
-        ```bash
-        softwareupdate --install-rosetta
-        ```
-       Note: When prompted, press `'A'` and `Enter` to agree to the license terms.
-    
-    2. **Launch Terminal in `x86_64` Mode**
-       Restart your terminal (close and reopen it), then start a new shell session under the `x86_64` architecture.
+    1. **Locate an Intel CPython build**
+       Use `uv` to list all macOS x86_64 interpreters (Python 3.10–3.13 shown below):
        ```bash
-       arch -x86_64 zsh
-       ```
-       Note: To verify so you can run `uname -m` and it should output `x86_64`.
-    
-    3. **Install `Scikit-longitudinal` via `Conda` with `Pip`**
-       ```bash
-       conda create --name sklong python=3.10
-       conda activate sklong
-       pip install scikit-longitudinal
-       ```
-    4. **Verify Installation**
-       ```bash
-       python -c "import scikit_longitudinal"
+       uv python list --all-versions --all-platforms \
+         | grep 'macos-x86_64' \
+         | egrep '3\.10|3\.11|3\.12|3\.13'
        ```
 
-    5. **Alternative (tested on macOS Sequoia, MacBook Pro M2, stable release)**
-       If Rosetta-based setups struggle, you can pin an Intel-compatible Python version with `uv` and resync dependencies:
+    2. **Install your preferred version**
+       Pick any listed `cpython-<version>-macos-x86_64-none` and install it:
        ```bash
-       uv python install cpython-3.10.16-macos-x86_64-none
+       uv python install cpython-3.12.10-macos-x86_64-none
+       ```
 
-       uv python pin cpython-3.10.16-macos-x86_64-none
+    3. **Pin the interpreter for this project**
+       Tell `uv` to use that Intel build whenever you work in this repo:
+       ```bash
+       uv python pin cpython-3.12.10-macos-x86_64-none
+       ```
 
+    4. **Install project dependencies**
+       ```bash
        uv sync
        ```
 
-    And voila! You should now have `Scikit-longitudinal` installed and running on your Apple Silicon Mac.
+    5. **Verify the install**
+       ```bash
+       uv run python -c "import scikit_longitudinal"
+       ```
+
+    After pinning the x86_64 interpreter, `uv` will automatically use it for future commands, providing a smooth
+    Apple Silicon experience.
