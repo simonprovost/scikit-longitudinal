@@ -10,106 +10,76 @@
       Scikit-longitudinal
       <br>
    </h1>
-   <h4 align="center">A specialised Python library for longitudinal data analysis built on Scikit-learn</h4>
+   <h4 align="center">
+      A Scikit-Learn-like Python library for Longitudinal Machine Learning —
+      <a href="https://doi.org/10.21105/joss.08481">Paper</a> ·
+      <a href="https://scikit-longitudinal.readthedocs.io/">Documentation</a>
+   </h4>
 </div>
 
 <div align="center">
 
-<!-- All badges in a row -->
-
 <a href="https://pytest.org/">
    <img alt="pytest" src="https://img.shields.io/badge/pytest-passing-green?style=for-the-badge&logo=pytest">
 </a>
-<a href="https://www.pylint.org/">
-   <img alt="pylint" src="https://img.shields.io/badge/pylint-checked-blue?style=for-the-badge&logo=python">
-</a>
+
 <a href="https://pre-commit.com/">
    <img alt="pre-commit" src="https://img.shields.io/badge/pre--commit-checked-blue?style=for-the-badge&logo=python">
 </a>
-<a href="https://github.com/psf/black">
-   <img alt="black" src="https://img.shields.io/badge/black-formatted-black?style=for-the-badge&logo=python">
-</a>
 
-<img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white" alt="Jupyter">
 <img src="https://img.shields.io/static/v1?label=RUFF&message=compliant&color=9C27B0&style=for-the-badge&logo=RUFF&logoColor=white" alt="RUFF compliant">
-<img src="https://img.shields.io/static/v1?label=UV&message=compliant&color=2196F3&style=for-the-badge&logo=UV&logoColor=white" alt="UV compliant">
-<a href="https://codecov.io/gh/Scikit-Longitudinal/Scikit-Longitudinal">
-   <img alt="Codecov" src="https://img.shields.io/badge/coverage-88%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
-</a>
-<a href="https://github.com/openml-labs/gama">
-   <img src="https://img.shields.io/badge/Fork-SKLEARN-green?labelColor=Purple&style=for-the-badge"
-        alt="Fork Sklearn" />
-</a>
-<img src="https://img.shields.io/static/v1?label=Python&message=3.10%E2%80%933.13&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10–3.13">
 
-<img src="https://joss.theoj.org/papers/10.21105/joss.08481/status.svg" alt="DOI badge" >
+<img src="https://img.shields.io/static/v1?label=UV&message=managed&color=2196F3&style=for-the-badge&logo=UV&logoColor=white" alt="UV Managed">
+
+<a href="https://codecov.io/gh/Scikit-Longitudinal/Scikit-Longitudinal">
+   <img alt="Coverage" src="https://img.shields.io/badge/coverage-88%25-brightgreen.svg?style=for-the-badge&logo=appveyor">
+</a>
+
+<img src="https://img.shields.io/static/v1?label=Python&message=3.10%E2%80%933.13&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10–3.13">
 
 </div>
 
-
----
-
 ## <a id="about-the-project"></a>💡 About The Project
 
-`Scikit-longitudinal` (Sklong) is a machine learning library designed to analyse
-longitudinal data (Classification tasks focussed as of today). It offers tools and models for processing, analysing,
-and predicting longitudinal data, with a user-friendly interface that
-integrates with the `Scikit-learn` ecosystem.
+`Scikit-longitudinal` (Sklong) is a machine learning library tailored for Longitudinal machine (supervised) learning (Classification tasks focussed as of today). It offers tools and models for *processing, analysing, and predicting* longitudinal data, with a user-friendly interface that integrates with the `Scikit-learn` ecosystem.
 
-**Wait, what is Longitudinal Data — In layman's terms ?**
+**Wait, what is Longitudinal Data — In layman's terms?**
 
 Longitudinal data is a "time-lapse" snapshot of the same subject, entity, or group tracked over time-periods,
 similar to checking in on patients to see how they change. For instance, doctors may monitor a patient's blood pressure,
 weight, and cholesterol every year for a decade to identify health trends or risk factors. This data is more useful for
-predicting future results than a one-time survey because it captures evolution, patterns, and cause-effect throughout
+predicting future results than a one-time (cross-sectional) survey because it captures evolution, patterns, and cause-effect throughout
 time.
 
-**Not enough?**
-
-* For more scientific details, you can refer to our [paper](https://doi.org/10.21105/joss.08481) published in
-  the [Journal of Open Source Software (JOSS)](https://joss.theoj.org/).
-* For more technical details, visit the [official documentation](https://scikit-longitudinal.readthedocs.io/latest//).
-
----
+[See more in the documentation.](https://scikit-longitudinal.readthedocs.io/latest/)
 
 ## <a id="installation"></a>🛠️ Installation
 
-> [!NOTE]
-> Want to be using `Jupyter Notebook`, `Marimo`, `Google Colab`, or `JupyterLab`?
-> Head to the `Getting Started` section of the documentation, we explain it all! 🎉
-> Additionally, note that Scikit-longitudinal works on Python 3.10+ to 3.13.
-
 To install Scikit-longitudinal:
 
-1. ✅ Install the latest version:
-   ```bash
-   pip install Scikit-longitudinal
-   ```
-
-   To install a specific version:
-   ```bash
-   pip install Scikit-longitudinal==0.1.0
-   ```
-
-Need Ray-backed parallelism? Install the optional extra:
-
 ```bash
-pip install Scikit-longitudinal[parallelisation]
+pip install Scikit-longitudinal
 ```
 
-Parallel features automatically prompt you to install this extra when missing.
+To install a specific version:
 
----
+```bash
+pip install Scikit-longitudinal==0.1.0
+```
+
+> [!TIP]
+> Want to use `Jupyter Notebook/Lab`, `Google Colab` or want to activate parallelism?
+> Head to the [Getting Started](https://scikit-longitudinal.readthedocs.io/latest/getting-started/) section of the documentation, we explain it all! 🎉  
 
 ## <a id="getting-started"></a>🚀 Getting Started
 
-Here's how to analyse longitudinal data with Scikit-longitudinal:
+Let's run a simple Longitudinal machine learning classification task:
 
-``` py
+```py
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_gradient_boosting import LexicoGradientBoostingClassifier
 
-dataset = LongitudinalDataset('./stroke.csv') # Note this is a fictional dataset. Use yours!
+dataset = LongitudinalDataset('./stroke.csv') # Note, this is a fictional dataset. Use yours!
 dataset.load_data_target_train_test_split(
   target_column="class_stroke_wave_4",
 )
@@ -129,11 +99,15 @@ y_pred = model.predict(dataset.X_test)
 print(classification_report(y_test, y_pred))
 ```
 
----
-
 ## <a id="citation"></a>📝 How to Cite
 
 If you use Sklong in your research, please cite our paper:
+
+<a href="https://doi.org/10.21105/joss.08481">
+   <img src="https://joss.theoj.org/papers/10.21105/joss.08481/status.svg" alt="JOSS DOI badge">
+</a>
+
+We would like to personally thank _Prof. Lengerich_ ([UW Madison](https://www.wisc.edu)—[@blengerich](https://github.com/blengerich) & [@AdaptInfer](https://github.com/AdaptInfer)), _&_ _Prof. Tahiri_ ([Université de Sherbrooke](https://www.usherbrooke.ca)—[@TahiriNadia](https://github.com/TahiriNadia) & [@tahiri-lab](https://github.com/tahiri-lab/)) for their amazing peer reviews!
 
 ```bibtex
 @article{Provost2025,
@@ -149,8 +123,6 @@ If you use Sklong in your research, please cite our paper:
     journal = {Journal of Open Source Software}
 }
 ```
-
----
 
 ## <a id="license"></a>🔐 License
 
