@@ -54,7 +54,7 @@ Please, start by choosing the installation method that best suits your needs:
     pip install scikit-longitudinal==0.0.8  # Replace with the desired version
     ```
 
-    Please note that here we assume you have a supported Python version installed (3.10–3.12) and a working environment (e.g Conda).
+    Please note that here we assume you have a supported Python version installed (3.10–3.13) and a working environment (e.g Conda).
 
 === ":simple-python: Conda (CondaForge)"
 
@@ -95,7 +95,7 @@ Please, start by choosing the installation method that best suits your needs:
        uv run --python /usr/bin/python3 --with scikit_longitudinal jupyter lab
        ```
 
-       Replace `/usr/bin/python3` with the path to your desired Python version within the supported `3.10`–`3.12` range.
+       Replace `/usr/bin/python3` with the path to your desired Python version within the supported `3.10`–`3.13` range.
        For more options, refer to the [UV CLI documentation](https://docs.astral.sh/uv/reference/cli/#uv-python).
 
     You are ready to play with `Scikit-longitudinal` in `Jupyter lab`! 🎉

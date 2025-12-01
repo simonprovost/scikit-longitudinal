@@ -40,7 +40,7 @@
    <img src="https://img.shields.io/badge/Fork-SKLEARN-green?labelColor=Purple&style=for-the-badge"
         alt="Fork Sklearn" />
 </a>
-<img src="https://img.shields.io/static/v1?label=Python&message=3.10%E2%80%933.12&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10–3.12">
+<img src="https://img.shields.io/static/v1?label=Python&message=3.10%E2%80%933.13&color=3776AB&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10–3.13">
 
 <img src="https://joss.theoj.org/papers/10.21105/joss.08481/status.svg" alt="DOI badge" >
 
@@ -77,7 +77,7 @@ time.
 > [!NOTE]
 > Want to be using `Jupyter Notebook`, `Marimo`, `Google Colab`, or `JupyterLab`?
 > Head to the `Getting Started` section of the documentation, we explain it all! 🎉
-> Additionally, note that Scikit-longitudinal works on Python 3.10+ to 3.12.
+> Additionally, note that Scikit-longitudinal works on Python 3.10+ to 3.13.
 
 To install Scikit-longitudinal:
 
