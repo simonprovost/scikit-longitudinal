@@ -247,7 +247,7 @@ print(classification_report(dataset.y_test, y_pred))
 ```
 
 !!! info "What is the LexicoGradientBoostingClassifier?"
-    A variant of [Gradient Boosting](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)
+    A variant of [Gradient Boosting](https://scikit-learn.org/latest/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)
     tailored for longitudinal data, using a lexicographical approach that prioritises recent `waves` over older ones in
     certain scenarios[^3].
 

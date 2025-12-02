@@ -21,7 +21,7 @@ demonstrate that you must prepare this data (via the `Data preparation` step) us
 
 Before all, recall that Scikit-Longitudinal is a library that extends the `Scikit-learn` ecosystem to handle longitudinal data.
 That is, if you do not know about `Scikit-learn`, we recommend you first read the
-[Scikit-learn documentation](https://scikit-learn.org/stable/user_guide.html) to understand the popular Fit—Predict—Transform API.
+[Scikit-learn documentation](https://scikit-learn.org/latest/user_guide.html) to understand the popular Fit—Predict—Transform API.
 
 ## :books: Overview of Tutorials
 
