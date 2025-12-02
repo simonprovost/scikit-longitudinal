@@ -5,19 +5,14 @@ hide:
 
 # 💡 `Scikit-longitudinal`, in a nutshell!
 
-Biomedical research often uses longitudinal data with repeated measurements of variables across time (e.g. cholesterol
-measured across time), which is challenging for standard machine learning algorithms due to intrinsic temporal
-dependencies. 
+Biomedical research often uses longitudinal data with repeated measurements of variables across time (e.g. cholesterol measured across time), which is challenging for standard machine learning algorithms due to intrinsic temporal dependencies.
 
-`Scikit-longitudinal` (abbreviated `Sklong`, pronounced /ˌɛs keɪ ˈlɒŋ/ or "Ess-kay-long" and /ˌsaɪ kɪt
-ˌlɒndʒɪˈtjuːdɪnəl/ or "Sky-kit lon-ji-TOO-din-ul") is a machine learning library helping out in anlysing longitudinal
-data, also known as _panel data_ in some fields. `Sklong` specialises in longitudinal machine learning _classification_ tasks,
-offering user-friendly tools for `processing`, `analyzing`, and `classifying` longitudinal tabular data, seamlessly
-integrating with the `Scikit-learn` ecosystem.
+`Scikit-longitudinal` (abbreviated `Sklong`, pronounced /ˌɛs keɪ ˈlɒŋ/ or "Ess-kay-long" and /ˌsaɪ kɪt ˌlɒndʒɪˈtjuːdɪnəl/ or "Sky-kit lon-ji-TOO-din-ul") is a machine learning library for longitudinal machine learning classification tasks. We focus on supervised learning—currently classification—and provide two complementary ways to work with longitudinal datasets:
 
-!!! example "Official paper"
-    The library is presented in [Scikit-Longitudinal: A Machine Learning Library for Longitudinal Classification in Python](https://doi.org/10.21105/joss.08481), published in the *Journal of Open Source Software (JOSS)*.
-    If you want a concise overview of the design decisions and capabilities, start there before diving into the examples below.
+- **Data preparation**: flatten or otherwise restructure longitudinal tables into static, tabular representations to plug into standard machine learning workflows.
+- **Algorithm adaptation**: keep temporal dependencies intact and train longitudinal-aware estimators that leverage the temporal structure.
+
+You will find a gentle introduction to these paths throughout the [tutorials](tutorials/index.md), while this page offers the essentials to get started and points you toward the right deeper dives.
 
 Note that while Longitudinal datasets have a temporal component, other types of datasets, such as time series,
 also have a temporal component but are not considered longitudinal datasets. Time series data typically involves
@@ -25,36 +20,68 @@ a single variable measured at regular intervals over time, while longitudinal da
 measured across the same cohort of individuals at different time points. More is discussed in the [FAQ](faq.md).
 However, I would like to highlight that time points are therefore considered as `waves` in `Sklong` [^1][^2][^3].
 
+!!! example "Explore more about Scikit-Longitudinal within the paper"
+    The library is presented in [Scikit-Longitudinal: A Machine Learning Library for Longitudinal Classification in Python](https://doi.org/10.21105/joss.08481), published in the *Journal of Open Source Software (JOSS)*.
+    If you want a concise overview of the design decisions and capabilities, start there before diving into the examples below.
+
 To start your Longitudinal Machine Learning journey with `Sklong`, you first will have to install the library.
 
 ---
 
 ## 🛠️ Installation
 
-!!! warning "Operating System Support"
-    `Scikit-longitudinal` is currently supported on `OSX` (MacOS) and `Linux` (Almost any stable distributions). However, `Windows` users should use cloud-based `notebooks` or `Docker` with a `Linux` (
-    Ubuntu) distribution due to limitations with a dependency library. For more details, open an issue, I would be 
-    happy to discuss this out further.
+!!! warning "Operating System & Python Support"
+    `Scikit-longitudinal` is supported on Python `3.10`–`3.13` for `Ubuntu` (or other stable Linux distributions) and `macOS`.
+    On `Windows`, please use `Google Colab` or a `Docker` image based on `Ubuntu` because one dependency does not currently
+    ship compatible wheels.
 
-Please, start by choosing the installation method that best suits your needs:
+Choose the installation method that best suits your workflow. For more troubleshooting tips, see the [Developers page](developers.md#%EF%B8%8F-installation--troubleshooting-first).
 
-=== ":simple-pypi: PyPi (Classic Install)"
+=== "UV (Recommended)"
 
-    To install `Scikit-longitudinal`, you can use `pip`:
+    We recommend using `UV`, a fast and efficient Python package manager that simplifies environment and dependency management. Install `UV` if you haven't already. See [UV installation instructions](https://docs.astral.sh/uv/).
+
+    Add `Scikit-longitudinal` to an existing UV-managed project:
+
+    ```bash
+    uv add scikit-longitudinal
+    ```
+
+    Extras work the same way:
+
+    ```bash
+    uv add "scikit-longitudinal[parallelisation]"
+    uv add "scikit-longitudinal[dev]"
+    ```
+
+    You can also pin a specific version if desired:
+
+    ```bash
+    uv add "scikit-longitudinal==0.0.8"
+    ```
+
+    After adding, run `uv sync` to materialise the lockfile.
+
+=== ":simple-pypi: Pip (Standard)"
+
+    Install the latest release from PyPI:
 
     ```bash
     pip install scikit-longitudinal
     ```
 
-    This will install the latest version of `Scikit-longitudinal` from the Python Package Index (PyPI).
-
-    If you want to install a specific version, you can specify it like this:
+    Extras are available for specialised needs:
 
     ```bash
-    pip install scikit-longitudinal==0.0.8  # Replace with the desired version
+    pip install "scikit-longitudinal[parallelisation]"  # Ray-based parallel workloads
+    pip install "scikit-longitudinal[dev]"              # Docs, testing, linting
     ```
 
-    Please note that here we assume you have a supported Python version installed (3.10–3.13) and a working environment (e.g Conda).
+    You can also pin a specific version if desired:
+
+    ```bash
+    pip install scikit-longitudinal==0.0.8
+    ```
 
 === ":simple-python: Conda (CondaForge)"
 
@@ -79,193 +106,108 @@ Please, start by choosing the installation method that best suits your needs:
        pip install scikit-longitudinal
        ```
 
+    You can also pin a specific version if desired:
+
+    ```bash
+    pip install scikit-longitudinal==0.0.8
+    ```
+
     This will install `Scikit-longitudinal` in your newly created Conda environment.
 
-=== ":simple-jupyter: Jupyter Notebook (~ 1 line) via `UV`"
+=== ":simple-jupyter: Jupyter with UV (~1 line)"
 
-    To run `Jupyter lab` with `Scikit-longitudinal`, we recommend using `UV`, a fast and efficient Python package 
-    manager that simplifies environment and dependency management.
+    Launch `Jupyter Lab` with `Sklong` in a temporary environment managed by `UV`:
 
-    Here's how to set it up:
+    ```bash
+    uv run --with scikit_longitudinal jupyter lab
+    ```
 
-    1. Install `UV` if you haven't already. See [UV installation instructions](https://docs.astral.sh/uv/).
-    2. Run the following command to launch `Jupyter lab` with `Scikit-longitudinal`:
+    This uses your default Python (3.10–3.13). To pin a specific Python, pass `--python <path_or_version>`.
 
-       ```bash
-       uv run --python /usr/bin/python3 --with scikit_longitudinal jupyter lab
-       ```
+=== ":simple-googlecolab: Google Colab (~4 lines)"
 
-       Replace `/usr/bin/python3` with the path to your desired Python version within the supported `3.10`–`3.13` range.
-       For more options, refer to the [UV CLI documentation](https://docs.astral.sh/uv/reference/cli/#uv-python).
-
-    You are ready to play with `Scikit-longitudinal` in `Jupyter lab`! 🎉
-
-    ??? question "How do I install a supported Python version?"
-        You can install a supported version of Python using `uv` by running:
-
-        ```bash
-        uv python install 3.10
-        uv python pin 3.10
-        ```
-        This command will install Python 3.10 and set it as the default version for your environment.
-
-    ??? question "How do I get the path to my just installed Python version?"
-        You can find the path to your installed Python version by running:
-
-        ```bash
-        uv python list --all-versions
-        ```
-        This command will list all installed Python versions along with their paths. If a path is present, it means
-        that the version is installed. You can then use the path in the `uv run` command.
-
-    This command creates a temporary environment with `Scikit-longitudinal` installed and starts `Jupyter lab`.
-
-    ––––––––––––––
-
-    Some shoutouts to the `UV` team for their amazing work! 🙌
-
-    ![UV Proof](https://github.com/astral-sh/uv/assets/1309177/03aa9163-1c79-4a87-a31d-7a9311ed9310#only-dark)
-
-    !!! tip "UV's readings recommendations:"
-        - [Python Packaging in Rust](https://astral.sh/blog/uv)
-        - [A Year of UV](https://www.bitecode.dev/p/a-year-of-uv-pros-cons-and-should)
-        - [UV Is All You Need](https://dev.to/astrojuanlu/python-packaging-is-great-now-uv-is-all-you-need-4i2d)
-        - [State of the Art Python 2024](https://4zm.org/2024/10/28/state-of-the-art-python-in-2024.html)
-        - [Data Scientist, From School to Work](https://towardsdatascience.com/data-scientist-from-school-to-work-part-i/)
-
-=== ":simple-googlecolab: Google Colab (~5 lines)"
-
-    To use `Scikit-longitudinal` in `Google Colab`, follow these steps:
-
-    1. Open a new `Google Colab` notebook (the default runtime uses Python 3.10+, which is supported).
-    2. Install `Scikit-longitudinal`:
+    1. Open a new Colab notebook (Python 3.10+).
+    2. Install `Sklong`:
 
        ```bash
        !pip install scikit-longitudinal
        ```
 
-    3. Remove `Scikit-learn` if installed, as `Scikit-longitudinal` is a fork and may conflict:
+    3. Ensure the compatible `scikit-lexicographical-trees` dependency is present:
+
+       ```bash
+       !pip install scikit-lexicographical-trees
+       ```
+
+    4. Remove conflicting `scikit-learn` if preinstalled:
 
        ```bash
        !pip uninstall scikit-learn -y
        ```
 
-    4. Remove & Re-Install `Scikit-lexicographical-trees`, which is the modified version of `Scikit-learn` used by `Scikit-longitudinal`:
-
-       ```bash
-       !pip uninstall scikit-lexicographical-trees -y
-       !pip install scikit-lexicographical-trees
-       ```
-
-    After these steps, you can use `Scikit-longitudinal` in your Colab notebook 🎉
-
 === ":light_blue_heart: Marimo"
 
-    Support for Marimo is incoming. If you're interested in contributing to this feature, please submit a pull request!
+    !!! warning
+        Support for Marimo is incoming. If you're interested in contributing to this feature, please submit a pull request!
 
-=== ":simple-codingninjas: Within A Project"
+=== ":simple-codingninjas: Within your PyProject"
 
-    For developing your own scripts with Scikit-longitudinal, install it via pip:
-
-    ```bash
-    pip install scikit-longitudinal
-    ```
-
-    Following the pip install, let's explore various scarions. As follows:
+    If you are setting up `Sklong` inside a project, ensure your dependency manager prefers
+    `scikit-lexicographical-trees` instead of `scikit-learn` (which is incompatible with Sklong) **and** declare `scikit-longitudinal` in your project metadata.
 
     #### 🫵 Project Setup: Using PDM
-    
-    If you’re managing your project dependencies with `PDM`, note that `Scikit-longitudinal` is a fork of `Scikit-Learn` 
-    and is incompatible with the original `Scikit-Learn` package. To ensure compatibility, exclude `Scikit-Learn` from 
-    your project dependencies by adding the following configuration to your `pyproject.toml` file:
-    
+
+    Add the dependency and exclude `scikit-learn` in `pyproject.toml`:
+
     ````toml
+    [project]
+    dependencies = [
+        "scikit-longitudinal",
+    ]
+
     [tool.pdm.resolution]
     excludes = ["scikit-learn"]
     ````
-    
-    This ensures that the modified version of `Scikit-Learn`—`Scikit-Lexicographical-Trees`—is used seamlessly within your project.
-    
-    To install dependencies:
+
+    Install dependencies:
     ```shell
     pdm install
     ```
-    
-    To install only production dependencies:
-    ```shell
-    pdm install --prod
-    ```
-    
-    For additional configurations, refer to the [PDM documentation](https://pdm.fming.dev/).
-    
-    ---
-    
+
     #### 🫵 Project Setup: Using UV
-    
-    If you prefer **UV** for dependency management, configure your `pyproject.toml` file to override conflicting 
-    packages. Add the following configuration:
-    
+
+    Declare the dependency and override the incompatible wheel:
+
     ````toml
+    [project]
+    dependencies = [
+        "scikit-longitudinal",
+    ]
+
     [tool.uv]
     package = true
     override-dependencies = [
         "scikit-learn ; sys_platform == 'never'",
     ]
     ````
-    
-    Steps to set up your environment:
-    1. **Create a Virtual Environment:**
 
-       ```bash
-       uv venv
-       ```
-    
-    2. **Pin the Required Python Version:**
-       ```bash
-       uv python pin cpython-3.10.16 # Or any other version you want as long as it fits Sklong requirements.
-       ```
-    
-    3. **Lock Dependencies:**
-       ```bash
-       uv lock
-       ```
-    
-    4. **Install All Dependencies:**
-       ```bash
-       uv sync --all-groups
-       ```
-    
-    5. **Run Tests:**
-       ```bash
-       uv run pytest -sv scikit_longitudinal
-       ```
-    
-    For more information, refer to the [UV documentation](https://docs.astral.sh/uv/).
-    
-    ---
-    
-    ### 💻 Developer Notes
-    
-    For developers looking to contribute, please refer to the `Contributing` section of the [documentation](https://scikit-longitudinal.readthedocs.io/latest//).
+    Then sync your environment:
+
+    ```bash
+    uv sync --all-groups
+    ```
+
+!!! note "Have trouble installing Sklong?"
+    Known issues and workarounds live in the [installation & troubleshooting](developers.md#%EF%B8%8F-installation--troubleshooting-first) section of the Developers guide.
 
 ---
 
-## 🚀 Quick Start (Code)
+## 🚀 Your first Longitudinal-data aware Classification Task
 
 `Sklong` has numerous primitives to deal with longitudinal machine learning classification tasks. To begin, use the
-`LongitudinalDataset` class to prepare your dataset, including `data` and `temporal vectors`. To train a machine learning
-classifier on your data, use estimators such as `LexicoGradientBoostingClassifier`.
-
-> "The `LexicoGradientBoostingClassifier` in a nutshell: a variant
-> of [Gradient Boosting](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)
-> tailored for longitudinal data, using a lexicographical approach that prioritises recent `waves` over older ones in
-> certain scenarios[^3]."
-
-!!! tip "Where's the data at?"
-    The `scikit-longitudinal` library does not include datasets by default. Mainly due to the privacy reason.
-    You can use your own longitudinal datasets
-    or download publicly available ones, such as the [ELSA dataset](https://www.elsa-project.ac.uk/). 
-    If synthetic datasets is of interest, open an issue, I would be happy to discuss this out further.
+[`LongitudinalDataset`](API/data_preparation/longitudinal_dataset.md) class to prepare your dataset, including `data` and `temporal vectors`. The example below shows the
+algorithm-adaptation path via the longitudinal-aware [`LexicoGradientBoostingClassifier`](API/estimators/ensemble/lexico_gradient_boosting.md); for data-preparation (flattening)
+workflows, hop into the [tutorials](tutorials/index.md) for alternative pipelines.
 
 Here's our basic workflow example:
 
@@ -284,7 +226,8 @@ dataset.load_data_target_train_test_split(
 )
 
 # Set up feature groups (temporal dependencies)
-# Use a pre-set for ELSA data or define manually (See further in the API reference)
+# Use a pre-set for English Longitudinal Study of Ageing (ELSA) data or define manually
+# (see the tutorials for defining custom temporal dependency groups)
 dataset.setup_features_group(input_data="elsa")
 
 # Initialise the classifier with feature groups
@@ -303,38 +246,25 @@ y_pred = model.predict(dataset.X_test)
 print(classification_report(dataset.y_test, y_pred))
 ```
 
----
+!!! info "What is the LexicoGradientBoostingClassifier?"
+    A variant of [Gradient Boosting](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html)
+    tailored for longitudinal data, using a lexicographical approach that prioritises recent `waves` over older ones in
+    certain scenarios[^3].
 
-## ❓ Questions
-
-!!! question "What are feature groups?"
-    Feature groups define the temporal dependencies in your longitudinal data. They are lists of feature indices
-    corresponding to different waves. See
-    the [Temporal Dependency](https://scikit-longitudinal.readthedocs.io/latest//temporal-dependency/) section for more
-    details.
-
-!!! question "How do I set temporal dependencies?"
-    Use pre-sets for known datasets like ELSA or define them manually based on your data structure. Refer to
-    the [Temporal Dependency](https://scikit-longitudinal.readthedocs.io/latest//temporal-dependency/) section.
-
-!!! question "How do I tune hyperparameters?"
-    Check the [API](https://scikit-longitudinal.readthedocs.io/latest/API/) for a complete list of
-    hyperparameters and their meanings.
-
-!!! question "Neural Network Models?"
-    Scikit-longitudinal currently does not support neural network-based models. For similar projects that do, see
-    the [FAQ](https://scikit-longitudinal.readthedocs.io/latest//faq/) section.
+!!! tip "Where's the data at?"
+    The `scikit-longitudinal` library does not include datasets by default, primarily for privacy reasons.
+    You can use your own longitudinal datasets or download publicly available ones, such as the [ELSA dataset](https://www.elsa-project.ac.uk/).
+    Interested in synthetic datasets? [Open an issue](https://github.com/simonprovost/scikit-longitudinal/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen), and we can explore it together.
 
 ---
 
 ## What's Next?
 
-Next, we highly recommend that you explore the `Temporal Dependency` section, which provides a comprehensive
-understanding of how to set up temporal dependencies in your longitudinal datasets. This is crucial for
-building effective longitudinal machine learning models with `Scikit-longitudinal`.
+Start with the [tutorials](tutorials/index.md) to see hands-on examples of data preparation versus algorithm adaptation
+in action. Then visit the [community hub](community-hub.md) to connect with other users and contributors.
 
-Following that? You could play it all by walking through the `API` section, which provides detailed
-information on the various estimators, primitives, and hyperparameters available in `Scikit-longitudinal`.
+Advanced users can dive into the [API](API/index.md) for full details on estimators, primitives, and configuration
+options.
 ___
 
 [^1]: Kelloway, E.K. and Francis, L., 2012. Longitudinal research and data analysis. In Research methods in occupational
@@ -348,43 +278,3 @@ ARIAL), held as part of IJCAI-2019 (num. of pages: 5).
 longitudinal decision-tree-based classifiers: applications to the English Longitudinal Study of Ageing. Artificial
 Intelligence Review, 57(4), p.84.
 
-
-## 🚨 Troubleshooting
-
-=== ":simple-apple: Install On Apple Silicon Chips"
-    Apple Silicon users should install and run `Scikit-longitudinal` with an **x86_64** CPython via `uv`, because some
-    dependencies only distribute Intel wheels. The steps below rely entirely on `uv`—no Rosetta shell juggling or conda
-    environment needed.
-
-    1. **Locate an Intel CPython build**
-       Use `uv` to list all macOS x86_64 interpreters (Python 3.10–3.13 shown below):
-       ```bash
-       uv python list --all-versions --all-platforms \
-         | grep 'macos-x86_64' \
-         | egrep '3\.10|3\.11|3\.12|3\.13'
-       ```
-
-    2. **Install your preferred version**
-       Pick any listed `cpython-<version>-macos-x86_64-none` and install it:
-       ```bash
-       uv python install cpython-3.12.10-macos-x86_64-none
-       ```
-
-    3. **Pin the interpreter for this project**
-       Tell `uv` to use that Intel build whenever you work in this repo:
-       ```bash
-       uv python pin cpython-3.12.10-macos-x86_64-none
-       ```
-
-    4. **Install project dependencies**
-       ```bash
-       uv sync
-       ```
-
-    5. **Verify the install**
-       ```bash
-       uv run python -c "import scikit_longitudinal"
-       ```
-
-    After pinning the x86_64 interpreter, `uv` will automatically use it for future commands, providing a smooth
-    Apple Silicon experience.

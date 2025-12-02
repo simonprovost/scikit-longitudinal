@@ -8,7 +8,50 @@
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Installation & Troubleshooting First
+
+- **Supported runtimes**: Python `3.10`–`3.13` on `Ubuntu`/stable Linux and `macOS`. On `Windows`, use `Google Colab` or a `Docker` image based on `Ubuntu`.
+- **Need help?** Open a [GitHub Issue](https://github.com/simonprovost/scikit-longitudinal/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) and describe your setup.
+
+### Apple Silicon (x86_64 wheels)
+
+Apple Silicon users should install and run `Scikit-longitudinal` with an **x86_64** CPython via `uv`, because some dependencies only distribute Intel wheels. The steps below rely entirely on `uv`—no Rosetta shell juggling or conda environment needed.
+
+1. **Locate an Intel CPython build**
+   Use `uv` to list all macOS x86_64 interpreters (Python 3.10–3.13 shown below):
+   ```bash
+   uv python list --all-versions --all-platforms \
+     | grep 'macos-x86_64' \
+     | egrep '3\.10|3\.11|3\.12|3\.13'
+   ```
+
+2. **Install your preferred version**
+   Pick any listed `cpython-<version>-macos-x86_64-none` and install it:
+   ```bash
+   uv python install cpython-3.12.10-macos-x86_64-none
+   ```
+
+3. **Pin the interpreter for this project**
+   Tell `uv` to use that Intel build whenever you work in this repo:
+   ```bash
+   uv python pin cpython-3.12.10-macos-x86_64-none
+   ```
+
+4. **Install project dependencies**
+   ```bash
+   uv sync
+   ```
+
+5. **Verify the install**
+   ```bash
+   uv run python -c "import scikit_longitudinal"
+   ```
+
+After pinning the x86_64 interpreter, `uv` will automatically use it for future commands, providing a smooth Apple Silicon experience.
+
+---
+
+## 🚀 Install From Source Scikit-Longitudinal
 
 ### Prerequisites
 - **Python 3.10–3.13**: [Download](https://www.python.org/downloads/)
@@ -101,8 +144,8 @@ Scikit-longitudinal’s modular design makes it easy to extend. Below are guidel
     Add new classifiers or regressors to `estimators/`.
 
     1. **Location**: Create a file in `estimators/ensemble/` or `estimators/trees/`, e.g., `my_estimator.py`.
-    2. **Class Definition**: Inherit from `CustomClassifierMixinEstimator` and or appropriate base such as Sklearn `BaseEstimator`.
-    3. **Implementation**: A) Implement `_fit` and `_predict` methods or `fit` `predict` depending on ineheritance. B) Use `features_group` for temporal awareness.
+    2. **Class Definition**: Inherit from `CustomClassifierMixinEstimator` (see `scikit_longitudinal/templates`) alongside scikit-learn's `BaseEstimator`/`ClassifierMixin` where appropriate.
+    3. **Implementation**: Implement `_fit` and `_predict` (or the public `fit`/`predict` if you prefer) and pass `features_group` for temporal awareness.
     4. **Register**: Update `__init__.py` in the respective directory to add your primitive.
 
     **Example**:
@@ -128,8 +171,8 @@ Scikit-longitudinal’s modular design makes it easy to extend. Below are guidel
     Add data transformation tools to `preprocessors/`.
 
     1. **Location**: Create a file in `preprocessors/feature_selection/`, e.g., `my_preprocessor.py`.
-    2. **Class Definition**: Inherit from `CustomTransformerMixinEstimator` and or appropriate base such as Sklearn `TransformerMixin`.
-    3. **Implementation**: Implement `_fit` and `_transform` methods or `fit` `transform` depending on ineheritance.
+    2. **Class Definition**: Inherit from `CustomTransformerMixinEstimator` (in `scikit_longitudinal/templates`) and, if needed, scikit-learn's `TransformerMixin`.
+    3. **Implementation**: Implement `_fit` and `_transform` (or `fit`/`transform`) with attention to the temporal metadata.
     4. **Register**: Update `__init__.py`.
 
     **Example**:
@@ -156,7 +199,7 @@ Scikit-longitudinal’s modular design makes it easy to extend. Below are guidel
 
     1. **Location**: Create a file, e.g., `my_data_tool.py`.
     2. **Class Definition**: Inherit from `DataPreparationMixin`.
-    3. **Implementation**: Implement `_prepare_data` and `_transform`.
+    3. **Implementation**: Implement `_prepare_data` and `_transform` to reshape the longitudinal table as intended.
     4. **Register**: Update `__init__.py`.
 
     **Example**:
@@ -233,7 +276,7 @@ Follow this Git workflow:
    - Submit a pull request against `main`.
 
 !!! tip "Commit Messages"
-    Use meaningful messages (e.g., `feat: add new estimator`) for clarity.
+    Use the [Conventional Commit-style prefixes from Karma](https://karma-runner.github.io/6.4/dev/git-commit-msg.html) (e.g., `feat: add new estimator`, `docs: clarify installation`).
 
 ---
 
