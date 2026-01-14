@@ -36,6 +36,14 @@ That is, if you do not know about `Scikit-learn`, we recommend you first read th
 
     [:octicons-arrow-right-24: Read the tutorial](temporal_dependency.md)
 
+-   :material-map-clock:{ .lg .middle } __Advanced Feature Group (Temporal) Setup__
+
+    ---
+
+    Handle uneven numbers of observations per subject, including missing waves and padded feature groups.
+
+    [:octicons-arrow-right-24: Read the tutorial](advanced_temporal_setup.md)
+
 -   :material-table:{ .lg .middle } __Longitudinal Data Format__
 
     ---
