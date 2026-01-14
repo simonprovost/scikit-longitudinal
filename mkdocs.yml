@@ -154,6 +154,7 @@ nav:
   - "Tutorials":
       - "Overview": tutorials/overview.md
       - "Temporal Dependency": tutorials/temporal_dependency.md
+      - "Advanced Feature Group (Temporal) Setup": tutorials/advanced_temporal_setup.md
       - "Wide/Long Data Format": tutorials/sklong_longitudinal_data_format.md
       - "Data Preparation: Flatten Temporal Dependency for Scikit-Learn Estimators": tutorials/sklong_data_preparation_first_exploration.md
       - "Algorithm Adaptation: Preserve Temporal Dependency for Sklong Estimators": tutorials/sklong_explore_your_first_estimator.md
