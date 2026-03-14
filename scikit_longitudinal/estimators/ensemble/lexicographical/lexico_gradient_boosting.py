@@ -4,9 +4,9 @@ from typing import List, Optional, Union
 
 import numpy as np
 from overrides import override
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.utils.multiclass import unique_labels
 
-from sklearn.ensemble import GradientBoostingClassifier
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 
@@ -38,10 +38,17 @@ def ensure_valid_state(method):
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        if method.__name__ in ["_predict", "_predict_proba"] and self._lexico_gradient_boosting is None:
-            raise ValueError("The classifier must be fitted before calling predict or predict_proba.")
+        if (
+            method.__name__ in ["_predict", "_predict_proba"]
+            and self._lexico_gradient_boosting is None
+        ):
+            raise ValueError(
+                "The classifier must be fitted before calling predict or predict_proba."
+            )
 
-        if hasattr(self, "features_group") and (self.features_group is None or len(self.features_group) <= 1):
+        if hasattr(self, "features_group") and (
+            self.features_group is None or len(self.features_group) <= 1
+        ):
             raise ValueError("features_group must contain more than one feature group.")
 
         return method(self, *args, **kwargs)
@@ -57,7 +64,8 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
     datasets. It incorporates the fundamental principles of the Gradient Boosting framework while utilizing
     longitudinal-adapted base estimators to capture the temporal complexities and interdependencies intrinsic to
     longitudinal data. The base estimators are Lexico Decision Tree Regressors, which are specialized decision tree
-    models capable of handling longitudinal data through a lexicographic optimization approach.
+    models capable of handling longitudinal data through a lexicographic optimization approach. The classifier follows
+    the familiar binary and multiclass interface of `sklearn.ensemble.GradientBoostingClassifier`.
 
     !!! tip "Why Use LexicoGradientBoostingClassifier?"
         This classifier is ideal for longitudinal datasets where temporal recency is crucial. By leveraging lexicographic
@@ -224,7 +232,12 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
 
     @ensure_valid_state
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray, sample_weight=None,) -> "LexicoGradientBoostingClassifier":
+    def _fit(
+        self,
+        X: np.ndarray,
+        y: np.ndarray,
+        sample_weight=None,
+    ) -> "LexicoGradientBoostingClassifier":
         """Fit the Lexico Gradient Boosting Classifier model according to the given training data.
 
         Args:
@@ -252,11 +265,11 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
             threshold_gain=self.threshold_gain,
             features_group=self.features_group,
         )
-
-        if self.classes_ is None:
-            self.classes_ = unique_labels(y)
-
-        return self._lexico_gradient_boosting.fit(X, y, sample_weight=sample_weight)
+        self._lexico_gradient_boosting.fit(X, y, sample_weight=sample_weight)
+        self.classes_ = getattr(
+            self._lexico_gradient_boosting, "classes_", unique_labels(y)
+        )
+        return self
 
     @ensure_valid_state
     @override

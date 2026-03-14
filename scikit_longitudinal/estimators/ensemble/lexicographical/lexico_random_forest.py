@@ -13,7 +13,8 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
     extends the traditional Random Forest by integrating a lexicographic optimization approach within each decision tree,
     prioritizing more recent data points (waves) for splits. This is based on the premise that recent measurements are more
     predictive and relevant, making it ideal for applications like medical studies or time-series classification. The
-    implementation leverages a Cython-optimized fork of scikit-learn's decision tree for enhanced efficiency.
+    implementation leverages a Cython-optimized fork of scikit-learn's decision tree for enhanced efficiency and supports
+    both binary and multiclass targets through the standard `fit`, `predict`, `predict_proba`, and `classes_` API.
 
     !!! tip "Why Use LexicoRandomForestClassifier?"
         This classifier excels with longitudinal datasets where temporal recency is key. By combining lexicographic
@@ -232,7 +233,8 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
         )
 
     def _validate_estimator(self):
-        from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier  # pylint: disable=C0415
+        # pylint: disable=C0415
+        from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 
         self.estimator_ = LexicoDecisionTreeClassifier(
             threshold_gain=self.threshold_gain,
