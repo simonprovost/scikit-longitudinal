@@ -1,0 +1,157 @@
+:root {
+    --sklong-cream: #fff6eb;
+    --sklong-ink: #252121;
+    --sklong-pink: #ff878d;
+    --sklong-pink-strong: #e05d75;
+    --sklong-pink-soft: #ffe3e8;
+    --sklong-slate: #1c1c1c;
+}
+
+[data-md-color-scheme="scikit_light"] {
+    --md-accent-fg-color: var(--sklong-pink);
+}
+
+[data-md-color-scheme="slate"] {
+    --md-accent-fg-color: var(--sklong-pink);
+}
+
+.md-logo {
+    padding-top: 6px;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+    border-radius: 6px;
+}
+
+.md-tabs__link,
+.md-nav__link {
+    transition: color 0.2s ease;
+}
+
+.md-tabs__link:hover,
+.md-tabs__link:focus,
+.md-nav__link:hover,
+.md-nav__link:focus {
+    color: var(--sklong-pink-strong) !important;
+}
+
+.md-tabs__item--active .md-tabs__link,
+[data-md-color-scheme="scikit_light"] .md-tabs__item--active .md-tabs__link,
+[data-md-color-scheme="slate"] .md-tabs__item--active .md-tabs__link,
+.md-nav__item--active > .md-nav__link,
+.md-nav__item--active > .md-nav__link .md-ellipsis,
+.md-nav__item--active > label.md-nav__link,
+.md-nav__item--active > label.md-nav__link .md-ellipsis,
+.md-nav__link--active,
+.md-nav__link--active .md-ellipsis {
+    color: var(--sklong-pink) !important;
+    font-weight: 700 !important;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary,
+[data-md-color-scheme="slate"] .md-nav--primary,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav,
+[data-md-color-scheme="slate"] .md-nav__list {
+    background-color: var(--sklong-slate) !important;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__title,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link,
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__title,
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link {
+    color: #f5f5f5 !important;
+}
+
+.md-sidebar--primary .md-nav--primary > .md-nav__list,
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list {
+    padding-top: 0.5rem;
+    padding-bottom: 0.35rem;
+}
+
+.md-search__form {
+    position: relative;
+}
+
+[data-md-color-scheme="slate"] .md-search__form,
+[data-md-color-scheme="slate"] .md-search__inner {
+    background-color: #1b1b1b !important;
+    color: #f5f5f5 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__input {
+    background-color: transparent !important;
+    color: #fdfdfd !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__input::placeholder,
+[data-md-color-scheme="slate"] .md-search__icon {
+    color: #e0e0e0 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search-result__link,
+[data-md-color-scheme="slate"] .md-search-result__title,
+[data-md-color-scheme="slate"] .md-search-result__teaser,
+[data-md-color-scheme="slate"] .md-search-result__meta {
+    color: #f5f5f5 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search__output,
+[data-md-color-scheme="slate"] .md-search__scrollwrap {
+    background-color: #0f0f0f !important;
+    color: #f5f5f5 !important;
+}
+
+[data-md-color-scheme="slate"] .md-search-result__link:hover,
+[data-md-color-scheme="slate"] .md-search-result__link:focus {
+    background-color: #1f1f1f;
+}
+
+.md-search__shortcut {
+    position: absolute;
+    top: 50%;
+    right: 0.55rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.3rem;
+    height: 1.3rem;
+    padding: 0 0.3rem;
+    border-radius: 0.28rem;
+    transform: translateY(-50%);
+    font-family: var(--md-code-font-family);
+    font-size: 0.62rem;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.92;
+    transition: opacity 0.22s ease, transform 0.22s ease, color 0.22s ease;
+}
+
+[data-md-color-scheme="slate"] .md-search__shortcut {
+    border: 1px solid rgba(224, 224, 224, 0.22);
+    background: rgba(255, 255, 255, 0.06);
+    color: #d8d8d8;
+}
+
+[data-md-color-scheme="scikit_light"] .md-search__shortcut {
+    border: 1px solid rgba(37, 33, 33, 0.12);
+    background: rgba(255, 255, 255, 0.84);
+    color: var(--sklong-pink-strong);
+    box-shadow: 0 4px 12px rgba(37, 33, 33, 0.04);
+}
+
+.md-search__shortcut--hidden {
+    opacity: 0;
+}
+
+.md-search__shortcut--fading {
+    opacity: 0.22;
+    transform: translateY(-50%) scale(0.9);
+}
+
+@media screen and (max-width: 59.984375em) {
+    .md-search__shortcut {
+        display: none;
+    }
+}
