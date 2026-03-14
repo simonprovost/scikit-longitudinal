@@ -49,9 +49,12 @@ theme:
 extra_css:
   - 'stylesheets/extra.css'
   - 'stylesheets/landing.css'
+  - 'stylesheets/theme-refresh.css'
 
 extra_javascript:
   - javascripts/mathjax.js
+  - javascripts/search-shortcut.js
+  - javascripts/homepage.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - custom.js
