@@ -2926,7 +2926,7 @@ wheels = [
 
 [[package]]
 name = "scikit-longitudinal"
-version = "0.1.7"
+version = "0.1.8"
 source = { editable = "." }
 dependencies = [
     { name = "deep-forest-py310" },
