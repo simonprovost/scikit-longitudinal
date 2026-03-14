@@ -29,11 +29,15 @@ class DataPreparationMixin(ABC, EnforceOverrides):
         return wrapper
 
     @final
-    def prepare_data(self, X: np.ndarray, y: np.ndarray = None) -> "DataPreparationMixin":
+    def prepare_data(
+        self, X: np.ndarray, y: np.ndarray = None
+    ) -> "DataPreparationMixin":
         if y is None:
             return self._check_array_decorator(self._prepare_data)(X)
 
         return self._check_X_y_decorator(self._prepare_data)(X, y)
 
-    def _prepare_data(self, X: np.ndarray, y: np.ndarray = None) -> "DataPreparationMixin":
+    def _prepare_data(
+        self, X: np.ndarray, y: np.ndarray = None
+    ) -> "DataPreparationMixin":
         raise NotImplementedError("Subclasses should implement _prepare_data method")

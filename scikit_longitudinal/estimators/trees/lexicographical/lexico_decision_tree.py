@@ -12,7 +12,8 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
     This classifier extends the standard Decision Tree algorithm to handle longitudinal data by incorporating a
     lexicographic optimization approach. It prioritizes more recent data points (waves) when determining splits,
     based on the premise that recent measurements are more predictive and relevant. The implementation leverages a
-    Cython-optimized fork of scikit-learn's decision tree for improved efficiency.
+    Cython-optimized fork of scikit-learn's decision tree for improved efficiency, and supports the same binary and
+    multiclass classification workflow as `sklearn.tree.DecisionTreeClassifier`.
 
     !!! tip "Why Use LexicoDecisionTreeClassifier?"
         This classifier is ideal when working with longitudinal datasets where temporal recency matters. By balancing

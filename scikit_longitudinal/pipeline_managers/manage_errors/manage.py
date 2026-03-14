@@ -78,12 +78,16 @@ def validate_input(f: Callable) -> Callable:
         if X is None:
             raise ValueError(f"No data was passed to {f.__name__}.")
         if not isinstance(X, (np.ndarray, pd.DataFrame, list)):
-            raise ValueError("Input data must be a numpy array, pandas DataFrame, or 2D list.")
+            raise ValueError(
+                "Input data must be a numpy array, pandas DataFrame, or 2D list."
+            )
 
         if len(list_args) > 2:
             y = list_args[2]
             if y is not None and not isinstance(y, (pd.Series, np.ndarray, list)):
-                raise ValueError("y must be a pandas Series, numpy array, 2D list, or not passing any target data")
+                raise ValueError(
+                    "y must be a pandas Series, numpy array, 2D list, or not passing any target data"
+                )
 
         if isinstance(X, list):
             X = np.array(X)

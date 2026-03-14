@@ -47,7 +47,6 @@ dev = [
     "pytest-cov>=4.0.0",
     "black>=23.10.1",
     "isort>=5.12.0",
-    "pylint>=3.3.3",
     "black>=24.10.0",
     "ruff>=0.9.1",
     "pre-commit>=3.7.0",
@@ -85,6 +84,9 @@ package = true
 override-dependencies = [
     "scikit-learn ; sys_platform == 'never'",
 ]
+
+[tool.isort]
+profile = "black"
 
 [tool.setuptools]
 py-modules = []

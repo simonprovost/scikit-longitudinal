@@ -7,11 +7,19 @@ from sklearn.base import TransformerMixin
 from sklearn.pipeline import Pipeline, _final_estimator_has  # pragma: no cover
 from sklearn.utils.metaestimators import available_if
 
-from scikit_longitudinal.data_preparation.separate_waves import SepWav
 from scikit_longitudinal.data_preparation import LongitudinalDataset  # pragma: no cover
-from scikit_longitudinal.pipeline_managers.manage_callbacks.manage import validate_update_feature_groups_callback
-from scikit_longitudinal.pipeline_managers.manage_errors.manage import handle_errors, validate_input
-from scikit_longitudinal.pipeline_managers.manage_steps import configure_and_fit_transformer, handle_final_estimator
+from scikit_longitudinal.data_preparation.separate_waves import SepWav
+from scikit_longitudinal.pipeline_managers.manage_callbacks.manage import (
+    validate_update_feature_groups_callback,
+)
+from scikit_longitudinal.pipeline_managers.manage_errors.manage import (
+    handle_errors,
+    validate_input,
+)
+from scikit_longitudinal.pipeline_managers.manage_steps import (
+    configure_and_fit_transformer,
+    handle_final_estimator,
+)
 
 
 # pylint: disable=W0511
@@ -228,14 +236,16 @@ class LongitudinalPipeline(Pipeline):
         super().__init__(steps=steps)
         self._longitudinal_data: np.ndarray = np.array([])
         self.features_group: List[List[int]] = features_group
-        self.non_longitudinal_features: List[Union[int, str]] = non_longitudinal_features or []
+        self.non_longitudinal_features: List[Union[int, str]] = (
+            non_longitudinal_features or []
+        )
         self.feature_list_names: List[str] = feature_list_names
         self.selected_feature_indices_: np.ndarray = np.array([])
         self.final_estimator = self.steps[-1][1]
 
         if update_feature_groups_callback is not None:
-            self.update_feature_groups_callback = validate_update_feature_groups_callback(
-                update_feature_groups_callback
+            self.update_feature_groups_callback = (
+                validate_update_feature_groups_callback(update_feature_groups_callback)
             )
         else:
             self.update_feature_groups_callback = "default"
@@ -267,7 +277,11 @@ class LongitudinalPipeline(Pipeline):
         if y is not None:
             y = y.copy()
 
-        filtered_steps = [(name, transformer) for name, transformer in self.steps[:-1] if transformer is not None]
+        filtered_steps = [
+            (name, transformer)
+            for name, transformer in self.steps[:-1]
+            if transformer is not None
+        ]
 
         def is_sep_wav(transformer):
             return isinstance(transformer, SepWav)
@@ -336,7 +350,9 @@ class LongitudinalPipeline(Pipeline):
         df = pd.DataFrame(self._longitudinal_data, columns=self.feature_list_names)
 
         dummy_longitudinal_dataset = LongitudinalDataset(file_path=None, data_frame=df)
-        dummy_longitudinal_dataset._feature_groups = self.features_group  # pylint: disable=W0212
+        dummy_longitudinal_dataset._feature_groups = (
+            self.features_group
+        )  # pylint: disable=W0212
         dummy_longitudinal_dataset._non_longitudinal_features = (
             self.non_longitudinal_features
         )
@@ -377,11 +393,15 @@ class LongitudinalPipeline(Pipeline):
 
         if hasattr(self._final_estimator, "predict"):
             return self._final_estimator.predict(X, **predict_params)
-        raise NotImplementedError(f"predict is not implemented for this estimator: {type(self._final_estimator)}")
+        raise NotImplementedError(
+            f"predict is not implemented for this estimator: {type(self._final_estimator)}"
+        )
 
     @available_if(_final_estimator_has("predict_proba"))
     @validate_input
-    def predict_proba(self, X: np.ndarray, **predict_params: Dict[str, Any]) -> np.ndarray:
+    def predict_proba(
+        self, X: np.ndarray, **predict_params: Dict[str, Any]
+    ) -> np.ndarray:
         """Predict class probabilities using the final estimator.
 
         Applies the selected feature indices to the input data and uses the final estimator to predict probabilities.
@@ -400,11 +420,15 @@ class LongitudinalPipeline(Pipeline):
 
         if hasattr(self._final_estimator, "predict_proba"):
             return self._final_estimator.predict_proba(X, **predict_params)
-        raise NotImplementedError(f"predict_proba is not implemented for this estimator: {type(self._final_estimator)}")
+        raise NotImplementedError(
+            f"predict_proba is not implemented for this estimator: {type(self._final_estimator)}"
+        )
 
     @available_if(_final_estimator_has("transform"))
     @validate_input
-    def transform(self, X: np.ndarray, **transform_params: Dict[str, Any]) -> np.ndarray:
+    def transform(
+        self, X: np.ndarray, **transform_params: Dict[str, Any]
+    ) -> np.ndarray:
         """Transform the input data using the final estimator.
 
         Applies the selected feature indices and transforms the data using the final estimator's `transform` method.
@@ -416,7 +440,10 @@ class LongitudinalPipeline(Pipeline):
         Returns:
             np.ndarray: Transformed data.
         """
-        if self.selected_feature_indices_ is None or len(self.selected_feature_indices_) == 0:
+        if (
+            self.selected_feature_indices_ is None
+            or len(self.selected_feature_indices_) == 0
+        ):
             print("No feature selection was performed. Returning the original data.")
             return X
         X = X[:, self.selected_feature_indices_]
@@ -441,7 +468,12 @@ class LongitudinalPipeline(Pipeline):
 
     @available_if(_final_estimator_has("score"))
     @validate_input
-    def score(self, X: np.ndarray, y: Union[pd.Series, np.ndarray], **score_params: Dict[str, Any]) -> float:
+    def score(
+        self,
+        X: np.ndarray,
+        y: Union[pd.Series, np.ndarray],
+        **score_params: Dict[str, Any],
+    ) -> float:
         """Compute the score of the final estimator.
 
         Applies the selected feature indices and computes the score using the final estimator's `score` method.

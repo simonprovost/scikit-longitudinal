@@ -1,4 +1,4 @@
-# flake8: noqa: E126
+# flake8: noqa
 # pylint: disable=C1802
 import inspect
 import pkgutil
@@ -20,7 +20,9 @@ _MODULE_TO_IGNORE = {
 }
 
 
-def all_scikit_longitudinal_estimators(type_filter: Union[str, List[str], None] = None) -> List[Tuple[str, Any]]:
+def all_scikit_longitudinal_estimators(
+    type_filter: Union[str, List[str], None] = None,
+) -> List[Tuple[str, Any]]:
     """Get a list of all estimators from `sklearn`.
 
     This function crawls the module and gets all classes that inherit
@@ -64,14 +66,21 @@ def all_scikit_longitudinal_estimators(type_filter: Union[str, List[str], None] 
     root = str(Path(__file__).parent)  # sklearn package
     # Ignore deprecation warnings triggered at import time and from walking
     # packages
-    for _, module_name, _ in pkgutil.walk_packages(path=[root], prefix="scikit_longitudinal."):
+    for _, module_name, _ in pkgutil.walk_packages(
+        path=[root], prefix="scikit_longitudinal."
+    ):
         module_parts = module_name.split(".")
-        if any(part in _MODULE_TO_IGNORE for part in module_parts) or "._" in module_name:
+        if (
+            any(part in _MODULE_TO_IGNORE for part in module_parts)
+            or "._" in module_name
+        ):
             continue
 
         module = import_module(module_name)
         classes = inspect.getmembers(module, inspect.isclass)
-        classes = [(name, est_cls) for name, est_cls in classes if not name.startswith("_")]
+        classes = [
+            (name, est_cls) for name, est_cls in classes if not name.startswith("_")
+        ]
 
         all_classes.extend(classes)
 
@@ -80,9 +89,18 @@ def all_scikit_longitudinal_estimators(type_filter: Union[str, List[str], None] 
         c
         for c in all_classes
         if (
-            (issubclass(c[1], CustomTransformerMixinEstimator) and c[0] != "CustomTransformerMixinEstimator")
-            or (issubclass(c[1], CustomClassifierMixinEstimator) and c[0] != "CustomClassifierMixinEstimator")
-            or (issubclass(c[1], DataPreparationMixin) and c[0] != "DataPreparationMixin")
+            (
+                issubclass(c[1], CustomTransformerMixinEstimator)
+                and c[0] != "CustomTransformerMixinEstimator"
+            )
+            or (
+                issubclass(c[1], CustomClassifierMixinEstimator)
+                and c[0] != "CustomClassifierMixinEstimator"
+            )
+            or (
+                issubclass(c[1], DataPreparationMixin)
+                and c[0] != "DataPreparationMixin"
+            )
             or (
                 issubclass(c[1], BaseEstimator)
                 and c[0]
@@ -135,7 +153,9 @@ def all_scikit_longitudinal_estimators(type_filter: Union[str, List[str], None] 
                         ]
                     )
                 else:
-                    filtered_estimators.extend([est for est in estimators if issubclass(est[1], mixin)])
+                    filtered_estimators.extend(
+                        [est for est in estimators if issubclass(est[1], mixin)]
+                    )
         estimators = filtered_estimators
         if type_filter:
             raise ValueError(

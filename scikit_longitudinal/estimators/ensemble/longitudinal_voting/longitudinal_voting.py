@@ -6,9 +6,10 @@ import numpy as np
 from overrides import override
 from sklearn.exceptions import NotFittedError
 from sklearn.model_selection import cross_val_score
-from sklearn.utils.validation import check_is_fitted
 
-from scikit_longitudinal.estimators.ensemble.longitudinal_voting.custom_voting import LongitudinalCustomVoting
+from scikit_longitudinal.estimators.ensemble.longitudinal_voting.custom_voting import (
+    LongitudinalCustomVoting,
+)
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 
@@ -48,13 +49,14 @@ class LongitudinalEnsemblingStrategy(Enum):
 
         STACKING (int):
             Stacking ensemble strategy uses a meta-learner to combine predictions of base classifiers.
-            The meta-learner is trained on meta-features formed from the base classifiers' predictions.
+            The meta-learner is trained on meta-features formed from the base classifiers' predicted class
+            probabilities.
             This approach is suitable when the cardinality of meta-features is smaller than the original feature set.
 
             In stacking, for each wave \\( i \\) (\\( i \\in \\{1, 2, \\ldots, N\\} \\)), a base classifier \\( C_i \\)
-            is trained on \\( (X_i, T_N) \\). The prediction from \\( C_i \\) is denoted as \\( V_i \\), forming
-            the meta-features \\( \\mathbf{V} = [V_1, V_2, ..., V_N] \\). The meta-learner \\( M \\) is then trained
-            on \\( (\\mathbf{V}, T_N) \\), and for a new instance \\( x \\), the final prediction is
+            is trained on \\( (X_i, T_N) \\). The class-probability output from \\( C_i \\) is denoted as \\( V_i \\),
+            forming the meta-features \\( \\mathbf{V} = [V_1, V_2, ..., V_N] \\). The meta-learner \\( M \\) is then
+            trained on \\( (\\mathbf{V}, T_N) \\), and for a new instance \\( x \\), the final prediction is
             \\( P(x) = M(\\mathbf{V}(x)) \\).
 
     """
@@ -72,8 +74,9 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
 
     The Longitudinal Voting Classifier is a versatile ensemble method designed to handle the unique challenges posed by
     longitudinal data. It leverages different voting strategies to combine predictions from multiple base estimators,
-    enhancing predictive performance. The base estimators are individually trained, and their predictions are aggregated
-    based on the chosen voting strategy to generate the final prediction.
+    enhancing predictive performance. The base estimators are individually trained, and their predictions are
+    aggregated based on the chosen voting strategy to generate the final prediction. The classifier supports both
+    binary and multiclass targets.
 
     !!! warning "When to Use?"
         This classifier is primarily used when the "SepWav" (Separate Waves) strategy is employed. However, it can also
@@ -83,10 +86,10 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
 
         The SepWav strategy involves considering each wave's features and the class variable as a separate dataset,
         then learning a classifier for each dataset. The class labels predicted by these classifiers are combined into
-        a final predicted class label. This combination can be achieved using various approaches: simple majority voting,
-        weighted voting with weights decaying linearly or exponentially for older waves, weights optimized by
+        a final predicted class label. This combination can be achieved using various approaches: simple majority
+        voting, weighted voting with weights decaying linearly or exponentially for older waves, weights optimised by
         cross-validation on the training set (current class), and stacking methods that use the classifiers' predicted
-        labels as input for learning a meta-classifier (see LongitudinalStacking).
+        class probabilities as input for learning a meta-classifier (see LongitudinalStacking).
 
     !!! info "Wrapper Around Sklearn VotingClassifier"
 
@@ -100,7 +103,8 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
             A list of classifiers for the ensemble. Note that the classifiers need to be trained before being passed to
             the LongitudinalVotingClassifier.
         extract_wave (Callable, optional):
-            A function to extract specific wave data for training. Defaults to None.
+            A function to extract specific wave data for training. Defaults to None. When provided, the order of
+            `estimators` defines the wave order used for extraction.
         n_jobs (int, default=1):
             The number of jobs to run in parallel.
 
@@ -125,7 +129,7 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
 
             # Dummy data
             X = np.array([[0, 1, 0, 1, 45, 1], [1, 1, 1, 1, 50, 0], [0, 0, 0, 0, 55, 1]])
-            y = np.array([0, 1, 0])
+            y = np.array([0, 1, 2])
             features_group = [[0, 1], [2, 3]]
 
             # Train estimators
@@ -156,7 +160,12 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
     Notes:
         - **References**:
 
-          - Ribeiro, C. and Freitas, A.A., 2019. "A mini-survey of supervised machine learning approaches for coping with ageing-related longitudinal datasets." *3rd Workshop on AI for Aging, Rehabilitation and Independent Assisted Living (ARIAL)*, held as part of IJCAI-2019.
+          - Ribeiro, C. and Freitas, A.A., 2019. "A mini-survey of supervised machine learning approaches for coping
+            with ageing-related longitudinal datasets." *3rd Workshop on AI for Aging, Rehabilitation and Independent
+            Assisted Living (ARIAL)*, held as part of IJCAI-2019.
+
+        - `predict_proba` returns normalised vote shares across classes. These are consistent with the hard-voting
+          decision returned by `predict`, but they are not calibrated probabilities.
     """
 
     def __init__(
@@ -190,7 +199,9 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
         return self.clf_ensemble.classes_
 
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray) -> "LongitudinalVotingClassifier":
+    def _fit(
+        self, X: np.ndarray, y: np.ndarray, sample_weight: np.ndarray = None
+    ) -> "LongitudinalVotingClassifier":
         """
         Fit the ensemble model.
 
@@ -213,10 +224,9 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
         !!! tip "Estimator Training"
             Ensure all estimators are trained before passing them to the `LongitudinalVotingClassifier`.
         """
-        if self.estimators:
-            for _, estimator in self.estimators:
-                check_is_fitted(estimator, msg="Estimators must be fitted before using this method.")
-        else:
+        _ = sample_weight
+
+        if not self.estimators:
             raise ValueError("No estimators were provided.")
 
         if not isinstance(self.voting, LongitudinalEnsemblingStrategy):
@@ -257,7 +267,7 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
             NotFittedError: If attempting to predict before fitting the model.
 
         !!! tip "Tie-Breaking"
-            In case of a tie, the prediction from the most recent wave is selected.
+            In case of a tie, the prediction from the most recent estimator among the tied classes is selected.
         """
         if self.clf_ensemble:
             return self.clf_ensemble.predict(X)
@@ -268,7 +278,7 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
         """
         Predict probabilities using the ensemble model.
 
-        Generates probability estimates by averaging the probabilities from the base estimators.
+        Returns normalised vote shares across classes, rather than averaged base-estimator confidence scores.
 
         Args:
             X (np.ndarray):
@@ -317,7 +327,9 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
             y (np.ndarray):
                 The target values.
         """
-        self.clf_ensemble = LongitudinalCustomVoting(self.estimators, extract_wave=self.extract_wave)
+        self.clf_ensemble = LongitudinalCustomVoting(
+            self.estimators, extract_wave=self.extract_wave
+        )
         self.clf_ensemble.fit(X, y)
 
     def _fit_decay_linear_voting(self, X: np.ndarray, y: np.ndarray) -> None:
@@ -333,14 +345,16 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
                 The target values.
         """
         weights = self._calculate_linear_decay_weights(len(self.estimators))
-        self.clf_ensemble = LongitudinalCustomVoting(self.estimators, weights=weights, extract_wave=self.extract_wave)
+        self.clf_ensemble = LongitudinalCustomVoting(
+            self.estimators, weights=weights, extract_wave=self.extract_wave
+        )
         self.clf_ensemble.fit(X, y)
 
     def _fit_decay_exponential_voting(self, X: np.ndarray, y: np.ndarray) -> None:
         """
         Fit the ensemble model using exponential decay weighted voting strategy.
 
-        Weights are assigned exponentially, favoring more recent waves.
+        Weights are assigned exponentially, favouring more recent waves.
 
         Args:
             X (np.ndarray):
@@ -349,7 +363,9 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
                 The target values.
         """
         weights = self._calculate_exponential_decay_weights(len(self.estimators))
-        self.clf_ensemble = LongitudinalCustomVoting(self.estimators, weights=weights, extract_wave=self.extract_wave)
+        self.clf_ensemble = LongitudinalCustomVoting(
+            self.estimators, weights=weights, extract_wave=self.extract_wave
+        )
         self.clf_ensemble.fit(X, y)
 
     def _fit_cv_based_voting(self, X: np.ndarray, y: np.ndarray) -> None:
@@ -365,10 +381,14 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
                 The target values.
         """
         weights = self._calculate_cv_weights(X, y, k=5)
-        self.clf_ensemble = LongitudinalCustomVoting(self.estimators, weights=weights, extract_wave=self.extract_wave)
+        self.clf_ensemble = LongitudinalCustomVoting(
+            self.estimators, weights=weights, extract_wave=self.extract_wave
+        )
         self.clf_ensemble.fit(X, y)
 
-    def _calculate_cv_weights(self, X: np.ndarray, y: np.ndarray, k: int) -> List[float]:
+    def _calculate_cv_weights(
+        self, X: np.ndarray, y: np.ndarray, k: int
+    ) -> List[float]:
         """
         Calculate the weights based on cross-validation accuracy.
 
@@ -384,10 +404,14 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
             List[float]: Weights for each estimator.
         """
         accuracies = [
-            cross_val_score(estimator, self._extract_wave(X, int(wave_number.split("_")[-1])), y, cv=k).mean()
-            for wave_number, estimator in self.estimators
+            cross_val_score(
+                estimator, self._extract_wave(X, estimator_index), y, cv=k
+            ).mean()
+            for estimator_index, (_, estimator) in enumerate(self.estimators)
         ]
         total_accuracy = sum(accuracies)
+        if np.isclose(total_accuracy, 0.0):
+            return [1.0 / len(accuracies)] * len(accuracies)
         return [acc / total_accuracy for acc in accuracies]
 
     @staticmethod
@@ -416,4 +440,6 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
         Returns:
             List[float]: Exponential decay weights.
         """
-        return [np.exp(i) / sum(np.exp(j) for j in range(1, N + 1)) for i in range(1, N + 1)]
+        return [
+            np.exp(i) / sum(np.exp(j) for j in range(1, N + 1)) for i in range(1, N + 1)
+        ]

@@ -9,12 +9,18 @@ from scikit_longitudinal.estimators.ensemble import (
     LexicoGradientBoostingClassifier,
     LexicoRandomForestClassifier,
 )
-from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import LongitudinalClassifierType
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import (
+    LongitudinalClassifierType,
+)
 from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 
 
 def create_synthetic_data(
-    n_samples=100, n_longitudinal_groups=2, n_features_per_group=2, n_non_longitudinal=2, random_state=None
+    n_samples=100,
+    n_longitudinal_groups=2,
+    n_features_per_group=2,
+    n_non_longitudinal=2,
+    random_state=None,
 ):
     np.random.seed(random_state)
     X, y = make_classification(
@@ -24,7 +30,8 @@ def create_synthetic_data(
     )
 
     features_group = [
-        list(range(i * n_features_per_group, (i + 1) * n_features_per_group)) for i in range(n_longitudinal_groups)
+        list(range(i * n_features_per_group, (i + 1) * n_features_per_group))
+        for i in range(n_longitudinal_groups)
     ]
 
     for i in range(n_longitudinal_groups - 1):
@@ -42,12 +49,18 @@ class TestLexico:
 
     @pytest.fixture(scope="class")
     def train_test_data_iris(self, load_iris_data):
-        return train_test_split(load_iris_data.data, load_iris_data.target, test_size=0.3, random_state=42)
+        return train_test_split(
+            load_iris_data.data, load_iris_data.target, test_size=0.3, random_state=42
+        )
 
     @pytest.fixture(scope="class")
     def synthetic_data(self):
         X, y, features_group = create_synthetic_data(
-            n_samples=150, n_longitudinal_groups=2, n_features_per_group=2, n_non_longitudinal=2, random_state=42
+            n_samples=150,
+            n_longitudinal_groups=2,
+            n_features_per_group=2,
+            n_non_longitudinal=2,
+            random_state=42,
         )
         return X, y, features_group
 
@@ -64,7 +77,14 @@ class TestLexico:
             (0.0025, [[0, 1], [2, 3]], 500, 321),
         ],
     )
-    def test_lexico_RF_iris(self, train_test_data_iris, threshold_gain, features_group, n_estimators, random_state):
+    def test_lexico_RF_iris(
+        self,
+        train_test_data_iris,
+        threshold_gain,
+        features_group,
+        n_estimators,
+        random_state,
+    ):
         X_train, X_test, y_train, y_test = train_test_data_iris
         clf = LexicoRandomForestClassifier(
             n_estimators=n_estimators,
@@ -85,10 +105,14 @@ class TestLexico:
             (0.0025, [[0, 1], [2, 3]], 321),
         ],
     )
-    def test_lexico_decision_tree_iris(self, train_test_data_iris, threshold_gain, features_group, random_state):
+    def test_lexico_decision_tree_iris(
+        self, train_test_data_iris, threshold_gain, features_group, random_state
+    ):
         X_train, X_test, y_train, y_test = train_test_data_iris
         clf = LexicoDecisionTreeClassifier(
-            threshold_gain=threshold_gain, features_group=features_group, random_state=random_state
+            threshold_gain=threshold_gain,
+            features_group=features_group,
+            random_state=random_state,
         )
         clf.fit(X_train, y_train)
         y_pred = clf.predict(X_test)
@@ -112,7 +136,12 @@ class TestLexico:
         ],
     )
     def test_lexico_RF_synthetic(
-        self, train_test_data_synthetic, synthetic_data, threshold_gain, n_estimators, random_state
+        self,
+        train_test_data_synthetic,
+        synthetic_data,
+        threshold_gain,
+        n_estimators,
+        random_state,
     ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
@@ -142,7 +171,9 @@ class TestLexico:
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         clf = LexicoDecisionTreeClassifier(
-            threshold_gain=threshold_gain, features_group=features_group, random_state=random_state
+            threshold_gain=threshold_gain,
+            features_group=features_group,
+            random_state=random_state,
         )
         clf.fit(X_train, y_train)
         y_pred = clf.predict(X_test)
@@ -164,7 +195,9 @@ class TestLexico:
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         clf = LexicoGradientBoostingClassifier(
-            threshold_gain=threshold_gain, features_group=features_group, random_state=random_state
+            threshold_gain=threshold_gain,
+            features_group=features_group,
+            random_state=random_state,
         )
         clf.fit(X_train, y_train)
         y_pred = clf.predict(X_test)
@@ -212,7 +245,9 @@ class TestLexico:
             (421),
         ],
     )
-    def test_lexico_deep_forest_synthetic(self, train_test_data_synthetic, synthetic_data, random_state):
+    def test_lexico_deep_forest_synthetic(
+        self, train_test_data_synthetic, synthetic_data, random_state
+    ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         clf = LexicoDeepForestClassifier(
@@ -226,12 +261,14 @@ class TestLexico:
         accuracy = accuracy_score(y_test, y_pred)
         assert 0 <= accuracy <= 1
 
-
     def test_lexico_RF_iris_with_sample_weight(self, train_test_data_iris):
         X_train, X_test, y_train, y_test = train_test_data_iris
         w = np.where(y_train == y_train[0], 2.0, 1.0)
         clf = LexicoRandomForestClassifier(
-            n_estimators=50, threshold_gain=0.005, features_group=[[0, 1], [2, 3]], random_state=42
+            n_estimators=50,
+            threshold_gain=0.005,
+            features_group=[[0, 1], [2, 3]],
+            random_state=42,
         )
         clf.fit(X_train, y_train, sample_weight=w)
         y_pred = clf.predict(X_test)
@@ -240,23 +277,32 @@ class TestLexico:
     def test_lexico_decision_tree_iris_with_sample_weight(self, train_test_data_iris):
         X_train, X_test, y_train, y_test = train_test_data_iris
         w = np.ones_like(y_train, dtype=float)
-        clf = LexicoDecisionTreeClassifier(threshold_gain=0.005, features_group=[[0, 1], [2, 3]], random_state=42)
-        clf.fit(X_train, y_train, sample_weight=w)
-        y_pred = clf.predict(X_test)
-        assert 0 <= accuracy_score(y_test, y_pred) <= 1
-
-    def test_lexico_RF_synthetic_with_sample_weight(self, train_test_data_synthetic, synthetic_data):
-        X_train, X_test, y_train, y_test = train_test_data_synthetic
-        _, _, features_group = synthetic_data
-        w = np.linspace(0.5, 2.0, num=len(y_train))
-        clf = LexicoRandomForestClassifier(
-            n_estimators=100, threshold_gain=0.0025, features_group=features_group, random_state=123
+        clf = LexicoDecisionTreeClassifier(
+            threshold_gain=0.005, features_group=[[0, 1], [2, 3]], random_state=42
         )
         clf.fit(X_train, y_train, sample_weight=w)
         y_pred = clf.predict(X_test)
         assert 0 <= accuracy_score(y_test, y_pred) <= 1
 
-    def test_lexico_gradient_boosting_synthetic_with_sample_weight(self, train_test_data_synthetic, synthetic_data):
+    def test_lexico_RF_synthetic_with_sample_weight(
+        self, train_test_data_synthetic, synthetic_data
+    ):
+        X_train, X_test, y_train, y_test = train_test_data_synthetic
+        _, _, features_group = synthetic_data
+        w = np.linspace(0.5, 2.0, num=len(y_train))
+        clf = LexicoRandomForestClassifier(
+            n_estimators=100,
+            threshold_gain=0.0025,
+            features_group=features_group,
+            random_state=123,
+        )
+        clf.fit(X_train, y_train, sample_weight=w)
+        y_pred = clf.predict(X_test)
+        assert 0 <= accuracy_score(y_test, y_pred) <= 1
+
+    def test_lexico_gradient_boosting_synthetic_with_sample_weight(
+        self, train_test_data_synthetic, synthetic_data
+    ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         w = np.where(y_train == 1, 2.0, 1.0)
@@ -267,7 +313,9 @@ class TestLexico:
         y_pred = clf.predict(X_test)
         assert 0 <= accuracy_score(y_test, y_pred) <= 1
 
-    def test_lexico_deep_forest_synthetic_with_sample_weight(self, train_test_data_synthetic, synthetic_data):
+    def test_lexico_deep_forest_synthetic_with_sample_weight(
+        self, train_test_data_synthetic, synthetic_data
+    ):
         X_train, X_test, y_train, y_test = train_test_data_synthetic
         _, _, features_group = synthetic_data
         w = np.ones_like(y_train, dtype=float)
@@ -280,3 +328,38 @@ class TestLexico:
         clf.fit(X_train, y_train, sample_weight=w)
         y_pred = clf.predict(X_test)
         assert 0 <= accuracy_score(y_test, y_pred) <= 1
+
+    @pytest.mark.parametrize(
+        "estimator_factory",
+        [
+            lambda fg: LexicoDecisionTreeClassifier(features_group=fg, random_state=0),
+            lambda fg: LexicoRandomForestClassifier(
+                features_group=fg, random_state=0, n_estimators=5
+            ),
+            lambda fg: LexicoGradientBoostingClassifier(
+                features_group=fg, random_state=0
+            ),
+            lambda fg: LexicoDeepForestClassifier(
+                features_group=fg,
+                random_state=0,
+                single_classifier_type=LongitudinalClassifierType.LEXICO_RF,
+                single_count=2,
+                max_layers=2,
+            ),
+        ],
+    )
+    def test_multiclass_public_api_support(
+        self, train_test_data_iris, estimator_factory
+    ):
+        X_train, X_test, y_train, _ = train_test_data_iris
+        features_group = [[0, 1], [2, 3]]
+        estimator = estimator_factory(features_group)
+
+        returned = estimator.fit(X_train, y_train)
+        predictions = estimator.predict(X_test)
+        probabilities = estimator.predict_proba(X_test)
+
+        assert returned is estimator
+        assert np.array_equal(estimator.classes_, np.array([0, 1, 2]))
+        assert predictions.shape == (len(X_test),)
+        assert probabilities.shape == (len(X_test), len(estimator.classes_))

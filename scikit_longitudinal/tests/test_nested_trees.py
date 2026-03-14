@@ -4,6 +4,7 @@ import sys
 
 import numpy as np
 import pytest
+from sklearn.datasets import load_iris
 from sklearn.tree import DecisionTreeClassifier
 
 from scikit_longitudinal.estimators.ensemble import NestedTreesClassifier
@@ -51,7 +52,9 @@ class TestNestedTreesClassifier:
         assert nested_trees.class_weight == "balanced"
         assert nested_trees.root.tree.class_weight == "balanced"
 
-    def test_nested_trees_preserves_explicit_inner_class_weight(self, dummy_data, features_group):
+    def test_nested_trees_preserves_explicit_inner_class_weight(
+        self, dummy_data, features_group
+    ):
         X, y = dummy_data
         custom_class_weight = {0: 3.0, 1: 1.0}
         nested_trees = NestedTreesClassifier(
@@ -79,7 +82,10 @@ class TestNestedTreesClassifier:
             max_outer_depth=4,
             max_inner_depth=3,
             min_outer_samples=2,
-            inner_estimator_hyperparameters={"min_samples_split": 10, "max_features": "sqrt"},
+            inner_estimator_hyperparameters={
+                "min_samples_split": 10,
+                "max_features": "sqrt",
+            },
         )
         nested_trees.fit(X, y)
 
@@ -89,7 +95,10 @@ class TestNestedTreesClassifier:
         assert nested_trees.max_outer_depth == 4
         assert nested_trees.max_inner_depth == 3
         assert nested_trees.min_outer_samples == 2
-        assert nested_trees.inner_estimator_hyperparameters == {"min_samples_split": 10, "max_features": "sqrt"}
+        assert nested_trees.inner_estimator_hyperparameters == {
+            "min_samples_split": 10,
+            "max_features": "sqrt",
+        }
 
     def test_tree_structure_as_string(self, dummy_data, features_group):
         X, y = dummy_data
@@ -108,7 +117,9 @@ class TestNestedTreesClassifier:
         X, y = dummy_data
         classifier = NestedTreesClassifier(features_group)
         classifier.fit(X, y)
-        best_tree, best_split, best_group = classifier._find_best_tree_and_split(X, y, "test_node")
+        best_tree, best_split, best_group = classifier._find_best_tree_and_split(
+            X, y, "test_node"
+        )
 
         assert isinstance(best_tree, DecisionTreeClassifier)
 
@@ -116,13 +127,17 @@ class TestNestedTreesClassifier:
 
         assert len(best_group) in [len(features_group[0]), len(features_group[1])]
 
-        assert np.array_equal(best_group, features_group[0]) or np.array_equal(best_group, features_group[1])
+        assert np.array_equal(best_group, features_group[0]) or np.array_equal(
+            best_group, features_group[1]
+        )
 
     def test_node_init_and_str_method(self, dummy_data, features_group):
         X, y = dummy_data
         tree = DecisionTreeClassifier()
         tree.fit(X, y)
-        node = NestedTreesClassifier.Node(is_leaf=False, tree=tree, node_name="dummy_node", group=features_group[0])
+        node = NestedTreesClassifier.Node(
+            is_leaf=False, tree=tree, node_name="dummy_node", group=features_group[0]
+        )
         assert str(node) == "dummy_node"
 
     @pytest.mark.parametrize(
@@ -133,7 +148,9 @@ class TestNestedTreesClassifier:
             (3, 2, 0, [[0, 1, 2], [2, 3, 4]]),
         ],
     )
-    def test_invalid_init_params(self, max_outer_depth, max_inner_depth, min_outer_samples, features_group):
+    def test_invalid_init_params(
+        self, max_outer_depth, max_inner_depth, min_outer_samples, features_group
+    ):
         with pytest.raises(ValueError):
             NestedTreesClassifier(
                 features_group,
@@ -152,9 +169,13 @@ class TestNestedTreesClassifier:
     )
     def test_node_invalid_init_params(self, is_leaf, tree, node_name, group):
         with pytest.raises(ValueError):
-            NestedTreesClassifier.Node(is_leaf=is_leaf, tree=tree, node_name=node_name, group=group)
+            NestedTreesClassifier.Node(
+                is_leaf=is_leaf, tree=tree, node_name=node_name, group=group
+            )
 
-    def test_nested_trees_classifier_fit_invalid_features_group(self, dummy_data, features_group):
+    def test_nested_trees_classifier_fit_invalid_features_group(
+        self, dummy_data, features_group
+    ):
         X, y = dummy_data
         fake = [[0, 1, 2]]
         classifier = NestedTreesClassifier(features_group)
@@ -199,10 +220,68 @@ class TestNestedTreesClassifier:
         classifier = NestedTreesClassifier(features_group)
         classifier.fit(X_train, y_train)
         classifier.root = None
-        with pytest.raises(ValueError, match="The classifier must be fitted before making predictions."):
+        with pytest.raises(
+            ValueError, match="The classifier must be fitted before making predictions."
+        ):
             classifier.predict(X)
-        with pytest.raises(ValueError, match="The classifier must be fitted before making predictions."):
+        with pytest.raises(
+            ValueError, match="The classifier must be fitted before making predictions."
+        ):
             classifier.predict_proba(X)
+
+    def test_multiclass_public_api_support(self):
+        iris = load_iris()
+        X = iris.data
+        y = iris.target
+        classifier = NestedTreesClassifier(
+            features_group=[[0, 1], [2, 3]],
+            max_outer_depth=2,
+            max_inner_depth=2,
+            min_outer_samples=2,
+        )
+
+        returned = classifier.fit(X, y)
+        predictions = classifier.predict(X)
+        probabilities = classifier.predict_proba(X)
+
+        assert returned is classifier
+        assert np.array_equal(classifier.classes_, np.array([0, 1, 2]))
+        assert predictions.shape == (len(X),)
+        assert probabilities.shape == (len(X), len(classifier.classes_))
+
+    def test_predict_proba_aligns_leaf_probabilities_to_global_classes(self):
+        class RoutingTree:
+            def apply(self, X):
+                return np.zeros(len(X), dtype=int)
+
+        class LeafTree:
+            def __init__(self):
+                self.classes_ = np.array([2])
+
+            def predict(self, X):
+                return np.full(len(X), 2, dtype=int)
+
+            def predict_proba(self, X):
+                return np.ones((len(X), 1))
+
+        classifier = NestedTreesClassifier(features_group=[[0, 1], [2, 3]])
+        classifier.classes_ = np.array([0, 1, 2])
+
+        root = NestedTreesClassifier.Node(
+            is_leaf=False, tree=RoutingTree(), node_name="root", group=[0, 1]
+        )
+        leaf = NestedTreesClassifier.Node(
+            is_leaf=True, tree=LeafTree(), node_name="leaf", group=[0, 1]
+        )
+        root.children = [leaf]
+        root.children_map = {0: leaf}
+        classifier.root = root
+
+        probabilities = classifier.predict_proba(np.array([[1.0, 2.0, 3.0, 4.0]]))
+        predictions = classifier.predict(np.array([[1.0, 2.0, 3.0, 4.0]]))
+
+        assert np.array_equal(probabilities, np.array([[0.0, 0.0, 1.0]]))
+        assert np.array_equal(predictions, np.array([2]))
 
 
 def capture_print_nested_tree_output(classifier):

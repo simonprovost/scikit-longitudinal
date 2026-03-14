@@ -4,7 +4,8 @@ from typing import Any, Dict, List, Optional, Tuple, Type
 from scikit_longitudinal.data_preparation import SepWav
 from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import (
-    CorrelationBasedFeatureSelectionPerGroup, CorrelationBasedFeatureSelection
+    CorrelationBasedFeatureSelection,
+    CorrelationBasedFeatureSelectionPerGroup,
 )
 
 
@@ -39,7 +40,12 @@ class SpecialHandlerInterface(ABC):
 
     @abstractmethod
     def handle_final_estimator(
-        self, final_estimator: Any, steps: List[Tuple[str, Any]], X: Any, y: Any, **kwargs
+        self,
+        final_estimator: Any,
+        steps: List[Tuple[str, Any]],
+        X: Any,
+        y: Any,
+        **kwargs,
     ) -> Tuple[Any, List[Tuple[str, Any]], Any, Any]:
         """Handle special cases for the final estimator.
 
@@ -77,32 +83,48 @@ class CorrelationBasedFeatureSelectionPerGroupHandler(SpecialHandlerInterface):
         if max(transformer.selected_features_) < X.shape[1]:
             X = X[:, transformer.selected_features_]
         else:
-            raise ValueError("Indices in transformer.selected_features_ exceed the number of columns in X.")
+            raise ValueError(
+                "Indices in transformer.selected_features_ exceed the number of columns in X."
+            )
         return transformer, X, y
 
     def handle_final_estimator(
-        self, final_estimator: Any, steps: List[Tuple[str, Any]], X: Any, y: Any, **kwargs
+        self,
+        final_estimator: Any,
+        steps: List[Tuple[str, Any]],
+        X: Any,
+        y: Any,
+        **kwargs,
     ) -> Tuple[Any, List[Tuple[str, Any]], Any, Any]:
         """
         No special handling for the final estimator for this transformer.
         """
         return final_estimator, steps, X, y
 
+
 class CorrelationBasedFeatureSelectionHandler(SpecialHandlerInterface):
     """
     Special handler for the CorrelationBasedFeatureSelection transformer.
     """
+
     def handle_transform(
         self, transformer: Any, X: Any, y: Optional[Any] = None, **kwargs
     ) -> Tuple[Any, Any, Optional[Any]]:
         if max(transformer.selected_features_) < X.shape[1]:
             X = X[:, transformer.selected_features_]
         else:
-            raise ValueError("Indices in transformer.selected_features_ exceed the number of columns in X.")
+            raise ValueError(
+                "Indices in transformer.selected_features_ exceed the number of columns in X."
+            )
         return transformer, X, y
 
     def handle_final_estimator(
-        self, final_estimator: Any, steps: List[Tuple[str, Any]], X: Any, y: Any, **kwargs
+        self,
+        final_estimator: Any,
+        steps: List[Tuple[str, Any]],
+        X: Any,
+        y: Any,
+        **kwargs,
     ) -> Tuple[Any, List[Tuple[str, Any]], Any, Any]:
         return final_estimator, steps, X, y
 
@@ -121,7 +143,12 @@ class SepWavHandler(SpecialHandlerInterface):
         return transformer, X, y
 
     def handle_final_estimator(
-        self, final_estimator: Any, steps: List[Tuple[str, Any]], X: Any, y: Any, **kwargs
+        self,
+        final_estimator: Any,
+        steps: List[Tuple[str, Any]],
+        X: Any,
+        y: Any,
+        **kwargs,
     ) -> Tuple[Any, List[Tuple[str, Any]], Any, Any]:
         """Handle special cases for the SepWav transformer during the final estimator phase.
 
@@ -140,10 +167,14 @@ class SepWavHandler(SpecialHandlerInterface):
             if hasattr(steps[-2][1], "estimator"):
                 steps[-2][1].estimator = final_estimator
 
-                step_index = next((i for i, step in enumerate(steps) if step[0] == steps[-2][0]), None)
+                step_index = next(
+                    (i for i, step in enumerate(steps) if step[0] == steps[-2][0]), None
+                )
 
                 if step_index is None:
-                    raise ValueError(f"No step with name '{steps[-2][0]}' exists in the pipeline.")
+                    raise ValueError(
+                        f"No step with name '{steps[-2][0]}' exists in the pipeline."
+                    )
 
                 steps.append(steps.pop(step_index))
                 final_estimator = steps[-1][1]
@@ -163,12 +194,28 @@ class AggrFuncHandler(SpecialHandlerInterface):
         self, transformer: Any, X: Any, y: Optional[Any] = None, **kwargs
     ) -> Tuple[Any, Any, Optional[Any], Any, Any]:
         transformer.prepare_data(X)
-        transformed_dataset, features_group, non_longitudinal_features, feature_list_names = transformer._transform()
+        (
+            transformed_dataset,
+            features_group,
+            non_longitudinal_features,
+            feature_list_names,
+        ) = transformer._transform()
         selected_feature_indices = list(range(transformed_dataset.shape[1]))
-        return transformer, transformed_dataset.values, y, selected_feature_indices, feature_list_names
+        return (
+            transformer,
+            transformed_dataset.values,
+            y,
+            selected_feature_indices,
+            feature_list_names,
+        )
 
     def handle_final_estimator(
-        self, final_estimator: Any, steps: List[Tuple[str, Any]], X: Any, y: Any, **kwargs
+        self,
+        final_estimator: Any,
+        steps: List[Tuple[str, Any]],
+        X: Any,
+        y: Any,
+        **kwargs,
     ) -> Tuple[Any, List[Tuple[str, Any]], Any, Any]:
         return final_estimator, steps, X, y
 

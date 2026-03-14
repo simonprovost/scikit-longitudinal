@@ -11,7 +11,9 @@ from overrides import override
 from sklearn.base import ClassifierMixin
 from sklearn.utils.multiclass import unique_labels
 
-from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import LexicoRandomForestClassifier
+from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest import (
+    LexicoRandomForestClassifier,
+)
 from scikit_longitudinal.templates import CustomClassifierMixinEstimator
 
 
@@ -46,10 +48,17 @@ def ensure_valid_state(method):
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        if method.__name__ in ["_predict", "_predict_proba"] and self._deep_forest is None:
-            raise ValueError("The classifier must be fitted before calling predict or predict_proba.")
+        if (
+            method.__name__ in ["_predict", "_predict_proba"]
+            and self._deep_forest is None
+        ):
+            raise ValueError(
+                "The classifier must be fitted before calling predict or predict_proba."
+            )
 
-        if hasattr(self, "features_group") and (self.features_group is None or len(self.features_group) <= 1):
+        if hasattr(self, "features_group") and (
+            self.features_group is None or len(self.features_group) <= 1
+        ):
             raise ValueError("features_group must contain more than one feature group.")
 
         if hasattr(self, "diversity_estimators") and self.diversity_estimators is None:
@@ -106,7 +115,8 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
     analysis. It extends the fundamental principles of the Deep Forest framework by incorporating longitudinal-adapted
     base estimators to capture the temporal complexities and interdependencies inherent in longitudinal data. The
     classifier combines accurate learners (longitudinal base estimators) and weak learners (diversity estimators) to
-    improve robustness and generalization.
+    improve robustness and generalization. It supports binary and multiclass targets through the standard classifier
+    surface: `fit`, `predict`, `predict_proba`, and `classes_`.
 
     !!! tip "Why Use LexicoDeepForestClassifier?"
         This classifier is ideal for longitudinal datasets where temporal structure is crucial. By leveraging a deep
@@ -243,7 +253,9 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
     def __init__(
         self,
         features_group: List[List[int]] = None,
-        longitudinal_base_estimators: Optional[List[LongitudinalEstimatorConfig]] = None,
+        longitudinal_base_estimators: Optional[
+            List[LongitudinalEstimatorConfig]
+        ] = None,
         non_longitudinal_features: List[Union[int, str]] = None,
         diversity_estimators: bool = True,
         class_weight: Optional[Union[dict, List[dict], str]] = None,
@@ -286,13 +298,21 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
         return estimators
 
     def _create_longitudinal_estimator(
-        self, classifier_type: Union[str, LongitudinalClassifierType], **hyperparameters: Any
+        self,
+        classifier_type: Union[str, LongitudinalClassifierType],
+        **hyperparameters: Any,
     ) -> ClassifierMixin:
         resolved_hyperparameters = dict(hyperparameters)
-        if "class_weight" not in resolved_hyperparameters and self.class_weight is not None:
+        if (
+            "class_weight" not in resolved_hyperparameters
+            and self.class_weight is not None
+        ):
             resolved_hyperparameters["class_weight"] = self.class_weight
 
-        if classifier_type in {LongitudinalClassifierType.LEXICO_RF, LongitudinalClassifierType.LEXICO_RF.value}:
+        if classifier_type in {
+            LongitudinalClassifierType.LEXICO_RF,
+            LongitudinalClassifierType.LEXICO_RF.value,
+        }:
             return LexicoRandomForestClassifier(
                 features_group=self.features_group, **resolved_hyperparameters
             )
@@ -308,7 +328,9 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
 
     @ensure_valid_state
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray, sample_weight=None) -> "LexicoDeepForestClassifier":
+    def _fit(
+        self, X: np.ndarray, y: np.ndarray, sample_weight=None
+    ) -> "LexicoDeepForestClassifier":
         """Fit the Lexico Deep Forest Classifier model according to the given training data.
 
         Args:
@@ -347,9 +369,8 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
             max_layers=self.max_layers,
         )
         self._deep_forest.set_estimator(self.base_longitudinal_estimators, n_splits=2)
-        if self.classes_ is None:
-            self.classes_ = unique_labels(y)
         self._deep_forest.fit(X, y, sample_weight=sample_weight)
+        self.classes_ = getattr(self._deep_forest, "classes_", unique_labels(y))
         return self
 
     @ensure_valid_state

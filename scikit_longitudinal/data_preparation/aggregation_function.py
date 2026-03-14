@@ -10,7 +10,9 @@ from overrides import override
 from scipy import stats
 
 from scikit_longitudinal.data_preparation.longitudinal_dataset import clean_padding
-from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
+from scikit_longitudinal.templates.custom_data_preparation_mixin import (
+    DataPreparationMixin,
+)
 from scikit_longitudinal.utils.parallel import get_ray_for_parallel
 
 
@@ -80,7 +82,9 @@ def validate_aggregation_func(func: Callable) -> Callable:
         if isinstance(aggregation_func, str):
             valid_funcs = list(AGG_FUNCS.keys())
             if aggregation_func not in valid_funcs:
-                raise ValueError(f"Invalid aggregation function: {aggregation_func}. Choose from {valid_funcs}.")
+                raise ValueError(
+                    f"Invalid aggregation function: {aggregation_func}. Choose from {valid_funcs}."
+                )
         elif not callable(aggregation_func):
             raise ValueError(
                 f"aggregation_func must be either a string (one of {list(AGG_FUNCS.keys())}) or a function."
@@ -121,7 +125,10 @@ def get_agg_feature(
 
 
 def _aggregate(
-    feature_group: List[str], data: pd.DataFrame, agg_func: Callable, aggregation_func_name: str
+    feature_group: List[str],
+    data: pd.DataFrame,
+    agg_func: Callable,
+    aggregation_func_name: str,
 ) -> pd.DataFrame:  # pragma: no cover
     """Remote function to apply the aggregation function to the feature group using Ray for parallel processing.
 
@@ -365,23 +372,36 @@ class AggrFunc(DataPreparationMixin):
             self.features_group = clean_padding(self.features_group)
 
         transformed_data = self.dataset.copy()
-        feature_groups = [transformed_data.columns[i].tolist() for i in self.features_group]
+        feature_groups = [
+            transformed_data.columns[i].tolist() for i in self.features_group
+        ]
 
         if self.parallel:
             ray = get_ray_for_parallel(self.parallel, self.num_cpus)
             non_grouped_data = transformed_data.iloc[:, self.non_longitudinal_features]
             aggregate_remote = ray.remote(_aggregate)
             tasks = [
-                aggregate_remote.remote(feature_group, transformed_data, self.agg_func, self.aggregation_func)
+                aggregate_remote.remote(
+                    feature_group,
+                    transformed_data,
+                    self.agg_func,
+                    self.aggregation_func,
+                )
                 for feature_group in feature_groups
             ]
             results = ray.get(tasks)
-            transformed_data = pd.concat([non_grouped_data, pd.concat(results, axis=1)], axis=1)
+            transformed_data = pd.concat(
+                [non_grouped_data, pd.concat(results, axis=1)], axis=1
+            )
         else:
             for feature_group in feature_groups:
                 if (
                     self.aggregation_func in ["mean", "median"]
-                    and (transformed_data[feature_group].dtypes.apply(lambda x: x == "object")).all()
+                    and (
+                        transformed_data[feature_group].dtypes.apply(
+                            lambda x: x == "object"
+                        )
+                    ).all()
                 ):
                     warnings.warn(
                         f"Aggregation function is {self.aggregation_func} but feature group {feature_group} is "
@@ -391,10 +411,15 @@ class AggrFunc(DataPreparationMixin):
                     def agg_mode_func(x):
                         return stats.mode(x)[0]
 
-                    agg_feature_df = get_agg_feature(transformed_data, feature_group, agg_mode_func, "mode")
+                    agg_feature_df = get_agg_feature(
+                        transformed_data, feature_group, agg_mode_func, "mode"
+                    )
                 else:
                     agg_feature_df = get_agg_feature(
-                        transformed_data, feature_group, self.agg_func, self.aggregation_func
+                        transformed_data,
+                        feature_group,
+                        self.agg_func,
+                        self.aggregation_func,
                     )
 
                 transformed_data = pd.concat([transformed_data, agg_feature_df], axis=1)
@@ -404,4 +429,9 @@ class AggrFunc(DataPreparationMixin):
         self.features_group = None  # pylint: disable=W0212
         self.non_longitudinal_features = None  # pylint: disable=W0212
         self.feature_list_names = self.dataset.columns.tolist()
-        return self.dataset, self.features_group, self.non_longitudinal_features, self.feature_list_names
+        return (
+            self.dataset,
+            self.features_group,
+            self.non_longitudinal_features,
+            self.feature_list_names,
+        )

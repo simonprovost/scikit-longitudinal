@@ -21,9 +21,9 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
     Nested Trees Classifier for longitudinal data classification.
 
     The Nested Trees Classifier is a unique and innovative algorithm tailored for longitudinal datasets. It enhances
-    traditional decision tree methods by embedding smaller decision trees within the nodes of a primary tree structure,
-    optimally leveraging the temporal information inherent in longitudinal data. This hierarchical approach excels at
-    capturing complex temporal patterns and dependencies.
+    traditional decision tree methods by embedding smaller decision trees within the nodes of a primary tree
+    structure, optimally leveraging the temporal information inherent in longitudinal data. This hierarchical approach
+    excels at capturing complex temporal patterns and dependencies, and supports both binary and multiclass labels.
 
     !!! info "Structure Overview"
         The outer tree uses a custom algorithm to select longitudinal attributes (groups of time-specific features).
@@ -37,9 +37,11 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         - **features_group**: A list of lists, each sublist containing indices of a longitudinal attribute's waves,
           ordered from oldest to most recent (e.g., `[[0,1], [2,3]]` for two attributes with two waves each).
-        - **non_longitudinal_features**: Indices of static features (not used in temporal modeling but included in splits).
+        - **non_longitudinal_features**: Indices of static features
+          (not used in temporal modelling but included in splits).
 
-        Accurate configuration is essential. See the [Temporal Dependency Guide](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/).
+        Accurate configuration is essential. See the
+        [Temporal Dependency Guide](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/).
 
     Args:
         features_group (List[List[int]], optional):
@@ -115,7 +117,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         - Original Java implementation: [Nested Trees GitHub](https://github.com/NestedTrees/NestedTrees).
     """
 
-    # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
+    # pylint: disable=too-many-arguments,too-many-positional-arguments,invalid-name,signature-differs,no-member
     def __init__(
         self,
         features_group: List[List[int]] = None,
@@ -141,6 +143,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         self.parallel = parallel
         self.num_cpus = num_cpus
         self.classes_ = None
+        self._predict_proba_single_classes_ = None
 
         if max_outer_depth <= 0:
             raise ValueError("max_outer_depth must be greater than 0.")
@@ -228,7 +231,9 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         return params
 
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray, sample_weight: Optional[np.ndarray] = None) -> "NestedTreesClassifier":
+    def _fit(
+        self, X: np.ndarray, y: np.ndarray, sample_weight: Optional[np.ndarray] = None
+    ) -> "NestedTreesClassifier":
         """Fit the classifier to the training data.
 
         Builds the nested tree structure recursively, integrating longitudinal and non-longitudinal features.
@@ -257,7 +262,9 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             self.inner_estimator_hyperparameters = {}
         if self.classes_ is None:
             self.classes_ = unique_labels(y)
-        self.root = self._build_outer_tree(X, y, 0, "outer_root", sample_weight=sample_weight)
+        self.root = self._build_outer_tree(
+            X, y, 0, "outer_root", sample_weight=sample_weight
+        )
         return self
 
     @override
@@ -286,7 +293,8 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
     def _predict_proba(self, X: np.ndarray) -> np.ndarray:
         """Predict class probabilities for input samples.
 
-        Provides probability estimates by traversing the nested structure.
+        Provides probability estimates by traversing the nested structure and aligning each leaf-local probability
+        vector to the global `classes_` order learned during fitting.
 
         Args:
             X (np.ndarray): Input samples.
@@ -295,7 +303,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             np.ndarray: Predicted class probabilities.
 
         Raises:
-            ValueError: If the classifier isn’t fitted or probability shapes are inconsistent.
+            ValueError: If the classifier isn’t fitted.
 
         !!! question "When to Use Probabilities?"
             Use `predict_proba` instead of `predict` when you need confidence scores or custom thresholds, such as in
@@ -305,19 +313,16 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             raise ValueError("The classifier must be fitted before making predictions.")
 
         result = []
-        first_run = True
-        expected_shape = None
         for x in X:
             probas = self._predict_proba_single(x)
-            if probas.shape == (1, 1):
-                probas = np.array([[probas[0][0], 1.0 - probas[0][0]]])
-            probas = probas.flatten()
-            if first_run:
-                expected_shape = probas.shape
-                first_run = False
-            elif probas.shape != expected_shape:
-                raise ValueError(f"Unexpected shape for predict_proba: {probas.shape}, expected: {expected_shape}")
-            result.append(probas)
+            aligned_probas = np.zeros(len(self.classes_), dtype=float)
+            leaf_classes = self._predict_proba_single_classes_
+            class_to_index = {label: index for index, label in enumerate(self.classes_)}
+
+            for local_index, label in enumerate(leaf_classes):
+                aligned_probas[class_to_index[label]] = probas[0, local_index]
+
+            result.append(aligned_probas)
 
         return np.array(result)
 
@@ -363,21 +368,42 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             NestedTreesClassifier.Node: A node in the outer decision tree.
 
         """
-        if depth == (self.max_outer_depth - 1) or len(self.features_group) < 2 or len(X) < self.min_outer_samples:
-            return self.Node(is_leaf=True, tree=tree, node_name=outer_node_name, group=group)
+        if (
+            depth == (self.max_outer_depth - 1)
+            or len(self.features_group) < 2
+            or len(X) < self.min_outer_samples
+        ):
+            return self.Node(
+                is_leaf=True, tree=tree, node_name=outer_node_name, group=group
+            )
 
-        best_tree, best_split, best_group = self._find_best_tree_and_split(X, y, outer_node_name, sample_weight)
+        best_tree, best_split, best_group = self._find_best_tree_and_split(
+            X, y, outer_node_name, sample_weight
+        )
 
         if len(best_split) == 1:
-            return self.Node(is_leaf=True, node_name=outer_node_name, tree=best_tree, group=best_group)
+            return self.Node(
+                is_leaf=True,
+                node_name=outer_node_name,
+                tree=best_tree,
+                group=best_group,
+            )
 
-        node = self.Node(is_leaf=False, tree=best_tree, node_name=outer_node_name, group=best_group)
+        node = self.Node(
+            is_leaf=False, tree=best_tree, node_name=outer_node_name, group=best_group
+        )
         self._add_children_to_node(node, best_split, depth)
         return node
 
     def _find_best_tree_and_split(
-        self, X: np.ndarray, y: np.ndarray, outer_node_name: str, sample_weight: Optional[np.ndarray] = None
-    ) -> Tuple[DecisionTreeClassifier, List[Tuple[np.ndarray, np.ndarray, int]], List[int]]:
+        self,
+        X: np.ndarray,
+        y: np.ndarray,
+        outer_node_name: str,
+        sample_weight: Optional[np.ndarray] = None,
+    ) -> Tuple[
+        DecisionTreeClassifier, List[Tuple[np.ndarray, np.ndarray, int]], List[int]
+    ]:
         """Find the best inner decision tree and the associated split (i.e., the competition).
 
         This method evaluates all possible inner decision trees and selects the one that results
@@ -424,7 +450,9 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
                 for i, group in enumerate(self.features_group)
             ]
             results = ray.get(tasks)  # pragma: no cover
-            best_tree, _, min_gini, _, subset_X, best_group = min(results, key=lambda x: x[2])  # pragma: no cover
+            best_tree, _, min_gini, _, subset_X, best_group = min(
+                results, key=lambda x: x[2]
+            )  # pragma: no cover
         else:
             for i, group in enumerate(self.features_group):
                 subset_X_temp = X[:, group]
@@ -449,7 +477,10 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         return best_tree, best_split, best_group
 
     def _add_children_to_node(
-        self, node: "NestedTreesClassifier.Node", best_split: List[Tuple[np.ndarray, np.ndarray, int]], depth: int
+        self,
+        node: "NestedTreesClassifier.Node",
+        best_split: List[Tuple[np.ndarray, np.ndarray, int]],
+        depth: int,
     ) -> None:
         """Add children to a node in the outer decision tree based on the best split.
 
@@ -464,12 +495,18 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
         """
         for i, (subset_X, subset_y, leaf_number) in enumerate(best_split):
             child_node_name = f"outer_{node.node_name}_d{depth + 1}_g{i}_l{leaf_number}"
-            child_node = self._build_outer_tree(subset_X, subset_y, depth + 1, child_node_name, node.tree, node.group)
+            child_node = self._build_outer_tree(
+                subset_X, subset_y, depth + 1, child_node_name, node.tree, node.group
+            )
             node.children.append(child_node)
             node.children_map[leaf_number] = child_node
 
     def _create_split(
-        self, X: np.ndarray, subset_X: np.ndarray, y: np.ndarray, tree: DecisionTreeClassifier
+        self,
+        X: np.ndarray,
+        subset_X: np.ndarray,
+        y: np.ndarray,
+        tree: DecisionTreeClassifier,
     ) -> List[Tuple[np.ndarray, np.ndarray, int]]:
         """Create a split of the data based on the leaf nodes of the decision tree.
 
@@ -536,6 +573,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             node = node.children_map[next_node_leaf_number]
             leaf_subset = x[node.group]
 
+        self._predict_proba_single_classes_ = node.tree.classes_
         return node.tree.predict_proba(leaf_subset.reshape(1, -1))
 
     def print_nested_tree(

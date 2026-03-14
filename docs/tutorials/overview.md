@@ -68,6 +68,15 @@ That is, if you do not know about `Scikit-learn`, we recommend you first read th
 
     [:octicons-arrow-right-24: Read the tutorial](sklong_explore_your_first_estimator.md)
 
+-   :material-shape-outline:{ .lg .middle } __Binary vs. Multiclass Classification__
+
+    ---
+
+    Compare the same longitudinal workflow across binary and multiclass targets, including `predict_proba`,
+    `classes_`, and AUPRC evaluation.
+
+    [:octicons-arrow-right-24: Read the tutorial](binary_vs_multiclass.md)
+
 -   :material-pipe:{ .lg .middle } __Pipelines: Mix Longitudinal Components__
 
     ---
