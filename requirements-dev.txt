@@ -137,7 +137,6 @@ ptyprocess==0.7.0
 pure-eval==0.2.3
 pycparser==2.23
 pygments==2.19.2
-pylint==4.0.3
 pymdown-extensions==10.17.2
 pyparsing==3.2.5
 pytest==9.0.1

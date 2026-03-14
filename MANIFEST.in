@@ -16,7 +16,6 @@ include logo.png
 include mkdocs.yml
 include mkgendocs.yml
 include pdm.lock
-include pylintrc
 include pytest.ini
 
 recursive-include scikit_longitudinal *.py *.c *.cpp *.h *.pyx *.pxd *.pxi *.tp

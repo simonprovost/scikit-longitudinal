@@ -49,7 +49,6 @@ setup(  # pragma: no cover
             "pytest-cov>=4.0.0",
             "black>=23.10.1",
             "isort>=5.12.0",
-            "pylint>=3.3.3",
             "black>=24.10.0",
             "ruff>=0.9.1",
             "mkdocs-material-extensions==1.3.1",
