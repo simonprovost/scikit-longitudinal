@@ -74,7 +74,9 @@ class TestCorrelationBasedFeatureSelectionPerGroup:
             version=1,
         )
 
-    def test_fit_transform_longitudinal(self, cfs_longitudinal, load_madelon_data_longitudinal):
+    def test_fit_transform_longitudinal(
+        self, cfs_longitudinal, load_madelon_data_longitudinal
+    ):
         X, y, group_features = load_madelon_data_longitudinal
         X_transformed = cfs_longitudinal.fit_transform(X, y)
         data = cfs_longitudinal.apply_selected_features_and_rename(
@@ -92,25 +94,44 @@ class TestCorrelationBasedFeatureSelectionPerGroup:
         cfs.fit(X, y)
         assert len(cfs.selected_features_) > 0
 
-    def test_apply_selected_features_and_rename_with_non_longitudinal_features(self, load_madelon_data_mixed):
+    def test_apply_selected_features_and_rename_with_non_longitudinal_features(
+        self, load_madelon_data_mixed
+    ):
         X, y, group_features = load_madelon_data_mixed
-        df = pd.DataFrame(X, columns=[f"feature_{i}_w1" if i < 10 else f"gender_{i}" for i in range(X.shape[1])])
-        df.rename(columns={"gender_10": "sex_w10", "gender_11": "gender_w11"}, inplace=True)
+        df = pd.DataFrame(
+            X,
+            columns=[
+                f"feature_{i}_w1" if i < 10 else f"gender_{i}"
+                for i in range(X.shape[1])
+            ],
+        )
+        df.rename(
+            columns={"gender_10": "sex_w10", "gender_11": "gender_w11"}, inplace=True
+        )
         selected_features = [0, 2, 4, 6, 8, 10, 11]
 
         cfs = CorrelationBasedFeatureSelectionPerGroup(
-            non_longitudinal_features=[10, 11], search_method="greedySearch", features_group=group_features, version=1
+            non_longitudinal_features=[10, 11],
+            search_method="greedySearch",
+            features_group=group_features,
+            version=1,
         )
         cfs.fit(X, y)
 
         df_transformed = cfs.apply_selected_features_and_rename(df, selected_features)
 
-        expected_columns = [f"feature_{i}_wave1" for i in [0, 2, 4, 6, 8]] + ["sex_wave10", "gender_wave11"]
+        expected_columns = [f"feature_{i}_wave1" for i in [0, 2, 4, 6, 8]] + [
+            "sex_wave10",
+            "gender_wave11",
+        ]
         assert list(df_transformed.columns) == expected_columns
 
     def test_invalid_search_method(self, load_madelon_data_non_longitudinal):
         X, y = load_madelon_data_non_longitudinal
-        with pytest.raises(AssertionError, match="search_method must be: 'exhaustiveSearch', or 'greedySearch'"):
+        with pytest.raises(
+            AssertionError,
+            match="search_method must be: 'exhaustiveSearch', or 'greedySearch'",
+        ):
             cfs = CorrelationBasedFeatureSelection(search_method="invalidMethod")
             cfs.fit(X, y)
 

@@ -20,7 +20,9 @@ def get_ray_or_raise() -> ModuleType:
     return import_module("ray")
 
 
-def get_ray_for_parallel(parallel: bool, num_cpus: Optional[int] = None) -> Optional[ModuleType]:
+def get_ray_for_parallel(
+    parallel: bool, num_cpus: Optional[int] = None
+) -> Optional[ModuleType]:
     """Return an initialised Ray module when parallel processing is requested.
 
     Parameters:

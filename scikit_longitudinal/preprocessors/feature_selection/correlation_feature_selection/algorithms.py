@@ -37,7 +37,11 @@ def _exhaustive_search(X: np.ndarray, y: np.ndarray) -> List[int]:
     n_features = X.shape[1]
 
     best_feature_set = max(
-        ([*feature_set] for r in range(1, n_features + 1) for feature_set in combinations(range(n_features), r)),
+        (
+            [*feature_set]
+            for r in range(1, n_features + 1)
+            for feature_set in combinations(range(n_features), r)
+        ),
         key=lambda feature_set: merit_calculation(tuple(feature_set), cache),
         default=[],
     )
@@ -76,7 +80,9 @@ def _greedy_search(X: np.ndarray, y: np.ndarray) -> List[int]:
             for i in range(n_features)
             if i not in selected_features
         ]
-        best_merit, best_feature_to_add = max(add_candidates, key=lambda x: x[0], default=(-np.inf, -1))
+        best_merit, best_feature_to_add = max(
+            add_candidates, key=lambda x: x[0], default=(-np.inf, -1)
+        )
         if best_merit <= current_merit:
             break
         selected_features.append(best_feature_to_add)

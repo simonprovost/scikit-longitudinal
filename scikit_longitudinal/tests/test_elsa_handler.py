@@ -7,7 +7,9 @@ from scikit_longitudinal.data_preparation.elsa_handler import ElsaDataHandler
 
 @pytest.fixture
 def edh():
-    return ElsaDataHandler("scikit_longitudinal/tests/dummy_data/dummy_elsa_data.csv", "core")
+    return ElsaDataHandler(
+        "scikit_longitudinal/tests/dummy_data/dummy_elsa_data.csv", "core"
+    )
 
 
 class TestELSAHandler:
@@ -54,7 +56,9 @@ class TestELSAHandler:
 
     def test_wrong_elsa_type(self):
         with pytest.raises(ValueError):
-            ElsaDataHandler("scikit_longitudinal/tests/dummy_data/dummy_elsa_data.csv", "wrong_type")
+            ElsaDataHandler(
+                "scikit_longitudinal/tests/dummy_data/dummy_elsa_data.csv", "wrong_type"
+            )
 
     def test_save_datasets(self, edh, tmp_path):
         edh.create_datasets()

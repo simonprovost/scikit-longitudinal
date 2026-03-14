@@ -7,7 +7,8 @@ from sklearn.base import TransformerMixin
 
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import (
-    CorrelationBasedFeatureSelectionPerGroup, CorrelationBasedFeatureSelection,
+    CorrelationBasedFeatureSelection,
+    CorrelationBasedFeatureSelectionPerGroup,
 )
 
 
@@ -40,8 +41,12 @@ def default_callback(
         - List of column names in the updated data.
 
     """
-    if isinstance(transformer, CorrelationBasedFeatureSelectionPerGroup) or isinstance(transformer, CorrelationBasedFeatureSelection):
-        data = transformer.apply_selected_features_and_rename(dummy_longitudinal_dataset.data, None)
+    if isinstance(transformer, CorrelationBasedFeatureSelectionPerGroup) or isinstance(
+        transformer, CorrelationBasedFeatureSelection
+    ):
+        data = transformer.apply_selected_features_and_rename(
+            dummy_longitudinal_dataset.data, None
+        )
         dummy_longitudinal_dataset.set_data(data)
         dummy_longitudinal_dataset.setup_features_group("elsa")
 
@@ -79,7 +84,9 @@ def validate_update_feature_groups_callback(callback: Callable) -> Callable:
         return default_callback
 
     if not callable(callback) or isinstance(callback, str):
-        raise ValueError("update_data_callback must be a callable function or a 'default' string value.")
+        raise ValueError(
+            "update_data_callback must be a callable function or a 'default' string value."
+        )
 
     sig = inspect.signature(callback)
     parameters = list(sig.parameters.values())
@@ -94,7 +101,9 @@ def validate_update_feature_groups_callback(callback: Callable) -> Callable:
     ]
 
     if parameter_count != len(expected_params):
-        raise ValueError(f"update_data_callback must accept {len(expected_params)} parameters, got {parameter_count}.")
+        raise ValueError(
+            f"update_data_callback must accept {len(expected_params)} parameters, got {parameter_count}."
+        )
 
     for param, (expected_type, expected_name) in zip(parameters, expected_params):
         if param.annotation != expected_type or param.name != expected_name:

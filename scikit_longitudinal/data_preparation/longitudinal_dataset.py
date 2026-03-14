@@ -28,7 +28,9 @@ def clean_padding(features_group: List[List[int]]) -> List[List[int]]:
 
     """
     if features_group is not None:
-        features_group = [[idx for idx in group if idx != -1] for group in features_group]
+        features_group = [
+            [idx for idx in group if idx != -1] for group in features_group
+        ]
 
     return features_group
 
@@ -48,15 +50,21 @@ def validate_feature_groups(func: Callable) -> Callable:  # pragma: no cover
     @wraps(func)
     def wrapper(*args, **kwargs):
         input_data = kwargs.get("input_data", None) or args[1]
-        if input_data is not None and (isinstance(input_data, str) and input_data.lower() != "elsa"):
-            if not isinstance(input_data, list) or not all(isinstance(group, list) for group in input_data):
+        if input_data is not None and (
+            isinstance(input_data, str) and input_data.lower() != "elsa"
+        ):
+            if not isinstance(input_data, list) or not all(
+                isinstance(group, list) for group in input_data
+            ):
                 raise ValueError(
                     "Invalid input for input_data. Expected None, 'elsa', or a list of lists of integers ",
                     "or strings.",
                 )
             for group in input_data:
                 if not all(isinstance(item, (int, str)) for item in group):
-                    raise ValueError("Invalid input_data type. Expected a list of lists of integers or strings.")
+                    raise ValueError(
+                        "Invalid input_data type. Expected a list of lists of integers or strings."
+                    )
         return func(*args, **kwargs)
 
     return wrapper
@@ -101,7 +109,11 @@ def check_extension(allowed_extensions: List[str]):  # pragma: no cover
         def wrapper(*args, **kwargs):
             if kwargs.get("data_frame", None) is not None:
                 return func(*args, **kwargs)
-            file_path = kwargs.get("file_path", None) or kwargs.get("output_path", None) or args[1]
+            file_path = (
+                kwargs.get("file_path", None)
+                or kwargs.get("output_path", None)
+                or args[1]
+            )
             if Path(file_path).suffix.lower() not in allowed_extensions:
                 raise ValueError(f"Unsupported file format: {file_path}")
             return func(*args, **kwargs)
@@ -203,7 +215,9 @@ class LongitudinalDataset:
     """
 
     @check_extension([".csv", ".arff"])
-    def __init__(self, file_path: Union[str, Path], data_frame: Optional[pd.DataFrame] = None):
+    def __init__(
+        self, file_path: Union[str, Path], data_frame: Optional[pd.DataFrame] = None
+    ):
         if data_frame is not None:
             self._data = data_frame
             self.file_path = None  # type: ignore
@@ -243,7 +257,9 @@ class LongitudinalDataset:
         elif file_ext == ".csv":
             self._data = pd.read_csv(self.file_path)  # type: ignore
         else:
-            raise ValueError(f"Unsupported file format: {file_ext}. Only ARFF and CSV are supported.")
+            raise ValueError(
+                f"Unsupported file format: {file_ext}. Only ARFF and CSV are supported."
+            )
 
     def load_target(
         self,
@@ -268,17 +284,25 @@ class LongitudinalDataset:
             raise ValueError("No data is loaded. Load data first.")
 
         if target_column not in self._data.columns:
-            raise ValueError(f"Target column '{target_column}' not found in the dataset.")
+            raise ValueError(
+                f"Target column '{target_column}' not found in the dataset."
+            )
 
         if remove_target_waves:
             self._data = self._data[
-                [col for col in self._data.columns if not (col.startswith(target_wave_prefix) and col != target_column)]
+                [
+                    col
+                    for col in self._data.columns
+                    if not (col.startswith(target_wave_prefix) and col != target_column)
+                ]
             ]
 
         self._target = self._data[target_column]
         self._data.drop(columns=[target_column], inplace=True)
 
-    def load_train_test_split(self, test_size: float = 0.2, random_state: int = None) -> None:
+    def load_train_test_split(
+        self, test_size: float = 0.2, random_state: int = None
+    ) -> None:
         """Split the dataset into training and testing sets.
 
         Utilises `sklearn.model_selection.train_test_split` for the split.
@@ -418,7 +442,9 @@ class LongitudinalDataset:
 
             return row
 
-        def extract_columns_and_data_start_index(file_content: List[str]) -> Tuple[List[str], int]:
+        def extract_columns_and_data_start_index(
+            file_content: List[str],
+        ) -> Tuple[List[str], int]:
             columns = []
             len_attr = len("@attribute")
 
@@ -486,13 +512,16 @@ class LongitudinalDataset:
 
         if file_ext == ".arff":
             arff_data = self._csv_to_arff(self._data, self.file_path.stem)
-            with open(output_path, 'w') as f:
-                arff.dump({
-                    'description': '',
-                    'relation': arff_data['relation'],
-                    'attributes': arff_data['attributes'],
-                    'data': arff_data['data']
-                }, f)
+            with open(output_path, "w") as f:
+                arff.dump(
+                    {
+                        "description": "",
+                        "relation": arff_data["relation"],
+                        "attributes": arff_data["attributes"],
+                        "data": arff_data["data"],
+                    },
+                    f,
+                )
         elif file_ext == ".csv":
             self._data.to_csv(output_path, index=False, na_rep="")
         else:
@@ -516,7 +545,9 @@ class LongitudinalDataset:
         self.convert(output_path)
 
     @validate_feature_groups
-    def setup_features_group(self, input_data: Union[str, List[List[Union[str, int]]]]) -> None:
+    def setup_features_group(
+        self, input_data: Union[str, List[List[Union[str, int]]]]
+    ) -> None:
         """Configure feature groups and non-longitudinal features for longitudinal analysis.
 
         !!! question "What is a feature group? What's the structure really?"
@@ -661,14 +692,20 @@ class LongitudinalDataset:
         """
         if isinstance(input_data, str) and input_data.lower() == "elsa":
             self._feature_groups = self._create_elsa_feature_groups()
-        elif isinstance(input_data, list) and all(isinstance(group, list) for group in input_data):
+        elif isinstance(input_data, list) and all(
+            isinstance(group, list) for group in input_data
+        ):
             if all(isinstance(item, int) for group in input_data for item in group):
                 self._feature_groups = input_data
             elif all(isinstance(item, str) for group in input_data for item in group):
-                self._feature_groups = self._convert_feature_names_to_indices(input_data)
+                self._feature_groups = self._convert_feature_names_to_indices(
+                    input_data
+                )
 
         if self._feature_groups is None:
-            raise ValueError(f"Invalid input data: {input_data} or unknown error has occurred.")
+            raise ValueError(
+                f"Invalid input data: {input_data} or unknown error has occurred."
+            )
 
         for group in self._feature_groups:
             if len(group) == 1 or (len(group) == 2 and -1 in group):
@@ -677,12 +714,20 @@ class LongitudinalDataset:
                     group,
                 )
         # Populate non_longitudinal_features
-        feature_group_names = [name for group in self.feature_groups(names=True) for name in group]
-        non_longitudinal_feature_names = set(self._data.columns) - set(feature_group_names)
-        self._non_longitudinal_features = [self._data.columns.get_loc(name) for name in non_longitudinal_feature_names]
+        feature_group_names = [
+            name for group in self.feature_groups(names=True) for name in group
+        ]
+        non_longitudinal_feature_names = set(self._data.columns) - set(
+            feature_group_names
+        )
+        self._non_longitudinal_features = [
+            self._data.columns.get_loc(name) for name in non_longitudinal_feature_names
+        ]
 
     @validate_feature_groups
-    def _convert_feature_names_to_indices(self, feature_groups: List[List[str]]) -> List[List[int]]:
+    def _convert_feature_names_to_indices(
+        self, feature_groups: List[List[str]]
+    ) -> List[List[int]]:
         """Convert feature names to their column indices.
 
         Args:
@@ -700,7 +745,9 @@ class LongitudinalDataset:
             index_group = []
             for feature_name in group:
                 if feature_name not in column_indices:
-                    raise ValueError(f"Feature name not found in dataset: {feature_name}")
+                    raise ValueError(
+                        f"Feature name not found in dataset: {feature_name}"
+                    )
                 index_group.append(column_indices[feature_name])
             index_groups.append(index_group)
 
@@ -750,7 +797,10 @@ class LongitudinalDataset:
             List[List[Union[int, str]]]: Feature groups as indices or names.
         """
         if names:
-            return [[self._data.columns[i] if i != -1 else "N/A" for i in group] for group in self._feature_groups]
+            return [
+                [self._data.columns[i] if i != -1 else "N/A" for i in group]
+                for group in self._feature_groups
+            ]
         return self._feature_groups
 
     def non_longitudinal_features(self, names: bool = False) -> List[Union[int, str]]:

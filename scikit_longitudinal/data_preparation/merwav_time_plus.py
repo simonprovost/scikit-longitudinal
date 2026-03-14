@@ -5,7 +5,9 @@ from typing import List, Union
 import numpy as np
 from overrides import override
 
-from scikit_longitudinal.templates.custom_data_preparation_mixin import DataPreparationMixin
+from scikit_longitudinal.templates.custom_data_preparation_mixin import (
+    DataPreparationMixin,
+)
 
 
 class MerWavTimePlus(DataPreparationMixin):
@@ -71,6 +73,7 @@ class MerWavTimePlus(DataPreparationMixin):
             # Later on, primitives understand this temporal dependency via the `features_group` attribute.
             ```
     """
+
     def __init__(
         self,
         features_group: List[List[int]] = None,

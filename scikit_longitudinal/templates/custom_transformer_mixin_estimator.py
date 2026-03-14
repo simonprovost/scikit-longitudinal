@@ -9,7 +9,9 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils.validation import check_array, check_X_y
 
 
-class CustomTransformerMixinEstimator(BaseEstimator, TransformerMixin, EnforceOverrides):
+class CustomTransformerMixinEstimator(
+    BaseEstimator, TransformerMixin, EnforceOverrides
+):
     """CustomTransformerMixinEstimator is a custom base class for scikit longitudinal estimators.
 
     A custom base class for scikit-learn estimators that automatically checks input data
@@ -48,7 +50,9 @@ class CustomTransformerMixinEstimator(BaseEstimator, TransformerMixin, EnforceOv
         return wrapper
 
     @final
-    def fit(self, X: np.ndarray, y: np.ndarray = None) -> "CustomTransformerMixinEstimator":
+    def fit(
+        self, X: np.ndarray, y: np.ndarray = None
+    ) -> "CustomTransformerMixinEstimator":
         if y is None:
             return self._check_array_decorator(self._fit)(X)
         return self._check_X_y_decorator(self._fit)(X, y)
@@ -57,7 +61,9 @@ class CustomTransformerMixinEstimator(BaseEstimator, TransformerMixin, EnforceOv
     def transform(self, X: np.ndarray) -> np.ndarray:
         return self._check_array_decorator(self._transform)(X)
 
-    def _fit(self, X: np.ndarray, y: np.ndarray = None) -> "CustomTransformerMixinEstimator":
+    def _fit(
+        self, X: np.ndarray, y: np.ndarray = None
+    ) -> "CustomTransformerMixinEstimator":
         raise NotImplementedError("Subclasses should implement _fit method")
 
     def _transform(self, X: np.ndarray) -> np.ndarray:

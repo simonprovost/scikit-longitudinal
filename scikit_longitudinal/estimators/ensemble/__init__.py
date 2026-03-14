@@ -15,7 +15,9 @@ from scikit_longitudinal.estimators.ensemble.longitudinal_stacking.longitudinal_
 from scikit_longitudinal.estimators.ensemble.longitudinal_voting.longitudinal_voting import (  # noqa
     LongitudinalVotingClassifier,
 )
-from scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees import NestedTreesClassifier  # noqa
+from scikit_longitudinal.estimators.ensemble.nested_trees.nested_trees import (  # noqa
+    NestedTreesClassifier,
+)
 
 _all_ = [
     "NestedTreesClassifier",

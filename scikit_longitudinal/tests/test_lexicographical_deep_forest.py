@@ -24,7 +24,8 @@ def synthetic_data():
     )
 
     features_group = [
-        list(range(i * n_features_per_group, (i + 1) * n_features_per_group)) for i in range(n_longitudinal_groups)
+        list(range(i * n_features_per_group, (i + 1) * n_features_per_group))
+        for i in range(n_longitudinal_groups)
     ]
 
     for i in range(n_longitudinal_groups - 1):
@@ -40,7 +41,9 @@ def uninitialized_classifier():
     return LexicoDeepForestClassifier(
         features_group=[[0, 1], [2, 3]],
         longitudinal_base_estimators=[
-            LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)
+            LongitudinalEstimatorConfig(
+                classifier_type=LongitudinalClassifierType.LEXICO_RF
+            )
         ],
     )
 
@@ -51,7 +54,9 @@ class TestDeepForest:
         classifier = LexicoDeepForestClassifier(
             features_group=features_group,
             longitudinal_base_estimators=[
-                LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)
+                LongitudinalEstimatorConfig(
+                    classifier_type=LongitudinalClassifierType.LEXICO_RF
+                )
             ],
         )
         assert classifier is not None
@@ -61,7 +66,9 @@ class TestDeepForest:
         classifier = LexicoDeepForestClassifier(
             features_group=features_group,
             longitudinal_base_estimators=[
-                LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)
+                LongitudinalEstimatorConfig(
+                    classifier_type=LongitudinalClassifierType.LEXICO_RF
+                )
             ],
         )
 
@@ -73,7 +80,9 @@ class TestDeepForest:
             classifier.predict_proba(X)
 
     def test_longitudinal_estimator_config_initialization(self):
-        config = LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)
+        config = LongitudinalEstimatorConfig(
+            classifier_type=LongitudinalClassifierType.LEXICO_RF
+        )
         assert config.classifier_type == LongitudinalClassifierType.LEXICO_RF
 
     def test_example_1_from_docstring(self, synthetic_data):
@@ -178,14 +187,18 @@ class TestDeepForest:
         )
 
         estimators = clf.base_longitudinal_estimators
-        assert all(estimator.class_weight == custom_class_weight for estimator in estimators)
+        assert all(
+            estimator.class_weight == custom_class_weight for estimator in estimators
+        )
 
     def test_invalid_features_group(self, synthetic_data, uninitialized_classifier):
         X, y, _, _ = synthetic_data
         uninitialized_classifier.features_group = None
         with pytest.raises(ValueError) as e:
             uninitialized_classifier.fit(X, y)
-        assert str(e.value) == "features_group must contain more than one feature group."
+        assert (
+            str(e.value) == "features_group must contain more than one feature group."
+        )
 
     def test_missing_longitudinal_base_estimators(self, synthetic_data):
         X, y, features_group, _ = synthetic_data
@@ -199,7 +212,9 @@ class TestDeepForest:
         classifier = LexicoDeepForestClassifier(
             features_group=features_group,
             longitudinal_base_estimators=[
-                LongitudinalEstimatorConfig(classifier_type=LongitudinalClassifierType.LEXICO_RF)
+                LongitudinalEstimatorConfig(
+                    classifier_type=LongitudinalClassifierType.LEXICO_RF
+                )
             ],
             diversity_estimators=None,
         )

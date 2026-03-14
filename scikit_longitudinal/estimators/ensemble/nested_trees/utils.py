@@ -21,7 +21,13 @@ def _fit_inner_tree_plus_calculate_gini_ray(
     Copy of _fit_inner_tree_plus_calculate_gini to be used with Ray parallelization.
     """
     tree, y_pred, gini = _fit_inner_tree_and_calculate_gini(
-        subset_X, y, group_index, outer_node_name, max_inner_depth, inner_estimator_hyperparameters, save_nested_trees
+        subset_X,
+        y,
+        group_index,
+        outer_node_name,
+        max_inner_depth,
+        inner_estimator_hyperparameters,
+        save_nested_trees,
     )
     return tree, outer_node_name, gini, y_pred, subset_X, group
 
@@ -104,7 +110,9 @@ def _calculate_gini(y: np.ndarray, y_pred: np.ndarray) -> float:
     return gini
 
 
-def _save_inner_tree(tree: DecisionTreeClassifier, filename: str) -> None:  # pragma: no cover
+def _save_inner_tree(
+    tree: DecisionTreeClassifier, filename: str
+) -> None:  # pragma: no cover
     """Save a visual representation of the given decision tree as an image file.
 
     Args:

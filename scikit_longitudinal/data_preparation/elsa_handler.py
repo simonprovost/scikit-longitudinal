@@ -83,7 +83,13 @@ class ElsaDataHandler:
             "memtot_w1": "memtot_wave1",
             "indager_w8": "indager_wave8",
         }
-        self.df = self.df.rename(columns={col: column_mapping[col] for col in self.df.columns if col in column_mapping})
+        self.df = self.df.rename(
+            columns={
+                col: column_mapping[col]
+                for col in self.df.columns
+                if col in column_mapping
+            }
+        )
 
         columns_to_drop = [
             "idauniq",
@@ -95,7 +101,9 @@ class ElsaDataHandler:
             "indager_w6",
             "indager_w7",
         ]
-        self.df = self.df.drop(columns=[col for col in columns_to_drop if col in self.df.columns])
+        self.df = self.df.drop(
+            columns=[col for col in columns_to_drop if col in self.df.columns]
+        )
 
     def nurse_preprocessing(self) -> None:
         """Preprocesses the nurse dataset.
@@ -115,7 +123,13 @@ class ElsaDataHandler:
             "dheas_w4": "dheas_wave4",
         }
 
-        self.df = self.df.rename(columns={col: column_mapping[col] for col in self.df.columns if col in column_mapping})
+        self.df = self.df.rename(
+            columns={
+                col: column_mapping[col]
+                for col in self.df.columns
+                if col in column_mapping
+            }
+        )
 
     def get_unique_classes(self) -> list:
         """Returns the unique classes from the dataframe.
@@ -148,7 +162,9 @@ class ElsaDataHandler:
 
         features = [col for col in self.df.columns if not col.startswith("class_")]
         for class_name in unique_classes:
-            temp_columns = [col for col in self.df.columns if col.startswith(f"class_{class_name}")]
+            temp_columns = [
+                col for col in self.df.columns if col.startswith(f"class_{class_name}")
+            ]
             dataset = self.df[features + temp_columns]
             self.datasets[class_name] = dataset
 
@@ -188,13 +204,22 @@ class ElsaDataHandler:
             elif file_format.lower() == "arff":
                 dataset.fillna("?", inplace=True)
                 arff_data = {
-                    'description': '',
-                    'relation': class_name,
-                    'attributes': [(col, 'REAL' if dataset[col].dtype in ['float64', 'int64'] else 'STRING') for col in
-                                   dataset.columns],
-                    'data': dataset.values.tolist()
+                    "description": "",
+                    "relation": class_name,
+                    "attributes": [
+                        (
+                            col,
+                            (
+                                "REAL"
+                                if dataset[col].dtype in ["float64", "int64"]
+                                else "STRING"
+                            ),
+                        )
+                        for col in dataset.columns
+                    ],
+                    "data": dataset.values.tolist(),
                 }
-                with open(f"{dir_output}/{class_name}_dataset.arff", 'w') as f:
+                with open(f"{dir_output}/{class_name}_dataset.arff", "w") as f:
                     arff.dump(arff_data, f)
             else:
                 raise ValueError(f"Unsupported file format: {file_format}")
@@ -220,9 +245,15 @@ def main(args):  # pragma: no cover
 def parse_arguments():  # pragma: no cover
     parser = argparse.ArgumentParser(description="Process input arguments")
     parser.add_argument("--csv_path", required=True, help="Path to the input CSV file")
-    parser.add_argument("--elsa_type", required=True, help="Type of Elsa dataset (core, Nurse, etc.)")
-    parser.add_argument("--file_format", default="csv", help="Output file format (default: csv)")
-    parser.add_argument("--dir_output", default="tmp", help="Output directory (default: tmp)")
+    parser.add_argument(
+        "--elsa_type", required=True, help="Type of Elsa dataset (core, Nurse, etc.)"
+    )
+    parser.add_argument(
+        "--file_format", default="csv", help="Output file format (default: csv)"
+    )
+    parser.add_argument(
+        "--dir_output", default="tmp", help="Output directory (default: tmp)"
+    )
     return parser.parse_args()
 
 

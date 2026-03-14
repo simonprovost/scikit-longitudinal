@@ -86,6 +86,9 @@ override-dependencies = [
     "scikit-learn ; sys_platform == 'never'",
 ]
 
+[tool.isort]
+profile = "black"
+
 [tool.setuptools]
 py-modules = []
 license-files = []

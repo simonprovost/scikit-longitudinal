@@ -61,7 +61,10 @@ class TestLongitudinalDataset:
         assert dataset._feature_groups == feature_groups
 
     def test_setup_features_group_with_names(self, dataset):
-        feature_groups = [["feature1_w1", "feature1_w2"], ["feature2_w1", "feature2_w2"]]
+        feature_groups = [
+            ["feature1_w1", "feature1_w2"],
+            ["feature2_w1", "feature2_w2"],
+        ]
         dataset.setup_features_group(feature_groups)
         assert dataset._feature_groups == [[0, 1], [2, 3]]
 
@@ -71,13 +74,21 @@ class TestLongitudinalDataset:
             dataset.setup_features_group(feature_groups)
 
     def test_convert_feature_names_to_indices(self, dataset):
-        feature_groups = [["feature1_w1", "feature1_w2"], ["feature2_w1", "feature2_w2"]]
-        converted_feature_groups = dataset._convert_feature_names_to_indices(feature_groups)
+        feature_groups = [
+            ["feature1_w1", "feature1_w2"],
+            ["feature2_w1", "feature2_w2"],
+        ]
+        converted_feature_groups = dataset._convert_feature_names_to_indices(
+            feature_groups
+        )
         assert converted_feature_groups == [[0, 1], [2, 3]]
 
     def test_fail_convert_feature_names_to_indices_with_invalid_names(self, dataset):
         with pytest.raises(ValueError):
-            feature_groups = [["nonexistent_feature", "feature1_w2"], ["feature2_w1", "feature2_w2"]]
+            feature_groups = [
+                ["nonexistent_feature", "feature1_w2"],
+                ["feature2_w1", "feature2_w2"],
+            ]
             dataset._convert_feature_names_to_indices(feature_groups)
 
     def test_elsa_feature_groups_dummy_data_1(self, dataset_1):
@@ -119,7 +130,11 @@ class TestLongitudinalDataset:
             empty_dataset.load_target(target_column="target_w2")
 
     def test_load_target_remove_target_waves(self, dataset):
-        dataset.load_target(target_column="target_w2", target_wave_prefix="target_", remove_target_waves=True)
+        dataset.load_target(
+            target_column="target_w2",
+            target_wave_prefix="target_",
+            remove_target_waves=True,
+        )
         assert dataset._target is not None
         assert "target_w1" not in dataset._data.columns
 
@@ -166,7 +181,9 @@ class TestLongitudinalDataset:
         assert dataset._y_test.equals(new_y_test)
 
     def test_load_data_target_train_test_split(self, dataset):
-        dataset.load_data_target_train_test_split(target_column="target_w2", test_size=0.2, random_state=42)
+        dataset.load_data_target_train_test_split(
+            target_column="target_w2", test_size=0.2, random_state=42
+        )
         assert dataset._data is not None
         assert dataset._target is not None
         assert dataset._X_train is not None
@@ -184,24 +201,35 @@ class TestLongitudinalDataset:
         )
         dataset_1.setup_features_group("Elsa")
         non_longitudinal_feature_names = dataset_1.non_longitudinal_features(names=True)
-        non_longitudinal_feature_indices = dataset_1.non_longitudinal_features(names=False)
+        non_longitudinal_feature_indices = dataset_1.non_longitudinal_features(
+            names=False
+        )
         _check_list_type(non_longitudinal_feature_names, str)
         _check_list_type(non_longitudinal_feature_indices, int)
 
     def test_fail_load_train_test_split_no_data_or_target(self, dataset):
         dataset.load_data()
         dataset._data = None
-        with pytest.raises(ValueError, match="No data or target is loaded. Load them first."):
+        with pytest.raises(
+            ValueError, match="No data or target is loaded. Load them first."
+        ):
             dataset.load_train_test_split(test_size=0.2, random_state=42)
 
     def test_feature_groups_indices(self, dataset):
         dataset.load_data()
-        dataset.setup_features_group([["feature1_w1", "feature1_w2"], ["feature2_w1", "feature2_w2"]])
+        dataset.setup_features_group(
+            [["feature1_w1", "feature1_w2"], ["feature2_w1", "feature2_w2"]]
+        )
         feature_groups = dataset.feature_groups()
         assert feature_groups == [[0, 1], [2, 3]]
 
     def test_feature_groups_names(self, dataset):
         dataset.load_data()
-        dataset.setup_features_group([["feature1_w1", "feature1_w2"], ["feature2_w1", "feature2_w2"]])
+        dataset.setup_features_group(
+            [["feature1_w1", "feature1_w2"], ["feature2_w1", "feature2_w2"]]
+        )
         feature_groups = dataset.feature_groups(names=True)
-        assert feature_groups == [["feature1_w1", "feature1_w2"], ["feature2_w1", "feature2_w2"]]
+        assert feature_groups == [
+            ["feature1_w1", "feature1_w2"],
+            ["feature2_w1", "feature2_w2"],
+        ]

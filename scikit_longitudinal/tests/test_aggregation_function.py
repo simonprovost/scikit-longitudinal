@@ -8,7 +8,9 @@ from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
 class TestAggFunc:
     @pytest.fixture
     def data(self):
-        longitudinal_data = LongitudinalDataset("scikit_longitudinal/tests/dummy_data/dummy_data_3.csv")
+        longitudinal_data = LongitudinalDataset(
+            "scikit_longitudinal/tests/dummy_data/dummy_data_3.csv"
+        )
         longitudinal_data.load_data_target_train_test_split(
             target_column="target_w2",
             remove_target_waves=True,
@@ -35,7 +37,12 @@ class TestAggFunc:
             feature_list_names=data.data.columns.tolist(),
         )
         agg_func.prepare_data(data.data.to_numpy())
-        transformed_dataset, feature_groups, non_longitudinal_features, feature_names = agg_func._transform()
+        (
+            transformed_dataset,
+            feature_groups,
+            non_longitudinal_features,
+            feature_names,
+        ) = agg_func._transform()
 
         assert isinstance(transformed_dataset, pd.DataFrame)
         assert feature_groups is None
@@ -103,7 +110,10 @@ class TestAggFunc:
         assert agg_func.agg_func == custom_agg_func
 
     def test_init_with_invalid_aggregation_func(self, data):
-        with pytest.raises(ValueError, match=r"aggregation_func must be either a string.*or a function."):
+        with pytest.raises(
+            ValueError,
+            match=r"aggregation_func must be either a string.*or a function.",
+        ):
             AggrFunc(
                 aggregation_func=42,
                 features_group=data.feature_groups(),

@@ -2,4 +2,6 @@ from scikit_longitudinal.pipeline_managers.manage_steps.manage import (  # noqa:
     configure_and_fit_transformer,
     handle_final_estimator,
 )
-from scikit_longitudinal.pipeline_managers.manage_steps.special_handler import SPECIAL_HANDLERS  # noqa: F401
+from scikit_longitudinal.pipeline_managers.manage_steps.special_handler import (  # noqa: F401
+    SPECIAL_HANDLERS,
+)

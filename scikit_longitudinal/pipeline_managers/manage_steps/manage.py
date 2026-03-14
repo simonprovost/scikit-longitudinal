@@ -1,10 +1,12 @@
-from typing import Any, Callable, Dict, List, Tuple, Union, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
 import numpy as np
 
-from scikit_longitudinal.pipeline_managers.manage_steps.special_handler import SPECIAL_HANDLERS
-from scikit_longitudinal.pipeline_managers.utils import configure_transformer
 from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
+from scikit_longitudinal.pipeline_managers.manage_steps.special_handler import (
+    SPECIAL_HANDLERS,
+)
+from scikit_longitudinal.pipeline_managers.utils import configure_transformer
 
 
 def configure_and_fit_transformer(
@@ -69,30 +71,44 @@ def configure_and_fit_transformer(
         feature_list_names=feature_list_names,
         update_feature_groups_callback=update_feature_groups_callback,
     )
+
     def is_instance_of_class_name(obj, name):
         for cls in obj.__class__.__mro__:
             if cls.__name__ == name:
                 return True
         return False
+
     is_special_preprocessor = (
-        is_instance_of_class_name(transformer, 'MerWavTimeMinus') or
-        is_instance_of_class_name(transformer, 'MerWavTimePlus') or
-        is_instance_of_class_name(transformer, 'AggrFunc') or
-        is_instance_of_class_name(transformer, 'SepWav')
+        is_instance_of_class_name(transformer, "MerWavTimeMinus")
+        or is_instance_of_class_name(transformer, "MerWavTimePlus")
+        or is_instance_of_class_name(transformer, "AggrFunc")
+        or is_instance_of_class_name(transformer, "SepWav")
     )
-    is_resampler = hasattr(transformer, 'fit_resample') and callable(getattr(transformer, 'fit_resample'))
+    is_resampler = hasattr(transformer, "fit_resample") and callable(
+        getattr(transformer, "fit_resample")
+    )
     if is_resampler:
         if y is None:
-            raise ValueError(f"Resampler '{name}' requires target labels 'y' for resampling.")
+            raise ValueError(
+                f"Resampler '{name}' requires target labels 'y' for resampling."
+            )
         X, y = transformer.fit_resample(X, y)
-    if is_instance_of_class_name(transformer, 'AggrFunc') and (handler := SPECIAL_HANDLERS.get(AggrFunc)):
-        transformer, X, y, selected_feature_indices, feature_list_names = handler.handle_transform(transformer, X, y)
+    if is_instance_of_class_name(transformer, "AggrFunc") and (
+        handler := SPECIAL_HANDLERS.get(AggrFunc)
+    ):
+        transformer, X, y, selected_feature_indices, feature_list_names = (
+            handler.handle_transform(transformer, X, y)
+        )
     elif not is_special_preprocessor and not is_resampler:
         X_transformed = transformer.fit_transform(X, y)
         if not hasattr(transformer, "selected_features_"):
-            raise ValueError(f"Transformer {name} does not have a selected_features_ attribute.")
+            raise ValueError(
+                f"Transformer {name} does not have a selected_features_ attribute."
+            )
         selected_feature_indices = transformer.selected_features_
-        feature_list_names = [feature_list_names[i] for i in transformer.selected_features_]
+        feature_list_names = [
+            feature_list_names[i] for i in transformer.selected_features_
+        ]
 
         if handler := SPECIAL_HANDLERS.get(type(transformer)):
             transformer, X, y = handler.handle_transform(transformer, X, y)
@@ -143,7 +159,9 @@ def handle_final_estimator(
         final_estimator.feature_list_names = feature_list_names
 
     if handler := SPECIAL_HANDLERS.get(type(steps[-2][1])):
-        final_estimator, steps, X, y = handler.handle_final_estimator(final_estimator, steps, X, y)
+        final_estimator, steps, X, y = handler.handle_final_estimator(
+            final_estimator, steps, X, y
+        )
 
     final_estimator.fit(X, y, **fit_params)
     return final_estimator

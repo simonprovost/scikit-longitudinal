@@ -51,7 +51,9 @@ class _FeatureSelectorCache:
         return abs(correlation)
 
     @lru_cache(maxsize=None)
-    def feature_feature_correlation(self, feature_index_1: int, feature_index_2: int) -> float:
+    def feature_feature_correlation(
+        self, feature_index_1: int, feature_index_2: int
+    ) -> float:
         """Calculates the absolute correlation between two features.
 
         Computes the Pearson correlation coefficient between two features identified by their
@@ -67,11 +69,15 @@ class _FeatureSelectorCache:
             the two specified features.
 
         """
-        correlation = np.corrcoef(self.X[:, feature_index_1], self.X[:, feature_index_2])[0, 1]
+        correlation = np.corrcoef(
+            self.X[:, feature_index_1], self.X[:, feature_index_2]
+        )[0, 1]
         return abs(correlation)
 
 
-def merit_calculation(feature_indices: Tuple[int], cache: _FeatureSelectorCache) -> float:
+def merit_calculation(
+    feature_indices: Tuple[int], cache: _FeatureSelectorCache
+) -> float:
     """Calculates the merit of a set of features using cached correlations.
 
     This function computes the merit of a given set of features based on the average
@@ -89,8 +95,12 @@ def merit_calculation(feature_indices: Tuple[int], cache: _FeatureSelectorCache)
         float: The calculated merit of the given feature set.
 
     """
-    feature_to_class_correlations = [cache.feature_class_correlation(index) for index in feature_indices]
-    avg_feature_to_class_correlation = np.mean(feature_to_class_correlations) if feature_to_class_correlations else 0
+    feature_to_class_correlations = [
+        cache.feature_class_correlation(index) for index in feature_indices
+    ]
+    avg_feature_to_class_correlation = (
+        np.mean(feature_to_class_correlations) if feature_to_class_correlations else 0
+    )
 
     feature_to_feature_correlations = [
         cache.feature_feature_correlation(feature_indices[i], feature_indices[j])
@@ -98,13 +108,16 @@ def merit_calculation(feature_indices: Tuple[int], cache: _FeatureSelectorCache)
         for j in range(i + 1, len(feature_indices))
     ]
     avg_feature_to_feature_correlation = (
-        np.mean(feature_to_feature_correlations) if feature_to_feature_correlations else 0
+        np.mean(feature_to_feature_correlations)
+        if feature_to_feature_correlations
+        else 0
     )
 
     total_features = len(feature_indices)
     if total_features == 0:
         return 0
     merit_score = (total_features * avg_feature_to_class_correlation) / sqrt(
-        total_features + total_features * (total_features - 1) * avg_feature_to_feature_correlation
+        total_features
+        + total_features * (total_features - 1) * avg_feature_to_feature_correlation
     )
     return merit_score

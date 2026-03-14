@@ -1,6 +1,7 @@
 import re
 from collections import defaultdict
 from typing import Dict, List, Optional, Tuple
+
 import numpy as np
 import pandas as pd
 from overrides import override
@@ -182,7 +183,9 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         self.search_method = search_method
         self.features_group = features_group
         self.parallel = parallel
-        self.outer_search_method = self.search_method if outer_search_method is None else outer_search_method
+        self.outer_search_method = (
+            self.search_method if outer_search_method is None else outer_search_method
+        )
         self.inner_search_method = inner_search_method
         self.non_longitudinal_features = non_longitudinal_features
         self.num_cpus = num_cpus
@@ -191,7 +194,9 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         self.selected_longitudinal_features_ = []
 
     @override
-    def _fit(self, X: np.ndarray, y: np.ndarray) -> "CorrelationBasedFeatureSelectionPerGroup":
+    def _fit(
+        self, X: np.ndarray, y: np.ndarray
+    ) -> "CorrelationBasedFeatureSelectionPerGroup":
         """Fit the CFS-Per-Group algorithm to the data.
 
         This method applies the CFS-Per-Group algorithm, selecting features that are highly correlated with the target
@@ -204,7 +209,9 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
         Returns:
             CorrelationBasedFeatureSelectionPerGroup: The fitted instance.
         """
-        ray = get_ray_for_parallel(self.parallel and self.features_group is not None, self.num_cpus)
+        ray = get_ray_for_parallel(
+            self.parallel and self.features_group is not None, self.num_cpus
+        )
 
         # TODO: Make sure to rework the too many branches warning
         if self.features_group is not None:
@@ -217,35 +224,50 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
             if self.parallel and ray is not None:
                 remote_fit_subset = ray.remote(_fit_subset_remote)
-                futures = [remote_fit_subset.remote(self, X, y, group) for group in group_features_copy]
+                futures = [
+                    remote_fit_subset.remote(self, X, y, group)
+                    for group in group_features_copy
+                ]
                 while futures:
                     ready_futures, remaining_futures = ray.wait(futures)
                     result = ray.get(ready_futures[0])
                     group_selected_features.append(result)
                     futures = remaining_futures
             else:
-                group_selected_features = [self._fit_subset(X, y, group) for group in group_features_copy]
+                group_selected_features = [
+                    self._fit_subset(X, y, group) for group in group_features_copy
+                ]
 
             if self.version == 2:
-                combined_features = [index for sublist in group_selected_features for index in sublist] + (
-                    self.non_longitudinal_features or []
-                )
+                combined_features = [
+                    index for sublist in group_selected_features for index in sublist
+                ] + (self.non_longitudinal_features or [])
                 self.search_method = self.outer_search_method
-                selected_indices = self._fit(X[:, combined_features], y).selected_features_
+                selected_indices = self._fit(
+                    X[:, combined_features], y
+                ).selected_features_
                 flattened_list = np.array(combined_features)
                 self.selected_features_ = flattened_list[selected_indices].tolist()
             elif self.version == 1:
-                flattened_list = np.array([index for sublist in group_selected_features for index in sublist])
-                self.selected_features_ = (flattened_list.tolist() or []) + (self.non_longitudinal_features or [])
+                flattened_list = np.array(
+                    [index for sublist in group_selected_features for index in sublist]
+                )
+                self.selected_features_ = (flattened_list.tolist() or []) + (
+                    self.non_longitudinal_features or []
+                )
             else:
-                raise ValueError(f"Version {self.version} is not supported. Please choose version 1 or 2.")
+                raise ValueError(
+                    f"Version {self.version} is not supported. Please choose version 1 or 2."
+                )
         else:
             if self.search_method == "exhaustiveSearch":
                 self.selected_features_ = _exhaustive_search(X, y)
             elif self.search_method == "greedySearch":
                 self.selected_features_ = _greedy_search(X, y)
             else:
-                raise ValueError(f"Search method {self.search_method} is not supported.")
+                raise ValueError(
+                    f"Search method {self.search_method} is not supported."
+                )
 
         return self
 
