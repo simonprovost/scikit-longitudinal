@@ -1,86 +1,165 @@
 from functools import wraps
-from typing import List, Optional, Union
+from typing import Iterable, List, Optional, Sequence, Union
 
 import numpy as np
 import pandas as pd
 from sklearn.metrics import auc, precision_recall_curve
-from sklearn.metrics._base import _average_binary_score
 from sklearn.preprocessing import label_binarize
-from sklearn.utils.multiclass import type_of_target
+from sklearn.utils.multiclass import type_of_target, unique_labels
+from sklearn.utils.validation import check_consistent_length
 
 
-def _binary_uninterpolated_average_precision(y_true, y_score):
+def _binary_auprc_score(y_true: np.ndarray, y_score: np.ndarray) -> float:
     precision, recall, _ = precision_recall_curve(y_true, y_score)
     return auc(recall, precision)
 
 
+def _score_binary_target(
+    y_true: np.ndarray, y_score: np.ndarray, labels: np.ndarray
+) -> float:
+    if labels.shape[0] != 2:
+        raise ValueError("Binary targets require exactly two class labels.")
+
+    positive_label = labels[1]
+    y_true_binary = (np.asarray(y_true) == positive_label).astype(int)
+
+    if y_score.ndim == 2:
+        if y_score.shape[1] != 2:
+            raise ValueError(
+                "Binary targets require a 2-column score array when y_score is 2-dimensional."
+            )
+        y_score = y_score[:, 1]
+
+    return _binary_auprc_score(y_true_binary, y_score)
+
+
+def _binarize_nonbinary_target(
+    y_true: np.ndarray, y_score: np.ndarray, y_type: str, labels: np.ndarray
+) -> tuple[np.ndarray, np.ndarray]:
+    if y_score.ndim != 2:
+        raise ValueError(
+            "Multiclass targets require a 2-dimensional score array [n_samples, n_classes]."
+        )
+
+    if y_type == "multiclass":
+        if y_score.shape[1] != labels.shape[0]:
+            raise ValueError(
+                "The number of score columns must match the number of class labels."
+            )
+        return label_binarize(y_true, classes=labels), labels
+
+    y_true_binarized = np.asarray(y_true)
+    if y_true_binarized.shape != y_score.shape:
+        raise ValueError(
+            "For multilabel targets, y_true and y_score must have the same shape."
+        )
+    if labels.shape[0] != y_score.shape[1]:
+        labels = np.arange(y_score.shape[1])
+    return y_true_binarized, labels
+
+
+def _average_class_scores(
+    y_true_binarized: np.ndarray, y_score: np.ndarray, average: Optional[str]
+) -> Union[float, np.ndarray]:
+    if average == "micro":
+        return _binary_auprc_score(y_true_binarized.ravel(), y_score.ravel())
+
+    per_class_scores = np.asarray(
+        [
+            _binary_auprc_score(y_true_binarized[:, index], y_score[:, index])
+            for index in range(y_score.shape[1])
+        ],
+        dtype=float,
+    )
+
+    if average is None:
+        return per_class_scores
+    if average == "macro":
+        return float(np.mean(per_class_scores))
+
+    support = np.sum(y_true_binarized, axis=0, dtype=float)
+    if np.isclose(np.sum(support), 0.0):
+        raise ValueError(
+            "weighted AUPRC is undefined when every class has zero support."
+        )
+    return float(np.average(per_class_scores, weights=support))
+
+
 def metrics_validate_inputs(func):
     @wraps(func)
-    def wrapper(y_true: Union[List[int], pd.Series], y_score: np.ndarray):
-        if not isinstance(y_score, np.ndarray):
-            raise ValueError("y_score should be a numpy array.")
-        if y_score.ndim > 2:
-            raise ValueError("y_score should have at most 2 dimensions [n_samples, n_classes].")
-        if not issubclass(y_score.dtype.type, np.floating):
-            raise ValueError("y_score should only contain floating point numbers.")
+    def wrapper(
+        y_true: Union[List[int], pd.Series, np.ndarray],
+        y_score: Union[List[float], np.ndarray],
+        average: Optional[str] = "macro",
+        labels: Optional[Sequence] = None,
+    ):
+        y_true = np.asarray(y_true)
+        y_score = np.asarray(y_score)
 
-        # Checking for binary class
-        if len(y_true) > 0:
-            first_element = y_true.iloc[0] if isinstance(y_true, pd.Series) else y_true[0]
-            if (
-                isinstance(y_true, (list, np.ndarray))
-                and isinstance(first_element, np.ndarray)
-                and len(first_element) == 2
-            ):
-                y_true = np.array([np.argmax(i) for i in y_true])
-
-        # Validating y_true
-        if not isinstance(y_true, (list, pd.Series, np.ndarray)) or not all(
-            isinstance(i, (int, np.int64)) for i in y_true
-        ):
-            raise ValueError("y_true should be a list or a pandas Series, or numpy ndarray of integers.")
-        if any(i not in [0, 1] for i in y_true):
+        if y_score.ndim == 0 or y_score.ndim > 2:
             raise ValueError(
-                "y_true should only contain binary values (0 and 1). Multi Class is not yet tested"
-                "then not supported even though a partial implementation is present."
+                "y_score should have at most 2 dimensions [n_samples, n_classes]."
             )
-        return func(y_true, y_score)
+        if not np.issubdtype(y_score.dtype, np.number):
+            raise ValueError("y_score should only contain numerical values.")
+
+        if average not in {"micro", "macro", "weighted", None}:
+            raise ValueError(
+                "average must be one of {'micro', 'macro', 'weighted', None}."
+            )
+
+        if labels is not None and not isinstance(labels, Iterable):
+            raise ValueError(
+                "labels must be an iterable of class labels when provided."
+            )
+
+        check_consistent_length(y_true, y_score)
+        return func(y_true, y_score.astype(float), average=average, labels=labels)
 
     return wrapper
 
 
 @metrics_validate_inputs
 def auprc_score(
-    y_true: Union[List[int], pd.Series], y_score: np.ndarray, average: Optional[str] = "macro"
-) -> Union[float, List[float]]:
-    """Calculate the Area Under the Precision-Recall Curve (AUPRC).
+    y_true: Union[List[int], pd.Series, np.ndarray],
+    y_score: np.ndarray,
+    average: Optional[str] = "macro",
+    labels: Optional[Sequence] = None,
+) -> Union[float, np.ndarray]:
+    """Calculate the interpolated Area Under the Precision-Recall Curve (AUPRC).
 
-    ⚠️ Scikit-Longitudinal's docstrings will be updated to reflect the most recent documentation available on Github.
-    If something is inconsistent, consult the documentation first, then file an issue. ⚠️
+    This metric computes the trapezoidal area under the precision-recall curve,
+    i.e. the PR-AUC / AUPRC. It is intentionally distinct from scikit-learn's
+    average precision (AP), which uses step-wise interpolation.
 
     Args:
-        y_true (Union[List[int], pd.Series]): Ground truth (correct) target values.
-        y_score (np.ndarray): Estimated probabilities or decision function.
-        average (Optional[str]): {'micro', 'macro', 'samples', 'weighted'} or None
+        y_true (Union[List[int], pd.Series, np.ndarray]): Ground truth target values.
+        y_score (np.ndarray): Estimated scores. Use shape ``(n_samples,)`` or
+            ``(n_samples, 2)`` for binary targets, and ``(n_samples, n_classes)``
+            for multiclass targets.
+        average (Optional[str]): Averaging strategy for multiclass targets.
+            Supported values are ``'micro'``, ``'macro'``, ``'weighted'``, or ``None``.
+        labels (Optional[Sequence]): Explicit class order for multiclass or
+            non-binary labels. When omitted, the class order is inferred from ``y_true``.
 
     Returns:
-        Union[float, List[float]]: Area under the precision-recall curve.
+        Union[float, np.ndarray]: A scalar AUPRC or a per-class AUPRC array when
+        ``average=None`` for multiclass targets.
 
     Raises:
         ValueError: If `y_true` and `y_score` have different lengths.
         ValueError: If `y_score` contains non-numerical values.
-        ValueError: If `y_true` contains non-integer values.
-        ValueError: If `y_true` contains non-binary values (other than 0 and 1).
+        ValueError: If `y_score` does not match the target cardinality.
 
     """
     y_type = type_of_target(y_true)
-    if y_score.ndim == 2:  # pragma: no cover
-        if y_score.shape[1] == 2:
-            y_score = y_score[:, 1]  # select the scores for the positive class
-        elif average == "micro":
-            if y_type == "multiclass":
-                y_true = label_binarize(y_true, classes=np.unique(y_true))
-            return _binary_uninterpolated_average_precision(np.ravel(y_true), np.ravel(y_score))
-        else:
-            return _average_binary_score(_binary_uninterpolated_average_precision, y_true, y_score, average)
-    return _binary_uninterpolated_average_precision(y_true, y_score)
+    labels = np.asarray(labels if labels is not None else unique_labels(y_true))
+
+    if y_type == "binary":
+        return _score_binary_target(y_true, y_score, labels)
+
+    if y_type not in {"multiclass", "multilabel-indicator"}:
+        raise ValueError(f"Unsupported target type for auprc_score: {y_type}.")
+
+    y_true_binarized, _ = _binarize_nonbinary_target(y_true, y_score, y_type, labels)
+    return _average_class_scores(y_true_binarized, y_score, average)
