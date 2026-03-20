@@ -1,19 +1,16 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <div align="center">
    <p align="center">
-   <h1 align="center">
       <br>
-      <a href="https://i.imgur.com/jCtPpTF.png">
-         <img src="https://i.imgur.com/jCtPpTF.png" alt="Scikit-longitudinal" width="200">
+      <a href="docs/assets/images/Sklong_Banner.avif">
+         <img src="docs/assets/images/Sklong_Banner.avif" alt="Scikit-longitudinal banner">
       </a>
-      <br>
-      Scikit-longitudinal
-      <br>
-   </h1>
+   </p>
    <h4 align="center">
       A Scikit-Learn-like Python library for Longitudinal Machine Learning —
       <a href="https://doi.org/10.21105/joss.08481">Paper</a> ·
-      <a href="https://scikit-longitudinal.readthedocs.io/">Documentation</a>
+      <a href="https://scikit-longitudinal.readthedocs.io/">Documentation</a> ·
+      <a href="https://pypi.org/project/Scikit-longitudinal/">PyPi Index</a>
    </h4>
 </div>
 
