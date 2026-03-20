@@ -18,7 +18,7 @@
       <stop offset="40%" stop-color="#FAB316" />
       <stop offset="60%" stop-color="#A0666F" />
       <stop offset="80%" stop-color="#0E5CF1" />
-      <stop offset="100%" stop-color="#141318" />
+      <stop offset="100%" stop-color="#0E5CF1" />
     </linearGradient>
   </defs>
   <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
