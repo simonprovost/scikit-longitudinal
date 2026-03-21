@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - 'docs/**'
-      - 'overrides/**'
       - 'zensical.toml'
       - 'pyproject.toml'
       - 'uv.lock'
@@ -16,7 +15,6 @@ on:
       - main
     paths:
       - 'docs/**'
-      - 'overrides/**'
       - 'zensical.toml'
       - 'pyproject.toml'
       - 'uv.lock'

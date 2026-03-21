@@ -230,17 +230,22 @@ Understand how components integrate:
 ## Generating Documentation
 Update and preview docs locally:
 
-1. **Build Docs**:
+1. **Install the docs dependencies**:
 
  ```bash
- ./build_docs.sh
+ uv sync --dev
  ```
-2. **Serve Docs**:
+2. **Build Docs**:
+
+ ```bash
+ uv run zensical build
+ ```
+3. **Serve Docs**:
 
  ```bash
  uv run zensical serve
  ```
-3. **View**: Open `http://127.0.0.1:8000`.
+4. **View**: Open `http://127.0.0.1:8000`.
 
 ---
 
