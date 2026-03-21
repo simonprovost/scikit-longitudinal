@@ -23,6 +23,18 @@ icon: lucide/circle-help
 
     The library is therefore designed around longitudinal classification workflows rather than generic forecasting or regression workflows, keeping the tooling focused on repeated-measures tabular data.
 
+??? example "What is `Auto-Sklong`?"
+    `Auto-Sklong` is the companion AutoML project for longitudinal classification. `AutoML` means *Automated Machine Learning*: instead of choosing a pipeline and tuning its hyperparameters by hand, the system searches automatically across candidate longitudinal pipelines and their hyperparameters.
+
+    In practice, this is a combinatorial-optimisation problem, because the system must explore many possible combinations of data-preparation methods, feature-selection options, class-balancing choices, classifiers, and hyperparameter settings.
+
+    In other words, `Sklong` is the library for building and running longitudinal workflows, whilst `Auto-Sklong` is the separate project for automating model and pipeline selection on top of that ecosystem.
+
+    Since this FAQ belongs to the `Sklong` repository, the full `Auto-Sklong` documentation and source code live separately:
+
+    - [Auto-Sklong documentation](https://auto-sklong.readthedocs.io/en/latest/)
+    - [Auto-Sklong on GitHub](https://github.com/simonprovost/auto-sklong)
+
 ??? example "Why not just flatten the dataset and use ordinary `scikit-learn`?"
     You can, and `MerWav-Time(-)` is exactly that baseline. The issue is that a standard learner will then treat repeated measurements as ordinary independent columns, without understanding that `cholesterol_w1` and `cholesterol_w4` are the same underlying variable observed at different time points.
 
@@ -84,11 +96,11 @@ icon: lucide/circle-help
 
     The main current boundaries are:
 
-    - no regression support yet,
-    - no longitudinal neural-network family integrated into the core workflow,
-    - no attempt to cover full time-series forecasting problems,
+    - no regression support yet, although it is wanted,
+    - no longitudinal neural-network family integrated into the core workflow yet, although it is wanted,
+    - no attempt to cover full time-series forecasting problems, since `aeon` and similar toolkits are already well shaped for that space,
     - an expectation that temporal structure is provided explicitly through wide-format data and feature-group metadata.
 
-??? bug "What if I have a question that isn't answered here?"
+???+ bug "What if I have a question that isn't answered here?"
     If your question is not covered in this FAQ, please open an issue on
     [GitHub Issues](https://github.com/simonprovost/scikit-longitudinal/issues).
