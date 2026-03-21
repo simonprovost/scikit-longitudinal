@@ -1,0 +1,221 @@
+[project]
+site_name = "Scikit-Longitudinal"
+site_url = "https://scikit-longitudinal.readthedocs.io/"
+site_author = "Simon Provost"
+site_description = """
+Scikit-Longitudinal is a machine learning library tailored to longitudinal
+classification workflows, with tools to preprocess, model, and evaluate
+repeated-measures data on top of scikit-learn.
+"""
+copyright = """
+Maintained by Simon Provost &copy; Under Prof. Alex Freitas Supervision @ University of Kent, 2023-present
+"""
+repo_url = "https://github.com/simonprovost/scikit-longitudinal"
+repo_name = "simonprovost/scikit-longitudinal"
+edit_uri = "edit/main/docs/"
+nav = [
+    { "Home" = "index.md" },
+    { "Get Started" = [
+        { "Get started" = "getting-started/index.md" },
+        { "First Example" = "getting-started/first-example.md" },
+        { "What's Next" = "getting-started/whats-next.md" },
+    ]},
+    { "Tutorials" = [
+        { "Overview" = "tutorials/overview.md" },
+        { "Temporal Dependency" = "tutorials/temporal_dependency.md" },
+        { "Uneven Temporal Setup" = "tutorials/advanced_temporal_setup.md" },
+        { "Data Format" = "tutorials/sklong_longitudinal_data_format.md" },
+        { "Data Preparation" = "tutorials/sklong_data_preparation_first_exploration.md" },
+        { "Algorithm Adaptation" = "tutorials/sklong_explore_your_first_estimator.md" },
+        { "Binary & Multiclass" = "tutorials/binary_vs_multiclass.md" },
+        { "Pipelines" = "tutorials/sklong_explore_your_first_pipeline.md" },
+        { "Hyperparameter Tuning" = "tutorials/sklong_hyperparameter_tuning.md" },
+    ]},
+    { "API" = [
+        "API/index.md",
+        { "Data Preparation" = [
+            { "Longitudinal Dataset" = "API/data_preparation/longitudinal_dataset.md" },
+        ]},
+        { "Data Transformation" = [
+            { "Merge Waves: Drop Indices" = "API/data_preparation/merwav_time_minus.md" },
+            { "Merge Waves: Keep Indices" = "API/data_preparation/merwav_time_plus.md" },
+            { "Aggregation Function" = "API/data_preparation/aggregation_function.md" },
+            { "Separate Waves" = "API/data_preparation/sepwav.md" },
+        ]},
+        { "Preprocessors" = [
+            { "Correlation Feature Selection" = "API/preprocessors/feature_selection/correlation_feature_selection_per_group.md" },
+        ]},
+        { "Estimators" = [
+            { "Lexico Decision Tree Classifier" = "API/estimators/trees/lexico_decision_tree_classifier.md" },
+            { "Lexico Random Forest" = "API/estimators/ensemble/lexico_random_forest.md" },
+            { "Lexico Deep Forest" = "API/estimators/ensemble/lexico_deep_forest.md" },
+            { "Lexico Gradient Boosting" = "API/estimators/ensemble/lexico_gradient_boosting.md" },
+            { "Nested Trees" = "API/estimators/ensemble/nested_trees.md" },
+            { "Longitudinal Stacking" = "API/estimators/ensemble/longitudinal_stacking.md" },
+            { "Longitudinal Voting" = "API/estimators/ensemble/longitudinal_voting.md" },
+        ]},
+        { "Pipeline" = [
+            { "Longitudinal Pipeline" = "API/pipeline/longitudinal_pipeline.md" },
+        ]},
+    ]},
+    { "Community Hub" = [
+        { "Overview" = "community-hub.md" },
+        { "Projects" = "related-projects.md" },
+        { "Developers" = "developers.md" },
+        { "FAQ" = "faq.md" },
+        { "Publications" = "publications.md" },
+    ]},
+]
+extra_css = [
+    "stylesheets/extra.css",
+    "stylesheets/lucide-icons.css",
+    "stylesheets/landing.css",
+    "stylesheets/theme-refresh.css",
+]
+extra_javascript = [
+    "javascripts/mathjax.js",
+    "https://polyfill.io/v3/polyfill.min.js?features=es6",
+    "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js",
+    "javascripts/api-nav-icons.js",
+    "javascripts/image-lightbox.js",
+    "javascripts/search-shortcut.js",
+    "javascripts/homepage.js",
+]
+
+[project.theme]
+variant = "modern"
+custom_dir = "overrides"
+favicon = "assets/images/favicon/favicon.ico"
+logo = "assets/images/favicon/favicon-256x256.png"
+language = "en"
+features = [
+    "content.action.edit",
+    "content.action.view",
+    "content.code.annotate",
+    "content.code.copy",
+    "content.code.select",
+    "content.footnote.tooltips",
+    "content.tabs.link",
+    "content.tooltips",
+    "navigation.footer",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    "navigation.instant.progress",
+    "navigation.path",
+    "navigation.sections",
+    "navigation.tabs",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+    "toc.follow",
+]
+
+[project.theme.icon]
+repo = "lucide/github"
+edit = "lucide/pencil"
+view = "lucide/eye"
+
+[project.theme.font]
+text = "Space Grotesk"
+code = "IBM Plex Mono"
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github-alt"
+link = "https://github.com/simonprovost/"
+name = "Simon Provost on GitHub"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/linkedin"
+link = "https://www.linkedin.com/in/simonprovostdev/"
+name = "Simon Provost on LinkedIn"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/google-scholar"
+link = "https://scholar.google.com/citations?user=Lv_LddYAAAAJ"
+name = "Simon Provost on Google Scholar"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/orcid"
+link = "https://orcid.org/0000-0001-8402-5464"
+name = "Simon Provost on ORCID"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/researchgate"
+link = "https://www.researchgate.net/profile/Provost-Simon"
+name = "Simon Provost on ResearchGate"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/stack-overflow"
+link = "https://stackoverflow.com/users/9814037/simon-provost"
+name = "Simon Provost on Stack Overflow"
+
+[[project.extra.social]]
+icon = "fontawesome/solid/building-columns"
+link = "https://www.kent.ac.uk/computing/people/4973/provost-simon"
+name = "University of Kent profile"
+
+[project.plugins.mkdocstrings.handlers.python.options]
+docstring_style = "google"
+heading_level = 3
+show_source = true
+show_root_heading = true
+show_root_full_path = false
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.meta]
+
+[project.markdown_extensions.toc]
+permalink = true
+
+[project.markdown_extensions.pymdownx.arithmatex]
+generic = true
+
+[project.markdown_extensions.pymdownx.betterem]
+smart_enable = "all"
+
+[project.markdown_extensions.pymdownx.blocks.caption]
+[project.markdown_extensions.pymdownx.caret]
+[project.markdown_extensions.pymdownx.critic]
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index = "zensical.extensions.emoji.twemoji"
+
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.keys]
+[project.markdown_extensions.pymdownx.magiclink]
+[project.markdown_extensions.pymdownx.mark]
+[project.markdown_extensions.pymdownx.smartsymbols]
+[project.markdown_extensions.pymdownx.snippets]
+[project.markdown_extensions.pymdownx.superfences]
+
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+
+[project.markdown_extensions.pymdownx.tilde]

@@ -1,0 +1,99 @@
+/* Auto-generated Lucide helpers for the remaining Markdown content icons */
+.icon-lucide {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    background-color: currentColor;
+    -webkit-mask: var(--icon-lucide) no-repeat center / contain;
+    mask: var(--icon-lucide) no-repeat center / contain;
+}
+
+.icon-lucide.lg {
+    width: 1.35em;
+    height: 1.35em;
+}
+
+.icon-lucide.middle {
+    vertical-align: -0.225em;
+}
+
+.icon-lucide--activity {
+    --icon-lucide: url("../assets/icons/lucide/activity.svg");
+}
+
+.icon-lucide--binary {
+    --icon-lucide: url("../assets/icons/lucide/binary.svg");
+}
+
+.icon-lucide--bot {
+    --icon-lucide: url("../assets/icons/lucide/bot.svg");
+}
+
+.icon-lucide--chart-column {
+    --icon-lucide: url("../assets/icons/lucide/chart-column.svg");
+}
+
+.icon-lucide--circle-check-big {
+    --icon-lucide: url("../assets/icons/lucide/circle-check-big.svg");
+}
+
+.icon-lucide--circle-help {
+    --icon-lucide: url("../assets/icons/lucide/circle-help.svg");
+}
+
+.icon-lucide--circle-x {
+    --icon-lucide: url("../assets/icons/lucide/circle-x.svg");
+}
+
+.icon-lucide--compass {
+    --icon-lucide: url("../assets/icons/lucide/compass.svg");
+}
+
+.icon-lucide--database {
+    --icon-lucide: url("../assets/icons/lucide/database.svg");
+}
+
+.icon-lucide--database-zap {
+    --icon-lucide: url("../assets/icons/lucide/database-zap.svg");
+}
+
+.icon-lucide--git-branch {
+    --icon-lucide: url("../assets/icons/lucide/git-branch.svg");
+}
+
+.icon-lucide--git-compare-arrows {
+    --icon-lucide: url("../assets/icons/lucide/git-compare-arrows.svg");
+}
+
+.icon-lucide--graduation-cap {
+    --icon-lucide: url("../assets/icons/lucide/graduation-cap.svg");
+}
+
+.icon-lucide--history {
+    --icon-lucide: url("../assets/icons/lucide/history.svg");
+}
+
+.icon-lucide--hourglass {
+    --icon-lucide: url("../assets/icons/lucide/hourglass.svg");
+}
+
+.icon-lucide--search-code {
+    --icon-lucide: url("../assets/icons/lucide/search-code.svg");
+}
+
+.icon-lucide--sliders-horizontal {
+    --icon-lucide: url("../assets/icons/lucide/sliders-horizontal.svg");
+}
+
+.icon-lucide--table-properties {
+    --icon-lucide: url("../assets/icons/lucide/table-properties.svg");
+}
+
+.icon-lucide--users {
+    --icon-lucide: url("../assets/icons/lucide/users.svg");
+}
+
+.icon-lucide--workflow {
+    --icon-lucide: url("../assets/icons/lucide/workflow.svg");
+}

@@ -5,14 +5,101 @@
 <style>
     body.homepage-page {
         overflow-x: hidden;
-        background: #fff6eb;
-        --md-default-bg-color: hsl(33, 100%, 96%);
+        color-scheme: light dark;
+        background: var(--homepage-bg);
+        color: var(--homepage-text);
         --footer-wave-progress: 0;
         --footer-wave-offset-y: 0px;
+        --homepage-bg: #fff6eb;
+        --homepage-bg-soft: #fffaf4;
+        --homepage-panel-start: #fffaf3;
+        --homepage-panel-end: #fff2e5;
+        --homepage-text: #252121;
+        --homepage-text-soft: rgba(76, 60, 67, 0.8);
+        --homepage-text-muted: rgba(67, 20, 7, 0.38);
+        --homepage-text-strong: #333;
+        --homepage-accent-rgb: 253 112 107;
+        --homepage-accent: rgb(var(--homepage-accent-rgb) / 1);
+        --homepage-accent-strong: rgb(var(--homepage-accent-rgb) / 1);
+        --homepage-accent-soft: rgb(var(--homepage-accent-rgb) / 0.18);
+        --homepage-accent-glow: rgb(var(--homepage-accent-rgb) / 1);
+        --homepage-surface: linear-gradient(180deg, rgba(255, 253, 251, 0.98), rgb(var(--homepage-accent-rgb) / 0.12));
+        --homepage-surface-border: rgb(var(--homepage-accent-rgb) / 0.28);
+        --homepage-surface-border-strong: var(--homepage-accent-strong);
+        --homepage-surface-highlight: rgba(255, 255, 255, 0.72);
+        --homepage-surface-shadow: rgba(96, 52, 72, 0.08);
+        --homepage-card-bg: rgba(255, 253, 251, 0.85);
+        --homepage-card-border: var(--homepage-accent-soft);
+        --homepage-card-shadow: 0 8px 20px rgba(96, 52, 72, 0.05);
+        --homepage-button-bg: rgb(45, 42, 38);
+        --homepage-button-fg: #fff6eb;
+        --homepage-button-border: rgba(255, 246, 235, 0.1);
+        --homepage-button-shadow: 0 10px 15px -3px rgba(45, 42, 38, 0.25), 0 4px 6px -2px rgba(45, 42, 38, 0.05);
+        --homepage-button-shadow-focus: 0 10px 15px -3px rgba(45, 42, 38, 0.25);
+        --homepage-icon: #252121;
+        --homepage-icon-soft: #d1d5db;
+        --homepage-icon-muted: #6b7280;
+        --homepage-icon-quiet: #78716c;
+        --homepage-icon-hover: #44403c;
+        --homepage-footer-fade: linear-gradient(to bottom, rgba(45, 42, 38, 0.1) 25%, rgba(45, 42, 38, 0));
+        --homepage-footer-wave: rgba(45, 42, 38, 0.05);
+        --homepage-footer-ink: rgba(45, 42, 38, 0.9);
+        --homepage-footer-outline: var(--homepage-accent-strong);
+        --homepage-footer-focus: var(--homepage-accent-strong);
+        --md-default-bg-color: var(--homepage-bg);
+        --md-default-fg-color: var(--homepage-text);
+        --md-primary-fg-color: var(--homepage-panel-start);
+        --md-primary-fg-color--light: var(--homepage-panel-start);
+        --md-primary-fg-color--dark: var(--homepage-panel-start);
+        --md-primary-bg-color: var(--homepage-text);
+        --md-primary-bg-color--light: var(--homepage-text);
+        --md-primary-bg-color--dark: var(--homepage-text);
+    }
+
+    body.homepage-page[data-md-color-scheme="slate"] {
+        --homepage-bg: #0e0e10;
+        --homepage-bg-soft: #18181b;
+        --homepage-panel-start: #232324;
+        --homepage-panel-end: #141416;
+        --homepage-text: #fff6eb;
+        --homepage-text-soft: rgba(255, 246, 235, 0.8);
+        --homepage-text-muted: rgba(255, 246, 235, 0.56);
+        --homepage-text-strong: #fff6eb;
+        --homepage-surface: linear-gradient(180deg, rgba(35, 35, 36, 0.98), rgba(14, 14, 16, 0.96));
+        --homepage-surface-border: rgba(255, 246, 235, 0.14);
+        --homepage-surface-border-strong: var(--homepage-accent-strong);
+        --homepage-surface-highlight: rgba(255, 255, 255, 0.12);
+        --homepage-surface-shadow: rgba(0, 0, 0, 0.35);
+        --homepage-card-bg: transparent;
+        --homepage-card-border: transparent;
+        --homepage-card-shadow: none;
+        --homepage-button-bg: #232324;
+        --homepage-button-fg: #fff6eb;
+        --homepage-button-border: rgba(255, 255, 255, 0.08);
+        --homepage-button-shadow: 0 14px 24px rgba(0, 0, 0, 0.36), 0 4px 10px rgba(0, 0, 0, 0.2);
+        --homepage-button-shadow-focus: 0 14px 24px rgba(0, 0, 0, 0.36);
+        --homepage-icon: #fff6eb;
+        --homepage-icon-soft: rgba(255, 246, 235, 0.72);
+        --homepage-icon-muted: #fff6eb;
+        --homepage-icon-quiet: rgba(255, 246, 235, 0.72);
+        --homepage-icon-hover: #ffffff;
+        --homepage-footer-fade: linear-gradient(to bottom, rgba(255, 246, 235, 0.22) 25%, rgba(255, 246, 235, 0));
+        --homepage-footer-wave: rgba(255, 246, 235, 0.08);
+        --homepage-footer-ink: rgba(255, 246, 235, 0.88);
+        --homepage-footer-outline: var(--homepage-accent-strong);
+        --homepage-footer-focus: var(--homepage-accent-strong);
+        --md-default-bg-color: var(--homepage-bg);
+        --md-default-fg-color: var(--homepage-text);
+        --md-primary-fg-color: var(--homepage-panel-start);
+        --md-primary-fg-color--light: var(--homepage-panel-start);
+        --md-primary-fg-color--dark: var(--homepage-panel-start);
+        --md-primary-bg-color: var(--homepage-text);
+        --md-primary-bg-color--light: var(--homepage-text);
+        --md-primary-bg-color--dark: var(--homepage-text);
     }
 
     body.homepage-page .md-typeset a {
-        color: #252121;
+        color: var(--homepage-text);
     }
 
     body.homepage-page .md-content__inner {
@@ -26,6 +113,25 @@
 
     body.homepage-page .md-header {
         position: initial;
+        background: var(--homepage-bg);
+        box-shadow: none !important;
+        border-bottom: none !important;
+    }
+
+    body.homepage-page .md-tabs {
+        background: var(--homepage-bg);
+        box-shadow: none !important;
+        border-bottom: none !important;
+    }
+
+    body.homepage-page .md-header__inner,
+    body.homepage-page .md-tabs__list {
+        box-shadow: none !important;
+    }
+
+    body.homepage-page .md-header--shadow,
+    body.homepage-page .md-tabs--shadow {
+        box-shadow: none !important;
     }
 
     body.homepage-page .md-main__inner {
@@ -58,7 +164,7 @@
     }
 
     .homepage {
-        background: #fff6eb;
+        background: var(--homepage-bg);
     }
 
     .klack-button {
@@ -68,14 +174,25 @@
         justify-content: center;
         max-height: 2.75rem;
         padding: 1rem 1.25rem 1rem 3rem;
-        background-color: rgb(45, 42, 38);
-        color: #fff6eb !important;
+        background-color: var(--homepage-button-bg);
+        color: var(--homepage-button-fg) !important;
         font-size: 1.125rem;
         font-weight: 700;
         border-radius: 1rem;
+        border: 1px solid var(--homepage-button-border);
         text-decoration: none;
-        box-shadow: 0 10px 15px -3px rgba(45, 42, 38, 0.25), 0 4px 6px -2px rgba(45, 42, 38, 0.05);
+        box-shadow: var(--homepage-button-shadow);
         transition: all 0.3s ease;
+    }
+
+    .klack-button,
+    .klack-button:hover,
+    .klack-button:focus,
+    .klack-button:active,
+    .klack-button * {
+        text-decoration: none !important;
+        background-image: none !important;
+        box-shadow: none;
     }
 
     .klack-button:after {
@@ -83,7 +200,7 @@
         position: absolute;
         inset: 0;
         border-radius: 1.5rem;
-        box-shadow: 0 10px 15px -3px rgba(45, 42, 38, 0.25);
+        box-shadow: var(--homepage-button-shadow-focus);
         display: none;
     }
 
@@ -105,7 +222,7 @@
     .klack-button .text {
         transform: translateX(0);
         margin-right: -1rem;
-        color: #fff6eb !important;
+        color: var(--homepage-button-fg) !important;
         transition: transform 0.3s ease;
     }
 
@@ -140,14 +257,18 @@
     .feature-grid,
     .social-icons-stack {
         position: relative;
-        z-index: 3;
         transform: translate3d(0, calc(var(--footer-wave-offset-y, 0px) * -1), 0);
         will-change: transform;
     }
 
     .tx-container {
-        z-index: 12;
-        isolation: isolate;
+        background: var(--homepage-bg) !important;
+    }
+
+    .podcast-section,
+    .feature-grid,
+    .social-icons-stack {
+        z-index: 3;
     }
 
     body.homepage-page > input[data-md-toggle="search"]:checked ~ .md-header {
@@ -216,7 +337,7 @@
         font-weight: 300;
         font-style: italic;
         letter-spacing: -0.025em;
-        color: #252121;
+        color: var(--homepage-text);
     }
 
     @media (min-width: 640px) {
@@ -226,17 +347,20 @@
     }
 
     .title-klack-style mark {
-        background: transparent;
+        background-color: transparent;
+        background-image: linear-gradient(180deg, transparent 0 52%, var(--homepage-accent-strong) 52% 100%);
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
         font-weight: 800;
-        color: #252121;
+        color: var(--homepage-text);
         letter-spacing: -0.025em;
-        box-shadow: inset 0 -0.5em 0 #ff878d;
+        padding: 0 0.04em;
+        box-shadow: none;
     }
 
     .tx-landing__image {
         margin-top: 45px;
         position: relative;
-        z-index: 13;
         flex: 1;
         display: flex;
         justify-content: flex-end;
@@ -265,12 +389,21 @@
         text-decoration: none;
     }
 
+    .star-rating,
+    .star-rating:hover,
+    .star-rating:focus,
+    .star-rating:active,
+    .star-rating * {
+        text-decoration: none !important;
+        background-image: none !important;
+    }
+
     .star-rating .left-svg,
     .star-rating .right-svg,
     .star-rating .star-icon {
         width: 38px;
         height: 38px;
-        fill: #d1d5db;
+        fill: var(--homepage-icon-soft);
         transition: fill 0.3s ease, transform 0.3s ease;
     }
 
@@ -283,7 +416,7 @@
     .star-rating:hover .left-svg,
     .star-rating:hover .right-svg,
     .star-rating:hover .star-icon {
-        fill: #6b7280;
+        fill: var(--homepage-icon-muted);
     }
 
     .star-rating:hover .left-svg {
@@ -306,20 +439,20 @@
     .star-text {
         font-size: 18px;
         font-weight: bold;
-        color: #9ca3af;
+        color: var(--homepage-text-muted);
         transition: color 0.3s ease;
     }
 
     .star-text .number {
-        color: #6b7280;
+        color: var(--homepage-text-muted);
     }
 
     .star-rating:hover .star-text {
-        color: #4b5563;
+        color: var(--homepage-icon-hover);
     }
 
     .star-rating:hover .star-text .number {
-        color: #374151;
+        color: var(--homepage-icon-hover);
     }
 
     .joss-link {
@@ -334,16 +467,25 @@
         margin-top: 0.75rem;
     }
 
+    .joss-link,
+    .joss-link:hover,
+    .joss-link:focus,
+    .joss-link:active,
+    .joss-link * {
+        text-decoration: none !important;
+        background-image: none !important;
+    }
+
     .joss-top-text {
         font-size: 14px;
         font-weight: 700;
-        color: #78716c;
+        color: var(--homepage-icon-quiet);
         margin-bottom: 5px;
         transition: color 0.3s ease;
     }
 
     .joss-link:hover .joss-top-text {
-        color: #44403c;
+        color: var(--homepage-icon-hover);
     }
 
     .joss-content {
@@ -360,7 +502,7 @@
         left: 0;
         width: 28px;
         height: 28px;
-        fill: #78716c;
+        fill: var(--homepage-icon-quiet);
         transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
@@ -369,7 +511,7 @@
         left: 36px;
         font-size: 14px;
         font-weight: 700;
-        color: #6b7280;
+        color: var(--homepage-text-muted);
         transition: left 0.3s ease, transform 0.3s ease;
     }
 
@@ -387,17 +529,21 @@
         margin: 0.5rem auto 3rem;
         max-width: 1100px;
         text-align: center;
-        --podcast-rose: #dea2c2;
-        --podcast-rose-strong: #bf789f;
-        --podcast-rose-soft: #f4e4ec;
-        --podcast-cream: #fffaf6;
-        --podcast-shadow: rgba(96, 52, 72, 0.08);
+        --podcast-rose: var(--homepage-accent);
+        --podcast-rose-strong: var(--homepage-footer-outline);
+        --podcast-rose-soft: var(--homepage-accent-soft);
+        --podcast-cream: var(--homepage-bg-soft);
+        --podcast-shadow: var(--homepage-surface-shadow);
+        --podcast-surface: var(--homepage-surface);
+        --podcast-border: var(--homepage-surface-border);
+        --podcast-border-strong: var(--homepage-surface-border-strong);
+        --podcast-gloss: transparent;
     }
 
     .podcast-heading {
         font-size: clamp(1.75rem, 2.8vw, 2.5rem);
         margin-bottom: 0.35rem;
-        color: #252121;
+        color: var(--homepage-text);
     }
 
     .podcast-heading__plain {
@@ -405,7 +551,7 @@
     }
 
     .podcast-subtitle {
-        color: rgba(76, 60, 67, 0.8);
+        color: var(--homepage-text-soft);
         margin-bottom: 1.25rem;
         font-weight: 500;
     }
@@ -447,9 +593,9 @@
         gap: 0.6rem;
         padding: 0.35rem 0.5rem 0.35rem 0.35rem;
         border-radius: 999px;
-        background: linear-gradient(180deg, rgba(255, 252, 249, 0.98), rgba(250, 242, 246, 0.98));
-        box-shadow: 0 10px 22px var(--podcast-shadow);
-        border: 1px solid rgba(222, 162, 194, 0.32);
+        background: var(--podcast-surface);
+        box-shadow: none;
+        border: 0.85px solid var(--podcast-border);
         position: relative;
         overflow: hidden;
         min-width: 360px;
@@ -461,12 +607,12 @@
     }
 
     .podcast-spotlight::after {
-        content: '';
+        content: none;
         position: absolute;
         inset: 2px;
         border-radius: inherit;
-        border: 1px solid rgba(255, 255, 255, 0.55);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+        border: 0;
+        background: none;
         pointer-events: none;
     }
 
@@ -479,8 +625,8 @@
         font-size: 1.45rem;
         border-radius: 999px;
         background: var(--podcast-cream);
-        border: 1px solid rgba(222, 162, 194, 0.28);
-        box-shadow: 0 4px 12px rgba(96, 52, 72, 0.05);
+        border: 0.85px solid var(--podcast-border);
+        box-shadow: none;
         filter: none;
         flex-shrink: 0;
     }
@@ -505,7 +651,12 @@
         accent-color: var(--podcast-rose-strong);
         border-radius: 999px;
         background: transparent;
+        color-scheme: light;
         filter: saturate(0.96);
+    }
+
+    body.homepage-page[data-md-color-scheme="slate"] .podcast-audio {
+        color-scheme: dark;
     }
 
     .podcast-audio::-webkit-media-controls-panel {
@@ -513,16 +664,16 @@
     }
 
     .podcast-audio.playing::-webkit-media-controls-play-button {
-        filter: drop-shadow(0 0 0.35rem rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0 0 0.35rem var(--homepage-accent-glow));
     }
 
     .podcast-bubble {
         width: 54px;
         height: 54px;
         border-radius: 50%;
-        border: 1px solid rgba(222, 162, 194, 0.26);
-        background: linear-gradient(180deg, rgba(255, 253, 251, 0.98), rgba(246, 236, 241, 0.96));
-        box-shadow: 0 6px 16px rgba(96, 52, 72, 0.06);
+        border: 0.85px solid var(--podcast-border);
+        background: var(--podcast-surface);
+        box-shadow: none;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -533,19 +684,19 @@
     }
 
     .podcast-bubble::after {
-        content: '';
+        content: none;
         position: absolute;
         inset: 4px;
         border-radius: inherit;
-        border: 1px solid rgba(255, 255, 255, 0.72);
+        border: 0;
         opacity: 1;
         pointer-events: none;
     }
 
     .podcast-bubble:hover {
         transform: translateY(-1px);
-        border-color: rgba(191, 120, 159, 0.42);
-        box-shadow: 0 10px 20px rgba(96, 52, 72, 0.08);
+        border-color: var(--podcast-border-strong);
+        box-shadow: none;
     }
 
     .podcast-bubble .bubble-flag {
@@ -556,7 +707,7 @@
 
     .podcast-item.active .podcast-bubble {
         transform: scale(0.85);
-        box-shadow: 0 18px 35px rgba(96, 52, 72, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        box-shadow: none;
         opacity: 0;
         width: 0;
         height: 0;
@@ -627,13 +778,16 @@
         padding: 20px;
         width: 247px;
         border-radius: 8px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
     }
 
     .grid-icon {
         width: 3.5rem;
         height: 3.5rem;
         margin-bottom: 1.25rem;
-        color: #252121;
+        color: var(--homepage-icon);
         transition: transform 0.3s ease;
     }
 
@@ -645,13 +799,13 @@
     .grid-icon--api,
     .grid-icon--community,
     .grid-icon--cython {
-        fill: #252121;
+        fill: currentColor;
     }
 
     .grid-item h2 {
         font-size: 1.475rem;
         font-weight: bold;
-        color: #333;
+        color: var(--homepage-text-strong);
         line-height: 1.2;
     }
 
@@ -745,12 +899,12 @@
     }
 
     .grid-icon__brain-dot {
-        fill: #f8dbe8;
+        fill: var(--homepage-accent-soft);
         opacity: 0;
         transform: scale(0.4);
         transform-box: fill-box;
         transform-origin: center;
-        filter: drop-shadow(0 0 3px rgba(222, 162, 194, 0.7));
+        filter: drop-shadow(0 0 3px var(--homepage-accent-glow));
     }
 
     .grid-item:hover .grid-icon--dependency .grid-icon__spark {
@@ -840,7 +994,7 @@
 
     .social-scroll-hint {
         margin: 0.65rem 0 0;
-        color: rgba(67, 20, 7, 0.38);
+        color: var(--homepage-text-muted);
         font-size: 0.74rem;
         line-height: 1rem;
         font-weight: 700;
@@ -853,7 +1007,7 @@
 
     .social-icons-stack:hover .social-scroll-hint,
     .social-icons-stack:focus-within .social-scroll-hint {
-        color: rgba(191, 120, 159, 0.9);
+        color: var(--homepage-footer-outline);
         opacity: 1;
     }
 
@@ -862,18 +1016,18 @@
         align-items: center;
         outline: none;
         transition: all 0.3s;
-        background-color: rgba(45, 42, 38, 0.05);
+        background-color: var(--homepage-footer-wave);
         padding: 0.5rem;
         border-radius: 0.40rem;
-        color: #78716c;
+        color: var(--homepage-icon-quiet);
     }
 
     .social-icon-link:hover {
-        color: #44403c;
+        color: var(--homepage-icon-hover);
     }
 
     .social-icon-link:focus {
-        box-shadow: 0 0 0 2px #bf789f;
+        box-shadow: 0 0 0 2px var(--homepage-footer-focus);
     }
 
     .social-icon-bottom {
@@ -952,7 +1106,7 @@
         user-select: none;
         overflow: hidden;
         white-space: nowrap;
-        background: linear-gradient(to bottom, rgba(45, 42, 38, 0.1) 25%, rgba(45, 42, 38, 0));
+        background: var(--homepage-footer-fade);
         -webkit-background-clip: text;
         background-clip: text;
         font-size: 4rem;
@@ -1277,12 +1431,12 @@
                 <rect x="864" y="614" width="175" height="530" rx="20" ry="20" transform="rotate(180 864 614)" fill="url(#paint7_linear_3283_101175)"></rect>
             </g>
             <g filter="url(#filter8_f_3283_101175)">
-                <rect width="43" height="584" rx="20" ry="20" transform="matrix(1 0 -6.17385e-07 -1 506 614)" fill="url(#paint9_linear_3283_101175)"></rect>
+                <rect width="43" height="584" rx="20" ry="20" transform="matrix(1 0 -6.17385e-07 -1 506 614)" fill="url(#paint8_linear_3283_101175)"></rect>
                 <rect width="43" height="584" rx="20" ry="20" transform="matrix(1 0 -6.17385e-07 -1 549 614)" fill="url(#paint8_linear_3283_101175)"></rect>
                 <rect width="43" height="584" rx="20" ry="20" transform="matrix(1 0 -6.17385e-07 -1 592 614)" fill="url(#paint8_linear_3283_101175)"></rect>
                 <rect width="43" height="584" rx="20" ry="20" transform="matrix(1 0 -6.17385e-07 -1 635 614)" fill="url(#paint8_linear_3283_101175)"></rect>
                 <rect width="43" height="584" rx="20" ry="20" transform="matrix(1 0 -6.17385e-07 -1 678 614)" fill="url(#paint8_linear_3283_101175)"></rect>
-                <rect width="43" height="584" rx="20" ry="20" transform="matrix(1 0 -6.17385e-07 -1 721 614)" fill="url(#paint10_linear_3283_101175)"></rect>
+                <rect width="43" height="584" rx="20" ry="20" transform="matrix(1 0 -6.17385e-07 -1 721 614)" fill="url(#paint8_linear_3283_101175)"></rect>
             </g>
             <defs>
                 <filter id="filter0_f_3283_101175" x="1083" y="261" width="234" height="383" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
@@ -1336,14 +1490,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
                 <linearGradient id="paint1_linear_3283_101175" x1="1233" y1="614" x2="1233" y2="1018" gradientUnits="userSpaceOnUse">
                     <stop stop-color="rgb(57, 51, 184)"></stop>
@@ -1351,14 +1505,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
                 <linearGradient id="paint2_linear_3283_101175" x1="1092" y1="614" x2="1092" y2="1092" gradientUnits="userSpaceOnUse">
                     <stop stop-color="rgb(57, 51, 184)"></stop>
@@ -1366,14 +1520,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
                 <linearGradient id="paint3_linear_3283_101175" x1="87.0001" y1="0" x2="87.0001" y2="323" gradientUnits="userSpaceOnUse">
                     <stop stop-color="rgb(57, 51, 184)"></stop>
@@ -1381,14 +1535,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
                 <linearGradient id="paint4_linear_3283_101175" x1="87.0001" y1="0" x2="87.0001" y2="404" gradientUnits="userSpaceOnUse">
                     <stop stop-color="rgb(57, 51, 184)"></stop>
@@ -1396,14 +1550,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
                 <linearGradient id="paint5_linear_3283_101175" x1="87.0001" y1="0" x2="87.0001" y2="478" gradientUnits="userSpaceOnUse">
                     <stop stop-color="rgb(57, 51, 184)"></stop>
@@ -1411,14 +1565,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
                 <linearGradient id="paint6_linear_3283_101175" x1="87.5002" y1="0" x2="87.5002" y2="530" gradientUnits="userSpaceOnUse">
                     <stop stop-color="rgb(57, 51, 184)"></stop>
@@ -1426,14 +1580,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
                 <linearGradient id="paint7_linear_3283_101175" x1="951.5" y1="614" x2="951.5" y2="1144" gradientUnits="userSpaceOnUse">
                     <stop stop-color="rgb(57, 51, 184)"></stop>
@@ -1441,14 +1595,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
                 <linearGradient id="paint8_linear_3283_101175" x1="86.5002" y1="0" x2="86.5002" y2="584" gradientUnits="userSpaceOnUse">
                     <stop stop-color="rgb(57, 51, 184)"></stop>
@@ -1456,30 +1610,14 @@
                     <stop offset="0.18" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.26" stop-color="rgb(57, 51, 184)"></stop>
                     <stop offset="0.34" stop-color="rgb(57, 51, 184)"></stop>
-                    <stop offset="0.42" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.50" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.58" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.66" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.78" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.88" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="0.96" stop-color="rgb(214, 109, 109)"></stop>
-                    <stop offset="1" stop-color="rgb(214, 109, 109)" stop-opacity="0"></stop>
-                </linearGradient>
-                <linearGradient id="paint9_linear_3283_101175" x1="21.5" y1="0" x2="21.5" y2="584" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="rgb(252, 154, 149)"></stop>
-                    <stop offset="0.16" stop-color="rgb(252, 154, 149)"></stop>
-                    <stop offset="0.42" stop-color="rgb(252, 154, 149)"></stop>
-                    <stop offset="0.72" stop-color="rgb(252, 154, 149)"></stop>
-                    <stop offset="0.92" stop-color="rgb(252, 154, 149)"></stop>
-                    <stop offset="1" stop-color="rgb(252, 154, 149)" stop-opacity="0"></stop>
-                </linearGradient>
-                <linearGradient id="paint10_linear_3283_101175" x1="21.5" y1="0" x2="21.5" y2="584" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="rgb(23, 21, 76)"></stop>
-                    <stop offset="0.16" stop-color="rgb(23, 21, 76)"></stop>
-                    <stop offset="0.42" stop-color="rgb(23, 21, 76)"></stop>
-                    <stop offset="0.72" stop-color="rgb(23, 21, 76)"></stop>
-                    <stop offset="0.92" stop-color="rgb(23, 21, 76)"></stop>
-                    <stop offset="1" stop-color="rgb(23, 21, 76)" stop-opacity="0"></stop>
+                    <stop offset="0.42" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.50" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.58" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.66" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.78" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.88" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="0.96" stop-color="rgb(253, 112, 107)" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="rgb(253, 112, 107)" stop-opacity="0"></stop>
                 </linearGradient>
             </defs>
         </svg>

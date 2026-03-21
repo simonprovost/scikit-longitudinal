@@ -6,14 +6,20 @@ on:
       - main
     paths:
       - 'docs/**'
-      - 'mkdocs.yml'
+      - 'overrides/**'
+      - 'zensical.toml'
+      - 'pyproject.toml'
+      - 'uv.lock'
       - 'src/**/*.py'
   pull_request:
     branches:
       - main
     paths:
       - 'docs/**'
-      - 'mkdocs.yml'
+      - 'overrides/**'
+      - 'zensical.toml'
+      - 'pyproject.toml'
+      - 'uv.lock'
       - 'src/**/*.py'
 
 jobs:
@@ -34,4 +40,4 @@ jobs:
       - name: Install dependencies
         run: uv sync --dev
       - name: Build documentation
-        run: uv run mkdocs build --site-dir site
+        run: uv run zensical build

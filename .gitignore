@@ -58,6 +58,7 @@ venv/
 # Distribution / packaging
 dist/
 build/
+site/
 *.egg
 *.whl
 .Python

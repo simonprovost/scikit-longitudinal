@@ -13,13 +13,14 @@ include CHANGELOG.MD
 include CITATION.cff
 include dockerfile
 include logo.png
-include mkdocs.yml
+include zensical.toml
 include mkgendocs.yml
 include pdm.lock
 include pytest.ini
 
 recursive-include scikit_longitudinal *.py *.c *.cpp *.h *.pyx *.pxd *.pxi *.tp
 recursive-include docs *
+recursive-include overrides *
 
 # Exclude unnecessary directories and files
 recursive-exlude scikit_longitudinal/tests *

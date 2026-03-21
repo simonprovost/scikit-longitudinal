@@ -1,27 +1,10 @@
-<!-- @license lucide-static v0.577.0 - ISC -->
-<svg
-  class="lucide lucide-graduation-cap"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="url(#sklong-icon-gradient)"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="url(#readme-gradient)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-graduation-cap" viewBox="0 0 24 24">
   <defs>
-    <linearGradient id="sklong-icon-gradient" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#FAD0F8" />
-      <stop offset="20%" stop-color="#FAB316" />
-      <stop offset="40%" stop-color="#FAB316" />
-      <stop offset="60%" stop-color="#A0666F" />
-      <stop offset="80%" stop-color="#0E5CF1" />
-      <stop offset="100%" stop-color="#0E5CF1" />
+    <linearGradient id="readme-gradient" x1="12" y1="0" x2="12" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FD706B"/>
+      <stop offset="1" stop-color="#472727"/>
     </linearGradient>
   </defs>
-  <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
-  <path d="M22 10v6" />
-  <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+  <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0zM22 10v6"/>
+  <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>
 </svg>
