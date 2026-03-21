@@ -1,10 +1,11 @@
-# 🔍 Algorithm Adaptation: Preserve Temporal Dependency for Sklong Estimators
+---
+icon: lucide/activity
+---
 
-!!! important "Dataset Used in Tutorials"
-    Generate `extended_stroke_longitudinal.csv` once using the snippet in the [tutorials overview](overview.md#dataset-used-in-tutorials), then reuse it here.
+# Algorithm Adaptation: Preserve Temporal Dependency for Sklong Estimators
 
-!!! tip "Prerequisite Reading"
-    Ensure you've read the [Temporal Dependency Guide](temporal_dependency.md) and [Data Format Tutorial](sklong_longitudinal_data_format.md).
+!!! tip "Dataset Used in Tutorials"
+    Use the shared synthetic dataset defined in the [tutorials overview](overview.md#dataset-used-in-tutorials). Generate it once there and reuse it here.
 
 Algorithm-adaptation workflows keep temporal structure intact. This walkthrough uses [`LexicoDecisionTreeClassifier`](../API/estimators/trees/lexico_decision_tree_classifier.md), which prioritises recent waves while respecting the full sequence.
 
@@ -24,9 +25,9 @@ dataset.setup_features_group([[2,3], [4,5], [6,7], [8,9], [10,11], [12,13]])
 from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 
 clf = LexicoDecisionTreeClassifier(
-    features_group=dataset.feature_groups(),
-    threshold_gain=0.01,
-    random_state=42
+ features_group=dataset.feature_groups(),
+ threshold_gain=0.01,
+ random_state=42
 )
 
 clf.fit(dataset.X_train, dataset.y_train)
@@ -36,7 +37,7 @@ clf.fit(dataset.X_train, dataset.y_train)
 
 ```python
 y_pred = clf.predict(dataset.X_test)
-print(y_pred)  # Example output
+print(y_pred) # Example output
 
 from sklearn.metrics import accuracy_score
 print(f"Accuracy: {accuracy_score(dataset.y_test, y_pred)}")
@@ -45,4 +46,4 @@ print(f"Accuracy: {accuracy_score(dataset.y_test, y_pred)}")
 This introduces basic estimator usage. Experiment with hyperparameters like `threshold_gain`.
 
 !!! tip "Explore more longitudinal-aware estimators"
-    Review the estimator catalog and parameters in the [API reference](../API/index.md#estimators) for additional options.
+    Review the estimator catalog and parameters in the [API reference](../API/index.md) for additional options.

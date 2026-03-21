@@ -1,10 +1,11 @@
-# 🧪 Data Preparation: Flatten Temporal Dependency for Scikit-Learn Estimators
+---
+icon: lucide/database-zap
+---
 
-!!! important "Dataset Used in Tutorials"
-    Generate `extended_stroke_longitudinal.csv` once using the snippet in the [tutorials overview](overview.md#dataset-used-in-tutorials), then reuse it here.
+# Data Preparation: Flatten Temporal Dependency for Scikit-Learn Estimators
 
-!!! tip "Prerequisite Reading"
-    Start with the [Temporal Dependency](temporal_dependency.md) and [Longitudinal Data Format](sklong_longitudinal_data_format.md) guides so you know how to describe waves and non-longitudinal features.
+!!! tip "Dataset Used in Tutorials"
+    Use the shared synthetic dataset defined in the [tutorials overview](overview.md#dataset-used-in-tutorials). Generate it once there and reuse it here.
 
 Data-preparation workflows flatten longitudinal structure so you can plug the output into standard `scikit-learn` estimators. Follow this step-by-step path with [`AggrFunc`](../API/data_preparation/aggregation_function.md) (mean aggregation) and `LogisticRegression`—no longitudinal-specific pipeline required.
 
@@ -24,10 +25,10 @@ dataset.setup_features_group([[2, 3], [4, 5], [6, 7], [8, 9], [10, 11], [12, 13]
 from scikit_longitudinal.data_preparation import AggrFunc
 
 aggregator = AggrFunc(
-    features_group=dataset.feature_groups(),
-    non_longitudinal_features=dataset.non_longitudinal_features(),
-    feature_list_names=dataset.data.columns.tolist(),
-    aggregation_func="mean",
+ features_group=dataset.feature_groups(),
+ non_longitudinal_features=dataset.non_longitudinal_features(),
+ feature_list_names=dataset.data.columns.tolist(),
+ aggregation_func="mean",
 )
 
 X_train_flat = aggregator.fit_transform(dataset.X_train)
@@ -50,4 +51,4 @@ print(classification_report(dataset.y_test, y_pred))
 `AggrFunc` outputs a static tabular matrix, which `LogisticRegression` can train on using the familiar Fit—Predict API. Swap in any other standard estimator (e.g., `RandomForestClassifier`) once the flattening step is in place.
 
 !!! tip "Explore more data-preparation options"
-    Find additional flattening strategies and parameters in the [API reference](../API/index.md#data-preparation).
+    Find additional flattening strategies and parameters in the [API reference](../API/index.md).

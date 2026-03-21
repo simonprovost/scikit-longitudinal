@@ -1,4 +1,9 @@
 ---
-template: overrides/home.html
+template: home.html
+hide:
+ - navigation
+ - toc
+ - footer
+ - path
 title: Scikit-Longitudinal
 ---

@@ -1,10 +1,11 @@
-# 🎯 Hyperparameter Tuning: Grid vs. Random Search
+---
+icon: lucide/sliders-horizontal
+---
 
-!!! important "Dataset Used in Tutorials"
-    Generate `extended_stroke_longitudinal.csv` once using the snippet in the [tutorials overview](overview.md#dataset-used-in-tutorials), then reuse it here.
+# Hyperparameter Tuning: Grid vs. Random Search
 
-!!! tip "Prerequisite Reading"
-    Ensure you've read the [Temporal Dependency Guide](temporal_dependency.md) and [Data Format Tutorial](sklong_longitudinal_data_format.md).
+!!! tip "Dataset Used in Tutorials"
+    Use the shared synthetic dataset defined in the [tutorials overview](overview.md#dataset-used-in-tutorials). Generate it once there and reuse it here.
 
 Tune longitudinal-aware models to squeeze out extra performance. This guide compares grid search and random search for `LexicoRandomForestClassifier`, focusing on `threshold_gain` plus common random-forest hyperparameters.
 
@@ -26,16 +27,16 @@ from sklearn.model_selection import GridSearchCV
 from scikit_longitudinal.estimators.ensemble import LexicoRandomForestClassifier
 
 param_grid = {
-    'threshold_gain': [0.0001, 0.001, 0.01],
-    'n_estimators': [50, 100, 200],
-    'max_depth': [None, 5, 10],
+ 'threshold_gain': [0.0001, 0.001, 0.01],
+ 'n_estimators': [50, 100, 200],
+ 'max_depth': [None, 5, 10],
 }
 
 grid = GridSearchCV(
-    estimator=LexicoRandomForestClassifier(features_group=features_group, random_state=42),
-    param_grid=param_grid,
-    cv=3,
-    n_jobs=-1,
+ estimator=LexicoRandomForestClassifier(features_group=features_group, random_state=42),
+ param_grid=param_grid,
+ cv=3,
+ n_jobs=-1,
 )
 
 grid.fit(dataset.X_train, dataset.y_train)
@@ -49,19 +50,19 @@ from sklearn.model_selection import RandomizedSearchCV
 from scipy.stats import loguniform, randint
 
 param_distributions = {
-    'threshold_gain': loguniform(1e-4, 1e-1),
-    'n_estimators': randint(50, 300),
-    'max_depth': [None, 5, 10, 15],
-    'max_features': ['auto', 'sqrt', 0.8],
+ 'threshold_gain': loguniform(1e-4, 1e-1),
+ 'n_estimators': randint(50, 300),
+ 'max_depth': [None, 5, 10, 15],
+ 'max_features': ['auto', 'sqrt', 0.8],
 }
 
 random_search = RandomizedSearchCV(
-    estimator=LexicoRandomForestClassifier(features_group=features_group, random_state=42),
-    param_distributions=param_distributions,
-    n_iter=12,
-    cv=3,
-    n_jobs=-1,
-    random_state=42,
+ estimator=LexicoRandomForestClassifier(features_group=features_group, random_state=42),
+ param_distributions=param_distributions,
+ n_iter=12,
+ cv=3,
+ n_jobs=-1,
+ random_state=42,
 )
 
 random_search.fit(dataset.X_train, dataset.y_train)

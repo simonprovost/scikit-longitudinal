@@ -1,7 +1,8 @@
 ---
+icon: lucide/compass
 ---
 
-# 🧭 Advanced Feature Group (Temporal) Setup for Uneven Waves
+# Advanced Feature Group (Temporal) Setup for Uneven Waves
 
 Longitudinal datasets often have **uneven observation counts** per subject (e.g., some patients attend 2 visits while
 others have 4). In `Sklong`, the recommended approach is:
@@ -13,10 +14,6 @@ others have 4). In `Sklong`, the recommended approach is:
 
 This tutorial shows how to do that in practice.
 
-!!! tip "Prerequisite Reading"
-    If you have not already, start with the [Temporal Dependency guide](temporal_dependency.md) and the
-    [Longitudinal Data Format walkthrough](sklong_longitudinal_data_format.md).
-
 ## Step 1: Start from a long table (uneven observations) —— Optional
 
 A long-format dataset makes it easy to describe variable visit counts, but it is not what `Sklong` consumes directly.
@@ -24,7 +21,7 @@ We show this first step for clarity, but if you already have your data in wide f
 
 !!! note "`Waves` Means Visit Number"
     Note also, that `wave` means visit number here (1, 2, 3, ...). It could be any time interval between visits, even irregular ones.
-    Sklong mainly cares about the distance between visits, not the actual time interval. This could change in future versions, 
+    Sklong mainly cares about the distance between visits, not the actual time interval. This could change in future versions,
     if new primitives are added to handle specifically time (irregular mostly) intervals.
 
 Below, some subjects are missing wave `2`:
@@ -33,13 +30,13 @@ Below, some subjects are missing wave `2`:
 import pandas as pd
 
 long_df = pd.DataFrame(
-    {
-        "subject_id": [1, 1, 1, 2, 2, 3, 3, 3],
-        "wave": [1, 2, 3, 1, 3, 1, 2, 3],
-        "mood": [4.0, 3.5, 3.0, 2.0, 2.5, 5.0, 4.5, 4.0],
-        "sleep": [7.0, 6.5, 6.0, 5.5, 5.0, 8.0, 7.5, 7.0],
-        "age": [60, 60, 60, 55, 55, 52, 52, 52],
-    }
+ {
+ "subject_id": [1, 1, 1, 2, 2, 3, 3, 3],
+ "wave": [1, 2, 3, 1, 3, 1, 2, 3],
+ "mood": [4.0, 3.5, 3.0, 2.0, 2.5, 5.0, 4.5, 4.0],
+ "sleep": [7.0, 6.5, 6.0, 5.5, 5.0, 8.0, 7.5, 7.0],
+ "age": [60, 60, 60, 55, 55, 52, 52, 52],
+ }
 )
 ```
 
@@ -47,13 +44,13 @@ long_df = pd.DataFrame(
 
 ```python
 wide_df = (
-    long_df
-    .pivot(index="subject_id", columns="wave", values=["mood", "sleep"])
-    .sort_index(axis=1)
+ long_df
+ .pivot(index="subject_id", columns="wave", values=["mood", "sleep"])
+ .sort_index(axis=1)
 )
 wide_df.columns = [f"{feature}_w{wave}" for feature, wave in wide_df.columns]
 wide_df = wide_df.reset_index().merge(
-    long_df[["subject_id", "age"]].drop_duplicates(), on="subject_id"
+ long_df[["subject_id", "age"]].drop_duplicates(), on="subject_id"
 )
 
 print(wide_df)
@@ -62,10 +59,10 @@ print(wide_df)
 Output (note the `NaN` values for missing waves):
 
 ```
-   subject_id  mood_w1  mood_w2  mood_w3  sleep_w1  sleep_w2  sleep_w3  age
-0           1      4.0      3.5      3.0       7.0       6.5       6.0   60
-1           2      2.0      NaN      2.5       5.5       NaN       5.0   55
-2           3      5.0      4.5      4.0       8.0       7.5       7.0   52
+ subject_id mood_w1 mood_w2 mood_w3 sleep_w1 sleep_w2 sleep_w3 age
+0 1 4.0 3.5 3.0 7.0 6.5 6.0 60
+1 2 2.0 NaN 2.5 5.5 NaN 5.0 55
+2 3 5.0 4.5 4.0 8.0 7.5 7.0 52
 ```
 
 Wide format lets you keep all subject data on a single row while leaving missing visits as `NaN`.
@@ -83,24 +80,24 @@ In the example below, `sleep_w2` is missing entirely (no column), while `mood_w2
 from scikit_longitudinal.data_preparation import LongitudinalDataset
 
 columns = [
-    "age",
-    "gender",
-    "mood_w1",
-    "mood_w2",
-    "mood_w3",
-    "sleep_w1",
-    "sleep_w3",  # sleep_w2 does not exist in this dataset
-    "outcome_w3",
+ "age",
+ "gender",
+ "mood_w1",
+ "mood_w2",
+ "mood_w3",
+ "sleep_w1",
+ "sleep_w3", # sleep_w2 does not exist in this dataset
+ "outcome_w3",
 ]
 
 # Example with uneven visits + missing sleep_w2 column
 wide_dataset = pd.DataFrame(
-    [
-        [60, 0, 4.0, 3.5, 3.0, 7.0, 6.0, 1],
-        [55, 1, 2.0, None, 2.5, 5.5, 5.0, 0],
-        [52, 0, 5.0, 4.5, 4.0, 8.0, 7.0, 1],
-    ],
-    columns=columns,
+ [
+ [60, 0, 4.0, 3.5, 3.0, 7.0, 6.0, 1],
+ [55, 1, 2.0, None, 2.5, 5.5, 5.0, 0],
+ [52, 0, 5.0, 4.5, 4.0, 8.0, 7.0, 1],
+ ],
+ columns=columns,
 )
 
 # Create the dataset (data_frame skips file IO)
@@ -109,8 +106,8 @@ longitudinal.load_target(target_column="outcome_w3")
 
 # features_group uses -1 to pad the missing sleep wave
 features_group = [
-    [2, 3, 4],   # mood_w1, mood_w2, mood_w3
-    [5, -1, 6],  # sleep_w1, N/A, sleep_w3
+ [2, 3, 4], # mood_w1, mood_w2, mood_w3
+ [5, -1, 6], # sleep_w1, N/A, sleep_w3
 ]
 longitudinal.setup_features_group(features_group)
 

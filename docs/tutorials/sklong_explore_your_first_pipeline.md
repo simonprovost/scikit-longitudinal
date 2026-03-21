@@ -1,10 +1,11 @@
-# 🔗 Pipelines: Mix Longitudinal Components
+---
+icon: lucide/workflow
+---
 
-!!! important "Dataset Used in Tutorials"
-    Generate `extended_stroke_longitudinal.csv` once using the snippet in the [tutorials overview](overview.md#dataset-used-in-tutorials), then reuse it here.
+# Pipelines: Mix Longitudinal Components
 
-!!! tip "Prerequisite Reading"
-    Ensure you've read the [Temporal Dependency Guide](temporal_dependency.md) and [Data Format Tutorial](sklong_longitudinal_data_format.md).
+!!! tip "Dataset Used in Tutorials"
+    Use the shared synthetic dataset defined in the [tutorials overview](overview.md#dataset-used-in-tutorials). Generate it once there and reuse it here.
 
 Pipelines let you chain longitudinal transformations, preprocessing, and estimation in one interface.
 
@@ -33,22 +34,22 @@ from scikit_longitudinal.data_preparation import AggrFunc
 from scikit_longitudinal.pipeline import LongitudinalPipeline
 
 steps = [
-    ('aggr_mean', AggrFunc(
-        features_group=dataset.feature_groups(),
-        non_longitudinal_features=dataset.non_longitudinal_features(),
-        feature_list_names=dataset.data.columns.tolist(),
-        aggregation_func='mean',
-    )),
-    ('scale', StandardScaler()),
-    ('log_reg', LogisticRegression(max_iter=500)),
+ ('aggr_mean', AggrFunc(
+ features_group=dataset.feature_groups(),
+ non_longitudinal_features=dataset.non_longitudinal_features(),
+ feature_list_names=dataset.data.columns.tolist(),
+ aggregation_func='mean',
+ )),
+ ('scale', StandardScaler()),
+ ('log_reg', LogisticRegression(max_iter=500)),
 ]
 
 pipeline = LongitudinalPipeline(
-    steps=steps,
-    features_group=dataset.feature_groups(),
-    non_longitudinal_features=dataset.non_longitudinal_features(),
-    feature_list_names=dataset.data.columns.tolist(),
-    update_feature_groups_callback='default'
+ steps=steps,
+ features_group=dataset.feature_groups(),
+ non_longitudinal_features=dataset.non_longitudinal_features(),
+ feature_list_names=dataset.data.columns.tolist(),
+ update_feature_groups_callback='default'
 )
 
 pipeline.fit(dataset.X_train, dataset.y_train)
@@ -69,17 +70,17 @@ from scikit_longitudinal.preprocessors.feature_selection import CorrelationBased
 from scikit_longitudinal.estimators.trees import LexicoDecisionTreeClassifier
 
 steps = [
-    ('MerWavTimePlus', MerWavTimePlus()),  # Merge waves keeping time indices
-    ('CFSPerGroup', CorrelationBasedFeatureSelectionPerGroup()),  # Longitudinal feature selection
-    ('LexicoDT', LexicoDecisionTreeClassifier(threshold_gain=0.01, random_state=42))
+ ('MerWavTimePlus', MerWavTimePlus()), # Merge waves keeping time indices
+ ('CFSPerGroup', CorrelationBasedFeatureSelectionPerGroup()), # Longitudinal feature selection
+ ('LexicoDT', LexicoDecisionTreeClassifier(threshold_gain=0.01, random_state=42))
 ]
 
 pipeline = LongitudinalPipeline(
-    steps=steps,
-    features_group=dataset.feature_groups(),
-    non_longitudinal_features=dataset.non_longitudinal_features(),
-    feature_list_names=dataset.data.columns.tolist(),
-    update_feature_groups_callback='default'
+ steps=steps,
+ features_group=dataset.feature_groups(),
+ non_longitudinal_features=dataset.non_longitudinal_features(),
+ feature_list_names=dataset.data.columns.tolist(),
+ update_feature_groups_callback='default'
 )
 
 pipeline.fit(dataset.X_train, dataset.y_train)
