@@ -73,6 +73,29 @@ override-dependencies = [
     "scikit-learn ; sys_platform == 'never'",
 ]
 
+[tool.coverage.run]
+branch = true
+source = ["scikit_longitudinal/"]
+omit = [
+    "scikit_longitudinal/**/tests/*",
+    "scikit-learn/*",
+    "sklearn_fork/*",
+    "./main.py",
+    ".venv/*",
+    "*__init__.py",
+]
+data_file = ".coverage"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "def __repr__",
+]
+ignore_errors = true
+show_missing = true
+
 [tool.isort]
 profile = "black"
 
