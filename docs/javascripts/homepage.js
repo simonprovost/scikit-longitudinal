@@ -3,6 +3,8 @@
   const BODY_CLASS = "homepage-page";
   const WAVE_RANGE = 760;
   const MAX_WAVE_SCALE = 1.35;
+  const FOOTER_WORD_REVEAL_THRESHOLD = 0.44;
+  const FOOTER_WORD_REVEAL_RANGE = 0.16;
   const LERP_FACTOR = 0.085;
 
   let cleanupActivePage = () => {
@@ -14,6 +16,8 @@
     document.body.classList.remove(BODY_CLASS);
     document.body.style.removeProperty("--footer-wave-progress");
     document.body.style.removeProperty("--footer-wave-offset-y");
+    document.body.style.removeProperty("--footer-word-opacity");
+    document.body.style.removeProperty("--footer-word-lift");
     document.documentElement.classList.remove("is-safari");
   }
 
@@ -84,6 +88,8 @@
     body.classList.add(BODY_CLASS);
     body.style.setProperty("--footer-wave-progress", "0");
     body.style.setProperty("--footer-wave-offset-y", "0px");
+    body.style.setProperty("--footer-word-opacity", "0");
+    body.style.setProperty("--footer-word-lift", "18px");
 
     const controller = new AbortController();
     const { signal } = controller;
@@ -180,6 +186,12 @@
         const overlayHeight =
           footerBeyond.getBoundingClientRect().height || window.innerHeight;
         const waveOffsetPx = scale * overlayHeight;
+        const normalizedProgress = clamp01(scale / MAX_WAVE_SCALE);
+        const wordRevealProgress = clamp01(
+          (normalizedProgress - FOOTER_WORD_REVEAL_THRESHOLD) /
+            FOOTER_WORD_REVEAL_RANGE
+        );
+        const wordLiftPx = (1 - wordRevealProgress) * 18;
 
         footerBeyond.style.transform = `scaleY(${scale.toFixed(6)})`;
         body.style.setProperty("--footer-wave-progress", scale.toFixed(6));
@@ -187,6 +199,11 @@
           "--footer-wave-offset-y",
           `${waveOffsetPx.toFixed(2)}px`
         );
+        body.style.setProperty(
+          "--footer-word-opacity",
+          wordRevealProgress.toFixed(6)
+        );
+        body.style.setProperty("--footer-word-lift", `${wordLiftPx.toFixed(2)}px`);
       };
 
       const animateFooterBeyond = () => {

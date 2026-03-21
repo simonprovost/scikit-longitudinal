@@ -8,6 +8,14 @@ Explore the community side of Scikit-Longitudinal: related projects, contributor
 
 <div class="grid cards" markdown>
 
+- __Branding__
+
+    ---
+
+    We are open-source and open-design. Explore the shared Figma space behind the visual identity.
+
+    [View branding](branding.md)
+
 - __Related Projects__
 
     ---

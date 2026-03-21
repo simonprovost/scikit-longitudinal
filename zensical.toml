@@ -60,6 +60,7 @@ nav = [
     ]},
     { "Community Hub" = [
         { "Overview" = "community-hub.md" },
+        { "Branding" = "branding.md" },
         { "Projects" = "related-projects.md" },
         { "Developers" = "developers.md" },
         { "FAQ" = "faq.md" },
