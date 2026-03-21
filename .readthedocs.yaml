@@ -5,13 +5,11 @@ build:
   tools:
     python: "3.12"
   jobs:
+    install:
+      - python -m pip install -r requirements-dev.txt
     build:
       html:
-        - zensical build
+        - python -m zensical.main build
     post_build:
       - mkdir -p $READTHEDOCS_OUTPUT/html/
       - cp --recursive site/* $READTHEDOCS_OUTPUT/html/
-
-python:
-  install:
-    - requirements: requirements-dev.txt
