@@ -17,22 +17,22 @@
 <div align="center">
 
 <a href="https://pytest.org/">
-   <img alt="pytest" src="https://img.shields.io/static/v1?label=Pytest&message=passing&color=0E5DF0&labelColor=FA9817&style=for-the-badge&logo=pytest&logoColor=white">
+   <img alt="pytest" src="https://img.shields.io/static/v1?label=Pytest&message=passing&color=472727&labelColor=FD706B&style=for-the-badge&logo=pytest&logoColor=white">
 </a>
 
 <a href="https://pre-commit.com/">
-   <img alt="pre-commit" src="https://img.shields.io/static/v1?label=Pre-commit&message=checked&color=0E5DF0&labelColor=FA9817&style=for-the-badge&logo=pre-commit&logoColor=white">
+   <img alt="pre-commit" src="https://img.shields.io/static/v1?label=Pre-commit&message=checked&color=472727&labelColor=FD706B&style=for-the-badge&logo=pre-commit&logoColor=white">
 </a>
 
-<img src="https://img.shields.io/static/v1?label=Ruff&message=compliant&color=0E5DF0&labelColor=FA9817&style=for-the-badge&logo=ruff&logoColor=white" alt="Ruff compliant">
+<img src="https://img.shields.io/static/v1?label=Ruff&message=compliant&color=472727&labelColor=FD706B&style=for-the-badge&logo=ruff&logoColor=white" alt="Ruff compliant">
 
-<img src="https://img.shields.io/static/v1?label=UV&message=managed&color=0E5DF0&labelColor=FA9817&style=for-the-badge&logo=uv&logoColor=white" alt="UV Managed">
+<img src="https://img.shields.io/static/v1?label=UV&message=managed&color=472727&labelColor=FD706B&style=for-the-badge&logo=uv&logoColor=white" alt="UV Managed">
 
 <a href="https://codecov.io/gh/Scikit-Longitudinal/Scikit-Longitudinal">
-   <img alt="Coverage" src="https://img.shields.io/static/v1?label=Coverage&message=88%25&color=0E5DF0&labelColor=FA9817&style=for-the-badge&logo=appveyor&logoColor=white">
+   <img alt="Coverage" src="https://img.shields.io/static/v1?label=Coverage&message=88%25&color=472727&labelColor=FD706B&style=for-the-badge&logo=appveyor&logoColor=white">
 </a>
 
-<img src="https://img.shields.io/static/v1?label=Python&message=3.10%E2%80%933.13&color=0E5DF0&labelColor=FA9817&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10–3.13">
+<img src="https://img.shields.io/static/v1?label=Python&message=3.10%E2%80%933.13&color=472727&labelColor=FD706B&style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10–3.13">
 
 </div>
 

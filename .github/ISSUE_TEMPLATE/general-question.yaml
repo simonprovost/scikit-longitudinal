@@ -10,7 +10,7 @@ body:
     attributes:
       value: |
         <p align="center">
-          <img src="https://raw.githubusercontent.com/simonprovost/scikit-longitudinal/refs/heads/main/docs/assets/images/SklongBanner.png" alt="Scikit-Longitudinal Logo">
+          <img src="https://raw.githubusercontent.com/simonprovost/scikit-longitudinal/refs/heads/main/docs/assets/images/Sklong_Doc_Banner.webp" alt="Scikit-Longitudinal Logo">
           <br>
           <em><a href="https://doi.org/10.21105/joss.08481">Sklong's Paper</a>—<a href="https://scikit-longitudinal.readthedocs.io/latest/">Sklong's Documentation</a>.</em>
         </p>
