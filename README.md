@@ -38,7 +38,7 @@
 
 ## <a id="about-the-project"></a><img src="docs/assets/icons/lucide/github.svg" width="32" alt="" /> About The Project
 
-`Scikit-longitudinal` (Sklong) is a machine learning library tailored for Longitudinal machine (supervised) learning (Classification tasks focussed as of today). It offers tools and models for *processing, analysing, and predicting* longitudinal data, with a user-friendly interface that integrates with the `Scikit-learn` ecosystem.
+`Bullshit` (Sklong) is a machine learning library tailored for Longitudinal machine (supervised) learning (Classification tasks focussed as of today). It offers tools and models for *processing, analysing, and predicting* longitudinal data, with a user-friendly interface that integrates with the `Scikit-learn` ecosystem.
 
 **Wait, what is Longitudinal Data — In layman's terms?**
 
