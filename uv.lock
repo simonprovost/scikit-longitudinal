@@ -2640,7 +2640,7 @@ sdist = { url = "https://files.pythonhosted.org/packages/98/c2/a7855e41c9d285dfe
 
 [[package]]
 name = "scikit-lexicographical-trees"
-version = "0.0.4"
+version = "0.0.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "joblib" },
@@ -2649,11 +2649,11 @@ dependencies = [
     { name = "scipy", version = "1.16.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "threadpoolctl" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6c/70/e5d9bb1f529097848865851f9fd8a335a9fcc5f13ca9fb1dc22c33006426/scikit_lexicographical_trees-0.0.4.tar.gz", hash = "sha256:37af46423c1d682a36e4f4758d4ee47cde95d7b0693316f475bc257372cf347a", size = 6969275, upload-time = "2024-07-31T23:46:15.116Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/ad/406ad5663d663a44fcc101f9825104cf0cbc10491a1f385ac00ebccae265/scikit_lexicographical_trees-0.0.5.tar.gz", hash = "sha256:67d6d705e3e4b17b1c24151d67d9c056840edadcc5e88c2739a46f6d789dce83", size = 6987898, upload-time = "2026-04-14T22:42:24.163Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b5/8e/2f4628c1169189790ea7299155ee94b141fb15f71a735177c27be215e8f2/scikit_lexicographical_trees-0.0.4-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:b8e001e3b5c0842cb23af9699de3710b196b31d73ef5708c73317aff1da91852", size = 12189292, upload-time = "2024-07-31T23:45:57.887Z" },
-    { url = "https://files.pythonhosted.org/packages/3b/3d/bbd2194ca4eeb1739898a529872d074549383b518dbc3ab6f0bdc2f900fe/scikit_lexicographical_trees-0.0.4-cp310-cp310-macosx_12_0_arm64.whl", hash = "sha256:9ed4e6d9d524d193893ee16bb944bfa0428672235dabc72aaacf6fc611d45383", size = 11048590, upload-time = "2024-07-31T23:46:00.809Z" },
-    { url = "https://files.pythonhosted.org/packages/24/8d/88f68482862fc76c71338c563b7eaeac9041834491e3899ab63cafa671d3/scikit_lexicographical_trees-0.0.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:39dd4396717c7672cb32a1b928cfbdb941f78b9e62dc0b5ed32dea32b85e53e6", size = 13446101, upload-time = "2024-07-31T23:46:02.935Z" },
+    { url = "https://files.pythonhosted.org/packages/fd/96/62a766e6d9ed0def8b988aa183a67baf1c11be1eedd07df1c91f7cdd6183/scikit_lexicographical_trees-0.0.5-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:a0c5989bf56b06138488371de1b689f4da4bb2836c9f3e82c3cfde8813a463ce", size = 11018222, upload-time = "2026-04-14T22:42:08.701Z" },
+    { url = "https://files.pythonhosted.org/packages/50/09/6597f10a1e57ada30f4380435d6fc7d1c5608c3eaf0a151f7588d327039b/scikit_lexicographical_trees-0.0.5-cp310-cp310-macosx_12_0_arm64.whl", hash = "sha256:d5de08cda4193fd737527fc41a622e63e14c26f89976932dd23c992403a9087f", size = 10525688, upload-time = "2026-04-14T22:42:11.826Z" },
+    { url = "https://files.pythonhosted.org/packages/27/d7/d963db1c7eb2907455bad8d5ef0220cf2b9121d71c0afc1e8d22f1f868b8/scikit_lexicographical_trees-0.0.5-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:bcf9f341f7d556a98c2d09e85f92b07538cb036e5be482d872a6d7099eca2c4f", size = 12276221, upload-time = "2026-04-14T22:42:13.991Z" },
 ]
 
 [[package]]
@@ -2714,7 +2714,7 @@ requires-dist = [
     { name = "pandas", specifier = ">=2.2.0,<3.0.0" },
     { name = "pytest", specifier = "==9.0.1" },
     { name = "rich", specifier = ">=13.6.0" },
-    { name = "scikit-lexicographical-trees", specifier = "==0.0.4" },
+    { name = "scikit-lexicographical-trees", specifier = "==0.0.5" },
     { name = "scipy", specifier = ">=1.11.0,<2.0.0" },
     { name = "statsmodels", specifier = ">=0.14.0,<1.0.0" },
     { name = "stopit", specifier = ">=1.1.2" },

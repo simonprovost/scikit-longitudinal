@@ -32,7 +32,7 @@ dependencies = [
     "rich>=13.6.0",
     "joblib>=0.11",
     "deep-forest-py310>=0.1.9",
-    "scikit-lexicographical-trees==0.0.4",
+    "scikit-lexicographical-trees==0.0.5",
     "pytest==9.0.1",
 ]
 
