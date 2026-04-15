@@ -58,7 +58,7 @@ setup(  # pragma: no cover
             "tomli>=2.0; python_version < '3.11'",
             "mkdocstrings-python>=1.16.10",
             "pymdown-extensions>=10.14.3",
-            "zensical>=0.0.28",
+            "zensical>=0.0.33",
         ],
         "parallelisation": ["ray>=2.40.0"],
     },

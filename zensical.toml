@@ -112,7 +112,7 @@ features = [
 ]
 
 [project.theme.icon]
-repo = "lucide/github"
+repo = "simple/github"
 edit = "lucide/pencil"
 view = "lucide/eye"
 

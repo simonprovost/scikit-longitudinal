@@ -1,5 +1,5 @@
 ---
-icon: lucide/github
+icon: simple/github
 ---
 
 # Developers
