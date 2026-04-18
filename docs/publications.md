@@ -61,19 +61,20 @@ This section keeps track of the research papers behind the implemented primitive
     ??? abstract "Abstract"
         We propose a new variant of the Correlation-based Feature Selection (CFS) method for coping with longitudinal data - where variables are repeatedly measured across different time points. The proposed CFS variant is evaluated on ten datasets created using data from the English Longitudinal Study of Ageing (ELSA), with different age-related diseases used as the class variables to be predicted. The results show that, overall, the proposed CFS variant leads to better predictive performance than the standard CFS and the baseline approach of no feature selection, when using Naïve Bayes and J48 decision tree induction as classification algorithms (although the difference in performance is very small in the results for J4.8). We also report the most relevant features selected by J48 across the datasets.
 
-### In Active Development
+???+ note "Time-penalised Trees (TpT)"
+    **Papers:**
 
-???+ warning "Time-penalised Trees (TpT)"
-    **Paper:** *Time-penalised trees (TpT): introducing a new tree-based data mining algorithm for time-varying covariates*. [Read the paper (DOI)](https://doi.org/10.1007/s10472-024-09950-w)
+    - Valla, M. (2024). *Time-penalised trees (TpT): introducing a new tree-based data mining algorithm for time-varying covariates*. *Annals of Mathematics and Artificial Intelligence* 92, 1609–1661. [Read the paper (DOI)](https://doi.org/10.1007/s10472-024-09950-w)
+    - Valla, M., Milhaud, X. (2026). *Consistent Time-Aware Trees for Longitudinal Data: The Time-Penalized Tree*. ⟨hal-05022929v2⟩. [Read the preprint](https://cnrs.hal.science/hal-05022929)
 
-    **Status:** Integration planned for a future `Sklong` release.
+    **API Reference:** [TpT Decision Tree Classifier](API/estimators/trees/tpt_decision_tree_classifier.md)
 
-    **Discussion:** [Issue #65](https://github.com/simonprovost/scikit-longitudinal/issues/65)
-
-    **Credits:** Original author: Mathias Valla. Implementation: under active development by [Mathias Valla](https://github.com/MathiasValla).
+    **Credits:** Original author: Mathias Valla. Implementation: [Mathias Valla](https://github.com/MathiasValla), Esteban Mauboussin, Alae Khidour, Berkehan Kocak, and Sonny Mupfuni, with the `Sklong` team.
 
     ??? abstract "Abstract"
         This article introduces a new decision tree algorithm that accounts for time-varying covariates in the decision-making process. Traditional decision tree algorithms assume that the covariates are static and do not change over time, which can lead to inaccurate predictions in dynamic environments. Other existing methods suggest workaround solutions such as the pseudo-subject approach. The proposed algorithm utilises a different structure and a time-penalised splitting criterion that allows a recursive partitioning of both the covariates space and time. Relevant historical trends are then inherently involved in the construction of a tree, and are visible and interpretable once it is fit. This approach allows for innovative and highly interpretable analysis in settings where the covariates are subject to change over time. The effectiveness of the algorithm is demonstrated through a real-world data application in life insurance. The results presented in this article can be seen as an introduction or proof-of-concept of the time-penalised approach, and the algorithm’s theoretical properties and comparison against existing approaches on datasets from various fields will be explored in forthcoming work.
+
+### In Active Development
 
 ???+ warning "Clustering-based KNN Regression for Longitudinal Data (CKNNRLD)"
     **Paper:** *Boosting K-nearest neighbor regression performance for longitudinal data through a novel learning approach*. [Read the paper (DOI)](https://doi.org/10.1186/s12859-025-06205-1)

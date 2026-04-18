@@ -110,6 +110,8 @@ def all_scikit_longitudinal_estimators(
                     "LexicoDecisionTreeClassifier",
                     "LexicoDecisionTreeRegressor",
                     "LexicoDeepForestClassifier",
+                    "TpTDecisionTreeClassifier",
+                    "TpTDecisionTreeRegressor",
                 ]
             )
         )
@@ -147,6 +149,8 @@ def all_scikit_longitudinal_estimators(
                                         "LexicoDecisionTreeClassifier",
                                         "LexicoDecisionTreeRegressor",
                                         "LexicoDeepForestClassifier",
+                                        "TpTDecisionTreeClassifier",
+                                        "TpTDecisionTreeRegressor",
                                     ]
                                 )
                             )

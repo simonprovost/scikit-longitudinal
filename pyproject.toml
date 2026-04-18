@@ -34,6 +34,7 @@ dependencies = [
     "deep-forest-py310>=0.1.9",
     "scikit-lexicographical-trees==0.0.5",
     "pytest==9.0.1",
+    "setuptools<81",
 ]
 
 [dependency-groups]
