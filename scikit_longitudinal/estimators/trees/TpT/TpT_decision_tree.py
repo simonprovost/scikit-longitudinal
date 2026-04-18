@@ -18,10 +18,10 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
     Time-penalised Trees (TpT) Decision Tree Classifier for longitudinal data classification.
 
     This classifier extends the standard Decision Tree algorithm to handle longitudinal data by incorporating a
-    **time-penalized split gain**. At a parent node time :math:`t_p`, a candidate split at time :math:`t_c` has gain
-    :math:`\\Delta I` which is penalized as :math:`\\Delta I \\cdot e^{-\\gamma (t_c - t_p)}`. In this Phase-1
-    implementation, :math:`t_c` is proxied by the **wave index** of the splitting feature; in a later step we will
-    propagate the true parent time through the builder to compute :math:`t_c - t_p` exactly.
+    **time-penalized split gain**. At a parent node time $t_p$, a candidate split at time $t_c$ has gain
+    $\\Delta I$ which is penalized as $\\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$. In this Phase-1
+    implementation, $t_c$ is proxied by the **wave index** of the splitting feature; in a later step we will
+    propagate the true parent time through the builder to compute $t_c - t_p$ exactly.
 
     !!! tip "Why Use TpTDecisionTreeClassifier?"
         This classifier is ideal when working with longitudinal datasets where temporal dependency matters. By balancing
@@ -30,10 +30,10 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
 
     !!! question "How does TpT work?"
         At each node, we evaluate candidate splits by a **time-penalized impurity improvement**:
-        :math:`G_\\gamma = \\Delta I \\cdot e^{-\\gamma \\Delta t}`.
-        In this phase, :math:`\\Delta t` is approximated by the wave index of the splitting feature. A split is chosen
+        $G_\\gamma = \\Delta I \\cdot e^{-\\gamma \\Delta t}$.
+        In this phase, $\\Delta t$ is approximated by the wave index of the splitting feature. A split is chosen
         if its penalized gain is maximal among candidates. (We temporarily reuse the Cython parameter
-        `threshold_gain` as :math:`\\gamma`.)
+        `threshold_gain` as $\\gamma$.)
 
     !!! note "Performance Boost with Cython"
         The underlying splitter (`node_TpT_split`) is optimized in Cython for faster computation. Check out the
@@ -59,7 +59,7 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
 
     Args:
         gamma (float, optional):
-            Time-penalty rate :math:`\\gamma` in the factor :math:`e^{-\\gamma \\Delta t}`.
+            Time-penalty rate $\\gamma$ in the factor $e^{-\\gamma \\Delta t}$.
             If not provided, falls back to `threshold_gain` (for backward compatibility).
         threshold_gain (float, optional):
             Backward-compatible alias for `gamma`. If both are provided, `gamma` takes precedence.
@@ -73,8 +73,8 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
             If None, no limit is applied.
         criterion (str, default="entropy"):
             The function to measure the quality of a split. Fixed to "entropy" for this algorithm; do not change.
-        splitter (str, default="lexicoRF"):
-            The strategy used to choose the split at each node. Fixed to "lexicoRF" for this algorithm; do not change.
+        splitter (str, default="TpT"):
+            The strategy used to choose the split at each node. Fixed to "TpT" for this algorithm; do not change.
         max_depth (Optional[int], default=None):
             The maximum depth of the tree. If None, nodes are expanded until all leaves are pure or meet other constraints.
         min_samples_split (int, default=2):
@@ -145,7 +145,7 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
             features_group = [[0, 1], [2, 3]]
 
             # Initialize and fit the classifier
-            clf = TpTDecisionTreeClassifier(threshold_gain=0.1, features_group=features_group)
+            clf = TpTDecisionTreeClassifier(gamma=0.1, features_group=features_group)
             clf.fit(X_train, y_train)
 
             # Predict and evaluate

@@ -17,14 +17,14 @@ class TpTDecisionTreeRegressor(DecisionTreeRegressor):
     Time-penalised Trees (TpT) Decision Tree Regressor for longitudinal data regression.
 
     This regressor extends standard CART regression trees to handle longitudinal covariates by incorporating
-    a **time-penalized split gain**. At a node associated with a parent time :math:`t_p`, a candidate split
-    evaluated at time :math:`t_c` yields an impurity improvement :math:`\\Delta I` (typically based on variance
+    a **time-penalized split gain**. At a node associated with a parent time $t_p$, a candidate split
+    evaluated at time $t_c$ yields an impurity improvement $\\Delta I$ (typically based on variance
     reduction / MSE), which is penalized as:
 
-    :math:`G_\\gamma = \\Delta I \\cdot e^{-\\gamma (t_c - t_p)}`.
+    $G_\\gamma = \\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$.
 
-    In the current implementation, :math:`t_c` is represented by the **wave index** of the splitting feature and
-    :math:`t_p` is propagated by the tree builder, so that the penalty depends on the *time distance* between
+    In the current implementation, $t_c$ is represented by the **wave index** of the splitting feature and
+    $t_p$ is propagated by the tree builder, so that the penalty depends on the *time distance* between
     successive splits.
 
     !!! tip "Why use TpTDecisionTreeRegressor?"
@@ -40,11 +40,11 @@ class TpTDecisionTreeRegressor(DecisionTreeRegressor):
         At each node, for each candidate split, the regressor computes a variance-based improvement
         (e.g., MSE reduction) and applies the time penalty:
 
-        :math:`G_\\gamma = \\Delta I \\cdot e^{-\\gamma \\Delta t}`
+        $G_\\gamma = \\Delta I \\cdot e^{-\\gamma \\Delta t}$
 
-        where :math:`\\Delta t = \\max(0, t_c - t_p)`.
+        where $\\Delta t = \\max(0, t_c - t_p)$.
 
-        The split maximizing :math:`G_\\gamma` is chosen, subject to classical CART constraints
+        The split maximizing $G_\\gamma$ is chosen, subject to classical CART constraints
         (min samples per leaf, max depth, etc.).
 
     !!! note "LONG vs wide input"
@@ -78,7 +78,7 @@ class TpTDecisionTreeRegressor(DecisionTreeRegressor):
     Parameters
     ----------
     gamma : float, optional
-        Time-penalty rate :math:`\\gamma` in :math:`e^{-\\gamma \\Delta t}`.
+        Time-penalty rate $\\gamma$ in $e^{-\\gamma \\Delta t}$.
         If not provided, falls back to `threshold_gain` for backward compatibility.
     threshold_gain : float, optional
         Backward-compatible alias for `gamma`. If both are provided, `gamma` takes precedence.
@@ -152,8 +152,8 @@ class TpTDecisionTreeRegressor(DecisionTreeRegressor):
     - References:
         - [1] Valla, M. *Time-penalised trees (TpT): introducing a new tree-based data mining algorithm for
           time-varying covariates.* Ann Math Artif Intell 92, 1609–1661 (2024).
-        - [2] Valla, M., Milhaud, X. *Time-penalized trees: consistency results and simulations.* 2025.
-          ⟨hal-05022929⟩ https://cnrs.hal.science/hal-05022929
+        - [2] Valla, M., Milhaud, X. *Consistent Time-Aware Trees for Longitudinal Data: The Time-Penalized Tree.* 2026.
+          ⟨hal-05022929v2⟩ https://cnrs.hal.science/hal-05022929
 
     Examples
     --------
