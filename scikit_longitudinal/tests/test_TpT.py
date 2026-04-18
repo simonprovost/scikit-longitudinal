@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from sklearn.datasets import make_classification, make_regression
+from sklearn.datasets import make_classification
 from sklearn.metrics import accuracy_score, r2_score
 from sklearn.model_selection import train_test_split
 
@@ -54,22 +54,28 @@ def create_synthetic_regression(
     rng = np.random.RandomState(random_state)
     n_features = n_longitudinal_groups * n_features_per_group + n_non_longitudinal
 
-    X, y = make_regression(
-        n_samples=n_samples,
-        n_features=n_features,
-        noise=noise,
-        random_state=random_state,
-    )
-
     features_group = [
         list(range(i * n_features_per_group, (i + 1) * n_features_per_group))
         for i in range(n_longitudinal_groups)
     ]
 
+    # Draw X first, then enforce temporal correlation between the waves of
+    # each longitudinal group. Building y *after* this step ensures the target
+    # depends on features that survive the within-group copying — otherwise
+    # any signal placed on the "later" wave columns is overwritten and the
+    # tree can never recover it.
+    X = rng.randn(n_samples, n_features)
     for group in features_group:
         base, *later = group
         for idx in later:
             X[:, idx] = X[:, base] + rng.normal(0.0, 0.1, size=n_samples)
+
+    coefs = np.zeros(n_features)
+    for group in features_group:
+        coefs[group[0]] = rng.uniform(2.0, 4.0)
+    for idx in range(n_longitudinal_groups * n_features_per_group, n_features):
+        coefs[idx] = rng.uniform(1.0, 2.0)
+    y = X @ coefs + rng.normal(0.0, noise, size=n_samples)
 
     return X, y, features_group
 

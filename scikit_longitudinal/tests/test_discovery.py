@@ -41,6 +41,8 @@ class TestAllScikitLongitudinalEstimators:
                 "LexicoDecisionTreeClassifier",
                 "LexicoDecisionTreeRegressor",
                 "LexicoDeepForestClassifier",
+                "TpTDecisionTreeClassifier",
+                "TpTDecisionTreeRegressor",
             ]
             for est in estimators
         )
