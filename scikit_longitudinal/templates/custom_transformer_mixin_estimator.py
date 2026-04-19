@@ -53,12 +53,39 @@ class CustomTransformerMixinEstimator(
     def fit(
         self, X: np.ndarray, y: np.ndarray = None
     ) -> "CustomTransformerMixinEstimator":
+        """Fit the transformer to the input data.
+
+        Validates ``X`` (and ``y`` when provided) with scikit-learn's
+        ``check_X_y`` / ``check_array`` and then delegates to the subclass
+        implementation in ``_fit``.
+
+        Args:
+            X (np.ndarray):
+                Training input samples of shape ``(n_samples, n_features)``.
+            y (np.ndarray, optional):
+                Target values of shape ``(n_samples,)``.
+
+        Returns:
+            CustomTransformerMixinEstimator: The fitted transformer (``self``).
+        """
         if y is None:
             return self._check_array_decorator(self._fit)(X)
         return self._check_X_y_decorator(self._fit)(X, y)
 
     @final
     def transform(self, X: np.ndarray) -> np.ndarray:
+        """Apply the transformation to the input data.
+
+        Validates ``X`` with scikit-learn's ``check_array`` and delegates to
+        the subclass implementation in ``_transform``.
+
+        Args:
+            X (np.ndarray):
+                Input samples of shape ``(n_samples, n_features)``.
+
+        Returns:
+            np.ndarray: Transformed array.
+        """
         return self._check_array_decorator(self._transform)(X)
 
     def _fit(
