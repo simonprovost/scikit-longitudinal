@@ -23,8 +23,6 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
     exhaustiveSearch, or greedySearch. This implementation concern the support for CFS only. For the CFS per group
     (longitudinal component), refer to the CorrelationBasedFeatureSelectionPerGroup class.
 
-    Read more in the Notes below for implementation details.
-
     Args:
         search_method : str, default="greedySearch"
             The search method to use. Options are "exhaustiveSearch", and "greedySearch".
@@ -44,13 +42,6 @@ class CorrelationBasedFeatureSelection(CustomTransformerMixinEstimator):
         >>> X_selected = cfs.transform(X)
         >>> X_selected.shape
         >>> # (100, N) ; N is the number of selected features
-
-    Notes:
-        The improved CFS algorithm is based on the following references:
-
-        * Zixiao. S. (2019, August 11). GitHub - ZixiaoShen
-        /Correlation-based-Feature-Selection, available at:
-        https://github.com/ZixiaoShen/Correlation-based-Feature-Selection
 
     See also:
         * CustomTransformerMixinEstimator: Base class for all Transformer Mixin estimators in scikit-learn that we

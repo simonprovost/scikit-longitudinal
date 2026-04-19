@@ -102,3 +102,4 @@ node_modules/
 *.ipr
 *.iws
 .idea/
+/AGENTS.md
