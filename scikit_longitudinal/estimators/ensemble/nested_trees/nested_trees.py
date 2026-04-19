@@ -20,28 +20,13 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
     """
     Nested Trees Classifier for longitudinal data classification.
 
-    The Nested Trees Classifier is a unique and innovative algorithm tailored for longitudinal datasets. It enhances
-    traditional decision tree methods by embedding smaller decision trees within the nodes of a primary tree
-    structure, optimally leveraging the temporal information inherent in longitudinal data. This hierarchical approach
-    excels at capturing complex temporal patterns and dependencies, and supports both binary and multiclass labels.
-
-    !!! info "Structure Overview"
-        The outer tree uses a custom algorithm to select longitudinal attributes (groups of time-specific features).
-        Each node hosts an inner `DecisionTreeClassifier` from scikit-learn, partitioning data based on the selected
-        attribute, creating a nested decision-making process.
-
-        We highly  recommend to read the paper to better understand the primitive.
-
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes define the temporal structure:
-
-        - **features_group**: A list of lists, each sublist containing indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent (e.g., `[[0,1], [2,3]]` for two attributes with two waves each).
-        - **non_longitudinal_features**: Indices of static features
-          (not used in temporal modelling but included in splits).
-
-        Accurate configuration is essential. See the
-        [Temporal Dependency Guide](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/).
+    The Nested Trees Classifier enhances traditional decision tree methods with a two-level, longitudinal-aware
+    construction: the outer tree picks splits on a **whole longitudinal attribute** (the group of time-specific
+    features that represent repeated measurements of the same variable across waves) instead of on a single
+    feature, and each outer node hosts an inner `DecisionTreeClassifier` from scikit-learn that partitions the
+    data using only the measurements of that selected attribute across time. This preserves the longitudinal
+    structure during model construction, keeps decisions interpretable (each outer node is labelled by one
+    attribute), and naturally captures temporal patterns and dependencies.
 
     Args:
         features_group (List[List[int]], optional):
@@ -73,7 +58,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             Unique class labels, set during fitting.
 
     Examples:
-        !!! example "Basic Usage with Dummy Longitudinal Data"
+        !!! example "Basic Usage"
 
             ```python
             from sklearn.metrics import accuracy_score
@@ -94,7 +79,7 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
             print(f"Accuracy: {accuracy_score(dataset.y_test, y_pred)}")
             ```
 
-        !!! example "Customizing Inner Tree Hyperparameters"
+        !!! example "Advanced: customising inner tree hyperparameters"
 
             ```python
             # ... Similar setup as above ...
@@ -109,12 +94,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
             # ... Similar prediction and evaluation as above ...
             ```
-
-    Notes:
-        - Requires accurate `features_group` and `non_longitudinal_features` setup for optimal temporal modeling.
-        - References: Ovchinnik, S., Otero, F., & Freitas, A.A. (2022). *Nested trees for longitudinal classification.*
-          ACM/SIGAPP Symposium on Applied Computing, 441-444.
-        - Original Java implementation: [Nested Trees GitHub](https://github.com/NestedTrees/NestedTrees).
     """
 
     # pylint: disable=too-many-arguments,too-many-positional-arguments,invalid-name,signature-differs,no-member
@@ -304,10 +283,6 @@ class NestedTreesClassifier(CustomClassifierMixinEstimator):
 
         Raises:
             ValueError: If the classifier isn’t fitted.
-
-        !!! question "When to Use Probabilities?"
-            Use `predict_proba` instead of `predict` when you need confidence scores or custom thresholds, such as in
-            medical diagnostics.
         """
         if self.root is None:
             raise ValueError("The classifier must be fitted before making predictions.")

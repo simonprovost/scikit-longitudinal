@@ -9,46 +9,11 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
     """
     Lexico Decision Tree Classifier for longitudinal data classification.
 
-    This classifier extends the standard Decision Tree algorithm to handle longitudinal data by incorporating a
-    lexicographic optimization approach. It prioritizes more recent data points (waves) when determining splits,
-    based on the premise that recent measurements are more predictive and relevant. The implementation leverages a
-    Cython-optimized fork of scikit-learn's decision tree for improved efficiency, and supports the same binary and
-    multiclass classification workflow as `sklearn.tree.DecisionTreeClassifier`.
-
-    !!! tip "Why Use LexicoDecisionTreeClassifier?"
-        This classifier is ideal when working with longitudinal datasets where temporal recency matters. By balancing
-        information gain with a preference for recent features, it captures evolving patterns effectively—perfect for
-        applications like medical studies or time-series within time-series classification.
-
-    !!! question "How Does Lexicographic Optimization Work?"
-        The algorithm evaluates splits using two objectives:
-
-        1. **Primary**: Maximize the information gain ratio (how much a split reduces uncertainty).
-        2. **Secondary**: Favor features from more recent waves when gain ratios are similar (within `threshold_gain`).
-
-        This dual approach ensures that the tree leverages both statistical purity and temporal relevance.
-
-    !!! note "Performance Boost with Cython"
-        The underlying splitter (`node_lexicoRF_split`) is optimized in Cython for faster computation. Check out the
-        [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
-        for a deep dive into the performance enhancements.
-
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
-        structure of longitudinal data, we try to build those as much as possible for users, while allowing
-        users to also define their own feature groups if needed. As follows:
-
-        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent. This captures temporal dependencies.
-        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
-          matrix.
-
-        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
-        use the primitives that follow.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
-
+    This classifier extends scikit-learn's `DecisionTreeClassifier` for longitudinal data by integrating a
+    lexicographic optimisation approach that prioritises more recent waves during split selection, based on the
+    premise that recent measurements are more predictive and relevant. Splits are evaluated with a bi-objective
+    rule: the primary objective maximises the information-gain ratio (entropy criterion), and the secondary
+    objective favours features from more recent waves whenever competing gain ratios are within `threshold_gain`.
 
     Args:
         threshold_gain (float, default=0.0015):
@@ -108,7 +73,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
     Examples:
         Below are examples demonstrating the usage of the `LexicoDecisionTreeClassifier` class.
 
-        !!! example "Basic Usage with Iris Dataset"
+        !!! example "Basic Usage"
 
             Please note that the Iris is not longitudinal data, but this example is for demonstration purposes only.
             We could not publicly use the dataset we use for our various papers without user registering
@@ -140,7 +105,7 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
             print(f"Accuracy: {accuracy}")
             ```
 
-        !!! example "Using with LongitudinalPipeline"
+        !!! example "Advanced: using with LongitudinalPipeline"
 
             ```python
             from scikit_longitudinal.pipeline import LongitudinalPipeline
@@ -176,17 +141,6 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
             y_pred = pipeline.predict(dataset.X_test)
             print(f"Predictions: {y_pred}")
             ```
-
-    Notes:
-        - The `features_group` parameter is essential for longitudinal data and must reflect the dataset's temporal structure.
-        - For non-longitudinal datasets, this classifier may not outperform the standard `DecisionTreeClassifier`.
-        - References:
-              - Ribeiro, C. and Freitas, A., 2020. A new random forest method for longitudinal data classification using a
-                lexicographic bi-objective approach. In 2020 IEEE Symposium Series on Computational Intelligence (SSCI)
-                (pp. 806-813). IEEE.
-              - Ribeiro, C. and Freitas, A.A., 2024. A lexicographic optimisation approach to promote more recent features
-                on longitudinal decision-tree-based classifiers: applications to the English Longitudinal Study of Ageing.
-                Artificial Intelligence Review, 57(4), p.84.
     """
 
     def __init__(
@@ -254,16 +208,43 @@ class LexicoDecisionTreeClassifier(DecisionTreeClassifier):
         Raises:
             ValueError:
                 If `features_group` is not provided, as it is required for longitudinal functionality.
-
-        !!! tip "Preparing Your Data"
-            Ensure your input `X` aligns with the `features_group` structure—features should be ordered consistently
-            with the temporal sequence defined in `features_group`.
-
-        !!! note
-            The `fit` method relies heavily on `features_group` to apply the lexicographic optimization. Missing this
-            parameter will halt execution, so double-check it’s set before calling `fit`.
         """
         if self.features_group is None:
             raise ValueError("The features_group parameter must be provided.")
 
         return super().fit(X, y, sample_weight=sample_weight, *args, **kwargs)
+
+    def predict(self, X, check_input=True):
+        """Predict class labels for the input samples.
+
+        Inherited from scikit-learn's `DecisionTreeClassifier`. The Lexico tree only customises
+        split selection at fit time; prediction is the standard tree-traversal routine.
+
+        Args:
+            X (array-like of shape (n_samples, n_features)):
+                Input samples.
+            check_input (bool, default=True):
+                Allow to bypass input validation. Forwarded to scikit-learn.
+
+        Returns:
+            np.ndarray: Predicted class labels of shape `(n_samples,)`.
+        """
+        return super().predict(X, check_input=check_input)
+
+    def predict_proba(self, X, check_input=True):
+        """Predict class probabilities for the input samples.
+
+        Inherited from scikit-learn's `DecisionTreeClassifier`. Probabilities are the fraction of
+        training samples of each class in the leaf reached by each input sample.
+
+        Args:
+            X (array-like of shape (n_samples, n_features)):
+                Input samples.
+            check_input (bool, default=True):
+                Allow to bypass input validation. Forwarded to scikit-learn.
+
+        Returns:
+            np.ndarray: Class probabilities of shape `(n_samples, n_classes)`, with columns ordered
+            as in `self.classes_`.
+        """
+        return super().predict_proba(X, check_input=check_input)

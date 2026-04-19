@@ -16,38 +16,14 @@ class TpTDecisionTreeRegressor(DecisionTreeRegressor):
     """
     Time-penalised Trees (TpT) Decision Tree Regressor for longitudinal data regression.
 
-    This regressor extends standard CART regression trees to handle longitudinal covariates by incorporating
-    a **time-penalized split gain**. At a node associated with a parent time $t_p$, a candidate split
-    evaluated at time $t_c$ yields an impurity improvement $\\Delta I$ (typically based on variance
-    reduction / MSE), which is penalized as:
+    This regressor extends scikit-learn's `DecisionTreeRegressor` for longitudinal data by incorporating a
+    **time-penalised split gain**. At a node associated with a parent time $t_p$, a candidate split evaluated
+    at time $t_c$ yields an impurity improvement $\\Delta I$ (typically based on variance reduction / MSE),
+    which is penalised as $G_\\gamma = \\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$. In the current implementation,
+    $t_c$ is represented by the **wave index** of the splitting feature and $t_p$ is propagated by the tree
+    builder, so that the penalty depends on the *time distance* between successive splits.
 
-    $G_\\gamma = \\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$.
-
-    In the current implementation, $t_c$ is represented by the **wave index** of the splitting feature and
-    $t_p$ is propagated by the tree builder, so that the penalty depends on the *time distance* between
-    successive splits.
-
-    !!! tip "Why use TpTDecisionTreeRegressor?"
-        TpT is useful when:
-        - covariates are observed at multiple time points (waves),
-        - later observations can be informative but should be “paid for” (regularization in time),
-        - you want interpretable, sparse-in-time regression rules.
-
-        By balancing variance reduction with an exponential penalty for using later waves,
-        TpT tends to prefer earlier splits unless later waves provide substantially better predictive signal.
-
-    !!! question "How does TpT work in regression?"
-        At each node, for each candidate split, the regressor computes a variance-based improvement
-        (e.g., MSE reduction) and applies the time penalty:
-
-        $G_\\gamma = \\Delta I \\cdot e^{-\\gamma \\Delta t}$
-
-        where $\\Delta t = \\max(0, t_c - t_p)$.
-
-        The split maximizing $G_\\gamma$ is chosen, subject to classical CART constraints
-        (min samples per leaf, max depth, etc.).
-
-    !!! note "LONG vs wide input"
+    ??? note "LONG vs wide input — *[Soon To Be Deprecated](https://github.com/simonprovost/scikit-longitudinal/issues/64)*"
         TpT internally operates on a **wide** matrix (features expanded over waves). If `assume_long_format=True`,
         the regressor can accept a LONG-format dataframe and will convert it to the expected wide representation
         before fitting (using `id_col`, `time_col`, `duration_col`, `time_step`, and `max_horizon`).
@@ -55,130 +31,98 @@ class TpTDecisionTreeRegressor(DecisionTreeRegressor):
         - LONG-format: one row per (subject, time) observation.
         - wide format: one row per subject, with features duplicated across waves.
 
-        The conversion fills feature values up to each subject’s duration/horizon and leaves NaNs beyond,
-        enabling “duration leaves” in the TpT logic.
+        The conversion fills feature values up to each subject's duration/horizon and leaves NaNs beyond,
+        enabling "duration leaves" in the TpT logic.
 
-    !!! question "Feature groups and temporal structure"
-        The parameter `features_group` encodes the temporal layout of longitudinal covariates:
+    Args:
+        gamma (float, optional):
+            Time-penalty rate $\\gamma$ in $e^{-\\gamma \\Delta t}$. If not provided, falls back to
+            `threshold_gain` for backward compatibility.
+        threshold_gain (float, optional):
+            Backward-compatible alias for `gamma`. If both are provided, `gamma` takes precedence. (Internally
+            reused to match existing Cython parameter naming.)
+        features_group (List[List[int]], optional):
+            Temporal grouping of feature indices (waves per covariate). Required when using wide-format input.
+            If `assume_long_format=True`, this can be inferred/constructed during preprocessing depending on
+            how wide features are generated.
+        max_horizon (int, optional):
+            Optional cap for the horizon considered during LONG-format preprocessing.
+        id_col (str, optional):
+            Subject identifier column name in LONG-format.
+        time_col (str, optional):
+            Observation time column name in LONG-format.
+        duration_col (str, optional):
+            Subject-specific horizon/duration column name in LONG-format.
+        time_step (float, default=1.0):
+            Temporal discretisation step used to map times to wave indices.
+        assume_long_format (bool, default=False):
+            If True, interpret `X` as LONG-format and convert to wide prior to fitting.
+        long_feature_columns (List[str], optional):
+            Subset of LONG-format columns to treat as features.
+        criterion (str, default="friedman_mse"):
+            Split criterion for regression. The intended criterion is MSE / variance reduction. (Other criteria
+            may not be supported depending on the current Cython implementation.)
+        splitter (str, default="TpT"):
+            Split strategy identifier. Must match the TpT splitter name exposed by the underlying Cython backend.
+        max_depth (Optional[int], default=None):
+            Maximum depth of the tree. If None, the tree expands until other stopping criteria apply.
+        min_samples_split (int, default=2):
+            Minimum number of samples required to split an internal node.
+        min_samples_leaf (int, default=1):
+            Minimum number of samples required to be at a leaf node.
+        min_weight_fraction_leaf (float, default=0.0):
+            Minimum weighted fraction of the sum of weights required in each leaf.
+        max_features (Optional[Union[int, float, str]], default=None):
+            Number of features to consider at each split.
+        random_state (Optional[int], default=None):
+            Controls randomness of feature sampling and tie-breaking.
+        max_leaf_nodes (Optional[int], default=None):
+            Grow a tree with at most `max_leaf_nodes` leaves (best-first strategy when supported).
+        min_impurity_decrease (float, default=0.0):
+            Minimum (unpenalised) impurity decrease required to split.
+        ccp_alpha (float, default=0.0):
+            Complexity parameter used for Minimal Cost-Complexity Pruning.
+        store_leaf_values (bool, default=False):
+            Whether to store the samples that fall into leaves in the `tree_` attribute.
+        monotonic_cst (Optional[List[int]], default=None):
+            Monotonic constraints for features (if supported by the underlying sklearn tree code and compatible
+            with missing values / regression settings).
 
-        - **features_group**: list of lists; each inner list contains the column indices corresponding to the same
-          covariate across waves, ordered from oldest to most recent.
+    Attributes:
+        n_features_in_ (int):
+            Number of features seen during fit (wide representation).
+        tree_ (sklearn.tree._tree.Tree):
+            The underlying fitted tree structure.
+        feature_importances_ (ndarray of shape (n_features,)):
+            Impurity-based feature importances (variance reduction based).
+        _wide_feature_names_ (List[str]):
+            Names of generated wide features (when LONG-format preprocessing is enabled).
+        _subject_ids_ (List[str]):
+            Subject ids aligned with the wide matrix rows (when LONG-format preprocessing is enabled).
 
-        Providing correct feature groups is essential to ensure that:
-        - the splitter can map features to wave indices (for time penalization),
-        - the model remains consistent with the dataset temporal structure.
+    Examples:
+        !!! example "Basic Usage"
+            ```python
+            import pandas as pd
+            from scikit_longitudinal.estimators.trees import TpTDecisionTreeRegressor
 
-        To see more, we recommend the `Temporal Dependency` page:
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
+            df_long = pd.read_csv("my_longitudinal_dataset.csv")
+            y = df_long["target"]
+            X = df_long.drop(columns=["target"])
 
-    !!! note "Cython implementation"
-        The core split search is implemented in Cython for performance (TpT splitter).
-        This regressor is a thin sklearn-compatible wrapper around that optimized implementation.
-
-    Parameters
-    ----------
-    gamma : float, optional
-        Time-penalty rate $\\gamma$ in $e^{-\\gamma \\Delta t}$.
-        If not provided, falls back to `threshold_gain` for backward compatibility.
-    threshold_gain : float, optional
-        Backward-compatible alias for `gamma`. If both are provided, `gamma` takes precedence.
-        (Internally reused to match existing Cython parameter naming.)
-    features_group : list[list[int]], optional
-        Temporal grouping of feature indices (waves per covariate). Required when using wide format input.
-        If `assume_long_format=True`, this can be inferred/constructed during preprocessing depending on
-        how wide features are generated.
-    criterion : {"squared_error"}, default="squared_error"
-        Split criterion for regression. In this TpT regressor, the intended criterion is MSE / variance reduction.
-        (Other criteria may not be supported depending on the current Cython implementation.)
-    splitter : str, default="TpT"
-        Split strategy identifier. Must match the TpT splitter name exposed by the underlying Cython backend.
-    max_depth : int, optional
-        Maximum depth of the tree. If None, the tree expands until other stopping criteria apply.
-    min_samples_split : int, default=2
-        Minimum number of samples required to split an internal node.
-    min_samples_leaf : int, default=1
-        Minimum number of samples required to be at a leaf node.
-    min_weight_fraction_leaf : float, default=0.0
-        Minimum weighted fraction of the sum of weights required in each leaf.
-    max_features : int, float, {"sqrt", "log2"}, optional
-        Number of features to consider at each split.
-    random_state : int, RandomState instance, optional
-        Controls randomness of feature sampling and tie-breaking.
-    max_leaf_nodes : int, optional
-        Grow a tree with at most `max_leaf_nodes` leaves (best-first strategy when supported).
-    min_impurity_decrease : float, default=0.0
-        Minimum (unpenalized) impurity decrease required to split.
-    ccp_alpha : float, default=0.0
-        Complexity parameter used for Minimal Cost-Complexity Pruning.
-    store_leaf_values : bool, default=False
-        Whether to store the samples that fall into leaves in the `tree_` attribute.
-    monotonic_cst : list[int], optional
-        Monotonic constraints for features (if supported by the underlying sklearn tree code and compatible
-        with missing values / regression settings).
-
-    Long-format preprocessing parameters
-    -------------------------------
-    assume_long_format : bool, default=False
-        If True, interpret `X` as LONG-format and convert to wide prior to fitting.
-    id_col : str, default="id"
-        Subject identifier column name in LONG-format.
-    time_col : str, default="time_point"
-        Observation time column name in LONG-format.
-    duration_col : str, default="duration"
-        Subject-specific horizon/duration column name in LONG-format.
-    time_step : float, default=1.0
-        Temporal discretization step used to map times to wave indices.
-    max_horizon : float, optional
-        Optional cap for the horizon considered during preprocessing.
-
-    Attributes
-    ----------
-    n_features_in_ : int
-        Number of features seen during fit (wide representation).
-    tree_ : sklearn.tree._tree.Tree
-        The underlying fitted tree structure.
-    feature_importances_ : ndarray of shape (n_features,)
-        Impurity-based feature importances (variance reduction based).
-    _wide_feature_names_ : list[str]
-        Names of generated wide features (when LONG-format preprocessing is enabled).
-    _subject_ids_ : list[str]
-        Subject ids aligned with the wide matrix rows (when LONG-format preprocessing is enabled).
-
-    Notes
-    -----
-    - Contributors: Mathias VALLA, Esteban MAUBOUSSIN, Alae KHIDOUR, Berkehan KOCAK, Sonny MUPFUNI
-    - The intended regression criterion is MSE (variance reduction). If you enable different regression criteria,
-      ensure the Cython backend supports them.
-    - References:
-        - [1] Valla, M. *Time-penalised trees (TpT): introducing a new tree-based data mining algorithm for
-          time-varying covariates.* Ann Math Artif Intell 92, 1609–1661 (2024).
-        - [2] Valla, M., Milhaud, X. *Consistent Time-Aware Trees for Longitudinal Data: The Time-Penalized Tree.* 2026.
-          ⟨hal-05022929v2⟩ https://cnrs.hal.science/hal-05022929
-
-    Examples
-    --------
-    !!! example "Regression with LONG-format input"
-        ```python
-        import pandas as pd
-        from scikit_longitudinal.estimators.trees import TpTDecisionTreeRegressor
-
-        df_long = pd.read_csv("my_longitudinal_dataset.csv")
-        y = df_long["target"]
-        X = df_long.drop(columns=["target"])
-
-        reg = TpTDecisionTreeRegressor(
-            gamma=0.01,
-            assume_long_format=True,
-            id_col="id",
-            time_col="time_point",
-            duration_col="duration",
-            time_step=1.0,
-            max_depth=4,
-            random_state=0,
-        )
-        reg.fit(X, y)
-        preds = reg.predict(X)
-        ```
+            reg = TpTDecisionTreeRegressor(
+                gamma=0.01,
+                assume_long_format=True,
+                id_col="id",
+                time_col="time_point",
+                duration_col="duration",
+                time_step=1.0,
+                max_depth=4,
+                random_state=0,
+            )
+            reg.fit(X, y)
+            preds = reg.predict(X)
+            ```
     """
 
     _parameter_constraints = {
