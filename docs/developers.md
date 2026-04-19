@@ -102,7 +102,7 @@ After pinning the x86_64 interpreter, `uv` will automatically use it for future 
 ---
 
 ## Linting and Formatting
-We use **Ruff** to maintain code quality.
+We use **Ruff** (with default rules — no custom configuration) to keep code quality in check.
 
 - **Check Issues**:
  ```bash
@@ -251,7 +251,7 @@ Scikit-longitudinal currently exposes shared extension templates for three compo
 ## Running Tests
 Validate your changes:
 ```bash
-uv run pytest -sv tests/
+uv run pytest -sv scikit_longitudinal/tests/
 ```
 
 ---

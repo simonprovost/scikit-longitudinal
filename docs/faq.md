@@ -96,7 +96,7 @@ icon: lucide/circle-help
 
     The main current boundaries are:
 
-    - no regression support yet, although it is wanted,
+    - no heavy regression support yet, although it is wanted,
     - no longitudinal neural-network family integrated into the core workflow yet, although it is wanted,
     - no attempt to cover full time-series forecasting problems, since `aeon` and similar toolkits are already well shaped for that space,
     - an expectation that temporal structure is provided explicitly through wide-format data and feature-group metadata.
