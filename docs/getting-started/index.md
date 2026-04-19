@@ -43,7 +43,7 @@ Choose the installation method that best suits your workflow.
     You can also pin a specific version if desired:
 
     ```bash
-    uv add "scikit-longitudinal==0.0.8"
+    uv add "scikit-longitudinal==0.1.8"
     ```
 
     After adding, run `uv sync` to materialise the lockfile.
@@ -69,7 +69,7 @@ Choose the installation method that best suits your workflow.
     You can also pin a specific version if desired:
 
     ```bash
-    pip install scikit-longitudinal==0.0.8
+    pip install scikit-longitudinal==0.1.8
     ```
 
 === "Conda <span class='tab-badge'>CondaForge</span>"
@@ -98,7 +98,7 @@ Choose the installation method that best suits your workflow.
     You can also pin a specific version if desired:
 
     ```bash
-    pip install scikit-longitudinal==0.0.8
+    pip install scikit-longitudinal==0.1.8
     ```
 
     This installs `Scikit-longitudinal` in your newly created Conda environment.
@@ -115,23 +115,17 @@ Choose the installation method that best suits your workflow.
 
 === "Google Colab <span class='tab-badge'>4 lines</span>"
 
-    1. Open a new Colab notebook (Python 3.10+).
-    2. Install `Sklong`:
-
-    ```bash
-    !pip install scikit-longitudinal
-    ```
-
-    3. Ensure the compatible `scikit-lexicographical-trees` dependency is present:
-
-    ```bash
-    !pip install scikit-lexicographical-trees
-    ```
-
-    4. Remove conflicting `scikit-learn` if preinstalled:
+    1. Open a new Colab notebook (Python 3.10–3.13).
+    2. Remove the preinstalled stock `scikit-learn` (Sklong relies on the `scikit-lexicographical-trees` fork which ships its own `sklearn` package):
 
     ```bash
     !pip uninstall scikit-learn -y
+    ```
+
+    3. Install `Sklong` (this pulls in `scikit-lexicographical-trees` automatically):
+
+    ```bash
+    !pip install scikit-longitudinal
     ```
 
 === "Marimo"
