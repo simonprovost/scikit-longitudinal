@@ -30,25 +30,6 @@ class LongitudinalPipeline(Pipeline):
     with longitudinal data. It ensures that the structure of longitudinal features is updated and maintained throughout
     the pipeline's transformations, making it ideal for longitudinal classification tasks.
 
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
-        structure of longitudinal data, we try to build those as much as possible for users, while allowing
-        users to also define their own feature groups if needed. As follows:
-
-        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent. This captures temporal dependencies.
-        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
-          matrix.
-
-        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
-        use the primitives that follow.
-
-        These attributes are updated dynamically as data passes through the pipeline, ensuring that temporal relationships
-        are preserved.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
-
     !!! note "Extension of scikit-learn's Pipeline"
         While maintaining the interface of scikit-learn's `Pipeline`, this class includes additional validations and
         methods to ensure the correct processing of longitudinal data. It integrates seamlessly with scikit-learn's
@@ -158,7 +139,7 @@ class LongitudinalPipeline(Pipeline):
     Examples:
         Below are examples demonstrating the usage of the `LongitudinalPipeline` class.
 
-        !!! example "Basic Usage with a Classifier"
+        !!! example "Basic Usage"
             ```python
             from scikit_longitudinal.pipeline import LongitudinalPipeline
             from scikit_longitudinal.data_preparation import LongitudinalDataset
@@ -203,7 +184,7 @@ class LongitudinalPipeline(Pipeline):
             print(f"Predictions: {y_pred}")
             ```
 
-        !!! example "Using a Custom Callback"
+        !!! example "Advanced: custom callback"
             ```python
             from scikit_longitudinal.pipeline import LongitudinalPipeline
 

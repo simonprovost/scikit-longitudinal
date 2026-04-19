@@ -177,19 +177,9 @@ class AggrFunc(DataPreparationMixin):
     those in Scikit-Learn or any other alike machine learning-based libarires.
 
 
-    !!! question "What is a feature group?"
-        In a nutshell, a feature group is a collection of features sharing a common base longitudinal attribute
-        across different waves of data collection (e.g., "income_wave1", "income_wave2", "income_wave3"). Note that
-        aggregation reduces the dataset's temporal information significantly.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
-
-
     The aggregation function is applied iteratively across waves for each feature group, producing a single aggregated
-    feature per group (e.g., "mean_income" from "income_wave1", "income_wave2", "income_wave3" using the "mean"
-    function). Supported aggregation functions include "mean", "median", "mode", and custom callable functions that
+    feature per group (e.g., `mean_income` from `income_wave1`, `income_wave2`, `income_wave3` using the `mean`
+    function). Supported aggregation functions include `mean`, `median`, `mode`, and custom callable functions that
     take a pandas Series as input and return a single value. Parallel processing is also supported via the Ray library
     for enhanced efficiency on large datasets.
 
@@ -216,7 +206,7 @@ class AggrFunc(DataPreparationMixin):
         Below are examples demonstrating the usage of the `AggrFunc` class with the "stroke.csv" dataset.
         Please, note that "stroke.csv" is a placeholder and should be replaced with the actual path to your dataset.
 
-        !!! example "Basic Usage with Mean Aggregation"
+        !!! example "Basic Usage"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
             from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
@@ -241,7 +231,7 @@ class AggrFunc(DataPreparationMixin):
             transformed_dataset, _, _, _ = agg_func._transform()
             ```
 
-        !!! example "Using Custom Aggregation Function"
+        !!! example "Advanced: custom aggregation function"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
             from scikit_longitudinal.data_preparation.aggregation_function import AggrFunc
@@ -269,7 +259,7 @@ class AggrFunc(DataPreparationMixin):
             transformed_dataset, _, _, _ = agg_func._transform()
             ```
 
-        !!! example "Using Parallel Processing"
+        !!! example "Advanced: parallel processing"
             ```python
             # ... similar to the previous example, prepare data and transform ...
 
