@@ -15,22 +15,8 @@ class MerWavTimePlus(DataPreparationMixin):
 
     The `MerWavTimePlus` class transforms longitudinal data by merging all features across waves into a single set
     while preserving their time indices. This maintains the temporal structure, enabling longitudinal machine learning
-    methods to leverage temporal dependencies and patterns.
-
-    !!! quote "MerWavTime(+)? Usefulness?"
-        In longitudinal studies, data is collected across multiple waves (time points), resulting in features that
-        capture temporal information. This method merges all features from all waves into a single set while preserving
-        their time indices, facilitating the use of time-aware machine learning techniques.
-
-    !!! question "What is a feature group?"
-        In a nutshell, a feature group is a collection of features sharing a common base longitudinal attribute
-        across different waves of data collection (e.g., "income_wave1", "income_wave2", "income_wave3"). Note that
-        aggregation reduces the dataset's temporal information significantly.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
-
+    methods to leverage temporal dependencies and patterns. See all
+    [longitudinal-data-aware machine learning estimators](../estimators/trees/lexico_decision_tree_classifier.md).
 
     Args:
         features_group (List[List[int]], optional): A temporal matrix representing the temporal dependency of a

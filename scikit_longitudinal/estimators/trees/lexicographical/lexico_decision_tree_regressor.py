@@ -9,40 +9,13 @@ class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
     """
     Lexico Decision Tree Regressor for longitudinal data regression.
 
-    The `LexicoDecisionTreeRegressor` is a specialized regression model designed for longitudinal data. It builds
-    upon scikit-learn's `DecisionTreeRegressor` by integrating a lexicographic optimization strategy. This approach
-    prioritizes recent data points (waves) during split selection, optimizing both statistical accuracy and temporal
-    relevance—a powerful tool for modeling time-dependent phenomena like patient health trends or economic forecasts.
+    This regressor extends scikit-learn's `DecisionTreeRegressor` for longitudinal data by integrating a
+    lexicographic optimisation approach that prioritises more recent waves during split selection. Splits are
+    evaluated with a bi-objective rule: the primary objective maximises the variance-reduction information gain
+    (`friedman_mse` criterion), and the secondary objective favours features from more recent waves whenever
+    competing gains are within `threshold_gain`. This is a powerful tool for modelling time-dependent phenomena
+    like patient health trends or economic forecasts.
 
-    !!! question "How Does Lexicographic Optimization Work?"
-        This regressor adapts the traditional decision tree algorithm for longitudinal data by considering two objectives:
-
-        1. **Primary**: Maximize the information gain ratio (using "friedman_mse" criterion).
-        2. **Secondary**: Favor features from more recent waves when gain ratios are comparable (within `threshold_gain`).
-
-        This dual approach ensures that the tree leverages both statistical purity and temporal relevance.
-
-
-    !!! note "Performance Boost with Cython"
-        The underlying splitter (`node_lexicoRF_split`) is optimized in Cython for faster computation. Check out the
-        [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
-        for a deep dive into the performance enhancements.
-
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
-        structure of longitudinal data, we try to build those as much as possible for users, while allowing
-        users to also define their own feature groups if needed. As follows:
-
-        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent. This captures temporal dependencies.
-        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
-          matrix.
-
-        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
-        use the primitives that follow.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
 
     Args:
         threshold_gain (float, default=0.0015):
@@ -90,12 +63,6 @@ class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
         While `Sklong` focussed classification tasks only as of now. This regressor model is used by
         our LexicographicalGradientBoosting primitive. Feel free to experiment with it in your own
         longitudinal regression tasks but we do not guarantee its performance.
-
-    Notes:
-        - **Performance**: Best suited for longitudinal data; may not outperform standard regressors on non-temporal data.
-        - **Reference**: Ribeiro, C. and Freitas, A., 2020. "A new random forest method for longitudinal data regression
-          using a lexicographic bi-objective approach." In *2020 IEEE Symposium Series on Computational Intelligence
-          (SSCI)* (pp. 806-813).
     """
 
     def __init__(
@@ -160,3 +127,20 @@ class LexicoDecisionTreeRegressor(DecisionTreeRegressor):
             raise ValueError("The features_group parameter must be provided.")
 
         return super().fit(X, y, *args, **kwargs)
+
+    def predict(self, X, check_input=True):
+        """Predict regression target values for the input samples.
+
+        Inherited from scikit-learn's `DecisionTreeRegressor`. The Lexico tree only customises
+        split selection at fit time; prediction is the standard tree-traversal routine.
+
+        Args:
+            X (array-like of shape (n_samples, n_features)):
+                Input samples.
+            check_input (bool, default=True):
+                Allow to bypass input validation. Forwarded to scikit-learn.
+
+        Returns:
+            np.ndarray: Predicted target values of shape `(n_samples,)`.
+        """
+        return super().predict(X, check_input=check_input)

@@ -1,11 +1,11 @@
-# Lexico Random Forest Classifier
+# Lexicographical Decision Tree Regressor
 
-??? tip "Abstract of LexicoRandomForestClassifier"
+??? tip "Abstract of LexicoDecisionTreeRegressor"
     *Extracted from Ribeiro & Freitas (2024), "Lexicographical random forests for longitudinal data classification".*
 
     Standard supervised machine learning methods often ignore the temporal information represented in longitudinal data, but that information can lead to more precise predictions in classification tasks. Data preprocessing techniques and classification algorithms can be adapted to cope directly with longitudinal data inputs, making use of temporal information such as the time-index of features and previous measurements of the class variable. In this article, we propose two changes to the classification task of predicting age-related diseases in a real-world dataset created from the English Longitudinal Study of Ageing. First, we explore the addition of previous measurements of the class variable, and estimating the missing data in those added features using intermediate classifiers. Second, we propose a new split-feature selection procedure for a random forest's decision trees, which considers the candidate features' time-indexes, in addition to the information gain ratio. Our experiments compared the proposed approaches to baseline approaches, in 3 prediction scenarios, varying the "time gap" for the prediction - how many years in advance the class (occurrence of an age-related disease) is predicted. The experiments were performed on 10 datasets varying the class variable, and showed that the proposed approaches increased the random forest's predictive accuracy.
 
-    Adapted and integrated into a Random Forest, this estimator builds an ensemble of `LexicoDecisionTreeClassifier`s — each tree applies the lexicographic split-selection procedure above and their predictions are aggregated through the standard random-forest voting scheme.
+    Adapted to regression, this estimator applies the same lexicographic split-selection procedure inside `DecisionTreeRegressor`, replacing information-gain ratio with variance reduction (`friedman_mse`) as the primary objective while still preferring more recent waves on near-ties.
 
     [See More In References :fontawesome-solid-book:](../../../publications.md){ .md-button }
 
@@ -22,11 +22,10 @@
 
     [See More In Temporal Dependency Guide :fontawesome-solid-timeline:](../../../tutorials/temporal_dependency.md){ .md-button }
 
-## ::: scikit_longitudinal.estimators.ensemble.lexicographical.lexico_random_forest.LexicoRandomForestClassifier
+## ::: scikit_longitudinal.estimators.trees.lexicographical.lexico_decision_tree_regressor.LexicoDecisionTreeRegressor
     options:
-        heading: "LexicoRandomForestClassifier"
+        heading: "LexicoDecisionTreeRegressor"
         inherited_members: true
         members:
             - fit
             - predict
-            - predict_proba

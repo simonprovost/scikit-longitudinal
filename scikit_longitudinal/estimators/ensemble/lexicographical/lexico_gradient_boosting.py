@@ -60,47 +60,11 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
     """
     Lexico Gradient Boosting Classifier for longitudinal data analysis.
 
-    The Lexico Gradient Boosting Classifier is an advanced ensemble algorithm designed specifically for longitudinal
-    datasets. It incorporates the fundamental principles of the Gradient Boosting framework while utilizing
-    longitudinal-adapted base estimators to capture the temporal complexities and interdependencies intrinsic to
-    longitudinal data. The base estimators are Lexico Decision Tree Regressors, which are specialized decision tree
-    models capable of handling longitudinal data through a lexicographic optimization approach. The classifier follows
-    the familiar binary and multiclass interface of `sklearn.ensemble.GradientBoostingClassifier`.
-
-    !!! tip "Why Use LexicoGradientBoostingClassifier?"
-        This classifier is ideal for longitudinal datasets where temporal recency is crucial. By leveraging lexicographic
-        optimization within a boosting framework, it iteratively improves predictions while prioritizing recent
-        measurements—perfect for applications like patient health monitoring or financial forecasting.
-
-    !!! question "How Does Lexicographic Optimization Work?"
-        The base estimators (Lexico Decision Tree Regressors) use a bi-objective split selection strategy:
-
-        1. **Primary**: Minimize the loss (using "friedman_mse" criterion).
-        2. **Secondary**: Favor features from more recent waves when loss reductions are similar (within `threshold_gain`).
-
-        This ensures both statistical accuracy and temporal relevance are optimized, with boosting aggregating these
-        decisions for enhanced predictive power.
-
-    !!! note "Performance Boost with Cython"
-        The underlying splitter (`node_lexicoRF_split`) is optimized in Cython for faster computation. See the
-        [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
-        for details.
-
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
-        structure of longitudinal data, we try to build those as much as possible for users, while allowing
-        users to also define their own feature groups if needed. As follows:
-
-        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent. This captures temporal dependencies.
-        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
-          matrix.
-
-        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
-        use the primitives that follow.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
+    This classifier extends scikit-learn's `GradientBoostingClassifier` for longitudinal data by integrating a
+    lexicographic optimisation approach within each base learner (a `LexicoDecisionTreeRegressor`). Splits are
+    evaluated with a bi-objective rule: the primary objective minimises the loss (`friedman_mse` criterion), and
+    the secondary objective favours features from more recent waves whenever competing loss reductions are within
+    `threshold_gain`. Boosting aggregates these decisions over successive iterations by fitting residuals.
 
     Args:
         threshold_gain (float, default=0.0015):
@@ -144,7 +108,7 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
             The class labels.
 
     Examples:
-        !!! example "Basic Usage with Dummy Longitudinal Data"
+        !!! example "Basic Usage"
 
             ```python
             from sklearn.metrics import accuracy_score
@@ -165,7 +129,7 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
             print(f"Accuracy: {accuracy_score(dataset.y_test, y_pred)}")
             ```
 
-        !!! example "Tuning Learning Rate and Threshold Gain"
+        !!! example "Advanced: tuning learning rate and threshold gain"
 
             ```python
             # ... Similar setup as above ...
@@ -182,15 +146,6 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
 
             # ... Similar evaluation as above ...
             ```
-
-    Notes:
-        - **References**:
-
-          - Ribeiro, C. and Freitas, A., 2020. "A new random forest method for longitudinal data classification using a
-            lexicographic bi-objective approach." *2020 IEEE Symposium Series on Computational Intelligence (SSCI)*,
-            pp. 806-813.
-          - Ribeiro, C. and Freitas, A.A., 2024. "A lexicographic optimisation approach to promote more recent features
-            on longitudinal decision-tree-based classifiers." *Artificial Intelligence Review*, 57(4), p.84.
     """
 
     def __init__(
@@ -256,9 +211,6 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
         !!! tip "Tuning Tip"
             Adjust `n_estimators` and `learning_rate` to balance model complexity and convergence speed. A lower
             `learning_rate` with more `n_estimators` can improve generalization but increases computation time.
-
-        !!! note
-            Ensure `features_group` accurately maps your data's temporal structure for optimal performance.
         """
         self._lexico_gradient_boosting = GradientBoostingClassifier(
             splitter=self.splitter,
@@ -302,10 +254,6 @@ class LexicoGradientBoostingClassifier(CustomClassifierMixinEstimator):
         Returns:
             np.ndarray:
                 The predicted class probabilities for each input sample.
-
-        !!! question "When to Use Probabilities?"
-            Use `predict_proba` instead of `predict` when you need to assess confidence levels or apply custom
-            decision thresholds rather than relying on the default class assignment.
         """
         return self._lexico_gradient_boosting.predict_proba(X)
 

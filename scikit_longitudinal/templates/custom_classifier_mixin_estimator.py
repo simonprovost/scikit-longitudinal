@@ -62,6 +62,25 @@ class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOver
     def fit(
         self, X: np.ndarray, y: np.ndarray = None, sample_weight: np.ndarray = None
     ) -> "CustomClassifierMixinEstimator":
+        """Fit the classifier to the training data.
+
+        Validates ``X`` (and ``y`` when provided) with scikit-learn's
+        ``check_X_y`` / ``check_array`` and then delegates to the subclass
+        implementation in ``_fit``. ``sample_weight`` is forwarded only when
+        the subclass's ``_fit`` declares it.
+
+        Args:
+            X (np.ndarray):
+                Training input samples of shape ``(n_samples, n_features)``.
+            y (np.ndarray, optional):
+                Target class labels of shape ``(n_samples,)``.
+            sample_weight (np.ndarray, optional):
+                Per-sample weights of shape ``(n_samples,)``. Forwarded to
+                ``_fit`` only when supported.
+
+        Returns:
+            CustomClassifierMixinEstimator: The fitted estimator (``self``).
+        """
         if y is None:
             return self._check_array_decorator(self._fit)(X)
         _fit_sig = inspect.signature(self._fit)
@@ -74,10 +93,35 @@ class CustomClassifierMixinEstimator(BaseEstimator, ClassifierMixin, EnforceOver
 
     @final
     def predict(self, X: np.ndarray) -> np.ndarray:
+        """Predict class labels for the input samples.
+
+        Validates ``X`` with scikit-learn's ``check_array`` and delegates to
+        the subclass implementation in ``_predict``.
+
+        Args:
+            X (np.ndarray):
+                Input samples of shape ``(n_samples, n_features)``.
+
+        Returns:
+            np.ndarray: Predicted class labels of shape ``(n_samples,)``.
+        """
         return self._check_array_decorator(self._predict)(X)
 
     @final
     def predict_proba(self, X: np.ndarray) -> np.ndarray:
+        """Predict class probabilities for the input samples.
+
+        Validates ``X`` with scikit-learn's ``check_array`` and delegates to
+        the subclass implementation in ``_predict_proba``.
+
+        Args:
+            X (np.ndarray):
+                Input samples of shape ``(n_samples, n_features)``.
+
+        Returns:
+            np.ndarray: Class probabilities of shape ``(n_samples, n_classes)``,
+            with columns ordered as in ``self.classes_``.
+        """
         return self._check_array_decorator(self._predict_proba)(X)
 
     def _fit(

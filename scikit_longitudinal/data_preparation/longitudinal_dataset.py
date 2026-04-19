@@ -132,21 +132,18 @@ class LongitudinalDataset:
     Therefore, the class is designed to manage this temporal information and provide a clean interface for
     machine learning tasks throughout the `Sklong` library.
 
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
-        structure of longitudinal data, we try to build those as much as possible for users, while allowing
-        users to also define their own feature groups if needed. As follows:
+    !!! question "What are features_group and non_longitudinal_features?"
+        Two key attributes, `features_group` and `non_longitudinal_features`, enable algorithms to interpret the
+        temporal structure of longitudinal data.
 
-        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent. This captures temporal dependencies.
-        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
-          matrix.
+        - **features_group**: A list of lists where each sublist contains indices of a longitudinal attribute's
+          waves, ordered from oldest to most recent. This captures temporal dependencies.
+        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the
+          temporal matrix.
 
-        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
-        use the primitives that follow.
+        Proper setup of these attributes is critical for leveraging temporal patterns effectively.
 
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
+        [See More In Temporal Dependency Guide :fontawesome-solid-timeline:](../../tutorials/temporal_dependency.md){ .md-button }
 
     Args:
         file_path (Union[str, Path]): Path to the dataset file (supports ARFF and CSV formats).
@@ -164,7 +161,7 @@ class LongitudinalDataset:
     Examples:
         Below are examples illustrating the class's usage.
 
-        !!! example "Loading and Preparing Data"
+        !!! example "Basic Usage"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
 
@@ -184,7 +181,7 @@ class LongitudinalDataset:
             dataset.load_train_test_split(test_size=0.2, random_state=42)
             ```
 
-        !!! example "Using Custom Feature Groups"
+        !!! example "Advanced: custom feature groups"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
 
@@ -201,7 +198,7 @@ class LongitudinalDataset:
             dataset.setup_features_group(custom_groups)
             ```
 
-        !!! example "Converting File Formats"
+        !!! example "Advanced: converting file formats"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
 
@@ -549,18 +546,6 @@ class LongitudinalDataset:
         self, input_data: Union[str, List[List[Union[str, int]]]]
     ) -> None:
         """Configure feature groups and non-longitudinal features for longitudinal analysis.
-
-        !!! question "What is a feature group? What's the structure really?"
-            In a nutshell, a feature group is a collection of features sharing a common base longitudinal attribute
-            across different waves of data collection (e.g., "income_wave1", "income_wave2", "income_wave3"). Note that
-            aggregation reduces the dataset's temporal information significantly.
-
-            Each sublist in `feature_groups` represents a longitudinal attribute across waves, ordered oldest to most
-            recent (e.g., `[index_w1, index_w2]`). Use -1 for missing waves to align groups.
-
-            To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-
-            [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
 
         This method defines how features are grouped to capture temporal dependencies across waves. It supports three
         distinct input types, each suited to different use cases, with detailed examples and explanations below.

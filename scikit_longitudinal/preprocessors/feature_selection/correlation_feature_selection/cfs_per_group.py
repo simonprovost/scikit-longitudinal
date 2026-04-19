@@ -38,33 +38,6 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
     2. **Phase 2**: The aggregated features from Phase 1 are combined with non-longitudinal features, and a standard CFS
        is applied to further refine the selection by removing redundant features.
 
-    !!! quote "CFS-Per-Group: A Longitudinal Variation of CFS"
-        CFS-Per-Group, also known as `Exh-CFS-Gr` in the literature, adapts the standard CFS method to longitudinal data.
-        It is particularly useful for datasets where features are collected over multiple time points, such as in ageing
-        studies or health monitoring.
-
-        For scientific references, see the Notes section below.
-
-    !!! note "Standard CFS Implementation"
-        For the standard CFS algorithm without the longitudinal component, refer to the `CorrelationBasedFeatureSelection`
-        class.
-
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
-        structure of longitudinal data, we try to build those as much as possible for users, while allowing
-        users to also define their own feature groups if needed. As follows:
-
-        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent. This captures temporal dependencies.
-        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
-          matrix.
-
-        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
-        use the primitives that follow.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
-
     Args:
         non_longitudinal_features (Optional[List[int]], optional): List of indices for non-longitudinal features.
             These features are not part of the temporal matrix and are treated separately. Defaults to None.
@@ -87,7 +60,7 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
     Examples:
         Below are examples demonstrating the usage of the `CorrelationBasedFeatureSelectionPerGroup` class.
 
-        !!! example "Basic Usage with Longitudinal Component"
+        !!! example "Basic Usage"
             ```python
             from scikit_longitudinal.preprocessors.feature_selection.correlation_feature_selection import CorrelationBasedFeatureSelectionPerGroup
             from scikit_longitudinal.data_preparation import LongitudinalDataset
@@ -115,7 +88,7 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
             print(X_selected)
             ```
 
-        !!! example "Using Parallel Processing"
+        !!! example "Advanced: parallel processing"
             ```python
             # ... Same as above, but with parallel processing enabled ...
 
@@ -130,7 +103,7 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
             # ... Same as above, but with parallel processing enabled ...
             ```
 
-        !!! example "Using Version 2 with Outer Search"
+        !!! example "Advanced: version 2 with outer search"
             ```python
             # ... Same as above, but with parallel processing enabled ...
 
@@ -145,22 +118,6 @@ class CorrelationBasedFeatureSelectionPerGroup(CustomTransformerMixinEstimator):
 
             # ... Same as above, but with parallel processing enabled ...
             ```
-
-    Notes:
-        The CFS-Per-Group algorithm is based on the following references:
-
-        - **Zixiao Shen's CFS Implementation**:
-          - *Zixiao. S.* (2019, August 11). GitHub - ZixiaoShen/Correlation-based-Feature-Selection. Available at: [GitHub](https://github.com/ZixiaoShen/Correlation-based-Feature-Selection)
-        - **Mastervii's CFS 2-Phase Variant**:
-          - *Pomsuwan, T.* (2023, February 24). GitHub - mastervii/CSF_2-phase-variant. Available at: [GitHub](https://github.com/mastervii/CSF_2-phase-variant)
-        - **Longitudinal Component References**:
-          - **Version 1**:
-            - *Pomsuwan, T. and Freitas, A.A.* (2017, November). Feature selection for the classification of longitudinal human ageing data. In *2017 IEEE International Conference on Data Mining Workshops (ICDMW)* (pp. 739-746). IEEE.
-          - **Version 2**:
-            - *Pomsuwan, T. and Freitas, A.A.* (2018, February). Feature selection for the classification of longitudinal human ageing data. Master's thesis, University of Kent. Available at: [University of Kent](https://kar.kent.ac.uk/66568/)
-
-    See also:
-        - `CorrelationBasedFeatureSelection`: For the standard CFS algorithm without the longitudinal component.
     """
 
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member

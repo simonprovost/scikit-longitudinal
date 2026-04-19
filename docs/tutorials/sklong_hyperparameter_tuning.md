@@ -53,7 +53,7 @@ param_distributions = {
  'threshold_gain': loguniform(1e-4, 1e-1),
  'n_estimators': randint(50, 300),
  'max_depth': [None, 5, 10, 15],
- 'max_features': ['auto', 'sqrt', 0.8],
+ 'max_features': ['sqrt', 'log2', 0.8],
 }
 
 random_search = RandomizedSearchCV(

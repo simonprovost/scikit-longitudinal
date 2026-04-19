@@ -18,44 +18,21 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
     Time-penalised Trees (TpT) Decision Tree Classifier for longitudinal data classification.
 
     This classifier extends the standard Decision Tree algorithm to handle longitudinal data by incorporating a
-    **time-penalized split gain**. At a parent node time $t_p$, a candidate split at time $t_c$ has gain
-    $\\Delta I$ which is penalized as $\\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$. In this Phase-1
+    **time-penalised split gain**. At a parent node time $t_p$, a candidate split at time $t_c$ has gain
+    $\\Delta I$ which is penalised as $\\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$. In this Phase-1
     implementation, $t_c$ is proxied by the **wave index** of the splitting feature; in a later step we will
     propagate the true parent time through the builder to compute $t_c - t_p$ exactly.
 
-    !!! tip "Why Use TpTDecisionTreeClassifier?"
-        This classifier is ideal when working with longitudinal datasets where temporal dependency matters. By balancing
-        information gain with a penalty for later observations, it captures evolving patterns effectively—perfect for
-        applications like medical studies or time-series within time-series classification.
+    ??? note "LONG vs wide input — *[Soon To Be Deprecated](https://github.com/simonprovost/scikit-longitudinal/issues/64)*"
+        TpT internally operates on a **wide** matrix (features expanded over waves). If `assume_long_format=True`,
+        the classifier can accept a LONG-format dataframe and will convert it to the expected wide representation
+        before fitting (using `id_col`, `time_col`, `duration_col`, `time_step`, and `max_horizon`).
 
-    !!! question "How does TpT work?"
-        At each node, we evaluate candidate splits by a **time-penalized impurity improvement**:
-        $G_\\gamma = \\Delta I \\cdot e^{-\\gamma \\Delta t}$.
-        In this phase, $\\Delta t$ is approximated by the wave index of the splitting feature. A split is chosen
-        if its penalized gain is maximal among candidates. (We temporarily reuse the Cython parameter
-        `threshold_gain` as $\\gamma$.)
+        - LONG-format: one row per (subject, time) observation.
+        - wide format: one row per subject, with features duplicated across waves.
 
-    !!! note "Performance Boost with Cython"
-        The underlying splitter (`node_TpT_split`) is optimized in Cython for faster computation. Check out the
-        [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
-        for a deep dive into the performance enhancements.
-
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
-        structure of longitudinal data, we try to build those as much as possible for users, while allowing
-        users to also define their own feature groups if needed. As follows:
-
-        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent. This captures temporal dependencies.
-        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
-          matrix.
-
-        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
-        use the primitives that follow.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest//temporal_dependency/){ .md-button }
-
+        The conversion fills feature values up to each subject's duration/horizon and leaves NaNs beyond,
+        enabling "duration leaves" in the TpT logic.
 
     Args:
         gamma (float, optional):
@@ -122,7 +99,7 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
     Examples:
         Below are examples demonstrating the usage of the `TpTDecisionTreeClassifier` class.
 
-        !!! example "Basic Usage with Iris Dataset"
+        !!! example "Basic Usage"
 
             Please note that the Iris is not longitudinal data, but this example is for demonstration purposes only.
             We could not publicly use the dataset we use for our various papers without user registering
@@ -154,7 +131,7 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
             print(f"Accuracy: {accuracy}")
             ```
 
-        !!! example "Using with LongitudinalPipeline"
+        !!! example "Advanced: using with LongitudinalPipeline"
 
             ```python
             from scikit_longitudinal.pipeline import LongitudinalPipeline
@@ -190,14 +167,6 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
             y_pred = pipeline.predict(dataset.X_test)
             print(f"Predictions: {y_pred}")
             ```
-
-    Notes:
-        - Contributors of the code are: Mathias VALLA, Esteban MAUBOUSSIN, Alae KHIDOUR, Berkehan KOCAK and Sonny MUPFUNI
-        - The `features_group` parameter is essential for longitudinal data and must reflect the dataset's temporal structure.
-        - For non-longitudinal datasets, this classifier may not outperform the standard `DecisionTreeClassifier`.
-        - References:
-              - [1] Valla, M. Time-penalised trees (TpT): introducing a new tree-based data mining algorithm for time-varying covariates. Ann Math Artif Intell 92, 1609–1661 (2024). https://doi.org/10.1007/s10472-024-09950-w
-              - [2] Mathias Valla, Xavier Milhaud. Consistent Time-Aware Trees for Longitudinal Data: The Time-Penalized Tree. 2026. ⟨hal-05022929v2⟩ https://cnrs.hal.science/hal-05022929
     """
 
     _parameter_constraints = {

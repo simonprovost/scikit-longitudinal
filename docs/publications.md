@@ -67,7 +67,7 @@ This section keeps track of the research papers behind the implemented primitive
     - Valla, M. (2024). *Time-penalised trees (TpT): introducing a new tree-based data mining algorithm for time-varying covariates*. *Annals of Mathematics and Artificial Intelligence* 92, 1609–1661. [Read the paper (DOI)](https://doi.org/10.1007/s10472-024-09950-w)
     - Valla, M., Milhaud, X. (2026). *Consistent Time-Aware Trees for Longitudinal Data: The Time-Penalized Tree*. ⟨hal-05022929v2⟩. [Read the preprint](https://cnrs.hal.science/hal-05022929)
 
-    **API Reference:** [TpT Decision Tree Classifier](API/estimators/trees/tpt_decision_tree_classifier.md)
+    **API Reference:** [TpT Decision Tree Classifier](API/estimators/trees/tpt_decision_tree_classifier.md), [TpT Decision Tree Regressor](API/estimators/trees/tpt_decision_tree_regressor.md)
 
     **Credits:** Original author: Mathias Valla. Implementation: [Mathias Valla](https://github.com/MathiasValla), Esteban Mauboussin, Alae Khidour, Berkehan Kocak, and Sonny Mupfuni, with the `Sklong` team.
 

@@ -76,29 +76,10 @@ class _WaveAwareEstimator(BaseEstimator, ClassifierMixin):
 
 class LongitudinalStackingClassifier(CustomClassifierMixinEstimator):
     """
-    Longitudinal Stacking Classifier for ensemble learning on longitudinal data.
-
-    The Longitudinal Stacking Classifier is a sophisticated ensemble method designed to handle the unique challenges
-    posed by longitudinal data. It leverages a stacking approach where multiple base estimators are trained, and their
-    predicted class probabilities are used as input features for a meta-learner, which generates the final
-    prediction. This method excels at capturing complex temporal patterns by learning from the combined strengths of
-    diverse base models, and supports both binary and multiclass targets.
-
-    !!! warning "When to Use?"
-        This classifier is primarily used with the "SepWav" (Separate Waves) strategy but can also be applied with
-        longitudinal-based estimators that do not follow the SepWav approach if preferred.
-
-    !!! info "SepWav (Separate Waves) Strategy"
-        The SepWav strategy involves training separate classifiers for each wave's features and the class variable.
-        The class-probability outputs from these classifiers are then combined using stacking, where a meta-learner
-        (e.g., Logistic Regression, Decision Tree, or Random Forest) learns to make the final prediction based on the
-        base classifiers' outputs.
-
-    !!! info "Wrapper Around Sklearn StackingClassifier"
-        This class wraps the `sklearn` StackingClassifier, offering a familiar interface while incorporating
-        enhancements for longitudinal data. As in scikit-learn, base estimators are cloned and refitted during
-        stacking unless a prefit workflow is explicitly requested. When `extract_wave` is provided, those internal
-        refits remain wave-specific.
+    Trains a meta-learner on the class-probability outputs of the pre-trained base estimators. Each base estimator
+    must implement `predict_proba`; the meta-learner is then fitted on the stacked probabilities to produce the
+    final prediction. Supports both binary and multiclass targets, and wraps scikit-learn's `StackingClassifier`
+    under the hood. When `extract_wave` is provided, internal refits remain wave-specific.
 
     Args:
         estimators (List[CustomClassifierMixinEstimator]):
@@ -120,56 +101,6 @@ class LongitudinalStackingClassifier(CustomClassifierMixinEstimator):
         ValueError: If no base estimators are provided, if a base estimator does not implement `predict_proba`, or if
             the meta-learner is not suitable.
         NotFittedError: If attempting to predict or predict_proba before fitting the model.
-
-    Examples:
-        !!! example "Basic Usage with Dummy Longitudinal Data"
-
-            ```python
-            from scikit_longitudinal.estimators.ensemble.longitudinal_stacking import LongitudinalStackingClassifier
-            from sklearn.ensemble import RandomForestClassifier
-            from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
-            from sklearn.linear_model import LogisticRegression
-            import numpy as np
-
-            # Dummy data
-            X = np.array([[0, 1, 0, 1, 45, 1], [1, 1, 1, 1, 50, 0], [0, 0, 0, 0, 55, 1]])
-            y = np.array([0, 1, 2])
-            features_group = [[0, 1], [2, 3]]
-
-            # Train base estimators
-            rf = RandomForestClassifier().fit(X, y)
-            lexico_rf = LexicoRandomForestClassifier(features_group=features_group).fit(X, y)
-
-            # Create and fit the stacking classifier
-            clf = LongitudinalStackingClassifier(
-                estimators=[('rf', rf), ('lexico_rf', lexico_rf)],
-                meta_learner=LogisticRegression()
-            )
-            clf.fit(X, y)
-            y_pred = clf.predict(X)
-            print(f"Predictions: {y_pred}")
-            ```
-
-        !!! example "Using a Decision Tree as Meta-Learner with Parallel Processing"
-
-            ```python
-            from sklearn.tree import DecisionTreeClassifier
-            clf = LongitudinalStackingClassifier(
-                estimators=[('rf', rf), ('lexico_rf', lexico_rf)],
-                meta_learner=DecisionTreeClassifier(),
-                n_jobs=-1  # Use all available CPUs
-            )
-            clf.fit(X, y)
-            y_pred = clf.predict(X)
-            print(f"Predictions: {y_pred}")
-            ```
-
-    Notes:
-        - **References**:
-
-          - Ribeiro, C. and Freitas, A.A., 2019. "A mini-survey of supervised machine learning approaches for coping
-            with ageing-related longitudinal datasets." *3rd Workshop on AI for Aging, Rehabilitation and Independent
-            Assisted Living (ARIAL)*, held as part of IJCAI-2019.
     """
 
     def __init__(

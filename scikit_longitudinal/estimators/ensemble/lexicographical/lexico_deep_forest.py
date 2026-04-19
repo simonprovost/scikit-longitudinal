@@ -111,39 +111,12 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
     """
     Lexico Deep Forest Classifier for longitudinal data analysis.
 
-    The Lexico Deep Forest Classifier is an advanced ensemble algorithm designed specifically for longitudinal data
-    analysis. It extends the fundamental principles of the Deep Forest framework by incorporating longitudinal-adapted
-    base estimators to capture the temporal complexities and interdependencies inherent in longitudinal data. The
-    classifier combines accurate learners (longitudinal base estimators) and weak learners (diversity estimators) to
-    improve robustness and generalization. It supports binary and multiclass targets through the standard classifier
-    surface: `fit`, `predict`, `predict_proba`, and `classes_`.
-
-    !!! tip "Why Use LexicoDeepForestClassifier?"
-        This classifier is ideal for longitudinal datasets where temporal structure is crucial. By leveraging a deep
-        forest architecture with longitudinal-adapted estimators, it captures complex patterns and temporal dependencies
-        effectively—perfect for applications like medical studies or time-series classification.
-
-    !!! question "How Does It Work?"
-        The classifier builds a cascade of forests, where each layer uses the predictions from the previous layer as
-        additional features. The base estimators are longitudinal-adapted classifiers like `LexicoRandomForestClassifier`,
-        which use lexicographic optimization to prioritize recent data points. Diversity estimators (weak learners) are
-        optionally included to enhance the ensemble's diversity and predictive performance.
-
-    !!! note "Performance Boost with Cython"
-        The underlying decision trees use a Cython-optimized splitter (`node_lexicoRF_split`) for faster computation.
-        See the [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
-        for details.
-
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes define the temporal structure:
-
-        - **features_group**: A list of lists, each sublist containing indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent (e.g., `[[0,1], [2,3]]` for two attributes with two waves each).
-        - **non_longitudinal_features**: Indices of static features (not used in lexicographic optimization but included
-          in standard splits).
-
-        Accurate configuration is essential for leveraging temporal patterns. See the
-        [Temporal Dependency Guide](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/) for more.
+    This classifier extends the Deep Forest framework for longitudinal data by stacking layers of
+    longitudinal-adapted base estimators (typically `LexicoRandomForestClassifier`) so each layer's predictions
+    become additional features for the next. Every base tree applies a lexicographic split-selection rule: the
+    primary objective maximises the information-gain ratio (entropy criterion), and the secondary objective
+    favours features from more recent waves whenever competing gain ratios are within `threshold_gain`. For more
+    information on Deep Forest, see [DF21](https://deep-forest.readthedocs.io/en/stable/).
 
     Args:
         features_group (List[List[int]], optional):
@@ -176,7 +149,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
             The class labels.
 
     Examples:
-        !!! example "Basic Usage with LexicoRandomForestClassifier"
+        !!! example "Basic Usage"
 
             ```python
             from scikit_longitudinal.estimators.ensemble.lexicographical.lexico_deep_forest import LexicoDeepForestClassifier, \
@@ -209,7 +182,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
             print(f"Predictions: {y_pred}")
             ```
 
-        !!! example "Using Multiple Estimator Types"
+        !!! example "Advanced: multiple estimator types"
 
             ```python
             # ... Similar setup as above ...
@@ -227,7 +200,7 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
             # ... Similar prediction and evaluation as above ...
             ```
 
-        !!! example "Disabling Diversity Estimators"
+        !!! example "Advanced: disabling diversity estimators"
 
             ```python
             # ... Similar setup as above ...
@@ -241,12 +214,6 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
 
             # ... Similar prediction and evaluation as above ...
             ```
-
-    Notes:
-        - **References**:
-
-          - Zhou, Z.H. and Feng, J., 2019. "Deep forest." *National Science Review*, 6(1), pp.74-86.
-          - [Deep Forest GitHub](https://github.com/LAMDA-NJU/Deep-Forest)
     """
 
     # pylint: disable=too-many-arguments,invalid-name,signature-differs,no-member
@@ -349,9 +316,6 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
         !!! tip "Configuration Tip"
             Experiment with different combinations of `longitudinal_base_estimators` and `diversity_estimators` to
             find the optimal balance between accuracy and diversity for your dataset.
-
-        !!! note
-            Ensure `features_group` accurately maps your data's temporal structure for optimal performance.
         """
         if self.single_classifier_type is not None and self.single_count is not None:
             self.longitudinal_base_estimators = [
@@ -404,9 +368,5 @@ class LexicoDeepForestClassifier(CustomClassifierMixinEstimator):
         Returns:
             np.ndarray:
                 The predicted class probabilities for each input sample.
-
-        !!! question "When to Use Probabilities?"
-            Use `predict_proba` instead of `predict` when you need to assess confidence levels or apply custom
-            decision thresholds rather than relying on the default class assignment.
         """
         return self._deep_forest.predict_proba(X)

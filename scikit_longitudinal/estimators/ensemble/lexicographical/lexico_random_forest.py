@@ -9,47 +9,12 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
     """
     Lexico Random Forest Classifier for longitudinal data classification.
 
-    The Lexico Random Forest Classifier is an advanced ensemble algorithm tailored for longitudinal data analysis. It
-    extends the traditional Random Forest by integrating a lexicographic optimization approach within each decision tree,
-    prioritizing more recent data points (waves) for splits. This is based on the premise that recent measurements are more
-    predictive and relevant, making it ideal for applications like medical studies or time-series classification. The
-    implementation leverages a Cython-optimized fork of scikit-learn's decision tree for enhanced efficiency and supports
-    both binary and multiclass targets through the standard `fit`, `predict`, `predict_proba`, and `classes_` API.
-
-    !!! tip "Why Use LexicoRandomForestClassifier?"
-        This classifier excels with longitudinal datasets where temporal recency is key. By combining lexicographic
-        optimization with the ensemble strength of random forests, it captures evolving patterns while minimizing
-        overfitting—perfect for robust predictive modeling.
-
-    !!! question "How Does Lexicographic Optimization Work?"
-        Each tree in the forest employs a bi-objective split selection strategy:
-
-        1. **Primary**: Maximize the information gain ratio using the "entropy" criterion.
-        2. **Secondary**: Favor features from more recent waves when gain ratios are similar (within `threshold_gain`).
-
-        This ensures both statistical purity and temporal relevance are optimized, with the ensemble aggregating these
-        decisions for improved accuracy.
-
-    !!! note "Performance Boost with Cython"
-        The splitter (`node_lexicoRF_split`) is optimized in Cython for faster computation. See the
-        [Cython implementation](https://github.com/simonprovost/scikit-lexicographical-trees/blob/21443b9dce51434b3198ccabac8bafc4698ce953/sklearn/tree/_splitter.pyx#L695)
-        for details.
-
-    !!! question "Feature Groups and Non-Longitudinal Features"
-        Two key attributes, `feature_groups` and `non_longitudinal_features`, enable algorithms to interpret the temporal
-        structure of longitudinal data, we try to build those as much as possible for users, while allowing
-        users to also define their own feature groups if needed. As follows:
-
-        - **feature_groups**: A list of lists where each sublist contains indices of a longitudinal attribute's waves,
-          ordered from oldest to most recent. This captures temporal dependencies.
-        - **non_longitudinal_features**: A list of indices for static, non-temporal features excluded from the temporal
-          matrix.
-
-        Proper setup of these attributes is critical for leveraging temporal patterns effectively, and effectively
-        use the primitives that follow.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
+    This classifier extends scikit-learn's `RandomForestClassifier` for longitudinal data by integrating a
+    lexicographic optimisation approach within each tree of the forest, based on the premise that recent
+    measurements are more predictive and relevant. Splits are evaluated with a bi-objective rule: the primary
+    objective maximises the information-gain ratio (entropy criterion), and the secondary objective favours
+    features from more recent waves whenever competing gain ratios are within `threshold_gain`. The ensemble
+    aggregates these temporally-aware trees to reduce overfitting while preserving recency-driven decisions.
 
     Args:
         n_estimators (int, default=100):
@@ -100,7 +65,7 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
             Fitted tree ensemble.
 
     Examples:
-        !!! example "Basic Usage with Dummy Longitudinal Data"
+        !!! example "Basic Usage"
 
             ```python
             from sklearn.metrics import accuracy_score
@@ -121,7 +86,7 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
             print(f"Accuracy: {accuracy_score(dataset.y_test, y_pred)}")
             ```
 
-        !!! example "Tuning Threshold Gain"
+        !!! example "Advanced: tuning threshold gain"
 
             ```python
             from sklearn.metrics import accuracy_score
@@ -174,15 +139,6 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
                 grid_search.fit(X, y)
                 print(f"Best parameters: {grid_search.best_params_}")
                 ```
-
-    Notes:
-        - **References**:
-
-          - Ribeiro, C. and Freitas, A., 2020. "A new random forest method for longitudinal data classification using a
-            lexicographic bi-objective approach." *2020 IEEE Symposium Series on Computational Intelligence (SSCI)*,
-            pp. 806-813.
-          - Ribeiro, C. and Freitas, A.A., 2024. "A lexicographic optimisation approach to promote more recent features
-            on longitudinal decision-tree-based classifiers." *Artificial Intelligence Review*, 57(4), p.84.
     """
 
     def __init__(
@@ -279,11 +235,39 @@ class LexicoRandomForestClassifier(RandomForestClassifier):
         !!! tip "Tuning Tip"
             Adjust `n_estimators` and `threshold_gain` to balance accuracy and computation time. Start with defaults
             and refine based on your dataset.
-
-        !!! note
-            Ensure `features_group` accurately maps your data's temporal structure for optimal performance.
         """
         if self.features_group is None:
             raise ValueError("The features_group parameter must be provided.")
 
         return super().fit(X, y, sample_weight=sample_weight, *args, **kwargs)
+
+    def predict(self, X):
+        """Predict class labels for the input samples.
+
+        Inherited from scikit-learn's `RandomForestClassifier`. Each tree votes for a class and the
+        class with the most votes is returned.
+
+        Args:
+            X (array-like of shape (n_samples, n_features)):
+                Input samples.
+
+        Returns:
+            np.ndarray: Predicted class labels of shape `(n_samples,)`.
+        """
+        return super().predict(X)
+
+    def predict_proba(self, X):
+        """Predict class probabilities for the input samples.
+
+        Inherited from scikit-learn's `RandomForestClassifier`. Probabilities are the mean of the
+        probabilistic predictions of the individual trees.
+
+        Args:
+            X (array-like of shape (n_samples, n_features)):
+                Input samples.
+
+        Returns:
+            np.ndarray: Class probabilities of shape `(n_samples, n_classes)`, with columns ordered
+            as in `self.classes_`.
+        """
+        return super().predict_proba(X)

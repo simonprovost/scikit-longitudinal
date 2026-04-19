@@ -31,7 +31,7 @@ class ElsaDataHandler:
             A dictionary containing datasets for each unique class.
 
     Examples:
-        !!! example "Basic Usage with ELSA Core Dataset"
+        !!! example "Basic Usage"
             ```python
             from elsadatahandler import ElsaDataHandler  # Replace with actual import path
 

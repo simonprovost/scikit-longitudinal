@@ -258,16 +258,6 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
     selected, the base wave estimators must implement `predict_proba`, because the meta-learner is trained on
     wave-level class-probability outputs.
 
-    !!! question "What is a feature group?"
-        In a nutshell, a feature group is a collection of features sharing a common base longitudinal attribute
-        across different waves of data collection (e.g., "income_wave1", "income_wave2", "income_wave3").
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](
-        https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/
-        ){ .md-button }
-
     !!! note "Ensemble Strategies"
         Supported ensemble methods include:
 
@@ -311,7 +301,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
     Examples:
         Below are examples using the "stroke.csv" dataset. Replace "stroke.csv" with your actual dataset path.
 
-        !!! example "Basic Usage with Majority Voting"
+        !!! example "Basic Usage"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
             from scikit_longitudinal.data_preparation import SepWav
@@ -349,7 +339,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
             print(f"Accuracy: {accuracy}")
             ```
 
-        !!! example "Using Stacking Ensemble"
+        !!! example "Advanced: stacking ensemble"
             ```python
             from scikit_longitudinal.data_preparation import LongitudinalDataset
             from scikit_longitudinal.data_preparation import SepWav
@@ -390,7 +380,7 @@ class SepWav(BaseEstimator, ClassifierMixin, DataPreparationMixin):
             print(f"Accuracy: {accuracy}")
             ```
 
-        !!! example "Using Parallel Processing"
+        !!! example "Advanced: parallel processing"
             ```python
             # ... Similar to the previous example, but with parallel processing enabled ...
 

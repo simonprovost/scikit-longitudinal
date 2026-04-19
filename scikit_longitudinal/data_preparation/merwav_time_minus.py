@@ -18,19 +18,6 @@ class MerWavTimeMinus(DataPreparationMixin):
     feature as distinct features, simplifying the dataset for traditional machine learning algorithms but losing temporal
     dependencies.
 
-    !!! note "Purpose of this Class"
-        This class is useful for understanding the data preparation step before applying preprocessors or classifiers.
-        It does not reduce or augment features but provides a clear view of the merged dataset.
-
-    !!! question "What is a feature group?"
-        In a nutshell, a feature group is a collection of features sharing a common base longitudinal attribute
-        across different waves of data collection (e.g., "income_wave1", "income_wave2", "income_wave3"). Note that
-        aggregation reduces the dataset's temporal information significantly.
-
-        To see more, we highly recommend visiting the `Temporal Dependency` page in the documentation.
-
-        [Temporal Dependency Guide :fontawesome-solid-timeline:](https://scikit-longitudinal.readthedocs.io/latest/tutorials/temporal_dependency/){ .md-button }
-
     Args:
         features_group (List[List[int]], optional): A temporal matrix representing the temporal dependency of a
             longitudinal dataset. Each sublist contains indices of a longitudinal attribute's waves. Defaults to None.

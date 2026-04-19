@@ -17,9 +17,6 @@ class LongitudinalEnsemblingStrategy(Enum):
     """
     An enum for the different longitudinal voting strategies.
 
-    !!! note "Math Plugin Seems Capricious"
-        We will sometime not "interpret" the math on purpose to avoid yielding `math error plugin`.
-
     Attributes:
         MAJORITY_VOTING (int):
             Simple consensus voting where the most frequent prediction is selected.
@@ -27,25 +24,19 @@ class LongitudinalEnsemblingStrategy(Enum):
             Weights each classifier's vote based on the recency of its wave using a linear decay.
             Weight formula:
 
-            ```math
-            ( w_i = \\frac{i}{\sum_{j=1}^{N} j} )
-            ```
+            $$w_i = \\frac{i}{\\sum_{j=1}^{N} j}$$
 
         DECAY_EXPONENTIAL_VOTING (int):
             Weights each classifier's vote based on the recency of its wave using an exponential decay.
             Weight formula:
 
-            ```math
-            ( w_i = \\frac{e^{i}}{\sum_{j=1}^{N} e^{j}} )
-            ```
+            $$w_i = \\frac{e^{i}}{\\sum_{j=1}^{N} e^{j}}$$
 
         CV_BASED_VOTING (int):
             Weights each classifier based on its cross-validation accuracy on the training data.
             Weight formula:
 
-            ```math
-            ( w_i = \\frac{A_i}{\sum_{j=1}^{N} A_j} )
-            ```
+            $$w_i = \\frac{A_i}{\\sum_{j=1}^{N} A_j}$$
 
         STACKING (int):
             Stacking ensemble strategy uses a meta-learner to combine predictions of base classifiers.
@@ -53,11 +44,11 @@ class LongitudinalEnsemblingStrategy(Enum):
             probabilities.
             This approach is suitable when the cardinality of meta-features is smaller than the original feature set.
 
-            In stacking, for each wave \\( i \\) (\\( i \\in \\{1, 2, \\ldots, N\\} \\)), a base classifier \\( C_i \\)
-            is trained on \\( (X_i, T_N) \\). The class-probability output from \\( C_i \\) is denoted as \\( V_i \\),
-            forming the meta-features \\( \\mathbf{V} = [V_1, V_2, ..., V_N] \\). The meta-learner \\( M \\) is then
-            trained on \\( (\\mathbf{V}, T_N) \\), and for a new instance \\( x \\), the final prediction is
-            \\( P(x) = M(\\mathbf{V}(x)) \\).
+            In stacking, for each wave $i$ ($i \\in \\{1, 2, \\ldots, N\\}$), a base classifier $C_i$
+            is trained on $(X_i, T_N)$. The class-probability output from $C_i$ is denoted as $V_i$,
+            forming the meta-features $\\mathbf{V} = [V_1, V_2, ..., V_N]$. The meta-learner $M$ is then
+            trained on $(\\mathbf{V}, T_N)$, and for a new instance $x$, the final prediction is
+            $P(x) = M(\\mathbf{V}(x))$.
 
     """
 
@@ -70,31 +61,9 @@ class LongitudinalEnsemblingStrategy(Enum):
 
 class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
     """
-    Longitudinal Voting Classifier for ensemble learning on longitudinal data.
-
-    The Longitudinal Voting Classifier is a versatile ensemble method designed to handle the unique challenges posed by
-    longitudinal data. It leverages different voting strategies to combine predictions from multiple base estimators,
-    enhancing predictive performance. The base estimators are individually trained, and their predictions are
-    aggregated based on the chosen voting strategy to generate the final prediction. The classifier supports both
-    binary and multiclass targets.
-
-    !!! warning "When to Use?"
-        This classifier is primarily used when the "SepWav" (Separate Waves) strategy is employed. However, it can also
-        be applied with only longitudinal-based estimators that do not follow the SepWav approach if desired.
-
-    !!! info "SepWav (Separate Waves) Strategy"
-
-        The SepWav strategy involves considering each wave's features and the class variable as a separate dataset,
-        then learning a classifier for each dataset. The class labels predicted by these classifiers are combined into
-        a final predicted class label. This combination can be achieved using various approaches: simple majority
-        voting, weighted voting with weights decaying linearly or exponentially for older waves, weights optimised by
-        cross-validation on the training set (current class), and stacking methods that use the classifiers' predicted
-        class probabilities as input for learning a meta-classifier (see LongitudinalStacking).
-
-    !!! info "Wrapper Around Sklearn VotingClassifier"
-
-        This class wraps the `sklearn` VotingClassifier, offering a familiar interface while incorporating enhancements
-        for longitudinal data.
+    Aggregates predictions from pre-trained base estimators using the voting rule specified by
+    `LongitudinalEnsemblingStrategy` (majority, linear or exponential decay, or cross-validation-weighted). Supports
+    both binary and multiclass targets, and wraps scikit-learn's `VotingClassifier` under the hood.
 
     Args:
         voting (LongitudinalEnsemblingStrategy, default=LongitudinalEnsemblingStrategy.MAJORITY_VOTING):
@@ -116,54 +85,7 @@ class LongitudinalVotingClassifier(CustomClassifierMixinEstimator):
         ValueError: If no estimators are provided or if an invalid voting strategy is specified.
         NotFittedError: If attempting to predict or predict_proba before fitting the model.
 
-    Examples:
-        !!! example "Basic Usage with Dummy Longitudinal Data"
-            ```python
-            from scikit_longitudinal.estimators.ensemble.longitudinal_voting import (
-                LongitudinalVotingClassifier,
-                LongitudinalEnsemblingStrategy
-            )
-            from sklearn.ensemble import RandomForestClassifier
-            from scikit_longitudinal.estimators.ensemble.lexicographical import LexicoRandomForestClassifier
-            import numpy as np
-
-            # Dummy data
-            X = np.array([[0, 1, 0, 1, 45, 1], [1, 1, 1, 1, 50, 0], [0, 0, 0, 0, 55, 1]])
-            y = np.array([0, 1, 2])
-            features_group = [[0, 1], [2, 3]]
-
-            # Train estimators
-            rf = RandomForestClassifier().fit(X, y)
-            lexico_rf = LexicoRandomForestClassifier(features_group=features_group).fit(X, y)
-
-            # Create and fit the voting classifier
-            clf = LongitudinalVotingClassifier(
-                voting=LongitudinalEnsemblingStrategy.MAJORITY_VOTING,
-                estimators=[('rf', rf), ('lexico_rf', lexico_rf)],
-            )
-            clf.fit(X, y)
-            y_pred = clf.predict(X)
-            print(f"Predictions: {y_pred}")
-            ```
-
-        !!! example "Using Cross-Validation-Based Weighted Voting"
-            ```python
-            clf = LongitudinalVotingClassifier(
-                voting=LongitudinalEnsemblingStrategy.CV_BASED_VOTING,
-                estimators=[('rf', rf), ('lexico_rf', lexico_rf)],
-            )
-            clf.fit(X, y)
-            y_pred = clf.predict(X)
-            print(f"Predictions: {y_pred}")
-            ```
-
     Notes:
-        - **References**:
-
-          - Ribeiro, C. and Freitas, A.A., 2019. "A mini-survey of supervised machine learning approaches for coping
-            with ageing-related longitudinal datasets." *3rd Workshop on AI for Aging, Rehabilitation and Independent
-            Assisted Living (ARIAL)*, held as part of IJCAI-2019.
-
         - `predict_proba` returns normalised vote shares across classes. These are consistent with the hard-voting
           decision returned by `predict`, but they are not calibrated probabilities.
     """
