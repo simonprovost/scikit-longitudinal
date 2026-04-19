@@ -49,6 +49,3 @@ Welcome to `Sklong`'s API where you will find all references to each and one of 
     [Jump to primitives](pipeline/longitudinal_pipeline.md)
 
 </div>
-
-!!! question "Looking for credits and paper references?"
-    Algorithm-specific citations and contributor attributions live in [Publications](../publications.md).

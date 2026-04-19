@@ -46,14 +46,18 @@ nav = [
             { "Correlation Feature Selection" = "API/preprocessors/feature_selection/correlation_feature_selection_per_group.md" },
         ]},
         { "Estimators" = [
-            { "Lexico Decision Tree" = "API/estimators/trees/lexico_decision_tree_classifier.md" },
-            { "Lexico Random Forest" = "API/estimators/ensemble/lexico_random_forest.md" },
-            { "Lexico Deep Forest" = "API/estimators/ensemble/lexico_deep_forest.md" },
-            { "Lexico Gradient Boosting" = "API/estimators/ensemble/lexico_gradient_boosting.md" },
-            { "Nested Trees" = "API/estimators/ensemble/nested_trees.md" },
-            { "TpT Decision Tree" = "API/estimators/trees/tpt_decision_tree_classifier.md" },
-            { "Longitudinal Stacking" = "API/estimators/ensemble/longitudinal_stacking.md" },
-            { "Longitudinal Voting" = "API/estimators/ensemble/longitudinal_voting.md" },
+            { "Classifiers" = [
+                { "Lexico Decision Tree" = "API/estimators/trees/lexico_decision_tree_classifier.md" },
+                { "Lexico Random Forest" = "API/estimators/ensemble/lexico_random_forest.md" },
+                { "Lexico Deep Forest" = "API/estimators/ensemble/lexico_deep_forest.md" },
+                { "Lexico Gradient Boosting" = "API/estimators/ensemble/lexico_gradient_boosting.md" },
+                { "Nested Trees" = "API/estimators/ensemble/nested_trees.md" },
+                { "TpT Decision Tree" = "API/estimators/trees/tpt_decision_tree_classifier.md" },
+            ]},
+            { "Regressors" = [
+                { "Lexico Decision Tree" = "API/estimators/trees/lexico_decision_tree_regressor.md" },
+                { "TpT Decision Tree" = "API/estimators/trees/tpt_decision_tree_regressor.md" },
+            ]},
         ]},
         { "Pipeline" = [
             { "Longitudinal Pipeline" = "API/pipeline/longitudinal_pipeline.md" },
