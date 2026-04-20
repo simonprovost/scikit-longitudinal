@@ -3,14 +3,11 @@
 import math
 import warnings
 from numbers import Real
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Union
 
 import numpy as np
-import pandas as pd
 from sklearn.tree import DecisionTreeClassifier, _tree
 from sklearn.utils._param_validation import Interval
-
-from ._preprocessing import long_to_wide
 
 
 class TpTDecisionTreeClassifier(DecisionTreeClassifier):
@@ -25,31 +22,17 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
     splitter therefore tends to prefer earlier waves (while allowing later waves deeper in the tree) unless
     later observations bring a substantially stronger signal.
 
-    ??? note "LONG vs wide input — *[Soon To Be Deprecated](https://github.com/simonprovost/scikit-longitudinal/issues/64)*"
-        TpT internally operates on a **wide** matrix (features expanded over waves). If `assume_long_format=True`,
-        the classifier can accept a LONG-format dataframe and will convert it to the expected wide representation
-        before fitting (using `id_col`, `time_col`, `duration_col`, `time_step`, and `max_horizon`).
-
-        - LONG-format: one row per (subject, time) observation.
-        - wide format: one row per subject, with features duplicated across waves.
-
-        The conversion fills feature values up to each subject's duration/horizon and leaves NaNs beyond,
-        enabling "duration leaves" in the TpT logic.
-
     Args:
         gamma (float, optional):
             Time-penalty rate $\\gamma$ in the factor $e^{-\\gamma \\Delta t}$.
-            If not provided, falls back to `threshold_gain` (for backward compatibility).
+            If not provided, falls back to `threshold_gain`.
         threshold_gain (float, optional):
-            Backward-compatible alias for `gamma`. If both are provided, `gamma` takes precedence.
+            Alias for `gamma`. If both are provided, `gamma` takes precedence.
         features_group (List[List[int]], optional):
             A list of lists where each inner list contains indices of features corresponding to a specific longitudinal
             attribute across different waves. The order within each inner list reflects the temporal sequence, with the
             first element being the oldest wave and the last being the most recent. For example, `[[0,1],[2,3]]` indicates
             two longitudinal attributes, each with two waves (e.g., 0: oldest, 1: recent; 2: oldest, 3: recent).
-        max_horizon (int, optional):
-            Maximum temporal horizon for predictions. Limits the time range explored during tree construction.
-            If None, no limit is applied.
         criterion (str, default="entropy"):
             The function to measure the quality of a split. Fixed to "entropy" for this algorithm; do not change.
         splitter (str, default="TpT"):
@@ -180,15 +163,8 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
     def __init__(
         self,
         gamma: Optional[float] = None,
-        threshold_gain: Optional[float] = None,  # deprecated alias for gamma
+        threshold_gain: Optional[float] = None,
         features_group: Optional[List[List[int]]] = None,
-        max_horizon: Optional[int] = None,
-        id_col: Optional[str] = None,
-        time_col: Optional[str] = None,
-        duration_col: Optional[str] = None,
-        time_step: float = 1.0,
-        assume_long_format: bool = False,
-        long_feature_columns: Optional[List[str]] = None,
         criterion: str = "entropy",
         splitter: str = "TpT",
         max_depth: Optional[int] = None,
@@ -205,21 +181,10 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
         monotonic_cst: Optional[List[int]] = None,
         min_penalized_gain: float = 0.0,
     ):
-        # Resolve gamma with backward-compatible alias
         _gamma = gamma if gamma is not None else (threshold_gain if threshold_gain is not None else 0.0015)
         self.gamma = float(_gamma)
-        # Keep attribute name threshold_gain for downstream Cython param compatibility
         self.threshold_gain = self.gamma
         self.features_group = features_group
-        self.max_horizon = max_horizon
-        self.id_col = id_col
-        self.time_col = time_col
-        self.duration_col = duration_col
-        self.time_step = float(time_step)
-        self.assume_long_format = assume_long_format
-        self.long_feature_columns = long_feature_columns
-        self._uses_long_format = False
-        self._expected_n_features_: Optional[int] = None
         self.min_penalized_gain = float(min_penalized_gain)
 
         if monotonic_cst is not None:
@@ -251,137 +216,36 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
         )
 
     def fit(self, X, y, *args, **kwargs):
-        """Fit the classifier, optionally preparing LONG-format data on the fly."""
+        """
+        Fit the Time-penalised Trees (TpT) Decision Tree Classifier to the training data.
 
-        X_prepared, y_prepared = self._prepare_training_data(X, y)
+        This method trains the classifier using the provided training data and labels. It requires the `features_group`
+        parameter to be set, as the time-penalised splitter relies on it to read the wave index of each candidate split.
 
-        fitted = super().fit(X_prepared, y_prepared, *args, **kwargs)
+        Args:
+            X (array-like of shape (n_samples, n_features)):
+                The training input samples in wide format (features expanded over waves).
+            y (array-like of shape (n_samples,)):
+                The target values (class labels).
+            *args:
+                Additional positional arguments passed to the superclass `fit` method.
+            **kwargs:
+                Additional keyword arguments passed to the superclass `fit` method.
 
+        Returns:
+            TpTDecisionTreeClassifier:
+                The fitted classifier instance.
+
+        Raises:
+            ValueError:
+                If `features_group` is not provided, as it is required for longitudinal functionality.
+        """
+        if self.features_group is None:
+            raise ValueError("The features_group parameter must be provided.")
+        fitted = super().fit(X, y, *args, **kwargs)
         if self.min_penalized_gain > 0.0 and hasattr(self, "tree_"):
             self._prune_penalized_gain()
-
         return fitted
-
-    # ------------------------------------------------------------------
-    # Data preparation utilities
-    # ------------------------------------------------------------------
-    def _ensure_series(self, y, X) -> pd.Series:
-        if isinstance(y, pd.DataFrame):
-            if y.shape[1] != 1:
-                raise ValueError("Target dataframe must have exactly one column for classification.")
-            y_series = y.iloc[:, 0]
-        elif isinstance(y, pd.Series):
-            y_series = y
-        else:
-            y_series = pd.Series(np.asarray(y).ravel(), index=getattr(X, "index", None))
-
-        if getattr(X, "shape", None) is not None and len(y_series) != len(X):
-            raise ValueError("Target vector length must match number of observations.")
-
-        if y_series.isna().any():
-            raise ValueError("NaN targets are not supported in TpTDecisionTreeClassifier.")
-
-        return y_series
-
-    def _prepare_training_data(self, X, y):
-        """Return (X_prepared, y_prepared), handling LONG-format input if required."""
-
-        long_format = self.assume_long_format or (
-            self.features_group is None and isinstance(X, pd.DataFrame)
-        )
-
-        if not long_format:
-            self._uses_long_format = False
-            if self.features_group is None:
-                raise ValueError(
-                    "When providing wide-format data you must also set features_group to describe waves."
-                )
-            return X, y
-
-        if not isinstance(X, pd.DataFrame):
-            raise ValueError(
-                "LONG-format input requires a pandas DataFrame with id/time/duration columns."
-            )
-
-        if not all([self.id_col, self.time_col, self.duration_col]):
-            raise ValueError(
-                "id_col, time_col and duration_col must be specified to consume LONG-format data."
-            )
-
-        y_series = self._ensure_series(y, X)
-        wide_data = long_to_wide(
-            X,
-            id_col=self.id_col,
-            time_col=self.time_col,
-            duration_col=self.duration_col,
-            time_step=self.time_step,
-            max_horizon=self.max_horizon,
-            feature_columns=self.long_feature_columns,
-        )
-
-        subject_targets = (
-            y_series.groupby(X[self.id_col]).first().rename(index=lambda idx: str(idx))
-        )
-        reindexed_targets = subject_targets.reindex(wide_data.subject_ids)
-        if reindexed_targets.isna().any():
-            missing = reindexed_targets[reindexed_targets.isna()].index.tolist()
-            raise ValueError(
-                "Missing target values for subjects after aggregation: " + ", ".join(map(str, missing))
-            )
-
-        wide_data.y = reindexed_targets.to_numpy()
-
-        self.features_group = wide_data.feature_groups
-        self._uses_long_format = True
-        self._wide_feature_names_ = wide_data.feature_names
-        self._subject_ids_ = wide_data.subject_ids
-        self._feature_columns_long_ = list(wide_data.feature_columns)
-        self._n_waves_ = len(wide_data.time_indices)
-        self._expected_n_features_ = wide_data.X.shape[1]
-
-        return wide_data.X, wide_data.y
-
-    def _prepare_long_dataset(self, X: pd.DataFrame) -> Tuple[np.ndarray, List[str]]:
-        if not self._uses_long_format:
-            raise ValueError("This estimator was not fitted on LONG-format data.")
-
-        data = long_to_wide(
-            X,
-            id_col=self.id_col,
-            time_col=self.time_col,
-            duration_col=self.duration_col,
-            time_step=self.time_step,
-            max_horizon=self.max_horizon,
-            feature_columns=self._feature_columns_long_,
-        )
-
-        expected_features = getattr(self, "_expected_n_features_", None)
-        if expected_features is None:
-            expected_features = data.X.shape[1]
-        if data.X.shape[1] < expected_features:
-            pad = np.full((data.X.shape[0], expected_features - data.X.shape[1]), np.nan)
-            X_wide = np.concatenate([data.X, pad], axis=1)
-        elif data.X.shape[1] > expected_features:
-            X_wide = data.X[:, :expected_features]
-        else:
-            X_wide = data.X
-
-        return X_wide, data.subject_ids
-
-    # ------------------------------------------------------------------
-    # Prediction helpers
-    # ------------------------------------------------------------------
-    def predict(self, X):  # type: ignore[override]
-        if self._uses_long_format and isinstance(X, pd.DataFrame):
-            X_wide, _ = self._prepare_long_dataset(X)
-            return super().predict(X_wide)
-        return super().predict(X)
-
-    def predict_proba(self, X):  # type: ignore[override]
-        if self._uses_long_format and isinstance(X, pd.DataFrame):
-            X_wide, _ = self._prepare_long_dataset(X)
-            return super().predict_proba(X_wide)
-        return super().predict_proba(X)
 
     def _more_tags(self):
         tags = super()._more_tags()

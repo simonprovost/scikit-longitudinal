@@ -1,12 +1,17 @@
 import re
 from functools import wraps
 from pathlib import Path
-from typing import Any, Callable, List, Optional, Tuple, Union
+from typing import Any, Callable, List, Optional, Tuple, Union  # noqa: F401
 
 import arff
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+
+from scikit_longitudinal.data_preparation._longitudinal_reshape import (
+    long_to_wide,
+    wide_to_long,
+)
 
 
 # pylint: disable=W0212, R0902, W1514, E1101, R0904
@@ -860,3 +865,150 @@ class LongitudinalDataset:
 
         """
         self._y_test = y_test
+
+    def to_wide(
+        self,
+        *,
+        id_col: str,
+        time_col: str,
+        longitudinal_columns: List[str],
+        static_columns: List[str] = (),
+        wave_format: str = "{feature}_w{wave}",
+        output_path: Optional[Union[str, Path]] = None,
+    ) -> pd.DataFrame:
+        """Pivot the dataset's long-format data into wide format.
+
+        One row per `(subject, time)` becomes one row per subject, with each
+        longitudinal column expanded into one column per observed wave
+        (oldest \u2192 newest). The dataset's `data`, `feature_groups`, and
+        `non_longitudinal_features` are updated in place to match the new
+        layout.
+
+        Args:
+            id_col (str): Subject identifier column.
+            time_col (str): Observation time column.
+            longitudinal_columns (List[str]): Columns expanded across waves.
+            static_columns (List[str], optional): Columns kept as-is per subject.
+                Must be constant within each subject. Defaults to `()`.
+            wave_format (str): Python `str.format` template that names every wide column
+                produced from a longitudinal source column. Two placeholders are substituted
+                per cell: `{feature}` is the original long-format column name (e.g. `"bp"`),
+                and `{wave}` is the value taken straight from `time_col` for that observation
+                (rendered with its native type — typically an int like `0`, `1`, `2`, but
+                strings such as `"2008"` work too). Waves are emitted in sorted order, so the
+                template fully determines the wide schema: the default `"{feature}_w{wave}"`
+                yields `bp_w0, bp_w1, bp_w2, chol_w0, ...`; `"{feature}.t{wave}"` yields
+                `bp.t0, bp.t1, ...`; and `"{wave}_{feature}"` flips the order to
+                `0_bp, 1_bp, ...`. The template must contain both placeholders and must
+                produce unique column names across `(feature, wave)` pairs. Defaults to
+                `"{feature}_w{wave}"`.
+            output_path (Optional[Union[str, Path]]): If set, also write the wide dataframe
+                to a CSV file at this path.
+
+        Returns:
+            pd.DataFrame: The newly stored wide-format dataframe.
+
+        Raises:
+            ValueError: If no data is loaded, if `(id_col, time_col)` rows are duplicated,
+                if a static column varies within a subject, or if any referenced column
+                is missing.
+
+        Examples:
+            !!! example "Basic Usage"
+                ```python
+                from scikit_longitudinal.data_preparation import LongitudinalDataset
+
+                dataset = LongitudinalDataset(file_path=None, data_frame=long_df)
+                dataset.to_wide(
+                    id_col="pid",
+                    time_col="wave",
+                    longitudinal_columns=["bp", "chol"],
+                    static_columns=["sex"],
+                    output_path="./wide.csv",
+                )
+                ```
+        """
+        if self._data is None:
+            raise ValueError("No data is loaded. Load data first.")
+
+        wide_df, feature_groups, non_long = long_to_wide(
+            self._data,
+            id_col=id_col,
+            time_col=time_col,
+            longitudinal_columns=list(longitudinal_columns),
+            static_columns=list(static_columns),
+            wave_format=wave_format,
+        )
+        self._data = wide_df
+        self._feature_groups = feature_groups
+        self._non_longitudinal_features = non_long
+        if output_path is not None:
+            wide_df.to_csv(output_path, index=True, na_rep="")
+        return wide_df
+
+    def to_long(
+        self,
+        *,
+        feature_base_names: Optional[List[str]] = None,
+        id_col: str = "subject_id",
+        time_col: str = "wave",
+        keep_static: bool = True,
+        output_path: Optional[Union[str, Path]] = None,
+    ) -> pd.DataFrame:
+        """Reshape the dataset's wide-format data into long format.
+
+        Uses the dataset's own `feature_groups` (set via `setup_features_group`)
+        to drive the reshape. The dataset's `data` is replaced with the long
+        dataframe and `feature_groups` / `non_longitudinal_features` are
+        cleared, since they no longer apply to a long layout.
+
+        Args:
+            feature_base_names (Optional[List[str]]): Names for the long-format feature
+                columns, one per group. Defaults to `["feature_0", "feature_1", ...]`.
+            id_col (str): Output id column name. Defaults to `"subject_id"`.
+            time_col (str): Output wave column name. Defaults to `"wave"`.
+            keep_static (bool): Whether to repeat static columns on every long row.
+                Defaults to `True`.
+            output_path (Optional[Union[str, Path]]): If set, also write the long dataframe
+                to a CSV file at this path.
+
+        Returns:
+            pd.DataFrame: The newly stored long-format dataframe.
+
+        Raises:
+            ValueError: If no data is loaded or `setup_features_group(...)` has not been
+                called yet.
+
+        Examples:
+            !!! example "Basic Usage"
+                ```python
+                from scikit_longitudinal.data_preparation import LongitudinalDataset
+
+                dataset = LongitudinalDataset('./stroke.csv')
+                dataset.load_data()
+                dataset.setup_features_group("elsa")
+                dataset.to_long(feature_base_names=["bp", "chol"], output_path="./long.csv")
+                ```
+        """
+        if self._data is None:
+            raise ValueError("No data is loaded. Load data first.")
+        if self._feature_groups is None:
+            raise ValueError(
+                "setup_features_group(...) must be called before to_long()."
+            )
+
+        long_df = wide_to_long(
+            self._data,
+            features_group=self._feature_groups,
+            non_longitudinal_features=self._non_longitudinal_features,
+            feature_base_names=feature_base_names,
+            id_col=id_col,
+            time_col=time_col,
+            keep_static=keep_static,
+        )
+        self._data = long_df
+        self._feature_groups = None
+        self._non_longitudinal_features = None
+        if output_path is not None:
+            long_df.to_csv(output_path, index=False, na_rep="")
+        return long_df

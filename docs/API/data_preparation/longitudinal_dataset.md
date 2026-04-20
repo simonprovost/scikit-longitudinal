@@ -10,6 +10,8 @@
             - setup_features_group
             - feature_groups
             - non_longitudinal_features
+            - to_wide
+            - to_long
             - convert
             - save_data
             - set_data
