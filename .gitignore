@@ -103,3 +103,6 @@ node_modules/
 *.iws
 .idea/
 /AGENTS.md
+
+# Manim animation sources
+_manim_animations/
