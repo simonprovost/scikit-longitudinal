@@ -9,6 +9,14 @@ icon: lucide/activity
 
 Algorithm-adaptation workflows keep temporal structure intact. This walkthrough uses [`LexicoDecisionTreeClassifier`](../API/estimators/trees/lexico_decision_tree_classifier.md), which prioritises recent waves while respecting the full sequence.
 
+The animation below gives the intuition behind the split rule: when several candidate waves of the same attribute yield near-identical information gains (within `threshold_gain`), the lexicographic tree picks the **most recent** one rather than the classical "largest gain wins" tie-break.
+
+<figure class="expandable-media" markdown="span" style="text-align: center;">
+ [![Lexicographic split: recency breaks ties](../assets/images/tutorials/sklong_explore_your_first_estimator/LexicoRecency.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/sklong_explore_your_first_estimator/LexicoRecency.avif){ .expandable-media__trigger }
+ [![Lexicographic split: recency breaks ties](../assets/images/tutorials/sklong_explore_your_first_estimator/LexicoRecencyDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/sklong_explore_your_first_estimator/LexicoRecencyDark.avif){ .expandable-media__trigger }
+ <figcaption>Click the image to expand it.</figcaption>
+</figure>
+
 ## Step 1: Load and prepare data
 
 ```python

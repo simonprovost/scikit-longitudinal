@@ -41,7 +41,8 @@ long_df = pd.DataFrame({
 The animation below walks through every long-format row and shows where each value lands in the wide matrix.
 
 <figure class="expandable-media" markdown="span" style="text-align: center;">
- [![Long to wide reshape, animated](../assets/images/tutorials/long_wide_reshape/LongToWide.gif){ width="100%" loading="lazy" }](../assets/images/tutorials/long_wide_reshape/LongToWide.gif){ .expandable-media__trigger }
+ [![Long to wide reshape, animated](../assets/images/tutorials/long_wide_reshape/LongToWide.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/long_wide_reshape/LongToWide.avif){ .expandable-media__trigger }
+ [![Long to wide reshape, animated](../assets/images/tutorials/long_wide_reshape/LongToWideDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/long_wide_reshape/LongToWideDark.avif){ .expandable-media__trigger }
  <figcaption>Click the image to expand it.</figcaption>
 </figure>
 
@@ -99,7 +100,8 @@ A few things to notice:
 The other direction, displays as follows:
 
 <figure class="expandable-media" markdown="span" style="text-align: center;">
- [![Wide to long reshape, animated](../assets/images/tutorials/long_wide_reshape/WideToLong.gif){ width="100%" loading="lazy" }](../assets/images/tutorials/long_wide_reshape/WideToLong.gif){ .expandable-media__trigger }
+ [![Wide to long reshape, animated](../assets/images/tutorials/long_wide_reshape/WideToLong.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/long_wide_reshape/WideToLong.avif){ .expandable-media__trigger }
+ [![Wide to long reshape, animated](../assets/images/tutorials/long_wide_reshape/WideToLongDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/long_wide_reshape/WideToLongDark.avif){ .expandable-media__trigger }
  <figcaption>Click the image to expand it.</figcaption>
 </figure>
 

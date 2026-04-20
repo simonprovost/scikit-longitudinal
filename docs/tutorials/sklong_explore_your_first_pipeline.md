@@ -9,6 +9,14 @@ icon: lucide/workflow
 
 Pipelines let you chain longitudinal transformations, preprocessing, and estimation in one interface.
 
+The animation below illustrates the key contract that makes this work: `features_group` travels alongside `X` through every step, and `update_feature_groups_callback` rewrites those indices whenever a step reshapes the matrix — so the final estimator still sees a coherent temporal structure.
+
+<figure class="expandable-media" markdown="span" style="text-align: center;">
+ [![LongitudinalPipeline propagates features_group between steps](../assets/images/tutorials/sklong_explore_your_first_pipeline/PipelineChain.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/sklong_explore_your_first_pipeline/PipelineChain.avif){ .expandable-media__trigger }
+ [![LongitudinalPipeline propagates features_group between steps](../assets/images/tutorials/sklong_explore_your_first_pipeline/PipelineChainDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/sklong_explore_your_first_pipeline/PipelineChainDark.avif){ .expandable-media__trigger }
+ <figcaption>Click the image to expand it.</figcaption>
+</figure>
+
 ## Load and prepare the dataset
 
 Using `extended_stroke_longitudinal.csv`:

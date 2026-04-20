@@ -14,6 +14,14 @@ others have 4). In `Sklong`, the recommended approach is:
 
 This tutorial shows how to do that in practice.
 
+The animation below summarises the end state you are aiming for: NaN cells for visits that did not take place, and `-1` padding inside `features_group` only when an entire wave column is absent from the schedule.
+
+<figure class="expandable-media" markdown="span" style="text-align: center;">
+ [![Uneven waves: NaN vs. `-1` padding](../assets/images/tutorials/advanced_temporal_setup/UnevenWavesPadding.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/advanced_temporal_setup/UnevenWavesPadding.avif){ .expandable-media__trigger }
+ [![Uneven waves: NaN vs. `-1` padding](../assets/images/tutorials/advanced_temporal_setup/UnevenWavesPaddingDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/advanced_temporal_setup/UnevenWavesPaddingDark.avif){ .expandable-media__trigger }
+ <figcaption>Click the image to expand it.</figcaption>
+</figure>
+
 ## Step 1: Start from a long table (uneven observations) —— Optional
 
 A long-format dataset makes it easy to describe variable visit counts, but it is not what `Sklong` consumes directly.
