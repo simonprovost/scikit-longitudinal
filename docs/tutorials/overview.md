@@ -44,6 +44,14 @@ In order to visualise what the library delivers, the figure below shows the high
 
     [Read the tutorial](sklong_longitudinal_data_format.md)
 
+- __Long ⇄ Wide Reshape__
+
+    ---
+
+    Pivot messy long-format cohorts into the wide layout `Sklong` expects (and back) using `LongitudinalDataset.to_wide` / `to_long`.
+
+    [Read the tutorial](long_wide_reshape.md)
+
 - __Data Preparation: Flatten Temporal Dependency for Scikit-Learn Estimators__
 
     ---
