@@ -20,8 +20,10 @@ class TpTDecisionTreeRegressor(DecisionTreeRegressor):
     **time-penalised split gain**. At a node associated with a parent time $t_p$, a candidate split evaluated
     at time $t_c$ yields an impurity improvement $\\Delta I$ (typically based on variance reduction / MSE),
     which is penalised as $G_\\gamma = \\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$. In the current implementation,
-    $t_c$ is represented by the **wave index** of the splitting feature and $t_p$ is propagated by the tree
-    builder, so that the penalty depends on the *time distance* between successive splits.
+    $t_c$ is encoded in the **wave index** of the splitting feature and $t_p$ is propagated by the tree
+    builder, so the penalty depends on the *time distance* between successive splits. The splitter therefore
+    tends to prefer earlier waves (while allowing later waves deeper in the tree) unless later observations
+    bring a substantially stronger signal.
 
     ??? note "LONG vs wide input — *[Soon To Be Deprecated](https://github.com/simonprovost/scikit-longitudinal/issues/64)*"
         TpT internally operates on a **wide** matrix (features expanded over waves). If `assume_long_format=True`,

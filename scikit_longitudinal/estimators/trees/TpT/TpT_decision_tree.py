@@ -19,9 +19,11 @@ class TpTDecisionTreeClassifier(DecisionTreeClassifier):
 
     This classifier extends the standard Decision Tree algorithm to handle longitudinal data by incorporating a
     **time-penalised split gain**. At a parent node time $t_p$, a candidate split at time $t_c$ has gain
-    $\\Delta I$ which is penalised as $\\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$. In this Phase-1
-    implementation, $t_c$ is proxied by the **wave index** of the splitting feature; in a later step we will
-    propagate the true parent time through the builder to compute $t_c - t_p$ exactly.
+    $\\Delta I$ which is penalised as $\\Delta I \\cdot e^{-\\gamma (t_c - t_p)}$. In the current
+    implementation, $t_c$ is encoded in the **wave index** of the splitting feature and $t_p$ is propagated
+    by the tree builder, so the penalty depends on the *time distance* between successive splits. The
+    splitter therefore tends to prefer earlier waves (while allowing later waves deeper in the tree) unless
+    later observations bring a substantially stronger signal.
 
     ??? note "LONG vs wide input — *[Soon To Be Deprecated](https://github.com/simonprovost/scikit-longitudinal/issues/64)*"
         TpT internally operates on a **wide** matrix (features expanded over waves). If `assume_long_format=True`,
