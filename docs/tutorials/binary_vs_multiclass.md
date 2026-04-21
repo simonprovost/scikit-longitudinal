@@ -25,6 +25,14 @@ The estimators below support both binary and multiclass targets:
 - `NestedTreesClassifier`
 - `SepWav` with voting or stacking
 
+The animation below summarises what actually changes between the two settings: the fitting workflow is identical, `classes_` simply lists every observed label, and `predict_proba` grows one extra column per added class.
+
+<figure class="expandable-media" markdown="span" style="text-align: center;">
+ [![Binary vs. multiclass: same workflow, wider predict_proba](../assets/images/tutorials/binary_vs_multiclass/BinaryVsMulticlass.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/binary_vs_multiclass/BinaryVsMulticlass.avif){ .expandable-media__trigger }
+ [![Binary vs. multiclass: same workflow, wider predict_proba](../assets/images/tutorials/binary_vs_multiclass/BinaryVsMulticlassDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/binary_vs_multiclass/BinaryVsMulticlassDark.avif){ .expandable-media__trigger }
+ <figcaption>Click the image to expand it.</figcaption>
+</figure>
+
 ## Step 1: Binary classification
 
 This first example uses the original `stroke_w2` target from the tutorial dataset.

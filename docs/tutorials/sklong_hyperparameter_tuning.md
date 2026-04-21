@@ -9,6 +9,14 @@ icon: lucide/sliders-horizontal
 
 Tune longitudinal-aware models to squeeze out extra performance. This guide compares grid search and random search for `LexicoRandomForestClassifier`, focusing on `threshold_gain` plus common random-forest hyperparameters.
 
+The animation below summarises the contrast: grid search sweeps a regular lattice of hyperparameter combinations (thorough but expensive), while random search scatters samples across the same plane and, in practice, often lands inside high-performing regions that a coarse grid would miss.
+
+<figure class="expandable-media" markdown="span" style="text-align: center;">
+ [![Grid search vs. random search on the same plane](../assets/images/tutorials/sklong_hyperparameter_tuning/GridVsRandom.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/sklong_hyperparameter_tuning/GridVsRandom.avif){ .expandable-media__trigger }
+ [![Grid search vs. random search on the same plane](../assets/images/tutorials/sklong_hyperparameter_tuning/GridVsRandomDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/sklong_hyperparameter_tuning/GridVsRandomDark.avif){ .expandable-media__trigger }
+ <figcaption>Click the image to expand it.</figcaption>
+</figure>
+
 ## Step 1: Load data and define temporal dependencies
 
 ```python

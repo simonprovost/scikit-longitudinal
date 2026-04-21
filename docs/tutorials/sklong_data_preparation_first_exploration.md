@@ -9,6 +9,14 @@ icon: lucide/database-zap
 
 Data-preparation workflows flatten longitudinal structure so you can plug the output into standard `scikit-learn` estimators. Follow this step-by-step path with [`AggrFunc`](../API/data_preparation/aggregation_function.md) (mean aggregation) and `LogisticRegression`—no longitudinal-specific pipeline required.
 
+The animation below shows the intuition: each longitudinal group (e.g. all `smoke_*` columns) collapses into a single static column, so the output is a plain tabular matrix ready for any scikit-learn estimator.
+
+<figure class="expandable-media" markdown="span" style="text-align: center;">
+ [![AggrFunc flattens each longitudinal group](../assets/images/tutorials/sklong_data_preparation_first_exploration/AggrFuncFlatten.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/sklong_data_preparation_first_exploration/AggrFuncFlatten.avif){ .expandable-media__trigger }
+ [![AggrFunc flattens each longitudinal group](../assets/images/tutorials/sklong_data_preparation_first_exploration/AggrFuncFlattenDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/sklong_data_preparation_first_exploration/AggrFuncFlattenDark.avif){ .expandable-media__trigger }
+ <figcaption>Click the image to expand it.</figcaption>
+</figure>
+
 ## Step 1: Load data and define temporal dependencies
 
 ```python

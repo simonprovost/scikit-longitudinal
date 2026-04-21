@@ -50,6 +50,14 @@ without worrying about temporal dependencies. The primitives will handle this ba
 
 ## Understanding `features_group`
 
+Before the formal definition, here is the same idea in one pass: a wide-format table, with each longitudinal attribute's columns collapsed into one inner list of indices (oldest → most recent), and static covariates kept aside in `non_longitudinal_features`.
+
+<figure class="expandable-media" markdown="span" style="text-align: center;">
+ [![features_group, in one picture](../assets/images/tutorials/temporal_dependency/FeaturesGroupBuilder.avif#only-light){ width="100%" loading="lazy" }](../assets/images/tutorials/temporal_dependency/FeaturesGroupBuilder.avif){ .expandable-media__trigger }
+ [![features_group, in one picture](../assets/images/tutorials/temporal_dependency/FeaturesGroupBuilderDark.avif#only-dark){ width="100%" loading="lazy" }](../assets/images/tutorials/temporal_dependency/FeaturesGroupBuilderDark.avif){ .expandable-media__trigger }
+ <figcaption>Click the image to expand it.</figcaption>
+</figure>
+
 `features_group` is a list of lists of integers, with each inner list representing a group of features for a specific
 longitudinal variable. The inner lists' indices are ordered by wave/time-point sequence, capturing the
 temporal dependencies required for longitudinal data algorithms.

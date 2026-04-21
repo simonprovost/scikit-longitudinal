@@ -28,14 +28,6 @@ In order to visualise what the library delivers, the figure below shows the high
 
     [Read the tutorial](temporal_dependency.md)
 
-- __Advanced Feature Group (Temporal) Setup__
-
-    ---
-
-    Handle uneven numbers of observations per subject, including missing waves and padded feature groups.
-
-    [Read the tutorial](advanced_temporal_setup.md)
-
 - __Longitudinal Data Format__
 
     ---
@@ -51,6 +43,14 @@ In order to visualise what the library delivers, the figure below shows the high
     Pivot messy long-format cohorts into the wide layout `Sklong` expects (and back) using `LongitudinalDataset.to_wide` / `to_long`.
 
     [Read the tutorial](long_wide_reshape.md)
+
+- __Advanced Feature Group (Temporal) Setup__
+
+    ---
+
+    Handle uneven numbers of observations per subject, including missing waves and padded feature groups.
+
+    [Read the tutorial](advanced_temporal_setup.md)
 
 - __Data Preparation: Flatten Temporal Dependency for Scikit-Learn Estimators__
 
