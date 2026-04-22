@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="url(#readme-gradient)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-terminal" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="readme-gradient" x1="12" y1="0" x2="12" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FD706B"/>
+      <stop offset="1" stop-color="#472727"/>
+    </linearGradient>
+  </defs>
+  <path d="M12 19h8"/>
+  <path d="M4 17l6-6-6-6"/>
+</svg>
