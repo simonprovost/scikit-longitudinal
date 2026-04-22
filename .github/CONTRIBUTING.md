@@ -2,8 +2,8 @@
 <div align="center">
    <p align="center">
       <br>
-      <a href="docs/assets/images/Sklong_Banner.avif">
-         <img src="docs/assets/images/Sklong_Banner.avif" alt="Scikit-longitudinal banner">
+      <a href="docs/assets/images/Sklong_Banner.webp">
+         <img src="docs/assets/images/Sklong_Banner.webp" alt="Scikit-longitudinal banner">
       </a>
    </p>
    <h4 align="center">
