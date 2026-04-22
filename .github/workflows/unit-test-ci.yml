@@ -23,7 +23,7 @@ jobs:
 
       - id: check_tests_trigger
         name: Run Check Tests Trigger Script
-        run: bash build_tools/github/check_tests_trigger.sh
+        run: bash .github/scripts/check_tests_trigger.sh
 
   Testing:
     name: Run Unit Tests
