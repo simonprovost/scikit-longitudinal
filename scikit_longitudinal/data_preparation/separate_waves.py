@@ -42,6 +42,7 @@ def validate_extract_wave_input(func):
 
     """
 
+    @wraps(func)
     def wrapper(self, wave: int, extract_indices: bool = False):
         if not isinstance(extract_indices, bool):
             raise TypeError(
@@ -70,6 +71,7 @@ def validate_extract_wave_output(func):  # pragma: no cover
 
     """
 
+    @wraps(func)
     def wrapper(self, wave: int, extract_indices: bool = False):
         if extract_indices:
             X_wave, y_wave, extracted_indices = func(self, wave, extract_indices)
@@ -160,6 +162,7 @@ def validate_predict_input(func):
 
     """
 
+    @wraps(func)
     def wrapper(self, X):
         if self.clf_ensemble is None:
             raise NotFittedError(
@@ -187,6 +190,7 @@ def validate_predict_wave_input(func):
 
     """
 
+    @wraps(func)
     def wrapper(self, wave, X):
         if self.estimators is None or len(self.estimators) == 0:
             raise NotFittedError(
