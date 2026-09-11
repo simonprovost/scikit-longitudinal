@@ -116,7 +116,7 @@ ptyprocess==0.7.0 ; os_name != 'nt' or (sys_platform != 'emscripten' and sys_pla
 pure-eval==0.2.3
 pycparser==3.0 ; implementation_name != 'PyPy'
 pygments==2.20.0
-pymdown-extensions==10.21.3
+pymdown-extensions==11.0.2
 pyparsing==3.3.2
 pytest==9.0.1
 pytest-cov==7.1.0
@@ -167,4 +167,4 @@ webcolors==25.10.0
 webencodings==0.5.1
 websocket-client==1.9.0
 widgetsnbextension==4.0.15
-zensical==0.0.44
+zensical==0.0.61
