@@ -9,6 +9,7 @@ resolution-markers = [
 
 [manifest]
 overrides = [{ name = "scikit-learn", marker = "sys_platform == 'never'" }]
+build-constraints = [{ name = "cython", specifier = "<3.1" }]
 
 [[package]]
 name = "anyio"

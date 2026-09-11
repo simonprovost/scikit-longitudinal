@@ -73,6 +73,9 @@ package = true
 override-dependencies = [
     "scikit-learn ; sys_platform == 'never'",
 ]
+build-constraint-dependencies = [
+    "cython<3.1",
+]
 
 [tool.coverage.run]
 branch = true
