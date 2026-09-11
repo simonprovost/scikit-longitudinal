@@ -57,6 +57,18 @@ Apple Silicon users should install and run `Scikit-longitudinal` with an **x86_6
 
 After pinning the x86_64 interpreter, `uv` will automatically use it for future commands, providing a smooth Apple Silicon experience.
 
+### Native build failures (Cython errors on `uv sync`)
+
+`scikit-lexicographical-trees==0.0.5` (the `Scikit-learn` fork this project depends on) publishes Python `3.10` wheels for Linux `x86_64` and macOS `arm64` and `x86_64`. On Python `3.11`+, `uv` must compile it from source. Its source distribution contains Cython errors, including `Unicode literals do not support coercion to C types`, that also occur with `Cython<3.1`; pinning Cython alone does not resolve them.
+
+If `uv sync` fails while compiling `scikit-lexicographical-trees`, use a Python `3.10` interpreter on one of these platforms to install a prebuilt wheel. The documentation CI job also uses Python `3.10` for this reason:
+
+```bash
+uv python install 3.10
+uv python pin 3.10
+uv sync
+```
+
 ---
 
 ## Install From Source Scikit-Longitudinal
